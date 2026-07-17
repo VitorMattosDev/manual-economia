@@ -29,7 +29,7 @@
 
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
-| 1 | O que é Economia: escassez, escolha e custo de oportunidade | `capitulos/vol01/cap01-o-que-e-economia.qmd` | ⬜ (GABARITO) |
+| 1 | O que é Economia: escassez, escolha e custo de oportunidade | `capitulos/vol01/cap01-o-que-e-economia.qmd` | ✅ (GABARITO) |
 | 2 | O método da Economia: modelos, ceteris paribus e a FPP | `capitulos/vol01/cap02-metodo-da-economia.qmd` | ⬜ |
 | 3 | Sistemas econômicos: mercado, Estado e economias mistas | `capitulos/vol01/cap03-sistemas-economicos.qmd` | ⬜ |
 | 4 | Vantagem comparativa, especialização e trocas | `capitulos/vol01/cap04-vantagem-comparativa.qmd` | ⬜ |
@@ -222,11 +222,11 @@
 
 | # | Tarefa | Status |
 |---|--------|--------|
-| I1 | Scaffold completo (`_quarto.yml`, `styles.css` com `/*-- scss:rules --*/`, `CLAUDE.md`, `README.md`, stubs `.qmd`) | ⬜ |
-| I2 | Extensão TikZ copiada de `figuras-tikz-kit.zip` para `_extensions/danmackinlay/tikz/` (NUNCA via `quarto add`) | ⬜ |
-| I3 | Bootstrap TinyTeX local: `quarto install tinytex` + `tlmgr install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts` + PATH | ⬜ |
-| I4 | `referencias.bib` inicial + CSL ABNT | ⬜ |
-| I5 | `.github/workflows/publish.yml` com `quarto install chrome-headless-shell` antes do render | ⬜ |
-| I6 | Branch `gh-pages` criada remotamente (commit-tree vazio) antes do primeiro workflow | ⬜ |
-| I7 | Capítulo gabarito (Vol 1, Cap 1) escrito integralmente e validado em HTML + PDF | ⬜ |
+| I1 | Scaffold completo (`_quarto.yml`, `styles.css` com `/*-- scss:rules --*/`, `CLAUDE.md`, `README.md`, stubs `.qmd`) | ✅ |
+| I2 | Extensão TikZ copiada de `figuras-tikz-kit.zip` para `_extensions/danmackinlay/tikz/` (NUNCA via `quarto add`) | ✅ |
+| I3 | Bootstrap TinyTeX local: `quarto install tinytex` + `tlmgr install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts` + PATH | ✅ |
+| I4 | `referencias.bib` inicial + CSL ABNT | ✅ |
+| I5 | `.github/workflows/publish.yml` com `quarto install chrome-headless-shell` antes do render | ✅ |
+| I6 | Branch `gh-pages` criada remotamente (commit-tree vazio) antes do primeiro workflow | ✅ |
+| I7 | Capítulo gabarito (Vol 1, Cap 1) escrito integralmente e validado em HTML + PDF | ✅ |
 | I8 | Primeiro deploy verde no GitHub Pages | ⬜ |

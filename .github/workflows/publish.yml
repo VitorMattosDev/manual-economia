@@ -1,0 +1,38 @@
+name: Publicar Manual de Economia
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
+
+      - name: Instalar chrome-headless-shell (mermaid no PDF)
+        run: quarto install chrome-headless-shell
+
+      - name: Instalar pacotes LaTeX para TikZ
+        run: |
+          TLMGR=$(command -v tlmgr || find ~ /opt /usr -name tlmgr -type f 2>/dev/null | head -n1)
+          echo "tlmgr em: $TLMGR"
+          "$TLMGR" install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts standalone-* || true
+
+      - name: Renderizar e publicar (HTML + PDF)
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

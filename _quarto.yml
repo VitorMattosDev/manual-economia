@@ -1,0 +1,66 @@
+project:
+  type: book
+  output-dir: _book
+
+lang: pt
+
+book:
+  title: "Manual de Economia"
+  subtitle: "Um manual aberto e abrangente — série Manuais de Ciências"
+  author: "Série Manuais de Ciências"
+  date: today
+  date-format: "YYYY"
+  language: pt
+  search: true
+  repo-url: https://github.com/VitorMattosDev/manual-economia
+  repo-actions: [edit, issue]
+  sidebar:
+    style: docked
+    collapse-level: 1
+  page-footer:
+    left: "Manual de Economia — conteúdo aberto (CC BY-SA)."
+    right: "Feito com [Quarto](https://quarto.org)."
+  chapters:
+    - index.qmd
+    - part: "Volume 1 — Introdução à Economia"
+      chapters:
+        - capitulos/vol01/cap01-o-que-e-economia.qmd
+        - capitulos/vol01/cap02-metodo-da-economia.qmd
+        - capitulos/vol01/cap03-sistemas-economicos.qmd
+        - capitulos/vol01/cap04-vantagem-comparativa.qmd
+        - capitulos/vol01/cap05-fluxo-circular.qmd
+        - capitulos/vol01/cap06-micro-e-macro.qmd
+
+bibliography: referencias.bib
+csl: referencias-abnt.csl
+
+filters:
+  - danmackinlay/tikz
+  - quarto
+
+tikz:
+  svg-engine: dvisvgm
+  cache: true
+
+format:
+  html:
+    theme: [cosmo, styles.css]
+    toc: true
+    toc-depth: 3
+    toc-title: "Nesta página"
+    number-sections: true
+    fig-align: center
+    code-copy: true
+    smooth-scroll: true
+    html-math-method: mathjax
+  pdf:
+    documentclass: scrbook
+    papersize: a4
+    number-sections: true
+    toc: true
+    toc-depth: 2
+    colorlinks: true
+    keep-tex: false
+    include-in-header:
+      text: |
+        \usepackage{amsmath,amssymb}
