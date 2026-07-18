@@ -82,13 +82,13 @@
 
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
-| 1 | Teoria da produção: fatores, produto marginal e retornos | `capitulos/vol05/cap01-teoria-da-producao.qmd` | ⬜ |
-| 2 | Custos de produção: curto e longo prazo | `capitulos/vol05/cap02-custos.qmd` | ⬜ |
-| 3 | Concorrência perfeita | `capitulos/vol05/cap03-concorrencia-perfeita.qmd` | ⬜ |
-| 4 | Monopólio | `capitulos/vol05/cap04-monopolio.qmd` | ⬜ |
-| 5 | Concorrência monopolística | `capitulos/vol05/cap05-concorrencia-monopolistica.qmd` | ⬜ |
-| 6 | Oligopólio | `capitulos/vol05/cap06-oligopolio.qmd` | ⬜ |
-| 7 | Regulação e defesa da concorrência: o CADE | `capitulos/vol05/cap07-regulacao-cade.qmd` | ⬜ |
+| 1 | Teoria da produção: fatores, produto marginal e retornos | `capitulos/vol05/cap01-teoria-da-producao.qmd` | ✅ |
+| 2 | Custos de produção: curto e longo prazo | `capitulos/vol05/cap02-custos.qmd` | ✅ |
+| 3 | Concorrência perfeita | `capitulos/vol05/cap03-concorrencia-perfeita.qmd` | ✅ |
+| 4 | Monopólio | `capitulos/vol05/cap04-monopolio.qmd` | ✅ |
+| 5 | Concorrência monopolística | `capitulos/vol05/cap05-concorrencia-monopolistica.qmd` | ✅ |
+| 6 | Oligopólio | `capitulos/vol05/cap06-oligopolio.qmd` | ✅ |
+| 7 | Regulação e defesa da concorrência: o CADE | `capitulos/vol05/cap07-regulacao-cade.qmd` | ✅ |
 
 ### Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza
 

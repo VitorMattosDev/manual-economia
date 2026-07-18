@@ -1,0 +1,202 @@
+# Regulação e defesa da concorrência: o CADE {#sec-regulacao-cade}
+
+Ao longo deste volume, construímos um veredito implícito: a concorrência perfeita gera eficiência, e o poder de mercado — do monopólio ao oligopólio — gera preços altos, quantidades restritas e peso morto. A pergunta natural é: **e daí?** O que a sociedade faz a respeito? Um mercado deixado a si mesmo pode desembocar num monopólio que explora consumidores, num cartel que combina preços, numa fusão que elimina o único concorrente relevante. Este capítulo final é sobre a resposta institucional a esses problemas — sobre como o Estado tenta **preservar a concorrência** onde ela é possível e **regular o poder de mercado** onde a concorrência é inviável.
+
+São duas frentes distintas, e vale separá-las desde já. A **defesa da concorrência** (ou *antitruste*) é a polícia dos mercados competitivos: pune cartéis, coíbe abusos de posição dominante e barra fusões que concentrem demais — no Brasil, é a missão do **CADE**. A **regulação econômica** é a resposta ao caso em que a concorrência simplesmente não cabe — o **monopólio natural** do @sec-custos, como redes de energia e saneamento —, em que o Estado, em vez de fragmentar a firma, controla suas tarifas e sua qualidade por meio de **agências reguladoras**. Entender as duas é fechar o círculo aberto no @sec-concorrencia-perfeita: dos ideais de eficiência às instituições que tentam aproximá-los da realidade brasileira.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- distinguir **defesa da concorrência** (antitruste) de **regulação econômica**;
+- explicar por que o **monopólio natural** exige regulação e conhecer os métodos de regulação tarifária;
+- descrever a estrutura e as três funções do **CADE** no Brasil;
+- entender o **controle de estruturas** (análise de fusões) e o **controle de condutas** (cartéis, abuso de posição dominante);
+- discutir a **captura regulatória** e os limites da intervenção;
+- situar o marco institucional brasileiro de concorrência e regulação.
+
+## Duas respostas para o poder de mercado
+
+O poder de mercado pode surgir de duas fontes muito diferentes, e cada uma pede um remédio distinto.
+
+A primeira é o poder de mercado **evitável** — aquele que existe porque a concorrência foi suprimida por conduta anticompetitiva (um cartel), por uma fusão que eliminou rivais, ou pelo abuso de uma firma dominante. Aqui, a concorrência *é possível*; o problema é que alguém a bloqueou. O remédio é **restaurá-la**: essa é a **defesa da concorrência**.
+
+A segunda é o poder de mercado **inevitável** — o do **monopólio natural**, em que as economias de escala são tão fortes que uma única firma atende o mercado mais barato que várias (@sec-custos). Fragmentar a firma aqui seria um erro: duplicar redes de distribuição de água ou energia elevaria o custo para todos. A concorrência *não é eficiente*. O remédio não é criar concorrência, mas **substituí-la** por controle público: a **regulação econômica**.
+
+::: {.callout-note title="Definição — Defesa da concorrência e regulação econômica"}
+A **defesa da concorrência** (antitruste) é o conjunto de leis e órgãos que preserva a rivalidade nos mercados, reprimindo condutas (cartéis, abusos) e estruturas (fusões) anticompetitivas.
+
+A **regulação econômica** é o controle público direto de preços, entrada, qualidade e investimentos em setores onde a concorrência é inviável ou indesejável (monopólios naturais, serviços públicos essenciais).
+:::
+
+## Regulando o monopólio natural
+
+Comecemos pelo monopólio natural, o caso mais claro. Uma distribuidora de energia tem custo médio decrescente por toda a faixa de demanda (@sec-custos): quanto mais clientes na mesma rede, menor o custo por cliente. Deixada livre, ela cobraria o preço de monopólio da @fig-monopolio, com peso morto. Barrá-la fragmentando o mercado destruiria as economias de escala. O que o regulador faz, então, é **fixar a tarifa**. Mas em que nível?
+
+Dois critérios idealizados definem o dilema regulatório, ilustrado na @fig-monopolio-natural:
+
+- **Tarifa ao custo marginal** ($P = CMg$): é a regra da eficiência alocativa (@sec-concorrencia-perfeita) — produziria a quantidade eficiente, sem peso morto. **Problema**: no monopólio natural, o custo médio é decrescente e está *acima* do custo marginal. Cobrar $P = CMg$ deixaria a firma com **prejuízo** ($P < CTMe$), inviabilizando-a sem subsídio.
+- **Tarifa ao custo médio** ($P = CTMe$): garante à firma receita que cobre exatamente seus custos (incluindo um retorno normal ao capital), **lucro econômico zero** — a firma se sustenta. **Problema**: como $CTMe > CMg$, o preço fica acima do custo marginal, deixando algum peso morto residual. É a solução de "segundo melhor" mais usada na prática.
+
+::: {#fig-monopolio-natural}
+
+```{.tikz}
+%%| filename: fig-monopolio-natural
+%%| alt: Monopólio natural com custo médio decrescente sempre acima do custo marginal, também decrescente. A curva de demanda cruza o custo médio no ponto de tarifa ao custo médio e cruza o custo marginal mais à direita, no ponto de tarifa ao custo marginal, que fica abaixo do custo médio e geraria prejuízo.
+\begin{tikzpicture}[scale=1.05]
+  \draw[eixo] (0,0) -- (8.5,0) node[right] {$q$};
+  \draw[eixo] (0,0) -- (0,6.2) node[above] {$P$};
+  % CTMe decrescente
+  \draw[curva, manualblue, thick]
+    plot[smooth, domain=0.8:8] (\x, {5.5/\x + 0.6})
+    node[right, font=\footnotesize] {$CTMe$};
+  % CMg decrescente, abaixo do CTMe (para custo médio decrescente, CMg<CTMe)
+  \draw[curva, manualgreen, thick]
+    plot[smooth, domain=0.8:8] (\x, {2.6/\x + 0.6})
+    node[right, font=\footnotesize] {$CMg$};
+  % demanda descendente
+  \draw[curva, manualred, thick] (0.5,5.5) -- (8,0.6) node[right, font=\footnotesize] {$D$};
+  % tarifa custo médio: D = CTMe. 5.5/x+0.6 = 5.5 -0.68(x-0.5)... aproximar ponto ~ (2.5, 2.8)
+  \node[ponto] at (2.5,2.8) {};
+  \draw[auxiliar] (2.5,0) -- (2.5,2.8);
+  \node[below, font=\scriptsize, align=center] at (2.5,-0.05) {$q_{CTMe}$};
+  \node[left, font=\scriptsize] at (0,2.8) {$P_{CTMe}$};
+  % tarifa custo marginal: D = CMg ~ (4.8, 1.4)
+  \node[ponto, fill=manualgray] at (4.8,1.6) {};
+  \draw[auxiliar] (4.8,0) -- (4.8,1.6);
+  \node[below, font=\scriptsize, align=center] at (4.8,-0.05) {$q_{CMg}$};
+  \node[right, font=\scriptsize, align=center, manualgray] at (5.2,1.2) {$P=CMg$\\(dá prejuízo)};
+\end{tikzpicture}
+```
+
+Monopólio natural: custo médio decrescente sempre acima do custo marginal. Tarifar ao custo marginal ($P = CMg$) seria eficiente mas geraria prejuízo; tarifar ao custo médio ($P = CTMe$) sustenta a firma com peso morto residual.
+:::
+
+Na prática, os reguladores usam esquemas mais sofisticados que buscam também **incentivar eficiência**, já que a firma regulada não tem a pressão da concorrência para reduzir custos:
+
+- **Regulação pela taxa de retorno** (*cost-plus*): a tarifa cobre os custos mais um retorno "justo" sobre o capital. Simples, mas tem um defeito grave — não dá à firma incentivo para cortar custos (todo custo é repassado à tarifa) e pode até estimular sobreinvestimento em capital.
+- **Regulação por preço-teto** (*price cap*): o regulador fixa um teto de preço (reajustado por um índice de inflação menos um fator de produtividade $X$, o "IPCA − X"). Se a firma reduzir custos abaixo do teto, **fica com o ganho** — o que cria forte incentivo à eficiência. É o modelo predominante hoje em vários setores regulados brasileiros.
+
+## O CADE e a defesa da concorrência no Brasil
+
+Passemos à outra frente. No Brasil, a defesa da concorrência é conduzida pelo **Sistema Brasileiro de Defesa da Concorrência (SBDC)**, cujo órgão central é o **CADE — Conselho Administrativo de Defesa Econômica**, autarquia federal reestruturada pela **Lei nº 12.529/2011** (a Lei de Defesa da Concorrência). O CADE tem três órgãos internos: o **Tribunal Administrativo** (que julga), a **Superintendência-Geral** (que investiga e instrui) e o **Departamento de Estudos Econômicos** (que dá suporte técnico). Suas atribuições dividem-se em três funções.
+
+::: {.callout-note title="As três funções do CADE"}
+- **Preventiva (controle de estruturas)**: analisar previamente **fusões e aquisições** que possam concentrar demais o mercado, aprovando, vetando ou impondo condições.
+- **Repressiva (controle de condutas)**: investigar e punir **infrações à ordem econômica** — cartéis, abuso de posição dominante, acordos anticompetitivos.
+- **Educativa (advocacia da concorrência)**: difundir a cultura da concorrência e assessorar outros órgãos e políticas públicas.
+:::
+
+### Controle de estruturas: a análise de fusões
+
+Quando duas empresas grandes se fundem, a operação pode gerar **eficiências** (economias de escala, sinergias — o lado bom do @sec-custos) mas também **poder de mercado** (menos concorrentes, preços mais altos — o lado ruim deste volume). O CADE faz uma **análise de trade-off**: pesa os ganhos de eficiência contra o risco de dano à concorrência. Operações acima de certos patamares de faturamento devem ser **notificadas previamente** e só podem se concretizar após aprovação.
+
+Para medir a concentração, usa-se o **índice de Herfindahl-Hirschman (IHH)**, a soma dos quadrados das participações de mercado de todas as firmas:
+$$
+IHH = \sum_{i=1}^{n} s_i^{2},
+$$ {#eq-ihh}
+onde $s_i$ é a participação (em %) da firma $i$. O IHH vai de próximo de zero (mercado pulverizado) a 10.000 (monopólio, uma firma com 100%: $100^2$). Elevar ao quadrado dá **peso maior às firmas grandes** — por isso o IHH capta concentração melhor que a mera contagem de firmas. Uma fusão que eleve muito o IHH acende o alerta do regulador. O CADE pode **aprovar** a fusão, **reprová-la**, ou aprová-la com **remédios** (venda de ativos, *carve-outs*, compromissos de conduta) que preservem a concorrência.
+
+### Controle de condutas: cartéis e abusos
+
+A segunda função reprime as práticas que este volume descreveu como nocivas. A mais grave é o **cartel** (@sec-oligopolio) — considerado a mais séria infração à ordem econômica, por combinar preços e lesar consumidores sem qualquer contrapartida de eficiência. O CADE combate cartéis com seu instrumento mais poderoso: o **acordo de leniência**, que, como vimos, explora o incentivo individual de cada membro a delatar o esquema antes dos outros, transformando o dilema do prisioneiro do cartel em ferramenta de investigação. Firmas condenadas por cartel enfrentam multas elevadas (percentual do faturamento) e seus executivos podem responder criminalmente.
+
+Além do cartel, o CADE reprime o **abuso de posição dominante**: condutas de uma firma com poder de mercado que prejudicam a concorrência — preços predatórios (vender abaixo do custo para quebrar rivais e depois subir preços), vendas casadas, exclusividades abusivas, recusa de acesso a infraestrutura essencial. Note que **ter** posição dominante não é ilegal (pode resultar de mérito e eficiência); ilegal é **abusar** dela — a mesma distinção do @sec-monopolio entre lucro (lícito) e conduta que restringe artificialmente a concorrência.
+
+## Os limites da intervenção
+
+Regular e defender a concorrência não são panaceias. A intervenção tem custos e riscos, que os economistas levam a sério.
+
+::: {.callout-warning title="Controvérsia — captura regulatória e falhas de governo"}
+A **captura regulatória** é o risco de que o regulador, em vez de defender o interesse público, acabe servindo aos interesses da indústria que deveria controlar. Isso ocorre por assimetria de informação (a firma conhece seus custos melhor que o regulador), por pressão política e lobby, e pela "porta giratória" entre reguladores e regulados. Assim como há **falhas de mercado** (poder de mercado, externalidades) que justificam a intervenção, há **falhas de governo** (captura, ineficiência burocrática, decisões politizadas) que podem tornar a intervenção pior que o problema. A escola de Chicago, em particular, argumenta que muitos mercados se autocorrigem (a entrada corrói o poder de monopólio, como no @sec-concorrencia-perfeita) e que a regulação excessiva frequentemente protege incumbentes em vez de consumidores. O bom desenho institucional — independência do regulador, transparência, mandatos fixos — busca minimizar esses riscos, sem eliminá-los.
+:::
+
+Há, portanto, um debate genuíno — **positivo e normativo** (@sec-o-que-e-economia) — sobre *quanto* intervir. Poucos negam que cartéis devam ser combatidos; a controvérsia está nos casos cinzentos: até que ponto uma fusão deve ser barrada, quão rígido deve ser o teto tarifário, quando uma firma dominante está "abusando" ou apenas competindo bem. A resposta responsável reconhece tanto as falhas de mercado quanto as de governo, e busca o arranjo que minimize a soma dos dois erros.
+
+## 🇧🇷 Brasil em Foco
+
+O Brasil tem um arcabouço institucional de concorrência e regulação relativamente maduro, construído sobretudo a partir dos anos 1990.
+
+**O SBDC e casos emblemáticos do CADE.** Desde a Lei nº 12.529/2011, o CADE atua como autarquia com as três funções descritas. No **controle de estruturas**, analisou grandes fusões — em bebidas, telecomunicações, aviação, saúde, bancos e varejo —, algumas aprovadas com remédios (venda de ativos, alienação de marcas) e outras reprovadas por risco à concorrência. No **controle de condutas**, conduziu casos de cartel de grande repercussão (cimento, combustíveis, gases industriais, próteses, entre outros), muitos deflagrados por **acordos de leniência**, com multas que somaram bilhões de reais. O caso do **cartel do cimento** é um marco: multa bilionária e determinação de venda de ativos para desconcentrar o setor.
+
+**As agências reguladoras setoriais.** A onda de **privatizações e concessões** dos anos 1990 criou a necessidade de regular monopólios naturais e serviços públicos antes estatais. Surgiram então as agências: **ANEEL** (energia elétrica), **ANATEL** (telecomunicações), **ANP** (petróleo e gás), **ANA** (águas), **ANTT** e **ANTAQ** (transportes terrestres e aquaviários), **ANAC** (aviação civil), **ANVISA** e **ANS** (vigilância sanitária e saúde suplementar). Elas fixam tarifas (muitas por esquemas de **preço-teto**, o "IPCA − X"), definem padrões de qualidade e regulam a entrada — exatamente o papel de regulação do monopólio natural e dos serviços essenciais discutido no capítulo.
+
+**Reforma tributária, marco das agências e o debate atual.** O Brasil aprovou a **Lei das Agências Reguladoras (Lei nº 13.848/2019)**, que reforçou a autonomia, a governança e os mandatos das agências — resposta institucional ao risco de **captura**. Ao mesmo tempo, seguem em debate a qualidade da regulação, a morosidade de alguns processos e o equilíbrio entre atrair investimento privado (que exige previsibilidade e retorno) e proteger o consumidor (que exige tarifas moderadas) — a tensão central de todo o capítulo, viva na agenda brasileira.
+
+> **Fontes e séries para explorar:** CADE (processos, guias de análise de atos de concentração, acordos de leniência); agências reguladoras (metodologias tarifárias — ANEEL, ANATEL, ANP); Lei nº 12.529/2011 (defesa da concorrência) e Lei nº 13.848/2019 (agências). Ao citar multas e casos, verifique a data e o desfecho, pois muitos processos passam por recursos.
+
+## Resumo do capítulo
+
+- Há **duas respostas** ao poder de mercado: a **defesa da concorrência** (restaurar a rivalidade onde ela é possível — cartéis, fusões, abusos) e a **regulação econômica** (substituir a concorrência onde ela é inviável — monopólios naturais e serviços essenciais).
+- No **monopólio natural** (custo médio decrescente), tarifar ao **custo marginal** é eficiente mas gera prejuízo; tarifar ao **custo médio** sustenta a firma (lucro zero) com peso morto residual. Modelos práticos: **taxa de retorno** (*cost-plus*) e **preço-teto** (*price cap*, "IPCA − X"), este com melhor incentivo à eficiência.
+- No Brasil, o **CADE** (Lei nº 12.529/2011) tem três funções: **preventiva** (controle de estruturas/fusões), **repressiva** (controle de condutas/cartéis e abusos) e **educativa** (advocacia da concorrência).
+- A **análise de fusões** pesa eficiências contra poder de mercado; a concentração é medida pelo **IHH** ($\sum s_i^2$), que dá peso maior às firmas grandes. Fusões podem ser aprovadas, reprovadas ou aprovadas com **remédios**.
+- **Ter** posição dominante é lícito; **abusar** dela não. O **cartel** é a infração mais grave, combatida sobretudo com **acordos de leniência**.
+- A intervenção tem limites: risco de **captura regulatória** e **falhas de governo**. O bom desenho institucional (independência, transparência, mandatos) busca minimizar a soma dos erros de mercado e de governo.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva antes de abrir a solução. Dificuldade crescente.
+:::
+
+**1.** Distinga defesa da concorrência de regulação econômica. Dê um exemplo brasileiro de cada.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A **defesa da concorrência** (antitruste) preserva a rivalidade em mercados onde a concorrência **é possível**, reprimindo cartéis, abusos e fusões nocivas — no Brasil, é o papel do **CADE** (ex.: condenar um cartel de combustíveis, analisar a fusão de duas grandes empresas). A **regulação econômica** controla diretamente preços, entrada e qualidade em setores onde a concorrência é **inviável ou indesejável** (monopólios naturais, serviços essenciais) — no Brasil, é o papel das **agências reguladoras** (ex.: a ANEEL fixar a tarifa de energia da distribuidora local, a ANATEL regular telecomunicações). A primeira *cria/preserva* concorrência; a segunda a *substitui* por controle público.
+:::
+
+**2.** Por que não faz sentido "quebrar" um monopólio natural em várias firmas concorrentes?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Um monopólio natural tem **custo médio de longo prazo decrescente** por toda a faixa de demanda relevante (fortes economias de escala): uma única firma atende o mercado a custo por unidade **menor** do que várias firmas atenderiam. Fragmentá-lo em concorrentes duplicaria estruturas caras (redes de distribuição de energia, água, ferrovias, canos), elevando o custo total e o custo por cliente — cada firma operaria em escala menor e menos eficiente. Isso *aumentaria* os preços em vez de reduzi-los. Por isso o remédio não é criar concorrência (que aqui é ineficiente), mas manter uma firma e **regular** suas tarifas e qualidade.
+:::
+
+**3.** Explique o dilema de tarifar um monopólio natural ao custo marginal *versus* ao custo médio. Por que a regulação costuma escolher o custo médio?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Num monopólio natural, o custo médio é decrescente e portanto **sempre acima do custo marginal** (o marginal puxa a média para baixo). Tarifar ao **custo marginal** ($P = CMg$) seria alocativamente **eficiente** (quantidade eficiente, sem peso morto), mas como $CMg < CTMe$, o preço não cobriria o custo médio: a firma teria **prejuízo** e precisaria de subsídio para não fechar. Tarifar ao **custo médio** ($P = CTMe$) dá à firma receita que cobre exatamente seus custos, incluindo retorno normal ao capital — **lucro econômico zero**, firma autossustentável —, ao custo de deixar o preço acima do marginal, com algum peso morto residual. A regulação costuma escolher o **custo médio** porque é a solução de "segundo melhor" que viabiliza a firma sem subsídio permanente: sacrifica um pouco de eficiência alocativa em troca de sustentabilidade financeira.
+:::
+
+**4.** Um mercado tem quatro firmas com participações de 40%, 30%, 20% e 10%. Calcule o IHH. Em seguida, calcule o IHH se as duas maiores (40% e 30%) se fundirem, e comente o resultado.
+
+::: {.callout-tip collapse="true" title="Solução"}
+IHH antes da fusão:
+$$
+IHH = 40^2 + 30^2 + 20^2 + 10^2 = 1600 + 900 + 400 + 100 = 3000.
+$$
+Após a fusão das duas maiores, surge uma firma de 70%, e restam as de 20% e 10%:
+$$
+IHH = 70^2 + 20^2 + 10^2 = 4900 + 400 + 100 = 5400.
+$$
+O IHH salta de 3.000 para 5.400 (variação de +2.400) — uma **elevação enorme** da concentração. Como o IHH eleva ao quadrado as participações, a fusão das líderes concentra desproporcionalmente o mercado. Um aumento dessa magnitude acenderia forte alerta no CADE, que provavelmente **reprovaria** a operação ou a aprovaria apenas com **remédios** (ex.: venda de ativos que recriem um concorrente relevante).
+:::
+
+**5.** "Ter uma posição dominante no mercado deveria ser proibido." Avalie a afirmação usando o que você aprendeu neste volume.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A afirmação está **incorreta** como princípio. Uma posição dominante pode resultar de **mérito competitivo** — melhor produto, custos mais baixos (eficiência do @sec-custos), inovação (como a firma que inventa um produto e o patenteia legitimamente). Punir o simples *fato* de ser grande e eficiente **desincentivaria** justamente a busca de eficiência e inovação que beneficia consumidores, e contrariaria a lógica de que lucros (transferências) não são, em si, o problema (@sec-monopolio). O que a lei proíbe não é **ter** poder de mercado, mas **abusar** dele: condutas que restringem artificialmente a concorrência (preços predatórios, vendas casadas abusivas, cartéis, recusa de acesso a infraestrutura essencial). A distinção é a mesma feita no volume: o problema do poder de mercado é a **conduta** que restringe quantidade e exclui rivais, não o tamanho ou o lucro em si. Por isso o antitruste mira condutas e estruturas específicas, não o porte das empresas.
+:::
+
+**6.** (Análise de caso) Compare a regulação por **taxa de retorno** (*cost-plus*) com a regulação por **preço-teto** (*price cap*) quanto ao incentivo que cada uma dá à firma para reduzir custos. Qual é preferível sob esse critério e por quê?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Na **taxa de retorno** (*cost-plus*), a tarifa é fixada para cobrir os custos observados da firma mais um retorno "justo" sobre o capital. O problema de incentivo é grave: como **todo custo é repassado** à tarifa, a firma **não tem estímulo para cortar custos** (a economia não vira lucro dela, mas tarifa menor) e pode até inflar custos ou sobreinvestir em capital (o efeito Averch-Johnson) para ampliar a base sobre a qual incide o retorno. Na **regulação por preço-teto** (*price cap*), o regulador fixa um teto de preço, reajustado por inflação **menos** um fator de produtividade $X$ ("IPCA − X"), **independente** dos custos efetivos por um período. Se a firma conseguir reduzir custos abaixo do teto, ela **fica com a diferença** como lucro — um forte incentivo à **eficiência**. Sob o critério de incentivo à redução de custos, o **preço-teto é preferível**: ele simula a pressão da concorrência (quem corta custo lucra), enquanto o *cost-plus* elimina essa pressão. A ressalva é que o preço-teto exige boa calibração do fator $X$ e revisões periódicas para que os ganhos de eficiência sejam eventualmente repassados aos consumidores — e que a firma não sacrifique qualidade para cortar custos. Por isso é o modelo predominante em setores regulados brasileiros, combinado a indicadores de qualidade.
+:::
+
+**7.** (Desafio) Um economista da escola de Chicago argumenta que "a maior parte da regulação protege os incumbentes, não os consumidores, e que a entrada de concorrentes resolveria o poder de mercado melhor que o Estado". Um economista favorável à intervenção discorda. Construa o melhor argumento de cada lado e proponha um critério para decidir quando intervir.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Lado cético (Chicago):** os mercados têm forte tendência à autocorreção — qualquer lucro econômico atrai **entrada**, que corrói o poder de monopólio (@sec-concorrencia-perfeita); barreiras à entrada muitas vezes são *criadas* pela própria regulação (licenças, exigências), que acaba **protegendo incumbentes** contra novos concorrentes. Somam-se as **falhas de governo**: assimetria de informação (o regulador não conhece os custos reais), **captura regulatória** (lobby, porta giratória) e decisões politizadas, que podem tornar o remédio pior que a doença. Conclusão: intervir pouco, remover barreiras à entrada e confiar na concorrência potencial.
+
+**Lado intervencionista:** nem todo poder de mercado se autocorrige. **Monopólios naturais** não admitem entrada eficiente (duplicar redes é desperdício); **cartéis** e **abusos de posição dominante** podem persistir e lesar consumidores por longos períodos; **efeitos de rede** e barreiras estruturais (capital, escala, marca) bloqueiam a entrada por conta própria. As **falhas de mercado** são reais e caras, e a experiência mostra cartéis duradouros e monopólios abusivos que só recuaram por ação pública (o próprio histórico do CADE). Conclusão: a intervenção bem desenhada gera ganhos líquidos.
+
+**Critério proposto:** intervir quando o **dano esperado da falha de mercado** (peso morto, exclusão de rivais, exploração de consumidores, ponderado pela probabilidade de o mercado *não* se autocorrigir) **superar o custo esperado da falha de governo** (captura, erro regulatório, proteção de incumbentes, custo administrativo). Isso implica: (i) intervir com firmeza onde a autocorreção é implausível — monopólios naturais (regular) e cartéis (reprimir); (ii) ser cauteloso onde a entrada é viável — preferir **remover barreiras** a criar regras; (iii) desenhar instituições que **minimizem a captura** (independência do regulador, transparência, mandatos fixos — como a Lei nº 13.848/2019 buscou). O ponto de equilíbrio reconhece que existem *tanto* falhas de mercado *quanto* falhas de governo, e escolhe o arranjo que minimiza a **soma dos dois erros** — em vez de supor, ingenuamente, que um dos lados nunca falha.
+:::
+
+## Para saber mais
+
+- @pindyck2013 — capítulos sobre poder de monopólio, regulação de monopólio natural e política antitruste, com o tratamento do IHH e da análise de fusões.
+- @mankiw2020 — discute as políticas públicas frente ao monopólio (regulação, antitruste, propriedade estatal) de forma introdutória e equilibrada.
+- @giambiagi2016 — para o papel do Estado, a regulação e as instituições econômicas no contexto brasileiro.
+- @friedman2014 — a defesa cética da intervenção e o argumento da autocorreção dos mercados, útil para o debate pluralista.

@@ -1,0 +1,251 @@
+# Concorrência perfeita {#sec-concorrencia-perfeita}
+
+Vá a uma feira livre e observe o vendedor de tomates. Ao lado dele há outros dez vendendo tomates quase idênticos, e do outro lado do corredor, mais dez. Se ele pedir R\$\,1 a mais que o vizinho pelo mesmo tomate, os fregueses simplesmente andam alguns passos e compram do concorrente. Ele não *escolhe* o preço: aceita o que a feira inteira pratica. Sua única decisão real é **quanto** vender àquele preço — e se vale a pena, no fim do dia, ter aberto a barraca.
+
+Essa situação, em que o produtor não tem nenhum poder sobre o preço, é o ponto de partida da teoria das estruturas de mercado. Chamamos de **concorrência perfeita**. É um modelo idealizado — poucos mercados reais satisfazem todas as suas hipóteses —, mas é a referência contra a qual todas as outras estruturas serão medidas. Ele nos dá o resultado mais celebrado da microeconomia: em concorrência perfeita, a busca egoísta de lucro conduz, sem que ninguém planeje, à **eficiência** — a "mão invisível" de Adam Smith, agora com a precisão de curvas de custo. Entender por que isso acontece aqui é entender, por contraste, o que dá errado no monopólio e no oligopólio dos próximos capítulos.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- enunciar as hipóteses da **concorrência perfeita** e o conceito de firma **tomadora de preços**;
+- distinguir **receita total**, **receita média** e **receita marginal**, e mostrar que $RMg = P$ para a firma competitiva;
+- derivar a regra de maximização de lucro $P = CMg$ e localizar o lucro no gráfico;
+- deduzir a **curva de oferta de curto prazo** da firma e a condição de **fechamento** (*shutdown*);
+- explicar o ajuste de **longo prazo** por entrada e saída de firmas e o resultado de **lucro econômico zero**;
+- avaliar a **eficiência** da concorrência perfeita e reconhecer aproximações dela no Brasil.
+
+## As hipóteses do modelo
+
+A concorrência perfeita é definida por quatro hipóteses. Nenhuma se cumpre à risca no mundo, mas juntas descrevem o limite de competição máxima.
+
+::: {.callout-note title="Definição — Concorrência perfeita"}
+Um mercado é **perfeitamente competitivo** quando:
+
+1. há **muitos** compradores e vendedores, cada um pequeno diante do mercado;
+2. o produto é **homogêneo** (idêntico entre vendedores);
+3. há **livre entrada e saída** de firmas no longo prazo;
+4. a **informação** sobre preços e qualidade é perfeita e gratuita.
+:::
+
+A consequência das duas primeiras hipóteses é decisiva: cada firma é **tomadora de preços** (*price taker*). Como é minúscula e vende exatamente o mesmo que as demais, ela não influencia o preço de mercado — apenas o aceita. Se cobrar acima do preço vigente, perde *todos* os clientes (compram do idêntico concorrente); cobrar abaixo é jogar dinheiro fora, pois ela vende tudo o que quiser pelo preço de mercado. A firma enxerga, portanto, uma **demanda horizontal** ao nível do preço $P$, ainda que a demanda do *mercado* seja a curva descendente usual do @sec-demanda.
+
+## A receita da firma competitiva
+
+Se a firma vende cada unidade pelo mesmo preço $P$, suas medidas de receita são simples. A **receita total** é $RT = P\cdot q$. A **receita média** é $RMe = RT/q = P$. E a **receita marginal** — o acréscimo de receita por unidade extra vendida — é:
+$$
+RMg = \frac{\Delta RT}{\Delta q} = \frac{\Delta (P\cdot q)}{\Delta q} = P,
+$$ {#eq-rmg-competitiva}
+pois $P$ é constante para a firma. Chegamos a uma igualdade central de todo o capítulo:
+
+$$
+\boxed{P = RMe = RMg} \quad \text{(firma competitiva).}
+$$
+
+Cada unidade a mais rende exatamente o preço, nem mais nem menos. Guarde este resultado: no monopólio (@sec-monopolio), ele **quebra** — e é dessa quebra que nasce toda a diferença.
+
+## A decisão de produção: $P = CMg$
+
+Quanto a firma deve produzir para maximizar o lucro? O lucro é $\pi = RT - CT$. A regra marginal, herdada do @sec-o-que-e-economia, manda expandir a produção enquanto cada unidade extra acrescentar mais à receita do que ao custo, isto é, enquanto $RMg > CMg$; e parar quando os dois se igualam. A condição geral de maximização de lucro, válida para *qualquer* estrutura de mercado, é:
+
+$$
+RMg = CMg.
+$$ {#eq-otimo-geral}
+
+Para a firma competitiva, como $RMg = P$, ela se especializa em:
+
+$$
+\boxed{P = CMg.}
+$$ {#eq-p-igual-cmg}
+
+A firma produz até o ponto em que o custo de mais uma unidade iguala o preço que ela recebe por essa unidade. A @fig-lucro-cp mostra a decisão. A firma escolhe $q^{*}$ onde a linha horizontal do preço cruza a curva de custo marginal (no trecho crescente). O lucro por unidade é a distância vertical entre o preço e o $CTMe$ naquela quantidade; o lucro total é a área do retângulo $(P - CTMe)\times q^{*}$.
+
+::: {#fig-lucro-cp}
+
+```{.tikz}
+%%| filename: fig-lucro-cp
+%%| alt: Firma competitiva com preço horizontal acima do custo total médio. O custo marginal em U cruza a linha de preço na quantidade ótima; o retângulo entre preço e custo total médio, até a quantidade ótima, é o lucro econômico positivo, sombreado.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (8,0) node[right] {$q$};
+  \draw[eixo] (0,0) -- (0,6) node[above] {$R\$$};
+  % CMg
+  \draw[curva, manualred, thick]
+    plot[smooth, domain=0.8:6.4] (\x, {0.32*(\x-3)*(\x-3)+1.4})
+    node[right, font=\footnotesize] {$CMg$};
+  % CTMe
+  \draw[curva, manualblue, thick]
+    plot[smooth, domain=1.0:6.4] (\x, {0.16*(\x-4.2)*(\x-4.2)+2.0})
+    node[right, font=\footnotesize] {$CTMe$};
+  % preço horizontal
+  \draw[destaque, very thick] (0,4) -- (7,4) node[right, font=\footnotesize] {$P=RMg$};
+  % q* onde P cruza CMg (ramo crescente): 0.32(x-3)^2+1.4=4 -> (x-3)^2=8.125 -> x≈5.85
+  \draw[auxiliar] (5.85,0) -- (5.85,4);
+  \node[below, font=\footnotesize] at (5.85,0) {$q^{*}$};
+  \node[ponto] at (5.85,4) {};
+  % CTMe em q*: 0.16(5.85-4.2)^2+2 = 0.16*2.72+2 ≈ 2.44
+  \draw[auxiliar] (0,2.44) -- (5.85,2.44);
+  \node[left, font=\footnotesize] at (0,2.44) {$CTMe$};
+  \node[left, font=\footnotesize] at (0,4) {$P$};
+  \fill[manualgreen!20] (0,2.44) rectangle (5.85,4);
+  \node[manualgreen!60!black, font=\footnotesize] at (3,3.25) {lucro};
+\end{tikzpicture}
+```
+
+Firma competitiva com lucro econômico positivo: produz $q^{*}$ onde $P = CMg$; o lucro é o retângulo entre $P$ e o $CTMe$.
+:::
+
+::: {.callout-important title="Armadilha comum — maximizar lucro não é maximizar produção"}
+A firma **não** produz o máximo que consegue, nem a quantidade de menor custo médio. Ela para onde $P = CMg$. Produzir além disso traria unidades cujo custo marginal supera o preço — cada uma *reduziria* o lucro. A regra é sempre marginal, nunca "produza tudo".
+:::
+
+Dependendo do preço, o retângulo do lucro pode ser positivo (como na figura), nulo (se $P = CTMe$ mínimo) ou **negativo** — um prejuízo, quando $P < CTMe$. E aqui surge a pergunta que separa o curto do longo prazo: se está no prejuízo, a firma deve fechar?
+
+## Fechar ou continuar? A condição de *shutdown*
+
+No curto prazo, a firma tem custos fixos que paga produza ou não. Isso muda a lógica. Fechar não elimina o custo fixo — só elimina a receita e o custo variável. Logo, a comparação relevante é entre a receita e o **custo variável**, não o total.
+
+::: {.callout-note title="Regra de fechamento (curto prazo)"}
+A firma deve **continuar produzindo** (mesmo com prejuízo) enquanto o preço cobrir ao menos o custo variável médio: $P \geq CVMe$. Deve **fechar** (produzir zero) se $P < CVMe_{\min}$.
+:::
+
+A intuição: se o preço cobre o custo variável e ainda sobra algo, essa sobra ajuda a pagar o custo fixo — que existiria de qualquer forma. Fechar significaria perder o custo fixo *inteiro*; continuar, perder só uma parte. Só quando o preço não cobre nem o custo variável é que cada unidade produzida aumenta o prejuízo, e aí sim vale fechar. O ponto $P = CVMe_{\min}$ é o **ponto de fechamento**.
+
+Disso resulta um fato notável, ilustrado na @fig-oferta-firma: **a curva de oferta de curto prazo da firma competitiva é o trecho da curva de custo marginal acima do custo variável médio mínimo.** Para cada preço, a firma escolhe $q$ tal que $P = CMg$; abaixo do ponto de fechamento, oferta zero. A curva de oferta do mercado do @sec-oferta é a soma horizontal dessas curvas individuais — eis a fundação micro da oferta que usamos desde o Volume 3.
+
+::: {#fig-oferta-firma}
+
+```{.tikz}
+%%| filename: fig-oferta-firma
+%%| alt: Curva de custo marginal em U com o custo variável médio e o custo total médio; o trecho da curva de custo marginal acima do mínimo do custo variável médio está destacado como a curva de oferta de curto prazo da firma. O ponto de fechamento é o mínimo do custo variável médio.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (8,0) node[right] {$q$};
+  \draw[eixo] (0,0) -- (0,6) node[above] {$R\$$};
+  % CVMe
+  \draw[curva, manualgreen, thick]
+    plot[smooth, domain=0.7:6.4] (\x, {0.16*(\x-3.3)*(\x-3.3)+1.3})
+    node[right, font=\footnotesize] {$CVMe$};
+  % CTMe
+  \draw[curva, manualblue, thick]
+    plot[smooth, domain=1.0:6.4] (\x, {0.16*(\x-4.2)*(\x-4.2)+2.0})
+    node[right, font=\footnotesize] {$CTMe$};
+  % CMg todo (fino cinza)
+  \draw[curva, manualgray] plot[smooth, domain=0.7:2.4] (\x, {0.32*(\x-3)*(\x-3)+1.3});
+  % CMg destacado (oferta): acima do min CVMe (~q=3.3, valor 1.3)
+  \draw[curva, manualred, very thick]
+    plot[smooth, domain=3.3:6.2] (\x, {0.32*(\x-3)*(\x-3)+1.3})
+    node[right, font=\footnotesize] {oferta $=CMg$};
+  \node[ponto] at (3.3,1.3) {};
+  \node[manualred, font=\footnotesize, align=center] at (2.0,2.9) {ponto de\\fechamento};
+  \draw[->, manualred] (2.3,2.5) -- (3.1,1.5);
+\end{tikzpicture}
+```
+
+A oferta de curto prazo da firma é o ramo do custo marginal acima do mínimo do custo variável médio (o ponto de fechamento).
+:::
+
+## O ajuste de longo prazo: entrada, saída e lucro zero
+
+No longo prazo, entra em cena a terceira hipótese: **livre entrada e saída**. Ela é o motor que leva a concorrência perfeita ao seu destino.
+
+Suponha que as firmas do setor têm lucro econômico **positivo** (como na @fig-lucro-cp). Esse lucro é um sinal luminoso para quem está de fora: "há dinheiro a ganhar aqui". Novas firmas **entram**. Mais firmas significam maior oferta de mercado, o que **derruba o preço** (deslocamento da oferta para a direita, @sec-equilibrio-de-mercado). O preço cai até que o lucro econômico desapareça. Simetricamente, se as firmas têm **prejuízo**, algumas **saem**, a oferta recua, o preço **sobe**, até o prejuízo cessar.
+
+O processo só para quando o lucro econômico é **zero** para a firma marginal — o que ocorre exatamente onde o preço iguala o mínimo do custo total médio de longo prazo:
+
+$$
+\boxed{P = CMg = CTMe_{\min}} \quad \text{(equilíbrio de longo prazo).}
+$$ {#eq-longo-prazo-cp}
+
+::: {.callout-tip title="Intuição — o preço é puxado para o custo médio mínimo"}
+A entrada e a saída de firmas funcionam como um termostato do lucro. Enquanto houver lucro econômico, entra gente e o preço cai; enquanto houver prejuízo, sai gente e o preço sobe. O repouso é o **lucro econômico zero**, com o preço igual ao **menor custo médio possível** — a escala eficiente do @sec-custos. O mercado, sem que ninguém o comande, empurra cada firma a produzir da forma mais barata que a tecnologia permite.
+:::
+
+Lucro econômico zero, lembre da @eq-lucro-economico, **não** é miséria: as firmas cobrem todos os custos, inclusive o de oportunidade do capital e do trabalho dos donos (o lucro normal). É simplesmente a ausência de razão para entrar ou sair.
+
+## A eficiência da concorrência perfeita
+
+Por que esse modelo idealizado é a referência de toda a microeconomia? Porque seu equilíbrio é **eficiente** em dois sentidos precisos:
+
+- **Eficiência produtiva**: no longo prazo, cada firma produz no mínimo do custo médio ($CTMe_{\min}$). A sociedade obtém o produto ao **menor custo de recursos** possível.
+- **Eficiência alocativa**: como $P = CMg$, o preço — que mede o valor da última unidade para o consumidor — iguala o custo marginal — que mede o custo dos recursos para produzi-la. Produz-se **exatamente** a quantidade em que o benefício da última unidade iguala seu custo. Nem falta (haveria unidades cujo valor supera o custo), nem sobra (não se produzem unidades que custam mais do que valem).
+
+Nessa quantidade, a soma do excedente do consumidor e do excedente do produtor (@sec-integrais-excedentes, @sec-equilibrio-de-mercado) é **máxima**: não há **peso morto**. É esse ideal — todo ganho de troca possível realizado — que o monopólio do próximo capítulo irá violar, e é por isso que a concorrência perfeita serve de vara de medir para o "bom" funcionamento dos mercados.
+
+::: {.callout-warning title="Controvérsia — um modelo que quase não existe é útil?"}
+Nenhum mercado real satisfaz todas as quatro hipóteses à risca. Críticos dizem que a concorrência perfeita é uma ficção. A defesa: seu valor não está em descrever mercados, mas em ser um **padrão de referência**. Ao apontar exatamente quais hipóteses falham em cada caso real (produto diferenciado, poucas firmas, barreiras à entrada, informação assimétrica), o modelo organiza o estudo de *todas* as demais estruturas — que são, no fundo, desvios dele. É um mapa, não o território.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+Embora a concorrência perfeita seja um ideal, alguns mercados brasileiros chegam perto o bastante para que o modelo seja útil.
+
+**A feira, o hortifrúti e os grãos.** Mercados de produtos agrícolas pouco diferenciados aproximam-se das hipóteses do modelo: muitos produtores, produto relativamente homogêneo, entrada e saída sazonais. Um produtor de tomate ou de alface é, na prática, tomador de preços — o preço se forma nas centrais de abastecimento (as **CEASAs**) e ele o aceita. No atacado de commodities agrícolas como soja e milho, o produtor brasileiro é ainda mais claramente tomador de preços: o preço é ditado por bolsas internacionais (como a de Chicago) convertidas pelo câmbio, e nenhum produtor individual o move. A decisão do produtor é a do modelo: dado o preço, produzir onde $P = CMg$, e plantar ou não conforme o preço cubra os custos variáveis da safra.
+
+**Entrada, saída e o "ciclo do porco".** O ajuste de longo prazo por entrada e saída aparece nos **ciclos de preços agropecuários**. Quando o preço de um produto (suínos, ovos, certas hortaliças) sobe e gera lucros, mais produtores entram; a oferta cresce, o preço despenca, alguns saem; o preço volta a subir — o clássico "ciclo do porco". É a dinâmica da @eq-longo-prazo-cp operando com defasagens de produção, empurrando os lucros econômicos para perto de zero ao longo do ciclo.
+
+**Marketplaces e a queda das margens.** Plataformas digitais aproximaram vários varejos das condições do modelo: em *marketplaces*, o consumidor compara preços de dezenas de vendedores de um produto idêntico com um clique (informação quase perfeita, produto homogêneo, muitos vendedores). O resultado é uma pressão competitiva intensa sobre as margens — o análogo digital da feira de tomates, empurrando o preço em direção ao custo. Onde a informação fica *mais* perfeita, o mercado real se aproxima do modelo.
+
+> **Fontes e séries para explorar:** CEAGESP e CEASAs estaduais (preços de hortifrúti); CONAB e CEPEA/ESALQ (preços de commodities agrícolas e paridades); IBGE — Produção Agrícola Municipal. Ao usar dados de preços agrícolas, atente para a forte sazonalidade e para o papel do câmbio nas commodities.
+
+## Resumo do capítulo
+
+- A **concorrência perfeita** supõe muitos agentes pequenos, produto homogêneo, livre entrada/saída e informação perfeita. A firma é **tomadora de preços**: enxerga demanda horizontal ao nível $P$.
+- Para a firma competitiva, $P = RMe = RMg$: cada unidade extra rende o preço.
+- A firma maximiza lucro produzindo onde $RMg = CMg$, ou seja, **$P = CMg$** (no ramo crescente). O lucro é o retângulo $(P - CTMe)\,q^{*}$, que pode ser positivo, nulo ou negativo.
+- **Fechamento**: no curto prazo, continua produzindo enquanto $P \geq CVMe$; fecha se $P < CVMe_{\min}$. A **curva de oferta de curto prazo** é o ramo do $CMg$ acima do $CVMe_{\min}$.
+- No **longo prazo**, entrada e saída de firmas levam ao **lucro econômico zero**, com $P = CMg = CTMe_{\min}$. Lucro zero é o retorno normal, não prejuízo.
+- O equilíbrio é **eficiente**: produtivamente (custo médio mínimo) e alocativamente ($P = CMg$), maximizando o excedente total, sem peso morto. Serve de referência para avaliar todas as outras estruturas.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva antes de abrir a solução. Dificuldade crescente.
+:::
+
+**1.** Por que a firma perfeitamente competitiva enxerga uma curva de demanda horizontal, se a demanda de mercado é descendente?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A demanda de **mercado** é descendente porque, para o conjunto dos consumidores, comprar mais exige preço menor. Mas a firma individual é minúscula e vende produto idêntico ao das demais. Se cobrar um centavo acima do preço de mercado, perde todos os clientes (vão ao concorrente idêntico); e pode vender quanto quiser ao preço vigente sem baixá-lo. Do ponto de vista dela, portanto, qualquer quantidade sai pelo mesmo preço $P$: sua demanda é **horizontal** nesse nível. As duas coisas convivem — a curva do mercado é a soma de muitas decisões; a da firma reflete sua incapacidade de mover o preço.
+:::
+
+**2.** Uma firma competitiva tem $CMg = 2 + 2q$ e enfrenta preço $P = 12$. Qual a quantidade que maximiza o lucro?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Iguala-se preço ao custo marginal: $P = CMg \Rightarrow 12 = 2 + 2q \Rightarrow 2q = 10 \Rightarrow q^{*} = 5$. A firma produz 5 unidades (no ramo crescente do $CMg$).
+:::
+
+**3.** Explique por que uma firma pode racionalmente continuar produzindo com prejuízo no curto prazo. Quando, então, ela deve fechar?
+
+::: {.callout-tip collapse="true" title="Solução"}
+No curto prazo, o custo fixo é pago produza-se ou não. Se o preço cobre o **custo variável médio** e ainda sobra algo, essa sobra abate parte do custo fixo — o prejuízo é *menor* do que seria com a firma fechada (que perderia o custo fixo inteiro). Logo, vale continuar enquanto $P \geq CVMe$, mesmo com $P < CTMe$ (prejuízo). A firma deve **fechar** apenas quando $P < CVMe_{\min}$: aí, cada unidade produzida não cobre nem seu custo variável e só aumenta o prejuízo. O ponto de fechamento é $P = CVMe_{\min}$.
+:::
+
+**4.** No longo prazo, o setor competitivo tem $CTMe$ com mínimo igual a R\$\,8, atingido em $q = 100$. Qual será o preço de equilíbrio de longo prazo? Qual o lucro econômico de cada firma? O que garante esse resultado?
+
+::: {.callout-tip collapse="true" title="Solução"}
+No equilíbrio de longo prazo, $P = CTMe_{\min} = R\$\,8$, e cada firma produz $q = 100$ (a escala eficiente). O **lucro econômico é zero**, pois o preço iguala exatamente o custo médio mínimo. O que garante o resultado é a **livre entrada e saída**: qualquer lucro econômico positivo atrairia firmas (baixando o preço) e qualquer prejuízo expulsaria firmas (elevando o preço), até $P = CTMe_{\min}$. Lucro zero aqui é o lucro *normal* — as firmas cobrem o custo de oportunidade de seus recursos.
+:::
+
+**5.** Mostre, com o conceito de excedente, por que a quantidade em que $P = CMg$ é eficiente do ponto de vista alocativo, e o que aconteceria se a firma produzisse menos que isso.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O preço $P$ mede o valor da última unidade para o consumidor; o custo marginal $CMg$ mede o custo dos recursos para produzi-la. Quando $P = CMg$, a última unidade produzida vale para o consumidor exatamente o que custa produzir — não há ganho líquido em produzir mais nem em produzir menos, e a soma dos excedentes do consumidor e do produtor é máxima. Se a firma (ou o mercado) produzisse **menos**, haveria unidades não produzidas para as quais $P > CMg$ — o consumidor as valoriza mais do que custam. Deixar de produzi-las desperdiça ganhos de troca: surge um **peso morto**. Por isso $P = CMg$ é a condição de eficiência alocativa, e reduzir a produção abaixo dela (como fará o monopólio) gera ineficiência.
+:::
+
+**6.** (Análise de caso) Explique o "ciclo do porco" (oscilação de preços na suinocultura ou na produção de ovos) usando a dinâmica de entrada e saída da concorrência perfeita. Por que os lucros não permanecem altos?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Quando o preço do produto sobe (por um choque de demanda ou queda de oferta), as firmas passam a ter **lucro econômico positivo**. Isso atrai **entrada** de novos produtores e expansão dos existentes. Como a produção agropecuária tem defasagem (leva tempo criar animais), a nova oferta chega toda de uma vez algum tempo depois, **derrubando o preço** — muitas vezes abaixo do custo, gerando prejuízo. Aí alguns produtores **saem**, a oferta recua e o preço volta a subir, recomeçando o ciclo. Os lucros não permanecem altos justamente porque a livre entrada os corrói: qualquer lucro econômico é um sinal que atrai concorrência até que ele desapareça. É a @eq-longo-prazo-cp operando com defasagens, produzindo oscilação em vez de convergência suave.
+:::
+
+**7.** (Desafio) Um *marketplace* online exibe, para um mesmo produto, o preço de 50 vendedores ordenados do mais barato ao mais caro. Analise quais hipóteses da concorrência perfeita a plataforma aproxima e quais ainda podem falhar, e o efeito esperado sobre as margens dos vendedores.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A plataforma aproxima três hipóteses: **muitos vendedores** (50 ou mais), **informação quase perfeita** (preços comparáveis num clique) e, para produtos idênticos (mesmo modelo, mesma marca), **produto homogêneo**. A **livre entrada** também tende a valer em plataformas abertas. O efeito é forte pressão competitiva: como o consumidor vê o mais barato no topo, cada vendedor é quase tomador de preços, e as **margens caem** em direção ao custo — o análogo digital da feira de tomates. Hipóteses que ainda podem falhar: o produto pode **não ser perfeitamente homogêneo** (reputação do vendedor, prazo de entrega, frete, garantia diferenciam ofertas aparentemente iguais), e a informação pode não ser totalmente perfeita (custos de busca, avaliações manipuláveis, taxas ocultas). Na medida em que essas diferenças persistem, o mercado se afasta da concorrência perfeita e se aproxima da **concorrência monopolística** (@sec-concorrencia-monopolistica), em que cada vendedor tem um pequeno poder de preço por ser um pouco diferente dos demais.
+:::
+
+## Para saber mais
+
+- @mankiw2020 — a exposição da firma competitiva, da regra $P = CMg$ e do fechamento é um modelo de clareza introdutória.
+- @pindyck2013 — deriva a oferta de curto e longo prazo e discute a eficiência do equilíbrio competitivo com rigor.
+- @varian2015 — trata a firma competitiva e a curva de oferta a partir da maximização de lucro, com boa formalização.
+- @smith1996 — a fonte original da "mão invisível", a intuição que a eficiência competitiva torna precisa.
