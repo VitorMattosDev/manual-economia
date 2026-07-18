@@ -1,3 +1,216 @@
-# O fluxo circular da renda
+# O fluxo circular da renda e os agentes econômicos {#sec-fluxo-circular}
 
-Stub.
+Olhe para o seu contracheque. Aquele valor que cai na conta todo mês veio de uma empresa, que o paga porque você lhe fornece algo — seu trabalho. Em seguida, você gasta boa parte dele: no aluguel, no supermercado, na conta de luz, no streaming. Cada real que você gasta vira **receita** de outra empresa, que por sua vez o usa para pagar *seus* trabalhadores — que gastarão de novo. O seu salário, portanto, é ao mesmo tempo o fim de um circuito e o começo de outro.
+
+A economia inteira funciona como esse rio que dá voltas: o dinheiro circula entre quem produz e quem consome, e nunca "some". Entender esse **fluxo circular da renda** — quem são os agentes, quais mercados os conectam e por que renda, produto e despesa são a mesma coisa vista de ângulos diferentes — é o que transforma um amontoado de transações isoladas numa visão de conjunto. É também a ponte entre a microeconomia das escolhas individuais e a macroeconomia dos grandes agregados.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- identificar os **agentes econômicos** (famílias, empresas, governo e resto do mundo) e seus papéis;
+- distinguir o **mercado de bens e serviços** do **mercado de fatores de produção**;
+- descrever o **fluxo real** e o **fluxo monetário** e explicar por que correm em sentidos opostos;
+- entender a identidade fundamental **renda = produto = despesa**;
+- incorporar ao modelo os **vazamentos** (poupança, impostos, importações) e as **injeções** (investimento, gastos públicos, exportações).
+
+## Os agentes econômicos
+
+Um modelo (@sec-metodo-da-economia) começa escolhendo os personagens essenciais. No fluxo circular, eles são quatro:
+
+- **Famílias** — os indivíduos e domicílios. São, ao mesmo tempo, os **donos dos fatores de produção** (vendem trabalho, alugam terra e capital, aplicam poupança) e os **consumidores** finais dos bens e serviços.
+- **Empresas** — as unidades de produção. **Compram fatores** das famílias e os combinam para **produzir e vender** bens e serviços.
+- **Governo** — as três esferas do Estado. Cobra **impostos**, realiza **gastos** e transferências, produz certos serviços e regula os mercados.
+- **Resto do mundo** — os demais países, com quem a economia comercia: **exportações** (vendas ao exterior) e **importações** (compras do exterior).
+
+Comecemos com um modelo enxuto de **dois agentes** — famílias e empresas — e depois abriremos espaço para os outros dois.
+
+## Os dois mercados
+
+Famílias e empresas encontram-se em **dois** mercados distintos, e trocam de papel de um para o outro:
+
+::: {.callout-note title="Definição — Os dois grandes mercados"}
+No **mercado de bens e serviços**, as **empresas** vendem e as **famílias** compram os produtos finais. No **mercado de fatores de produção**, os papéis se invertem: as **famílias** vendem os fatores (trabalho, terra, capital) e as **empresas** compram.
+:::
+
+Essa inversão de papéis é a chave do circuito. A mesma família que é **compradora** no mercado de bens (ao adquirir um celular) é **vendedora** no mercado de fatores (ao oferecer seu trabalho). E a mesma empresa que é **vendedora** de bens é **compradora** de fatores. É esse cruzamento que fecha o círculo.
+
+## O fluxo real e o fluxo monetário
+
+Em cada mercado circulam, em sentidos opostos, duas coisas: bens/fatores de um lado e dinheiro do outro. A @fig-fluxo-circular representa o modelo completo de dois agentes.
+
+::: {#fig-fluxo-circular}
+
+```{.tikz}
+%%| filename: fig-fluxo-circular
+%%| alt: Diagrama do fluxo circular da renda com famílias à esquerda, empresas à direita, o mercado de bens e serviços no topo e o mercado de fatores embaixo; setas verdes representam o fluxo monetário e setas azuis o fluxo real, correndo em sentidos opostos.
+\begin{tikzpicture}[font=\footnotesize, >=stealth, scale=1.0]
+  % nós
+  \node[draw, rounded corners, fill=manualblue!12, minimum width=2.4cm, minimum height=1.4cm, align=center] (fam) at (-5,0) {\textbf{Famílias}};
+  \node[draw, rounded corners, fill=manualred!12, minimum width=2.4cm, minimum height=1.4cm, align=center] (emp) at (5,0) {\textbf{Empresas}};
+  \node[draw, rounded corners, fill=manualgray!12, minimum width=3cm, align=center] (mben) at (0,3) {Mercado de\\bens e serviços};
+  \node[draw, rounded corners, fill=manualgray!12, minimum width=3cm, align=center] (mfat) at (0,-3) {Mercado de\\fatores de produção};
+  % ---- Fluxo real (azul) ----
+  % bens: empresas -> mercado de bens -> famílias
+  \draw[vetor, manualblue] (emp) to[bend right=12] node[above right]{bens e serviços} (mben);
+  \draw[vetor, manualblue] (mben) to[bend right=12] node[above left]{bens e serviços} (fam);
+  % fatores: famílias -> mercado de fatores -> empresas
+  \draw[vetor, manualblue] (fam) to[bend right=12] node[below left]{trabalho, terra, capital} (mfat);
+  \draw[vetor, manualblue] (mfat) to[bend right=12] node[below right]{trabalho, terra, capital} (emp);
+  % ---- Fluxo monetário (verde) ----
+  % consumo: famílias -> mercado de bens -> empresas (receita)
+  \draw[vetor, manualgreen] (fam) to[bend left=12] node[above left]{gasto (consumo)} (mben);
+  \draw[vetor, manualgreen] (mben) to[bend left=12] node[above right]{receita de vendas} (emp);
+  % renda: empresas -> mercado de fatores -> famílias
+  \draw[vetor, manualgreen] (emp) to[bend left=12] node[below right]{pagamento a fatores} (mfat);
+  \draw[vetor, manualgreen] (mfat) to[bend left=12] node[below left]{renda (salários, juros...)} (fam);
+  % legenda
+  \node[manualblue, align=left] at (0,0.5) {\small\textbf{—} fluxo \textbf{real}};
+  \node[manualgreen, align=left] at (0,-0.4) {\small\textbf{—} fluxo \textbf{monetário}};
+\end{tikzpicture}
+```
+
+O fluxo circular da renda no modelo de dois agentes. O fluxo **real** (azul) e o **monetário** (verde) correm em sentidos opostos.
+:::
+
+Distinga os dois circuitos:
+
+- O **fluxo real** (setas azuis) é o movimento **físico**: fatores de produção saem das famílias rumo às empresas (pelo mercado de fatores); bens e serviços saem das empresas rumo às famílias (pelo mercado de bens).
+- O **fluxo monetário** (setas verdes) é o movimento do **dinheiro**, em sentido **contrário**: as famílias pagam pelos bens (gasto de consumo), dinheiro que vira **receita** das empresas; as empresas pagam pelos fatores (salários, aluguéis, juros, lucros), dinheiro que vira **renda** das famílias.
+
+Os dois fluxos são as duas faces de cada transação: quando você compra pão (bem real que vem até você), entrega dinheiro (que vai até a padaria) na direção oposta. Por isso o diagrama tem dois anéis girando em sentidos contrários.
+
+## Renda = Produto = Despesa
+
+O fluxo circular torna visível uma das identidades mais importantes da Economia. Acompanhe o dinheiro em qualquer ponto do circuito e você medirá **a mesma coisa** de três maneiras:
+
+::: {.callout-note title="Definição — A identidade fundamental"}
+$$
+\underbrace{\text{Renda}}_{\text{pago aos fatores}} \;=\; \underbrace{\text{Produto}}_{\text{valor do que se produz}} \;=\; \underbrace{\text{Despesa}}_{\text{gasto na compra do produto}}
+$$ {#eq-identidade}
+
+O valor de tudo o que é **produzido** numa economia é igual à **renda** paga a quem o produziu, que é igual à **despesa** de quem o comprou.
+:::
+
+A intuição é direta: cada real de despesa de um comprador é um real de receita de um vendedor, que se transforma em renda de alguém (salário, juro, aluguel ou lucro). Nada se perde no circuito. Medir a economia "pela ótica da produção", "pela ótica da renda" ou "pela ótica da despesa" tem de dar o mesmo número — e é exatamente isso que as **contas nacionais** fazem ao calcular o PIB por três métodos que devem coincidir (Volume 4).
+
+::: {.callout-tip title="Intuição — três termômetros, uma febre"}
+Renda, produto e despesa não são três coisas que "por acaso" se igualam: são três formas de olhar para o **mesmo** fluxo. É como medir a mesma febre com três termômetros: se os aparelhos estiverem certos, marcam a mesma temperatura, porque há uma só febre. O lucro das empresas, aliás, é o que faz a conta fechar exatamente — é a parte da renda que "sobra" para os donos do capital.
+:::
+
+## Vazamentos e injeções: abrindo o modelo
+
+O circuito de dois agentes é elegante, mas incompleto: nem toda renda das famílias volta imediatamente às empresas como consumo, e nem toda a demanda pelas empresas vem das famílias. Ao acrescentar o **governo**, o **sistema financeiro** e o **resto do mundo**, surgem desvios do fluxo — **vazamentos** — e reforços — **injeções**.
+
+::: {.callout-note title="Definição — Vazamentos e injeções"}
+**Vazamentos** são parcelas da renda que **saem** do fluxo de consumo doméstico: **poupança** (S), **impostos** (T) e **importações** (M). **Injeções** são gastos que **entram** no fluxo por fora do consumo das famílias: **investimento** (I), **gastos do governo** (G) e **exportações** (X).
+:::
+
+Cada vazamento tem uma injeção que lhe faz par, e um "mercado" ou agente que faz a ponte:
+
+- A **poupança** das famílias (vazamento) não desaparece: entra no **sistema financeiro** (bancos, mercado de capitais), que a canaliza de volta como **investimento** das empresas (injeção). O Volume 4 mostra por que, no agregado, poupança e investimento se conectam.
+- Os **impostos** (vazamento) financiam os **gastos e transferências do governo** (injeção), que retornam ao fluxo.
+- As **importações** (vazamento) mandam renda ao exterior; as **exportações** (injeção) trazem renda de fora.
+
+Esse arcabouço leva diretamente à forma como a macroeconomia escreve a demanda total por bens e serviços de uma economia aberta — a identidade que reaparecerá no cálculo do PIB pela ótica da despesa:
+
+$$
+\text{Produto} \;=\; C + I + G + (X - M),
+$$ {#eq-despesa}
+
+onde $C$ é o consumo das famílias, $I$ o investimento, $G$ os gastos do governo e $(X-M)$ as exportações líquidas. Guarde esta equação: ela é o esqueleto de todo o Volume 4.
+
+::: {.callout-important title="Armadilha comum — 'poupar é dinheiro parado'"}
+Poupança é um **vazamento** do fluxo de consumo, mas isso **não** significa dinheiro morto. Num sistema financeiro que funcione, a poupança é reinjetada como investimento. O problema macroeconômico aparece quando os vazamentos **não** são compensados por injeções equivalentes — por exemplo, quando todos poupam mais e ninguém investe (a "falácia da composição" do @sec-metodo-da-economia reaparece aqui como o paradoxo da poupança).
+:::
+
+## 🇧🇷 Brasil em Foco
+
+O fluxo circular não é só um desenho: é o mapa das grandes contas do Brasil, medidas trimestralmente pelo IBGE.
+
+**Quem gasta no Brasil? A ótica da despesa.** Aplicando a @eq-despesa aos dados das **Contas Nacionais** (IBGE), vê-se que o **consumo das famílias** (C) é, de longe, o maior componente do PIB brasileiro — costuma responder por algo em torno de **60% a 65%** do produto. O **consumo do governo** (parte de G) adiciona por volta de 18% a 20%. A **Formação Bruta de Capital Fixo** — o investimento (I) — é relativamente baixa, na casa de 15% a 20% (o ponto já destacado no @sec-metodo-da-economia). As **exportações líquidas** (X − M) oscilam em torno de zero, ora positivas, ora negativas. Ou seja: a economia brasileira é movida sobretudo pelo consumo das famílias — o anel do fluxo que liga salário e supermercado.
+
+**Os fatores e a repartição da renda.** No mercado de fatores, a renda gerada divide-se principalmente entre **remuneração do trabalho** (salários) e **excedente operacional** (lucros, juros, aluguéis — a remuneração do capital). Nas Contas Nacionais brasileiras, a participação dos salários na renda tem ficado historicamente em torno de **40% a 45%**, abaixo do observado em várias economias desenvolvidas — um indicador que alimenta o debate sobre distribuição de renda que percorre todo o manual.
+
+**Vazamentos e injeções na prática.** As três pontes do modelo aparecem em instituições concretas: o **sistema financeiro** (bancos, B3, Tesouro Direto) liga poupança a investimento; o **governo** liga impostos (uma carga de cerca de um terço do PIB, @sec-sistemas-economicos) a gastos e transferências (como o Bolsa Família e a Previdência); e o **setor externo** aparece na **balança comercial** e nas transações correntes acompanhadas pelo Banco Central. Quando você lê que "o consumo sustentou o PIB no trimestre" ou que "o investimento decepcionou", está lendo, em manchete, o comportamento dos anéis deste diagrama.
+
+> **Fontes e séries para explorar:** IBGE — Sistema de Contas Nacionais Trimestrais (PIB pela ótica da despesa: C, I, G, X−M; e a repartição da renda entre trabalho e capital); Banco Central (balança comercial e transações correntes). Os percentuais variam a cada trimestre — confira sempre o período de referência.
+
+## Resumo do capítulo
+
+- Os **agentes econômicos** são **famílias** (donas dos fatores e consumidoras), **empresas** (produtoras), **governo** (tributa e gasta) e **resto do mundo** (comércio externo).
+- Famílias e empresas encontram-se em dois mercados e **trocam de papel**: no **mercado de bens e serviços**, empresas vendem e famílias compram; no **mercado de fatores**, famílias vendem e empresas compram.
+- Em cada transação correm dois fluxos opostos: o **fluxo real** (fatores e bens) e o **fluxo monetário** (pagamentos). Por isso o diagrama tem dois anéis em sentidos contrários.
+- Vale a identidade fundamental **Renda = Produto = Despesa**: são três formas de medir o mesmo fluxo. É a base do cálculo do PIB por três óticas.
+- Abrindo o modelo, surgem **vazamentos** (poupança, impostos, importações) e **injeções** (investimento, gastos públicos, exportações), ligados por sistema financeiro, governo e setor externo.
+- Daí resulta a demanda de uma economia aberta: $\text{Produto} = C + I + G + (X - M)$, esqueleto do Volume 4.
+- No Brasil, o **consumo das famílias** domina a despesa (≈60–65% do PIB), o investimento é baixo, e a participação dos salários na renda é comparativamente modesta.
+
+## Exercícios
+
+**1.** Explique por que a mesma família é, ao mesmo tempo, "vendedora" e "compradora" no fluxo circular. Em que mercado ela faz cada papel?
+
+::: {.callout-tip collapse="true" title="Solução"}
+No **mercado de fatores**, a família é **vendedora**: oferece trabalho, terra e capital às empresas, recebendo renda (salários, aluguéis, juros). No **mercado de bens e serviços**, a mesma família é **compradora**: usa essa renda para adquirir os produtos das empresas. Essa dupla função é o que fecha o circuito: a renda ganha num mercado é gasta no outro.
+:::
+
+**2.** Descreva, para a compra de um pão numa padaria, qual é o fluxo real e qual é o fluxo monetário, e em que sentidos correm.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Fluxo real:** o pão (bem) vai da padaria (empresa) para o cliente (família). **Fluxo monetário:** o dinheiro do pão vai do cliente para a padaria — sentido oposto ao do pão. As duas pontas são a mesma transação vista de dois lados: bem numa direção, pagamento na outra.
+:::
+
+**3.** Uma economia fechada e sem governo produz, num ano, R\$\,500 bilhões em bens e serviços. Quanto valem, necessariamente, a renda total e a despesa total? Justifique com a identidade fundamental.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela identidade **Renda = Produto = Despesa**, tanto a renda total quanto a despesa total valem **R\$\,500 bilhões**. O valor produzido é integralmente pago como renda aos fatores (incluindo o lucro, que fecha a conta) e integralmente gasto na compra do produto. As três medidas coincidem porque são três formas de olhar para o mesmo fluxo.
+:::
+
+**4.** Classifique cada item como **vazamento** ou **injeção** do fluxo circular: (a) uma família deposita parte do salário na poupança; (b) o governo constrói uma escola; (c) uma empresa importa máquinas; (d) o Brasil exporta soja; (e) você paga imposto de renda.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Poupança → **vazamento**. (b) Gasto do governo → **injeção**. (c) Importação → **vazamento** (renda vai ao exterior). (d) Exportação → **injeção** (renda entra do exterior). (e) Imposto → **vazamento**. Vazamentos saem do fluxo de consumo doméstico; injeções entram por fora do consumo das famílias.
+:::
+
+**5.** Numa economia aberta, $C = 800$, $I = 200$, $G = 300$, $X = 150$ e $M = 180$ (em bilhões de R\$). Calcule o produto pela ótica da despesa.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Usando a @eq-despesa:
+$$
+\text{Produto} = C + I + G + (X - M) = 800 + 200 + 300 + (150 - 180) = 1.300 - 30 = R\$\,1.270 \text{ bi.}
+$$
+As exportações líquidas são negativas ($X - M = -30$), reduzindo o produto: o país gastou mais com importações do que ganhou com exportações no período.
+:::
+
+**6.** Explique por que a afirmação "poupança é dinheiro parado que trava a economia" está imprecisa. Em que condição ela se aproximaria da verdade?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A poupança é um vazamento, mas normalmente **não** fica parada: o sistema financeiro a canaliza de volta ao fluxo como **investimento** (injeção). Enquanto os vazamentos forem compensados por injeções equivalentes, o fluxo se mantém. A afirmação se aproximaria da verdade se a poupança **não** fosse reinvestida — por exemplo, numa situação em que famílias e empresas poupam mais, mas ninguém aumenta o investimento (o paradoxo da poupança). Aí os vazamentos superam as injeções e a demanda agregada cai.
+:::
+
+**7.** (Análise de caso) O IBGE divulga que, num trimestre, "o PIB cresceu puxado pelo consumo das famílias, apesar da queda do investimento". Traduza essa manchete em termos do fluxo circular e comente um risco de médio prazo dessa composição.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Em termos do fluxo, o anel do **consumo** (C) — gasto das famílias no mercado de bens — expandiu-se, sustentando a demanda e, portanto, o produto no curto prazo. Já a **injeção de investimento** (I) recuou. **Risco de médio prazo:** o investimento é o que amplia a capacidade produtiva (desloca a FPP para fora, @sec-metodo-da-economia). Crescimento apoiado só no consumo, com investimento fraco, tende a esbarrar em gargalos de oferta e a não se sustentar — reflete o problema crônico da baixa taxa de investimento brasileira.
+:::
+
+**8.** (Desafio) Mostre, somando vazamentos e injeções, por que a identidade $S + T + M = I + G + X$ tem de valer no agregado de uma economia. (Dica: parta de $\text{Renda} = C + S + T$ e de $\text{Despesa} = C + I + G + (X - M)$.)
+
+::: {.callout-tip collapse="true" title="Solução"}
+A renda das famílias é destinada a consumo, poupança ou impostos:
+$$\text{Renda} = C + S + T.$$
+A despesa sobre o produto é:
+$$\text{Despesa} = C + I + G + (X - M).$$
+Como **Renda = Despesa** (identidade fundamental), iguala-se:
+$$C + S + T = C + I + G + X - M.$$
+Cancelando $C$ e reorganizando:
+$$S + T + M = I + G + X.$$
+Ou seja, a soma dos **vazamentos** (poupança, impostos, importações) iguala a soma das **injeções** (investimento, gastos do governo, exportações) no agregado. Isso não significa que cada par se iguale isoladamente, mas que os totais se equilibram — um resultado central da contabilidade nacional.
+:::
+
+## Para saber mais
+
+- @mankiw2020 — o Capítulo 2 introduz o diagrama do fluxo circular; os capítulos de macroeconomia desenvolvem a identidade renda–produto–despesa.
+- @blanchard2017 — apresenta a composição da demanda agregada ($C + I + G + NX$) e a contabilidade nacional com rigor e exemplos.
+- @vasconcellos2019 — traz o fluxo circular e as contas nacionais com dados e instituições brasileiras.
+- @samuelson2012 — para uma exposição clássica da circulação da renda e do produto.
