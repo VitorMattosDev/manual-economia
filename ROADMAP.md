@@ -53,14 +53,14 @@
 
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
-| 1 | A demanda: determinantes e a curva de demanda | `capitulos/vol03/cap01-demanda.qmd` | ⬜ |
-| 2 | A oferta: determinantes e a curva de oferta | `capitulos/vol03/cap02-oferta.qmd` | ⬜ |
-| 3 | Equilíbrio de mercado e dinâmica de ajuste | `capitulos/vol03/cap03-equilibrio-de-mercado.qmd` | ⬜ |
-| 4 | Elasticidades: preço, renda e cruzada | `capitulos/vol03/cap04-elasticidades.qmd` | ⬜ |
-| 5 | Aplicações: impostos, tabelamentos e subsídios | `capitulos/vol03/cap05-aplicacoes-intervencoes.qmd` | ⬜ |
-| 6 | Preferências e utilidade | `capitulos/vol03/cap06-preferencias-utilidade.qmd` | ⬜ |
-| 7 | Restrição orçamentária e escolha ótima do consumidor | `capitulos/vol03/cap07-escolha-do-consumidor.qmd` | ⬜ |
-| 8 | Demanda individual, efeito renda e efeito substituição | `capitulos/vol03/cap08-efeitos-renda-substituicao.qmd` | ⬜ |
+| 1 | A demanda: determinantes e a curva de demanda | `capitulos/vol03/cap01-demanda.qmd` | ✅ |
+| 2 | A oferta: determinantes e a curva de oferta | `capitulos/vol03/cap02-oferta.qmd` | ✅ |
+| 3 | Equilíbrio de mercado e dinâmica de ajuste | `capitulos/vol03/cap03-equilibrio-de-mercado.qmd` | ✅ |
+| 4 | Elasticidades: preço, renda e cruzada | `capitulos/vol03/cap04-elasticidades.qmd` | ✅ |
+| 5 | Aplicações: impostos, tabelamentos e subsídios | `capitulos/vol03/cap05-aplicacoes-intervencoes.qmd` | ✅ |
+| 6 | Preferências e utilidade | `capitulos/vol03/cap06-preferencias-utilidade.qmd` | ✅ |
+| 7 | Restrição orçamentária e escolha ótima do consumidor | `capitulos/vol03/cap07-escolha-do-consumidor.qmd` | ✅ |
+| 8 | Demanda individual, efeito renda e efeito substituição | `capitulos/vol03/cap08-efeitos-renda-substituicao.qmd` | ✅ |
 
 ### Volume 4 — Macroeconomia I: Medindo a Economia
 

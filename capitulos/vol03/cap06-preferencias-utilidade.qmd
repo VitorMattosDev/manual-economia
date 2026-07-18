@@ -1,3 +1,274 @@
-# Preferências e utilidade
+# Preferências e utilidade {#sec-preferencias-utilidade}
 
-*(capítulo em elaboração)*
+Até aqui tratamos a curva de demanda como um dado: ela desce, e pronto. Mas de *onde* ela vem? Por que você, diante do salário do mês, compra justamente esta combinação de comida, transporte, lazer e roupa, e não outra? A partir deste capítulo, abrimos a "caixa-preta" do consumidor e reconstruímos a demanda desde o seu fundamento: as **preferências** de quem escolhe. O objetivo é ambicioso e elegante — mostrar que, a partir de pouquíssimas hipóteses sobre como as pessoas ordenam o que gostam, é possível deduzir todo o comportamento de compra que os capítulos anteriores tomaram como ponto de partida.
+
+O desafio é que "gosto" parece subjetivo e imensurável. A genialidade da teoria moderna do consumidor foi perceber que não precisamos medir a felicidade em unidades absolutas: basta que o consumidor saiba **ordenar** as opções — dizer o que prefere ao quê. Deste capítulo (preferências) ao @sec-escolha-do-consumidor (restrição orçamentária e escolha ótima) e ao @sec-efeitos-renda-substituicao (a demanda que daí resulta), montamos a teoria peça por peça.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- representar opções de consumo como **cestas** e enunciar os **axiomas** das preferências (completude, transitividade e não saciedade);
+- distinguir utilidade **ordinal** de **cardinal** e entender por que a Economia moderna se contenta com a ordinal;
+- interpretar uma **função de utilidade** como representação de uma ordenação de preferências;
+- desenhar e interpretar **curvas de indiferença** e suas propriedades;
+- definir a **taxa marginal de substituição (TMS)** e relacioná-la às **utilidades marginais**;
+- entender a **utilidade marginal decrescente** e a **convexidade** das preferências;
+- reconhecer os casos de **substitutos perfeitos** e **complementares perfeitos**.
+
+## Cestas de consumo e os axiomas das preferências
+
+O objeto da escolha é uma **cesta de consumo**: uma combinação de quantidades de bens. Para simplificar sem perder o essencial, trabalhamos com **dois bens**, $x$ e $y$ — uma cesta é um par $(x, y)$, como "3 kg de arroz e 2 kg de feijão". Tudo o que veremos generaliza para muitos bens; dois apenas cabem no papel.
+
+A teoria supõe que o consumidor consegue **comparar** cestas segundo três hipóteses básicas — os **axiomas** das preferências. Elas parecem óbvias, e é justamente essa modéstia que dá força à teoria.
+
+::: {.callout-note title="Definição — Axiomas das preferências"}
+1. **Completude.** Dadas duas cestas $A$ e $B$, o consumidor sempre sabe dizer se prefere $A$ a $B$, $B$ a $A$, ou se é **indiferente** entre elas. Nenhuma comparação fica em aberto.
+2. **Transitividade.** Se prefere $A$ a $B$ e $B$ a $C$, então prefere $A$ a $C$. As preferências são coerentes, sem "ciclos".
+3. **Não saciedade** ("mais é melhor"). Entre duas cestas, a que tem mais de pelo menos um bem (e não menos do outro) é preferida. Sempre se deseja mais.
+:::
+
+A **completude** garante que toda cesta é comparável; a **transitividade**, que a ordenação é lógica (sem ela, o consumidor poderia ser levado a trocar em círculo e perder tudo); a **não saciedade**, que as preferências apontam para "mais". Uma quarta hipótese, a **convexidade** (gosto por variedade, "misturas são preferíveis a extremos"), será introduzida adiante ao falarmos da forma das curvas.
+
+::: {.callout-tip title="Intuição — ordenar, não medir"}
+Repare que os axiomas exigem apenas que o consumidor **ordene** cestas, como quem organiza um ranking. Não exigem que ele diga "esta cesta me dá 37 unidades de felicidade". Essa distinção — ordenar versus medir — é o coração da abordagem moderna, e é o que a torna realista: você sabe que prefere café a chá, mesmo sem quantificar em números o seu prazer.
+:::
+
+## Utilidade: da medida cardinal à ordem ordinal
+
+No século XIX, economistas como Jevons e os primeiros marginalistas (Volume 15) imaginavam a **utilidade** como uma grandeza *cardinal* — mensurável em unidades absolutas ("úteis"), como se mede temperatura. Diriam: "esta maçã me dá 10 úteis; esta banana, 6".
+
+A teoria moderna abandonou essa pretensão. Percebeu-se que, para explicar as escolhas, basta a informação **ordinal**: saber que a cesta $A$ é preferida a $B$, não *quanto* é preferida. A **função de utilidade** passou a ser um mero **dispositivo de representação** da ordenação.
+
+::: {.callout-note title="Definição — Função de utilidade"}
+Uma **função de utilidade** $U(x, y)$ atribui um número a cada cesta de modo que cestas preferidas recebam números **maiores**:
+$$
+A \text{ é preferida a } B \iff U(A) > U(B).
+$$
+Só a **ordem** dos números importa, não os valores em si.
+:::
+
+A consequência prática é a **invariância a transformações monotônicas**: se $U(x,y)$ representa certas preferências, então qualquer transformação que preserve a ordem — como $2U$, $U + 100$, $U^3$ ou $\ln U$ — representa **exatamente as mesmas** preferências. Os números mudam; o ranking, não. Por isso não faz sentido perguntar "quanta utilidade a mais": a magnitude é convenção.
+
+::: {.callout-important title="Armadilha comum — utilidade não se compara entre pessoas"}
+Como os números de utilidade são convenção ordinal *de cada indivíduo*, **não é legítimo somar ou comparar** a utilidade de pessoas diferentes ("a utilidade de João é 50 e a de Maria é 30, logo João é mais feliz"). A teoria padrão descreve as escolhas de *cada* consumidor, não um placar interpessoal de felicidade. Comparações de bem-estar entre pessoas exigem hipóteses adicionais e são objeto de debate (economia do bem-estar).
+:::
+
+## Curvas de indiferença
+
+A ferramenta gráfica central da teoria é a **curva de indiferença**: o lugar geométrico de todas as cestas entre as quais o consumidor é **indiferente** — que lhe dão, portanto, a mesma utilidade. É o análogo econômico de uma curva de nível num mapa topográfico: cada curva liga pontos de igual "altitude" de satisfação.
+
+::: {#fig-indiferenca}
+
+```{.tikz}
+%%| filename: fig-indiferenca
+%%| alt: Mapa de curvas de indiferença convexas, com três curvas U1 menor que U2 menor que U3; curvas mais afastadas da origem representam maior utilidade.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (6.3,0) node[right] {$x$};
+  \draw[eixo] (0,0) -- (0,6.3) node[above] {$y$};
+  \draw[curva] (0.7,5.4) .. controls (1.8,2.2) and (2.2,1.8) .. (5.4,0.7) node[right,font=\footnotesize] {$U_1$};
+  \draw[curva] (1.4,5.7) .. controls (2.6,2.9) and (2.9,2.6) .. (5.7,1.4) node[right,font=\footnotesize] {$U_2$};
+  \draw[curva] (2.3,6.0) .. controls (3.5,3.7) and (3.7,3.5) .. (6.0,2.3) node[right,font=\footnotesize] {$U_3$};
+  \draw[vetor,manualgreen] (1.6,1.6) -- (3.4,3.4);
+  \node[manualgreen,font=\footnotesize,rotate=45] at (2.9,2.4) {mais preferido};
+\end{tikzpicture}
+```
+
+Um mapa de indiferença: curvas mais afastadas da origem ($U_3 > U_2 > U_1$) representam maior utilidade.
+:::
+
+Dos axiomas decorrem quatro **propriedades** das curvas de indiferença "bem-comportadas":
+
+1. **São negativamente inclinadas.** Por "mais é melhor", para manter a mesma utilidade ao ganhar mais de $x$ é preciso abrir mão de algum $y$ — daí a inclinação para baixo.
+2. **Curvas mais altas são preferidas.** Uma curva mais afastada da origem tem cestas com mais de tudo, logo mais desejáveis (não saciedade).
+3. **Não se cruzam.** Se duas curvas se cruzassem, a transitividade seria violada (a cesta de cruzamento teria, ao mesmo tempo, duas utilidades diferentes).
+4. **São convexas** (curvadas em direção à origem). Isso reflete o **gosto por variedade**: cestas equilibradas são preferíveis a cestas extremas.
+
+::: {.callout-important title="Armadilha comum — por que curvas de indiferença nunca se cruzam"}
+Suponha que se cruzassem no ponto $C$. Numa curva, $C$ é indiferente a uma cesta $A$; na outra, $C$ é indiferente a uma cesta $B$ com *mais de tudo* que $A$. Por transitividade, $A$ seria indiferente a $B$ — mas $B$ tem mais de tudo, logo deveria ser *estritamente preferida* a $A$. Contradição. Cruzamento de curvas de indiferença é sempre sinal de erro.
+:::
+
+## A taxa marginal de substituição
+
+Qual a **inclinação** de uma curva de indiferença num ponto? Ela responde a uma pergunta econômica precisa: *de quanto de $y$ o consumidor está disposto a abrir mão para obter mais uma unidade de $x$, mantendo a mesma satisfação?* Essa taxa de troca subjetiva é a **taxa marginal de substituição**.
+
+::: {.callout-note title="Definição — Taxa marginal de substituição (TMS)"}
+A **taxa marginal de substituição** de $x$ por $y$ é a quantidade de $y$ que o consumidor troca por uma unidade adicional de $x$ permanecendo indiferente. É o **módulo da inclinação** da curva de indiferença:
+$$
+\text{TMS}_{xy} = -\frac{\Delta y}{\Delta x}\bigg|_{U\text{ constante}}.
+$$
+:::
+
+A convexidade das curvas significa que a **TMS é decrescente**: à medida que o consumidor acumula $x$ e fica com pouco $y$, ele exige *cada vez mais* $x$ para abrir mão de mais uma unidade do escasso $y$. Quem tem muito arroz e pouco feijão valoriza muito o feijão na margem — e vice-versa. A @fig-tms mostra a inclinação se suavizando ao longo da curva.
+
+::: {#fig-tms}
+
+```{.tikz}
+%%| filename: fig-tms
+%%| alt: Curva de indiferença convexa com duas retas tangentes; a inclinação (TMS) é acentuada quando há pouco x e suave quando há muito x, ilustrando a TMS decrescente.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (6.3,0) node[right] {$x$};
+  \draw[eixo] (0,0) -- (0,6.3) node[above] {$y$};
+  \draw[curva] (0.8,5.6) .. controls (1.9,2.1) and (2.4,1.7) .. (5.8,0.9);
+  % ponto A (pouco x): inclinação acentuada
+  \coordinate (A) at (1.35,3.4); \node[ponto] at (A) {}; \node[left,font=\footnotesize] at (A) {$A$};
+  \draw[auxiliar] (0.55,5.0) -- (2.15,1.8);
+  % ponto B (muito x): inclinação suave
+  \coordinate (B) at (4.2,1.25); \node[ponto] at (B) {}; \node[above right,font=\footnotesize] at (B) {$B$};
+  \draw[auxiliar] (3.0,1.9) -- (5.6,0.65);
+  \node[manualgray,font=\footnotesize,align=center] at (2.6,4.6) {TMS alta\\(pouco $x$)};
+  \node[manualgray,font=\footnotesize,align=center] at (5.0,2.4) {TMS baixa\\(muito $x$)};
+\end{tikzpicture}
+```
+
+TMS decrescente: a curva é íngreme onde há pouco $x$ e suave onde há muito $x$.
+:::
+
+## Utilidade marginal e a fórmula da TMS
+
+A **utilidade marginal** de um bem é o acréscimo de utilidade ao consumir uma unidade a mais dele, mantido o outro constante — a derivada parcial da função utilidade:
+$$
+UM_x = \frac{\partial U}{\partial x}, \qquad UM_y = \frac{\partial U}{\partial y}.
+$$
+
+Uma propriedade quase universal é a **utilidade marginal decrescente**: cada unidade adicional de um mesmo bem acrescenta *menos* utilidade que a anterior (o quinto pão do dia satisfaz menos que o primeiro). Foi essa ideia, aplicada à água e ao diamante, que resolveu o **paradoxo do valor** que vimos no @sec-o-que-e-economia: a água vale pouco na margem porque é abundante, não porque seja pouco essencial.
+
+Existe uma ponte elegante entre utilidades marginais e a TMS. Ao caminhar sobre uma curva de indiferença, a utilidade não muda: o ganho de utilidade por mais $x$ compensa exatamente a perda por menos $y$. Formalmente, $UM_x\,\Delta x + UM_y\,\Delta y = 0$, de onde:
+
+$$
+\text{TMS}_{xy} = -\frac{\Delta y}{\Delta x} = \frac{UM_x}{UM_y}.
+$$ {#eq-tms-um}
+
+A TMS é, portanto, a **razão das utilidades marginais**. Essa equação será a chave da escolha ótima no @sec-escolha-do-consumidor: no ponto ótimo, essa taxa de troca *subjetiva* se igualará à taxa de troca *de mercado* (a razão de preços).
+
+::: {.callout-tip title="Intuição — a TMS decrescente vem das utilidades marginais"}
+Quando o consumidor tem muito $x$ e pouco $y$, a utilidade marginal de $x$ é baixa (já tem bastante) e a de $y$ é alta (tem pouco). Logo, $UM_x/UM_y$ é pequena: ele troca pouco $y$ por $x$. À medida que acumula $x$, $UM_x$ cai e $UM_y$ sobe, e a razão diminui ainda mais. É exatamente a TMS decrescente da @fig-tms, agora explicada pelas margens.
+:::
+
+## Dois casos extremos
+
+Nem toda preferência tem curvas suavemente convexas. Dois casos-limite são úteis e reaparecerão em todo o manual (@fig-casos-preferencias).
+
+**Substitutos perfeitos.** Bens que o consumidor troca a uma taxa **constante** — duas notas de R\$\,10 por uma de R\$\,20, ou (para quem é indiferente à marca) refrigerante da marca A e da marca B. As curvas de indiferença são **retas** (TMS constante), pois a disposição de trocar um pelo outro não muda. A função de utilidade tem a forma $U(x,y) = ax + by$.
+
+**Complementares perfeitos.** Bens consumidos em **proporção fixa** — pés esquerdo e direito de sapato, ou café e a xícara. Ter mais de um sem o outro não adianta. As curvas de indiferença têm formato de **L**, e a função é do tipo $U(x,y) = \min\{ax, by\}$ (a chamada utilidade de **Leontief**, do mesmo economista das matrizes de insumo-produto do Volume 2 [@leontief1936]).
+
+::: {#fig-casos-preferencias}
+
+```{.tikz}
+%%| filename: fig-casos-preferencias
+%%| alt: Dois painéis. À esquerda, curvas de indiferença retas para substitutos perfeitos. À direita, curvas em formato de L para complementares perfeitos.
+\begin{tikzpicture}[scale=0.9]
+  % substitutos perfeitos
+  \begin{scope}
+    \draw[eixo] (0,0) -- (5,0) node[right,font=\footnotesize] {$x$};
+    \draw[eixo] (0,0) -- (0,5) node[above,font=\footnotesize] {$y$};
+    \draw[curva] (0,2.2) -- (2.2,0);
+    \draw[curva] (0,3.4) -- (3.4,0);
+    \draw[curva] (0,4.6) -- (4.6,0);
+    \node[align=center,font=\footnotesize] at (2.4,-0.9) {(a) substitutos\\perfeitos (retas)};
+  \end{scope}
+  % complementares perfeitos
+  \begin{scope}[xshift=7cm]
+    \draw[eixo] (0,0) -- (5,0) node[right,font=\footnotesize] {$x$};
+    \draw[eixo] (0,0) -- (0,5) node[above,font=\footnotesize] {$y$};
+    \draw[curva] (1.2,4.6) -- (1.2,1.2) -- (4.6,1.2);
+    \draw[curva] (2.2,4.6) -- (2.2,2.2) -- (4.6,2.2);
+    \node[ponto] at (1.2,1.2) {}; \node[ponto] at (2.2,2.2) {};
+    \node[align=center,font=\footnotesize] at (2.4,-0.9) {(b) complementares\\perfeitos (L)};
+  \end{scope}
+\end{tikzpicture}
+```
+
+Casos extremos: substitutos perfeitos (retas, TMS constante) e complementares perfeitos (L, proporção fixa).
+:::
+
+## 🇧🇷 Brasil em Foco
+
+A teoria das preferências, embora abstrata, ilumina escolhas de consumo bem concretas no Brasil.
+
+**A cesta que revela preferências.** A **Pesquisa de Orçamentos Familiares (POF)** do IBGE registra as cestas efetivamente escolhidas pelas famílias — e, sob a hipótese de que a escolha *revela* a preferência (a chamada **preferência revelada**, de Samuelson), esses dados permitem inferir padrões de gosto e construir os pesos do IPCA. A migração observada, à medida que a renda cresce, de bens básicos para serviços e lazer é a contrapartida empírica de curvas de indiferença que valorizam variedade: com mais renda, as famílias buscam cestas mais diversificadas, não apenas "mais do mesmo".
+
+**Complementares e substitutos na prática.** O par arroz-e-feijão é, para muitos brasileiros, quase um **complementar** cultural — consumido em proporção relativamente estável, à moda das curvas em L. Já refrigerantes de marcas concorrentes, ou gasolina e etanol na frota flex, aproximam-se de **substitutos**, com curvas mais retas: pequenas diferenças de preço relativo provocam trocas, como vimos no @sec-elasticidades.
+
+**Limites do modelo: a economia comportamental.** O consumidor dos axiomas é perfeitamente coerente (transitivo, sem arrependimento). A realidade é mais rica: brasileiros, como todos, exibem vieses — compras por impulso, influência de "âncoras" de preço, dificuldade de comparar planos de celular ou tarifas bancárias. Esses desvios sistemáticos são o objeto da **economia comportamental** (Volume 15), que não descarta a teoria padrão, mas a complementa. Reconhecer os limites do modelo faz parte de usá-lo bem.
+
+> **Fontes e séries para explorar:** IBGE/POF (estrutura de consumo por faixa de renda, base dos pesos do IPCA); literatura de preferência revelada aplicada a dados brasileiros; estudos de economia comportamental no Brasil (por exemplo, sobre escolha de planos e crédito). Lembre que preferências agregadas mudam com renda, cultura e tempo.
+
+## Resumo do capítulo
+
+- O objeto da escolha é a **cesta** $(x,y)$; a teoria supõe preferências **completas**, **transitivas** e com **não saciedade** ("mais é melhor"), acrescidas da **convexidade** (gosto por variedade).
+- A Economia moderna usa utilidade **ordinal** (ordena cestas), não **cardinal** (mede felicidade); a **função de utilidade** representa a ordenação e é **invariante a transformações monotônicas**. Utilidades de pessoas diferentes **não** se comparam.
+- **Curvas de indiferença** ligam cestas de mesma utilidade; são negativamente inclinadas, não se cruzam, e curvas mais altas são preferidas; a **convexidade** as curva em direção à origem.
+- A **TMS** é o módulo da inclinação da curva de indiferença — quanto de $y$ se troca por mais um $x$ — e é **decrescente** ao longo da curva.
+- A **utilidade marginal** é decrescente, e a TMS é a **razão das utilidades marginais**, $\text{TMS}_{xy} = UM_x/UM_y$ (@eq-tms-um) — a ponte para a escolha ótima do próximo capítulo.
+- Casos extremos: **substitutos perfeitos** (curvas retas, TMS constante, $U=ax+by$) e **complementares perfeitos** (curvas em L, proporção fixa, $U=\min\{ax,by\}$).
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva antes de abrir a solução. Dificuldade crescente: conceituais, numéricos e análise de caso.
+:::
+
+**1.** Um consumidor prefere a cesta $A$ à $B$, e $B$ à $C$, mas afirma preferir $C$ à $A$. Qual axioma ele viola? Por que isso é um problema?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Ele viola a **transitividade**: de $A \succ B$ e $B \succ C$ deveria seguir $A \succ C$, mas ele afirma $C \succ A$, formando um **ciclo**. É um problema porque preferências cíclicas podem ser exploradas: um esperto poderia oferecer trocas sucessivas ($A$ por $C$, depois $C$ por... ) cobrando um pouquinho a cada troca, e o consumidor pagaria indefinidamente para voltar ao ponto de partida — uma "bomba de dinheiro". A coerência mínima da transitividade evita isso.
+:::
+
+**2.** Explique por que multiplicar uma função de utilidade por 3 (ou somar 10 a ela) não muda o comportamento do consumidor.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque a utilidade é **ordinal**: só importa a *ordem* dos números, não seus valores. Se $U(A) > U(B)$, então $3U(A) > 3U(B)$ e $U(A)+10 > U(B)+10$ — a ordenação de todas as cestas permanece idêntica. Como as escolhas dependem apenas de qual cesta tem utilidade maior, e essa comparação não muda, o comportamento é o mesmo. Qualquer **transformação monotônica** (que preserva a ordem) representa as mesmas preferências.
+:::
+
+**3.** Desenhe (descreva) as curvas de indiferença de alguém que considera **manteiga e margarina substitutos perfeitos** na proporção 1 para 1. Qual a TMS? E de alguém que só consome **café com exatamente 1 sachê de açúcar** por xícara?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Manteiga/margarina (substitutos perfeitos 1:1): curvas de indiferença são **retas** de inclinação $-1$, pois o consumidor troca sempre 1 por 1 sem mudar de satisfação. A **TMS é constante e igual a 1**. Função: $U = x + y$.
+Café com 1 açúcar (complementares perfeitos, proporção fixa 1:1): curvas em **formato de L** com o vértice sobre a reta $x = y$. Ter mais café sem açúcar (ou vice-versa) não aumenta a utilidade — a TMS é $0$ ou $\infty$ nos trechos horizontais/verticais e indefinida no vértice. Função: $U = \min\{x, y\}$.
+:::
+
+**4.** A função de utilidade é $U(x,y) = xy$. (a) Calcule as utilidades marginais $UM_x$ e $UM_y$. (b) Obtenha a TMS. (c) Na cesta $(2, 8)$, quanto vale a TMS, e o que ela significa?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $UM_x = \partial(xy)/\partial x = y$; $UM_y = \partial(xy)/\partial y = x$.
+(b) $\text{TMS}_{xy} = UM_x/UM_y = y/x$.
+(c) Em $(2,8)$: $\text{TMS} = 8/2 = 4$. Significa que, nesse ponto, o consumidor está disposto a abrir mão de **4 unidades de $y$** para obter **1 unidade adicional de $x$**, permanecendo indiferente. Como ele tem pouco $x$ (só 2) e muito $y$ (8), valoriza bastante mais $x$ — coerente com a TMS decrescente.
+:::
+
+**5.** Ainda com $U(x,y) = xy$, verifique que a TMS **diminui** ao caminhar da cesta $(2,8)$ para $(4,4)$ e depois para $(8,2)$, todas sobre a mesma curva de indiferença. Confirme que a utilidade é a mesma nas três.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Utilidade: $U(2,8)=16$; $U(4,4)=16$; $U(8,2)=16$ — as três estão na **mesma** curva de indiferença ($U=16$). TMS $=y/x$:
+em $(2,8)$: $8/2 = 4$; em $(4,4)$: $4/4 = 1$; em $(8,2)$: $2/8 = 0{,}25$. A TMS **cai** (4 → 1 → 0,25) conforme $x$ aumenta e $y$ diminui — exatamente a **TMS decrescente** que corresponde à convexidade da curva. Quanto mais $x$ o consumidor já tem, menos $y$ ele se dispõe a sacrificar por mais uma unidade de $x$.
+:::
+
+**6.** Por que duas curvas de indiferença não podem se cruzar? Construa o argumento usando os axiomas.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Suponha que se cruzem no ponto $C$. Tome uma cesta $A$ na primeira curva e uma cesta $B$ na segunda, escolhida com **mais de todos os bens** que $A$. Por estarem cada uma na mesma curva que $C$: $A \sim C$ (indiferente) e $C \sim B$. Por **transitividade**, $A \sim B$. Mas, por **não saciedade** ("mais é melhor"), $B$ tem mais de tudo que $A$, logo $B \succ A$ (estritamente preferida). Ter $A \sim B$ e $B \succ A$ ao mesmo tempo é **contradição**. Portanto, curvas de indiferença não se cruzam.
+:::
+
+**7.** (Análise de caso) Uma pessoa diz: "Sou indiferente entre 1 hambúrguer e 2 coxinhas; sempre trocaria nessa proporção." Outra diz: "Só como cachorro-quente com 1 pão e 1 salsicha; um sem o outro não serve." Descreva as preferências de cada uma (formato das curvas, TMS, tipo de bem) e escreva uma função de utilidade plausível para cada.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Primeira pessoa:** hambúrguer ($x$) e coxinha ($y$) são **substitutos perfeitos** à taxa 1 para 2 (1 hambúrguer $=$ 2 coxinhas). Curvas de indiferença **retas**, TMS **constante** $= 2$ (abre mão de 2 coxinhas por 1 hambúrguer). Utilidade: $U = 2x + y$ (contando cada hambúrguer como 2 coxinhas).
+**Segunda pessoa:** pão ($x$) e salsicha ($y$) são **complementares perfeitos** na proporção 1:1. Curvas em **L** com vértice em $x=y$; utilidade: $U = \min\{x, y\}$. Consumir mais de um sem o outro não aumenta a satisfação.
+Os dois casos-limite ilustram os extremos entre os quais ficam as preferências convexas usuais.
+:::
+
+**8.** (Desafio) A economia comportamental documenta que muitas pessoas violam a transitividade ou mudam de escolha conforme a opção é *apresentada* (efeito enquadramento). Isso invalida a teoria das preferências deste capítulo? Argumente os dois lados.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**A favor de que invalida:** se preferências reais são intransitivas, instáveis ou dependentes de contexto, a função de utilidade — que pressupõe uma ordenação fixa e coerente — não descreveria fielmente o comportamento, e previsões baseadas nela poderiam falhar (por exemplo, sobre reação a preços ou a como opções são oferecidas).
+**A favor de que não invalida:** (i) a teoria padrão é um **modelo** — uma aproximação útil, não um retrato literal; para muitas decisões repetidas e com apostas relevantes, as pessoas *aprendem* a agir de modo aproximadamente coerente, e o modelo prevê bem no agregado. (ii) As anomalias comportamentais **complementam** a teoria em vez de destruí-la: economistas comportamentais partem do arcabouço de utilidade e o *modificam* (ponto de referência, aversão à perda), sem abandoná-lo. (iii) Como benchmark, a teoria racional é indispensável até para *definir* o que conta como "viés".
+**Síntese:** as violações são reais e importantes, mas a teoria das preferências permanece o alicerce sobre o qual as correções comportamentais são construídas — é ponto de partida, não dogma. O Volume 15 desenvolve essa fronteira.
+:::
+
+## Para saber mais
+
+- @varian2015 — os capítulos sobre preferências, utilidade e curvas de indiferença; a referência canônica desta parte do manual.
+- @pindyck2013 — tratamento com muitos exemplos aplicados de utilidade e TMS.
+- @nicholson2019 — abordagem mais formal, com o ferramental de utilidade marginal e substituição.
+- @mankiw2020 — apêndice sobre a teoria da escolha do consumidor, em nível introdutório.

@@ -1,3 +1,248 @@
-# Demanda individual, efeito renda e efeito substituição
+# Demanda individual, efeito renda e efeito substituição {#sec-efeitos-renda-substituicao}
 
-*(capítulo em elaboração)*
+Chegamos ao fim de um longo arco. No @sec-demanda, aceitamos como fato que a curva de demanda desce e batizamos os dois motivos — "efeito substituição" e "efeito renda" — sem abri-los. Agora temos as ferramentas para cumprir a promessa. A escolha ótima do @sec-escolha-do-consumidor não é o ponto de chegada da teoria do consumidor: é o ponto de partida para *deduzir* a curva de demanda e, mais do que isso, para **dissecar** o que acontece na cabeça de quem escolhe quando um preço muda.
+
+Este capítulo faz duas coisas. Primeiro, mostra como a curva de demanda individual **nasce** de sucessivas escolhas ótimas quando variamos o preço. Segundo — e é o coração do capítulo —, decompõe a resposta a uma variação de preço em duas forças de naturezas distintas: a substituição (o bem ficou relativamente mais caro) e a renda (o bem encareceu e você ficou mais pobre em termos reais). Essa decomposição, devida a Slutsky [@slutsky1915] e Hicks, é o que finalmente explica por que a demanda quase sempre desce — e por que, em um caso raríssimo, poderia subir.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- **derivar** a curva de demanda individual a partir da escolha ótima, variando o preço;
+- interpretar a **curva de Engel** e ligá-la a bens normais e inferiores;
+- **decompor** a variação da quantidade demandada em **efeito substituição** e **efeito renda**;
+- determinar o **sinal** de cada efeito para bens normais, inferiores e de Giffen;
+- explicar por que a demanda é quase sempre decrescente e em que condições, em tese, poderia não ser;
+- reconstruir a **demanda de mercado** a partir das demandas individuais.
+
+## Da escolha ótima à curva de demanda
+
+A curva de demanda individual não é um postulado: é o **rastro** deixado pela escolha ótima quando um preço varia. O experimento é direto. Fixe a renda e o preço de $y$; baixe $P_x$ em etapas. A cada preço, a reta orçamentária gira para fora (mais barato o $x$), e o consumidor escolhe uma nova cesta ótima, com **mais $x$**. Ligando os pontos ótimos no plano dos bens, obtém-se a **curva preço-consumo**; transportando cada par (preço de $x$, quantidade ótima de $x$) para o plano preço–quantidade, obtém-se a **curva de demanda individual** (@fig-deriva-demanda).
+
+::: {#fig-deriva-demanda}
+
+```{.tikz}
+%%| filename: fig-deriva-demanda
+%%| alt: Dois painéis alinhados. No de cima, três retas orçamentárias com preços de x decrescentes e seus pontos ótimos. No de baixo, os pares preço-quantidade correspondentes formando a curva de demanda decrescente.
+\begin{tikzpicture}[scale=0.92]
+  % painel superior: escolha otima
+  \begin{scope}
+    \draw[eixo] (0,0) -- (6.5,0) node[right,font=\footnotesize] {$x$};
+    \draw[eixo] (0,0) -- (0,5) node[above,font=\footnotesize] {$y$};
+    \draw[destaque,very thick] (0,4) -- (2.2,0);
+    \draw[destaque,very thick] (0,4) -- (4.0,0);
+    \draw[destaque,very thick] (0,4) -- (5.8,0);
+    \coordinate (A) at (1.0,2.2); \coordinate (B) at (1.9,1.9); \coordinate (C) at (3.0,1.9);
+    \node[ponto] at (A) {}; \node[ponto] at (B) {}; \node[ponto] at (C) {};
+    \draw[manualblue,thick] (A) .. controls (1.5,2.0) .. (C);
+    \node[manualblue,font=\footnotesize,right] at (C) {preço-consumo};
+    \draw[auxiliar] (A) -- (1.0,-2.6);
+    \draw[auxiliar] (B) -- (1.9,-2.6);
+    \draw[auxiliar] (C) -- (3.0,-2.6);
+  \end{scope}
+  % painel inferior: demanda
+  \begin{scope}[yshift=-5.6cm]
+    \draw[eixo] (0,0) -- (6.5,0) node[right,font=\footnotesize] {$x$};
+    \draw[eixo] (0,0) -- (0,3.4) node[above,font=\footnotesize] {$P_x$};
+    \coordinate (a) at (1.0,2.6); \coordinate (b) at (1.9,1.6); \coordinate (c) at (3.0,0.7);
+    \node[ponto] at (a) {}; \node[ponto] at (b) {}; \node[ponto] at (c) {};
+    \draw[curva] (0.7,3.1) .. controls (1.6,1.9) and (2.2,1.1) .. (3.6,0.4) node[right,font=\footnotesize] {$D$};
+    \node[left,font=\footnotesize] at (a) {$P_1$};
+    \node[left,font=\footnotesize] at (b) {$P_2$};
+    \node[left,font=\footnotesize] at (c) {$P_3$};
+  \end{scope}
+\end{tikzpicture}
+```
+
+Baixando $P_x$, cada escolha ótima (painel superior) fornece um ponto da curva de demanda (painel inferior).
+:::
+
+Fica assim demonstrado que a curva de demanda **é** a coleção de escolhas ótimas — não uma hipótese independente, mas uma *consequência* das preferências e do orçamento. Toda a estrutura dos capítulos 1 a 5 repousa, afinal, sobre a teoria do consumidor.
+
+## A curva de Engel
+
+Um experimento gêmeo varia a **renda** (com preços fixos) e registra a quantidade ótima de um bem a cada nível de renda. O resultado é a **curva de Engel**, que relaciona renda e quantidade consumida — a tradução gráfica da elasticidade-renda do @sec-elasticidades:
+
+- para um **bem normal**, a curva de Engel é **crescente** (mais renda, mais consumo);
+- para um **bem inferior**, ela passa a ser **decrescente** na faixa de renda relevante (mais renda, menos consumo).
+
+A curva de Engel é a ponte entre a escolha do consumidor e a **Lei de Engel** que vimos nos dados da POF: à medida que a renda sobe, a fração gasta em alimentos básicos cai. Guardamo-la aqui porque o comportamento da demanda diante da renda é justamente a peça que falta para decompor o efeito de um preço.
+
+## Decompondo uma variação de preço
+
+Eis a ideia central. Quando $P_x$ **cai**, a quantidade demandada de $x$ tipicamente sobe — mas por *dois* motivos que convém separar, porque têm lógicas diferentes:
+
+::: {.callout-note title="Definição — efeito substituição e efeito renda"}
+Diante de uma variação no preço de um bem:
+
+- O **efeito substituição** é a mudança na quantidade demandada devida **apenas** à alteração do **preço relativo**, mantido o poder de compra (a utilidade) constante. O bem que ficou relativamente mais barato é substituído em favor do outro.
+- O **efeito renda** é a mudança na quantidade demandada devida à alteração do **poder de compra real**: um preço menor equivale a ficar mais rico, o que altera o consumo conforme o bem seja normal ou inferior.
+
+O **efeito total** (o que se observa na demanda) é a **soma** dos dois.
+:::
+
+Como separar na prática o que, na realidade, acontece de uma vez só? Com uma reta orçamentária **auxiliar** (a "compensação" de Hicks): imagine que, após a queda de $P_x$, retirássemos do consumidor exatamente a renda necessária para deixá-lo tão satisfeito quanto antes (na **mesma** curva de indiferença). O movimento sobre a curva de indiferença original, do ponto inicial até a tangência com a nova inclinação de preços, é o **efeito substituição** puro. Devolver em seguida a renda retirada — deslocando a reta paralelamente até a posição final — produz o **efeito renda**. A @fig-decomposicao mostra a construção.
+
+::: {#fig-decomposicao}
+
+```{.tikz}
+%%| filename: fig-decomposicao
+%%| alt: Decomposição de uma queda no preço de x em efeito substituição e efeito renda. A reta orçamentária gira; uma reta auxiliar tangente à curva de indiferença original separa o movimento em duas partes ao longo do eixo x.
+\begin{tikzpicture}[scale=1.15]
+  \draw[eixo] (0,0) -- (7,0) node[right] {$x$};
+  \draw[eixo] (0,0) -- (0,6) node[above] {$y$};
+  % reta orcamentaria inicial (Px alto): de (0,4.5) a (3.2,0)
+  \draw[destaque,very thick] (0,4.5) -- (3.2,0) node[below,font=\footnotesize] {};
+  % reta final (Px baixo): de (0,4.5) a (6.2,0)
+  \draw[destaque,very thick] (0,4.5) -- (6.2,0);
+  % reta auxiliar (compensada): paralela a final, tangente a U1; de (0,3.2) a (4.4,0)
+  \draw[auxiliar,thick] (0,3.2) -- (4.4,0);
+  % curva de indiferenca U1 (inicial) tangente a reta inicial em A
+  \draw[curva] (0.55,4.2) .. controls (1.4,1.7) and (1.7,1.45) .. (4.3,0.75) node[right,font=\footnotesize] {$U_1$};
+  % curva U2 (final, mais alta) tangente a reta final em C
+  \draw[curva,manualblue!45] (1.3,4.6) .. controls (2.6,2.1) and (2.9,1.9) .. (5.6,1.0) node[right,font=\footnotesize] {$U_2$};
+  % pontos
+  \coordinate (A) at (1.15,2.85); \node[ponto] at (A) {}; \node[above right,font=\footnotesize] at (A) {$A$};
+  \coordinate (Baux) at (2.35,1.55); \node[ponto] at (Baux) {}; \node[above right,font=\footnotesize] at (Baux) {$B$};
+  \coordinate (C) at (3.35,1.72); \node[ponto] at (C) {}; \node[above right,font=\footnotesize] at (C) {$C$};
+  % projecoes no eixo x
+  \draw[auxiliar] (A) -- (1.15,0);
+  \draw[auxiliar] (Baux) -- (2.35,0);
+  \draw[auxiliar] (C) -- (3.35,0);
+  \node[below,font=\footnotesize] at (1.15,0) {$x_A$};
+  \node[below,font=\footnotesize] at (2.35,0) {$x_B$};
+  \node[below,font=\footnotesize] at (3.35,0) {$x_C$};
+  % chaves
+  \draw[decorate,decoration={brace,amplitude=4pt,mirror},manualgreen] (1.15,-0.55) -- (2.35,-0.55);
+  \node[manualgreen,font=\footnotesize] at (1.75,-0.95) {E. subst.};
+  \draw[decorate,decoration={brace,amplitude=4pt,mirror},manualblue] (2.35,-0.55) -- (3.35,-0.55);
+  \node[manualblue,font=\footnotesize] at (2.85,-0.95) {E. renda};
+\end{tikzpicture}
+```
+
+Queda de $P_x$: de $A$ a $B$ (sobre $U_1$, reta auxiliar) é o efeito substituição; de $B$ a $C$ é o efeito renda. O total é de $x_A$ a $x_C$.
+:::
+
+## Os sinais dos efeitos
+
+A força da decomposição está em que os **sinais** dos dois efeitos são conhecidos:
+
+- **Efeito substituição — sempre "contra o preço".** Quando um bem fica mais barato, o efeito substituição **sempre** aumenta sua quantidade (e vice-versa). Não há exceção: substituímos em favor do que barateou. Graficamente, mover-se sobre uma curva de indiferença convexa em direção à nova inclinação sempre aumenta o consumo do bem que ficou relativamente mais barato.
+- **Efeito renda — depende do tipo de bem.** Um preço menor aumenta o poder de compra. Se o bem é **normal**, esse "enriquecimento" aumenta ainda mais o seu consumo (efeito renda reforça a substituição). Se é **inferior**, o enriquecimento *reduz* o consumo (efeito renda **contraria** a substituição).
+
+Cruzando os dois, temos toda a tipologia (@tbl-sinais):
+
+| Tipo de bem | Efeito substituição | Efeito renda | Efeito total | Demanda |
+|:---|:---:|:---:|:---:|:---:|
+| **Normal** | aumenta $x$ | aumenta $x$ | aumenta $x$ | decrescente |
+| **Inferior (comum)** | aumenta $x$ | reduz $x$ (menor) | aumenta $x$ | decrescente |
+| **Giffen** | aumenta $x$ | reduz $x$ (maior) | **reduz $x$** | crescente |
+
+: Efeitos de uma **queda** de preço, por tipo de bem {#tbl-sinais}
+
+Para um bem **normal**, os dois efeitos empurram no mesmo sentido: a demanda desce, sem dúvida. Para um bem **inferior comum**, o efeito renda contraria, mas é **menor** que o de substituição, então a demanda ainda desce — apenas com inclinação mais suave. É só no caso extremo em que o efeito renda **supera** o de substituição que a demanda subiria: o **bem de Giffen**.
+
+::: {.callout-important title="Armadilha comum — todo Giffen é inferior, mas quase nenhum inferior é Giffen"}
+Ser inferior é **necessário**, mas longe de **suficiente**, para ser Giffen. A imensa maioria dos bens inferiores tem demanda decrescente normal, porque o efeito substituição domina. O bem de Giffen exige uma combinação rara: ser fortemente inferior *e* pesar tanto no orçamento que o efeito renda vença. Confundir "inferior" com "Giffen" é erro frequente.
+:::
+
+## O enigma de Giffen, resolvido
+
+Podemos agora fechar o mistério aberto no @sec-demanda. Um **bem de Giffen** é um bem tão inferior e tão dominante no orçamento de famílias pobres que, quando seu preço **sobe**, o efeito renda negativo (a família ficou substancialmente mais pobre em termos reais) é forte o bastante para superar o efeito substituição, levando a família a comprar **mais** dele.
+
+O exemplo tradicional é o de um alimento básico (batata na Irlanda do século XIX; nas versões modernas, arroz ou macarrão) que consome quase toda a renda de uma família muito pobre e cujo único "substituto" para cima (carne) é caro. Se o preço do básico sobe, a família não tem mais como comprar o caro e **se refugia ainda mais** no básico para não passar fome — comprando mais dele apesar da alta. O efeito renda, aqui, é gigantesco justamente porque o bem pesa quase tudo no orçamento.
+
+::: {.callout-warning title="Controvérsia — o bem de Giffen existe?"}
+Por mais de um século, o bem de Giffen foi tido como uma curiosidade teórica sem comprovação empírica sólida. Estudos de campo mais recentes (notadamente experimentos com arroz e trigo entre famílias pobres na China, por Jensen e Miller, 2008) encontraram evidências consistentes de comportamento de Giffen em condições muito específicas de pobreza extrema. Ainda assim, é fenômeno **raríssimo** e restrito a contextos-limite; para todos os efeitos práticos, a **lei da demanda vale**. O valor do conceito é teórico: ele mostra que a inclinação descendente da demanda não é um axioma, mas um resultado que depende de os efeitos renda não serem perversos e grandes demais.
+:::
+
+## De volta ao mercado
+
+A demanda individual deste capítulo reconecta-se ao ponto de partida do volume. Somando **horizontalmente** as demandas individuais — a cada preço, as quantidades que todos os consumidores desejam —, reconstrói-se a **demanda de mercado** do @sec-demanda, agora com fundamentos completos. Cada ponto da curva de mercado carrega, por trás, milhões de tangências entre curvas de indiferença e retas orçamentárias. O que parecia, no primeiro capítulo, uma simples reta que desce, revela-se o agregado de um mecanismo de otimização profundo — e é essa fundamentação que dá à análise de oferta e demanda a sua solidez.
+
+## 🇧🇷 Brasil em Foco
+
+A decomposição de efeitos não é só teoria fina: ela organiza a leitura de choques de preço reais sobre as famílias brasileiras.
+
+**Choques de preço de alimentos e o efeito renda dos pobres.** Quando o preço do **arroz** disparou em 2020, ou o do **óleo de soja** e da **carne** em ciclos recentes, o impacto sobre famílias de baixa renda foi sobretudo um **efeito renda**: como alimentos básicos pesam muito no orçamento dos mais pobres (a POF mostra participação bem maior de alimentação no domicílio nas faixas inferiores de renda), uma alta desses preços corta o poder de compra real de forma desproporcional. É a base econômica para a preocupação com a **inflação de alimentos** como um fenômeno **regressivo** — ela empobrece mais quem menos tem.
+
+**Por que quase nunca vemos Giffen no Brasil.** Ainda que alimentos básicos sejam inferiores para muitas famílias e pesem no orçamento, o Brasil tem **substitutos abundantes** (arroz, macarrão, mandioca, pão) e uma rede de proteção (Bolsa Família, restaurantes populares) que amortece o efeito renda. Por isso o efeito substituição costuma dominar, e a demanda desses itens é decrescente normal — o comportamento de Giffen exigiria um grau de pobreza e ausência de alternativas que as políticas sociais justamente procuram evitar.
+
+**Inflação como imposto sobre o poder de compra.** A leitura de que "um preço maior é como ficar mais pobre" é literalmente o efeito renda. Uma inflação que corrói o salário real desloca a reta orçamentária das famílias **para dentro**, e a recomposição da cesta (mais bens inferiores, menos supérfluos) é o efeito renda em ação no agregado. Acompanhar o **salário mínimo real** e o **rendimento médio real** (IBGE) é acompanhar o deslocamento dessa reta para o conjunto dos trabalhadores.
+
+> **Fontes e séries para explorar:** IBGE/POF (peso da alimentação por faixa de renda — base do efeito renda diferenciado); IPCA por grupos (choques de preço de alimentos); IBGE/PNAD Contínua (rendimento real); estudos do IPEA sobre impacto distributivo da inflação. O efeito renda de um choque de preço é sempre maior para quem gasta maior fração da renda no bem que encareceu.
+
+## Resumo do capítulo
+
+- A **curva de demanda individual** é derivada variando o preço e registrando as **escolhas ótimas**; ela é consequência das preferências e do orçamento, não um postulado.
+- A **curva de Engel** relaciona renda e quantidade: **crescente** para bens normais, **decrescente** para inferiores.
+- Uma variação de preço decompõe-se em **efeito substituição** (mudança do preço relativo, utilidade constante) e **efeito renda** (mudança do poder de compra real); o **efeito total** é a soma.
+- O **efeito substituição** é **sempre** contrário à variação do preço; o **efeito renda** reforça (bem **normal**) ou contraria (bem **inferior**) a substituição.
+- Bens **normais** têm demanda decrescente (efeitos somam); **inferiores comuns** também (substituição domina); só o **bem de Giffen** (inferior extremo, peso enorme no orçamento) teria demanda crescente.
+- O **Giffen** resolve o enigma do @sec-demanda: é logicamente possível, empiricamente raríssimo; a **lei da demanda** vale na prática.
+- Somando **horizontalmente** as demandas individuais, reconstrói-se a **demanda de mercado**, agora com fundamentos microeconômicos completos.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva antes de abrir a solução. Dificuldade crescente: conceituais, numéricos e análise de caso.
+:::
+
+**1.** Explique, em uma frase cada, a diferença de *natureza* entre o efeito substituição e o efeito renda de uma queda de preço.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Efeito substituição:** a mudança no consumo porque o bem ficou relativamente mais barato que os outros (mudança de **preços relativos**), com o poder de compra mantido constante. **Efeito renda:** a mudança no consumo porque o preço menor aumentou o **poder de compra real** do consumidor, como se ele tivesse ficado mais rico. Um é sobre preços relativos; o outro, sobre poder de compra.
+:::
+
+**2.** Para cada bem, diga o sinal do efeito renda de uma **queda** de preço e se a demanda é decrescente: (a) um bem normal; (b) um bem inferior comum; (c) um bem de Giffen.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Normal:** efeito renda **aumenta** $x$ (reforça a substituição) → demanda decrescente.
+(b) **Inferior comum:** efeito renda **reduz** $x$ (contraria), mas é menor que a substituição → demanda ainda decrescente.
+(c) **Giffen:** efeito renda **reduz** $x$ e **supera** a substituição → o total é reduzir $x$ com a queda de preço, isto é, demanda **crescente**.
+:::
+
+**3.** Por que o efeito substituição de um bem que **encareceu** sempre reduz sua quantidade demandada, sem exceção?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque o efeito substituição isola a mudança de **preço relativo** mantendo a utilidade (poder de compra) constante — move-se sobre a **mesma curva de indiferença**. Sobre uma curva de indiferença convexa, ao tornar o bem relativamente mais caro (reta mais íngreme), a tangência se desloca para um ponto com **menos** desse bem e mais do outro. Como a convexidade (TMS decrescente) vale sempre, esse deslocamento é sempre no sentido de reduzir o bem que encareceu. Não depende de o bem ser normal ou inferior — por isso não tem exceção.
+:::
+
+**4.** Uma família muito pobre gasta quase toda a renda em arroz. O preço do arroz sobe. Descreva os dois efeitos e explique em que condição a família compraria *mais* arroz.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Efeito substituição:** o arroz ficou relativamente mais caro → tenderia a reduzir o consumo de arroz (comprar mais de outro alimento). **Efeito renda:** a alta do arroz, que pesa quase todo o orçamento, empobrece muito a família em termos reais; sendo o arroz **inferior**, esse empobrecimento a leva a consumir *mais* arroz (e abrir mão de itens caros como carne). A família compraria **mais** arroz se o **efeito renda (que aumenta o arroz) superar o efeito substituição (que o reduz)** — a condição de um **bem de Giffen**. Isso requer que o arroz seja fortemente inferior e domine o orçamento, situação de pobreza extrema com poucos substitutos.
+:::
+
+**5.** Um bem tem efeito substituição de $+8$ unidades e efeito renda de $-3$ unidades diante de uma queda de preço. (a) Qual o efeito total? (b) O bem é normal ou inferior? (c) É de Giffen?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Efeito total $= +8 + (-3) = +5$ unidades (a quantidade **aumenta** com a queda de preço).
+(b) O efeito renda de uma **queda** de preço é **negativo** (reduz $x$), o que caracteriza um bem **inferior** (para um bem normal, seria positivo).
+(c) **Não** é Giffen: apesar de inferior, o efeito substituição ($+8$) **supera** o efeito renda ($-3$), então o total é positivo e a demanda é **decrescente**. Seria Giffen apenas se o efeito renda fosse maior em módulo que o de substituição.
+:::
+
+**6.** Esboce (descreva) a curva de Engel de (a) um bem normal e (b) um bem que é normal em rendas baixas mas se torna inferior em rendas altas (como certos alimentos básicos). O que a inclinação representa?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A curva de Engel tem a **renda** no eixo (horizontal ou vertical, conforme a convenção) e a **quantidade** do bem no outro. (a) Bem **normal**: curva **sempre crescente** — mais renda, mais consumo. (b) Bem normal-depois-inferior: a curva **sobe** em rendas baixas (o consumo cresce com a renda) e, a partir de certo ponto, **verga para trás/decresce** (em rendas altas, mais renda reduz o consumo, pois a família migra para itens melhores). A **inclinação** da curva de Engel reflete o sinal e a magnitude do **efeito renda** / elasticidade-renda: positiva para normal, negativa para inferior.
+:::
+
+**7.** (Análise de caso) Após uma forte alta da gasolina, um analista afirma: "as pessoas mal reduziram o consumo, prova de que não há efeito substituição". Critique a afirmação usando a decomposição e o horizonte de tempo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A afirmação confunde **tamanho observado do efeito total** com **ausência de um dos componentes**. No **curto prazo**, a gasolina tem demanda muito inelástica (@sec-elasticidades): a frota, os trajetos e os hábitos estão dados, então tanto o efeito substituição quanto a resposta total são pequenos — mas o efeito substituição **existe** (alguns pegam carona, usam transporte público, adiam viagens). No **longo prazo**, o efeito substituição cresce muito: troca-se por carro mais econômico ou etanol (substituto na frota flex), muda-se de moradia/trabalho, o que reduz o consumo de forma perceptível. Além disso, a alta gera um **efeito renda** (todos ficam mais pobres em termos reais), que também reduz o consumo de vários bens. Portanto, "reduziram pouco no curto prazo" não prova ausência de efeito substituição — prova apenas que, no curto prazo, há pouca margem de ajuste. É um erro clássico de ignorar o horizonte temporal e a elasticidade.
+:::
+
+**8.** (Desafio) Mostre por que, para um bem **normal**, a curva de demanda é **necessariamente** decrescente, apelando aos sinais dos dois efeitos — e explique por que essa garantia se perde para bens inferiores.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Considere uma **queda** em $P_x$. O **efeito substituição** aumenta $x$ (sempre, para qualquer bem — move-se sobre a curva de indiferença em direção ao bem que barateou). Para um bem **normal**, o preço menor eleva o poder de compra real, e o **efeito renda** também aumenta $x$ (por definição de normal: mais poder de compra, mais consumo). Como **ambos** os efeitos aumentam $x$ quando o preço cai, o efeito total aumenta $x$ — ou seja, preço menor → quantidade maior: a demanda é **decrescente**, sem exceção possível. Para um bem **inferior**, o efeito substituição ainda aumenta $x$, mas o efeito renda agora o **reduz** (mais poder de compra, menos consumo do inferior). Os dois efeitos **brigam**: o total depende de qual vence. Na regra (substituição domina), a demanda ainda desce; na exceção rara (renda domina — Giffen), ela sobe. Perde-se a **garantia** justamente porque os sinais deixam de concordar. Formalmente, é o que a **equação de Slutsky** [@slutsky1915] expressa: o efeito total é a soma de um termo de substituição (sempre do "sinal certo") e um termo de renda cujo sinal segue o tipo do bem.
+:::
+
+## Para saber mais
+
+- @varian2015 — os capítulos sobre equação de Slutsky, efeitos renda e substituição e a demanda; o tratamento de referência, com a decomposição de Hicks e de Slutsky.
+- @pindyck2013 — exposição com o exemplo de Giffen e aplicações, além da derivação da demanda de mercado.
+- @nicholson2019 — a formalização matemática da equação de Slutsky.
+- @slutsky1915 — o artigo original que decompôs matematicamente o efeito de uma variação de preço; historicamente decisivo.

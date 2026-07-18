@@ -1,3 +1,267 @@
-# Restrição orçamentária e escolha ótima do consumidor
+# Restrição orçamentária e escolha ótima do consumidor {#sec-escolha-do-consumidor}
 
-*(capítulo em elaboração)*
+As preferências do @sec-preferencias-utilidade dizem o que o consumidor **quer**; elas, sozinhas, mandariam consumir infinito de tudo. O que o impede é a realidade prosaica com que este manual abriu, lá no @sec-o-que-e-economia: a **escassez**, encarnada num orçamento finito e em preços que ele não controla. A escolha efetiva nasce do encontro entre o desejo e a possibilidade — entre o que se **quer** e o que se **pode**.
+
+Este é o capítulo que fecha esse encontro. De um lado, as curvas de indiferença (o querer); de outro, a **restrição orçamentária** (o poder). A escolha ótima é o ponto em que o consumidor alcança a curva de indiferença mais alta que o seu orçamento permite tocar. Dessa construção sairá, no @sec-efeitos-renda-substituicao, a própria curva de demanda — completando o percurso que nos trouxe do gosto abstrato à demanda de mercado dos primeiros capítulos.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- escrever e desenhar a **restrição orçamentária** e interpretar seus interceptos e sua inclinação;
+- explicar como variações de **renda** e de **preços** deslocam ou giram a reta orçamentária;
+- localizar a **escolha ótima** como a tangência entre a reta orçamentária e a curva de indiferença mais alta;
+- deduzir e interpretar a condição de otimalidade $\text{TMS} = P_x/P_y$ e o **princípio equimarginal** $UM_x/P_x = UM_y/P_y$;
+- resolver um problema de escolha ótima com uma função de utilidade dada;
+- distinguir soluções **interiores** de soluções **de canto**.
+
+## A restrição orçamentária
+
+Suponha uma renda $m$ a ser gasta em dois bens, $x$ e $y$, aos preços $P_x$ e $P_y$. Se o consumidor gasta tudo (o que a não saciedade garante ser ótimo), o gasto total iguala a renda:
+
+$$
+P_x\,x + P_y\,y = m.
+$$ {#eq-restricao}
+
+Essa é a **reta orçamentária**: todas as cestas que custam exatamente $m$. Cestas abaixo dela são acessíveis mas deixam renda sobrando; cestas acima são inacessíveis. Isolando $y$, obtemos a equação de uma reta:
+
+$$
+y = \frac{m}{P_y} - \frac{P_x}{P_y}\,x.
+$$
+
+Cada termo tem leitura econômica direta, ilustrada na @fig-restricao:
+
+- **Intercepto vertical** $m/P_y$: o máximo de $y$ que se pode comprar gastando tudo em $y$.
+- **Intercepto horizontal** $m/P_x$: o máximo de $x$ gastando tudo em $x$.
+- **Inclinação** $-P_x/P_y$: o **preço relativo** de $x$ em termos de $y$ — quantas unidades de $y$ o *mercado* exige que se abra mão para obter mais uma de $x$. É o **custo de oportunidade** de $x$, agora expresso em preços de mercado.
+
+::: {#fig-restricao}
+
+```{.tikz}
+%%| filename: fig-restricao
+%%| alt: Reta orçamentária com intercepto vertical m sobre Py, intercepto horizontal m sobre Px, inclinação menos Px sobre Py, e a região viável abaixo da reta sombreada.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (6.5,0) node[right] {$x$};
+  \draw[eixo] (0,0) -- (0,6.5) node[above] {$y$};
+  \fill[manualblue!10] (0,0) -- (0,5) -- (5.5,0) -- cycle;
+  \draw[destaque,very thick] (0,5) -- (5.5,0);
+  \node[left,font=\footnotesize] at (0,5) {$\dfrac{m}{P_y}$};
+  \node[below,font=\footnotesize] at (5.5,0) {$\dfrac{m}{P_x}$};
+  \node[manualblue,font=\footnotesize] at (1.5,1.3) {cestas viáveis};
+  \node[manualred,font=\footnotesize,rotate=-42] at (3.4,2.65) {inclinação $=-\dfrac{P_x}{P_y}$};
+\end{tikzpicture}
+```
+
+A reta orçamentária: fronteira entre o acessível (região sombreada) e o inacessível.
+:::
+
+::: {.callout-tip title="Intuição — a inclinação é o preço que o mundo cobra"}
+A TMS (capítulo anterior) é a taxa de troca que está na *cabeça* do consumidor; a inclinação da reta orçamentária, $P_x/P_y$, é a taxa de troca que o *mercado* impõe. A escolha ótima, veremos, é onde as duas coincidem: a taxa que ele *aceitaria* trocar iguala a que ele *precisa* trocar.
+:::
+
+### Como a reta se move
+
+Dois tipos de mudança alteram o conjunto de cestas acessíveis (@fig-desloca-restricao):
+
+- **Variação de renda.** Um aumento de $m$ (com preços fixos) empurra a reta **para fora, paralelamente** — os dois interceptos crescem na mesma proporção, e a inclinação (que só depende de preços) não muda. Uma queda de renda a puxa para dentro. Programas de transferência de renda funcionam exatamente assim: deslocam a reta para fora.
+- **Variação de preço.** Se muda $P_x$ (com $m$ e $P_y$ fixos), a reta **gira** em torno do intercepto vertical: uma alta de $P_x$ encurta o intercepto horizontal (gira para dentro), tornando $x$ relativamente mais caro e a reta mais íngreme. Uma queda de $P_x$ gira para fora.
+
+::: {#fig-desloca-restricao}
+
+```{.tikz}
+%%| filename: fig-desloca-restricao
+%%| alt: Dois painéis. À esquerda, aumento de renda desloca a reta orçamentária para fora paralelamente. À direita, aumento do preço de x gira a reta para dentro em torno do intercepto vertical.
+\begin{tikzpicture}[scale=0.9]
+  % variacao de renda
+  \begin{scope}
+    \draw[eixo] (0,0) -- (6,0) node[right,font=\footnotesize] {$x$};
+    \draw[eixo] (0,0) -- (0,6) node[above,font=\footnotesize] {$y$};
+    \draw[destaque,very thick] (0,3.4) -- (3.4,0);
+    \draw[very thick,manualred!45] (0,5.2) -- (5.2,0);
+    \draw[vetor,manualgreen] (1.9,1.9) -- (3.0,3.0);
+    \node[align=center,font=\footnotesize] at (2.8,-0.9) {(a) renda $\uparrow$:\\desloca paralelo};
+  \end{scope}
+  % variacao de preco
+  \begin{scope}[xshift=7.2cm]
+    \draw[eixo] (0,0) -- (6,0) node[right,font=\footnotesize] {$x$};
+    \draw[eixo] (0,0) -- (0,6) node[above,font=\footnotesize] {$y$};
+    \draw[destaque,very thick] (0,4.8) -- (5.2,0);
+    \draw[very thick,manualred!45] (0,4.8) -- (2.9,0);
+    \draw[vetor,manualgreen] (4.0,0.9) -- (2.7,0.6);
+    \node[align=center,font=\footnotesize] at (2.8,-0.9) {(b) $P_x\uparrow$:\\gira para dentro};
+  \end{scope}
+\end{tikzpicture}
+```
+
+Renda muda a reta paralelamente (a); preço a faz girar (b).
+:::
+
+## A escolha ótima
+
+Agora sobrepomos as duas peças. O consumidor quer atingir a curva de indiferença **mais alta possível** (mais utilidade), mas só pode escolher cestas **sobre ou abaixo** da reta orçamentária. A melhor cesta acessível é aquela em que a reta orçamentária **tangencia** uma curva de indiferença — o ponto $E$ da @fig-otimo.
+
+::: {#fig-otimo}
+
+```{.tikz}
+%%| filename: fig-otimo
+%%| alt: Reta orçamentária tangente à curva de indiferença U2 no ponto ótimo E; U3 é inacessível e U1 é acessível mas subótima.
+\begin{tikzpicture}[scale=1.05]
+  \draw[eixo] (0,0) -- (6.5,0) node[right] {$x$};
+  \draw[eixo] (0,0) -- (0,6.5) node[above] {$y$};
+  \draw[destaque,very thick] (0,5.6) -- (5.6,0);
+  % curvas de indiferenca
+  \draw[curva] (0.5,3.2) .. controls (1.3,1.6) and (1.6,1.3) .. (3.2,0.5) node[right,font=\footnotesize] {$U_1$};
+  \draw[curva] (1.0,5.0) .. controls (2.4,2.2) and (2.6,2.15) .. (5.0,1.0) node[right,font=\footnotesize] {$U_2$};
+  \draw[curva,manualblue!45] (2.2,5.7) .. controls (3.5,3.4) and (3.6,3.3) .. (5.7,2.2) node[right,font=\footnotesize] {$U_3$};
+  % tangencia em E ~ (2.35,2.35)
+  \coordinate (E) at (2.35,2.35); \node[ponto] at (E) {}; \node[above right,font=\footnotesize] at (E) {$E$};
+  \draw[auxiliar] (E) -- (2.35,0) node[below,font=\footnotesize] {$x^{*}$};
+  \draw[auxiliar] (E) -- (0,2.35) node[left,font=\footnotesize] {$y^{*}$};
+\end{tikzpicture}
+```
+
+A escolha ótima $E$: a reta orçamentária tangencia $U_2$. $U_3$ é inacessível; $U_1$ é acessível mas inferior.
+:::
+
+Por que **tangência**? Porque nesse ponto a inclinação da curva de indiferença iguala a da reta orçamentária. Se elas se cruzassem (não fossem tangentes), a curva de indiferença atravessaria a reta, e haveria cestas acessíveis do outro lado sobre uma curva **mais alta** — logo, a cesta não seria ótima. A tangência esgota todas as melhorias possíveis.
+
+::: {.callout-note title="Condição de otimalidade do consumidor"}
+Na escolha ótima (interior), a taxa de troca **subjetiva** iguala a taxa de troca **de mercado**:
+$$
+\text{TMS}_{xy} = \frac{P_x}{P_y}.
+$$
+Como $\text{TMS}_{xy} = UM_x/UM_y$ (do capítulo anterior), isso equivale ao **princípio equimarginal**:
+$$
+\frac{UM_x}{P_x} = \frac{UM_y}{P_y}.
+$$
+:::
+
+## O princípio equimarginal: utilidade por real
+
+A segunda forma da condição é a mais reveladora. O termo $UM_x/P_x$ é a **utilidade marginal por real gasto** no bem $x$ — quanta satisfação extra o último real destinado a $x$ comprou. A condição diz que, no ótimo, **o último real gasto em cada bem rende a mesma utilidade**.
+
+A lógica é a de quem otimiza qualquer coisa: se um real gasto em $x$ rendesse *mais* utilidade que em $y$, o consumidor melhoraria transferindo gasto de $y$ para $x$. Ele só para de realocar quando não há mais essa diferença — quando "o dinheiro rende igual" em toda parte. É a mesma regra marginal do @sec-o-que-e-economia (fazer mais enquanto o benefício marginal superar o custo), agora aplicada à divisão do orçamento.
+
+::: {.callout-important title="Armadilha comum — não é 'igualar utilidades marginais', é igualar por real"}
+O ótimo **não** exige $UM_x = UM_y$, e sim $UM_x/P_x = UM_y/P_y$. Um bem caro pode (e deve) ter utilidade marginal *maior* no ótimo, na exata proporção do seu preço. Igualar utilidades marginais sem dividir pelos preços ignora que os bens custam diferente — erro clássico de prova.
+:::
+
+## Um exemplo completo
+
+Seja $U(x,y) = xy$ (as utilidades marginais $UM_x = y$, $UM_y = x$ vieram do capítulo anterior), com preços $P_x = 2$, $P_y = 4$ e renda $m = 80$.
+
+**Passo 1 — condição de tangência.** $\text{TMS} = UM_x/UM_y = y/x$. Igualando a $P_x/P_y = 2/4 = 1/2$:
+$$
+\frac{y}{x} = \frac{1}{2} \;\Longrightarrow\; x = 2y.
+$$
+
+**Passo 2 — restrição orçamentária.** $2x + 4y = 80$. Substituindo $x = 2y$:
+$$
+2(2y) + 4y = 80 \;\Longrightarrow\; 8y = 80 \;\Longrightarrow\; y^{*} = 10, \quad x^{*} = 20.
+$$
+
+**Passo 3 — conferir.** Gasto: $2(20) + 4(10) = 40 + 40 = 80 = m$. ✓ Utilidade no ótimo: $U = 20 \times 10 = 200$.
+
+Note um resultado bonito, típico da utilidade $U = xy$ (um caso **Cobb-Douglas**): o consumidor gastou **exatamente metade** da renda em cada bem ($40$ e $40$). Nas preferências Cobb-Douglas $U = x^a y^b$, a fração da renda gasta em cada bem é constante — resultado que reaparecerá em muitos modelos.
+
+::: {.callout-tip title="Conexão — isto é otimização com restrição"}
+O que fizemos é, formalmente, **maximizar $U(x,y)$ sujeito a $P_x x + P_y y = m$** — precisamente o problema dos **multiplicadores de Lagrange** do Volume 2. A condição de tangência $\text{TMS} = P_x/P_y$ é o que as condições de primeira ordem de Lagrange produzem, e o multiplicador $\lambda$ tem interpretação de **utilidade marginal da renda** (quanto de utilidade a mais renderia um real extra de orçamento). Reveja aquele capítulo para o tratamento com cálculo.
+:::
+
+## Soluções interiores e de canto
+
+A tangência pressupõe uma **solução interior** — o ótimo usa quantidades positivas dos dois bens, típico de preferências convexas com gosto por variedade. Nem sempre é assim.
+
+Quando os bens são **substitutos perfeitos** (curvas de indiferença retas), em geral não há tangência: o consumidor gasta **tudo** no bem mais barato por unidade de utilidade — uma **solução de canto**, sobre um dos eixos. Se duas marcas idênticas de água têm preços diferentes, você compra só a mais barata; nada de "meio a meio". A condição $\text{TMS} = P_x/P_y$ dá lugar a comparar $\text{TMS}$ com $P_x/P_y$: se a TMS (constante) exceder o preço relativo, gasta-se tudo em $x$; se for menor, tudo em $y$.
+
+::: {.callout-warning title="Cuidado — nem todo ótimo é de tangência"}
+Antes de aplicar $\text{TMS} = P_x/P_y$, verifique se o problema tem solução interior. Substitutos perfeitos, complementares perfeitos e preferências não convexas exigem análise específica (canto, vértice do L, etc.). A tangência é a regra para o caso "bem-comportado", não uma lei universal.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+A restrição orçamentária é, talvez, o conceito deste volume mais imediatamente reconhecível na vida do brasileiro.
+
+**O orçamento apertado e os preços relativos.** Para a maioria das famílias, a reta orçamentária é curta e cada centavo conta. A **POF/IBGE** mostra como a composição da cesta muda quando os **preços relativos** mudam: uma alta do botijão de gás em relação à energia elétrica, ou da carne em relação ao frango, gira a reta orçamentária e realoca o consumo — exatamente o mecanismo de substituição que a inclinação $P_x/P_y$ captura. A inflação, ao alterar preços relativos de forma desigual, não apenas encolhe a reta (perda de poder de compra) como a **inclina**, forçando recomposições da cesta.
+
+**Transferências de renda deslocam a reta.** Programas como o **Bolsa Família / Auxílio Brasil** e o **BPC** deslocam a reta orçamentária das famílias beneficiárias **para fora**, ampliando o conjunto de cestas acessíveis. Como a evidência brasileira sugere que boa parte do incremento vai para alimentação, educação e itens básicos, esses programas melhoram o bem-estar permitindo alcançar curvas de indiferença mais altas — e, diferentemente de um controle de preço (@sec-aplicacoes-intervencoes), fazem-no **sem distorcer os preços relativos**, preservando os sinais de mercado.
+
+**Crédito e a restrição intertemporal.** A reta orçamentária deste capítulo é estática, mas a lógica se estende ao tempo: poupar e tomar crédito é realocar consumo entre presente e futuro, com a taxa de juros (a **Selic**, no atacado) fazendo o papel de preço relativo. O forte peso do crédito caro no orçamento das famílias brasileiras — cheque especial, rotativo do cartão — é uma restrição orçamentária *intertemporal* que o Volume 14 (finanças) desenvolverá.
+
+> **Fontes e séries para explorar:** IBGE/POF (composição do orçamento e reação a preços relativos); avaliações de impacto do Bolsa Família/Auxílio Brasil (IPEA, Cadastro Único); Bacen (crédito às famílias, comprometimento de renda). Preços relativos e renda mudam constantemente — analise a estrutura, não um instante.
+
+## Resumo do capítulo
+
+- A **restrição orçamentária** $P_x x + P_y y = m$ delimita as cestas acessíveis; seus interceptos são $m/P_y$ e $m/P_x$, e a **inclinação** $-P_x/P_y$ é o **preço relativo** (custo de oportunidade de mercado) de $x$.
+- Um aumento de **renda** desloca a reta **paralelamente** para fora; uma mudança de **preço** a faz **girar** em torno de um intercepto.
+- A **escolha ótima** é a **tangência** entre a reta orçamentária e a curva de indiferença mais alta acessível.
+- A condição de otimalidade interior é $\text{TMS}_{xy} = P_x/P_y$, equivalente ao **princípio equimarginal** $UM_x/P_x = UM_y/P_y$: no ótimo, **o último real gasto rende a mesma utilidade em cada bem**.
+- Não se igualam utilidades marginais, e sim **utilidades marginais por real**.
+- Resolve-se combinando tangência e restrição; em Cobb-Douglas $U = x^a y^b$, as frações da renda gastas em cada bem são constantes.
+- Nem todo ótimo é de tangência: **substitutos perfeitos** levam a **soluções de canto**; complementares perfeitos, ao vértice do L. É um problema de **otimização com restrição** (Lagrange, Volume 2).
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva antes de abrir a solução. Dificuldade crescente: conceituais, numéricos e análise de caso.
+:::
+
+**1.** Escreva a reta orçamentária de quem tem $m = 120$, $P_x = 3$ e $P_y = 6$. Quais os interceptos e a inclinação? Qual o significado econômico da inclinação?
+
+::: {.callout-tip collapse="true" title="Solução"}
+$3x + 6y = 120$, ou $y = 20 - \tfrac{1}{2}x$. Intercepto vertical $m/P_y = 120/6 = 20$; intercepto horizontal $m/P_x = 120/3 = 40$; inclinação $-P_x/P_y = -3/6 = -1/2$. Significado: para obter mais **1 unidade de $x$**, o mercado exige abrir mão de **1/2 unidade de $y$** — o preço relativo (custo de oportunidade) de $x$ em termos de $y$.
+:::
+
+**2.** Descreva o que acontece com a reta do exercício 1 se (a) a renda cair para $m = 60$; (b) o preço de $x$ subir para $P_x = 6$ (com $m=120$, $P_y=6$).
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) A reta desloca-se **para dentro, paralelamente**: interceptos passam a $10$ (vertical) e $20$ (horizontal); a inclinação continua $-1/2$. Menos cestas acessíveis, mesmos preços relativos.
+(b) A reta **gira para dentro** em torno do intercepto vertical (que permanece $20$): o intercepto horizontal cai de $40$ para $120/6 = 20$, e a inclinação fica mais íngreme, $-6/6 = -1$. $x$ ficou relativamente mais caro.
+:::
+
+**3.** Explique por que, no ótimo interior, a curva de indiferença é **tangente** à reta orçamentária, e não a cruza.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Se a curva de indiferença **cruzasse** a reta, parte dela ficaria *acima* da reta (inacessível) e parte *abaixo* — mas isso significaria que, deslizando ao longo da reta orçamentária para o lado em que a curva desce abaixo dela, o consumidor alcançaria cestas ainda acessíveis situadas em curvas de indiferença **mais altas**. Ou seja, a cesta de cruzamento não seria a melhor. Só quando a curva **tangencia** a reta não há mais nenhuma cesta acessível em curva superior: as inclinações se igualam ($\text{TMS} = P_x/P_y$) e todas as melhorias se esgotam.
+:::
+
+**4.** Com $U(x,y) = xy$, $P_x = 4$, $P_y = 2$ e $m = 120$, ache a cesta ótima e a utilidade no ótimo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$\text{TMS} = y/x = P_x/P_y = 4/2 = 2 \Rightarrow y = 2x$. Restrição: $4x + 2y = 120$. Substituindo: $4x + 2(2x) = 8x = 120 \Rightarrow x^{*} = 15$, $y^{*} = 30$. Confere o gasto: $4(15) + 2(30) = 60 + 60 = 120$ ✓ (metade em cada, como esperado em Cobb-Douglas). Utilidade: $U = 15 \times 30 = 450$.
+:::
+
+**5.** No exercício 4, verifique o **princípio equimarginal**: mostre que $UM_x/P_x = UM_y/P_y$ na cesta ótima e interprete o valor comum.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Com $UM_x = y = 30$ e $UM_y = x = 15$: $UM_x/P_x = 30/4 = 7{,}5$ e $UM_y/P_y = 15/2 = 7{,}5$. **Iguais** ✓. O valor comum $7{,}5$ é a **utilidade marginal da renda**: no ótimo, cada real adicional gasto — em $x$ ou em $y$ — acrescentaria cerca de $7{,}5$ unidades de utilidade. Como é o mesmo nos dois bens, não há vantagem em realocar gasto: o orçamento está distribuído de forma ótima.
+:::
+
+**6.** Um consumidor considera duas marcas de arroz **substitutos perfeitos** 1 para 1 ($U = x + y$). A marca $x$ custa R\$\,5 e a $y$, R\$\,6, e ele tem R\$\,60. Qual a cesta ótima? Por que a condição de tangência não se aplica?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Como são substitutos perfeitos idênticos em satisfação, ele compra **só a mais barata por unidade de utilidade** — a marca $x$ (R\$\,5 < R\$\,6). Cesta ótima: $x^{*} = 60/5 = 12$, $y^{*} = 0$ — uma **solução de canto** sobre o eixo $x$. A tangência não se aplica porque as curvas de indiferença são **retas** (TMS constante $= 1$): não há um ponto de encaixe suave. Aqui compara-se a TMS $=1$ com o preço relativo $P_x/P_y = 5/6 < 1$; como a TMS excede o preço relativo de $x$, vale gastar tudo em $x$.
+:::
+
+**7.** (Análise de caso) Uma família recebe um aumento de R\$\,300 no benefício social. Um economista prevê que ela consumirá "mais de quase tudo", mas um vizinho aposta que ela vai comprar *menos* de arroz. Usando reta orçamentária e tipos de bem, explique como **ambos** podem estar certos.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O benefício desloca a reta orçamentária **para fora, paralelamente** (renda maior, preços iguais), ampliando as cestas acessíveis. A nova cesta ótima estará numa curva de indiferença mais alta. Para os **bens normais** — a maioria —, a família consumirá mais (o economista acerta: "mais de quase tudo"). Mas, se o arroz for um **bem inferior** para essa família (@sec-demanda), o aumento de renda a leva a **substituí-lo** por itens de maior variedade (carne, frutas, mais proteína), consumindo **menos** arroz apesar de mais renda (o vizinho acerta quanto ao arroz). Os dois são compatíveis: a renda sobe, o bem-estar sobe, e ainda assim um bem *específico* pode cair se for inferior. O sinal do efeito-renda depende do tipo de bem — assunto do próximo capítulo.
+:::
+
+**8.** (Desafio) Mostre, para $U(x,y) = x^a y^b$ (Cobb-Douglas), que a fração da renda gasta em $x$ é sempre $\frac{a}{a+b}$, **independente dos preços e da renda**. (Dica: use $\text{TMS} = \frac{a}{b}\cdot\frac{y}{x}$.)
+
+::: {.callout-tip collapse="true" title="Solução"}
+As utilidades marginais são $UM_x = a x^{a-1} y^{b}$ e $UM_y = b x^{a} y^{b-1}$, logo
+$$\text{TMS} = \frac{UM_x}{UM_y} = \frac{a x^{a-1} y^b}{b x^a y^{b-1}} = \frac{a}{b}\cdot\frac{y}{x}.$$
+Condição de tangência: $\frac{a}{b}\cdot\frac{y}{x} = \frac{P_x}{P_y} \Rightarrow P_y\, a\, y = P_x\, b\, x \Rightarrow P_y y = \frac{b}{a} P_x x$. Substituindo na restrição $P_x x + P_y y = m$:
+$$P_x x + \frac{b}{a}P_x x = m \;\Longrightarrow\; P_x x\left(1 + \frac{b}{a}\right) = m \;\Longrightarrow\; P_x x\cdot\frac{a+b}{a} = m.$$
+Portanto o **gasto em $x$** é $P_x x = \frac{a}{a+b}\,m$, e a **fração** da renda gasta em $x$ é $\frac{a}{a+b}$ — constante, sem depender de $P_x$, $P_y$ ou $m$. (Analogamente, a fração em $y$ é $\frac{b}{a+b}$.) É por isso que, no caso $U = xy$ ($a = b = 1$), gasta-se exatamente metade em cada bem, como vimos nos exemplos.
+:::
+
+## Para saber mais
+
+- @varian2015 — os capítulos sobre restrição orçamentária e escolha ótima; a referência central, com o tratamento gráfico e algébrico completo.
+- @pindyck2013 — muitos exemplos aplicados, inclusive escolhas de canto e programas sociais.
+- @nicholson2019 — a derivação formal via maximização com restrição e o multiplicador de Lagrange.
+- @chiang2006 — para o ferramental matemático de otimização com restrição que sustenta este capítulo.
