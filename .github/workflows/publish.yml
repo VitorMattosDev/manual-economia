@@ -27,19 +27,29 @@ jobs:
       - name: Preparar TeX (PATH do TinyTeX + pacotes TikZ)
         run: |
           set -e
-          # A extensão TikZ chama pdflatex/dvisvgm pelo nome, então o bin do
-          # TinyTeX PRECISA estar no PATH (o setup não o adiciona sozinho).
-          # pdflatex costuma ser um SYMLINK (find -type f o ignora); tlmgr é
-          # arquivo real e mora no mesmo diretório, então derivamos o bin dele.
-          TLMGR=$(find ~ /opt /usr -name tlmgr -type f 2>/dev/null | head -n1)
-          TEXBIN=$(dirname "$TLMGR")
-          echo "tlmgr em: $TLMGR"
+          # A extensão TikZ chama pdflatex/dvisvgm pelo nome, então esses
+          # binários PRECISAM estar no PATH visto pelo processo de render.
+          # Diagnóstico:
+          echo "PATH atual: $PATH"
+          command -v tlmgr pdflatex dvisvgm || true
+          # Localiza o pdflatex (é symlink -> NÃO usar -type f). Prefere o PATH.
+          PDFLATEX=$(command -v pdflatex || true)
+          [ -n "$PDFLATEX" ] || PDFLATEX=$(find ~ /root /opt /usr -name pdflatex 2>/dev/null | head -n1)
+          echo "pdflatex localizado: $PDFLATEX"
+          test -n "$PDFLATEX"
+          TEXBIN=$(cd "$(dirname "$PDFLATEX")" && pwd)
           echo "TeX bin: $TEXBIN"
           echo "$TEXBIN" >> "$GITHUB_PATH"
+          # Instala os pacotes TikZ.
+          TLMGR=$(command -v tlmgr || echo "$TEXBIN/tlmgr")
           "$TLMGR" install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts || true
-          ls -l "$TEXBIN/pdflatex" "$TEXBIN/dvisvgm" || true
+          # Rede de segurança: linka para /usr/local/bin, que está sempre no PATH.
+          for b in pdflatex latex dvisvgm kpsewhich mktexfmt; do
+            [ -e "$TEXBIN/$b" ] && sudo ln -sf "$TEXBIN/$b" "/usr/local/bin/$b" || true
+          done
           "$TEXBIN/pdflatex" --version | head -n1
           "$TEXBIN/dvisvgm" --version | head -n1
+          echo "checagem final via /usr/local/bin:"; /usr/local/bin/pdflatex --version | head -n1; /usr/local/bin/dvisvgm --version | head -n1
 
       - name: Renderizar e publicar (HTML + PDF)
         uses: quarto-dev/quarto-actions/publish@v2
