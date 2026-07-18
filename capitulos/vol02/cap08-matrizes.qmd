@@ -1,0 +1,260 @@
+# Matrizes e álgebra linear básica {#sec-matrizes}
+
+No @sec-equacoes-e-equilibrio, resolvemos sistemas de duas equações e duas incógnitas por substituição e eliminação. Mas a economia real raramente tem só dois mercados. Uma economia moderna tem **centenas** de setores, cada um comprando insumos de muitos outros; um modelo macroeconométrico pode ter **dezenas** de equações simultâneas. Resolver isso equação por equação seria impraticável. É aqui que entra a **álgebra linear**: a linguagem que organiza grandes sistemas de equações em objetos compactos — as **matrizes** — e fornece métodos sistemáticos para resolvê-los todos de uma vez.
+
+Este capítulo fecha o volume de matemática apresentando os fundamentos: o que são matrizes e vetores, como operá-los, e como usá-los para resolver sistemas lineares por meio do **determinante** e da **matriz inversa**. A aplicação-síntese é o **modelo de insumo-produto** de Wassily Leontief, que representa uma economia inteira como um sistema matricial — e que o IBGE calcula para o Brasil.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- reconhecer **matrizes** e **vetores** e identificar sua ordem (dimensões);
+- somar, subtrair e multiplicar matrizes, e multiplicar por escalar;
+- entender a **multiplicação de matrizes** e por que ela representa a combinação de sistemas;
+- calcular o **determinante** de matrizes $2\times 2$ e usá-lo para decidir se um sistema tem solução única;
+- encontrar a **matriz inversa** de uma matriz $2\times 2$ e resolver sistemas na forma $A\mathbf{x} = \mathbf{b}$;
+- aplicar a **regra de Cramer** a sistemas $2\times 2$;
+- interpretar o **modelo de insumo-produto** de Leontief como um sistema matricial.
+
+## Matrizes e vetores
+
+Uma **matriz** é apenas uma tabela retangular de números, organizada em linhas e colunas. Sua utilidade é organizar informação e, sobretudo, representar sistemas de equações de forma compacta.
+
+::: {.callout-note title="Definição — Matriz"}
+Uma **matriz** de ordem $m \times n$ é um arranjo retangular de números com $m$ **linhas** e $n$ **colunas**. O número na linha $i$ e coluna $j$ é o **elemento** $a_{ij}$. Uma matriz com uma única coluna ($n = 1$) é um **vetor coluna**; com uma única linha, um **vetor linha**.
+:::
+
+Por exemplo,
+
+$$
+A = \begin{pmatrix} 2 & 1 \\ 3 & 4 \end{pmatrix} \quad(\text{ordem } 2\times 2), \qquad
+\mathbf{b} = \begin{pmatrix} 20 \\ 30 \end{pmatrix} \quad(\text{vetor coluna } 2\times 1).
+$$
+
+A conexão com sistemas é imediata. O sistema
+$$
+\begin{cases} 2x + y = 20 \\ 3x + 4y = 30 \end{cases}
+$$
+se escreve, em forma matricial, como $A\mathbf{x} = \mathbf{b}$, onde $A$ é a **matriz de coeficientes** acima, $\mathbf{x} = \begin{pmatrix} x \\ y \end{pmatrix}$ é o vetor de incógnitas e $\mathbf{b}$ é o vetor de termos independentes. Essa notação, que parece só uma abreviação, é na verdade a porta para métodos que resolvem sistemas de qualquer tamanho.
+
+## Operações com matrizes
+
+**Soma e subtração** fazem-se elemento a elemento, e só entre matrizes de **mesma ordem**:
+
+$$
+\begin{pmatrix} 2 & 1 \\ 3 & 4 \end{pmatrix} + \begin{pmatrix} 0 & 5 \\ 1 & 2 \end{pmatrix} = \begin{pmatrix} 2 & 6 \\ 4 & 6 \end{pmatrix}.
+$$
+
+**Multiplicação por escalar** multiplica cada elemento pelo número:
+
+$$
+3 \times \begin{pmatrix} 2 & 1 \\ 3 & 4 \end{pmatrix} = \begin{pmatrix} 6 & 3 \\ 9 & 12 \end{pmatrix}.
+$$
+
+A operação mais importante — e a que assusta iniciantes — é a **multiplicação de matrizes**. Ela não é feita elemento a elemento. O elemento na posição $(i, j)$ do produto $AB$ é obtido combinando a **linha $i$ de $A$** com a **coluna $j$ de $B$**, multiplicando os pares correspondentes e somando (o "produto escalar" da linha pela coluna).
+
+::: {.callout-note title="Multiplicação de matrizes"}
+Para $C = AB$, o elemento $c_{ij} = \sum_k a_{ik}\,b_{kj}$: multiplica-se a linha $i$ de $A$, termo a termo, pela coluna $j$ de $B$, e somam-se os produtos. O produto $AB$ só existe se o número de **colunas de $A$** for igual ao número de **linhas de $B$**.
+:::
+
+Um exemplo $2\times 2$:
+
+$$
+\begin{pmatrix} 2 & 1 \\ 3 & 4 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 5 & 2 \end{pmatrix} = \begin{pmatrix} 2\cdot 1 + 1\cdot 5 & 2\cdot 0 + 1\cdot 2 \\ 3\cdot 1 + 4\cdot 5 & 3\cdot 0 + 4\cdot 2 \end{pmatrix} = \begin{pmatrix} 7 & 2 \\ 23 & 8 \end{pmatrix}.
+$$
+
+::: {.callout-important title="Armadilha comum — a ordem importa na multiplicação"}
+Diferentemente dos números, a multiplicação de matrizes **não é comutativa**: em geral $AB \ne BA$. A ordem dos fatores altera o resultado (e às vezes um dos produtos nem sequer existe, se as dimensões não casarem). Ao manipular expressões matriciais, nunca troque a ordem dos fatores como faria com números. Essa é a fonte de erro nº 1 de quem começa em álgebra linear.
+:::
+
+Por que essa regra estranha de multiplicação? Porque ela é exatamente a que faz a notação $A\mathbf{x}$ reproduzir o lado esquerdo de um sistema de equações. Verifique:
+
+$$
+\begin{pmatrix} 2 & 1 \\ 3 & 4 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 2x + y \\ 3x + 4y \end{pmatrix}.
+$$
+
+Igualar esse resultado a $\mathbf{b} = \begin{pmatrix} 20 \\ 30 \end{pmatrix}$ recupera as duas equações originais. A multiplicação de matrizes foi *definida* para que sistemas de equações virassem uma única equação matricial.
+
+## O determinante
+
+Antes de resolver o sistema, precisamos de um número que diz se ele **tem** solução única: o **determinante** da matriz de coeficientes.
+
+::: {.callout-note title="Definição — Determinante de uma matriz 2×2"}
+O **determinante** da matriz $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ é
+$$
+\det A = ad - bc.
+$$ {#eq-determinante}
+:::
+
+O determinante é um teste de "invertibilidade":
+
+- se $\det A \ne 0$, o sistema $A\mathbf{x} = \mathbf{b}$ tem **solução única** (as retas se cruzam num ponto);
+- se $\det A = 0$, o sistema **não tem solução única** — ou não tem nenhuma (retas paralelas) ou tem infinitas (retas coincidentes).
+
+Reencontramos aqui, num único número, a classificação de sistemas do @sec-equacoes-e-equilibrio. Um determinante nulo significa que as duas equações são, em certo sentido, "redundantes ou contraditórias" — suas retas têm a mesma inclinação. Para $A = \begin{pmatrix} 2 & 1 \\ 3 & 4 \end{pmatrix}$, $\det A = 2\cdot 4 - 1\cdot 3 = 8 - 3 = 5 \ne 0$: solução única garantida.
+
+## A matriz inversa e a solução de sistemas
+
+Se um número $a \ne 0$ tem inverso $a^{-1} = 1/a$ tal que $a\cdot a^{-1} = 1$, uma matriz $A$ com $\det A \ne 0$ tem uma **matriz inversa** $A^{-1}$ tal que $A A^{-1} = I$, onde $I$ é a **matriz identidade** (com $1$ na diagonal e $0$ fora, o análogo matricial do número $1$).
+
+::: {.callout-note title="Inversa de uma matriz 2×2"}
+Para $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ com $\det A \ne 0$,
+$$
+A^{-1} = \frac{1}{\det A}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}.
+$$
+"Troque $a$ e $d$ de lugar, inverta o sinal de $b$ e $c$, e divida tudo pelo determinante."
+:::
+
+Com a inversa, resolver o sistema fica formalmente idêntico a resolver $ax = b$ dividindo por $a$. Partindo de $A\mathbf{x} = \mathbf{b}$, multiplicamos ambos os lados por $A^{-1}$ **pela esquerda** (a ordem importa!):
+
+$$
+A^{-1}A\mathbf{x} = A^{-1}\mathbf{b} \;\Longrightarrow\; I\mathbf{x} = A^{-1}\mathbf{b} \;\Longrightarrow\; \mathbf{x} = A^{-1}\mathbf{b}.
+$$ {#eq-solucao-matricial}
+
+Essa fórmula — $\mathbf{x} = A^{-1}\mathbf{b}$ — resolve **qualquer** sistema linear com solução única, de duas ou de duas mil incógnitas (nos grandes, o computador faz o trabalho). É a razão de a álgebra linear ser a espinha dorsal da economia computacional, da econometria e dos modelos de equilíbrio geral.
+
+## A regra de Cramer
+
+Para sistemas $2\times 2$, há um atalho prático que dispensa calcular a inversa inteira: a **regra de Cramer**, que expressa cada incógnita como uma razão de determinantes.
+
+::: {.callout-note title="Regra de Cramer (2×2)"}
+Para $A\mathbf{x} = \mathbf{b}$ com $\det A \ne 0$, cada incógnita é
+$$
+x = \frac{\det A_x}{\det A}, \qquad y = \frac{\det A_y}{\det A},
+$$
+onde $A_x$ é $A$ com a **coluna de $x$ substituída por $\mathbf{b}$**, e $A_y$ é $A$ com a **coluna de $y$ substituída por $\mathbf{b}$**.
+:::
+
+Apliquemos ao sistema $\begin{cases} 2x + y = 20 \\ 3x + 4y = 30 \end{cases}$. Já temos $\det A = 5$. Então:
+
+$$
+\det A_x = \det\begin{pmatrix} 20 & 1 \\ 30 & 4 \end{pmatrix} = 20\cdot 4 - 1\cdot 30 = 50, \qquad
+\det A_y = \det\begin{pmatrix} 2 & 20 \\ 3 & 30 \end{pmatrix} = 2\cdot 30 - 20\cdot 3 = 0.
+$$
+
+Logo $x = 50/5 = 10$ e $y = 0/5 = 0$. A solução é $(x, y) = (10, 0)$. (Verifique nas equações originais: $2\cdot 10 + 0 = 20$ ✓; $3\cdot 10 + 4\cdot 0 = 30$ ✓.) A regra de Cramer é especialmente útil em Economia para a **estática comparativa** com muitos parâmetros, pois expressa a solução como fórmula explícita.
+
+## O modelo de insumo-produto de Leontief
+
+Encerramos com a aplicação que justifica todo o capítulo: representar uma **economia inteira** como um sistema matricial. Wassily Leontief (Nobel de 1973) modelou uma economia de vários setores em que cada setor usa produtos dos demais como insumos. A matriz de **coeficientes técnicos** $A$ registra quanto de cada setor é necessário para produzir uma unidade de cada outro; o vetor $\mathbf{x}$ é a produção total de cada setor; e o vetor $\mathbf{d}$ é a **demanda final** (o que sobra para consumo, investimento, exportação).
+
+A equação fundamental do modelo é:
+
+$$
+\mathbf{x} = A\mathbf{x} + \mathbf{d},
+$$
+
+que se lê: a produção total de cada setor ($\mathbf{x}$) atende ao consumo dos outros setores como insumo ($A\mathbf{x}$) mais a demanda final ($\mathbf{d}$). Resolvendo para $\mathbf{x}$ — e aqui todo o maquinário deste capítulo entra em cena:
+
+$$
+\mathbf{x} - A\mathbf{x} = \mathbf{d} \;\Longrightarrow\; (I - A)\mathbf{x} = \mathbf{d} \;\Longrightarrow\; \mathbf{x} = (I - A)^{-1}\,\mathbf{d}.
+$$ {#eq-leontief}
+
+A matriz $(I - A)^{-1}$, chamada **matriz inversa de Leontief**, é o coração do modelo: ela informa **quanto cada setor precisa produzir** para atender a uma dada demanda final, levando em conta todos os efeitos em cadeia (para produzir carros é preciso aço, para produzir aço é preciso energia, e assim por diante). É a álgebra linear capturando as interdependências de uma economia inteira num único objeto.
+
+::: {.callout-tip title="Intuição — por que a inversa capta os efeitos em cadeia"}
+Aumentar a demanda final por automóveis exige mais aço; mais aço exige mais minério e energia; mais energia exige mais... A cadeia é, em princípio, infinita. A mágica de $(I - A)^{-1}$ é somar **toda** essa cadeia infinita de rodadas de produção num só cálculo (matematicamente, é a soma da série $I + A + A^2 + A^3 + \dots$, o análogo matricial da soma de uma progressão geométrica). Por isso um choque de demanda num setor "puxa" a produção de muitos outros — o **efeito multiplicador setorial**, que a matriz de Leontief quantifica.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+**A Matriz de Insumo-Produto do Brasil.** O modelo de Leontief não é teoria de quadro-negro: o **IBGE** calcula e publica periodicamente a **Matriz de Insumo-Produto (MIP)** da economia brasileira, um retrato de como as dezenas de setores do país compram e vendem insumos uns dos outros. Com ela, economistas respondem a perguntas concretas: se as exportações de soja crescerem, quanto de transporte, fertilizante, energia e serviços financeiros a economia terá de produzir a mais? Quais setores geram mais empregos por real de demanda (têm maior efeito multiplicador)? A MIP é usada para avaliar o impacto de grandes investimentos (uma nova refinaria, os projetos de infraestrutura), para estimar as chamadas "pegadas" (de carbono, de água, de emprego) das cadeias produtivas, e para orientar política industrial. Tudo isso é a equação $\mathbf{x} = (I - A)^{-1}\mathbf{d}$ deste capítulo, resolvida para uma matriz $A$ com dezenas de setores — impossível sem álgebra linear e computador.
+
+**Sistemas de equações e os modelos do Banco Central.** A resolução simultânea de muitas equações — o problema que as matrizes organizam — está no coração dos modelos macroeconômicos que orientam a política monetária. Os modelos que o **Banco Central do Brasil** usa para projetar inflação e simular cenários de Selic (modelos semiestruturais e de equilíbrio geral) são, no fundo, grandes sistemas de equações resolvidos por métodos matriciais. Quando o Copom avalia "o que acontece com a inflação daqui a dois anos se a Selic subir 1 ponto", a resposta sai de um sistema em que muitas variáveis (juros, câmbio, hiato do produto, expectativas) se determinam simultaneamente. A álgebra linear é a ferramenta que torna esses sistemas solúveis — o Volume 10 retomará os métodos quantitativos, e aqui fica registrada a base: economia moderna e álgebra matricial são inseparáveis.
+
+> **Fontes e séries para explorar:** IBGE — Matriz de Insumo-Produto e as Tabelas de Recursos e Usos (TRU) do Sistema de Contas Nacionais; Banco Central do Brasil — documentação dos modelos de projeção (Relatório de Inflação/Relatório de Política Monetária). Verifique o ano de referência da MIP, publicada com defasagem.
+
+## Resumo do capítulo
+
+- Uma **matriz** $m\times n$ é uma tabela de números; um **vetor** é uma matriz de uma só coluna (ou linha). Um sistema linear escreve-se compactamente como $A\mathbf{x} = \mathbf{b}$.
+- **Soma** e **subtração** são elemento a elemento (mesma ordem). A **multiplicação de matrizes** combina linhas de $A$ com colunas de $B$; **não é comutativa** ($AB \ne BA$) e foi definida para reproduzir sistemas de equações.
+- O **determinante** ($ad - bc$ no caso $2\times2$) decide a existência de solução única: $\det A \ne 0$ garante solução única; $\det A = 0$ indica nenhuma ou infinitas soluções.
+- A **matriz inversa** $A^{-1}$ (existe se $\det A \ne 0$) resolve o sistema por $\mathbf{x} = A^{-1}\mathbf{b}$ — o análogo matricial de "dividir por $A$".
+- A **regra de Cramer** dá cada incógnita como razão de determinantes, útil para fórmulas explícitas e estática comparativa.
+- O **modelo de insumo-produto de Leontief** representa uma economia inteira por $\mathbf{x} = (I - A)^{-1}\mathbf{d}$; a inversa de Leontief soma todos os efeitos em cadeia. O IBGE calcula a Matriz de Insumo-Produto do Brasil.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique, com suas palavras, por que a multiplicação de matrizes não é comutativa, ao contrário da multiplicação de números.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Na multiplicação de matrizes, o elemento $(i,j)$ do produto combina a **linha $i$ do primeiro fator** com a **coluna $j$ do segundo**. Trocar a ordem dos fatores troca o papel de linhas e colunas, produzindo (em geral) resultados diferentes — e às vezes o produto nem existe, se as dimensões não casarem. Como a operação é assimétrica entre os dois fatores por construção, $AB \ne BA$ em geral. Nos números, multiplicar é simétrico ($3\times 5 = 5\times 3$), por isso a comutatividade vale lá, mas não aqui.
+:::
+
+**2.** Dadas $A = \begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix}$ e $B = \begin{pmatrix} 4 & 1 \\ 2 & 5 \end{pmatrix}$, calcule (a) $A + B$ e (b) $AB$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $A + B = \begin{pmatrix} 5 & 3 \\ 2 & 8 \end{pmatrix}$.
+(b) $AB = \begin{pmatrix} 1\cdot4 + 2\cdot2 & 1\cdot1 + 2\cdot5 \\ 0\cdot4 + 3\cdot2 & 0\cdot1 + 3\cdot5 \end{pmatrix} = \begin{pmatrix} 8 & 11 \\ 6 & 15 \end{pmatrix}$.
+:::
+
+**3.** Calcule o determinante de $A = \begin{pmatrix} 3 & 2 \\ 6 & 4 \end{pmatrix}$ e diga o que ele revela sobre o sistema $A\mathbf{x} = \mathbf{b}$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$\det A = 3\cdot 4 - 2\cdot 6 = 12 - 12 = 0$. Como o determinante é **zero**, o sistema **não tem solução única**: ou não tem nenhuma (retas paralelas), ou tem infinitas (retas coincidentes). De fato, a segunda linha é o dobro da primeira, revelando redundância.
+:::
+
+**4.** Encontre a inversa de $A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$\det A = 2\cdot 1 - 1\cdot 1 = 1$. Então
+$$
+A^{-1} = \frac{1}{1}\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix} = \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}.
+$$
+(Verificação: $AA^{-1} = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$ ✓.)
+:::
+
+**5.** Resolva o sistema pela regra de Cramer:
+$$
+\begin{cases} 3x + 2y = 12 \\ x + 2y = 8 \end{cases}
+$$
+
+::: {.callout-tip collapse="true" title="Solução"}
+$\det A = \det\begin{pmatrix} 3 & 2 \\ 1 & 2 \end{pmatrix} = 6 - 2 = 4$.
+$\det A_x = \det\begin{pmatrix} 12 & 2 \\ 8 & 2 \end{pmatrix} = 24 - 16 = 8$; $\det A_y = \det\begin{pmatrix} 3 & 12 \\ 1 & 8 \end{pmatrix} = 24 - 12 = 12$.
+Logo $x = 8/4 = 2$ e $y = 12/4 = 3$. Solução: $(2, 3)$.
+:::
+
+**6.** Um mercado com dois bens tem o sistema de equilíbrio (demandas em função dos dois preços) que leva a $\begin{cases} 2p_1 + p_2 = 50 \\ p_1 + 3p_2 = 60 \end{cases}$. Resolva pela forma $\mathbf{x} = A^{-1}\mathbf{b}$ ou por Cramer.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$A = \begin{pmatrix} 2 & 1 \\ 1 & 3 \end{pmatrix}$, $\det A = 6 - 1 = 5$. Por Cramer:
+$\det A_{p_1} = \det\begin{pmatrix} 50 & 1 \\ 60 & 3 \end{pmatrix} = 150 - 60 = 90$; $\det A_{p_2} = \det\begin{pmatrix} 2 & 50 \\ 1 & 60 \end{pmatrix} = 120 - 50 = 70$.
+Logo $p_1 = 90/5 = 18$ e $p_2 = 70/5 = 14$. Os preços de equilíbrio são $p_1 = 18$ e $p_2 = 14$.
+:::
+
+**7.** (Análise de caso) Uma economia tem dois setores, agricultura e indústria, com matriz de coeficientes técnicos $A = \begin{pmatrix} 0{,}2 & 0{,}3 \\ 0{,}4 & 0{,}1 \end{pmatrix}$ (cada coluna diz quanto de cada setor entra como insumo para produzir uma unidade do setor). A demanda final é $\mathbf{d} = \begin{pmatrix} 100 \\ 60 \end{pmatrix}$. Monte o sistema de Leontief $(I - A)\mathbf{x} = \mathbf{d}$ (não é preciso resolver) e explique o que a inversa de Leontief representaria.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Primeiro, $I - A = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} - \begin{pmatrix} 0{,}2 & 0{,}3 \\ 0{,}4 & 0{,}1 \end{pmatrix} = \begin{pmatrix} 0{,}8 & -0{,}3 \\ -0{,}4 & 0{,}9 \end{pmatrix}$. O sistema é
+$$
+\begin{pmatrix} 0{,}8 & -0{,}3 \\ -0{,}4 & 0{,}9 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 100 \\ 60 \end{pmatrix}.
+$$
+A solução $\mathbf{x} = (I-A)^{-1}\mathbf{d}$ daria a **produção total** de cada setor necessária para atender à demanda final de 100 (agricultura) e 60 (indústria), **já incluindo** todo o insumo que os setores consomem um do outro em cadeia. A inversa de Leontief $(I-A)^{-1}$ traduz demanda final em produção total, capturando os efeitos multiplicadores setoriais — é o que o IBGE calcula com a Matriz de Insumo-Produto do Brasil.
+:::
+
+**8.** (Desafio) Resolva o sistema de Leontief do exercício 7, encontrando a produção total de cada setor. (Dica: calcule $(I-A)^{-1}$ e multiplique por $\mathbf{d}$.)
+
+::: {.callout-tip collapse="true" title="Solução"}
+Seja $M = I - A = \begin{pmatrix} 0{,}8 & -0{,}3 \\ -0{,}4 & 0{,}9 \end{pmatrix}$. Determinante: $\det M = 0{,}8\times 0{,}9 - (-0{,}3)(-0{,}4) = 0{,}72 - 0{,}12 = 0{,}60$.
+Inversa:
+$$
+M^{-1} = \frac{1}{0{,}60}\begin{pmatrix} 0{,}9 & 0{,}3 \\ 0{,}4 & 0{,}8 \end{pmatrix} = \begin{pmatrix} 1{,}5 & 0{,}5 \\ 0{,}667 & 1{,}333 \end{pmatrix}.
+$$
+Então:
+$$
+\mathbf{x} = M^{-1}\mathbf{d} = \begin{pmatrix} 1{,}5 & 0{,}5 \\ 0{,}667 & 1{,}333 \end{pmatrix}\begin{pmatrix} 100 \\ 60 \end{pmatrix} = \begin{pmatrix} 150 + 30 \\ 66{,}7 + 80 \end{pmatrix} = \begin{pmatrix} 180 \\ 146{,}7 \end{pmatrix}.
+$$
+A agricultura precisa produzir cerca de **180** e a indústria cerca de **147** para atender a uma demanda final de apenas 100 e 60, respectivamente. A diferença (80 e 87) é o que os setores consomem um do outro como insumo — o efeito em cadeia que a inversa de Leontief quantifica.
+:::
+
+## Para saber mais
+
+- @chiang2006 — a Parte sobre álgebra linear (matrizes, determinantes, inversas e a regra de Cramer aplicada a modelos de mercado e insumo-produto) é a referência direta deste capítulo.
+- @simon2004 — tratamento rigoroso e completo de álgebra linear para economistas, incluindo sistemas de qualquer dimensão e suas aplicações.
+- @leontief1936 — o artigo seminal em que Leontief introduziu a análise de insumo-produto, base da MIP calculada pelo IBGE.
+- @sydsaeter2018 — capítulos de álgebra matricial com aplicações econômicas, um bom complemento em português acessível pela abordagem.

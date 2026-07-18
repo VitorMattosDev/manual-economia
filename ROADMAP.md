@@ -40,14 +40,14 @@
 
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
-| 1 | Funções e gráficos na Economia | `capitulos/vol02/cap01-funcoes-e-graficos.qmd` | ⬜ |
-| 2 | Equações, sistemas lineares e a noção de equilíbrio | `capitulos/vol02/cap02-equacoes-e-equilibrio.qmd` | ⬜ |
-| 3 | Limites, continuidade e comportamento de funções | `capitulos/vol02/cap03-limites-e-continuidade.qmd` | ⬜ |
-| 4 | Derivadas e a análise marginal | `capitulos/vol02/cap04-derivadas-analise-marginal.qmd` | ⬜ |
-| 5 | Otimização sem restrições | `capitulos/vol02/cap05-otimizacao-livre.qmd` | ⬜ |
-| 6 | Otimização com restrições: multiplicadores de Lagrange | `capitulos/vol02/cap06-lagrange.qmd` | ⬜ |
-| 7 | Integrais e o cálculo de excedentes | `capitulos/vol02/cap07-integrais-excedentes.qmd` | ⬜ |
-| 8 | Matrizes e álgebra linear básica | `capitulos/vol02/cap08-matrizes.qmd` | ⬜ |
+| 1 | Funções e gráficos na Economia | `capitulos/vol02/cap01-funcoes-e-graficos.qmd` | ✅ |
+| 2 | Equações, sistemas lineares e a noção de equilíbrio | `capitulos/vol02/cap02-equacoes-e-equilibrio.qmd` | ✅ |
+| 3 | Limites, continuidade e comportamento de funções | `capitulos/vol02/cap03-limites-e-continuidade.qmd` | ✅ |
+| 4 | Derivadas e a análise marginal | `capitulos/vol02/cap04-derivadas-analise-marginal.qmd` | ✅ |
+| 5 | Otimização sem restrições | `capitulos/vol02/cap05-otimizacao-livre.qmd` | ✅ |
+| 6 | Otimização com restrições: multiplicadores de Lagrange | `capitulos/vol02/cap06-lagrange.qmd` | ✅ |
+| 7 | Integrais e o cálculo de excedentes | `capitulos/vol02/cap07-integrais-excedentes.qmd` | ✅ |
+| 8 | Matrizes e álgebra linear básica | `capitulos/vol02/cap08-matrizes.qmd` | ✅ |
 
 ### Volume 3 — Microeconomia I: Mercados e Consumidor
 

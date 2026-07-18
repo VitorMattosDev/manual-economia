@@ -1,0 +1,267 @@
+# Integrais e o cálculo de excedentes {#sec-integrais-excedentes}
+
+Até aqui, o cálculo nos ensinou a **desmontar** grandezas totais em marginais: a derivada pega o custo total e extrai o custo marginal, pega a produção e extrai o produto marginal. Mas e o caminho inverso? Se conhecemos o **custo marginal** de cada unidade, como reconstruir o **custo total**? Se sabemos a que taxa uma dívida cresce, como achar seu montante acumulado? Essa operação de "somar todas as contribuições marginais para recuperar o total" é a **integração** — a operação inversa da derivada.
+
+A integral tem, além disso, uma segunda face de enorme utilidade econômica: ela mede **áreas** sob curvas. E acontece que algumas das grandezas mais importantes da Economia do bem-estar — o **excedente do consumidor** e o **excedente do produtor**, que medem os ganhos que compradores e vendedores obtêm num mercado — são, precisamente, áreas sob curvas de demanda e de oferta. Este capítulo apresenta a integral pelas duas portas e as reúne no cálculo dos excedentes, encerrando as ferramentas de cálculo do volume.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- entender a **integral indefinida** (antiderivada) como operação inversa da derivada;
+- aplicar as **regras básicas de integração** de polinômios;
+- interpretar a **integral definida** como a **área sob uma curva** e calculá-la pelo Teorema Fundamental do Cálculo;
+- reconstruir uma grandeza **total** a partir de sua taxa **marginal** (custo total a partir do custo marginal);
+- calcular o **excedente do consumidor** e o **excedente do produtor** como áreas;
+- interpretar o **excedente total** como medida de ganho de bem-estar de um mercado.
+
+## A antiderivada: desfazendo a derivada
+
+Comece pela pergunta invertida. Derivar $F(x) = x^2$ dá $F'(x) = 2x$. E se nos dessem $f(x) = 2x$ e pedissem a função **de onde ela veio**? Essa função — cuja derivada é $f$ — chama-se **antiderivada** (ou primitiva) de $f$.
+
+::: {.callout-note title="Definição — Antiderivada (integral indefinida)"}
+Uma **antiderivada** de $f(x)$ é uma função $F(x)$ tal que $F'(x) = f(x)$. O conjunto de todas as antiderivadas é a **integral indefinida**, escrita
+$$
+\int f(x)\,dx = F(x) + C,
+$$ {#eq-indefinida}
+onde $C$ é uma **constante de integração** arbitrária.
+:::
+
+Por que a constante $C$? Porque a derivada de qualquer constante é zero: $x^2$, $x^2 + 7$ e $x^2 - 100$ têm todas a mesma derivada, $2x$. Ao desfazer a derivação, não há como saber qual constante estava lá originalmente — daí somarmos um $C$ genérico. Como veremos, em problemas econômicos essa constante costuma ter um significado concreto (o custo fixo, por exemplo), e é determinada por uma informação adicional do problema.
+
+A regra prática espelha, ao contrário, a regra da potência da derivada:
+
+::: {.callout-note title="Regra da potência para integrais"}
+$$
+\int x^n\,dx = \frac{x^{n+1}}{n+1} + C \quad (n \ne -1).
+$$
+"Aumente o expoente em um e divida pelo novo expoente." Some as integrais termo a termo, e constantes multiplicativas saem para fora.
+:::
+
+Confira que funciona: $\int 2x\,dx = 2\cdot\dfrac{x^2}{2} + C = x^2 + C$. Derivando de volta, recuperamos $2x$. A integração e a derivação são, de fato, operações inversas.
+
+### Reconstruindo o custo total a partir do marginal
+
+Eis a primeira aplicação econômica direta. Suponha que o **custo marginal** de uma firma seja $CMg(q) = 5 + 0{,}4q$ (a derivada do custo total, como vimos no @sec-derivadas-analise-marginal). Para recuperar o **custo total**, integramos:
+
+$$
+C(q) = \int (5 + 0{,}4q)\,dx = 5q + 0{,}2q^2 + C.
+$$
+
+A constante $C$ é aqui o **custo fixo** — o custo quando $q = 0$. Se soubermos que a firma tem custo fixo de $R\$\,300$ (isto é, $C(0) = 300$), então $C = 300$ e
+
+$$
+C(q) = 300 + 5q + 0{,}2q^2.
+$$
+
+Reconstruímos a função de custo total inteira a partir da informação marginal, mais um dado de "ponto de partida". Esse vaivém entre marginal e total — derivar para descer ao marginal, integrar para subir ao total — é uma das simetrias mais úteis do cálculo econômico.
+
+## A integral definida como área
+
+A integral tem uma segunda interpretação, geométrica, que é a fonte de suas aplicações ao bem-estar. Considere a área entre o gráfico de uma função $f(x)$ (positiva) e o eixo horizontal, no intervalo de $x = a$ a $x = b$. Essa área é a **integral definida** de $f$ de $a$ a $b$.
+
+::: {.callout-note title="Definição — Integral definida"}
+A **integral definida** de $f$ entre $a$ e $b$, escrita $\displaystyle\int_a^b f(x)\,dx$, é a **área** com sinal entre a curva $y = f(x)$ e o eixo horizontal no intervalo $[a, b]$.
+:::
+
+Por que uma área representa uma "soma de contribuições marginais"? A intuição é a de fatiar o intervalo em retângulos finíssimos: cada retângulo tem largura $dx$ (um pedacinho do eixo $x$) e altura $f(x)$ (a taxa naquele ponto), de modo que sua área $f(x)\,dx$ é a contribuição daquele pedaço. Somando (integrando) todos os retângulos, obtemos o total acumulado. Área e acumulação são a mesma ideia vista de dois ângulos.
+
+O elo entre as duas faces da integral — antiderivada e área — é um dos teoremas mais importantes da matemática:
+
+::: {.callout-note title="Teorema Fundamental do Cálculo"}
+Se $F$ é uma antiderivada de $f$ (isto é, $F' = f$), então
+$$
+\int_a^b f(x)\,dx = F(b) - F(a).
+$$ {#eq-tfc}
+Calcula-se a área **avaliando a antiderivada nos extremos e subtraindo**.
+:::
+
+O teorema é o que torna as integrais definidas calculáveis na prática: em vez de somar infinitos retângulos, achamos uma antiderivada e fazemos uma subtração. Por exemplo, a área sob $f(x) = 2x$ entre $0$ e $3$:
+
+$$
+\int_0^3 2x\,dx = \left[x^2\right]_0^3 = 3^2 - 0^2 = 9.
+$$
+
+(Confira geometricamente: é a área de um triângulo de base $3$ e altura $f(3) = 6$, ou seja, $\tfrac{1}{2}\cdot 3\cdot 6 = 9$. Bate.)
+
+## Os excedentes: ganhos de bem-estar como áreas
+
+Agora reunimos tudo na aplicação econômica mais bela da integral. Num mercado, compradores e vendedores obtêm **ganhos** ao negociar, e esses ganhos são áreas sob (e sobre) as curvas de demanda e de oferta.
+
+### Excedente do consumidor
+
+A curva de **demanda** revela, a cada quantidade, o **preço máximo** que algum consumidor estaria disposto a pagar por aquela unidade — sua **disposição a pagar**. Mas, no mercado, todos pagam o mesmo **preço de equilíbrio** $p^\*$. A diferença entre o que o consumidor estava disposto a pagar e o que efetivamente pagou é o seu ganho.
+
+::: {.callout-note title="Definição — Excedente do consumidor"}
+O **excedente do consumidor** é a diferença entre a disposição total a pagar dos consumidores e o valor que efetivamente pagaram. Graficamente, é a **área abaixo da curva de demanda e acima do preço** $p^\*$, até a quantidade transacionada $q^\*$.
+:::
+
+### Excedente do produtor
+
+Simetricamente, a curva de **oferta** revela, a cada quantidade, o **preço mínimo** pelo qual algum produtor aceitaria vender aquela unidade — seu custo marginal. Como todos recebem o preço de equilíbrio $p^\*$, os produtores cujo custo é menor que $p^\*$ ganham a diferença.
+
+::: {.callout-note title="Definição — Excedente do produtor"}
+O **excedente do produtor** é a diferença entre a receita recebida pelos produtores e o custo mínimo pelo qual aceitariam vender. Graficamente, é a **área acima da curva de oferta e abaixo do preço** $p^\*$, até $q^\*$.
+:::
+
+A @fig-excedentes mostra as duas áreas. A soma delas, o **excedente total**, mede o ganho de bem-estar que o mercado gera ao existir — o valor criado por permitir que compradores e vendedores negociem.
+
+::: {#fig-excedentes}
+
+```{.tikz}
+%%| filename: fig-excedentes
+%%| alt: Curvas de demanda decrescente e oferta crescente cruzando no equilíbrio; a área do triângulo superior (entre demanda e o preço) é o excedente do consumidor, e a do triângulo inferior (entre o preço e a oferta) é o excedente do produtor.
+\begin{tikzpicture}[scale=1.0, font=\small]
+  \draw[eixo] (0,0) -- (7.5,0) node[right]{quantidade $q$};
+  \draw[eixo] (0,0) -- (0,6.4) node[above]{preço $p$};
+  % demanda: de (0,6) a (6.5,0)
+  \draw[curva] (0,6) -- (6.5,0) node[pos=0.12, above right]{Demanda};
+  % oferta: de (0,1) a (6.5,5)
+  \draw[destaque] (0,1) -- (6.5,5.33) node[pos=0.9, left, manualred]{Oferta};
+  % equilíbrio: intersecção. demanda p=6 - (6/6.5)q ; oferta p=1+(4.33/6.5)q
+  % 6 - 0.923q = 1 + 0.666q -> 5 = 1.589q -> q=3.15, p=3.09
+  \node[ponto] (E) at (3.15,3.09) {};
+  \node[right] at (E) {$E$};
+  \draw[auxiliar] (E) -- (0,3.09) node[left]{$p^*$};
+  \draw[auxiliar] (E) -- (3.15,0) node[below]{$q^*$};
+  % área excedente do consumidor (triângulo entre demanda e p*)
+  \fill[manualblue!18] (0,6) -- (3.15,3.09) -- (0,3.09) -- cycle;
+  \node[manualblue, font=\footnotesize, align=center] at (1.1,4.4) {exced.\\consumidor};
+  % área excedente do produtor
+  \fill[manualred!15] (0,1) -- (3.15,3.09) -- (0,3.09) -- cycle;
+  \node[manualred, font=\footnotesize, align=center] at (1.1,2.25) {exced.\\produtor};
+\end{tikzpicture}
+```
+
+O excedente do consumidor (área azul) e o excedente do produtor (área vermelha). A soma é o excedente total, o ganho de bem-estar do mercado.
+:::
+
+### Calculando os excedentes com integrais
+
+Quando as curvas são retas, os excedentes são **triângulos**, e a integral coincide com a fórmula da área do triângulo. Mas a integral é mais geral: vale para curvas de qualquer forma. Vejamos um exemplo.
+
+Sejam a demanda inversa $p = 60 - q$ e a oferta inversa $p = 10 + 4q$. O equilíbrio: $60 - q = 10 + 4q \Rightarrow 50 = 5q \Rightarrow q^\* = 10$, $p^\* = 50$.
+
+O **excedente do consumidor** é a área abaixo da demanda e acima de $p^\* = 50$, de $0$ a $10$:
+
+$$
+EC = \int_0^{10} \bigl[(60 - q) - 50\bigr]\,dq = \int_0^{10} (10 - q)\,dq = \left[10q - \tfrac{q^2}{2}\right]_0^{10} = 100 - 50 = R\$\,50.
+$$
+
+O **excedente do produtor** é a área acima da oferta e abaixo de $p^\* = 50$:
+
+$$
+EP = \int_0^{10} \bigl[50 - (10 + 4q)\bigr]\,dq = \int_0^{10} (40 - 4q)\,dq = \left[40q - 2q^2\right]_0^{10} = 400 - 200 = R\$\,200.
+$$
+
+O **excedente total** é $EC + EP = 50 + 200 = R\$\,250$. Esse número mede o ganho líquido de bem-estar que o mercado gera ao permitir essas transações — a base da avaliação econômica de políticas, que retoma no Volume 3.
+
+::: {.callout-important title="Armadilha comum — confundir o que subtrair de quê"}
+No excedente do **consumidor**, integramos $(\text{demanda} - p^\*)$: a disposição a pagar **menos** o preço. No excedente do **produtor**, integramos $(p^\* - \text{oferta})$: o preço **menos** o custo mínimo. Inverter a ordem gera áreas negativas sem sentido. Guarde a lógica: o consumidor ganha o que estava disposto a pagar acima do preço; o produtor ganha o preço acima do que exigiria para vender.
+:::
+
+::: {.callout-warning title="Controvérsia — excedente mede bem-estar?"}
+O excedente é uma medida monetária de bem-estar poderosa, mas imperfeita. Ela soma reais de ricos e pobres com o mesmo peso — um real de excedente para um bilionário conta igual a um real para alguém na pobreza —, o que ignora a **distribuição**. Além disso, pressupõe que a disposição a pagar reflete o bem-estar verdadeiro, o que a economia comportamental (Volume 15) questiona. Use os excedentes como uma régua útil de **eficiência**, ciente de que **equidade** exige olhar além deles.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+**Peso morto de impostos: quando o excedente evapora.** A ferramenta dos excedentes é a base para medir o custo de eficiência de um imposto — o chamado **peso morto** (ou perda de eficiência). Quando o governo tributa um bem, o preço ao consumidor sobe, o preço ao produtor cai, a quantidade transacionada encolhe, e parte do excedente total **desaparece** (não vira arrecadação nem fica com ninguém): é a área do triângulo de peso morto, calculada por integração. No debate da **reforma tributária** brasileira (a criação do IVA dual — CBS e IBS —, aprovada em 2023 e em implementação), um dos argumentos centrais é justamente que o sistema antigo, com sua cumulatividade e sua enorme complexidade, gerava peso morto elevado: distorcia escolhas, encarecia a produção em cadeia e destruía excedente sem arrecadar. Simplificar e desonerar investimentos, nessa leitura, reduz o triângulo de peso morto e aumenta o excedente total da economia. A teoria deste capítulo é o instrumento com que economistas estimam esses ganhos.
+
+**Excedente do consumidor e a avaliação de programas sociais.** A ideia de excedente do consumidor — o ganho de quem paga menos do que estaria disposto a pagar — aparece na avaliação de políticas de acesso a bens essenciais. Programas como a **tarifa social de energia elétrica** ou os subsídios ao **gás de cozinha** (Auxílio Gás) reduzem, para famílias de baixa renda, o preço de bens de altíssima disposição a pagar (energia e gás são quase indispensáveis). Em linguagem deste capítulo, o subsídio amplia o excedente do consumidor dessas famílias, e o tamanho desse ganho — uma área sob a curva de demanda — é o que se compara ao custo fiscal do programa numa avaliação de custo-benefício. O IPEA e órgãos de avaliação de políticas usam variações dessa medida para dimensionar o benefício social de intervenções sobre preços de bens essenciais.
+
+> **Fontes e séries para explorar:** Ministério da Fazenda e Instituição Fiscal Independente (IFI) — estudos sobre a reforma tributária e estimativas de ganho de eficiência (redução de peso morto); IPEA — avaliações de programas de subsídio (tarifa social de energia, Auxílio Gás); ANEEL para a tarifa social. Verifique os anos de referência e as hipóteses de elasticidade usadas nas estimativas.
+
+## Resumo do capítulo
+
+- A **integral indefinida** (antiderivada) é a operação **inversa** da derivada: $\int f(x)\,dx = F(x) + C$, com $F' = f$. A **constante $C$** aparece porque a derivada apaga constantes; em Economia, costuma ser o **custo fixo** ou análogo.
+- Regra da potência: $\int x^n dx = \dfrac{x^{n+1}}{n+1} + C$ (para $n \ne -1$). Integrar o **custo marginal** reconstrói o **custo total** (a menos da constante, fixada por um dado do problema).
+- A **integral definida** $\int_a^b f\,dx$ é a **área** sob a curva; pelo **Teorema Fundamental do Cálculo**, calcula-se como $F(b) - F(a)$.
+- O **excedente do consumidor** é a área **abaixo da demanda e acima do preço**; o **excedente do produtor**, a área **acima da oferta e abaixo do preço**. A soma é o **excedente total**, medida de bem-estar do mercado.
+- Com curvas lineares, os excedentes são triângulos; a integral generaliza para curvas de qualquer forma.
+- O excedente mede **eficiência**, não **equidade** (soma reais de todos com o mesmo peso) — uma limitação a ter em mente.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique, com suas palavras, por que a integral indefinida traz uma constante de integração $C$, mas a integral definida não.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A integral **indefinida** procura *todas* as funções cuja derivada é $f$; como a derivada de uma constante é zero, há infinitas antiderivadas diferindo por uma constante — daí o $+C$. Já a integral **definida** calcula uma **diferença** $F(b) - F(a)$; a constante aparece nos dois termos e se **cancela** na subtração ($[F(b)+C] - [F(a)+C] = F(b)-F(a)$). Por isso a área não depende de $C$.
+:::
+
+**2.** Calcule as integrais indefinidas: (a) $\int 3x^2\,dx$; (b) $\int (4 + 6q)\,dq$; (c) $\int (10 - 2q)\,dq$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $\int 3x^2 dx = 3\cdot\dfrac{x^3}{3} + C = x^3 + C$.
+(b) $\int (4 + 6q) dq = 4q + 3q^2 + C$.
+(c) $\int (10 - 2q) dq = 10q - q^2 + C$.
+:::
+
+**3.** O custo marginal de uma firma é $CMg(q) = 8 + 2q$, e seu custo fixo é R\$\,500. Reconstrua a função de custo total $C(q)$ e calcule $C(20)$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$C(q) = \int (8 + 2q)\,dq = 8q + q^2 + C$. Como $C(0) = 500$ (custo fixo), a constante é $C = 500$:
+$$
+C(q) = 500 + 8q + q^2.
+$$
+$C(20) = 500 + 160 + 400 = R\$\,1.060$.
+:::
+
+**4.** Calcule a integral definida $\displaystyle\int_0^5 (10 - 2q)\,dq$ e confira o resultado pela área do triângulo correspondente.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$$
+\int_0^5 (10 - 2q)\,dq = \left[10q - q^2\right]_0^5 = (50 - 25) - 0 = 25.
+$$
+Confirmação geométrica: a reta $y = 10 - 2q$ vai de $(0, 10)$ a $(5, 0)$; a área é um triângulo de base 5 e altura 10, isto é, $\tfrac{1}{2}\cdot 5\cdot 10 = 25$. Bate.
+:::
+
+**5.** Num mercado, a demanda inversa é $p = 80 - 2q$ e a oferta inversa é $p = 20 + q$. (a) Encontre o equilíbrio. (b) Calcule o excedente do consumidor por integração.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $80 - 2q = 20 + q \Rightarrow 60 = 3q \Rightarrow q^\* = 20$, $p^\* = 40$.
+(b) Excedente do consumidor:
+$$
+EC = \int_0^{20} \bigl[(80 - 2q) - 40\bigr]\,dq = \int_0^{20} (40 - 2q)\,dq = \left[40q - q^2\right]_0^{20} = 800 - 400 = R\$\,400.
+$$
+:::
+
+**6.** No mercado do exercício 5, calcule o excedente do produtor e o excedente total.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$$
+EP = \int_0^{20} \bigl[40 - (20 + q)\bigr]\,dq = \int_0^{20} (20 - q)\,dq = \left[20q - \tfrac{q^2}{2}\right]_0^{20} = 400 - 200 = R\$\,200.
+$$
+Excedente total: $EC + EP = 400 + 200 = R\$\,600$.
+:::
+
+**7.** (Análise de caso) O governo institui um imposto que reduz a quantidade transacionada de um bem de $q^\* = 20$ para $q_t = 14$. Explique, em termos de excedentes e integrais, o que acontece com o excedente total e o que é o "peso morto" do imposto. Relacione com a reforma tributária discutida em Brasil em Foco.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Com o imposto, o preço ao consumidor sobe e o ao produtor cai, e a quantidade encolhe de 20 para 14. Parte do excedente total vira **arrecadação** do governo (a área do retângulo imposto × quantidade transacionada), mas outra parte — correspondente às transações que **deixaram de ocorrer** (entre $q = 14$ e $q = 20$) — simplesmente **desaparece**: ninguém a captura. Essa perda é o **peso morto**, a área do triângulo entre a demanda e a oferta no intervalo das unidades não mais transacionadas, calculável por integração. Ele mede a **ineficiência** do imposto. A reforma tributária brasileira busca reduzir esse peso morto ao simplificar e desonerar cadeias produtivas: menos distorção significa triângulo menor e mais excedente preservado, mesmo mantendo a arrecadação.
+:::
+
+**8.** (Desafio) A demanda inversa por um bem é a curva **não linear** $p = 100 - q^2$. Ao preço de equilíbrio $p^\* = 36$, a quantidade é $q^\* = 8$ (pois $100 - 64 = 36$). Calcule o excedente do consumidor por integração.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O excedente do consumidor é a área abaixo da demanda e acima de $p^\* = 36$, de $0$ a $8$:
+$$
+EC = \int_0^{8} \bigl[(100 - q^2) - 36\bigr]\,dq = \int_0^{8} (64 - q^2)\,dq.
+$$
+Integrando:
+$$
+EC = \left[64q - \frac{q^3}{3}\right]_0^{8} = 64\times 8 - \frac{8^3}{3} = 512 - \frac{512}{3} = 512 - 170{,}67 \approx R\$\,341{,}33.
+$$
+Aqui a curva é uma parábola, não uma reta: a integral é indispensável, pois não há fórmula de triângulo que sirva. É a vantagem do método integral sobre a geometria elementar.
+:::
+
+## Para saber mais
+
+- @guidorizzi2018 — apresentação rigorosa da integral, do Teorema Fundamental do Cálculo e das técnicas de integração, com muitos exercícios; a base matemática deste capítulo.
+- @chiang2006 — trata da integração e de suas aplicações econômicas, incluindo a passagem de funções marginais para totais e o cálculo de excedentes.
+- @varian2015 — desenvolve o excedente do consumidor e do produtor no contexto do bem-estar e da avaliação de políticas; leia-o para ver os excedentes em ação.
+- @pindyck2013 — aplica excedentes à análise de eficiência, impostos e peso morto, com farto uso de exemplos e gráficos.

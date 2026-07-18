@@ -1,0 +1,213 @@
+# Limites, continuidade e comportamento de funções {#sec-limites-e-continuidade}
+
+Pergunte a si mesmo: o que acontece com o custo médio de uma fábrica quando ela produz **cada vez mais**? Ele se aproxima de algum valor-piso? E o que acontece com a receita de uma promoção quando o desconto se aproxima de 100%? Perguntas do tipo "para onde a função **tende** quando a variável se aproxima de tal valor" são, tecnicamente, perguntas sobre **limites** — a ideia que serve de fundação para todo o cálculo e, portanto, para a análise marginal que domina a Economia moderna.
+
+Este capítulo é uma ponte. Ele parte da álgebra dos capítulos anteriores e prepara o terreno para a derivada, que aparece no próximo. Vamos entender o que significa uma função **tender** a um valor, quando ela é **contínua** (pode ser desenhada sem tirar o lápis do papel), o que acontece com seu comportamento **no infinito** e por que essas noções, aparentemente abstratas, decidem se certos raciocínios econômicos fazem sentido.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- entender intuitivamente a noção de **limite** de uma função e calculá-lo em casos simples;
+- distinguir **limites laterais** (pela esquerda e pela direita) e reconhecer quando o limite não existe;
+- definir **continuidade** e identificar os principais tipos de **descontinuidade** em contextos econômicos;
+- analisar o **comportamento no infinito** de uma função e encontrar **assíntotas**;
+- interpretar a **taxa média de variação** como a inclinação de uma reta secante — o passo que antecede a derivada;
+- reconhecer situações econômicas genuinamente **descontínuas** (funções em degrau, saltos de preço).
+
+## A noção intuitiva de limite
+
+Comece sem fórmulas. Considere o **custo médio** de produzir $q$ unidades quando há um custo fixo de $R\$\,1.000$ e um custo variável de $R\$\,5$ por unidade. O custo total é $C(q) = 1000 + 5q$, e o custo médio é
+
+$$
+CMe(q) = \frac{C(q)}{q} = \frac{1000 + 5q}{q} = \frac{1000}{q} + 5.
+$$
+
+O que acontece com o custo médio à medida que a produção $q$ cresce sem parar? O termo $1000/q$ vai ficando cada vez menor — com $q = 1.000$, vale $1$; com $q = 100.000$, vale $0{,}01$ — e o custo médio se **aproxima** de $5$, sem nunca chegar exatamente lá. Dizemos que **o limite de $CMe(q)$, quando $q$ tende ao infinito, é $5$**, e escrevemos:
+
+$$
+\lim_{q \to \infty} \left( \frac{1000}{q} + 5 \right) = 5.
+$$
+
+::: {.callout-note title="Definição — Limite (noção intuitiva)"}
+Dizemos que o **limite** de $f(x)$ quando $x$ tende a $c$ é $L$, e escrevemos $\displaystyle\lim_{x \to c} f(x) = L$, se pudermos fazer os valores de $f(x)$ ficarem tão próximos de $L$ quanto quisermos, bastando tomar $x$ suficientemente próximo de $c$ (mas diferente de $c$).
+:::
+
+O detalhe crucial — "mas diferente de $c$" — revela a natureza do limite: ele descreve o comportamento **na vizinhança** de um ponto, e não necessariamente **no** ponto. É perfeitamente possível que uma função tenda a um valor $L$ à medida que $x$ se aproxima de $c$, ainda que $f(c)$ nem sequer esteja definida. Essa distinção é exatamente o que torna o limite útil para definir a derivada, no próximo capítulo.
+
+::: {.callout-tip title="Intuição — o limite é sobre a viagem, não o destino"}
+Pense no limite como a resposta à pergunta "para onde a função está **indo**?", não "onde ela **está**?". Ao se aproximar de uma cidade por uma estrada, você pode dizer para onde está indo mesmo sem ter chegado — e mesmo que a cidade, chegando lá, esteja fechada. O limite é a direção da viagem; o valor $f(c)$ é o destino, que pode ou não coincidir com ela.
+:::
+
+## Limites laterais e a não existência do limite
+
+Uma função pode se aproximar de valores **diferentes** conforme cheguemos ao ponto pela esquerda ou pela direita. Definimos então os **limites laterais**:
+
+- o **limite pela esquerda**, $\displaystyle\lim_{x \to c^-} f(x)$, considera valores de $x$ menores que $c$;
+- o **limite pela direita**, $\displaystyle\lim_{x \to c^+} f(x)$, considera valores de $x$ maiores que $c$.
+
+A regra fundamental é: **o limite existe se, e somente se, os dois limites laterais existem e são iguais.** Quando eles diferem, a função dá um "salto" no ponto, e o limite (bilateral) **não existe**.
+
+Isso não é um capricho matemático: há grandezas econômicas genuinamente descontínuas. O preço de uma passagem aérea pode saltar de um valor para outro quando a data cruza a fronteira da alta temporada; a alíquota marginal do imposto de renda salta ao passar de uma faixa para a seguinte. Nessas fronteiras, o limite pela esquerda e pela direita diferem — e é economicamente importante saber disso.
+
+## Continuidade
+
+Com a noção de limite em mãos, definimos uma das propriedades mais desejadas de uma função: a **continuidade**.
+
+::: {.callout-note title="Definição — Continuidade"}
+Uma função $f$ é **contínua** em um ponto $c$ quando três condições valem: (i) $f(c)$ está definida; (ii) o limite $\displaystyle\lim_{x \to c} f(x)$ existe; e (iii) esse limite é igual ao valor da função, isto é, $\displaystyle\lim_{x \to c} f(x) = f(c)$. Uma função é contínua num intervalo se for contínua em todos os seus pontos.
+:::
+
+Intuitivamente, uma função é contínua se você consegue desenhar seu gráfico **sem tirar o lápis do papel** — sem saltos, buracos ou interrupções. Retas, parábolas, exponenciais e logaritmos (no seu domínio) são todos contínuos. A continuidade é importante em Economia por uma razão prática: muitos resultados — a existência de um preço de equilíbrio, a existência de um ponto de máximo lucro — dependem de as funções envolvidas serem contínuas. Descontinuidades podem fazer o equilíbrio "não existir" ou o ótimo pular abruptamente.
+
+A @fig-continuidade contrasta uma função contínua com uma descontínua em degrau.
+
+::: {#fig-continuidade}
+
+```{.tikz}
+%%| filename: fig-continuidade
+%%| alt: À esquerda, uma curva contínua e suave; à direita, uma função em degraus com saltos verticais, marcados por círculos abertos e fechados nos pontos de descontinuidade.
+\begin{tikzpicture}[scale=0.9, font=\small]
+  % painel esquerdo: contínua
+  \begin{scope}
+    \draw[eixo] (0,0) -- (4.2,0) node[right]{$x$};
+    \draw[eixo] (0,0) -- (0,3.6) node[above]{$y$};
+    \draw[curva] (0.2,0.4) .. controls (1.5,3.3) and (2.5,0.6) .. (4,2.8);
+    \node[below, font=\footnotesize] at (2.1,-0.5) {contínua};
+  \end{scope}
+  % painel direito: degraus
+  \begin{scope}[xshift=6cm]
+    \draw[eixo] (0,0) -- (4.2,0) node[right]{$x$};
+    \draw[eixo] (0,0) -- (0,3.6) node[above]{$y$};
+    \draw[destaque] (0,0.7) -- (1.3,0.7);
+    \draw[destaque] (1.3,1.6) -- (2.6,1.6);
+    \draw[destaque] (2.6,2.5) -- (4,2.5);
+    \fill[manualred] (0,0.7) circle (1.6pt);
+    \fill[manualred] (1.3,1.6) circle (1.6pt);
+    \fill[manualred] (2.6,2.5) circle (1.6pt);
+    \draw[manualred, fill=white] (1.3,0.7) circle (1.6pt);
+    \draw[manualred, fill=white] (2.6,1.6) circle (1.6pt);
+    \node[below, font=\footnotesize] at (2.1,-0.5) {descontínua (degraus)};
+  \end{scope}
+\end{tikzpicture}
+```
+
+À esquerda, uma função contínua; à direita, uma função em degrau, com saltos onde os limites laterais diferem.
+:::
+
+::: {.callout-important title="Armadilha comum — tratar como contínuo o que é discreto"}
+Muitas grandezas econômicas são, na verdade, **discretas**: o número de trabalhadores contratados, de máquinas compradas, de casas construídas. Nós as modelamos com funções contínuas por conveniência matemática — permite usar cálculo —, mas o resultado precisa ser interpretado com cuidado. Se a otimização recomenda "contratar 4,7 trabalhadores", a resposta econômica real é $4$ ou $5$, não $4{,}7$. A aproximação contínua é uma ferramenta, não a realidade.
+:::
+
+## Comportamento no infinito e assíntotas
+
+Voltemos à pergunta que abriu o capítulo. Muitas questões econômicas são sobre o **longo prazo** ou a **grande escala**: o que acontece "no limite" quando a quantidade cresce indefinidamente. Isso é o **comportamento no infinito**, capturado por limites do tipo $\lim_{x \to \infty} f(x)$.
+
+Quando uma função se aproxima cada vez mais de uma reta sem jamais tocá-la, essa reta é uma **assíntota**. No exemplo do custo médio, $CMe(q) = 5 + 1000/q$ tem a reta horizontal $y = 5$ como **assíntota horizontal**: por mais que a fábrica produza, o custo médio nunca cai abaixo de $R\$\,5$ por unidade (o custo variável unitário), embora se aproxime dele indefinidamente. Essa é a expressão matemática de um fato econômico importante: a **diluição do custo fixo**. Quanto maior a produção, mais o custo fixo se reparte entre as unidades, e o custo médio tende ao custo variável unitário — mas nunca o alcança, porque o custo fixo, por menor que fique diluído, nunca desaparece por completo. É a matemática por trás das **economias de escala**.
+
+::: {.callout-warning title="Cuidado — extrapolar tendências ao infinito"}
+Que uma função tenda a um limite no papel não significa que a realidade a acompanhe indefinidamente. A curva de custo médio decrescente sugere que "quanto maior, melhor", mas na prática firmas grandes demais encontram **deseconomias de escala** (burocracia, coordenação difícil) que a fórmula simples ignora. Limites descrevem o modelo; sempre pergunte se o modelo continua válido na região extrapolada.
+:::
+
+## Da taxa média à inclinação da secante
+
+Encerramos com a ponte para o próximo capítulo. No @sec-funcoes-e-graficos, calculamos a inclinação de uma **reta** — constante em todos os pontos. Mas e uma curva, cuja inclinação muda a cada ponto? O primeiro passo é medir a **taxa média de variação** entre dois pontos.
+
+::: {.callout-note title="Definição — Taxa média de variação"}
+A **taxa média de variação** de $f$ entre $x = a$ e $x = b$ é
+$$
+\frac{\Delta y}{\Delta x} = \frac{f(b) - f(a)}{b - a}.
+$$
+Geometricamente, é a **inclinação da reta secante** que liga os pontos $(a, f(a))$ e $(b, f(b))$ do gráfico.
+:::
+
+Considere uma receita $R(q) = 20q - 0{,}1 q^2$. Entre $q = 10$ e $q = 20$:
+
+$$
+R(10) = 200 - 10 = 190, \qquad R(20) = 400 - 40 = 360,
+$$
+$$
+\frac{\Delta R}{\Delta q} = \frac{360 - 190}{20 - 10} = \frac{170}{10} = 17.
+$$
+
+Em média, cada unidade adicional entre $q=10$ e $q=20$ rendeu $R\$\,17$ de receita. Mas essa é uma **média** sobre um intervalo largo; a receita marginal *exata* em cada ponto exige encolher o intervalo até que $b$ se aproxime de $a$ — e é aí que entra o limite. Quando fazemos $b \to a$, a reta secante gira até virar a reta **tangente**, e a taxa média vira a **taxa instantânea**: a **derivada**. Essa passagem — da secante à tangente, do limite à derivada — é o assunto do próximo capítulo, e o coração da análise marginal.
+
+## 🇧🇷 Brasil em Foco
+
+**O Imposto de Renda: uma função em degraus (e uma armadilha popular).** A tabela do Imposto de Renda da Pessoa Física, administrada pela **Receita Federal**, é o exemplo brasileiro perfeito de função **descontínua** no coração de um debate econômico. A **alíquota marginal** salta de faixa em faixa — de 0% para 7,5%, depois 15%, 22,5% e 27,5% — em degraus, exatamente como o painel direito da @fig-continuidade. Isso alimenta um mal-entendido comum: muita gente teme "mudar de faixa" e acabar recebendo líquido menor. O erro está em confundir a **alíquota marginal** (que se aplica só à parcela da renda **acima** do limite da faixa) com uma alíquota sobre toda a renda. Como o imposto efetivamente devido é uma função **contínua** da renda — apesar de a *alíquota marginal* saltar —, ganhar um pouco mais **nunca** reduz o líquido. A descontinuidade está na taxa marginal (a "inclinação"), não no imposto total. É um caso em que distinguir a função de seu comportamento marginal desfaz um medo infundado.
+
+**Preços administrados e saltos de tarifa.** Parte relevante do IPCA, calculado pelo **IBGE**, é composta pelos chamados **preços administrados** — energia elétrica, combustíveis, planos de saúde, tarifas de ônibus. Muitos desses preços não variam suavemente: são reajustados em **saltos** discretos, em datas determinadas por contratos ou decisões regulatórias (as bandeiras tarifárias de energia, por exemplo, mudam o preço em degraus). Do ponto de vista deste capítulo, a trajetória temporal desses preços é uma função **descontínua**, com saltos onde os limites laterais diferem — o que ajuda a explicar por que a inflação mensal medida pelo IBGE às vezes dá "pulos" concentrados no mês de um reajuste, em vez de subir de forma contínua.
+
+> **Fontes e séries para explorar:** Receita Federal — tabela progressiva do IRPF (faixas e alíquotas marginais); IBGE — composição do IPCA e o grupo de preços administrados/monitorados; ANEEL — sistema de bandeiras tarifárias de energia. Verifique a vigência das tabelas, atualizadas periodicamente.
+
+## Resumo do capítulo
+
+- O **limite** $\lim_{x\to c} f(x) = L$ descreve para onde a função **tende** quando $x$ se aproxima de $c$ — comportamento na **vizinhança** do ponto, não necessariamente **no** ponto.
+- **Limites laterais** (pela esquerda e pela direita) podem diferir; o limite bilateral **existe** apenas quando os dois coincidem. Quando diferem, a função **salta**.
+- Uma função é **contínua** em $c$ quando $f(c)$ existe, o limite existe e os dois são iguais — intuitivamente, desenha-se sem tirar o lápis do papel. Continuidade sustenta a existência de equilíbrios e ótimos.
+- No **infinito**, a função pode tender a uma **assíntota**. O custo médio $CMe = 5 + 1000/q$ tende a $5$: é a **diluição do custo fixo** e a base das **economias de escala**.
+- A **taxa média de variação** é a inclinação da **reta secante**; encolher o intervalo até o limite transforma-a na **derivada** (taxa instantânea) — a ponte para o próximo capítulo.
+- Grandezas econômicas discretas modeladas como contínuas exigem interpretação cuidadosa; e a extrapolação de tendências ao infinito só vale enquanto o modelo continuar válido.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique, com suas palavras, por que o limite de uma função quando $x \to c$ pode existir mesmo que a função não esteja definida em $c$. Dê um exemplo intuitivo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O limite descreve o comportamento da função **perto** de $c$, considerando valores de $x$ diferentes de $c$. Assim, o que ocorre exatamente em $c$ (mesmo que a função tenha ali um "buraco") não afeta o limite. Exemplo: aproximar-se de uma cidade por uma estrada — você sabe para onde está indo mesmo que, ao chegar, a entrada esteja bloqueada. A direção da viagem (o limite) independe de o destino estar acessível ($f(c)$ definido).
+:::
+
+**2.** Calcule $\displaystyle\lim_{q \to \infty} \frac{2000}{q} + 8$ e interprete economicamente, se essa for uma função de custo médio.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Quando $q \to \infty$, o termo $2000/q \to 0$, então o limite é $8$. Interpretação: com custo fixo de R\$\,2.000 e custo variável unitário de R\$\,8, o custo médio tende a R\$\,8 por unidade à medida que a produção cresce — o custo fixo se dilui, e $y = 8$ é a **assíntota horizontal**. O custo médio nunca cai abaixo de 8, mas se aproxima disso indefinidamente.
+:::
+
+**3.** Uma função vale $f(x) = 10$ para $x < 5$ e $f(x) = 18$ para $x \ge 5$. (a) Quanto valem os limites laterais em $x = 5$? (b) O limite bilateral em $x = 5$ existe? (c) A função é contínua em $x = 5$?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Pela esquerda, $\lim_{x\to 5^-} f(x) = 10$; pela direita, $\lim_{x\to 5^+} f(x) = 18$.
+(b) **Não existe**: os limites laterais diferem (10 ≠ 18), há um salto.
+(c) **Não é contínua** em $x = 5$: como o limite bilateral não existe, a condição de continuidade falha. É uma descontinuidade de salto (degrau).
+:::
+
+**4.** Verifique se a função $f(x) = 3x + 2$ é contínua em $x = 4$, checando as três condições da definição.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(i) $f(4) = 3\times 4 + 2 = 14$ está definida. (ii) $\lim_{x\to 4}(3x+2) = 14$ existe (funções lineares têm limite igual ao valor obtido por substituição). (iii) O limite (14) é igual a $f(4)$ (14). As três condições valem, logo $f$ é **contínua** em $x = 4$. (De fato, toda função linear é contínua em todo ponto.)
+:::
+
+**5.** Para a receita $R(q) = 40q - 0{,}5 q^2$, calcule a taxa média de variação entre $q = 10$ e $q = 30$. O que ela representa?
+
+::: {.callout-tip collapse="true" title="Solução"}
+$R(10) = 400 - 50 = 350$; $R(30) = 1200 - 450 = 750$.
+$$
+\frac{\Delta R}{\Delta q} = \frac{750 - 350}{30 - 10} = \frac{400}{20} = 20.
+$$
+Representa a **receita adicional média** por unidade no intervalo de $q=10$ a $q=30$: em média, cada unidade a mais nesse trecho acrescentou R\$\,20 à receita. É a inclinação da reta secante entre os dois pontos.
+:::
+
+**6.** Explique por que "ganhar um salário um pouco maior e mudar de faixa do Imposto de Renda" nunca faz o líquido cair, apesar de a alíquota marginal saltar entre faixas.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A alíquota marginal mais alta incide **apenas sobre a parcela da renda acima** do limite da faixa, não sobre a renda inteira. Por isso o imposto **total** devido é uma função **contínua** e crescente da renda, ainda que sua *taxa marginal* (a inclinação) salte em degraus. Um real a mais de renda gera, no pior caso, 27,5 centavos a mais de imposto — nunca mais que o próprio real. Logo o líquido sempre sobe. O erro popular confunde a descontinuidade da **alíquota marginal** com uma descontinuidade no **imposto total**, que não existe.
+:::
+
+**7.** (Análise de caso) Uma prefeitura estuda a tarifa de ônibus. Hoje a tarifa é reajustada em saltos anuais; propõe-se, em vez disso, um reajuste "contínuo" mensal automático pela inflação. (a) Descreva a trajetória atual da tarifa como função do tempo em termos de continuidade. (b) Aponte uma vantagem e uma desvantagem econômica de tornar o reajuste (quase) contínuo. (c) Relacione com os preços administrados discutidos em Brasil em Foco.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) A tarifa atual é uma função **descontínua** (em degrau) do tempo: fica constante por um ano e então salta no mês do reajuste, com limites laterais diferentes na data da mudança.
+(b) **Vantagem** de reajustes menores e mais frequentes: evita saltos grandes e impopulares, e distribui a alta pelo ano, reduzindo o impacto concentrado sobre o IPCA e sobre o orçamento das famílias. **Desvantagem**: reajustes muito frequentes podem alimentar a **inércia inflacionária** (indexação), tornando a inflação mais persistente, além de custos administrativos e menor previsibilidade para o usuário.
+(c) É o mesmo fenômeno dos preços administrados no IPCA: reajustes em saltos concentram a inflação no mês da mudança. Suavizar a trajetória a torna mais contínua, com efeitos ambíguos — menos choque pontual, porém mais indexação.
+:::
+
+## Para saber mais
+
+- @guidorizzi2018 — tratamento rigoroso e didático de limites, limites laterais e continuidade, com muitos exemplos resolvidos; a referência de cálculo para consolidar a base.
+- @chiang2006 — apresenta limites e continuidade já orientados à sua aplicação em Economia, como preparação para a análise marginal.
+- @sydsaeter2018 — capítulos sobre limites e continuidade com exemplos econômicos, incluindo comportamento no infinito e assíntotas.
+- @simon2004 — para o leitor que quiser ver limites e continuidade no contexto mais amplo da análise matemática usada em teoria econômica.

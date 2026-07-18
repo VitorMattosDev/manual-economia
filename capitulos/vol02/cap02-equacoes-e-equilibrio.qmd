@@ -1,0 +1,250 @@
+# Equações, sistemas lineares e a noção de equilíbrio {#sec-equacoes-e-equilibrio}
+
+Toda vez que um economista pergunta "a que preço o mercado se assenta?", "quanto o país produz quando poupança e investimento se igualam?" ou "em que ponto a firma nem lucra nem tem prejuízo?", ele está, no fundo, fazendo a mesma coisa: **procurando o valor que satisfaz uma igualdade**. Esse é o ofício da resolução de equações. E quando duas forças precisam se conciliar ao mesmo tempo — a oferta e a demanda, por exemplo —, o problema vira o de resolver um **sistema** de equações simultâneas.
+
+O conceito econômico que dá sentido a tudo isso é o de **equilíbrio**: uma situação em que forças opostas se anulam e nada mais empurra o sistema para lugar nenhum. Neste capítulo aprendemos a máquina algébrica que encontra equilíbrios — resolver equações e sistemas lineares — e, ao mesmo tempo, o significado econômico daquilo que essa máquina calcula.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- resolver **equações lineares** de uma incógnita e interpretar sua solução;
+- resolver **sistemas lineares** $2\times 2$ pelos métodos da **substituição** e da **eliminação**;
+- definir **equilíbrio** e reconhecê-lo como a solução de um sistema de equações;
+- calcular o **preço e a quantidade de equilíbrio** de um mercado a partir das funções de oferta e demanda;
+- interpretar o que acontece quando um deslocamento de curva altera o equilíbrio;
+- encontrar o **ponto de nivelamento** (*break-even*) de uma firma;
+- reconhecer os casos de sistema **sem solução** e com **infinitas soluções** e seu significado econômico.
+
+## Resolvendo equações lineares
+
+Uma **equação** é uma afirmação de que duas expressões são iguais; **resolvê-la** é encontrar o valor da incógnita que torna a igualdade verdadeira. O princípio que rege toda a manipulação é simples: *o que se faz de um lado da igualdade tem de ser feito do outro*, para preservar o equilíbrio da balança.
+
+Considere a pergunta: a que quantidade uma firma cobre exatamente seus custos, se a receita é $R = 20q$ e o custo é $C = 300 + 5q$? Igualamos as duas e resolvemos:
+
+$$
+20q = 300 + 5q.
+$$
+
+Subtraímos $5q$ dos dois lados, agrupando a incógnita de um lado só:
+
+$$
+20q - 5q = 300 \;\Longrightarrow\; 15q = 300.
+$$
+
+Dividimos ambos os lados por $15$:
+
+$$
+q = \frac{300}{15} = 20.
+$$
+
+A firma cobre os custos produzindo $20$ unidades. Toda resolução de equação linear segue esse mesmo ritual: **agrupar** a incógnita de um lado, os números do outro, e **isolar** dividindo pelo coeficiente. Nada mais.
+
+::: {.callout-tip title="Intuição — a equação como pergunta"}
+Uma equação é uma pergunta disfarçada de afirmação. "$20q = 300 + 5q$" pergunta: *para qual $q$ receita e custo coincidem?* Resolver é responder. Guardar essa leitura ajuda a não tratar a álgebra como manipulação cega de símbolos: cada passo aproxima você da resposta a uma pergunta econômica concreta.
+:::
+
+## Sistemas de equações lineares
+
+Muitos problemas econômicos envolvem **duas** incógnitas amarradas por **duas** condições ao mesmo tempo. O exemplo mestre é o mercado: a quantidade e o preço precisam satisfazer, simultaneamente, tanto a lei da demanda quanto a lei da oferta. Isso é um **sistema linear** $2\times 2$:
+
+$$
+\begin{cases} y = a_1 + b_1 x \\ y = a_2 + b_2 x \end{cases}
+$$
+
+**Resolver o sistema** é encontrar o par $(x, y)$ que satisfaz as **duas** equações ao mesmo tempo — geometricamente, o **ponto onde as duas retas se cruzam**. Há dois métodos elementares.
+
+### Método da substituição
+
+Isola-se uma variável numa equação e **substitui-se** na outra, reduzindo o sistema a uma única equação com uma única incógnita. Seja:
+
+$$
+\begin{cases} q = 100 - 2p \quad(\text{demanda}) \\ q = 10 + 3p \quad(\text{oferta}) \end{cases}
+$$
+
+Como ambas dão $q$, igualamos as expressões (uma substituição direta):
+
+$$
+100 - 2p = 10 + 3p.
+$$
+
+Agrupando: $100 - 10 = 3p + 2p \Rightarrow 90 = 5p \Rightarrow p = 18$. Substituindo de volta numa das equações, $q = 10 + 3\times 18 = 64$. A solução é $(p, q) = (18, 64)$.
+
+### Método da eliminação
+
+Somam-se ou subtraem-se as equações (após multiplicá-las por constantes convenientes) para **cancelar** uma variável. Tome:
+
+$$
+\begin{cases} 2x + y = 20 \\ x - y = 1 \end{cases}
+$$
+
+Somando as duas equações membro a membro, o $y$ se cancela: $(2x + y) + (x - y) = 20 + 1 \Rightarrow 3x = 21 \Rightarrow x = 7$. Da segunda equação, $7 - y = 1 \Rightarrow y = 6$. Solução: $(7, 6)$.
+
+Os dois métodos sempre chegam à mesma resposta; escolha o mais cômodo para a forma em que as equações se apresentam. Quando ambas já estão resolvidas para a mesma variável (como na oferta e demanda), a substituição por igualação é a mais rápida.
+
+## O equilíbrio econômico
+
+Chegamos ao conceito que dá unidade a este capítulo. Em Economia, **equilíbrio** é uma situação de repouso: um estado em que as variáveis não têm tendência a mudar, porque as forças que atuam sobre elas se cancelam.
+
+::: {.callout-note title="Definição — Equilíbrio"}
+Um **equilíbrio** é uma configuração das variáveis de um modelo em que nenhum agente tem incentivo a alterar seu comportamento, de modo que o sistema permanece em repouso enquanto as condições externas não mudarem. Matematicamente, é a **solução** do sistema de equações que descreve o modelo.
+:::
+
+O caso emblemático é o **equilíbrio de mercado**: o preço em que a quantidade que os compradores desejam comprar iguala exatamente a que os vendedores desejam vender. Nesse preço, não há nem excesso de oferta (que pressionaria o preço para baixo) nem excesso de demanda (que o pressionaria para cima). O mercado "descansa" — até que algum fator externo desloque uma das curvas.
+
+### Calculando o equilíbrio de mercado
+
+Retomemos o sistema de oferta e demanda de há pouco. A @fig-equilibrio mostra o que a álgebra encontrou: o cruzamento das duas curvas no ponto $E = (q^\*, p^\*) = (64, 18)$.
+
+::: {#fig-equilibrio}
+
+```{.tikz}
+%%| filename: fig-equilibrio
+%%| alt: Curvas de demanda decrescente (azul) e oferta crescente (vermelha) cruzando-se no ponto de equilíbrio E, com linhas tracejadas marcando o preço e a quantidade de equilíbrio nos eixos.
+\begin{tikzpicture}[scale=1.0, font=\small]
+  \draw[eixo] (0,0) -- (8,0) node[right]{Quantidade $q$};
+  \draw[eixo] (0,0) -- (0,7) node[above]{Preço $p$};
+  % Demanda inversa: p = 50 - q/2  -> desenhar em escala reduzida (q/10, p/8)
+  % Usaremos coordenadas diretas escaladas: q de 0 a 100 -> x = q/13; p de 0 a 50 -> y = p/8
+  % Demanda: pontos (q=0,p=50)->(0,6.25) e (q=100,p=0)->(7.7,0)
+  \draw[curva] (0,6.25) -- (7.7,0) node[pos=0.15, above right]{Demanda};
+  % Oferta inversa: p = (q-10)/3 -> (q=10,p=0)->(0.77,0) e (q=90,p=26.7) fora; use (q=10,p=0) e (q=85,p=25)->(6.5,3.1)
+  \draw[destaque] (0.77,0) -- (7.7,5.31) node[pos=0.85, left, manualred]{Oferta};
+  % Equilíbrio q=64 -> x=4.92 ; p=18 -> y=2.25
+  \node[ponto] (E) at (4.92,2.25) {};
+  \node[above right] at (E) {$E$};
+  \draw[auxiliar] (E) -- (0,2.25) node[left]{$p^*=18$};
+  \draw[auxiliar] (E) -- (4.92,0) node[below]{$q^*=64$};
+\end{tikzpicture}
+```
+
+O equilíbrio de mercado $E$ é a solução do sistema oferta–demanda: o ponto onde as duas curvas se cruzam.
+:::
+
+O procedimento geral tem três passos, que você repetirá inúmeras vezes:
+
+1. **Iguale** as quantidades (ou os preços) das duas curvas — a condição de equilíbrio é $q^d = q^s$.
+2. **Resolva** para o preço, obtendo o **preço de equilíbrio** $p^\*$.
+3. **Substitua** $p^\*$ em qualquer das curvas para obter a **quantidade de equilíbrio** $q^\*$.
+
+No exemplo, $p^\* = 18$ e $q^\* = 64$. Abaixo de $p^\* $, a quantidade demandada supera a ofertada (escassez), e o preço tende a subir; acima, sobra mercadoria (excedente), e o preço tende a cair. Essas forças de ajuste — a "mão invisível" em ação — empurram o mercado de volta ao equilíbrio, tema que o Volume 3 desenvolve em detalhe.
+
+### O que muda quando uma curva se desloca
+
+O poder do modelo aparece na **estática comparativa**: comparar o equilíbrio antes e depois de um choque. Suponha que a renda dos consumidores aumente e a demanda se desloque para $q^d = 130 - 2p$, com a oferta inalterada, $q^s = 10 + 3p$. Refazendo a conta:
+
+$$
+130 - 2p = 10 + 3p \;\Longrightarrow\; 120 = 5p \;\Longrightarrow\; p^\* = 24,\quad q^\* = 10 + 3\times 24 = 82.
+$$
+
+O novo equilíbrio tem **preço e quantidade maiores** ($24$ e $82$, contra $18$ e $64$). A álgebra confirma a intuição: um aumento de demanda, tudo o mais constante, eleva tanto o preço quanto a quantidade transacionada. Resolver o sistema duas vezes — antes e depois — é a forma matemática de fazer estática comparativa.
+
+::: {.callout-important title="Armadilha comum — igualar preços quando se deveria igualar quantidades"}
+Ao computar o equilíbrio, certifique-se de que está igualando **grandezas do mesmo tipo**. Se as duas curvas estão na forma direta $q = f(p)$, iguale as **quantidades** ($q^d = q^s$). Se estão na forma inversa $p = g(q)$, iguale os **preços**. Misturar as formas — igualar um preço a uma quantidade — é um erro que produz números sem sentido econômico.
+:::
+
+## O ponto de nivelamento (*break-even*)
+
+Um segundo tipo de equilíbrio, central em finanças de empresas, é o **ponto de nivelamento**: a quantidade em que a **receita total** iguala o **custo total**, de modo que o lucro é exatamente zero. Abaixo dele, a firma tem prejuízo; acima, lucra.
+
+Seja a receita $R = p\,q$ com preço de mercado $p = 20$, e o custo total $C = 300 + 5q$ (custo fixo $300$, custo variável unitário $5$). O ponto de nivelamento resolve $R = C$:
+
+$$
+20q = 300 + 5q \;\Longrightarrow\; 15q = 300 \;\Longrightarrow\; q_{be} = 20.
+$$
+
+A firma precisa vender $20$ unidades só para "empatar". A margem $p - 5 = 15$ por unidade é o que sobra para cobrir o custo fixo de $300$; daí $300/15 = 20$. Esse raciocínio — dividir o custo fixo pela **margem de contribuição** unitária — é a fórmula prática do *break-even*, e reaparece em finanças pessoais e empresariais (Volume 14).
+
+## Quando não há solução única
+
+Nem todo sistema linear tem uma única solução, e cada caso conta uma história econômica:
+
+- **Solução única** — as retas têm inclinações diferentes e se cruzam em um ponto. É o caso normal: um equilíbrio bem definido.
+- **Nenhuma solução** — as retas são **paralelas** (mesma inclinação, interceptos diferentes) e nunca se cruzam. Economicamente, corresponde a um mercado sem equilíbrio a preços positivos — por exemplo, quando o preço mínimo pelo qual qualquer produtor venderia supera o preço máximo que qualquer consumidor pagaria.
+- **Infinitas soluções** — as duas equações descrevem a **mesma** reta (uma é múltipla da outra). Não há informação suficiente para determinar um ponto único; as equações são redundantes.
+
+Reconhecer esses casos evita procurar um número onde não há um — e, no capítulo de matrizes (@sec-matrizes), veremos que o **determinante** de um sistema é justamente o teste algébrico que distingue os três.
+
+## 🇧🇷 Brasil em Foco
+
+**Tabelamento de preços: forçar um desequilíbrio.** A teoria do equilíbrio ilumina por que **controles de preço** costumam gerar escassez. Quando o governo fixa um preço **abaixo** do equilíbrio de mercado — um teto —, a quantidade demandada supera a ofertada, e o resultado é fila, desabastecimento ou mercado paralelo. O Brasil tem farta experiência histórica: os **congelamentos de preços** dos planos heterodoxos dos anos 1980 (Plano Cruzado, 1986) fixaram preços por decreto e provocaram, em pouco tempo, sumiço de produtos das prateleiras e o famoso "ágio". Em linguagem deste capítulo, o governo impôs um preço que **não era solução** do sistema oferta–demanda; como as curvas não haviam mudado, o preço tabelado gerava um excesso de demanda permanente. O Volume 11 conta essa história em detalhe; aqui fica a lição matemática: preços de equilíbrio não se decretam, resolvem-se.
+
+**Poupança igual a investimento: o equilíbrio macroeconômico.** Em macroeconomia, uma das condições de equilíbrio mais importantes é a igualdade entre **poupança** ($S$) e **investimento** ($I$) — uma equação que determina, junto com outras, a renda de equilíbrio da economia. No Brasil, a persistente diferença entre a poupança doméstica e o investimento desejado ajuda a explicar por que o país recorre à poupança externa (déficits em conta corrente) para financiar parte de seus investimentos. O Banco Central e o IBGE publicam essas contas; quando poupança e investimento não "fecham" internamente, a diferença aparece nas contas externas. É o mesmo raciocínio de sistema de equações — só que agora as incógnitas são renda, poupança e investimento, e a solução é o equilíbrio macroeconômico que o Volume 7 formaliza.
+
+> **Fontes e séries para explorar:** IBGE — Contas Nacionais (poupança e investimento como proporção do PIB); Banco Central — SGS e estatísticas do setor externo; para os congelamentos de preços, ver os índices de preços do IBGE nos anos de 1986–1994 e a literatura sobre os planos heterodoxos.
+
+## Resumo do capítulo
+
+- **Resolver uma equação** é encontrar o valor que torna a igualdade verdadeira; o método é agrupar a incógnita de um lado e isolá-la, sempre fazendo a mesma operação nos dois lados.
+- Um **sistema linear** $2\times 2$ busca o par $(x, y)$ que satisfaz **duas** equações ao mesmo tempo — o ponto onde as retas se cruzam. Resolve-se por **substituição** (isolar e trocar) ou **eliminação** (somar/subtrair para cancelar uma variável).
+- **Equilíbrio** é o estado de repouso de um modelo, em que as forças se anulam; matematicamente, é a **solução** do sistema de equações que o descreve.
+- O **equilíbrio de mercado** se calcula igualando oferta e demanda ($q^d = q^s$), resolvendo para $p^\*$ e substituindo para achar $q^\*$. Um deslocamento de curva muda a solução — isso é **estática comparativa**.
+- O **ponto de nivelamento** iguala receita e custo total (lucro zero); encontra-se dividindo o custo fixo pela margem de contribuição unitária.
+- Um sistema pode ter **solução única** (retas concorrentes), **nenhuma** (retas paralelas) ou **infinitas** (retas coincidentes) — casos com leituras econômicas distintas.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: dos conceituais aos numéricos e à análise de caso.
+:::
+
+**1.** Explique, com suas palavras, por que o equilíbrio de mercado é um "estado de repouso". O que acontece se o preço estiver acima do preço de equilíbrio?
+
+::: {.callout-tip collapse="true" title="Solução"}
+No equilíbrio, a quantidade que os compradores querem comprar iguala a que os vendedores querem vender: não há excesso de nenhum lado, e nenhum agente tem motivo para mudar de comportamento — daí o "repouso". Se o preço estiver **acima** do equilíbrio, a quantidade ofertada supera a demandada: sobra mercadoria (excedente), os vendedores baixam os preços para escoar o estoque, e o preço é empurrado de volta ao equilíbrio.
+:::
+
+**2.** Resolva a equação $7q + 12 = 3q + 40$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Agrupando: $7q - 3q = 40 - 12 \Rightarrow 4q = 28 \Rightarrow q = 7$.
+:::
+
+**3.** Resolva o sistema pelo método da eliminação:
+$$
+\begin{cases} 3x + 2y = 16 \\ x - 2y = 0 \end{cases}
+$$
+
+::: {.callout-tip collapse="true" title="Solução"}
+Somando as duas equações (o $2y$ cancela): $4x = 16 \Rightarrow x = 4$. Da segunda, $4 - 2y = 0 \Rightarrow y = 2$. Solução: $(4, 2)$.
+:::
+
+**4.** Um mercado tem demanda $q^d = 90 - 3p$ e oferta $q^s = -10 + 2p$. Encontre o preço e a quantidade de equilíbrio.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Igualando: $90 - 3p = -10 + 2p \Rightarrow 100 = 5p \Rightarrow p^\* = 20$. Substituindo na oferta: $q^\* = -10 + 2\times 20 = 30$. Equilíbrio: $(p^\*, q^\*) = (20, 30)$.
+:::
+
+**5.** No mercado do exercício 4, um imposto sobre os produtores desloca a oferta para $q^s = -25 + 2p$. Recalcule o equilíbrio e comente o que aconteceu com preço e quantidade.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Igualando: $90 - 3p = -25 + 2p \Rightarrow 115 = 5p \Rightarrow p^\* = 23$; $q^\* = -25 + 2\times 23 = 21$. Comparado ao original $(20, 30)$, o **preço subiu** (de 20 para 23) e a **quantidade caiu** (de 30 para 21). A redução da oferta (deslocamento para a esquerda) eleva o preço e reduz a quantidade transacionada — efeito típico de um imposto sobre a produção.
+:::
+
+**6.** Uma firma vende cada unidade a R\$\,50. Seu custo total é $C = 8.000 + 30q$. (a) Qual o ponto de nivelamento? (b) Qual o lucro se ela vender 500 unidades?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Margem de contribuição unitária: $50 - 30 = 20$. Ponto de nivelamento: $q_{be} = 8.000 / 20 = 400$ unidades. (Verificação: $R = 50\times 400 = 20.000 = 8.000 + 30\times 400 = C$.)
+(b) Lucro $= R - C = 50\times 500 - (8.000 + 30\times 500) = 25.000 - 23.000 = R\$\,2.000$.
+:::
+
+**7.** Considere o sistema $\begin{cases} q = 100 - 2p \\ q = 130 - 2p \end{cases}$. Tente resolvê-lo e interprete o resultado economicamente.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Igualando: $100 - 2p = 130 - 2p \Rightarrow 100 = 130$, um absurdo. O sistema **não tem solução**: as retas têm a mesma inclinação ($-2$) e interceptos diferentes, logo são **paralelas** e nunca se cruzam. Economicamente, duas relações que respondem ao preço com a mesma sensibilidade, mas prometem quantidades diferentes a todo preço, são incompatíveis — não existe preço que concilie as duas.
+:::
+
+**8.** (Análise de caso) O governo fixa, para um alimento básico, um preço-teto de R\$\,15, enquanto o equilíbrio de mercado seria $p^\* = 20$ (com demanda $q^d = 90 - 3p$ e oferta $q^s = -10 + 2p$). (a) Calcule a quantidade demandada e a ofertada ao preço tabelado. (b) Há escassez ou excedente? De quanto? (c) Relacione com os congelamentos de preços discutidos em Brasil em Foco.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Ao preço $p = 15$: $q^d = 90 - 3\times 15 = 45$; $q^s = -10 + 2\times 15 = 20$.
+(b) A quantidade demandada (45) supera a ofertada (20): há **escassez** de $45 - 20 = 25$ unidades. O preço-teto, por estar **abaixo** do equilíbrio ($20$), impede o mercado de assentar e cria excesso de demanda permanente.
+(c) É exatamente o mecanismo dos congelamentos brasileiros dos anos 1980: fixar por decreto um preço que não é solução do sistema oferta–demanda produz filas e desabastecimento, porque as curvas não mudaram — só foram impedidas de se encontrar. O preço de equilíbrio não se decreta.
+:::
+
+## Para saber mais
+
+- @chiang2006 — a Parte 2 trata da análise de equilíbrio estático e da resolução de modelos de mercado por sistemas de equações, exatamente na chave deste capítulo.
+- @sydsaeter2018 — apresenta a álgebra de equações e sistemas lineares com aplicações a modelos econômicos simples e à estática comparativa.
+- @mankiw2020 — os capítulos sobre as forças de mercado da oferta e da demanda mostram o equilíbrio e os efeitos de controles de preço com farto uso de gráficos.
+- @vasconcellos2019 — introdução em português ao equilíbrio de mercado e às intervenções de preço, com exemplos brasileiros.

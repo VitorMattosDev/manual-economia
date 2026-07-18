@@ -1,0 +1,265 @@
+# Funções e gráficos na Economia {#sec-funcoes-e-graficos}
+
+Abra qualquer relatório do Banco Central, um manual de macroeconomia ou a página de um economista no jornal e você encontrará a mesma coisa: curvas. A demanda que desce, a oferta que sobe, o PIB que serpenteia ao longo dos anos, a inflação que forma um arco. Por trás de cada uma dessas curvas há uma ideia matemática única e poderosa — a de **função**: uma regra que associa a cada valor de uma variável um valor de outra. Aprender a ler, escrever e manipular funções é aprender o próprio idioma em que a Economia moderna é escrita.
+
+Este é o primeiro capítulo do volume de matemática, e ele não pressupõe nada além da álgebra do ensino médio. Vamos partir da noção intuitiva de dependência entre grandezas — "o quanto compro depende do preço" — e chegar à linguagem precisa das funções, dos gráficos e das inclinações, que reaparecerá em cada modelo econômico do manual.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- definir **função**, identificar variáveis **dependente** e **independente** e reconhecer domínio e imagem em contextos econômicos;
+- construir e interpretar o **gráfico** de uma função no plano cartesiano;
+- dominar a **função linear**, calculando **inclinação** (coeficiente angular) e **intercepto**;
+- reconhecer as principais famílias de funções usadas em Economia — linear, quadrática, potência, exponencial e logarítmica — e o que cada uma modela;
+- distinguir um **movimento ao longo** da curva de um **deslocamento** da curva, associando-o a mudanças de parâmetros;
+- entender a convenção econômica de **inverter os eixos** na demanda e na oferta;
+- interpretar a inclinação como uma **taxa** e antecipar sua ligação com a análise marginal.
+
+## O que é uma função
+
+Comece pela ideia crua. Quando dizemos que "a quantidade de café que uma pessoa compra por mês **depende** do preço do café", afirmamos que existe uma relação: fixado um preço, fica determinada uma quantidade. Essa é a essência de uma função.
+
+::: {.callout-note title="Definição — Função"}
+Uma **função** $f$ é uma regra que associa a cada elemento $x$ de um conjunto (o **domínio**) exatamente **um** valor $y$ de outro conjunto. Escrevemos $y = f(x)$ e lemos "$y$ é função de $x$". O conjunto dos valores $y$ efetivamente assumidos é a **imagem**.
+:::
+
+Duas peças de vocabulário são indispensáveis:
+
+- a **variável independente** ($x$) é a que "controlamos" ou tomamos como dada — a causa, a entrada;
+- a **variável dependente** ($y$) é a que resulta — o efeito, a saída.
+
+A palavra-chave da definição é *exatamente um*: a cada entrada corresponde uma única saída. Se um mesmo preço pudesse levar a duas quantidades diferentes ao mesmo tempo, não teríamos uma função. Essa exigência é o que torna a função uma ferramenta de **previsão**: dado $x$, sabemos $y$.
+
+::: {.callout-tip title="Intuição — a função como máquina"}
+Pense numa função como uma máquina: você insere um número $x$ pela entrada, a máquina aplica sua regra e devolve um número $y$ pela saída. A regra $f(x) = 100 - 2x$, por exemplo, é a máquina "multiplique por $-2$ e some $100$". Insira $x = 10$; ela devolve $y = 80$.
+:::
+
+### Domínio econômico: nem todo número serve
+
+Em matemática pura, o domínio de $f(x) = 100 - 2x$ seriam todos os números reais. Em Economia, o **contexto restringe o domínio**. Se $x$ é o preço de um bem, valores negativos não fazem sentido; se $y$ é uma quantidade produzida, também não pode ser negativa. Assim, a função de demanda $q = 100 - 2p$ só é economicamente significativa para $0 \le p \le 50$ (acima de $p = 50$, a fórmula daria quantidade negativa, que interpretamos como quantidade zero). Fixar o domínio relevante é parte de modelar bem.
+
+## O plano cartesiano e o gráfico
+
+Uma função ganha forma visual no **plano cartesiano**: dois eixos perpendiculares, o horizontal (das abscissas) e o vertical (das ordenadas), que se cruzam na **origem** $(0,0)$. Cada par $(x, y)$ vira um ponto; o conjunto de todos os pontos $(x, f(x))$ é o **gráfico** da função.
+
+O gráfico é a ferramenta de trabalho por excelência do economista porque condensa numa imagem toda a informação da função: onde ela cresce, onde decresce, quão rápido, onde cruza os eixos. A @fig-plano mostra a construção de uma reta a partir de alguns de seus pontos.
+
+::: {#fig-plano}
+
+```{.tikz}
+%%| filename: fig-plano
+%%| alt: Plano cartesiano com os eixos x e y, mostrando quatro pontos alinhados e a reta que passa por eles.
+\begin{tikzpicture}[scale=0.95, font=\small]
+  \draw[eixo] (0,0) -- (6.3,0) node[right]{$x$};
+  \draw[eixo] (0,0) -- (0,5.5) node[above]{$y$};
+  \foreach \x in {1,2,3,4,5} \draw (\x,0.08) -- (\x,-0.08) node[below]{\x};
+  \foreach \y in {1,2,3,4} \draw (0.08,\y) -- (-0.08,\y) node[left]{\y};
+  % reta y = 1 + 0,6 x aproximada por pontos
+  \draw[curva] (0,1) -- (5.5,4.3);
+  \foreach \p/\q in {0/1, 2/2.2, 4/3.4} {
+    \node[ponto] at (\p,\q) {};
+  }
+  \node[ponto] at (0,1) {};
+  \node[below right, manualblue] at (4,3.4) {$y=f(x)$};
+  \node[left, manualgray, font=\footnotesize] at (0,1) {intercepto};
+\end{tikzpicture}
+```
+
+Cada par ordenado $(x,y)$ é um ponto do plano; a função é o conjunto de todos esses pontos.
+:::
+
+## A função linear: a mais usada de todas
+
+De todas as funções, a mais frequente nos modelos econômicos introdutórios é a **linear**, cujo gráfico é uma reta.
+
+::: {.callout-note title="Definição — Função linear"}
+Uma **função linear** ("afim", a rigor) tem a forma
+$$
+y = a + b\,x,
+$$ {#eq-linear}
+em que $a$ é o **intercepto** (o valor de $y$ quando $x = 0$) e $b$ é a **inclinação** ou **coeficiente angular** (o quanto $y$ varia quando $x$ aumenta em uma unidade).
+:::
+
+Os dois parâmetros têm leituras econômicas nítidas:
+
+- O **intercepto** $a$ é o "ponto de partida": o valor da variável dependente na ausência da independente. Numa função de custo $C = 500 + 8q$, o intercepto $a = 500$ é o **custo fixo** — o que se paga mesmo produzindo zero.
+- A **inclinação** $b$ é o coração da análise econômica, porque é uma **taxa**: mede quanto $y$ muda por unidade de $x$. Em $C = 500 + 8q$, cada unidade a mais produzida acrescenta $R\$\,8$ ao custo — é o **custo marginal**. Guardaremos essa palavra: a inclinação é a semente da ideia de "marginal" que dominará o @sec-derivadas-analise-marginal.
+
+### Calculando a inclinação
+
+A inclinação entre dois pontos $(x_1, y_1)$ e $(x_2, y_2)$ da reta é a razão entre a variação vertical e a horizontal:
+
+$$
+b = \frac{\Delta y}{\Delta x} = \frac{y_2 - y_1}{x_2 - x_1}.
+$$ {#eq-inclinacao}
+
+Usamos a letra grega $\Delta$ (delta) para "variação de". A fórmula é o célebre "sobe dividido por anda". Se ao passar de $x_1 = 2$ para $x_2 = 6$ o valor de $y$ vai de $10$ para $22$, então
+
+$$
+b = \frac{22 - 10}{6 - 2} = \frac{12}{4} = 3,
+$$
+
+ou seja, cada unidade de $x$ acrescenta $3$ a $y$. Uma inclinação **positiva** desenha uma reta que sobe da esquerda para a direita; uma **negativa**, uma reta que desce; uma inclinação **zero** é uma reta horizontal (y não depende de x). A @fig-inclinacoes compara os três casos.
+
+::: {#fig-inclinacoes}
+
+```{.tikz}
+%%| filename: fig-inclinacoes
+%%| alt: Três retas no mesmo plano — uma crescente com inclinação positiva, uma decrescente com inclinação negativa e uma horizontal com inclinação nula.
+\begin{tikzpicture}[scale=0.85, font=\small]
+  \draw[eixo] (0,0) -- (6,0) node[right]{$x$};
+  \draw[eixo] (0,0) -- (0,5.2) node[above]{$y$};
+  \draw[curva] (0,0.6) -- (5.2,4.8) node[right]{$b>0$};
+  \draw[destaque] (0,4.6) -- (5.2,0.9) node[right, manualred]{$b<0$};
+  \draw[manualgreen, very thick] (0,2.6) -- (5.2,2.6) node[right]{$b=0$};
+\end{tikzpicture}
+```
+
+O sinal da inclinação determina se a reta sobe, desce ou é horizontal.
+:::
+
+::: {.callout-important title="Armadilha comum — inclinação não é o mesmo que valor"}
+Uma variável pode ter **valor alto** e **inclinação pequena**, ou vice-versa. Um país pode ter um PIB elevado (valor) que cresce devagar (inclinação baixa). Não confunda o **nível** de uma variável (a altura do ponto) com sua **taxa de variação** (a inclinação da curva). Quase toda a análise econômica dinâmica vive nessa distinção.
+:::
+
+## A convenção econômica dos eixos invertidos
+
+Aqui mora uma peculiaridade que confunde todo iniciante. Na teoria econômica, a quantidade demandada **depende** do preço: o preço é a variável independente e a quantidade, a dependente. Pela convenção matemática, o preço deveria ir no eixo horizontal. Mas, por uma tradição que remonta a Alfred Marshall no fim do século XIX, os economistas desenham o **preço no eixo vertical** e a **quantidade no horizontal** — o inverso do que a lógica funcional sugeriria.
+
+A consequência prática é importante: quando você calcula a inclinação de uma curva de demanda **no gráfico econômico**, obtém $\Delta p / \Delta q$, e não $\Delta q / \Delta p$. Por isso costumamos escrever a demanda em duas formas equivalentes. A **forma direta** exprime quantidade em função do preço; a **forma inversa**, preço em função da quantidade:
+
+$$
+\underbrace{q = 100 - 2p}_{\text{forma direta}} \qquad\Longleftrightarrow\qquad \underbrace{p = 50 - \tfrac{1}{2}q}_{\text{forma inversa}}.
+$$
+
+A forma inversa é a que corresponde ao gráfico marshalliano usual. Saber passar de uma para a outra — isolando a variável desejada — é uma habilidade que você usará o tempo todo no Volume 3.
+
+::: {.callout-tip title="Intuição — por que a demanda desce"}
+A curva de demanda tem inclinação **negativa**: a preços mais altos, compra-se menos. A curva de oferta tem inclinação **positiva**: a preços mais altos, produz-se mais. Essas duas inclinações de sinais opostos são o que garante que oferta e demanda se cruzem num ponto de equilíbrio — assunto do próximo capítulo.
+:::
+
+## Além da reta: outras funções essenciais
+
+Nem tudo na Economia é linear. Quatro outras famílias de funções aparecem sem parar; convém reconhecê-las de imediato.
+
+### Função quadrática
+
+Tem a forma $y = a x^2 + b x + c$, e seu gráfico é uma **parábola**. É a função natural para representar grandezas que primeiro sobem e depois descem (ou vice-versa): uma função de **lucro** que cresce, atinge um máximo e cai; uma função de **custo total** que acelera. O ponto de inflexão da parábola — seu **vértice** — é onde mora o máximo ou o mínimo, e localizá-lo será todo o tema do @sec-otimizacao-livre.
+
+### Função potência
+
+Da forma $y = a x^n$. Um caso onipresente é a **função de produção** de Cobb-Douglas, $Y = A K^{\alpha} L^{\beta}$, que descreve como capital $K$ e trabalho $L$ geram produto $Y$. Expoentes entre $0$ e $1$ produzem curvas côncavas, que traduzem os **retornos decrescentes** — cada unidade extra de insumo rende um pouco menos que a anterior.
+
+### Função exponencial
+
+Da forma $y = a\,(1+r)^{x}$ ou $y = a\,e^{rx}$. É a função do **crescimento composto**: juros que rendem sobre juros, uma população que cresce a taxa constante, uma dívida que se acumula. Sua marca é crescer a uma **taxa percentual** fixa, o que faz o valor absoluto disparar com o tempo. Voltaremos a ela no valor do dinheiro no tempo (Volume 14).
+
+### Função logarítmica
+
+Da forma $y = \log x$, é a **inversa** da exponencial. Cresce cada vez mais devagar e tem duas serventias centrais em Economia. Primeiro, modela a **utilidade** com saciedade decrescente (cada real a mais de renda dá menos satisfação). Segundo, é uma ferramenta gráfica: numa **escala logarítmica**, uma grandeza que cresce a taxa percentual constante vira uma **linha reta**, o que permite ler taxas de crescimento a olho — motivo pelo qual séries longas do PIB são quase sempre plotadas em log.
+
+::: {.callout-warning title="Cuidado — a intuição linear engana no exponencial"}
+Nossa intuição é treinada para retas, e ela falha diante do crescimento exponencial. Uma taxa "modesta" de 7% ao ano **dobra** uma grandeza em cerca de 10 anos (a "regra do 70": tempo de duplicação $\approx 70/\text{taxa \%}$). Subestimar a força do exponencial é um erro clássico — em juros compostos, em crescimento populacional e na dinâmica da dívida pública.
+:::
+
+## Deslocamento *versus* movimento ao longo da curva
+
+Já encontramos esta distinção no método econômico (@sec-metodo-da-economia); agora a vemos com olhos matemáticos. Uma função como $q = 100 - 2p$ tem uma **variável** ($p$) e **parâmetros** (os números $100$ e $2$). A diferença entre os dois governa toda a leitura de gráficos em Economia:
+
+- Mudar a **variável do eixo** ($p$) produz um **movimento ao longo** da curva — você anda sobre a mesma reta, de um ponto a outro.
+- Mudar um **parâmetro** (o intercepto $100$, por exemplo, quando a renda dos consumidores aumenta) **desloca a curva inteira** — nasce uma reta nova, paralela ou girada em relação à antiga.
+
+Em símbolos: se a renda sobe e a demanda passa a $q = 130 - 2p$, o parâmetro de intercepto mudou de $100$ para $130$; a curva se deslocou para a direita, e a cada preço corresponde agora uma quantidade maior. Reconhecer o que é variável e o que é parâmetro numa equação econômica é meio caminho para não se perder nos gráficos.
+
+## 🇧🇷 Brasil em Foco
+
+**A propensão a consumir: uma função linear que move a macroeconomia.** Uma das relações mais famosas da Economia, a **função consumo** de Keynes, é simplesmente uma reta: $C = C_0 + c\,Y$, em que $C$ é o consumo das famílias, $Y$ é a renda disponível, $C_0$ é o consumo autônomo (o intercepto) e $c$ é a **propensão marginal a consumir** (a inclinação) — a fração de cada real adicional de renda que vira consumo. No Brasil, dados das Contas Nacionais do **IBGE** e da Pesquisa de Orçamentos Familiares (**POF**) mostram que famílias de baixa renda têm propensão marginal a consumir próxima de 1 (gastam quase tudo que recebe a mais), enquanto famílias ricas poupam parcela maior. Essa inclinação não é um detalhe técnico: é ela que determina a força do **multiplicador** fiscal, tema do Volume 7. Transferências de renda para os mais pobres tendem a ter efeito maior sobre a demanda justamente porque incidem sobre quem tem inclinação $c$ mais alta.
+
+**Escala logarítmica e o "voo de galinha" do PIB.** Quando o IBGE ou o IPEA divulgam o gráfico do PIB brasileiro desde 1900, quase sempre o fazem em **escala logarítmica**. A razão é a do @fig-inclinacoes ao contrário: em escala log, uma taxa de crescimento constante vira uma reta, de modo que a **inclinação** do gráfico passa a representar diretamente a taxa de crescimento. Assim se enxerga, num relance, que o Brasil cresceu rápido entre 1950 e 1980 (reta íngreme) e devagar depois de 2014 (reta quase plana) — o chamado "voo de galinha", em que a economia dá arrancadas curtas seguidas de quedas. Sem a transformação logarítmica, os anos recentes, com valores absolutos muito maiores, esmagariam visualmente as décadas antigas e esconderiam essa comparação de taxas.
+
+> **Fontes e séries para explorar:** IBGE — Contas Nacionais e Pesquisa de Orçamentos Familiares (POF, para propensão a consumir por faixa de renda); IPEA Data (séries históricas do PIB para plotar em escala log); Banco Central — SGS (renda e consumo). Verifique sempre o ano-base das séries reais.
+
+## Resumo do capítulo
+
+- Uma **função** $y = f(x)$ é uma regra que associa a cada valor da variável **independente** $x$ um único valor da variável **dependente** $y$. O **domínio** econômico costuma ser restrito a valores não negativos.
+- O **gráfico** no plano cartesiano é o conjunto dos pontos $(x, f(x))$ e é a principal ferramenta visual do economista.
+- A **função linear** $y = a + b x$ tem **intercepto** $a$ (valor de $y$ quando $x=0$, muitas vezes um custo fixo ou consumo autônomo) e **inclinação** $b = \Delta y/\Delta x$ (uma **taxa**, semente da análise marginal).
+- Por convenção marshalliana, oferta e demanda põem o **preço no eixo vertical**; por isso distinguimos a forma **direta** ($q$ em função de $p$) da **inversa** ($p$ em função de $q$).
+- Além da reta, importam a **quadrática** (parábola, para máximos e mínimos), a **potência** (produção, retornos decrescentes), a **exponencial** (crescimento composto) e a **logarítmica** (utilidade e escala de gráficos).
+- Mudar a **variável do eixo** gera um **movimento ao longo** da curva; mudar um **parâmetro** **desloca** a curva inteira.
+- A intuição linear subestima o crescimento **exponencial**: pela regra do 70, uma taxa de 7% ao ano dobra a grandeza em cerca de 10 anos.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: os primeiros são conceituais; os do meio, numéricos; os últimos pedem interpretação econômica.
+:::
+
+**1.** Explique, com suas palavras, por que a relação "para cada preço, uma quantidade demandada" é uma função, mas "para cada nota de prova, os nomes dos alunos que a tiraram" pode não ser.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Uma função exige que a cada entrada corresponda **exatamente uma** saída. Fixado um preço, a teoria associa uma única quantidade demandada — logo, é função. Já uma nota de prova pode ter sido tirada por **vários** alunos: a uma entrada (a nota) correspondem várias saídas (os nomes), o que viola a definição de função. (Seria função se invertêssemos: a cada aluno corresponde uma única nota.)
+:::
+
+**2.** Dada a função de custo $C = 500 + 8q$, identifique o intercepto e a inclinação e dê a interpretação econômica de cada um. Quanto custa produzir 50 unidades?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O intercepto é $500$: é o **custo fixo**, pago mesmo com produção zero. A inclinação é $8$: é o **custo marginal**, o acréscimo de custo por unidade adicional produzida. Para $q = 50$:
+$$
+C = 500 + 8\times 50 = 500 + 400 = R\$\,900.
+$$
+:::
+
+**3.** Uma reta passa pelos pontos $(2, 7)$ e $(6, 19)$. Encontre sua inclinação e sua equação na forma $y = a + bx$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A inclinação é
+$$
+b = \frac{19 - 7}{6 - 2} = \frac{12}{4} = 3.
+$$
+Usando o ponto $(2, 7)$: $7 = a + 3\times 2 \Rightarrow a = 7 - 6 = 1$. A equação é $y = 1 + 3x$.
+:::
+
+**4.** A demanda por um bem é $q = 120 - 3p$ (forma direta). (a) Escreva a forma inversa, $p$ em função de $q$. (b) Qual o preço que zera a demanda? (c) Qual a quantidade demandada quando o bem é gratuito?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Isolando $p$: $3p = 120 - q \Rightarrow p = 40 - \tfrac{1}{3}q$.
+(b) A demanda zera quando $q = 0$: pela forma inversa, $p = 40$ (o "preço proibitivo").
+(c) Com $p = 0$: $q = 120 - 3\times 0 = 120$ unidades (a demanda máxima).
+:::
+
+**5.** Classifique a função mais adequada para modelar cada fenômeno (linear, quadrática, exponencial ou logarítmica): (a) o saldo de uma poupança que rende juros compostos; (b) o lucro de uma firma que cresce, atinge um pico e depois cai; (c) a satisfação de um consumidor que aumenta com a renda, porém cada vez mais devagar; (d) o custo total de uma firma com custo marginal constante.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Exponencial** — juros compostos crescem a taxa percentual constante. (b) **Quadrática** — a parábola sobe, atinge um vértice (máximo) e desce. (c) **Logarítmica** — cresce a taxas decrescentes (utilidade com saciedade). (d) **Linear** — custo marginal constante significa inclinação constante, logo uma reta $C = C_0 + cq$.
+:::
+
+**6.** Inicialmente a demanda por sorvetes é $q = 200 - 4p$. Uma onda de calor aumenta a demanda: a cada preço, vendem-se 40 sorvetes a mais. (a) Escreva a nova função. (b) Isso é um deslocamento da curva ou um movimento ao longo dela? Justifique em termos de variável e parâmetro.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Somam-se 40 unidades em cada preço: $q = 240 - 4p$. (b) É um **deslocamento** da curva. O que mudou foi um **parâmetro** (o intercepto passou de 200 para 240), causado por um fator externo (o clima), e não a variável do eixo (o preço). A curva inteira se move para a direita. Um movimento *ao longo* ocorreria se apenas o preço mudasse, mantida a mesma função.
+:::
+
+**7.** Uma dívida de R\$\,1.000 cresce a juros compostos de 5% ao mês, seguindo $D = 1000\,(1{,}05)^{t}$, com $t$ em meses. (a) Qual o saldo após 12 meses? (b) Use a regra do 70 para estimar em quantos meses a dívida dobra. (c) Por que a intuição linear ("5% ao mês, então em 20 meses dobra") erra?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $D = 1000\,(1{,}05)^{12} \approx 1000 \times 1{,}796 = R\$\,1.795{,}86$.
+(b) Regra do 70: tempo de duplicação $\approx 70/5 = 14$ meses.
+(c) A intuição linear soma 5% do valor **inicial** a cada mês ($20 \times 5\% = 100\%$ em 20 meses). Mas nos juros compostos os 5% incidem sobre o saldo **já acumulado**, que cresce mês a mês. Como cada mês rende sobre uma base maior, a dívida dobra **antes** (em ~14 meses), não em 20. É o efeito "juros sobre juros".
+:::
+
+**8.** (Análise de caso) Duas famílias têm funções consumo lineares: a família A, de baixa renda, tem $C_A = 300 + 0{,}95\,Y$; a família B, de alta renda, tem $C_B = 2.000 + 0{,}60\,Y$. (a) Interprete os interceptos e as inclinações. (b) Um programa transfere R\$\,1.000 a uma delas. Em qual família o efeito sobre o consumo total é maior, e por quê? (c) Relacione com o multiplicador discutido em Brasil em Foco.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Os interceptos ($300$ e $2.000$) são os consumos autônomos — o que cada família consome mesmo com renda nula, financiando-se por poupança ou dívida. As inclinações são as **propensões marginais a consumir**: a família A gasta 95 centavos de cada real adicional; a B, 60 centavos.
+(b) O efeito imediato sobre o consumo é a inclinação vezes a transferência. Família A: $0{,}95 \times 1000 = R\$\,950$; família B: $0{,}60 \times 1000 = R\$\,600$. O efeito é **maior na família A**, porque sua propensão marginal a consumir é maior — ela repassa mais rapidamente a renda extra ao consumo.
+(c) Como o multiplicador depende da propensão marginal a consumir, transferir renda a quem tem $c$ mais alto (os mais pobres) gera mais demanda agregada por real gasto. É a lógica econômica por trás da focalização de transferências, retomada no Volume 7.
+:::
+
+## Para saber mais
+
+- @chiang2006 — os capítulos iniciais tratam de funções, tipos de funções e sua representação gráfica com aplicações econômicas; a referência clássica de matemática para economistas.
+- @sydsaeter2018 — apresentação moderna e rigorosa de funções, inclinações e das famílias exponencial e logarítmica, com muitos exemplos aplicados.
+- @mankiw2020 — o apêndice do Capítulo 2 ("Como fazer gráficos: uma breve revisão") revisa o plano cartesiano, inclinações e a distinção entre movimento e deslocamento na linguagem da Economia.
+- @guidorizzi2018 — para o leitor que quiser aprofundar a base matemática de funções reais antes de avançar ao cálculo.

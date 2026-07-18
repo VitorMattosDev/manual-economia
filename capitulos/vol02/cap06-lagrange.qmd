@@ -1,0 +1,256 @@
+# Otimização com restrições: multiplicadores de Lagrange {#sec-lagrange}
+
+O capítulo anterior resolveu problemas de otimização **livre** — a firma escolhia a quantidade sem nenhuma amarra. Mas a maior parte das decisões econômicas não é livre: ela esbarra numa **restrição**. O consumidor quer a máxima satisfação, *mas seu gasto não pode ultrapassar a renda*. A firma quer o máximo produto, *mas seu orçamento de insumos é limitado*. O governo quer o máximo bem-estar, *mas a arrecadação impõe um teto*. Em cada caso, há um objetivo a maximizar **sujeito a** uma condição que não pode ser violada. Este é o problema de **otimização com restrições**, e sua ferramenta canônica — elegante e onipresente na Economia — é o **método dos multiplicadores de Lagrange**.
+
+A grande recompensa deste capítulo é dupla. Primeiro, um método mecânico que resolve o problema do consumidor e da firma restrita. Segundo, e mais profundo, a descoberta de que o "multiplicador" que aparece na conta não é um artifício algébrico: ele tem um significado econômico riquíssimo — é o **preço-sombra** da restrição, o valor de afrouxá-la em uma unidade.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- formular um problema de **otimização com restrição** de igualdade;
+- montar a **função lagrangiana** e aplicar suas condições de primeira ordem;
+- deduzir a **condição de tangência** (razão das derivadas marginais = razão dos preços) e interpretá-la;
+- resolver o problema do consumidor que **maximiza a utilidade** sujeito à restrição orçamentária;
+- interpretar o **multiplicador de Lagrange** $\lambda$ como o **preço-sombra** da restrição;
+- reconhecer a ligação entre a solução de Lagrange e a igualdade das **utilidades marginais por real gasto**.
+
+## O problema com restrição
+
+Comece pela estrutura. Queremos maximizar uma **função objetivo** $f(x, y)$ — a utilidade, o produto —, mas as escolhas de $x$ e $y$ estão presas a uma **restrição** $g(x, y) = b$ — o orçamento, a capacidade. Em símbolos:
+
+$$
+\max_{x,\,y} \; f(x, y) \quad \text{sujeito a} \quad g(x, y) = b.
+$$
+
+O caso econômico central é o **problema do consumidor**. Ele tem uma **função utilidade** $U(x, y)$, que mede a satisfação obtida ao consumir quantidades $x$ e $y$ de dois bens, e uma **restrição orçamentária**: o gasto $p_x x + p_y y$ não pode exceder a renda $m$. Supondo que ele gaste toda a renda (não deixa dinheiro na mesa), a restrição é a igualdade
+
+$$
+p_x\, x + p_y\, y = m.
+$$
+
+A @fig-tangencia mostra a geometria da solução, que vale a pena entender **antes** da álgebra. As curvas em azul são **curvas de indiferença** — combinações de $x$ e $y$ que dão a mesma satisfação (quanto mais afastada da origem, maior a utilidade). A reta vermelha é a **restrição orçamentária** — as combinações que custam exatamente a renda. O consumidor quer alcançar a curva de indiferença mais alta possível **sem sair** da reta orçamentária. Isso acontece no ponto $E$, onde a curva de indiferença **tangencia** a restrição.
+
+::: {#fig-tangencia}
+
+```{.tikz}
+%%| filename: fig-tangencia
+%%| alt: Reta de restrição orçamentária decrescente e três curvas de indiferença convexas; a solução ótima é o ponto de tangência entre a curva de indiferença mais alta possível e a reta orçamentária.
+\begin{tikzpicture}[scale=1.0, font=\small]
+  \draw[eixo] (0,0) -- (7,0) node[right]{bem $x$};
+  \draw[eixo] (0,0) -- (0,6.4) node[above]{bem $y$};
+  % restrição orçamentária
+  \draw[destaque] (0,5.5) -- (6,0) node[pos=0.08, above right, manualred]{restrição};
+  % curvas de indiferença (hipérboles xy=k), três níveis
+  \draw[curva, manualblue!50] (0.7,5.6) .. controls (1.6,2.0) and (2.0,1.6) .. (5.6,0.7);
+  \draw[curva] (1.25,5.5) .. controls (2.3,2.6) and (2.6,2.3) .. (5.5,1.25);
+  \draw[curva, manualblue!50] (2.4,5.6) .. controls (3.5,3.4) and (3.4,3.5) .. (5.6,2.4);
+  % ponto de tangência
+  \node[ponto] (E) at (2.75,2.72) {};
+  \node[above right] at (E) {$E$};
+  \draw[auxiliar] (E) -- (0,2.72) node[left]{$y^*$};
+  \draw[auxiliar] (E) -- (2.75,0) node[below]{$x^*$};
+  \node[manualblue, font=\footnotesize] at (5.3,3.3) {curvas de};
+  \node[manualblue, font=\footnotesize] at (5.3,2.95) {indiferença};
+\end{tikzpicture}
+```
+
+A escolha ótima do consumidor é o ponto $E$ onde a curva de indiferença mais alta possível tangencia a restrição orçamentária.
+:::
+
+Por que a tangência? Porque **as inclinações se igualam** no ponto ótimo. A inclinação da curva de indiferença é a **taxa marginal de substituição** (quanto de $y$ o consumidor troca por uma unidade de $x$ mantendo a satisfação); a inclinação da reta orçamentária é a razão de preços $p_x/p_y$ (quanto de $y$ o mercado obriga a abrir mão por uma unidade de $x$). No ótimo, o que o consumidor **está disposto** a trocar iguala o que o mercado **exige** que ele troque. Se fossem diferentes, ele poderia rearranjar o consumo e subir para uma curva mais alta. O método de Lagrange é a máquina algébrica que encontra esse ponto de tangência.
+
+## A função lagrangiana
+
+O truque de Joseph-Louis Lagrange (1736–1813) foi transformar um problema **com** restrição num problema **sem** restrição, incorporando a amarra à própria função objetivo por meio de uma nova variável, $\lambda$ (lambda), o **multiplicador**.
+
+::: {.callout-note title="Definição — Função lagrangiana"}
+Para maximizar $f(x, y)$ sujeito a $g(x, y) = b$, define-se a **função lagrangiana**
+$$
+\mathcal{L}(x, y, \lambda) = f(x, y) + \lambda\,\bigl[\,b - g(x, y)\,\bigr].
+$$ {#eq-lagrangiana}
+O termo entre colchetes é zero quando a restrição é satisfeita; $\lambda$ é o **multiplicador de Lagrange**.
+:::
+
+O método então trata $\mathcal{L}$ como uma otimização livre em **três** variáveis ($x$, $y$ e $\lambda$) e aplica a condição de primeira ordem a cada uma: as três derivadas parciais se anulam no ótimo.
+
+::: {.callout-tip title="O que é uma derivada parcial"}
+Quando uma função depende de mais de uma variável, a **derivada parcial** em relação a uma delas — escrita $\partial f/\partial x$ — é a derivada tratando as **outras variáveis como constantes**. Mede a taxa de variação de $f$ quando só $x$ muda, tudo o mais fixo — a versão em cálculo do *ceteris paribus*. As regras de derivação do @sec-derivadas-analise-marginal continuam valendo; apenas congelamos as demais variáveis.
+:::
+
+As **condições de primeira ordem** do lagrangiano são:
+
+$$
+\frac{\partial \mathcal{L}}{\partial x} = \frac{\partial f}{\partial x} - \lambda\,\frac{\partial g}{\partial x} = 0, \qquad
+\frac{\partial \mathcal{L}}{\partial y} = \frac{\partial f}{\partial y} - \lambda\,\frac{\partial g}{\partial y} = 0,
+$$
+$$
+\frac{\partial \mathcal{L}}{\partial \lambda} = b - g(x, y) = 0.
+$$
+
+A terceira condição apenas **recupera a restrição** — garante que a solução a respeita. As duas primeiras, combinadas, produzem a condição de tangência.
+
+### Deduzindo a condição de tangência
+
+Das duas primeiras condições, isolamos $\lambda$ em cada uma e igualamos:
+
+$$
+\lambda = \frac{\partial f/\partial x}{\partial g/\partial x} = \frac{\partial f/\partial y}{\partial g/\partial y}
+\;\Longrightarrow\;
+\frac{\partial f/\partial x}{\partial f/\partial y} = \frac{\partial g/\partial x}{\partial g/\partial y}.
+$$ {#eq-tangencia}
+
+O lado esquerdo é a **taxa marginal de substituição** (razão das utilidades marginais); o lado direito, para a restrição orçamentária $g = p_x x + p_y y$, é a **razão de preços** $p_x/p_y$. Recuperamos, algebricamente, a condição de tangência que a @fig-tangencia mostrava geometricamente:
+
+$$
+\underbrace{\frac{\partial U/\partial x}{\partial U/\partial y}}_{\text{TMS}} = \frac{p_x}{p_y}.
+$$
+
+## Resolvendo o problema do consumidor: um exemplo completo
+
+Seja a utilidade $U(x, y) = x\,y$ (uma Cobb-Douglas simples), preços $p_x = 2$, $p_y = 4$ e renda $m = 80$. Queremos maximizar $U$ sujeito a $2x + 4y = 80$.
+
+**Passo 1 — montar o lagrangiano:**
+
+$$
+\mathcal{L} = x y + \lambda\,(80 - 2x - 4y).
+$$
+
+**Passo 2 — condições de primeira ordem:**
+
+$$
+\frac{\partial \mathcal{L}}{\partial x} = y - 2\lambda = 0, \qquad
+\frac{\partial \mathcal{L}}{\partial y} = x - 4\lambda = 0, \qquad
+\frac{\partial \mathcal{L}}{\partial \lambda} = 80 - 2x - 4y = 0.
+$$
+
+**Passo 3 — resolver.** Das duas primeiras: $y = 2\lambda$ e $x = 4\lambda$, logo $x = 2y$ (dividindo uma pela outra elimina $\lambda$). Isso é a condição de tangência: a utilidade marginal de $x$ é $y$, a de $y$ é $x$, e $\text{TMS} = y/x = p_x/p_y = 2/4$, ou seja, $x = 2y$. Substituindo na restrição:
+
+$$
+2(2y) + 4y = 80 \;\Longrightarrow\; 8y = 80 \;\Longrightarrow\; y^\* = 10, \quad x^\* = 20.
+$$
+
+E o multiplicador: $\lambda = y/2 = 5$. O consumidor compra $20$ unidades de $x$ e $10$ de $y$, obtendo utilidade $U = 20 \times 10 = 200$. Guarde o valor $\lambda = 5$; ele tem um significado que revelaremos já a seguir.
+
+::: {.callout-important title="Armadilha comum — esquecer de usar a restrição"}
+As duas primeiras condições (tangência) dão apenas a **proporção** entre os bens ($x = 2y$), não as quantidades. É a **terceira** condição — a restrição orçamentária — que fixa a escala e determina os valores absolutos. Um erro frequente é parar na condição de tangência e esquecer de substituí-la na restrição. Sem a restrição, o problema fica indeterminado.
+:::
+
+## O multiplicador é o preço-sombra
+
+Aqui está a joia do capítulo. O multiplicador $\lambda$ parece um mero auxiliar de cálculo, mas carrega uma interpretação econômica profunda:
+
+::: {.callout-note title="Interpretação — Multiplicador como preço-sombra"}
+No ótimo, o multiplicador de Lagrange $\lambda$ mede **quanto o valor máximo da função objetivo aumenta se a restrição for afrouxada em uma unidade**:
+$$
+\lambda = \frac{\partial f^\*}{\partial b},
+$$
+onde $f^\*$ é o valor ótimo. Por isso $\lambda$ é chamado de **preço-sombra** (ou valor marginal) da restrição.
+:::
+
+No nosso exemplo, $\lambda = 5$ significa que, se a renda $m$ subisse de $80$ para $81$, a utilidade máxima aumentaria em aproximadamente $5$ unidades. É a **utilidade marginal da renda**: o valor, em satisfação, de um real a mais no orçamento. Essa leitura transforma $\lambda$ de subproduto algébrico em informação econômica de primeira ordem.
+
+O conceito de preço-sombra é usado o tempo todo fora dos livros-texto. Numa fábrica com capacidade limitada, o preço-sombra da restrição de capacidade diz **quanto valeria** uma máquina a mais — e, portanto, quanto vale a pena pagar para expandir. Numa restrição ambiental (teto de emissões), o preço-sombra é o custo marginal de cumprir a meta — a base econômica dos **mercados de carbono**. Sempre que algo é escasso e amarra uma decisão, seu preço-sombra mede o valor de relaxá-la.
+
+::: {.callout-tip title="Intuição — a igualdade das \"utilidades por real\""}
+A condição de tangência tem uma forma equivalente muito intuitiva. Reorganizando $\dfrac{U_x}{U_y} = \dfrac{p_x}{p_y}$, obtemos
+$$
+\frac{U_x}{p_x} = \frac{U_y}{p_y} \;(= \lambda).
+$$
+Ou seja: no ótimo, **o último real gasto em cada bem rende a mesma satisfação**. Se um real gasto em $x$ desse mais utilidade que em $y$, o consumidor realocaria gasto para $x$. O equilíbrio é atingido quando todas as "utilidades marginais por real" se igualam — e esse valor comum é exatamente $\lambda$, a utilidade marginal da renda. É a lei da igualdade das utilidades marginais ponderadas, coração da teoria do consumidor.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+**O preço-sombra da restrição fiscal.** A ideia de multiplicador de Lagrange como valor de afrouxar uma restrição ilumina o debate fiscal brasileiro. O **arcabouço fiscal** (que sucedeu o teto de gastos) impõe, na prática, uma restrição orçamentária ao governo: o total de despesas não pode crescer além de certo limite. Toda decisão de política pública passa, então, por um problema de otimização com restrição — maximizar o bem-estar social sujeito ao limite de gastos. O **preço-sombra** dessa restrição é o valor, em bem-estar, de poder gastar um real a mais. Quando economistas discutem se vale a pena abrir uma exceção ao limite para investir em infraestrutura ou educação, estão, no fundo, comparando o **preço-sombra dos recursos públicos** (o retorno social do melhor uso alternativo) com o retorno da despesa proposta. É a mesma lógica do $\lambda$: o custo de oportunidade de cada real dentro de um orçamento apertado.
+
+**A escolha do consumidor brasileiro sob inflação de alimentos.** A condição de tangência — igualar a taxa marginal de substituição à razão de preços — descreve como as famílias reagem a mudanças de preços relativos, algo especialmente visível no Brasil quando a inflação de alimentos dispara. Quando o preço da carne sobe muito em relação ao do frango ou do ovo (movimentos que o IBGE capta no IPCA e na POF), a razão de preços $p_x/p_y$ muda, o ponto de tangência se desloca, e as famílias **substituem** a proteína mais cara pela mais barata. Estudos de demanda com dados da POF estimam essas substituições, e elas são a razão pela qual a "inflação sentida" varia tanto entre faixas de renda: famílias pobres, que gastam parcela maior do orçamento em alimentos, têm sua restrição orçamentária muito mais afetada por choques de preços de comida. A teoria deste capítulo é o esqueleto desses estudos de demanda.
+
+> **Fontes e séries para explorar:** IBGE — Pesquisa de Orçamentos Familiares (POF) e IPCA por grupo (alimentação), para estimar substituição entre bens; Instituição Fiscal Independente (IFI) e Tesouro Nacional, para o arcabouço fiscal e o custo de oportunidade do gasto público. Verifique as datas de referência das cestas e limites.
+
+## Resumo do capítulo
+
+- A **otimização com restrição** maximiza $f(x,y)$ sujeito a $g(x,y) = b$. O caso central é o consumidor que maximiza a utilidade $U(x,y)$ sujeito à restrição orçamentária $p_x x + p_y y = m$.
+- A solução ótima é o ponto de **tangência** entre a curva de indiferença mais alta possível e a reta orçamentária.
+- O **método de Lagrange** monta $\mathcal{L} = f + \lambda(b - g)$ e anula as três derivadas parciais. A condição de $\lambda$ recupera a restrição; as de $x$ e $y$ dão a **condição de tangência** $\dfrac{U_x}{U_y} = \dfrac{p_x}{p_y}$.
+- Equivalentemente, no ótimo **as utilidades marginais por real se igualam**: $\dfrac{U_x}{p_x} = \dfrac{U_y}{p_y} = \lambda$ — o último real gasto em cada bem rende a mesma satisfação.
+- O **multiplicador $\lambda$** é o **preço-sombra** da restrição: quanto o valor ótimo aumenta se a restrição afrouxar em uma unidade. No problema do consumidor, é a **utilidade marginal da renda**.
+- A condição de tangência dá só a **proporção** entre os bens; é a **restrição** que fixa as quantidades absolutas.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique, com suas palavras, por que a escolha ótima do consumidor ocorre onde a curva de indiferença **tangencia** a reta orçamentária, e não onde elas se cruzam.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Se a curva de indiferença **cruza** a reta orçamentária (dois pontos de interseção), então parte da reta fica **acima** dessa curva — ou seja, há combinações acessíveis que dão **mais** utilidade. O consumidor pode melhorar deslizando ao longo da reta até uma curva de indiferença mais alta. Só quando a curva apenas **toca** (tangencia) a reta é que não existe ponto acessível com utilidade maior: a tangência marca a curva de indiferença mais alta alcançável dentro do orçamento. No cruzamento, ainda há ganho a explorar; na tangência, não.
+:::
+
+**2.** Monte a função lagrangiana para o problema: maximizar $U(x,y) = x^2 y$ sujeito a $3x + 5y = 60$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$$
+\mathcal{L}(x, y, \lambda) = x^2 y + \lambda\,(60 - 3x - 5y).
+$$
+:::
+
+**3.** Para $U(x,y) = xy$, preços $p_x = 1$, $p_y = 1$ e renda $m = 40$, encontre a cesta ótima $(x^\*, y^\*)$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Lagrangiano: $\mathcal{L} = xy + \lambda(40 - x - y)$. CPO: $y - \lambda = 0$, $x - \lambda = 0$, logo $x = y$. Restrição: $x + y = 40 \Rightarrow 2x = 40 \Rightarrow x^\* = 20$, $y^\* = 20$. (Com preços iguais e utilidade simétrica, o consumidor divide a renda igualmente.)
+:::
+
+**4.** No exercício 3, calcule o multiplicador $\lambda$ e interprete seu significado econômico.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Da CPO, $\lambda = x = y = 20$. Interpretação: $\lambda = 20$ é o **preço-sombra da renda** — se a renda subisse de 40 para 41, a utilidade máxima aumentaria em aproximadamente 20 unidades. É a **utilidade marginal da renda** nesse ponto.
+:::
+
+**5.** Para $U(x,y) = xy$, preços $p_x = 4$, $p_y = 2$ e renda $m = 120$, encontre a cesta ótima e verifique a condição de igualdade das utilidades marginais por real.
+
+::: {.callout-tip collapse="true" title="Solução"}
+As utilidades marginais são $U_x = \partial(xy)/\partial x = y$ e $U_y = \partial(xy)/\partial y = x$. A condição de tangência é
+$$
+\frac{U_x}{U_y} = \frac{y}{x} = \frac{p_x}{p_y} = \frac{4}{2} = 2 \;\Longrightarrow\; y = 2x.
+$$
+Restrição: $4x + 2y = 120$. Substituindo $y = 2x$: $4x + 4x = 120 \Rightarrow x^\* = 15$, $y^\* = 30$.
+Verificação da igualdade das utilidades marginais por real: $\dfrac{U_x}{p_x} = \dfrac{y}{4} = \dfrac{30}{4} = 7{,}5$ e $\dfrac{U_y}{p_y} = \dfrac{x}{2} = \dfrac{15}{2} = 7{,}5$. São **iguais** (e valem $\lambda = 7{,}5$), como exige o ótimo.
+:::
+
+**6.** Uma firma tem função de produção $Q(K, L) = KL$ e enfrenta preços dos fatores $r = 2$ (capital) e $w = 8$ (trabalho), com orçamento de custo $C = 160$. Quanto de $K$ e de $L$ maximiza a produção?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Maximizar $KL$ sujeito a $2K + 8L = 160$. Lagrangiano: $\mathcal{L} = KL + \lambda(160 - 2K - 8L)$. CPO: $L - 2\lambda = 0$, $K - 8\lambda = 0 \Rightarrow K = 4L$. Restrição: $2(4L) + 8L = 160 \Rightarrow 16L = 160 \Rightarrow L^\* = 10$, $K^\* = 40$. A firma usa 40 de capital e 10 de trabalho (mais capital porque ele é relativamente mais barato).
+:::
+
+**7.** (Análise de caso) Um governo com **restrição orçamentária** apertada avalia gastar mais R\$\,1 bilhão. O preço-sombra estimado desse real de gasto público é 1,8 (cada real gera R\$\,1,80 de benefício social no melhor uso alternativo). Um projeto de infraestrutura proposto renderia benefício social de R\$\,1,50 por real investido. (a) O projeto deve ser aprovado, do ponto de vista do preço-sombra? (b) Relacione com o debate do arcabouço fiscal em Brasil em Foco.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Não**, pelo critério do preço-sombra. O preço-sombra da restrição (1,8) representa o retorno social do **melhor** uso alternativo daquele real. Como o projeto proposto rende apenas 1,5 por real — menos que 1,8 —, os recursos gerariam mais bem-estar em outra aplicação. Aprovar o projeto significaria abrir mão de 1,8 para obter 1,5, uma perda líquida de 0,3 por real.
+(b) É exatamente a lógica do arcabouço fiscal: sob um limite de gastos, cada real tem um custo de oportunidade (seu preço-sombra), e um novo gasto só se justifica se seu retorno social superar esse preço-sombra. O multiplicador de Lagrange formaliza a régua com que se avaliam exceções ao limite: gasta-se onde o retorno bate o preço-sombra dos recursos públicos, não em qualquer projeto de retorno positivo.
+:::
+
+**8.** (Desafio) Para a utilidade Cobb-Douglas geral $U(x,y) = x^a y^b$, com preços $p_x$, $p_y$ e renda $m$, mostre que a fração da renda gasta no bem $x$ é $\dfrac{a}{a+b}$, independentemente dos preços.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Utilidades marginais: $U_x = a x^{a-1} y^b$, $U_y = b x^a y^{b-1}$. Condição de tangência:
+$$
+\frac{U_x}{U_y} = \frac{a x^{a-1} y^b}{b x^a y^{b-1}} = \frac{a}{b}\cdot\frac{y}{x} = \frac{p_x}{p_y}
+\;\Longrightarrow\; p_x x = \frac{a}{b}\, p_y y.
+$$
+Substituindo na restrição $p_x x + p_y y = m$:
+$$
+\frac{a}{b} p_y y + p_y y = m \;\Longrightarrow\; p_y y\left(\frac{a+b}{b}\right) = m \;\Longrightarrow\; p_y y = \frac{b}{a+b}\,m.
+$$
+Logo o gasto em $y$ é a fração $\dfrac{b}{a+b}$ da renda, e por simetria (ou usando $p_x x = m - p_y y$) o gasto em $x$ é $\dfrac{a}{a+b}\,m$. As frações de gasto dependem **só dos expoentes** $a$ e $b$, não dos preços nem da renda — a propriedade célebre das preferências Cobb-Douglas, muito usada em modelos aplicados.
+:::
+
+## Para saber mais
+
+- @chiang2006 — os capítulos sobre otimização com restrição de igualdade e multiplicadores de Lagrange, com a interpretação econômica do multiplicador, são a referência direta deste capítulo.
+- @varian2015 — apresenta a escolha ótima do consumidor (tangência, utilidades marginais por real) com profundidade e intuição econômica; o complemento natural.
+- @simon2004 — para o tratamento matemático rigoroso de Lagrange, incluindo condições de segunda ordem e o teorema do envelope, que fundamenta o preço-sombra.
+- @sydsaeter2018 — otimização com restrições e interpretação do multiplicador, com muitos exemplos aplicados à Economia.

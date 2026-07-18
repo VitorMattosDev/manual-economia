@@ -1,0 +1,284 @@
+# Derivadas e a análise marginal {#sec-derivadas-analise-marginal}
+
+Se houvesse um único conceito matemático a levar para toda a Economia, seria este. Lá no primeiro capítulo do manual (@sec-o-que-e-economia), aprendemos que decisões racionais são tomadas **à margem** — comparando o benefício de "um pouquinho a mais" com o seu custo. Naquele momento, "um pouquinho a mais" era uma ideia intuitiva. Agora ela ganha corpo matemático exato: a **derivada** é, literalmente, a taxa de variação de "um pouquinho a mais". Custo marginal, receita marginal, produto marginal, utilidade marginal, propensão marginal a consumir — toda vez que você lê a palavra **marginal** em Economia, está lendo a palavra **derivada**.
+
+Este capítulo transforma a taxa média de variação do capítulo anterior em taxa **instantânea**, apresenta as regras práticas para calcular derivadas e mostra por que elas são a linguagem natural da decisão econômica.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- definir a **derivada** como limite da taxa média de variação e interpretá-la como inclinação da reta **tangente**;
+- aplicar as **regras de derivação** — da potência, da soma, do produto, do quociente e da cadeia;
+- traduzir "**marginal**" como "**derivada**" e calcular custo, receita e produto marginais;
+- relacionar o sinal da **primeira derivada** ao crescimento/decrescimento e o da **segunda derivada** à concavidade;
+- entender os **retornos decrescentes** como uma afirmação sobre a segunda derivada;
+- calcular a **elasticidade** usando derivadas.
+
+## Da secante à tangente: a definição de derivada
+
+Retomemos exatamente onde paramos. A taxa média de variação de $f$ entre $a$ e $a + h$ é a inclinação da secante:
+
+$$
+\frac{f(a + h) - f(a)}{h}.
+$$
+
+Essa é uma média sobre um intervalo de largura $h$. Para obter a taxa **no ponto** $a$ — a inclinação **instantânea** —, encolhemos o intervalo, fazendo $h$ tender a zero. À medida que $h \to 0$, o segundo ponto desliza sobre a curva até colar no primeiro, e a reta secante gira até se tornar a reta **tangente**. Esse limite é a derivada.
+
+::: {.callout-note title="Definição — Derivada"}
+A **derivada** de $f$ no ponto $a$, denotada $f'(a)$, é o limite da taxa média de variação quando o intervalo tende a zero:
+$$
+f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h},
+$$ {#eq-derivada}
+quando esse limite existe. Geometricamente, $f'(a)$ é a **inclinação da reta tangente** ao gráfico de $f$ no ponto $(a, f(a))$; economicamente, é a **taxa instantânea de variação** de $f$ em relação a $x$.
+:::
+
+A @fig-tangente ilustra a ideia: a secante (que corta a curva em dois pontos) gira, conforme $h$ diminui, até virar a tangente (que toca a curva num ponto só).
+
+::: {#fig-tangente}
+
+```{.tikz}
+%%| filename: fig-tangente
+%%| alt: Uma curva crescente com uma reta secante ligando dois pontos e uma reta tangente tocando a curva em um único ponto; setas indicam o segundo ponto deslizando até coincidir com o primeiro.
+\begin{tikzpicture}[scale=1.0, font=\small]
+  \draw[eixo] (0,0) -- (7,0) node[right]{$x$};
+  \draw[eixo] (0,0) -- (0,5.2) node[above]{$y=f(x)$};
+  % curva
+  \draw[curva] (0.3,0.5) .. controls (2.5,1.2) and (4,3.2) .. (6.5,4.7);
+  % ponto de tangência a
+  \node[ponto] (A) at (2.5,1.55) {};
+  \node[below right] at (A) {$a$};
+  % segundo ponto a+h
+  \node[ponto, fill=manualgray] (B) at (5.3,3.7) {};
+  \node[above left, manualgray] at (B) {$a+h$};
+  % secante
+  \draw[auxiliar, thick] (1.3,0.75) -- (6.4,4.6) node[right, manualgray]{secante};
+  % tangente
+  \draw[destaque] (0.9,0.35) -- (4.6,3.1) node[right, manualred]{tangente};
+  \draw[->,>=stealth, manualgray] (5.1,3.9) to[bend right] (2.9,1.9);
+\end{tikzpicture}
+```
+
+Quando $h \to 0$, o ponto $a+h$ desliza até $a$ e a reta secante gira até virar a tangente: sua inclinação é a derivada $f'(a)$.
+:::
+
+Escrevemos a derivada de várias formas equivalentes: $f'(x)$, $\dfrac{dy}{dx}$, $\dfrac{df}{dx}$. A notação de Leibniz, $\dfrac{dy}{dx}$, é especialmente sugestiva: lembra que a derivada é um quociente de variações **infinitesimais** — "$dy$ por $dx$" —, a versão instantânea do "$\Delta y$ por $\Delta x$".
+
+::: {.callout-tip title="Intuição — a derivada é o velocímetro"}
+Num carro, a distância percorrida é uma função do tempo. A velocidade **média** de uma viagem é $\Delta\text{distância}/\Delta\text{tempo}$ (a secante). Mas o **velocímetro** não mostra a média da viagem: mostra a velocidade **neste instante** — a derivada da distância em relação ao tempo. A derivada é o velocímetro de qualquer função: a taxa de variação exata em cada ponto.
+:::
+
+## As regras de derivação
+
+Felizmente, quase nunca precisamos calcular o limite da definição na prática. Um punhado de **regras** cobre praticamente todas as funções da Economia. Reúno as essenciais.
+
+### Regra da constante e da potência
+
+A derivada de uma constante é zero (uma reta horizontal não tem inclinação). E a regra mais usada de todas, a **regra da potência**:
+
+$$
+\text{se } f(x) = x^n, \text{ então } f'(x) = n\,x^{n-1}.
+$$
+
+"Traga o expoente para baixo como multiplicador e reduza o expoente em um." Assim, a derivada de $x^2$ é $2x$; a de $x^3$ é $3x^2$; a de $x = x^1$ é $1$.
+
+### Regras da soma e da constante multiplicativa
+
+A derivada de uma **soma** é a soma das derivadas, e constantes multiplicativas "passam para fora":
+
+$$
+[f(x) + g(x)]' = f'(x) + g'(x), \qquad [c\,f(x)]' = c\,f'(x).
+$$
+
+Com essas três regras já derivamos qualquer polinômio. Por exemplo, se $C(q) = 300 + 5q + 0{,}2q^2$, então
+
+$$
+C'(q) = 0 + 5 + 0{,}2 \times 2q = 5 + 0{,}4q.
+$$
+
+Essa $C'(q)$ é o **custo marginal** — voltaremos a ela em instantes.
+
+### Regra do produto e do quociente
+
+Para produtos e quocientes de funções:
+
+$$
+[f g]' = f' g + f g', \qquad \left[\frac{f}{g}\right]' = \frac{f' g - f g'}{g^2}.
+$$
+
+A regra do quociente é indispensável, por exemplo, para derivar o **custo médio** $CMe(q) = C(q)/q$ e mostrar a relação entre custo médio e marginal.
+
+### Regra da cadeia
+
+Para funções **compostas** — uma função dentro da outra, $f(g(x))$ —, usamos a **regra da cadeia**:
+
+$$
+[f(g(x))]' = f'(g(x)) \cdot g'(x).
+$$
+
+"Derive a de fora mantendo a de dentro, e multiplique pela derivada da de dentro." Ela é essencial quando uma variável econômica depende de outra que, por sua vez, depende de uma terceira — cadeias causais que abundam em Economia. Por exemplo, se o lucro depende da quantidade e a quantidade depende do tempo, a regra da cadeia dá a taxa de variação do lucro no tempo.
+
+::: {.callout-note title="Derivadas de exponencial e logaritmo"}
+Duas derivadas notáveis, muito usadas em crescimento e em finanças:
+$$
+(e^x)' = e^x, \qquad (\ln x)' = \frac{1}{x}.
+$$
+A exponencial é a única função (a menos de constante) que é **igual à sua própria derivada** — razão de sua onipresença em modelos de crescimento a taxa constante.
+:::
+
+## Marginal = derivada: o dicionário da análise econômica
+
+Chegamos ao ponto onde matemática e Economia se fundem. Em cada área da teoria, uma grandeza "marginal" é a **derivada** de uma grandeza "total". Este é o dicionário mais importante do volume:
+
+| Grandeza total | Grandeza marginal (= derivada) | Interpretação |
+|---|---|---|
+| Custo total $C(q)$ | Custo marginal $C'(q)$ | custo de produzir mais uma unidade |
+| Receita total $R(q)$ | Receita marginal $R'(q)$ | receita de vender mais uma unidade |
+| Produção $Q(L)$ | Produto marginal $Q'(L)$ | produto do trabalhador adicional |
+| Utilidade $U(x)$ | Utilidade marginal $U'(x)$ | satisfação da unidade adicional |
+| Consumo $C(Y)$ | Propensão marginal a consumir $C'(Y)$ | consumo por real de renda extra |
+
+Um exemplo concreto amarra tudo. Seja a receita $R(q) = 20q - 0{,}1 q^2$. A **receita marginal** é sua derivada:
+
+$$
+R'(q) = 20 - 0{,}2q.
+$$
+
+Para $q = 50$, $R'(50) = 20 - 10 = 10$: a quinquagésima primeira unidade acrescenta cerca de $R\$\,10$ à receita. Repare que a receita marginal **cai** conforme a quantidade sobe (o coeficiente de $q$ é negativo) — um fato central para entender por que um vendedor com poder de mercado não baixa o preço indefinidamente. E note a beleza da correspondência: aquela "taxa média de $R\$\,17$" que calculamos no capítulo anterior entre $q=10$ e $q=20$ era uma aproximação; agora obtemos a receita marginal **exata** em cada ponto.
+
+::: {.callout-important title="Armadilha comum — marginal não é média"}
+Custo **marginal** ($C'(q)$, o custo da próxima unidade) não é o mesmo que custo **médio** ($C(q)/q$, o custo por unidade acumulado). São grandezas distintas, com fórmulas distintas. Uma relação útil: o custo médio **cai** enquanto o marginal está **abaixo** dele, e **sobe** quando o marginal o **ultrapassa** — por isso a curva de custo marginal cruza a de custo médio exatamente no ponto mínimo do custo médio. Confundir marginal com médio é um dos erros mais frequentes em microeconomia.
+:::
+
+## Primeira e segunda derivadas: crescimento e concavidade
+
+A derivada carrega duas informações preciosas sobre o comportamento de uma função, e uma **segunda** derivada acrescenta a terceira.
+
+O **sinal da primeira derivada** diz se a função cresce ou decresce:
+
+- $f'(x) > 0$: a função está **crescendo** (inclinação positiva);
+- $f'(x) < 0$: a função está **decrescendo**;
+- $f'(x) = 0$: a função tem uma **tangente horizontal** — candidata a máximo ou mínimo (o tema do próximo capítulo).
+
+A **segunda derivada**, $f''(x)$ — a derivada da derivada —, mede como a **própria inclinação** está mudando, o que se traduz na **concavidade**:
+
+- $f''(x) > 0$: a função é **convexa** (concavidade para cima), a inclinação cresce;
+- $f''(x) < 0$: a função é **côncava** (concavidade para baixo), a inclinação diminui.
+
+Essa segunda derivada é a expressão matemática exata da **lei dos retornos decrescentes**, encontrada de forma intuitiva no @sec-metodo-da-economia. Quando dizemos que "cada trabalhador adicional produz um pouco menos que o anterior", estamos dizendo que o produto marginal $Q'(L)$ é positivo mas **decrescente** — ou seja, $Q'(L) > 0$ e $Q''(L) < 0$. Retornos decrescentes são, em uma frase, "primeira derivada positiva, segunda derivada negativa": a produção ainda cresce, mas a ritmo cada vez menor. Toda a forma côncava da função de produção mora nessa desigualdade sobre a segunda derivada.
+
+## Elasticidade: a derivada em forma percentual
+
+Uma última aplicação fecha o capítulo e antecipa o Volume 3. A **elasticidade-preço da demanda** mede a sensibilidade percentual da quantidade a variações percentuais do preço. Ela é, no fundo, uma derivada reescrita em termos percentuais:
+
+$$
+\varepsilon = \frac{dq}{dp} \cdot \frac{p}{q}.
+$$
+
+O fator $dq/dp$ é a derivada da demanda; o fator $p/q$ converte a taxa absoluta numa **razão de variações percentuais**. Por exemplo, para a demanda $q = 100 - 2p$, temos $dq/dp = -2$; no ponto $p = 20$, $q = 60$, a elasticidade é
+
+$$
+\varepsilon = -2 \cdot \frac{20}{60} = -\frac{2}{3} \approx -0{,}67.
+$$
+
+Como o valor absoluto é menor que $1$, a demanda é **inelástica** nesse ponto: a quantidade responde menos que proporcionalmente ao preço. Usar a derivada em vez de variações discretas dá a elasticidade **exata em cada ponto**, sem depender do tamanho do intervalo escolhido — uma das razões pelas quais economistas preferem a formulação com cálculo.
+
+## 🇧🇷 Brasil em Foco
+
+**Custo marginal e a formação de preços da indústria.** A regra de ouro da microeconomia — produzir até onde a **receita marginal** iguala o **custo marginal** — é o esqueleto de como firmas decidem quanto produzir, e o custo marginal é, matematicamente, a derivada da função de custo. No setor elétrico brasileiro, isso aparece de forma explícita e institucionalizada: o despacho de usinas pelo **Operador Nacional do Sistema (ONS)** segue a **ordem de mérito**, acionando primeiro as usinas de menor **custo marginal** de geração (hidrelétricas, em geral baratas) e, à medida que a demanda sobe, as de custo marginal crescente (térmicas a gás, a óleo). O preço da energia no mercado de curto prazo — o **PLD/CMO**, calculado pela CCEE — é justamente o **custo marginal de operação** do sistema: o custo de gerar o próximo megawatt. É a análise marginal deste capítulo operando, em tempo real, num mercado de bilhões de reais.
+
+**A propensão marginal a consumir e o multiplicador.** Já encontramos, no @sec-funcoes-e-graficos, a função consumo keynesiana $C = C_0 + c\,Y$. Agora podemos ser precisos: a **propensão marginal a consumir** $c$ é a **derivada** do consumo em relação à renda, $dC/dY$. Estudos com dados do IBGE (POF) e da renda das famílias brasileiras estimam essa derivada por faixa de renda, e ela alimenta diretamente o cálculo do **multiplicador fiscal** — quanto o PIB varia quando o governo gasta um real a mais. Quanto maior a derivada $dC/dY$ do grupo beneficiado, maior o multiplicador. Não por acaso, avaliações de programas de transferência de renda no Brasil (como o Bolsa Família) buscam estimar essa propensão marginal para dimensionar o efeito multiplicador dos programas sobre a atividade econômica local.
+
+> **Fontes e séries para explorar:** CCEE e ONS — metodologia do PLD/CMO e curva de custo marginal de operação (ordem de mérito); IBGE — Pesquisa de Orçamentos Familiares (POF) para estimar a propensão marginal a consumir; literatura de avaliação de impacto do Bolsa Família sobre consumo e atividade local.
+
+## Resumo do capítulo
+
+- A **derivada** $f'(a)$ é o limite da taxa média de variação quando o intervalo tende a zero: a inclinação da reta **tangente** e a taxa **instantânea** de variação. É o "velocímetro" de uma função.
+- As **regras de derivação** — potência ($x^n \to n x^{n-1}$), soma, produto, quociente e cadeia — permitem derivar quase toda função econômica sem recorrer ao limite. Ainda: $(e^x)' = e^x$ e $(\ln x)' = 1/x$.
+- **"Marginal" = "derivada".** Custo, receita, produto e utilidade marginais são as derivadas das respectivas grandezas totais; a propensão marginal a consumir é $dC/dY$.
+- **Marginal ≠ médio.** O custo marginal cruza o custo médio no mínimo deste último.
+- O **sinal de $f'$** indica crescimento ($>0$) ou decrescimento ($<0$); $f' = 0$ marca candidatos a máximo/mínimo. O **sinal de $f''$** dá a concavidade: **convexa** ($f''>0$) ou **côncava** ($f''<0$).
+- **Retornos decrescentes** são, em símbolos, $f' > 0$ e $f'' < 0$: a grandeza cresce, mas a ritmo cada vez menor.
+- A **elasticidade** $\varepsilon = \frac{dq}{dp}\cdot\frac{p}{q}$ é a derivada em forma percentual, dando a sensibilidade exata em cada ponto.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique, com suas palavras, a diferença entre a taxa **média** de variação e a taxa **instantânea** de variação. Use a analogia da velocidade.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A taxa **média** mede a variação total dividida pelo intervalo — como a velocidade média de uma viagem ($\Delta$distância/$\Delta$tempo), a inclinação da reta secante. A taxa **instantânea** (a derivada) mede a variação **num único ponto**, obtida encolhendo o intervalo até zero — como a velocidade que o velocímetro marca **neste instante**, a inclinação da reta tangente. A média resume um trecho; a instantânea descreve um ponto.
+:::
+
+**2.** Derive as funções: (a) $f(x) = x^4$; (b) $g(x) = 7x^3 - 2x^2 + 5x - 9$; (c) $h(q) = 300 + 5q + 0{,}2q^2$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $f'(x) = 4x^3$.
+(b) $g'(x) = 21x^2 - 4x + 5$.
+(c) $h'(q) = 5 + 0{,}4q$ (a constante 300 derivada dá zero). Essa é a função de custo marginal.
+:::
+
+**3.** A receita de uma firma é $R(q) = 60q - 0{,}5q^2$. (a) Encontre a função receita marginal. (b) Qual a receita marginal quando $q = 20$? (c) A partir de que quantidade a receita marginal fica negativa?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $R'(q) = 60 - q$.
+(b) $R'(20) = 60 - 20 = 40$: a 21ª unidade acrescenta cerca de R\$\,40 à receita.
+(c) $R'(q) < 0 \Leftrightarrow 60 - q < 0 \Leftrightarrow q > 60$. Acima de 60 unidades, vender mais **reduz** a receita total.
+:::
+
+**4.** O custo total é $C(q) = 100 + 2q + 0{,}5q^2$. (a) Encontre o custo marginal $C'(q)$. (b) Encontre o custo médio $CMe(q)$. (c) Compare o custo marginal e o médio em $q = 10$ e explique o que a comparação implica para a trajetória do custo médio nesse ponto.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $C'(q) = 2 + q$.
+(b) $CMe(q) = \dfrac{100 + 2q + 0{,}5q^2}{q} = \dfrac{100}{q} + 2 + 0{,}5q$.
+(c) Em $q = 10$: $C'(10) = 2 + 10 = 12$; $CMe(10) = 10 + 2 + 5 = 17$. O marginal (12) é **menor** que o médio (17), logo o custo médio ainda está **caindo** nesse ponto. Regra geral: quando marginal < médio, o médio cai; quando marginal > médio, o médio sobe; os dois se cruzam no **mínimo** do custo médio.
+:::
+
+**5.** Uma função de produção é $Q(L) = 20L - 0{,}5L^2$ (com $L$ = número de trabalhadores). (a) Encontre o produto marginal do trabalho, $Q'(L)$. (b) Calcule a segunda derivada e interprete o sinal. (c) Isso ilustra retornos decrescentes? A partir de quantos trabalhadores o produto marginal fica negativo?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $Q'(L) = 20 - L$.
+(b) $Q''(L) = -1 < 0$: a função é **côncava**, e o produto marginal **decresce** conforme se adicionam trabalhadores.
+(c) Sim: $Q' > 0$ (ainda produtivo) mas $Q'' < 0$ (a ritmo decrescente) é exatamente a definição de **retornos decrescentes**. O produto marginal fica negativo quando $20 - L < 0$, isto é, $L > 20$: além de 20 trabalhadores, um a mais **reduz** a produção total (excesso de gente atrapalhando).
+:::
+
+**6.** Para a demanda $q = 200 - 4p$, calcule a elasticidade-preço no ponto $p = 25$. A demanda é elástica ou inelástica aí?
+
+::: {.callout-tip collapse="true" title="Solução"}
+$dq/dp = -4$. Em $p = 25$: $q = 200 - 4\times 25 = 100$.
+$$
+\varepsilon = \frac{dq}{dp}\cdot\frac{p}{q} = -4 \cdot \frac{25}{100} = -1.
+$$
+O valor absoluto é exatamente $1$: a demanda tem **elasticidade unitária** nesse ponto — a variação percentual da quantidade iguala a do preço. (Abaixo de $p=25$ ela é inelástica; acima, elástica.)
+:::
+
+**7.** (Análise de caso) No mercado de energia elétrica de curto prazo, o preço reflete o **custo marginal de operação** do sistema. Suponha que a ordem de mérito seja: hidrelétricas (custo marginal R\$\,50/MWh) até 1.000 MW, depois térmicas a gás (R\$\,300/MWh) até 1.400 MW, depois térmicas a óleo (R\$\,700/MWh). (a) Qual o preço se a demanda for 900 MW? E se for 1.200 MW? E 1.500 MW? (b) Por que o preço "salta" em degraus? Relacione com custo marginal e com a @fig-continuidade do capítulo anterior.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) O preço iguala o custo marginal da **última** usina acionada para atender a demanda. Com 900 MW, só hidrelétricas: R\$\,50/MWh. Com 1.200 MW, entram as térmicas a gás: R\$\,300/MWh. Com 1.500 MW, entram as a óleo: R\$\,700/MWh.
+(b) O custo marginal do sistema é uma função **em degraus** (descontínua) da demanda, porque as usinas têm custos marginais discretamente diferentes e são acionadas em blocos. Ao cruzar a capacidade de uma fonte barata, o sistema salta para a próxima, mais cara, e o preço pula. É exatamente a função descontínua da @fig-continuidade aplicada à precificação da energia: a análise marginal deste capítulo determina o preço, e a descontinuidade do capítulo anterior explica seus saltos.
+:::
+
+**8.** (Desafio) Mostre, usando a regra do quociente, que o custo médio $CMe(q) = C(q)/q$ tem derivada nula (ponto de mínimo candidato) exatamente quando o custo marginal iguala o custo médio.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela regra do quociente, com $f = C(q)$ e $g = q$:
+$$
+CMe'(q) = \frac{C'(q)\cdot q - C(q)\cdot 1}{q^2} = \frac{C'(q)\,q - C(q)}{q^2}.
+$$
+Igualando a zero (o numerador deve se anular, pois $q^2 > 0$):
+$$
+C'(q)\,q - C(q) = 0 \;\Longrightarrow\; C'(q) = \frac{C(q)}{q} = CMe(q).
+$$
+Ou seja, o custo médio tem tangente horizontal (candidato a mínimo) precisamente onde o **custo marginal iguala o custo médio**. Isso prova algebricamente por que a curva de custo marginal cruza a de custo médio no ponto mínimo desta — um resultado que o Volume 5 usará à exaustão.
+:::
+
+## Para saber mais
+
+- @chiang2006 — os capítulos sobre derivadas e sua aplicação à análise econômica (custo marginal, receita marginal, elasticidade) são a referência direta para este capítulo.
+- @guidorizzi2018 — para consolidar a definição de derivada via limite e o domínio das regras de derivação, com muitos exercícios.
+- @varian2015 — mostra a análise marginal em ação na teoria do consumidor e da firma; leia-o após este capítulo para ver a derivada "trabalhando".
+- @sydsaeter2018 — tratamento moderno de derivadas e elasticidades com aplicações econômicas abundantes.
