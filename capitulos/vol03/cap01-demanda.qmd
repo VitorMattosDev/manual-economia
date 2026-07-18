@@ -1,0 +1,290 @@
+# A demanda: determinantes e a curva de demanda {#sec-demanda}
+
+Repare no que acontece na feira quando o quilo do tomate salta de R\$\,6 para R\$\,12. Ninguém precisa avisar ninguém: as pessoas simplesmente compram menos tomate. Algumas trocam por outra salada, outras diminuem a quantidade, outras deixam para a semana que vem. Ninguém coordena esse recuo — e, no entanto, ele é tão regular que os economistas o chamam de **lei**. Entender por que a quantidade que os consumidores desejam comprar reage ao preço, e a que *mais* ela reage, é o primeiro passo para compreender como funciona qualquer mercado.
+
+Este capítulo trata do lado do comprador. Vamos construir, peça por peça, a ferramenta mais usada de toda a Economia — a **curva de demanda** —, distinguir cuidadosamente o que a faz *deslizar* do que a faz *deslocar*, e catalogar as forças que determinam quanto de um bem as pessoas querem adquirir. O lado do vendedor virá no @sec-oferta; o encontro entre os dois, no @sec-equilibrio-de-mercado.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- distinguir **quantidade demandada** de **demanda** e enunciar corretamente a **lei da demanda**;
+- ler, construir e interpretar uma **tabela** e uma **curva de demanda**;
+- explicar por que a curva de demanda é, em geral, negativamente inclinada;
+- diferenciar um **movimento ao longo** da curva de um **deslocamento** da curva inteira;
+- identificar os **determinantes da demanda** (renda, preços de bens relacionados, gostos, expectativas e número de compradores) e prever a direção de cada deslocamento;
+- classificar bens em **normais** e **inferiores**, **substitutos** e **complementares**;
+- passar da **demanda individual** à **demanda de mercado** por agregação horizontal e trabalhar com uma **função de demanda** algébrica.
+
+## Quantidade demandada e a lei da demanda
+
+Comece pela unidade elementar. A **quantidade demandada** de um bem é a quantidade que os consumidores estão dispostos e aptos a comprar a um determinado preço, num dado período. As duas condições importam: querer sem poder pagar não é demanda econômica, e poder pagar sem querer também não. Demanda é desejo *respaldado por poder de compra*.
+
+::: {.callout-note title="Definição — Lei da demanda"}
+Mantidos constantes todos os demais fatores (*ceteris paribus*), a **quantidade demandada** de um bem varia **inversamente** ao seu preço: quando o preço sobe, a quantidade demandada cai; quando o preço cai, a quantidade demandada sobe.
+:::
+
+A cláusula *ceteris paribus* — "tudo o mais constante", que você viu no @sec-metodo-da-economia — é o que dá sentido à lei. Ela isola o efeito do preço, congelando renda, gostos e todo o resto. Sem esse congelamento, seria impossível falar em "o" efeito do preço, porque na vida real várias coisas mudam ao mesmo tempo.
+
+Por que a quantidade demandada cai quando o preço sobe? Há duas razões, que o @sec-efeitos-renda-substituicao dissecará com rigor, mas cuja intuição já cabe aqui:
+
+- **Efeito substituição.** Quando o tomate encarece, ele fica caro *em relação* a seus substitutos (cenoura, beterraba, outra salada). O consumidor troca parte do tomate pelo que ficou relativamente mais barato.
+- **Efeito renda.** Um preço mais alto reduz o que o seu salário consegue comprar — o seu **poder de compra real**. Mais pobre em termos reais, você compra menos de vários bens, inclusive daquele que encareceu.
+
+Os dois efeitos empurram, quase sempre, na mesma direção: preço maior, quantidade menor. Daí a robustez empírica da lei.
+
+## A tabela e a curva de demanda
+
+A relação entre preço e quantidade demandada pode ser exibida de três formas equivalentes: uma **tabela**, um **gráfico** e uma **equação**. Comece pela tabela, chamada *escala de demanda*, para o mercado de café de uma cidade hipotética:
+
+| Preço (R\$/kg) | Quantidade demandada (mil kg/mês) |
+|:---:|:---:|
+| 50 | 10 |
+| 40 | 20 |
+| 30 | 30 |
+| 20 | 40 |
+| 10 | 50 |
+
+: Escala de demanda por café {#tbl-escala-demanda}
+
+Cada par preço–quantidade da @tbl-escala-demanda vira um ponto no plano. Ligando os pontos, obtemos a **curva de demanda** da @fig-curva-demanda. Uma convenção herdada de Alfred Marshall [@marshall1996], e que atravessa toda a Economia, coloca o **preço no eixo vertical** e a **quantidade no eixo horizontal** — invertendo a intuição matemática de que a variável "causadora" (o preço) deveria ir no eixo horizontal. Conviva com essa herança: ela é universal.
+
+::: {#fig-curva-demanda}
+
+```{.tikz}
+%%| filename: fig-curva-demanda
+%%| alt: Curva de demanda negativamente inclinada, com preço no eixo vertical e quantidade no horizontal, mostrando que a preços menores corresponde maior quantidade demandada.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (7,0) node[right] {$Q$ (mil kg/mês)};
+  \draw[eixo] (0,0) -- (0,6.2) node[above] {$P$ (R\$/kg)};
+  % curva de demanda: pontos (1,5.5) a (5.5,1) aproximando a escala
+  \draw[curva] (0.8,5.6) -- (6.2,0.8) node[below right, manualblue] {$D$};
+  % ponto de exemplo P=30, Q=30
+  \coordinate (A) at (3.5,3.3);
+  \node[ponto] at (A) {};
+  \draw[auxiliar] (A) -- (3.5,0) node[below] {$30$};
+  \draw[auxiliar] (A) -- (0,3.3) node[left] {$30$};
+  \node[manualblue, align=center, font=\footnotesize] at (5.6,4.4)
+    {preço $\downarrow$\\quantidade $\uparrow$};
+\end{tikzpicture}
+```
+
+A curva de demanda inclina-se para baixo: preços menores correspondem a quantidades demandadas maiores.
+:::
+
+::: {.callout-important title="Armadilha comum — a curva mostra intenções, não vendas"}
+A curva de demanda registra quanto os consumidores *desejariam* comprar a cada preço hipotético, não quanto de fato compraram. O quanto foi efetivamente transacionado depende também da oferta e só se define no equilíbrio (@sec-equilibrio-de-mercado). A curva de demanda, sozinha, é um "e se": *se* o preço fosse R\$\,30, os consumidores desejariam 30 mil kg.
+:::
+
+## Movimento ao longo *versus* deslocamento da curva
+
+Aqui mora a distinção mais importante — e mais confundida — do capítulo. É preciso separar dois tipos de mudança:
+
+1. **Movimento ao longo da curva** (mudança na *quantidade demandada*). Ocorre quando **o próprio preço do bem** muda. Deslizamos de um ponto a outro *sobre a mesma curva*. Nada mais mudou.
+2. **Deslocamento da curva inteira** (mudança na *demanda*). Ocorre quando muda **qualquer determinante que não o preço do bem** — renda, gostos etc. A curva toda se move para a direita (aumento de demanda) ou para a esquerda (redução de demanda).
+
+::: {.callout-tip title="Intuição — o vocabulário é uma âncora"}
+Guarde a regra de linguagem, porque ela evita 90% dos erros: mudou **o preço do próprio bem** → mudou a **quantidade demandada** (anda-se *sobre* a curva). Mudou **qualquer outra coisa** → mudou a **demanda** (a curva *se desloca*). "Quantidade demandada" e "demanda" não são sinônimos em Economia.
+:::
+
+A @fig-deslocamento-demanda contrasta os dois casos. À esquerda, uma queda de preço leva de $A$ a $B$ sobre a mesma curva. À direita, um aumento de renda desloca a curva inteira de $D_0$ para $D_1$: a cada preço, deseja-se comprar mais.
+
+::: {#fig-deslocamento-demanda}
+
+```{.tikz}
+%%| filename: fig-deslocamento-demanda
+%%| alt: Dois painéis. À esquerda, movimento ao longo da curva de demanda de A para B causado por queda de preço. À direita, deslocamento de toda a curva de demanda para a direita, de D0 para D1.
+\begin{tikzpicture}[scale=0.92]
+  % --- painel esquerdo: movimento ao longo ---
+  \begin{scope}
+    \draw[eixo] (0,0) -- (5,0) node[right] {$Q$};
+    \draw[eixo] (0,0) -- (0,5) node[above] {$P$};
+    \draw[curva] (0.6,4.4) -- (4.6,0.6) node[below right, manualblue] {$D$};
+    \coordinate (A) at (1.6,3.4);
+    \coordinate (B) at (3.4,1.6);
+    \node[ponto] at (A) {}; \node[above right] at (A) {$A$};
+    \node[ponto] at (B) {}; \node[above right] at (B) {$B$};
+    \draw[auxiliar] (A) -- (0,3.4) node[left,font=\footnotesize] {$P_0$};
+    \draw[auxiliar] (B) -- (0,1.6) node[left,font=\footnotesize] {$P_1$};
+    \draw[destaque,->,>=stealth] (A) to[bend right=15] (B);
+    \node[align=center,font=\footnotesize] at (2.5,-0.9) {(a) queda do preço:\\movimento ao longo};
+  \end{scope}
+  % --- painel direito: deslocamento ---
+  \begin{scope}[xshift=7.5cm]
+    \draw[eixo] (0,0) -- (5,0) node[right] {$Q$};
+    \draw[eixo] (0,0) -- (0,5) node[above] {$P$};
+    \draw[curva] (0.4,4.0) -- (3.8,0.6) node[below right, manualblue] {$D_0$};
+    \draw[curva, manualblue!45] (1.4,4.4) -- (4.8,1.0) node[below right] {$D_1$};
+    \draw[vetor, manualgreen] (2.3,2.3) -- (3.3,2.3);
+    \node[align=center,font=\footnotesize] at (2.6,-0.9) {(b) aumento de renda:\\deslocamento da curva};
+  \end{scope}
+\end{tikzpicture}
+```
+
+Movimento ao longo (a) *versus* deslocamento (b): a fronteira entre "quantidade demandada" e "demanda".
+:::
+
+## Os determinantes da demanda
+
+O que faz a curva inteira se deslocar? Cinco famílias de fatores — tudo aquilo que a cláusula *ceteris paribus* mantinha congelado.
+
+### Renda: bens normais e inferiores
+
+Quando sua renda aumenta, você compra mais da maioria dos bens. Um bem assim se chama **bem normal**: demanda e renda andam no mesmo sentido. Mas há exceções instrutivas. Para alguns bens, um aumento de renda faz a demanda *cair*, porque o consumidor migra para alternativas de maior qualidade. Esses são os **bens inferiores**.
+
+::: {.callout-note title="Definição — bens normais e inferiores"}
+Um **bem normal** é aquele cuja demanda **aumenta** quando a renda do consumidor aumenta (*ceteris paribus*). Um **bem inferior** é aquele cuja demanda **diminui** quando a renda aumenta, porque o consumidor o substitui por opções que passou a poder pagar.
+:::
+
+Exemplos clássicos de bens inferiores: passagem de ônibus (substituída por carro ou aplicativo quando a renda sobe), cortes de carne de segunda, marcas "de primeiro preço". Note que "inferior" é um termo técnico, não um juízo de qualidade absoluta: é inferior *para aquele consumidor, naquela faixa de renda*.
+
+### Preços de bens relacionados: substitutos e complementares
+
+O preço de *outros* bens também desloca a demanda de um bem. Dois casos:
+
+- **Substitutos** — bens que satisfazem necessidade parecida (manteiga e margarina, ônibus e metrô, chá e café). Se o preço da margarina sobe, parte dos consumidores migra para a manteiga: a demanda por manteiga **aumenta**. Preço do substituto e demanda do bem andam no **mesmo** sentido.
+- **Complementares** — bens consumidos em conjunto (carro e gasolina, pão e manteiga, impressora e cartucho). Se a gasolina encarece muito, cai a demanda por carros: a demanda pelo bem e o preço do complementar andam em sentidos **opostos**.
+
+### Gostos, expectativas e número de compradores
+
+- **Gostos e preferências.** Modas, campanhas, informação nutricional, hábitos culturais. Uma reportagem sobre os malefícios do açúcar desloca para a esquerda a demanda por refrigerantes.
+- **Expectativas.** Se você espera que a gasolina suba amanhã, enche o tanque hoje: a expectativa de preço futuro maior aumenta a demanda presente. Expectativas de renda também contam.
+- **Número de compradores.** A demanda de mercado é a soma das demandas individuais; mais compradores (crescimento populacional, novo mercado consumidor) deslocam a demanda de mercado para a direita.
+
+A @tbl-determinantes resume a direção de cada deslocamento.
+
+| Fator que aumenta | Efeito sobre a demanda do bem |
+|:---|:---:|
+| Renda (bem **normal**) | desloca para a **direita** |
+| Renda (bem **inferior**) | desloca para a **esquerda** |
+| Preço de um **substituto** | desloca para a **direita** |
+| Preço de um **complementar** | desloca para a **esquerda** |
+| Preferência pelo bem | desloca para a **direita** |
+| Expectativa de preço futuro maior | desloca para a **direita** |
+| Número de compradores | desloca para a **direita** |
+
+: Determinantes da demanda e direção do deslocamento {#tbl-determinantes}
+
+## Da demanda individual à demanda de mercado
+
+A curva de demanda de *mercado* é a soma das curvas individuais. Como o preço é o mesmo para todos, somamos as **quantidades** que cada consumidor deseja *a cada preço* — uma **agregação horizontal**.
+
+Suponha um mercado com apenas dois consumidores. A um preço de R\$\,10, Ana deseja 3 unidades e Bruno, 5. A quantidade de mercado a R\$\,10 é $3 + 5 = 8$. Repetindo para cada preço, obtém-se a curva de mercado, sempre mais "achatada" (mais horizontal) que as individuais, porque acumula a resposta de todos.
+
+::: {.callout-note title="Definição — demanda de mercado"}
+A **curva de demanda de mercado** é obtida somando **horizontalmente** as curvas de demanda individuais: para cada preço, somam-se as quantidades demandadas por todos os consumidores do mercado.
+:::
+
+## A função de demanda
+
+A terceira representação é algébrica. Uma **função de demanda** exprime a quantidade demandada em função do preço (e dos demais determinantes). A forma linear é a mais comum nos exercícios:
+
+$$
+Q_d = a - b\,P, \qquad a > 0,\; b > 0.
+$$ {#eq-funcao-demanda}
+
+O coeficiente $a$ é a quantidade que seria demandada a preço zero (o *intercepto* de quantidade); o coeficiente $b > 0$ traduz a lei da demanda — a inclinação negativa. Para a escala da @tbl-escala-demanda, a função é $Q_d = 60 - P$: confira que $P = 30$ dá $Q_d = 30$, e $P = 10$ dá $Q_d = 50$.
+
+::: {.callout-important title="Armadilha comum — inclinação da curva ≠ coeficiente da função"}
+Como economistas põem $P$ no eixo vertical, a curva desenhada tem inclinação $\mathrm{d}P/\mathrm{d}Q$. Invertendo @eq-funcao-demanda, $P = \frac{a}{b} - \frac{1}{b}Q$, de modo que a inclinação *no gráfico* é $-1/b$, não $-b$. Quando os determinantes (não o preço) mudam, é o intercepto $a$ que se altera — e a curva **se desloca**.
+:::
+
+Os determinantes entram como termos adicionais. Uma função de demanda mais completa poderia ser $Q_d = a - bP + cR + dP_s$, em que $R$ é a renda (com $c > 0$ para bem normal) e $P_s$, o preço de um substituto (com $d > 0$). Uma mudança em $P$ move-se *ao longo* da curva; uma mudança em $R$ ou $P_s$ **desloca** a curva, exatamente como discutido acima.
+
+## 🇧🇷 Brasil em Foco
+
+A teoria da demanda ganha carne quando confrontada com os dados de consumo das famílias brasileiras.
+
+**A cesta do brasileiro e os bens inferiores.** A **Pesquisa de Orçamentos Familiares (POF)** do IBGE mapeia o que as famílias consomem em cada faixa de renda. Ela oferece um laboratório natural do conceito de bem inferior: à medida que a renda familiar sobe, a *participação* de itens como arroz, feijão, farinha e transporte por ônibus no orçamento tende a cair, enquanto cresce a de serviços, lazer, plano de saúde e automóvel. A famosa **Lei de Engel** — de que a fração da renda gasta com alimentação cai conforme a renda aumenta — é visível na POF e é uma das regularidades empíricas mais antigas da Economia.
+
+**Substitutos e complementares no dia a dia.** O par **gasolina e etanol** é o exemplo brasileiro de substitutos por excelência: a frota flex permite que o motorista escolha na bomba, e a regra prática dos "70%" (vale a pena o etanol se seu preço for inferior a ~70% do da gasolina) é uma decisão de substituição em tempo real, sensível aos preços relativos que a ANP acompanha. Já **automóvel e combustível** são complementares: altas persistentes no preço dos combustíveis pressionam para baixo a demanda por veículos, sobretudo os menos eficientes.
+
+**Deslocamentos de demanda em choques recentes.** Durante a pandemia de covid-19 (2020–2021), a demanda por vários bens e serviços deslocou-se bruscamente: despencou a de passagens aéreas e serviços presenciais, enquanto disparou a de equipamentos de informática, entrega de comida e itens de home office — deslocamentos de curva (mudança de hábitos, expectativas e restrições), não meros movimentos ao longo. O IBGE captou esses movimentos na Pesquisa Mensal de Comércio e de Serviços.
+
+> **Fontes e séries para explorar:** IBGE — Pesquisa de Orçamentos Familiares (POF), Pesquisa Mensal de Comércio (PMC) e de Serviços (PMS); ANP — preços de combustíveis (levantamento semanal); Bacen/SGS para renda e crédito. Ao usar números, verifique a data de referência e prefira participações e tendências a valores absolutos que envelhecem.
+
+## Resumo do capítulo
+
+- A **quantidade demandada** é quanto os consumidores desejam e podem comprar a **um** preço; a **demanda** é a relação inteira entre preço e quantidade (a curva completa).
+- A **lei da demanda** afirma que, *ceteris paribus*, quantidade demandada e preço variam em sentidos opostos, por causa dos efeitos **substituição** e **renda**.
+- A **curva de demanda** (preço no eixo vertical, por convenção de Marshall) é negativamente inclinada; tabela, gráfico e função são três formas equivalentes de exibi-la.
+- Mudou **o preço do próprio bem** → **movimento ao longo** da curva (muda a quantidade demandada). Mudou **outro determinante** → **deslocamento** da curva (muda a demanda).
+- **Determinantes:** renda (bens **normais** × **inferiores**), preços de relacionados (**substitutos** × **complementares**), gostos, expectativas e número de compradores.
+- A **demanda de mercado** é a soma **horizontal** das demandas individuais.
+- Na **função de demanda** linear $Q_d = a - bP$, mudanças em $P$ movem-se ao longo da curva; mudanças nos demais parâmetros deslocam-na. A inclinação no gráfico é $-1/b$.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva antes de abrir a solução. A dificuldade cresce: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise de caso.
+:::
+
+**1.** Explique a diferença entre "aumento da quantidade demandada" e "aumento da demanda". Dê um exemplo de cada.
+
+::: {.callout-tip collapse="true" title="Solução"}
+"Aumento da **quantidade demandada**" é um **movimento ao longo** da curva, causado por uma **queda no preço do próprio bem** (ex.: o quilo do café cai de R\$\,40 para R\$\,30 e as pessoas compram mais café). "Aumento da **demanda**" é um **deslocamento** da curva inteira para a direita, causado por um determinante que **não é o preço do bem** (ex.: a renda das famílias sobe e elas passam a comprar mais café *a cada preço*).
+:::
+
+**2.** Para cada par, diga se são substitutos ou complementares e o efeito sobre a demanda do segundo bem caso o preço do primeiro **suba**:
+(a) chá / café; (b) gasolina / carro; (c) impressora / cartucho de tinta; (d) metrô / ônibus.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Substitutos**: preço do chá sobe → demanda por café **aumenta**.
+(b) **Complementares**: preço da gasolina sobe → demanda por carro **cai**.
+(c) **Complementares**: preço da impressora sobe → demanda por cartucho **cai** (vendem-se menos impressoras).
+(d) **Substitutos**: preço do metrô sobe → demanda por ônibus **aumenta**.
+:::
+
+**3.** A demanda de mercado por um bem é $Q_d = 120 - 4P$ (com $Q$ em milhares e $P$ em reais). (a) Quanto se demanda a $P = 10$? (b) A que preço a quantidade demandada é zero? (c) Escreva a equação na forma $P$ em função de $Q$ e diga a inclinação da curva no gráfico.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $Q_d = 120 - 4(10) = 80$ mil unidades.
+(b) $0 = 120 - 4P \Rightarrow P = 30$. A esse "preço de choke", ninguém compra.
+(c) Isolando: $4P = 120 - Q \Rightarrow P = 30 - \tfrac{1}{4}Q$. A inclinação no gráfico é $-1/4$.
+:::
+
+**4.** Duas pessoas formam o mercado. Ana demanda $Q_A = 20 - 2P$ e Bruno demanda $Q_B = 30 - P$ (para $P$ tal que as quantidades sejam não negativas). Obtenha a demanda de mercado a $P = 5$ e a $P = 12$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A $P = 5$: $Q_A = 20 - 10 = 10$; $Q_B = 30 - 5 = 25$; mercado $= 35$.
+A $P = 12$: $Q_A = 20 - 24 = -4 \to 0$ (Ana já saiu do mercado, pois quantidade não é negativa); $Q_B = 30 - 12 = 18$; mercado $= 18$.
+Repare que, acima de $P = 10$, só Bruno compra — por isso a curva de mercado tem um "cotovelo" em $P = 10$.
+:::
+
+**5.** Classifique o efeito sobre a **demanda de smartphones** (aumenta, diminui ou anda sobre a curva) de cada evento, justificando:
+(a) queda no preço dos smartphones;
+(b) aumento da renda média (smartphone é bem normal);
+(c) barateamento dos planos de dados (complementar);
+(d) expectativa de forte alta de preços no mês seguinte.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Movimento ao longo** da curva (aumenta a quantidade demandada), pois muda o preço do próprio bem.
+(b) **Aumenta a demanda** (desloca à direita): bem normal, renda maior.
+(c) **Aumenta a demanda**: cai o preço de um complementar, tornando o pacote "celular + dados" mais barato.
+(d) **Aumenta a demanda presente**: antecipa-se a compra por expectativa de preço futuro maior.
+:::
+
+**6.** O arroz é, para muitas famílias, um bem inferior. Desenhe (descreva) o que acontece com a curva de demanda por arroz de uma família quando ela recebe um aumento salarial permanente. Como isso se concilia com a *lei da demanda*?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Sendo o arroz inferior *para essa família*, o aumento de renda **desloca a curva de demanda por arroz para a esquerda** (ela passa a comprar menos arroz a cada preço, migrando para itens mais variados). Isso **não** contradiz a lei da demanda: a lei é *ceteris paribus* e trata do efeito **do preço do arroz** sobre a quantidade (movimento ao longo da curva). O deslocamento aqui é causado pela **renda**, um determinante diferente. A curva continua negativamente inclinada; ela apenas mudou de posição.
+:::
+
+**7.** (Análise de caso) Uma rede de fast-food observa que suas vendas caíram após três eventos simultâneos: (i) subiu o preço de seus lanches; (ii) uma campanha de saúde alertou contra ultraprocessados; (iii) um concorrente abriu lojas na região com preços mais baixos. Separe, em termos de demanda, o que é movimento ao longo e o que é deslocamento, e explique por que a empresa não deveria atribuir toda a queda ao próprio preço.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(i) O aumento do **próprio preço** provoca **movimento ao longo** da curva — menor quantidade demandada. (ii) A campanha de saúde muda **gostos** e **desloca a demanda para a esquerda**. (iii) O concorrente com preço menor é um **substituto** que ficou mais barato — também **desloca** a curva da rede para a esquerda. Atribuir toda a queda ao próprio preço confundiria movimento ao longo com deslocamento, superestimando a sensibilidade ao preço e podendo levar a uma redução de preço que não recuperaria as vendas perdidas por gostos e concorrência. O diagnóstico correto separa as três forças.
+:::
+
+**8.** (Desafio) Um **bem de Giffen** é um caso raro e controverso em que a quantidade demandada *sobe* quando o preço sobe, violando aparentemente a lei da demanda. Sabendo que ele deve ser um bem inferior que domina o orçamento de famílias muito pobres, esboce a intuição de por que o efeito renda poderia, nesse caso, superar o efeito substituição. (O tratamento formal virá no @sec-efeitos-renda-substituicao.)
+
+::: {.callout-tip collapse="true" title="Solução"}
+Suponha uma família muito pobre cujo orçamento é quase todo gasto num alimento básico barato (digamos, arroz), sendo o resto um alimento caro (carne). Se o preço do arroz **sobe**, a família fica tão mais pobre em termos reais (efeito renda, negativo e forte porque o arroz pesa muito no orçamento) que já não pode comprar carne — e passa a depender *ainda mais* do arroz para se alimentar, comprando **mais** arroz apesar de ele ter encarecido. Aqui, o **efeito renda** (que, para um bem inferior, empurra a quantidade no mesmo sentido do preço) **supera o efeito substituição**, produzindo uma curva de demanda de inclinação positiva no trecho relevante. É teoricamente possível, mas empiricamente raro e controverso — a lei da demanda permanece a regra.
+:::
+
+## Para saber mais
+
+- @mankiw2020 — os capítulos sobre as forças de mercado da oferta e da demanda trazem o tratamento introdutório canônico, com a distinção movimento × deslocamento bem ilustrada.
+- @varian2015 — para uma construção mais rigorosa da demanda a partir da escolha do consumidor, antecipando os capítulos finais deste volume.
+- @pindyck2013 — capítulos iniciais, com fartos exemplos aplicados de deslocamentos de demanda e bens relacionados.
+- @marshall1996 — a fonte histórica da curva de demanda e da convenção dos eixos; leitura para quem quer ir às raízes.

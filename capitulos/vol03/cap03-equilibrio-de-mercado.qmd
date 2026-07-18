@@ -1,0 +1,277 @@
+# Equilíbrio de mercado e dinâmica de ajuste {#sec-equilibrio-de-mercado}
+
+Ninguém decreta o preço do tomate. Não há um comitê que reúna feirantes e fregueses para combinar quanto ele vai custar. E, no entanto, todo dia há um preço — e a esse preço, quase todo o tomate que chega à feira é vendido, sem sobrar montanhas apodrecendo nem faltar para quem quer comprar. Como um mercado sem maestro chega a esse resultado? A resposta é o conceito que dá a este capítulo o seu lugar central no manual: o **equilíbrio**.
+
+No @sec-demanda construímos a curva de demanda; no @sec-oferta, a de oferta. Agora as juntamos. O ponto onde elas se cruzam determina, simultaneamente, o **preço** e a **quantidade** que prevalecem no mercado — e, o que é mais notável, forças espontâneas empurram o mercado para esse ponto sempre que ele se afasta dele. Este é o motor que Adam Smith chamou de "mão invisível".
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- definir **equilíbrio de mercado** e localizá-lo graficamente e algebricamente;
+- explicar por que **excesso de oferta** e **excesso de demanda** geram forças que reconduzem o mercado ao equilíbrio;
+- calcular preço e quantidade de equilíbrio a partir das funções de oferta e demanda;
+- fazer **estática comparativa**: prever como $P^{*}$ e $Q^{*}$ mudam quando a oferta ou a demanda se desloca;
+- analisar **deslocamentos simultâneos** e identificar quando o resultado é ambíguo;
+- entender a intuição da **mão invisível** e a noção de mercado como mecanismo de coordenação.
+
+## O ponto de equilíbrio
+
+Reunimos as duas escalas dos capítulos anteriores — a demanda $Q_d = 60 - P$ e a oferta $Q_s = P$ — numa só tabela:
+
+| Preço (R\$/kg) | $Q_d$ (mil kg) | $Q_s$ (mil kg) | Situação |
+|:---:|:---:|:---:|:---|
+| 50 | 10 | 50 | excesso de oferta |
+| 40 | 20 | 40 | excesso de oferta |
+| 30 | 30 | 30 | **equilíbrio** |
+| 20 | 40 | 20 | excesso de demanda |
+| 10 | 50 | 10 | excesso de demanda |
+
+: Oferta e demanda de café lado a lado {#tbl-equilibrio}
+
+Há um único preço — R\$\,30 — em que a quantidade que os consumidores querem comprar é exatamente igual à que os produtores querem vender. A esse preço, o mercado *se equilibra*.
+
+::: {.callout-note title="Definição — Equilíbrio de mercado"}
+O **equilíbrio de mercado** é a combinação de preço e quantidade em que a **quantidade demandada** iguala a **quantidade ofertada**. O preço correspondente é o **preço de equilíbrio** ($P^{*}$), e a quantidade transacionada, a **quantidade de equilíbrio** ($Q^{*}$). Nesse ponto, não há pressão para o preço mudar: o mercado *clareia* (não sobra nem falta).
+:::
+
+Graficamente, o equilíbrio é a **interseção** das curvas de oferta e demanda, o ponto $E$ da @fig-equilibrio.
+
+::: {#fig-equilibrio}
+
+```{.tikz}
+%%| filename: fig-equilibrio
+%%| alt: Curvas de oferta e demanda cruzando-se no ponto de equilíbrio E, com preço de equilíbrio P* e quantidade de equilíbrio Q* marcados nos eixos por linhas tracejadas.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (7,0) node[right] {$Q$};
+  \draw[eixo] (0,0) -- (0,6.5) node[above] {$P$};
+  \draw[curva] (0.6,5.8) -- (6.2,1.0) node[below right, manualblue] {$D$};
+  \draw[destaque, very thick] (0.8,1.0) -- (6.0,5.8) node[above right, manualred] {$S$};
+  \coordinate (E) at (3.4,3.4);
+  \node[ponto] at (E) {};
+  \node[above right] at (E) {$E$};
+  \draw[auxiliar] (E) -- (3.4,0) node[below] {$Q^{*}$};
+  \draw[auxiliar] (E) -- (0,3.4) node[left] {$P^{*}$};
+\end{tikzpicture}
+```
+
+O equilíbrio $E$: interseção de oferta e demanda, definindo $P^{*}$ e $Q^{*}$.
+:::
+
+## Por que o mercado converge: as forças de ajuste
+
+O que torna o equilíbrio interessante não é apenas que ele *existe*, mas que o mercado é *atraído* para ele. Considere os dois desequilíbrios possíveis.
+
+**Excesso de oferta (excedente).** Suponha que o preço esteja em R\$\,40, acima do equilíbrio. A @tbl-equilibrio mostra que os produtores querem vender 40 mil kg, mas os consumidores só querem 20 mil. Sobram 20 mil kg encalhados. Diante de estoques crescentes, os vendedores **baixam o preço** para escoar a mercadoria. O preço cai — e, ao cair, reduz a quantidade ofertada (movimento ao longo da oferta) e aumenta a demandada (movimento ao longo da demanda), até fechar o hiato. A pressão só cessa em R\$\,30.
+
+**Excesso de demanda (escassez).** Agora o preço está em R\$\,20, abaixo do equilíbrio. Os consumidores querem 40 mil kg, mas só há 20 mil à venda. Formam-se filas, falta produto. Compradores dispostos a pagar mais **elevam o preço**; vendedores percebem que podem cobrar mais. O preço sobe, o que reduz a quantidade demandada e aumenta a ofertada, até zerar o hiato — de novo em R\$\,30.
+
+::: {#fig-ajuste}
+
+```{.tikz}
+%%| filename: fig-ajuste
+%%| alt: Gráfico de oferta e demanda mostrando, acima do equilíbrio, um excesso de oferta com seta de preço para baixo, e abaixo do equilíbrio, um excesso de demanda com seta de preço para cima.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (7,0) node[right] {$Q$};
+  \draw[eixo] (0,0) -- (0,6.5) node[above] {$P$};
+  \draw[curva] (0.6,5.8) -- (6.2,1.0) node[below right, manualblue] {$D$};
+  \draw[destaque, very thick] (0.8,1.0) -- (6.0,5.8) node[above right, manualred] {$S$};
+  \coordinate (E) at (3.4,3.4);
+  \node[ponto] at (E) {};
+  \draw[auxiliar] (E) -- (0,3.4) node[left,font=\footnotesize] {$P^{*}$};
+  % excesso de oferta em P=4.6
+  \draw[auxiliar] (1.5,4.6) -- (4.85,4.6);
+  \node[left, font=\footnotesize] at (0,4.6) {$P_1$};
+  \node[ponto] at (1.5,4.6) {}; \node[ponto] at (4.85,4.6) {};
+  \node[manualgray, font=\footnotesize, align=center] at (3.2,5.2) {excesso de oferta};
+  \draw[vetor, manualred] (5.3,4.6) -- (5.3,3.7) node[right,midway,font=\footnotesize] {};
+  \node[manualred,font=\footnotesize,right] at (5.3,4.15) {$P\downarrow$};
+  % excesso de demanda em P=2.2
+  \draw[auxiliar] (1.95,2.2) -- (5.3,2.2);
+  \node[left, font=\footnotesize] at (0,2.2) {$P_2$};
+  \node[ponto] at (1.95,2.2) {}; \node[ponto] at (5.3,2.2) {};
+  \node[manualgray, font=\footnotesize, align=center] at (3.7,1.6) {excesso de demanda};
+  \draw[vetor, manualred] (1.3,2.2) -- (1.3,3.1);
+  \node[manualred,font=\footnotesize,left] at (1.3,2.65) {$P\uparrow$};
+\end{tikzpicture}
+```
+
+Acima de $P^{*}$, o excedente empurra o preço para baixo; abaixo, a escassez o empurra para cima. O equilíbrio é o único ponto de repouso.
+:::
+
+::: {.callout-tip title="Intuição — o equilíbrio é um repouso, não um decreto"}
+O preço de equilíbrio não é "justo" nem "escolhido": é simplesmente o único preço que *não gera pressão para mudar*. Qualquer outro preço cria excedente ou escassez, e o próprio comportamento interessado de compradores e vendedores desfaz o desvio. É nesse sentido preciso que o mercado "se autorregula".
+:::
+
+## Calculando o equilíbrio
+
+Algebricamente, o equilíbrio resolve a condição $Q_d = Q_s$. Com $Q_d = 60 - P$ e $Q_s = P$:
+
+$$
+60 - P = P \;\Longrightarrow\; 60 = 2P \;\Longrightarrow\; P^{*} = 30.
+$$
+
+Substituindo em qualquer das funções, $Q^{*} = 30$. É o mesmo ponto da tabela e do gráfico, agora obtido em três linhas. O procedimento é sempre este: **iguale as duas funções, resolva para o preço, depois substitua para achar a quantidade**.
+
+::: {.callout-important title="Armadilha comum — igualar quantidades, não escrever tudo em $Q$"}
+Como $Q_d$ e $Q_s$ já estão escritas *em função de $P$*, o caminho direto é igualá-las. Um erro frequente é misturar as duas convenções (uma em função de $P$, outra de $Q$) e somar quando deveria igualar. A condição de equilíbrio é uma **igualdade de quantidades ao mesmo preço**, não uma soma.
+:::
+
+## Estática comparativa: quando as curvas se deslocam
+
+A verdadeira potência do modelo aparece na **estática comparativa** — a arte de comparar dois equilíbrios antes e depois de um choque. A receita tem três passos:
+
+1. O choque afeta a **oferta** ou a **demanda**? (Volte à lista de determinantes dos capítulos anteriores.)
+2. Em que **direção** a curva se desloca (direita/esquerda)?
+3. Compare o novo equilíbrio com o antigo: o que aconteceu com $P^{*}$ e $Q^{*}$?
+
+Há quatro casos básicos, com um único deslocamento. A @fig-estatica ilustra dois deles.
+
+::: {#fig-estatica}
+
+```{.tikz}
+%%| filename: fig-estatica
+%%| alt: Dois painéis. À esquerda, aumento de demanda desloca D para a direita, elevando preço e quantidade de equilíbrio. À direita, aumento de oferta desloca S para a direita, reduzindo o preço e elevando a quantidade.
+\begin{tikzpicture}[scale=0.9]
+  % painel esquerdo: aumento de demanda
+  \begin{scope}
+    \draw[eixo] (0,0) -- (5.4,0) node[right] {$Q$};
+    \draw[eixo] (0,0) -- (0,5.4) node[above] {$P$};
+    \draw[destaque, very thick] (0.6,0.8) -- (4.8,4.6) node[above right,manualred] {$S$};
+    \draw[curva] (0.5,4.2) -- (4.0,0.7) node[below right,manualblue,font=\footnotesize] {$D_0$};
+    \draw[curva, manualblue!45] (1.5,4.9) -- (5.0,1.4) node[right,font=\footnotesize] {$D_1$};
+    \coordinate (E0) at (1.95,2.15); \node[ponto] at (E0) {}; \node[below left,font=\footnotesize] at (E0) {$E_0$};
+    \coordinate (E1) at (2.75,2.95); \node[ponto] at (E1) {}; \node[above right,font=\footnotesize] at (E1) {$E_1$};
+    \draw[vetor,manualgreen] (2.2,3.9) -- (3.2,3.9);
+    \node[align=center,font=\footnotesize] at (2.7,-0.8) {(a) $D\uparrow$:\\$P^{*}\uparrow,\ Q^{*}\uparrow$};
+  \end{scope}
+  % painel direito: aumento de oferta
+  \begin{scope}[xshift=7.4cm]
+    \draw[eixo] (0,0) -- (5.4,0) node[right] {$Q$};
+    \draw[eixo] (0,0) -- (0,5.4) node[above] {$P$};
+    \draw[curva] (0.5,4.6) -- (4.8,0.8) node[below right,manualblue] {$D$};
+    \draw[destaque, very thick] (0.6,0.8) -- (4.2,4.5) node[above right,manualred,font=\footnotesize] {$S_0$};
+    \draw[very thick,manualred!45] (1.6,0.8) -- (5.2,4.5) node[right,font=\footnotesize] {$S_1$};
+    \coordinate (E0) at (2.15,2.55); \node[ponto] at (E0) {}; \node[above right,font=\footnotesize] at (E0) {$E_0$};
+    \coordinate (E1) at (2.95,1.9); \node[ponto] at (E1) {}; \node[below right,font=\footnotesize] at (E1) {$E_1$};
+    \draw[vetor,manualgreen] (2.3,3.9) -- (3.3,3.9);
+    \node[align=center,font=\footnotesize] at (2.7,-0.8) {(b) $S\uparrow$:\\$P^{*}\downarrow,\ Q^{*}\uparrow$};
+  \end{scope}
+\end{tikzpicture}
+```
+
+Estática comparativa: um aumento de demanda (a) eleva preço e quantidade; um aumento de oferta (b) reduz o preço e eleva a quantidade.
+:::
+
+Os quatro casos de deslocamento único estão sistematizados na @tbl-estatica. Vale memorizar a lógica, não a tabela: siga sempre a interseção nova.
+
+| Choque | Deslocamento | $P^{*}$ | $Q^{*}$ |
+|:---|:---:|:---:|:---:|
+| Aumento da demanda | $D$ → direita | **sobe** | **sobe** |
+| Redução da demanda | $D$ → esquerda | **cai** | **cai** |
+| Aumento da oferta | $S$ → direita | **cai** | **sobe** |
+| Redução da oferta | $S$ → esquerda | **sobe** | **cai** |
+
+: Estática comparativa — deslocamentos isolados {#tbl-estatica}
+
+### Deslocamentos simultâneos e a ambiguidade
+
+Quando **as duas** curvas se deslocam ao mesmo tempo, uma das variáveis de equilíbrio fica **determinada** e a outra, **ambígua** — depende das magnitudes relativas dos deslocamentos.
+
+Exemplo: aumentam *simultaneamente* a demanda (renda subiu) e a oferta (nova tecnologia). Ambos os choques empurram $Q^{*}$ **para cima** — então a quantidade sobe, sem dúvida. Mas sobre o preço as forças brigam: o aumento da demanda pressiona $P^{*}$ para cima, e o da oferta, para baixo. O resultado sobre o preço depende de **qual deslocamento foi maior** — é ambíguo sem informação quantitativa.
+
+::: {.callout-warning title="Cuidado — sempre uma das duas fica ambígua"}
+Com dois deslocamentos simultâneos, identifique primeiro a variável em que os dois choques *concordam* (essa você sabe) e reconheça que a outra *depende das magnitudes* (essa é ambígua). Tentar cravar as duas sem dados é o erro clássico. Um esboço com o deslocamento "grande" e depois com o "pequeno" revela a ambiguidade na hora.
+:::
+
+## A mão invisível: mercado como coordenação
+
+Recue e observe o que o modelo acabou de descrever. Milhares de consumidores, cada um perseguindo o próprio bem-estar, e milhares de produtores, cada um atrás do próprio lucro, sem se conhecerem nem se coordenarem, produzem um resultado ordenado: um preço que aloca o café disponível a quem mais o valoriza e que sinaliza aos produtores exatamente quanto produzir. Nenhuma autoridade central computou isso. O **preço** fez todo o trabalho de coordenação, condensando num único número uma quantidade imensa de informação dispersa — a intuição que Hayek [@hayek1945] tornaria célebre.
+
+Essa é a imagem da **mão invisível** de Adam Smith [@smith1996]: a busca do interesse próprio, disciplinada pela concorrência, conduz a um resultado socialmente coordenado que ninguém pretendeu deliberadamente. Sob certas condições — que os próximos volumes vão examinar e qualificar (concorrência, ausência de externalidades, informação adequada) —, esse equilíbrio é também **eficiente**, no sentido de esgotar os ganhos possíveis de troca (tema retomado no @sec-aplicacoes-intervencoes). Quando essas condições falham, surgem as **falhas de mercado**, que justificam a ação do Estado — assunto do Volume 6. Por ora, guarde a lição central: o mercado é, antes de tudo, um mecanismo de **coordenação por preços**.
+
+## 🇧🇷 Brasil em Foco
+
+O modelo de oferta e demanda é a lente básica para ler a formação de preços na economia brasileira.
+
+**Choques de oferta agrícola no IPCA.** Boa parte da volatilidade do **IPCA** (o índice oficial de inflação, medido pelo IBGE) vem do grupo **Alimentação e bebidas**, sensível a choques de oferta. Quando uma seca ou geada reduz a oferta de tomate, cebola ou café, a curva $S$ desloca-se à esquerda e o preço de equilíbrio dispara — o fenômeno popularmente chamado de "efeito clima" nos preços. São **deslocamentos de oferta**, não de demanda, e explicam por que hortaliças e o cafezinho têm altas súbitas e depois recuam quando a safra normaliza.
+
+**O mercado de câmbio.** O dólar no Brasil é um preço de equilíbrio como qualquer outro: resulta do encontro entre a oferta de divisas (exportações, entrada de capital) e a demanda por divisas (importações, remessas, saída de capital). Quando cresce a percepção de risco e capitais saem, a demanda por dólar sobe (desloca à direita) e o preço de equilíbrio — a taxa de câmbio — sobe: o real se desvaloriza. O Banco Central acompanha e, por vezes, intervém nesse mercado (tema do Volume 9).
+
+**Tabelamento e o que o modelo prevê.** Sempre que se propõe **tabelar** um preço (combustíveis, aluguéis, fretes), o modelo de equilíbrio faz uma previsão nítida: um teto abaixo do equilíbrio gera **excesso de demanda** (falta do produto, filas, mercado paralelo). O episódio da tabela do frete rodoviário (2018) e debates recorrentes sobre controle de preços são aplicações diretas — que o @sec-aplicacoes-intervencoes analisará em detalhe.
+
+> **Fontes e séries para explorar:** IBGE (IPCA e seus grupos, com destaque para Alimentação no domicílio); Bacen/SGS (taxa de câmbio R\$/US\$, PTAX); Conab (safras e estoques). Ao interpretar a inflação, distinga sempre choques de **oferta** (clima, câmbio, combustíveis) de pressões de **demanda** (renda, crédito).
+
+## Resumo do capítulo
+
+- O **equilíbrio de mercado** é o par $(P^{*}, Q^{*})$ em que a quantidade demandada iguala a ofertada; graficamente, a **interseção** de $D$ e $S$.
+- Acima do equilíbrio há **excesso de oferta** (excedente), que pressiona o preço para **baixo**; abaixo, há **excesso de demanda** (escassez), que o pressiona para **cima**. O equilíbrio é o único ponto sem pressão.
+- Algebricamente, resolve-se **igualando** $Q_d = Q_s$, achando $P^{*}$ e depois $Q^{*}$.
+- Na **estática comparativa**: $D\uparrow \Rightarrow P^{*}\uparrow, Q^{*}\uparrow$; $D\downarrow \Rightarrow$ ambos caem; $S\uparrow \Rightarrow P^{*}\downarrow, Q^{*}\uparrow$; $S\downarrow \Rightarrow P^{*}\uparrow, Q^{*}\downarrow$.
+- Com **deslocamentos simultâneos**, uma variável fica determinada (aquela em que os choques concordam) e a outra, **ambígua** (depende das magnitudes).
+- O preço coordena decisões dispersas — a **mão invisível** de Smith e a informação dos preços de Hayek. Sob certas condições, o equilíbrio é eficiente; quando elas falham, há **falhas de mercado**.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva antes de abrir a solução. Dificuldade crescente: conceituais, numéricos e análise de caso.
+:::
+
+**1.** Por que um preço acima do equilíbrio não se sustenta? Descreva o mecanismo que o traz de volta.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Acima do equilíbrio, a quantidade ofertada supera a demandada: há **excesso de oferta**. Com estoques encalhados, os vendedores baixam o preço para vender. A queda de preço reduz a quantidade ofertada e eleva a demandada (movimentos ao longo das curvas), estreitando o hiato até que $Q_d = Q_s$, no equilíbrio. A pressão só cessa em $P^{*}$.
+:::
+
+**2.** Encontre $P^{*}$ e $Q^{*}$ para $Q_d = 100 - 2P$ e $Q_s = 20 + 3P$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Igualando: $100 - 2P = 20 + 3P \Rightarrow 80 = 5P \Rightarrow P^{*} = 16$. Substituindo: $Q^{*} = 100 - 2(16) = 68$ (confira na oferta: $20 + 3(16) = 68$). Logo, $(P^{*}, Q^{*}) = (16,\ 68)$.
+:::
+
+**3.** No mercado de $Q_d = 100 - 2P$ e $Q_s = 20 + 3P$, o preço está fixado em $P = 10$. Há excesso de oferta ou de demanda? De quanto?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A $P = 10$: $Q_d = 100 - 20 = 80$; $Q_s = 20 + 30 = 50$. Como $Q_d > Q_s$, há **excesso de demanda** (escassez) de $80 - 50 = 30$ unidades. Isso pressiona o preço **para cima**, rumo a $P^{*} = 16$.
+:::
+
+**4.** Parta de $Q_d = 100 - 2P$ e $Q_s = 20 + 3P$. Um avanço tecnológico muda a oferta para $Q_s = 50 + 3P$. Calcule o novo equilíbrio e compare com o anterior ($P^{*}=16$, $Q^{*}=68$). O resultado é coerente com a estática comparativa?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Novo equilíbrio: $100 - 2P = 50 + 3P \Rightarrow 50 = 5P \Rightarrow P^{*} = 10$; $Q^{*} = 100 - 20 = 80$. Comparando: o preço **caiu** (16 → 10) e a quantidade **subiu** (68 → 80). É exatamente o previsto para um **aumento de oferta** ($S\uparrow \Rightarrow P^{*}\downarrow, Q^{*}\uparrow$): a tecnologia deslocou $S$ para a direita.
+:::
+
+**5.** Para cada choque, diga o efeito sobre $P^{*}$ e $Q^{*}$ no mercado de carne bovina:
+(a) surto de doença reduz o rebanho; (b) renda das famílias cresce (carne é bem normal); (c) barateia o frango, substituto no consumo; (d) cai o preço do milho, insumo da ração.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Oferta $\downarrow$ (esquerda): $P^{*}\uparrow$, $Q^{*}\downarrow$.
+(b) Demanda $\uparrow$ (direita): $P^{*}\uparrow$, $Q^{*}\uparrow$.
+(c) Substituto mais barato → demanda por carne $\downarrow$: $P^{*}\downarrow$, $Q^{*}\downarrow$.
+(d) Insumo mais barato → oferta $\uparrow$ (direita): $P^{*}\downarrow$, $Q^{*}\uparrow$.
+:::
+
+**6.** No mercado de ovos, a demanda cresce (dieta rica em proteína virou moda) **e** a oferta cresce (novo galpão automatizado) ao mesmo tempo. O que se pode afirmar com certeza sobre $P^{*}$ e $Q^{*}$? O que fica ambíguo e por quê?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Ambos os choques elevam a **quantidade**: $Q^{*}$ **sobe** com certeza. Sobre o **preço**, as forças se opõem: mais demanda pressiona $P^{*}$ para cima, mais oferta pressiona para baixo. O efeito sobre $P^{*}$ é **ambíguo** — depende de qual deslocamento é maior. Se a demanda cresce mais que a oferta, $P^{*}$ sobe; se a oferta cresce mais, $P^{*}$ cai; se iguais, fica estável.
+:::
+
+**7.** (Análise de caso) Durante uma estiagem prolongada, o preço do tomate na feira triplica em poucas semanas e, meses depois, volta ao normal. Use o modelo de equilíbrio para contar essa história e explique por que a alta foi temporária. Que erro cometeria quem atribuísse a alta a "ganância dos feirantes"?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A estiagem é um **choque de oferta**: a curva $S$ desloca-se fortemente para a **esquerda**, e o novo equilíbrio tem $P^{*}$ muito mais alto e $Q^{*}$ menor. Meses depois, com a normalização do clima e novas safras, a oferta **retorna à direita**, e o preço recua ao patamar anterior. A alta foi temporária porque a *causa* (o choque de oferta) foi temporária. Atribuir a alta à "ganância" dos feirantes confunde **preço de equilíbrio** com decisão arbitrária: os feirantes não ficaram subitamente mais gananciosos — a oferta encolheu, e o preço que iguala oferta e demanda subiu. A prova é que, restabelecida a oferta, o mesmo "ganancioso" volta a cobrar barato, porque a concorrência o obriga.
+:::
+
+**8.** (Desafio) Explique, com base no papel informacional do preço (Hayek), por que uma economia que aboliu os preços de mercado e tenta fixar por decreto central quanto produzir de cada bem enfrenta uma dificuldade de **informação**, não apenas de incentivo. Relacione com a ideia de equilíbrio deste capítulo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O preço de equilíbrio sintetiza, num único número, uma enormidade de informação dispersa: quanto cada consumidor valoriza o bem (via demanda) e quanto custa produzi-lo em cada firma (via oferta). Ninguém precisa reunir esses dados; o preço os *agrega* automaticamente e sinaliza a todos onde há escassez (preço sobe) ou fartura (preço cai). Um planejador central que aboliu os preços perde esse sinalizador e teria de coletar, centralizar e processar as preferências e os custos de milhões de agentes — que ademais mudam a todo instante. É o **problema do conhecimento** de Hayek [@hayek1945]: mesmo com a melhor das intenções (sem problema de incentivo), falta ao centro a **informação** que o sistema de preços produz espontaneamente. O equilíbrio de mercado é, nessa leitura, tanto um estado de repouso quanto um **computador de informação** descentralizado.
+:::
+
+## Para saber mais
+
+- @mankiw2020 — o capítulo sobre oferta, demanda e equilíbrio, com a estática comparativa passo a passo.
+- @pindyck2013 — tratamento com muitos exercícios numéricos de equilíbrio e deslocamentos.
+- @hayek1945 — o ensaio "O uso do conhecimento na sociedade", sobre o papel informacional dos preços; curto e decisivo.
+- @smith1996 — a formulação original da mão invisível, para quem quer ir à fonte.
