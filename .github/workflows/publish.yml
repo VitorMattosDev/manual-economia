@@ -29,14 +29,15 @@ jobs:
           set -e
           # A extensão TikZ chama pdflatex/dvisvgm pelo nome, então o bin do
           # TinyTeX PRECISA estar no PATH (o setup não o adiciona sozinho).
-          PDFLATEX=$(find ~ /opt /usr -name pdflatex -type f 2>/dev/null | head -n1)
-          TEXBIN=$(dirname "$PDFLATEX")
-          echo "TeX bin encontrado em: $TEXBIN"
-          echo "$TEXBIN" >> "$GITHUB_PATH"
-          TLMGR="$TEXBIN/tlmgr"
-          [ -x "$TLMGR" ] || TLMGR=$(find ~ /opt /usr -name tlmgr -type f 2>/dev/null | head -n1)
+          # pdflatex costuma ser um SYMLINK (find -type f o ignora); tlmgr é
+          # arquivo real e mora no mesmo diretório, então derivamos o bin dele.
+          TLMGR=$(find ~ /opt /usr -name tlmgr -type f 2>/dev/null | head -n1)
+          TEXBIN=$(dirname "$TLMGR")
           echo "tlmgr em: $TLMGR"
+          echo "TeX bin: $TEXBIN"
+          echo "$TEXBIN" >> "$GITHUB_PATH"
           "$TLMGR" install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts || true
+          ls -l "$TEXBIN/pdflatex" "$TEXBIN/dvisvgm" || true
           "$TEXBIN/pdflatex" --version | head -n1
           "$TEXBIN/dvisvgm" --version | head -n1
 
