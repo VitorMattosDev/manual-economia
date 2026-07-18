@@ -24,11 +24,21 @@ jobs:
       - name: Instalar chrome-headless-shell (mermaid no PDF)
         run: quarto install chrome-headless-shell
 
-      - name: Instalar pacotes LaTeX para TikZ
+      - name: Preparar TeX (PATH do TinyTeX + pacotes TikZ)
         run: |
-          TLMGR=$(command -v tlmgr || find ~ /opt /usr -name tlmgr -type f 2>/dev/null | head -n1)
+          set -e
+          # A extensão TikZ chama pdflatex/dvisvgm pelo nome, então o bin do
+          # TinyTeX PRECISA estar no PATH (o setup não o adiciona sozinho).
+          PDFLATEX=$(find ~ /opt /usr -name pdflatex -type f 2>/dev/null | head -n1)
+          TEXBIN=$(dirname "$PDFLATEX")
+          echo "TeX bin encontrado em: $TEXBIN"
+          echo "$TEXBIN" >> "$GITHUB_PATH"
+          TLMGR="$TEXBIN/tlmgr"
+          [ -x "$TLMGR" ] || TLMGR=$(find ~ /opt /usr -name tlmgr -type f 2>/dev/null | head -n1)
           echo "tlmgr em: $TLMGR"
-          "$TLMGR" install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts standalone-* || true
+          "$TLMGR" install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts || true
+          "$TEXBIN/pdflatex" --version | head -n1
+          "$TEXBIN/dvisvgm" --version | head -n1
 
       - name: Renderizar e publicar (HTML + PDF)
         uses: quarto-dev/quarto-actions/publish@v2
