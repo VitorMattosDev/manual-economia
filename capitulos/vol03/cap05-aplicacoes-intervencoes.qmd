@@ -1,3 +1,299 @@
-# Aplicações: impostos, tabelamentos e subsídios
+# Aplicações: impostos, tabelamentos e subsídios {#sec-aplicacoes-intervencoes}
 
-*(capítulo em elaboração)*
+Poucas ideias políticas são mais intuitivas — e mais tentadoras — do que congelar o preço de algo essencial que ficou caro. Se o aluguel subiu demais, por que não proibir por lei que passe de certo valor? Se o frete encareceu, por que não tabelar? Se o remédio é vital, por que não fixar um teto? A intuição é generosa; o modelo de oferta e demanda, porém, mostra que boas intenções esbarram em reações previsíveis, e que quase toda intervenção num mercado gera efeitos colaterais que precisam entrar na conta.
+
+Este capítulo aplica as ferramentas dos quatro capítulos anteriores a três das intervenções mais comuns do Estado nos mercados: **controles de preço** (tetos e pisos), **impostos** e **subsídios**. Não se trata de condenar ou defender a intervenção em bloco — há casos em que ela se justifica (falhas de mercado, objetivos distributivos) —, mas de prever, com rigor, *quais serão as consequências* de cada uma. Como manda o pluralismo deste manual, apresentaremos os argumentos dos dois lados onde o debate é real.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- medir o bem-estar num mercado por meio do **excedente do consumidor** e do **excedente do produtor**;
+- analisar um **preço-teto** e prever escassez, filas, racionamento e mercado paralelo;
+- analisar um **preço-piso** e prever excedentes, ilustrando com salário mínimo e preços mínimos agrícolas;
+- determinar a **incidência** de um imposto e mostrar por que ela depende das **elasticidades**, não da lei;
+- identificar o **peso morto** (perda de eficiência) de impostos e controles;
+- analisar um **subsídio** como imagem espelhada do imposto.
+
+## Uma régua para o bem-estar: os excedentes
+
+Antes de avaliar intervenções, precisamos de uma forma de medir *ganho de bem-estar* num mercado. Duas noções, já esboçadas no Volume 2 ao estudarmos integrais, fazem esse papel.
+
+::: {.callout-note title="Definição — Excedente do consumidor e do produtor"}
+O **excedente do consumidor** é a diferença entre o quanto os consumidores **estariam dispostos a pagar** por um bem (dado pela curva de demanda) e o quanto **efetivamente pagaram** (o preço). Graficamente, é a área **entre a curva de demanda e o preço**.
+
+O **excedente do produtor** é a diferença entre o preço **recebido** e o **custo** de produzir (dado pela curva de oferta). Graficamente, é a área **entre o preço e a curva de oferta**.
+:::
+
+A soma dos dois é o **excedente total**, uma medida do valor líquido que o mercado gera para a sociedade. No equilíbrio competitivo, esse total é **máximo** (@fig-excedentes): não há troca mutuamente vantajosa desperdiçada. É esse o sentido preciso em que o mercado livre é "eficiente" — e é contra esse padrão que mediremos o custo das intervenções.
+
+::: {#fig-excedentes}
+
+```{.tikz}
+%%| filename: fig-excedentes
+%%| alt: Gráfico de oferta e demanda com o excedente do consumidor (triângulo acima do preço de equilíbrio e abaixo da demanda) e o excedente do produtor (triângulo abaixo do preço e acima da oferta).
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (7,0) node[right] {$Q$};
+  \draw[eixo] (0,0) -- (0,6.5) node[above] {$P$};
+  \draw[curva] (0,6) -- (6,0) node[below right,manualblue] {$D$};
+  \draw[destaque,very thick] (0,1) -- (6,5.2) node[above right,manualred] {$S$};
+  \coordinate (E) at (3.0,3.0);
+  % achar interseção: D: P=6-Q ; S: P=1+0.7Q -> 6-Q=1+0.7Q ->5=1.7Q->Q=2.94~3, P~3
+  \node[ponto] at (E) {}; \node[above right,font=\footnotesize] at (E) {$E$};
+  \draw[auxiliar] (E) -- (0,3.0) node[left,font=\footnotesize] {$P^{*}$};
+  \draw[auxiliar] (E) -- (3.0,0) node[below,font=\footnotesize] {$Q^{*}$};
+  \fill[manualblue!18] (0,6) -- (3.0,3.0) -- (0,3.0) -- cycle;
+  \fill[manualred!18] (0,1) -- (3.0,3.0) -- (0,3.0) -- cycle;
+  \node[manualblue,font=\footnotesize] at (1.0,4.2) {EC};
+  \node[manualred,font=\footnotesize] at (0.9,2.15) {EP};
+\end{tikzpicture}
+```
+
+No equilíbrio, o excedente do consumidor (EC) e o do produtor (EP) somam o excedente total, que é máximo.
+:::
+
+## Controle de preços I: o preço-teto
+
+Um **preço-teto** (*price ceiling*) é um preço **máximo** legal. Ele só produz efeito se for fixado **abaixo** do equilíbrio — um teto acima do preço de mercado é inócuo, pois o mercado já opera abaixo dele.
+
+Fixado abaixo do equilíbrio, o teto reproduz exatamente a situação de **excesso de demanda** do @sec-equilibrio-de-mercado, agora *tornada permanente* porque o preço está proibido de subir para eliminá-la. A @fig-preco-teto mostra: ao preço-teto $P_t$, a quantidade demandada $Q_d$ supera a ofertada $Q_s$, e o hiato $Q_d - Q_s$ é uma **escassez crônica**.
+
+::: {#fig-preco-teto}
+
+```{.tikz}
+%%| filename: fig-preco-teto
+%%| alt: Preço-teto fixado abaixo do equilíbrio; a quantidade ofertada é menor que a demandada, gerando escassez permanente indicada pela distância entre as duas.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (7,0) node[right] {$Q$};
+  \draw[eixo] (0,0) -- (0,6.5) node[above] {$P$};
+  \draw[curva] (0,6) -- (6.3,0) node[below right,manualblue] {$D$};
+  \draw[destaque,very thick] (0,0.6) -- (6,5.4) node[above right,manualred] {$S$};
+  \coordinate (E) at (3.0,3.0); \node[ponto] at (E) {}; \node[above right,font=\footnotesize] at (E) {$E$};
+  \draw[auxiliar] (E) -- (0,3.0) node[left,font=\footnotesize] {$P^{*}$};
+  % preco teto em P=1.6
+  \draw[manualgreen,very thick,dashed] (0,1.6) -- (6.5,1.6);
+  \node[manualgreen,left,font=\footnotesize] at (0,1.6) {$P_t$};
+  % Qs em oferta: P=0.6+0.8Q =1.6 -> Q=1.25 ; Qd: P=6-0.95Q=1.6->Q=4.63
+  \coordinate (Qs) at (1.25,1.6); \coordinate (Qd) at (4.63,1.6);
+  \node[ponto] at (Qs) {}; \node[ponto] at (Qd) {};
+  \draw[auxiliar] (Qs) -- (1.25,0) node[below,font=\footnotesize] {$Q_s$};
+  \draw[auxiliar] (Qd) -- (4.63,0) node[below,font=\footnotesize] {$Q_d$};
+  \draw[<->,manualgray,thick] (1.25,0.7) -- (4.63,0.7);
+  \node[manualgray,font=\footnotesize,fill=white] at (2.9,0.7) {escassez};
+\end{tikzpicture}
+```
+
+Preço-teto $P_t$ abaixo do equilíbrio: a quantidade transacionada cai para $Q_s$ e forma-se escassez crônica $Q_d - Q_s$.
+:::
+
+As consequências previsíveis de um teto abaixo do equilíbrio:
+
+- **Escassez permanente** e filas — o racionamento deixa de ser pelo preço e passa a ser pelo tempo de espera ou pela sorte.
+- **Mercado paralelo (câmbio negro)**, em que o bem é revendido acima do teto.
+- **Queda de qualidade** — o vendedor, impedido de subir o preço, corta custos deteriorando o produto (o caso clássico do controle de aluguéis, em que a manutenção dos imóveis despenca).
+- **Racionamento não relacionado à disposição a pagar** — quem obtém o bem pode não ser quem mais o valoriza.
+
+::: {.callout-warning title="Controvérsia — controle de aluguéis"}
+Defensores do controle de aluguéis argumentam que ele protege inquilinos de baixa renda de choques abruptos e de especulação em cidades com moradia cara. Críticos respondem que, ao suprimir o sinal de preço, ele **reduz a oferta** de imóveis para locação (menos construção, conversão em outros usos), **deteriora** os existentes e beneficia sobretudo quem já mora, prejudicando quem procura — a escassez cai sobre os novos entrantes. Boa parte dos economistas vê o controle rígido como contraproducente no longo prazo, favorecendo alternativas como auxílio-moradia direto (que não distorce o preço). É um debate em que os *objetivos* (proteger vulneráveis) são amplamente compartilhados, mas os *meios* dividem.
+:::
+
+## Controle de preços II: o preço-piso
+
+Um **preço-piso** (*price floor*) é um preço **mínimo** legal, e só tem efeito se fixado **acima** do equilíbrio. Nesse caso, ele cria a situação simétrica: um **excesso de oferta** permanente, porque o preço está proibido de cair para eliminá-lo (@fig-preco-piso). Ao piso $P_f$, a quantidade ofertada $Q_s$ supera a demandada $Q_d$, e o hiato é um **excedente crônico**.
+
+::: {#fig-preco-piso}
+
+```{.tikz}
+%%| filename: fig-preco-piso
+%%| alt: Preço-piso fixado acima do equilíbrio; a quantidade ofertada supera a demandada, gerando excedente permanente indicado pela distância entre as duas.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (7,0) node[right] {$Q$};
+  \draw[eixo] (0,0) -- (0,6.5) node[above] {$P$};
+  \draw[curva] (0,6) -- (6.3,0) node[below right,manualblue] {$D$};
+  \draw[destaque,very thick] (0,0.6) -- (6,5.4) node[above right,manualred] {$S$};
+  \coordinate (E) at (3.0,3.0); \node[ponto] at (E) {}; \node[below left,font=\footnotesize] at (E) {$E$};
+  \draw[auxiliar] (E) -- (0,3.0) node[left,font=\footnotesize] {$P^{*}$};
+  % piso em P=4.4
+  \draw[manualgreen,very thick,dashed] (0,4.4) -- (6.5,4.4);
+  \node[manualgreen,left,font=\footnotesize] at (0,4.4) {$P_f$};
+  % Qd: 6-0.95Q=4.4->Q=1.68 ; Qs:0.6+0.8Q=4.4->Q=4.75
+  \coordinate (Qd) at (1.68,4.4); \coordinate (Qs) at (4.75,4.4);
+  \node[ponto] at (Qd) {}; \node[ponto] at (Qs) {};
+  \draw[auxiliar] (Qd) -- (1.68,0) node[below,font=\footnotesize] {$Q_d$};
+  \draw[auxiliar] (Qs) -- (4.75,0) node[below,font=\footnotesize] {$Q_s$};
+  \draw[<->,manualgray,thick] (1.68,5.1) -- (4.75,5.1);
+  \node[manualgray,font=\footnotesize,fill=white] at (3.2,5.1) {excedente};
+\end{tikzpicture}
+```
+
+Preço-piso $P_f$ acima do equilíbrio: sobra produto ($Q_s - Q_d$) e a quantidade vendida cai para $Q_d$.
+:::
+
+Os dois exemplos clássicos de piso:
+
+- **Salário mínimo.** O mercado de trabalho é um mercado como outro: o "preço" é o salário; a "oferta", os trabalhadores; a "demanda", as empresas. Um salário mínimo acima do equilíbrio gera **excesso de oferta de trabalho** — ou seja, **desemprego** entre os menos qualificados. Mas essa análise simples é objeto de intenso debate empírico (veja o Brasil em Foco).
+- **Preço mínimo agrícola.** Governos garantem um preço mínimo ao produtor para estabilizar a renda no campo. O excedente resultante precisa ser **comprado e estocado** pelo governo, ou escoado — o que tem custo fiscal.
+
+## Impostos e a questão da incidência
+
+Considere um imposto de valor fixo $t$ por unidade vendida. A pergunta politicamente decisiva é: **quem realmente paga?** A resposta da microeconomia é surpreendente e libertadora: *quem a lei manda recolher o imposto é irrelevante para quem de fato arca com ele*. O que determina a divisão do fardo são as **elasticidades**.
+
+Suponha que o imposto seja cobrado dos **vendedores**. Para cada unidade, eles agora precisam receber $t$ a mais para ficar como antes — o que **desloca a curva de oferta para cima** em exatamente $t$. O novo equilíbrio (@fig-imposto) tem:
+
+- um preço **pago pelo consumidor** $P_c$ **maior** que o antigo $P^{*}$;
+- um preço **recebido pelo produtor** $P_p = P_c - t$ **menor** que o antigo;
+- uma quantidade transacionada **menor**, $Q_t < Q^{*}$.
+
+::: {#fig-imposto}
+
+```{.tikz}
+%%| filename: fig-imposto
+%%| alt: Imposto por unidade desloca a oferta para cima em t; o consumidor paga Pc, o produtor recebe Pp, a quantidade cai para Qt, e forma-se um triângulo de peso morto entre as curvas.
+\begin{tikzpicture}[scale=1.05]
+  \draw[eixo] (0,0) -- (7,0) node[right] {$Q$};
+  \draw[eixo] (0,0) -- (0,6.6) node[above] {$P$};
+  \draw[curva] (0,6) -- (6.3,0) node[below right,manualblue] {$D$};
+  \draw[destaque,very thick] (0,0.8) -- (6,5.0) node[above right,manualred] {$S$};
+  \draw[very thick,manualred!45] (0,2.2) -- (5.1,5.8) node[above,font=\footnotesize] {$S+t$};
+  % equilibrio original E: 6-0.95Q=0.8+0.7Q ->5.2=1.65Q->Q=3.15,P~3.0
+  \coordinate (E) at (3.15,3.0); \node[ponto] at (E) {}; \node[right,font=\footnotesize] at (E) {$E$};
+  \draw[auxiliar] (E) -- (0,3.0) node[left,font=\footnotesize] {$P^{*}$};
+  % novo equilibrio com S+t: 6-0.95Q=2.2+0.7Q ->3.8=1.65Q->Q=2.30; Pc=6-0.95*2.3=3.81; Pp=Pc-t, t=1.4 ->Pp=2.41
+  \coordinate (C) at (2.30,3.81); \node[ponto] at (C) {};
+  \coordinate (Pdes) at (2.30,2.41); \node[ponto] at (Pdes) {};
+  \draw[auxiliar] (C) -- (0,3.81) node[left,font=\footnotesize] {$P_c$};
+  \draw[auxiliar] (Pdes) -- (0,2.41) node[left,font=\footnotesize] {$P_p$};
+  \draw[auxiliar] (2.30,3.81) -- (2.30,0) node[below,font=\footnotesize] {$Q_t$};
+  \draw[auxiliar] (3.15,0) node[below,font=\footnotesize] {$Q^{*}$} -- (E);
+  % peso morto triangulo entre C, Pdes, E
+  \fill[manualgray!30] (2.30,3.81) -- (2.30,2.41) -- (3.15,3.0) -- cycle;
+  \draw[<->,thick] (0.9,3.81) -- (0.9,2.41);
+  \node[fill=white,font=\footnotesize] at (0.9,3.11) {$t$};
+  \node[font=\footnotesize,align=center] at (4.5,2.6) {peso\\morto};
+  \draw[->,gray] (4.0,2.7) -- (2.85,3.0);
+\end{tikzpicture}
+```
+
+Um imposto por unidade abre uma cunha $t$ entre o preço pago ($P_c$) e o recebido ($P_p$); a quantidade cai e surge o **peso morto** (triângulo cinza).
+:::
+
+Dois resultados centrais emergem dessa figura:
+
+**1. A incidência independe de quem recolhe.** Se o imposto fosse cobrado dos *compradores* (deslocando a demanda para baixo em $t$), o novo equilíbrio teria exatamente os mesmos $P_c$, $P_p$ e $Q_t$. A **incidência econômica** (quem sente no bolso) é distinta da **incidência legal** (quem entrega o dinheiro ao fisco).
+
+**2. Quem paga mais é o lado mais inelástico.** A cunha $t$ divide-se entre consumidor (parcela $P_c - P^{*}$) e produtor (parcela $P^{*} - P_p$). O **lado mais inelástico** — o que tem menos como fugir — arca com a **maior parte**. Se a demanda é muito inelástica (cigarro), o consumidor paga quase tudo; se a oferta é muito inelástica, o produtor.
+
+::: {.callout-important title="Armadilha comum — 'a empresa é que paga o imposto'"}
+Dizer que "o imposto recai sobre a empresa" só porque é ela quem recolhe é confundir incidência legal com econômica. Se a demanda for inelástica, a empresa repassa a maior parte do tributo ao consumidor via preço — mesmo sendo, legalmente, a "contribuinte". Para saber quem *realmente* paga, olhe as **elasticidades**, não o nome no boleto.
+:::
+
+### O peso morto
+
+Note o triângulo cinza na @fig-imposto. Ele representa transações que **deixaram de ocorrer** por causa do imposto — trocas que eram mutuamente vantajosas (o comprador valorizava acima do custo do produtor) e que o tributo inviabilizou. Essa perda de excedente **não vira receita de ninguém**: é pura destruição de valor, o **peso morto** (*deadweight loss*) do imposto.
+
+::: {.callout-note title="Definição — Peso morto"}
+O **peso morto** é a redução do excedente total que não é transferida a ninguém — a perda líquida de bem-estar causada por uma intervenção que afasta a quantidade transacionada do nível de equilíbrio eficiente.
+:::
+
+O peso morto é **maior** quanto **mais elásticas** forem oferta e demanda (mais transações se perdem por causa do tributo). Isso fundamenta um princípio clássico de tributação eficiente: para minimizar distorções, **tribute preferencialmente bens de demanda inelástica** — embora isso frequentemente conflite com a **equidade**, já que bens inelásticos (alimentos, energia) pesam mais no orçamento dos pobres. Eficiência e justiça, de novo, em tensão (o Volume 12 aprofunda).
+
+## Subsídios: o imposto ao contrário
+
+Um **subsídio** por unidade é, analiticamente, um imposto negativo. Ele **desloca a oferta para baixo** (ou a demanda para cima) em $s$, resultando em:
+
+- preço **pago pelo consumidor menor** e preço **recebido pelo produtor maior** (a cunha se inverte);
+- quantidade transacionada **maior** que a de equilíbrio;
+- também um **peso morto** — porque o subsídio induz transações cujo custo social excede o valor, e tem custo fiscal (bancado por impostos que distorcem em outro lugar).
+
+O subsídio beneficia mais o lado **mais inelástico**, pela mesma lógica da incidência. Subsídios podem se justificar quando há **externalidades positivas** (vacinação, educação), em que o mercado livre produziria *de menos* — tema do Volume 6.
+
+## 🇧🇷 Brasil em Foco
+
+O Brasil oferece um laboratório vivo de controles, tributos e subsídios.
+
+**Salário mínimo: o debate empírico.** O salário mínimo é o preço-piso mais estudado do país. A teoria simples prevê desemprego entre menos qualificados; a evidência brasileira, porém, é **matizada**. Parte da literatura (usando dados da PNAD e da RAIS) encontra efeitos negativos sobre o emprego formal de jovens e de regiões mais pobres, onde o mínimo "morde" mais; outra parte argumenta que, num mercado com poder de mercado do empregador (**monopsônio**, tema do Volume 6) e forte informalidade, aumentos moderados elevam a renda sem grande perda de emprego, além de indexarem benefícios previdenciários. É um caso onde o modelo competitivo simples é ponto de partida, não palavra final — e onde os dados dividem economistas sérios.
+
+**Tabela do frete rodoviário (2018).** Após a greve dos caminhoneiros, o governo instituiu um **preço mínimo do frete** (piso). O modelo prevê o resultado: com preço acima do equilíbrio em muitas rotas, surgem **excesso de oferta de caminhões**, dificuldade de fechar cargas e disputas judiciais sobre a constitucionalidade da medida — exatamente o que se observou. É uma aplicação direta da @fig-preco-piso a um mercado real.
+
+**Preços de combustível e a Petrobras.** Em vários períodos, o preço da gasolina e do diesel foi mantido **artificialmente abaixo** do preço internacional (uma espécie de teto de fato), com a Petrobras absorvendo a diferença. O resultado seguiu o roteiro do preço-teto: consumo estimulado, pressão sobre a estatal, importações e, quando os preços foram represados demais, desabastecimento pontual. O debate entre **paridade de importação** e política de preços administrados é recorrente.
+
+**Preço mínimo agrícola e a incidência tributária.** A **Política de Garantia de Preços Mínimos (PGPM)**, operada pela **Conab**, é o preço-piso agrícola brasileiro, com aquisições e estoques públicos. E, na tributação, o Brasil é conhecido por tributar pesadamente o **consumo** (ICMS, o novo IBS/CBS da reforma) — tributos indiretos cuja **incidência econômica** recai amplamente sobre o consumidor final, com efeito **regressivo**, já que bens de demanda inelástica pesam mais no orçamento dos mais pobres. A reforma tributária e mecanismos como o *cashback* buscam mitigar essa regressividade.
+
+> **Fontes e séries para explorar:** IPEA e RAIS/PNAD (estudos sobre salário mínimo e emprego); Conab (PGPM, estoques públicos); ANP e Petrobras (política de preços de combustíveis); Receita Federal e estudos sobre carga tributária e incidência (regressividade dos tributos sobre consumo). Como o debate é aceso, confronte estudos com metodologias e períodos diferentes.
+
+## Resumo do capítulo
+
+- O **excedente do consumidor** (área entre demanda e preço) e o **do produtor** (área entre preço e oferta) medem o bem-estar; sua soma é **máxima** no equilíbrio competitivo.
+- Um **preço-teto** abaixo do equilíbrio gera **escassez** permanente, filas, mercado paralelo e queda de qualidade (ex.: controle de aluguéis).
+- Um **preço-piso** acima do equilíbrio gera **excedente** permanente (ex.: salário mínimo → desemprego na teoria simples; preço mínimo agrícola → estoques públicos).
+- A **incidência** de um imposto **independe de quem o recolhe** (incidência legal ≠ econômica); o **lado mais inelástico** arca com a maior parte.
+- Todo imposto (e todo controle) que afasta a quantidade do equilíbrio gera **peso morto** — perda de excedente que não vira receita de ninguém —, tanto maior quanto **mais elásticos** oferta e demanda.
+- Um **subsídio** é um imposto negativo: expande a quantidade acima do equilíbrio, favorece o lado mais inelástico e também gera peso morto e custo fiscal, justificando-se sobretudo diante de **externalidades positivas**.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva antes de abrir a solução. Dificuldade crescente: conceituais, numéricos e análise de caso.
+:::
+
+**1.** Explique por que um preço-teto fixado **acima** do preço de equilíbrio não tem efeito algum sobre o mercado.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Um teto é um preço *máximo* permitido. Se ele está acima do equilíbrio, o mercado já opera abaixo dele (em $P^{*} < P_t$), e nada impede que continue: a restrição "não passe de $P_t$" não é violada. O teto só "morde" quando fica **abaixo** do equilíbrio, forçando o preço para baixo do nível que igualaria oferta e demanda e criando escassez.
+:::
+
+**2.** Classifique cada medida como preço-teto ou preço-piso e diga se, para ter efeito, deve estar acima ou abaixo do equilíbrio: (a) salário mínimo; (b) tabelamento máximo de máscaras numa pandemia; (c) preço mínimo do milho; (d) teto de juros do cheque especial.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Piso**, efetivo se **acima** do equilíbrio. (b) **Teto**, efetivo se **abaixo**. (c) **Piso**, efetivo se **acima**. (d) **Teto**, efetivo se **abaixo**. Pisos protegem o *vendedor* (trabalhador, produtor) e precisam estar acima; tetos protegem o *comprador* e precisam estar abaixo.
+:::
+
+**3.** Num mercado, $Q_d = 100 - 2P$ e $Q_s = 3P$. (a) Ache o equilíbrio. (b) O governo impõe um teto de $P_t = 15$. Calcule a escassez resultante.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $100 - 2P = 3P \Rightarrow 100 = 5P \Rightarrow P^{*} = 20$, $Q^{*} = 60$.
+(b) O teto $P_t = 15 < 20$ é efetivo. A $P = 15$: $Q_d = 100 - 30 = 70$; $Q_s = 45$. A quantidade transacionada é a **ofertada** (o lado curto), $45$. Escassez $= Q_d - Q_s = 70 - 45 = 25$ unidades.
+:::
+
+**4.** No mercado do exercício anterior, o governo cria um imposto de $t = 5$ por unidade, cobrado dos vendedores. A nova oferta é $Q_s = 3(P - 5)$. Ache o novo preço pago pelo consumidor, o recebido pelo produtor e a quantidade.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Igualando com a demanda (em função do preço **pago pelo consumidor** $P_c$, que é o que a oferta com imposto enxerga menos $t$): $Q_s = 3(P_c - 5)$ e $Q_d = 100 - 2P_c$.
+$$100 - 2P_c = 3(P_c - 5) = 3P_c - 15 \Rightarrow 115 = 5P_c \Rightarrow P_c = 23.$$
+Produtor recebe $P_p = P_c - t = 23 - 5 = 18$. Quantidade: $Q = 100 - 2(23) = 54$.
+Comparando com o equilíbrio sem imposto ($P^{*}=20$, $Q^{*}=60$): o consumidor paga mais (23 > 20), o produtor recebe menos (18 < 20), e a quantidade caiu (54 < 60).
+:::
+
+**5.** No exercício 4, quanto do imposto de R\$\,5 foi pago pelo consumidor e quanto pelo produtor? O que isso revela sobre as elasticidades relativas?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Parcela do consumidor: $P_c - P^{*} = 23 - 20 = 3$. Parcela do produtor: $P^{*} - P_p = 20 - 18 = 2$. O consumidor arca com R\$\,3 dos R\$\,5 (60%) e o produtor com R\$\,2 (40%). Como o consumidor paga a maior parte, a **demanda é relativamente mais inelástica** que a oferta nesse ponto — o lado com menos capacidade de fuga carrega o fardo maior. (De fato, em $P=20$: $|E_d| = 2\cdot\frac{20}{60}=0{,}67$ e $E_s = 3\cdot\frac{20}{60}=1{,}0$; demanda menos elástica, coerente.)
+:::
+
+**6.** Explique por que o **peso morto** de um imposto é maior num mercado de demanda elástica do que num de demanda inelástica. Que princípio de política tributária isso sugere — e qual o seu limite?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O peso morto vem das transações **perdidas** por causa do imposto. Numa demanda **elástica**, um pequeno aumento de preço faz a quantidade cair muito, destruindo muitas trocas mutuamente vantajosas → peso morto grande. Numa demanda **inelástica**, a quantidade quase não muda, poucas trocas se perdem → peso morto pequeno. Isso sugere o princípio de **tributar bens inelásticos** para minimizar a perda de eficiência (regra de Ramsey). O **limite** é a **equidade**: bens inelásticos são frequentemente essenciais (alimentos, energia, remédios) e pesam mais no orçamento dos pobres, tornando esse tributo **regressivo**. Eficiência e justiça conflitam, e a escolha é, em parte, normativa.
+:::
+
+**7.** (Análise de caso) Diante de uma disparada no preço do gás de cozinha, um governador propõe congelar o preço por decreto. Um economista alerta para "efeitos colaterais". Descreva o que o modelo prevê no curto e no longo prazo, e proponha uma alternativa que ajude as famílias pobres sem congelar o preço.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O congelamento é um **preço-teto** abaixo do equilíbrio. **Curto prazo:** escassez, filas nas revendas, mercado paralelo (botijões vendidos "por fora" acima do teto), e distribuidoras evitando a região. **Longo prazo:** menos investimento e oferta, deterioração do serviço, possível desabastecimento — quem mais precisa pode ficar sem. **Alternativa preferível:** uma **transferência direta** focalizada às famílias de baixa renda (como o *Auxílio Gás* / Vale-Gás), que **preserva o sinal de preço** (a oferta continua respondendo) enquanto protege o poder de compra do público-alvo. A transferência não gera escassez porque não fixa o preço; apenas dá renda a quem precisa comprar ao preço de mercado. É o mesmo raciocínio do auxílio-moradia versus controle de aluguéis.
+:::
+
+**8.** (Desafio) Mostre que um imposto de $t$ por unidade cobrado dos **compradores** produz exatamente o mesmo $P_c$, $P_p$ e $Q$ que o mesmo imposto cobrado dos **vendedores**, ilustrando a irrelevância da incidência legal. Use $Q_d = 100 - 2P$ e $Q_s = 3P$ com $t = 5$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Cobrado dos vendedores** (feito no ex. 4): oferta enxerga o preço líquido $P_c - t$, resultando em $P_c = 23$, $P_p = 18$, $Q = 54$.
+**Cobrado dos compradores:** agora quem compra paga $P_p$ ao vendedor **mais** $t$ ao fisco, de modo que a demanda, escrita em termos do preço recebido pelo produtor $P_p$, é $Q_d = 100 - 2(P_p + t) = 100 - 2P_p - 10 = 90 - 2P_p$. A oferta é $Q_s = 3P_p$. Igualando:
+$$90 - 2P_p = 3P_p \Rightarrow 90 = 5P_p \Rightarrow P_p = 18.$$
+Então $P_c = P_p + t = 23$ e $Q = 3(18) = 54$. **Idênticos** ao caso anterior: mesmos preços efetivos e mesma quantidade. A lei pode nomear qualquer lado como recolhedor; o mercado redistribui o fardo segundo as elasticidades, não segundo o nome no tributo.
+:::
+
+## Para saber mais
+
+- @mankiw2020 — os capítulos sobre controles de preços, tributos e a análise de bem-estar com excedentes; didáticos e cheios de exemplos.
+- @pindyck2013 — tratamento aprofundado de incidência tributária, peso morto e políticas de preço.
+- @varian2015 — a análise formal de impostos e a equivalência da incidência legal.
+- @giambiagi2016 — para a aplicação ao caso brasileiro (tributação, subsídios e suas distorções), na perspectiva das finanças públicas.

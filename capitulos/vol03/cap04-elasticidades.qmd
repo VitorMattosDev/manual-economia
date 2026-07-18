@@ -1,3 +1,304 @@
-# Elasticidades: preço, renda e cruzada
+# Elasticidades: preço, renda e cruzada {#sec-elasticidades}
 
-*(capítulo em elaboração)*
+Suba o preço da gasolina em 20% e você reclamará muito — mas, na semana seguinte, continuará abastecendo quase o mesmo tanto. Suba em 20% o preço dos ingressos de cinema e boa parte do público simplesmente deixa de ir, esperando o streaming. Os dois bens obedecem à lei da demanda: a quantidade cai quando o preço sobe. Mas cai em *proporções* radicalmente diferentes. Medir essa diferença de sensibilidade — o quanto a quantidade responde a uma variação de preço, de renda ou do preço de outro bem — é o trabalho da **elasticidade**, talvez a ferramenta quantitativa mais usada da microeconomia aplicada.
+
+Saber a *direção* de uma resposta (o que os capítulos anteriores ensinaram) raramente basta. Um ministro que estuda aumentar o imposto sobre cigarros, uma empresa que pondera um reajuste, um governo que subsidia o transporte — todos precisam saber *de quanto* será a resposta. É a magnitude que a elasticidade captura, e num número puro, sem unidades, que permite comparar mercados tão distintos quanto gasolina e cinema.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- definir e calcular a **elasticidade-preço da demanda**, pelo método do **ponto** e pelo **ponto médio**;
+- classificar a demanda em **elástica**, **inelástica** ou **de elasticidade unitária**, e reconhecer os casos-limite;
+- identificar os **determinantes** da elasticidade-preço;
+- relacionar elasticidade e **receita total**, prevendo o efeito de um reajuste de preço sobre a arrecadação;
+- entender por que a elasticidade **varia ao longo** de uma curva de demanda linear;
+- definir e interpretar a **elasticidade-renda** e a **elasticidade-preço cruzada**, usando seus sinais para classificar bens;
+- calcular a **elasticidade-preço da oferta**.
+
+## Elasticidade-preço da demanda
+
+::: {.callout-note title="Definição — Elasticidade-preço da demanda"}
+A **elasticidade-preço da demanda** ($E_p$) mede a resposta da quantidade demandada a uma variação no preço do bem. É a razão entre a **variação percentual da quantidade** demandada e a **variação percentual do preço**:
+$$
+E_p = \frac{\%\,\Delta Q_d}{\%\,\Delta P} = \frac{\Delta Q_d / Q_d}{\Delta P / P}.
+$$
+:::
+
+Três decisões de construção merecem explicação, porque cada uma resolve um problema:
+
+1. **Por que variações percentuais, e não absolutas?** Porque o percentual independe das unidades. Se medíssemos "quantos litros a menos por real a mais", o número mudaria conforme usássemos litros ou mililitros, reais ou centavos. A razão de percentuais é um **número puro**, comparável entre quaisquer bens.
+2. **O sinal.** Pela lei da demanda, preço e quantidade variam em sentidos opostos, então $E_p$ é naturalmente **negativa**. Por convenção e comodidade, trabalha-se em geral com o seu **valor absoluto** $|E_p|$, e é isso que se compara. (Diremos "elasticidade de 2" para $|E_p| = 2$.)
+3. **O que se compara.** O que importa é se a quantidade responde *mais* ou *menos* que proporcionalmente ao preço — isto é, se $|E_p|$ é maior ou menor que 1.
+
+### Os dois métodos de cálculo
+
+Há duas maneiras de calcular, e é preciso saber qual usar.
+
+**Método do ponto.** Usa o preço e a quantidade *iniciais* como base:
+$$
+E_p = \frac{\Delta Q_d}{\Delta P}\cdot\frac{P}{Q}.
+$$
+Simples, mas tem um defeito: dá resultados diferentes se você for de $A$ para $B$ ou de $B$ para $A$, porque a base muda.
+
+**Método do ponto médio (ou do arco).** Para eliminar essa assimetria, usa as *médias* de preço e quantidade como base:
+
+$$
+E_p = \frac{\Delta Q_d}{\Delta P}\cdot\frac{(P_1 + P_2)/2}{(Q_1 + Q_2)/2}.
+$$ {#eq-ponto-medio}
+
+O método do ponto médio dá o **mesmo** valor nos dois sentidos e é o preferido quando a variação de preço é grande. Ilustremos: o preço do café passa de R\$\,20 para R\$\,30 e a quantidade cai de 40 para 30 mil kg.
+
+$$
+E_p = \frac{30 - 40}{30 - 20}\cdot\frac{(20+30)/2}{(40+30)/2} = \frac{-10}{10}\cdot\frac{25}{35} = -0{,}71.
+$$
+
+Em valor absoluto, $|E_p| = 0{,}71 < 1$: a demanda por café, nesse trecho, é **inelástica** — a quantidade responde *menos* que proporcionalmente ao preço.
+
+### Classificação da elasticidade
+
+O valor de $|E_p|$ separa três regimes, com dois casos-limite:
+
+| $|E_p|$ | Classificação | Interpretação |
+|:---:|:---|:---|
+| $> 1$ | **elástica** | quantidade responde *mais* que o preço |
+| $< 1$ | **inelástica** | quantidade responde *menos* que o preço |
+| $= 1$ | **elasticidade unitária** | respondem na mesma proporção |
+| $\to \infty$ | **perfeitamente elástica** | curva horizontal |
+| $= 0$ | **perfeitamente inelástica** | curva vertical |
+
+: Classificação da elasticidade-preço da demanda {#tbl-classificacao}
+
+Os dois extremos, embora idealizações, têm interpretação concreta (@fig-casos-elasticidade). A demanda **perfeitamente inelástica** (vertical) descreve um bem cuja quantidade não muda com o preço — a aproximação usual para um remédio de uso contínuo sem substituto no curtíssimo prazo. A **perfeitamente elástica** (horizontal) descreve um vendedor tão pequeno num mercado competitivo que, ao mínimo aumento acima do preço vigente, perde *todos* os compradores (conceito central da concorrência perfeita, no Volume 5).
+
+::: {#fig-casos-elasticidade}
+
+```{.tikz}
+%%| filename: fig-casos-elasticidade
+%%| alt: Três painéis de curvas de demanda: perfeitamente inelástica (vertical), elasticidade intermediária (inclinada) e perfeitamente elástica (horizontal).
+\begin{tikzpicture}[scale=0.8]
+  % perfeitamente inelástica
+  \begin{scope}
+    \draw[eixo] (0,0) -- (3.6,0) node[right,font=\footnotesize] {$Q$};
+    \draw[eixo] (0,0) -- (0,4) node[above,font=\footnotesize] {$P$};
+    \draw[curva] (2,0.2) -- (2,3.7) node[above,font=\footnotesize] {$D$};
+    \node[align=center,font=\footnotesize] at (1.8,-0.8) {(a) perfeitamente\\inelástica $|E_p|=0$};
+  \end{scope}
+  % intermediária
+  \begin{scope}[xshift=5.2cm]
+    \draw[eixo] (0,0) -- (3.6,0) node[right,font=\footnotesize] {$Q$};
+    \draw[eixo] (0,0) -- (0,4) node[above,font=\footnotesize] {$P$};
+    \draw[curva] (0.4,3.5) -- (3.4,0.5) node[below right,font=\footnotesize] {$D$};
+    \node[align=center,font=\footnotesize] at (1.9,-0.8) {(b) elasticidade\\intermediária};
+  \end{scope}
+  % perfeitamente elástica
+  \begin{scope}[xshift=10.4cm]
+    \draw[eixo] (0,0) -- (3.6,0) node[right,font=\footnotesize] {$Q$};
+    \draw[eixo] (0,0) -- (0,4) node[above,font=\footnotesize] {$P$};
+    \draw[curva] (0.2,2) -- (3.5,2) node[right,font=\footnotesize] {$D$};
+    \node[align=center,font=\footnotesize] at (1.9,-0.8) {(c) perfeitamente\\elástica $|E_p|\to\infty$};
+  \end{scope}
+\end{tikzpicture}
+```
+
+Casos-limite e caso intermediário da elasticidade-preço da demanda.
+:::
+
+## O que torna uma demanda elástica
+
+A elasticidade não é um capricho; ela depende de fatores identificáveis:
+
+- **Disponibilidade de substitutos** — o determinante mais importante. Quanto mais e melhores os substitutos, mais elástica a demanda (foge-se fácil do bem que encareceu). Sal tem poucos substitutos: inelástico. Uma marca específica de refrigerante tem muitos: elástica.
+- **Essencialidade** — bens essenciais (remédios, alimentos básicos) tendem a ser inelásticos; supérfluos e de luxo, elásticos.
+- **Peso no orçamento** — bens que consomem fatia grande da renda (aluguel, carro) têm demanda mais elástica, porque uma alta dói mais e força reação; bens baratos (palito de dente, sal) são inelásticos.
+- **Horizonte de tempo** — a demanda é mais elástica no **longo prazo**, quando há tempo de se adaptar (trocar de carro, mudar de hábito, isolar a casa). No curto prazo, presos aos hábitos e equipamentos atuais, respondemos pouco.
+- **Definição do mercado** — quanto mais estreita a definição, mais elástica. "Sorvete da marca X" é muito elástico (troca-se pela marca Y); "sobremesas em geral" é bem menos.
+
+::: {.callout-tip title="Intuição — elasticidade é liberdade de fuga"}
+Pense na elasticidade como a facilidade de *fugir* de um preço que subiu. Muitos substitutos, tempo para se adaptar, peso grande no bolso e uma definição estreita do bem → fuga fácil → demanda elástica. Nenhuma saída à vista (bem essencial, único, barato, imediato) → demanda inelástica.
+:::
+
+## Elasticidade e receita total
+
+Aqui está a razão pela qual empresas e governos se importam tanto com elasticidade. A **receita total** (RT) — o que os vendedores arrecadam, e os compradores gastam — é preço vezes quantidade:
+$$
+\text{RT} = P \times Q.
+$$
+Quando o preço sobe, há duas forças opostas: cada unidade rende mais ($P\uparrow$), mas vendem-se menos unidades ($Q\downarrow$). Qual vence? Depende da elasticidade.
+
+::: {.callout-note title="A regra da receita total"}
+- Demanda **elástica** ($|E_p|>1$): preço e receita andam em **sentidos opostos**. Aumentar o preço **reduz** a receita (a queda de $Q$ domina); baixá-lo a aumenta.
+- Demanda **inelástica** ($|E_p|<1$): preço e receita andam no **mesmo sentido**. Aumentar o preço **eleva** a receita (a queda de $Q$ é pequena); baixá-lo a reduz.
+- Elasticidade **unitária** ($|E_p|=1$): a receita é **máxima** e não muda com pequenos reajustes.
+:::
+
+Essa regra explica decisões aparentemente opostas. Uma companhia aérea faz promoções (baixa preço) porque a demanda por viagens de lazer é **elástica**: corta preço, lota o avião e fatura mais. Já um governo que quer arrecadar tributa **cigarro, combustível e bebidas** — bens de demanda **inelástica** —, porque pode elevar a carga sem afugentar tanto o consumo, maximizando a receita. É o mesmo princípio, lido dos dois lados.
+
+## A elasticidade varia ao longo da curva linear
+
+Um erro comum é confundir **inclinação** com **elasticidade**. Numa curva de demanda **linear**, a inclinação é constante, mas a **elasticidade não**: ela cai continuamente à medida que descemos pela curva. A razão está na fórmula do ponto, $E_p = \frac{\Delta Q}{\Delta P}\cdot\frac{P}{Q}$: o fator $\frac{\Delta Q}{\Delta P}$ é fixo numa reta, mas a razão $\frac{P}{Q}$ despenca conforme $P$ cai e $Q$ sobe.
+
+O resultado (@fig-elasticidade-linear): no **topo** da curva (preço alto, quantidade baixa), a demanda é **elástica**; no **meio**, unitária; na **base** (preço baixo, quantidade alta), **inelástica**. É também o ponto médio que corresponde à **receita máxima**.
+
+::: {#fig-elasticidade-linear}
+
+```{.tikz}
+%%| filename: fig-elasticidade-linear
+%%| alt: Curva de demanda linear dividida em três trechos: metade superior elástica, ponto médio de elasticidade unitária e metade inferior inelástica.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (6.5,0) node[right] {$Q$};
+  \draw[eixo] (0,0) -- (0,6) node[above] {$P$};
+  \draw[curva] (0,5.5) -- (5.5,0);
+  \coordinate (M) at (2.75,2.75);
+  \node[ponto] at (M) {};
+  \node[right,font=\footnotesize] at (M) {$|E_p|=1$};
+  % trecho elástico
+  \draw[decorate,decoration={brace,amplitude=5pt},manualred] (0.15,5.5) -- (2.6,2.9);
+  \node[manualred,font=\footnotesize,align=center] at (2.2,4.7) {elástico\\$|E_p|>1$};
+  % trecho inelástico
+  \draw[decorate,decoration={brace,amplitude=5pt},manualblue] (2.9,2.6) -- (5.45,0.1);
+  \node[manualblue,font=\footnotesize,align=center] at (4.9,2.0) {inelástico\\$|E_p|<1$};
+\end{tikzpicture}
+```
+
+Numa demanda linear, a elasticidade cai do topo (elástico) para a base (inelástico), passando por 1 no ponto médio.
+:::
+
+## Elasticidade-renda
+
+Nem só de preço vive a demanda. A **elasticidade-renda** ($E_R$) mede a resposta da quantidade demandada a variações na **renda** do consumidor:
+
+$$
+E_R = \frac{\%\,\Delta Q_d}{\%\,\Delta R}.
+$$ {#eq-elasticidade-renda}
+
+Aqui o **sinal** carrega a informação, e conecta-se à tipologia do @sec-demanda:
+
+- $E_R > 0$: **bem normal** (demanda cresce com a renda). Dentro dos normais, se $E_R > 1$, o bem é **superior/de luxo** (a quantidade cresce *mais* que a renda: viagens, restaurantes); se $0 < E_R < 1$, é um bem **de primeira necessidade** (cresce menos que a renda: alimentos básicos).
+- $E_R < 0$: **bem inferior** (demanda cai quando a renda sobe: passagem de ônibus, cortes de segunda).
+
+A elasticidade-renda é a versão quantitativa da **Lei de Engel** e é decisiva para prever a demanda futura de um setor conforme o país enriquece.
+
+## Elasticidade-preço cruzada
+
+A **elasticidade cruzada** ($E_{xy}$) mede quanto a quantidade demandada do bem $x$ responde ao preço de *outro* bem $y$:
+
+$$
+E_{xy} = \frac{\%\,\Delta Q_x}{\%\,\Delta P_y}.
+$$ {#eq-elasticidade-cruzada}
+
+De novo, o **sinal** classifica a relação (retomando o @sec-demanda):
+
+- $E_{xy} > 0$: **substitutos** (sobe o preço de $y$, cresce a demanda de $x$ — manteiga e margarina).
+- $E_{xy} < 0$: **complementares** (sobe o preço de $y$, cai a demanda de $x$ — carro e gasolina).
+- $E_{xy} \approx 0$: bens **independentes** (sem relação de consumo — sal e software).
+
+::: {.callout-important title="Armadilha comum — não troque os sinais das cruzadas"}
+Para a elasticidade **cruzada**, sinal **positivo** = substitutos, **negativo** = complementares. Note que é o *oposto* do que a intuição às vezes sugere: substitutos "concorrem", mas sua elasticidade cruzada é *positiva*, porque a quantidade de um e o preço do outro sobem juntos. Fixe pela fórmula, não pela palavra "concorrência".
+:::
+
+## Elasticidade-preço da oferta
+
+O mesmo instrumento aplica-se à oferta. A **elasticidade-preço da oferta** ($E_s$) mede quanto a quantidade *ofertada* responde ao preço:
+
+$$
+E_s = \frac{\%\,\Delta Q_s}{\%\,\Delta P} > 0,
+$$
+
+positiva pela lei da oferta. Seu principal determinante é o **horizonte de tempo** e a facilidade de ajustar a produção: no **curtíssimo prazo**, a oferta de bens já produzidos é quase **inelástica** (vertical, como vimos no @sec-oferta — o peixe do dia); no **longo prazo**, com tempo para construir capacidade, torna-se muito mais **elástica**. A capacidade de estocar e a existência de capacidade ociosa também elevam a elasticidade da oferta.
+
+## 🇧🇷 Brasil em Foco
+
+As elasticidades não são só teoria: são estimadas empiricamente e orientam políticas concretas no Brasil.
+
+**Tributar o inelástico: cigarros, bebidas e combustíveis.** A tributação brasileira concentra-se historicamente em bens de demanda **inelástica**. Cigarros são o caso-escola: como o vício torna a demanda pouco sensível ao preço (sobretudo no curto prazo), o Estado eleva tributos (IPI e, no novo desenho, o **Imposto Seletivo** da reforma tributária) com dois objetivos simultâneos — arrecadar (a receita sobe porque a demanda é inelástica) e desestimular o consumo por razões de saúde. Estudos do consumo de tabaco no Brasil encontram elasticidade-preço em módulo bem abaixo de 1, coerente com essa estratégia. Combustíveis e energia elétrica, igualmente inelásticos no curto prazo, também são fontes robustas de arrecadação (ICMS, CIDE).
+
+**Demanda por gasolina e o etanol.** A elasticidade-preço da gasolina é **baixa no curto prazo** (a frota e os hábitos de deslocamento estão dados), mas a existência do **etanol** como substituto na frota flex eleva a elasticidade *cruzada* e a substituibilidade: variações no preço relativo gasolina/etanol provocam trocas mensuráveis na bomba, algo peculiar ao Brasil e monitorado pela ANP.
+
+**Elasticidade-renda e a mudança da cesta de consumo.** Conforme a renda das famílias brasileiras cresceu nos anos 2000, a **POF/IBGE** registrou o que a teoria prevê: a demanda por bens de **alta elasticidade-renda** (serviços, lazer, bens duráveis, plano de saúde) cresceu mais que proporcionalmente, enquanto itens de baixa elasticidade-renda (alimentos básicos) perderam participação — a Lei de Engel em ação. Prever a elasticidade-renda de cada setor é chave para projetar demanda em um país que ainda tem espaço para crescer.
+
+> **Fontes e séries para explorar:** IBGE/POF (para estimar elasticidades-renda por classe de despesa); ANP (preços e vendas de combustíveis); Receita Federal e estudos do Ministério da Saúde sobre tributação do tabaco; literatura aplicada (IPEA) com estimativas de elasticidades setoriais. Lembre que elasticidades variam com o horizonte de tempo e a época — cite sempre o estudo e o período.
+
+## Resumo do capítulo
+
+- A **elasticidade-preço da demanda** $E_p = \frac{\%\Delta Q}{\%\Delta P}$ mede a sensibilidade da quantidade ao preço, num número puro e sem unidades. Usa-se em geral o valor absoluto $|E_p|$.
+- Calcule pelo **ponto médio** (@eq-ponto-medio) quando a variação for grande, para obter o mesmo valor nos dois sentidos.
+- **Elástica** ($|E_p|>1$), **inelástica** ($|E_p|<1$), **unitária** ($=1$); limites: **perfeitamente elástica** (horizontal) e **inelástica** (vertical).
+- **Determinantes:** substitutos, essencialidade, peso no orçamento, horizonte de tempo e amplitude da definição do mercado.
+- **Receita total:** se a demanda é elástica, preço e receita andam em sentidos **opostos**; se inelástica, no **mesmo** sentido; máxima na elasticidade unitária.
+- Numa demanda **linear**, a elasticidade **varia**: elástica no topo, unitária no meio, inelástica na base.
+- **Elasticidade-renda** $E_R$: sinal e magnitude classificam bem **normal** ($>0$), **inferior** ($<0$), **de luxo** ($>1$) e **de necessidade** ($0$ a $1$).
+- **Elasticidade cruzada** $E_{xy}$: **positiva** = substitutos, **negativa** = complementares, **zero** = independentes.
+- **Elasticidade da oferta** $E_s > 0$ cresce com o horizonte de tempo e a capacidade de ajustar a produção.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva antes de abrir a solução. Dificuldade crescente: conceituais, numéricos e análise de caso.
+:::
+
+**1.** Explique por que a elasticidade é um número **sem unidades** e por que isso é uma vantagem sobre medir a resposta em "litros por real".
+
+::: {.callout-tip collapse="true" title="Solução"}
+A elasticidade é a razão entre duas **variações percentuais**, e cada percentual já é adimensional (litros/litros, reais/reais se cancelam). Por isso o número não depende das unidades escolhidas. Medir em "litros por real" daria valores diferentes conforme usássemos litros ou mililitros, reais ou centavos, impossibilitando comparar bens distintos. O número puro permite dizer que "a demanda por cinema é mais elástica que a de gasolina" de forma inequívoca.
+:::
+
+**2.** Classifique cada demanda como elástica ou inelástica e justifique pelos determinantes: (a) sal de cozinha; (b) viagens de férias; (c) insulina para um diabético; (d) uma marca específica de biscoito.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Inelástica**: sem substitutos, peso ínfimo no orçamento, essencial.
+(b) **Elástica**: supérflua/adiável, peso grande no orçamento, muitos substitutos (adiar, destino mais barato).
+(c) **Perfeitamente inelástica (ou quase)**: essencial à vida, sem substituto no curto prazo.
+(d) **Elástica**: definição estreita, muitos substitutos (outras marcas de biscoito).
+:::
+
+**3.** O preço de um bem sobe de R\$\,8 para R\$\,12 e a quantidade demandada cai de 100 para 60. Calcule $|E_p|$ pelo método do **ponto médio** e classifique.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$\Delta Q = 60 - 100 = -40$; $\Delta P = 12 - 8 = 4$. Médias: $\bar P = 10$, $\bar Q = 80$.
+$$E_p = \frac{-40}{4}\cdot\frac{10}{80} = -10 \cdot 0{,}125 = -1{,}25.$$
+$|E_p| = 1{,}25 > 1$: demanda **elástica** nesse trecho.
+:::
+
+**4.** No exercício anterior, o que aconteceu com a **receita total** ao subir o preço de R\$\,8 para R\$\,12? Confirme com a regra da elasticidade.
+
+::: {.callout-tip collapse="true" title="Solução"}
+RT inicial $= 8 \times 100 = 800$. RT final $= 12 \times 60 = 720$. A receita **caiu** de 800 para 720. É o esperado: como a demanda é **elástica** ($|E_p|>1$), um **aumento** de preço **reduz** a receita — a queda proporcional da quantidade (40%) superou o aumento proporcional do preço.
+:::
+
+**5.** A quantidade demandada de um bem passa de 200 para 260 quando a renda do consumidor sobe de R\$\,2.000 para R\$\,2.400. Calcule a elasticidade-renda (método do ponto, base inicial) e classifique o bem.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$\%\Delta Q = 60/200 = 30\%$; $\%\Delta R = 400/2000 = 20\%$.
+$$E_R = \frac{30\%}{20\%} = 1{,}5.$$
+Como $E_R > 1$, é um **bem normal de luxo (superior)**: a quantidade cresce mais que proporcionalmente à renda.
+:::
+
+**6.** Quando o preço do café sobe 10%, a quantidade demandada de chá aumenta 4%. Calcule a elasticidade cruzada e diga a relação entre os bens. E se, em vez disso, a quantidade de *leite* caísse 6%?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Café × chá: $E_{xy} = \frac{+4\%}{+10\%} = +0{,}4 > 0$ → **substitutos** (como esperado).
+Café × leite: $E_{xy} = \frac{-6\%}{+10\%} = -0{,}6 < 0$ → **complementares** (leite acompanha o café).
+O sinal, não a magnitude, define a relação.
+:::
+
+**7.** (Análise de caso) Uma prefeitura quer aumentar a arrecadação com a tarifa de estacionamento rotativo no centro e, ao mesmo tempo, um shopping quer aumentar a receita de sua praça de alimentação. Um decide **subir** o preço; o outro, **baixar**. Explique como *ambos* podem estar certos, usando elasticidade e receita total.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Depende da elasticidade de cada demanda. A demanda por vagas no centro, no horário comercial, tende a ser **inelástica** (poucos substitutos imediatos, necessidade de estacionar perto do trabalho): subir a tarifa **eleva** a receita, pois a quantidade cai pouco. Já a demanda na praça de alimentação de um shopping é **elástica** (muitos substitutos: outra praça, comer em casa, outro shopping): **baixar** preços atrai volume e **eleva** a receita. Cada gestor aplica corretamente a regra da receita total ao *seu* mercado — subir preço onde a demanda é inelástica, baixar onde é elástica. O erro seria copiar a estratégia do outro sem olhar a própria elasticidade.
+:::
+
+**8.** (Desafio) Mostre, usando a fórmula do ponto, por que na demanda linear $Q = 120 - 4P$ a elasticidade é exatamente 1 em $P = 15$, e verifique que é a receita máxima. (Dica: em $Q = a - bP$, o ponto de elasticidade unitária está em $P = a/2b$.)
+
+::: {.callout-tip collapse="true" title="Solução"}
+Aqui $a = 120$, $b = 4$, logo $\frac{\Delta Q}{\Delta P} = -4$. Em $P = 15$: $Q = 120 - 60 = 60$.
+$$E_p = -4 \cdot \frac{15}{60} = -1 \;\Rightarrow\; |E_p| = 1.$$
+Pela dica, $P = a/2b = 120/8 = 15$, confirmando. Receita: $\text{RT}(P) = P\,Q = P(120 - 4P) = 120P - 4P^2$. Derivando e igualando a zero: $\frac{d\text{RT}}{dP} = 120 - 8P = 0 \Rightarrow P = 15$, um máximo (segunda derivada $-8 < 0$). Logo, a elasticidade unitária coincide com a **receita máxima** — nesse ponto, um pequeno reajuste de preço não altera a receita, exatamente o que a regra da receita total prevê.
+:::
+
+## Para saber mais
+
+- @mankiw2020 — o capítulo de elasticidade, com a regra da receita total e muitos exemplos aplicados.
+- @pindyck2013 — tratamento mais formal, com elasticidades de curto e longo prazo e estimativas empíricas.
+- @varian2015 — a elasticidade a partir da função de demanda e sua relação com a receita marginal.
+- @marshall1996 — Marshall cunhou o termo "elasticidade da demanda"; vale ver a formulação original.
