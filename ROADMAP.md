@@ -66,13 +66,13 @@
 
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
-| 1 | Contas nacionais e o PIB | `capitulos/vol04/cap01-contas-nacionais-pib.qmd` | ⬜ |
-| 2 | PIB nominal × real, deflatores e números-índice | `capitulos/vol04/cap02-pib-real-deflatores.qmd` | ⬜ |
-| 3 | Inflação: conceito, medidas (IPCA) e custos | `capitulos/vol04/cap03-inflacao.qmd` | ⬜ |
-| 4 | Desemprego e o mercado de trabalho (PNAD Contínua) | `capitulos/vol04/cap04-desemprego.qmd` | ⬜ |
-| 5 | Crescimento econômico: fatos estilizados | `capitulos/vol04/cap05-crescimento-fatos.qmd` | ⬜ |
-| 6 | Poupança, investimento e o sistema financeiro | `capitulos/vol04/cap06-poupanca-investimento.qmd` | ⬜ |
-| 7 | Lendo indicadores na prática: IBGE, Bacen e IPEA | `capitulos/vol04/cap07-indicadores-na-pratica.qmd` | ⬜ |
+| 1 | Contas nacionais e o PIB | `capitulos/vol04/cap01-contas-nacionais-pib.qmd` | ✅ |
+| 2 | PIB nominal × real, deflatores e números-índice | `capitulos/vol04/cap02-pib-real-deflatores.qmd` | ✅ |
+| 3 | Inflação: conceito, medidas (IPCA) e custos | `capitulos/vol04/cap03-inflacao.qmd` | ✅ |
+| 4 | Desemprego e o mercado de trabalho (PNAD Contínua) | `capitulos/vol04/cap04-desemprego.qmd` | ✅ |
+| 5 | Crescimento econômico: fatos estilizados | `capitulos/vol04/cap05-crescimento-fatos.qmd` | ✅ |
+| 6 | Poupança, investimento e o sistema financeiro | `capitulos/vol04/cap06-poupanca-investimento.qmd` | ✅ |
+| 7 | Lendo indicadores na prática: IBGE, Bacen e IPEA | `capitulos/vol04/cap07-indicadores-na-pratica.qmd` | ✅ |
 
 ---
 

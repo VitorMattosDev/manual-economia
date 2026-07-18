@@ -1,0 +1,221 @@
+# PIB nominal × real, deflatores e números-índice {#sec-pib-real-deflatores}
+
+Suponha que o noticiário anuncie: "o PIB brasileiro cresceu 10% neste ano". Boa notícia? Depende de uma pergunta que o número sozinho não responde: o país produziu 10% *mais coisas*, ou as coisas ficaram 10% *mais caras*? Se os preços subiram 10% e a produção física ficou igual, o PIB em reais cresceu 10% sem que uma única padaria tenha assado um pão a mais. O crescimento seria pura ilusão monetária.
+
+O @sec-contas-nacionais nos deu o PIB como o valor de mercado da produção. Mas "valor de mercado" mistura duas coisas que precisamos separar para entender a economia: **quanto** se produziu (as quantidades) e a **que preços** (o nível de preços). Este capítulo faz essa separação. Ela dá origem à distinção entre **PIB nominal** e **PIB real**, ao **deflator** que os conecta, e à ideia mais geral de **número-índice** — a ferramenta com que economistas comprimem milhares de preços e quantidades num único termômetro. É também a ponte para o próximo capítulo, sobre inflação.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- distinguir **PIB nominal** (a preços correntes) de **PIB real** (a preços constantes) e explicar por que só o segundo mede crescimento genuíno;
+- calcular ambos a partir de dados de preços e quantidades e obter a **taxa de crescimento real**;
+- definir o **deflator implícito do PIB** e interpretá-lo como um índice de preços;
+- entender o que é um **número-índice** e a diferença entre índices tipo **Laspeyres** e **Paasche**;
+- comparar o **deflator do PIB** com o **IPCA** e saber quando usar cada um.
+
+## PIB nominal e PIB real
+
+A ideia central é simples. Para isolar as quantidades das variações de preço, medimos a produção de anos diferentes usando **os mesmos preços** — os de um **ano-base** escolhido. Assim, qualquer mudança no total reflete apenas mudança nas *quantidades*.
+
+::: {.callout-note title="Definições — PIB nominal e PIB real"}
+O **PIB nominal** é o valor da produção avaliado aos **preços correntes** de cada período (os preços que vigoravam naquele ano).
+
+O **PIB real** é o valor da produção avaliado aos **preços de um ano-base fixo**. Como os preços ficam congelados, variações do PIB real medem apenas variações nas **quantidades** produzidas.
+:::
+
+Considere uma economia que produz apenas dois bens, pão e livros, em dois anos (@tbl-nominal-real). No ano-base (2020), o pão custa R\$\,2 e o livro, R\$\,40; em 2025, o pão sobe para R\$\,3 e o livro, para R\$\,50. As quantidades também mudam.
+
+| | Preço 2020 | Qtd. 2020 | Preço 2025 | Qtd. 2025 |
+|:--|--:|--:|--:|--:|
+| Pão (unid.) | 2 | 100 | 3 | 110 |
+| Livros (unid.) | 40 | 10 | 50 | 12 |
+
+: Preços e quantidades de uma economia de dois bens. {#tbl-nominal-real}
+
+**PIB nominal de 2020** (preços de 2020 × quantidades de 2020):
+$$
+2 \times 100 + 40 \times 10 = 200 + 400 = R\$\,600.
+$$
+
+**PIB nominal de 2025** (preços de 2025 × quantidades de 2025):
+$$
+3 \times 110 + 50 \times 12 = 330 + 600 = R\$\,930.
+$$
+
+Em termos nominais, o PIB cresceu de 600 para 930 — um salto de **55%**. Mas quanto disso é produção a mais, e quanto é só preço? Para saber, calculamos o **PIB real de 2025 a preços de 2020** (quantidades de 2025 × preços do ano-base):
+$$
+2 \times 110 + 40 \times 12 = 220 + 480 = R\$\,700.
+$$
+
+Agora a comparação é limpa: o PIB real passou de R\$\,600 (em 2020, que por ser o ano-base coincide com o nominal) para R\$\,700 em 2025. O **crescimento real** foi:
+$$
+\frac{700 - 600}{600} = 0{,}1667 = 16{,}7\%.
+$$
+
+Dos 55% de crescimento nominal, apenas **16,7%** foram produção genuinamente maior; o resto foi aumento de preços. Essa decomposição — separar "mais coisas" de "coisas mais caras" — é a razão de ser de todo o capítulo.
+
+::: {.callout-important title="Armadilha comum — no ano-base, nominal = real"}
+Por construção, no **ano-base** o PIB nominal e o PIB real são **idênticos**, porque os preços correntes *são* os preços-base. A divergência entre os dois só aparece nos demais anos, e cresce quanto mais os preços se afastam dos do ano-base. É por isso que os institutos de estatística **atualizam periodicamente o ano-base** — uma base muito antiga distorce as comparações.
+:::
+
+## O deflator implícito do PIB
+
+Temos agora duas medidas do mesmo PIB de 2025: R\$\,930 (nominal) e R\$\,700 (real, a preços de 2020). A razão entre elas mede *exatamente quanto os preços subiram*, em média, entre o ano-base e o ano corrente. Essa razão, multiplicada por 100, é o **deflator implícito do PIB**.
+
+::: {.callout-note title="Definição — Deflator do PIB"}
+O **deflator implícito do PIB** é a razão entre o PIB nominal e o PIB real, em índice:
+$$
+\text{Deflator} = \frac{\text{PIB nominal}}{\text{PIB real}} \times 100.
+$$
+Ele mede o nível de preços de **todos os bens e serviços que compõem o PIB**, relativo ao ano-base (cujo deflator é, por definição, 100).
+:::
+
+No nosso exemplo:
+$$
+\text{Deflator}_{2025} = \frac{930}{700} \times 100 = 132{,}9.
+$$
+
+Um deflator de 132,9 significa que o conjunto de bens do PIB ficou, em média, **32,9% mais caro** que no ano-base. Repare na relação fundamental, que reorganiza a própria definição:
+
+$$
+\text{PIB real} = \frac{\text{PIB nominal}}{\text{Deflator}} \times 100.
+$$ {#eq-deflacionar}
+
+Dividir uma série nominal por um índice de preços para obter a série real chama-se **deflacionar**. É a operação que transforma "reais de bolso" em "reais de poder de compra constante", e você a repetirá em quase toda análise macroeconômica séria — de salários a arrecadação de impostos.
+
+## Números-índice: comprimindo muitos preços num só
+
+O deflator é um exemplo de **número-índice**: um número que resume, num só valor com base 100, como um conjunto de preços (ou quantidades) mudou em relação a um período de referência. Índices são onipresentes em Economia — IPCA, Ibovespa, índice de produção industrial — e vale entender sua lógica.
+
+Suponha que você queira resumir "o que aconteceu com os preços" quando há mil bens, cada um variando de forma diferente. É preciso uma **média ponderada**, e a pergunta decisiva é: ponderar pelas quantidades de **qual** período? Há duas respostas clássicas.
+
+::: {.callout-note title="Definição — Índices de Laspeyres e de Paasche"}
+Um índice de preços de **Laspeyres** usa como pesos as quantidades do **período-base** (a cesta *antiga*):
+$$
+L = \frac{\sum p_t\, q_0}{\sum p_0\, q_0} \times 100.
+$$
+Um índice de preços de **Paasche** usa como pesos as quantidades do **período corrente** (a cesta *atual*):
+$$
+P = \frac{\sum p_t\, q_t}{\sum p_0\, q_t} \times 100.
+$$
+:::
+
+A diferença não é mera formalidade: os dois respondem a perguntas distintas. O **Laspeyres** pergunta "quanto custaria hoje a cesta que se consumia antes?"; o **Paasche** pergunta "quanto custava antes a cesta que se consome hoje?". O deflator do PIB é, por construção, um índice do **tipo Paasche** — pondera pelas quantidades *correntes* (as do próprio ano cujo PIB se mede). Já a maioria dos índices de custo de vida, como o **IPCA**, é do **tipo Laspeyres**: fixa uma cesta de consumo e acompanha seu custo ao longo do tempo.
+
+::: {.callout-tip title="Intuição — por que os dois tendem a discordar"}
+Quando um bem encarece, os consumidores fogem dele e compram substitutos (a lei da demanda do @sec-elasticidades). Um índice de Laspeyres, que mantém a cesta *antiga* fixa, continua dando peso cheio ao bem que encareceu e por isso tende a **superestimar** o aumento do custo de vida. Um índice de Paasche, com a cesta *atual*, já incorpora a fuga e tende a **subestimá-lo**. A "verdade" costuma estar entre os dois — motivo pelo qual índices mais sofisticados (como os *encadeados*) buscam um meio-termo.
+:::
+
+### Encadeamento: por que o IBGE abandonou a base fixa
+
+Um ano-base fixo tem um defeito que se agrava com o tempo: preços relativos mudam (a informática barateia, os serviços encarecem), e pesos antigos vão ficando irrealistas. A solução moderna, adotada pelo IBGE nas contas nacionais, é o **encadeamento** (*chain-weighting*): em vez de um único ano-base distante, usa-se o ano *imediatamente anterior* como base móvel, ano a ano, e encadeiam-se as variações. Isso mantém os pesos sempre atualizados e é por isso que a série oficial do PIB real brasileiro é uma **série encadeada** — um detalhe que explica pequenas diferenças entre o crescimento divulgado e o que um cálculo de base fixa simples produziria.
+
+## Deflator do PIB × IPCA: dois índices, dois usos
+
+Como o deflator do PIB e o IPCA medem "preços", é natural confundi-los. Mas cobrem cestas diferentes e servem a propósitos diferentes (@tbl-deflator-ipca).
+
+| | **Deflator do PIB** | **IPCA** |
+|:--|:--|:--|
+| O que cobre | *Todos* os bens e serviços da **produção** doméstica | Cesta de **consumo** das famílias |
+| Tipo de índice | Paasche (cesta corrente) | Laspeyres (cesta fixa) |
+| Bens de capital, exportações | **Incluídos** | Excluídos |
+| Importados (ex.: petróleo) | **Excluídos** (não são produção interna) | **Incluídos** (as famílias consomem) |
+| Quem calcula (Brasil) | IBGE (Contas Nacionais) | IBGE (SNIPC) |
+
+: Deflator do PIB versus IPCA. {#tbl-deflator-ipca}
+
+A consequência prática: os dois podem divergir de modo relevante num ano. Um choque no preço do **petróleo importado**, por exemplo, encarece a gasolina e pressiona o **IPCA** (as famílias consomem combustível), mas **não** entra no deflator do PIB (petróleo importado não é produção interna) — pode até *reduzi-lo* pela via das importações. Por isso, para medir o custo de vida do brasileiro, usa-se o IPCA; para deflacionar o PIB e falar de crescimento, usa-se o deflator. Cada índice para a sua pergunta.
+
+## 🇧🇷 Brasil em Foco
+
+**A série de PIB real do IBGE.** O IBGE divulga o PIB em valores **correntes** (nominais) e a **variação em volume** — o crescimento real, calculado por **encadeamento** de índices. É essa taxa real, livre do efeito de preços, que entra para a história econômica: quando se diz que o Brasil "cresceu cerca de 4,5% ao ano no milagre (1968–73)" ou "encolheu cerca de 3,5% em 2015 e de novo em 2016", fala-se sempre de **PIB real**. O **deflator implícito** correspondente costuma ser acompanhado como uma medida ampla de inflação da economia, ao lado do IPCA.
+
+**Nominal engana, real informa.** Durante a **hiperinflação** dos anos 1980 e início dos 1990, o PIB nominal brasileiro crescia centenas ou milhares de por cento ao ano — e, no entanto, a economia mal crescia ou estava em recessão. Foi um período em que olhar o número nominal era enganoso ao extremo: quase todo o "crescimento" era inflação. Só o PIB real, deflacionado, revelava a estagnação por trás das cifras infladas. Esse é o exemplo histórico mais dramático, no Brasil, da lição central deste capítulo.
+
+**Crescimento real per capita e a "década perdida".** Deflacionar não basta: para o padrão de vida, é preciso ainda dividir pela população, chegando ao **PIB real per capita**. Aqui o Brasil tem episódios marcantes de estagnação — a **década perdida** dos anos 1980, quando o PIB per capita real praticamente não avançou, e a semiestagnação da produtividade nas décadas seguintes. Um PIB real que cresce no mesmo ritmo da população deixa a renda por habitante parada; separar os dois efeitos exige exatamente as ferramentas deste capítulo.
+
+> **Fontes e séries para explorar:** IBGE — Contas Nacionais Trimestrais (PIB a preços correntes, variação em volume e deflator implícito); IBGE/SIDRA (séries de PIB real encadeado, referência 2010); IPEADATA (PIB real e PIB real per capita, séries longas); Banco Central/SGS. Ao comparar anos distantes, verifique em valores constantes de qual data a série está expressa.
+
+## Resumo do capítulo
+
+- O **PIB nominal** avalia a produção a **preços correntes**; o **PIB real**, a **preços de um ano-base fixo**. Só o PIB real mede crescimento *genuíno* de produção, pois neutraliza os preços.
+- A **taxa de crescimento real** compara PIB real de dois anos; ela separa "produzir mais coisas" de "coisas mais caras".
+- No **ano-base**, nominal e real coincidem; a divergência cresce com a distância ao ano-base, o que exige **atualizá-lo** periodicamente.
+- O **deflator do PIB** é $\dfrac{\text{PIB nominal}}{\text{PIB real}}\times 100$: um índice de preços de *toda* a produção. **Deflacionar** = dividir o nominal pelo índice de preços para obter o real.
+- Um **número-índice** resume muitos preços/quantidades com base 100. **Laspeyres** usa a cesta antiga (tende a superestimar o custo de vida); **Paasche** usa a cesta atual (tende a subestimá-lo). O deflator é Paasche; o IPCA é Laspeyres.
+- **Deflator do PIB × IPCA:** o deflator cobre toda a produção interna (inclui capital e exportações, exclui importados); o IPCA cobre a cesta de consumo (inclui importados). Divergem, por exemplo, diante de choques no petróleo importado.
+- No Brasil, o IBGE divulga o PIB real por **encadeamento**; a hiperinflação dos anos 1980 é o exemplo clássico de PIB nominal enganoso, e a "década perdida" mostra a importância do PIB real **per capita**.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver antes de abrir a solução. Os primeiros itens são conceituais; os do meio, numéricos; os últimos, de análise.
+:::
+
+**1.** Explique, em uma frase, por que o crescimento do PIB *nominal* pode dar uma impressão enganosa do desempenho de uma economia. Que medida corrige isso?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque o PIB nominal mistura variações de **quantidade** e de **preço**: ele pode subir só porque os preços subiram, sem que nada a mais tenha sido produzido. A correção é o **PIB real**, que avalia a produção a preços constantes de um ano-base e, portanto, mede apenas as variações de quantidade.
+:::
+
+**2.** Se o deflator do PIB de um ano é 125, o que isso diz sobre os preços em relação ao ano-base?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Um deflator de 125 significa que o conjunto de bens e serviços do PIB está, em média, **25% mais caro** que no ano-base (cujo deflator é 100). Equivale a dizer que, para comprar a produção corrente aos preços correntes, gasta-se 1,25 vez o que se gastaria aos preços do ano-base.
+:::
+
+**3.** Use os dados da @tbl-nominal-real. Calcule o PIB nominal de 2020, o PIB nominal de 2025, o PIB real de 2025 (a preços de 2020) e o deflator de 2025. Confirme a taxa de crescimento real.
+
+::: {.callout-tip collapse="true" title="Solução"}
+- Nominal 2020: $2\times100 + 40\times10 = R\$\,600$.
+- Nominal 2025: $3\times110 + 50\times12 = 330 + 600 = R\$\,930$.
+- Real 2025 (preços de 2020): $2\times110 + 40\times12 = 220 + 480 = R\$\,700$.
+- Deflator 2025: $\frac{930}{700}\times100 = 132{,}9$.
+- Crescimento real: $\frac{700-600}{600} = 16{,}7\%$. (O crescimento nominal foi $\frac{930-600}{600}=55\%$; a diferença é inflação.)
+:::
+
+**4.** O PIB nominal do Brasil em certo ano foi de R\$\,10 trilhões; no ano seguinte, R\$\,11 trilhões. O deflator passou de 100 para 106. Qual foi o crescimento **real** do PIB?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Deflacione o PIB nominal do segundo ano para preços do primeiro (ano-base, deflator 100):
+$$
+\text{PIB real}_2 = \frac{11}{106}\times100 = 10{,}377 \text{ trilhões.}
+$$
+Crescimento real: $\frac{10{,}377 - 10}{10} = 3{,}77\%$. Dos ~10% de crescimento nominal, cerca de 6 pontos foram inflação e ~3,8 pontos, produção real a mais.
+:::
+
+**5.** Explique por que um índice de preços de **Laspeyres** (cesta fixa, como o IPCA) tende a **superestimar** o aumento do custo de vida. Como isso se relaciona com a lei da demanda?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Um índice de Laspeyres mantém fixas as quantidades da cesta **antiga**. Quando um bem encarece, os consumidores, pela lei da demanda, reduzem seu consumo e migram para substitutos mais baratos (**efeito substituição**, do @sec-elasticidades). Mas o índice, com a cesta congelada, continua dando ao bem caro o **peso antigo**, como se ninguém tivesse substituído nada. Ele assim atribui à cesta um custo maior do que o efetivamente incorrido, **superestimando** a inflação do custo de vida. É o chamado *viés de substituição*.
+:::
+
+**6.** Em determinado ano, o preço internacional do petróleo (importado pelo Brasil) dispara. Explique, item a item, o efeito provável sobre (a) o IPCA e (b) o deflator do PIB. Por que diferem?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **IPCA sobe.** As famílias consomem gasolina, diesel e derivados; o IPCA cobre a cesta de consumo, que **inclui importados**. O choque encarece o custo de vida e pressiona o índice.
+
+(b) **Deflator do PIB não sobe por esse canal — pode até cair.** O deflator cobre apenas a **produção interna** e **exclui bens importados**. Petróleo importado não é produto interno; mais importações caras, aliás, reduzem $NX$ e podem baixar o deflator. A divergência vem justamente das cestas distintas: consumo (com importados) versus produção interna (sem importados).
+:::
+
+**7.** (Análise de caso) Um sindicato negociou reajuste salarial de 8%. No mesmo período, o IPCA acumulou 6% e o deflator do PIB, 9%. O trabalhador ganhou ou perdeu poder de compra? Qual índice é o relevante para responder, e por quê?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O índice relevante é o **IPCA**, porque a pergunta é sobre **poder de compra do consumidor** — a cesta que o trabalhador efetivamente compra. Com salário +8% e IPCA +6%, o **salário real cresceu** aproximadamente $\frac{1{,}08}{1{,}06}-1 \approx 1{,}9\%$: houve ganho real de poder de compra. O deflator do PIB (9%) é **irrelevante** aqui, pois mede preços de toda a produção (inclusive bens de capital e exportações), não o custo de vida. Usar o índice errado inverteria a conclusão — mais um exemplo de "cada índice para a sua pergunta".
+:::
+
+**8.** (Desafio) Durante a hiperinflação brasileira, o PIB nominal crescia milhares de por cento ao ano, enquanto o PIB real estagnava. Explique como as duas coisas convivem e por que, nesse contexto, o **encadeamento** e a **atualização do ano-base** se tornam especialmente importantes.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Convivem porque o PIB nominal incorpora a explosão de **preços** (o deflator crescia milhares de por cento), enquanto o PIB **real** — deflacionado — revelava que as **quantidades** produzidas mal se moviam. Quase todo o crescimento nominal era inflação, não produção.
+
+Nesse contexto, um ano-base fixo se torna obsoleto quase instantaneamente: os preços relativos e o nível de preços mudam tão rápido que pesos de poucos meses atrás já não descrevem a economia. O **encadeamento** (base móvel, ano a ano) mantém os pesos atualizados e evita que a comparação real seja contaminada por uma estrutura de preços defasada; a **atualização frequente do ano-base** cumpre papel semelhante. Sem esses cuidados, a própria medição do crescimento real ficaria distorcida — e a política econômica, cega.
+:::
+
+## Para saber mais
+
+- @blanchard2017 — apresenta com clareza PIB nominal *versus* real, deflator e a lógica dos números-índice na abertura da macroeconomia.
+- @mankiw2020 — o capítulo sobre a medida do custo de vida distingue muito bem deflator do PIB e índice de preços ao consumidor (o análogo do IPCA).
+- @dornbusch2013 — tratamento formal de índices de Laspeyres e Paasche e do viés de substituição.
+- @feijo2008 — detalha a metodologia de encadeamento adotada pelo IBGE nas contas nacionais brasileiras.

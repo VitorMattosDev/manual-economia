@@ -1,0 +1,214 @@
+# Desemprego e o mercado de trabalho {#sec-desemprego}
+
+Se o PIB é o número que abre o noticiário econômico, a **taxa de desemprego** é o que chega mais perto da mesa da cozinha. Ela traduz, num só percentual, a angústia de quem procura trabalho e não encontra, o medo de perder o emprego, a decisão de um jovem entre estudar mais ou tentar a sorte no mercado. Nenhum indicador macroeconômico tem impacto tão direto e imediato sobre a vida das pessoas — e nenhum é tão politicamente sensível.
+
+Mas a taxa de desemprego é também um dos indicadores mais **mal compreendidos**. O que exatamente significa "10% de desemprego"? Dez por cento de todos os brasileiros? De todos os adultos? E por que, em certos períodos, a taxa *cai* justamente quando a economia vai mal? Responder a essas perguntas exige entender como o mercado de trabalho é medido e organizado em categorias precisas. Este capítulo constrói essas categorias, define os **tipos** de desemprego, apresenta a **PNAD Contínua** — a pesquisa que mede o emprego no Brasil — e discute por que o desemprego nunca chega a zero, nem deveria.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- classificar a população nas categorias da pesquisa de emprego: **em idade de trabalhar**, **força de trabalho**, **ocupados**, **desocupados** e **fora da força de trabalho**;
+- calcular a **taxa de desocupação** e a **taxa de participação** e interpretar suas variações;
+- distinguir os tipos de desemprego — **friccional**, **estrutural** e **cíclico** — e o conceito de **taxa natural**;
+- entender por que a taxa oficial pode **subestimar** o problema (desalento, subutilização, informalidade);
+- reconhecer as especificidades do mercado de trabalho brasileiro medidas pela **PNAD Contínua**.
+
+## As categorias do mercado de trabalho
+
+Medir desemprego começa por classificar as pessoas. A pesquisa parte da **população em idade de trabalhar** (no Brasil, 14 anos ou mais) e a divide em compartimentos que se encaixam como uma árvore (@fig-categorias-trabalho).
+
+::: {#fig-categorias-trabalho}
+
+```{.tikz}
+%%| filename: fig-categorias-trabalho
+%%| alt: Árvore classificando a população em idade de trabalhar em força de trabalho (ocupados e desocupados) e fora da força de trabalho.
+\begin{tikzpicture}[font=\footnotesize, node distance=0.5cm]
+  \node[draw, rounded corners, fill=manualgray!15, align=center, text width=3.2cm]
+    (pit) at (0,0) {População em idade\\de trabalhar (14+)};
+  \node[draw, rounded corners, fill=manualblue!15, align=center, text width=3cm]
+    (ft) at (5,1.6) {Força de trabalho\\(quer trabalhar)};
+  \node[draw, rounded corners, fill=manualgray!12, align=center, text width=3cm]
+    (fora) at (5,-1.6) {Fora da força\\(não procura)};
+  \node[draw, rounded corners, fill=manualgreen!20, align=center, text width=3cm]
+    (ocu) at (10,2.6) {Ocupados\\(têm trabalho)};
+  \node[draw, rounded corners, fill=manualred!20, align=center, text width=3cm]
+    (des) at (10,0.6) {Desocupados\\(procuram e não têm)};
+  \node[draw, rounded corners, fill=manualgray!10, align=center, text width=3cm]
+    (foraex) at (10,-1.6) {Estudantes, aposentados,\\donos de casa, desalentados};
+  \draw[vetor, manualgray] (pit) -- (ft);
+  \draw[vetor, manualgray] (pit) -- (fora);
+  \draw[vetor, manualgray] (ft) -- (ocu);
+  \draw[vetor, manualgray] (ft) -- (des);
+  \draw[vetor, manualgray] (fora) -- (foraex);
+\end{tikzpicture}
+```
+
+Como a pesquisa classifica a população. A taxa de desocupação é a razão entre desocupados e força de trabalho — não a população inteira.
+:::
+
+As definições são precisas, e cada fronteira importa:
+
+::: {.callout-note title="Definições — categorias do mercado de trabalho"}
+- **População em idade de trabalhar (PIT):** todas as pessoas com 14 anos ou mais.
+- **Força de trabalho (ou população economicamente ativa):** os que estão **ocupados** mais os que estão **desocupados** — isto é, todos que *querem* trabalhar.
+- **Ocupados:** têm trabalho (formal ou informal, com ou sem carteira, inclusive por conta própria), mesmo que só por uma hora na semana de referência.
+- **Desocupados:** **não** têm trabalho, estão **disponíveis** e **procuraram ativamente** emprego no período de referência.
+- **Fora da força de trabalho:** não trabalham nem procuram — estudantes, aposentados, pessoas dedicadas a afazeres domésticos, e os **desalentados** (que desistiram de procurar).
+:::
+
+O ponto decisivo, fonte de quase todos os mal-entendidos, é a **definição de desocupado**: não basta não ter emprego; é preciso estar **procurando**. Quem não procura sai da força de trabalho e *deixa de ser contado como desempregado*.
+
+## As duas taxas fundamentais
+
+Duas razões resumem o quadro. A **taxa de desocupação** (o "desemprego" do noticiário) é a fração da *força de trabalho* que está desocupada:
+
+$$
+\text{Taxa de desocupação} = \frac{\text{Desocupados}}{\text{Força de trabalho}} \times 100.
+$$ {#eq-taxa-desocupacao}
+
+Repare no denominador: é a **força de trabalho**, não a população total. Uma taxa de 10% significa que, de cada 100 pessoas *que querem trabalhar*, 10 não conseguem — não que 10% dos brasileiros estejam desempregados.
+
+A **taxa de participação** mede quantos, dentre os que *poderiam*, de fato entram no mercado (trabalhando ou procurando):
+
+$$
+\text{Taxa de participação} = \frac{\text{Força de trabalho}}{\text{População em idade de trabalhar}} \times 100.
+$$
+
+Essa segunda taxa é indispensável para não se enganar com a primeira, como mostra a armadilha a seguir.
+
+::: {.callout-important title="Armadilha comum — desemprego pode cair por um mau motivo"}
+Se muitos desocupados **desistem** de procurar (viram desalentados), eles saem da força de trabalho. O numerador da @eq-taxa-desocupacao cai, o denominador também — e a **taxa de desocupação pode diminuir sem que ninguém tenha arrumado emprego**. Uma queda do desemprego acompanhada de queda na **taxa de participação** é um sinal de alerta, não de melhora: o mercado piorou tanto que as pessoas pararam de procurar. Por isso os dois indicadores devem ser lidos juntos.
+:::
+
+### Um exemplo numérico
+
+Numa cidade, a população em idade de trabalhar é de 100 mil pessoas. Destas, 60 mil estão ocupadas e 6 mil estão desocupadas (procurando). As demais 34 mil estão fora da força.
+
+- Força de trabalho: $60.000 + 6.000 = 66.000$.
+- Taxa de desocupação: $\frac{6.000}{66.000}\times100 = 9{,}1\%$.
+- Taxa de participação: $\frac{66.000}{100.000}\times100 = 66\%$.
+
+Agora suponha que 2 mil desocupados desistam de procurar. Ocupados seguem 60 mil; desocupados caem para 4 mil; a força de trabalho vira 64 mil.
+
+- Nova taxa de desocupação: $\frac{4.000}{64.000}\times100 = 6{,}3\%$.
+- Nova taxa de participação: $\frac{64.000}{100.000}\times100 = 64\%$.
+
+O desemprego "melhorou" de 9,1% para 6,3% — mas **ninguém arrumou emprego**; a queda veio inteira do desalento, denunciado pela participação que recuou de 66% para 64%.
+
+## Tipos de desemprego
+
+Nem todo desemprego tem a mesma causa nem pede a mesma resposta. A macroeconomia distingue três tipos.
+
+- **Desemprego friccional:** o tempo natural que as pessoas levam procurando o emprego certo — um recém-formado buscando a primeira vaga, alguém que pediu demissão para achar algo melhor. É de curta duração e, em certa medida, **saudável**: reflete um mercado dinâmico em que pessoas e vagas se procuram. Existiria mesmo numa economia perfeitamente aquecida.
+- **Desemprego estrutural:** um **descompasso** persistente entre as qualificações (ou a localização) dos trabalhadores e as exigências das vagas disponíveis. Surge quando setores encolhem e outros crescem, quando a tecnologia torna certas habilidades obsoletas, ou quando salários rígidos impedem o ajuste. É mais longo e difícil de resolver — exige requalificação, educação, mobilidade.
+- **Desemprego cíclico:** o que **sobe nas recessões** e cai nas expansões, acompanhando o ciclo econômico. Quando a demanda agregada desaba (tema do Volume 7), empresas demitem, e o desemprego cíclico dispara. É o alvo típico da política macroeconômica de curto prazo.
+
+::: {.callout-note title="Definição — Taxa natural de desemprego"}
+A **taxa natural de desemprego** é a taxa que prevalece quando a economia opera em seu ritmo normal, sem desemprego cíclico. Corresponde à soma do desemprego **friccional** e **estrutural** — o desemprego que *permanece* mesmo com a economia "no pleno emprego". Não é zero, e um desemprego zero não é sequer desejável: significaria uma economia sem nenhuma rotatividade nem realocação.
+:::
+
+O **pleno emprego**, portanto, não quer dizer desemprego nulo, e sim desemprego igual à taxa natural — apenas o friccional e o estrutural, sem o componente cíclico. Voltaremos a esse conceito ao estudar a curva de Phillips e a relação entre desemprego e inflação, no Volume 7.
+
+## Por que a taxa oficial pode enganar
+
+A taxa de desocupação é uma medida útil, mas estreita. Vários problemas reais escapam dela:
+
+- **Desalentados:** como vimos, quem desiste de procurar sai da conta. Em recessões profundas, o desalento pode mascarar boa parte do desemprego.
+- **Subocupação por insuficiência de horas:** quem trabalha meio período mas gostaria (e precisaria) de trabalhar mais é contado como *ocupado*, embora esteja subutilizado.
+- **Informalidade e baixa qualidade:** ser "ocupado" não diz nada sobre a **qualidade** do trabalho. Um ambulante sem renda estável e sem direitos conta tanto quanto um assalariado formal.
+
+Por isso o IBGE divulga, além da taxa de desocupação, indicadores mais amplos de **subutilização da força de trabalho**, que somam desocupados, subocupados por horas e a **força de trabalho potencial** (incluindo desalentados). Essa taxa ampliada costuma ser **muito maior** que a taxa de desocupação — e, no Brasil, a diferença entre as duas é enorme, justamente pela informalidade e pelo desalento elevados.
+
+## 🇧🇷 Brasil em Foco
+
+**Quem mede: a PNAD Contínua.** No Brasil, o mercado de trabalho é medido pela **Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua)**, do **IBGE** — uma pesquisa domiciliar que entrevista milhares de domicílios e divulga resultados mensais (trimestres móveis) e trimestrais. É dela que sai a **taxa de desocupação** oficial, além das taxas de participação, informalidade e subutilização. Antes da PNAD Contínua (iniciada em 2012), a referência mensal era a PME, com metodologia e cobertura diferentes — por isso séries muito longas exigem cuidado na comparação.
+
+**A marca brasileira: informalidade.** A grande especificidade do mercado de trabalho brasileiro é a **informalidade**. Cerca de **40% dos ocupados** estão em trabalhos informais — sem carteira assinada, por conta própria sem CNPJ, trabalho familiar auxiliar. Isso significa que a taxa de desocupação, sozinha, conta menos da metade da história: muita gente está "ocupada", mas em trabalhos precários, sem direitos, previdência ou renda estável. A **taxa composta de subutilização** da PNAD Contínua — que soma desocupados, subocupados e desalentados — costuma ser bem superior à taxa de desocupação, revelando um contingente enorme de subaproveitamento da força de trabalho.
+
+**Desigualdades no desemprego.** O desemprego brasileiro não se distribui por igual. É sistematicamente maior entre os **jovens** (a taxa de desocupação juvenil chega a ser duas a três vezes a média geral), entre **mulheres**, entre **pretos e pardos** e entre os de **menor escolaridade**. Essas assimetrias, medidas pela PNAD Contínua, mostram que o desemprego é também uma questão distributiva e de acesso — não um fenômeno homogêneo.
+
+**Participação feminina e desalento.** A **taxa de participação** brasileira é fortemente marcada por diferenças de gênero: a participação feminina é bem inferior à masculina, em parte pela sobrecarga de afazeres domésticos e de cuidado, majoritariamente sobre as mulheres. E, em recessões severas — como a de 2015–2016 e o choque de 2020 —, o **desalento** cresceu visivelmente, ilustrando na prática a armadilha discutida neste capítulo: parte da variação da taxa de desocupação vem de gente entrando e saindo da *procura*, não apenas de vagas criadas ou destruídas.
+
+> **Fontes e séries para explorar:** IBGE — PNAD Contínua (taxa de desocupação, participação, informalidade, subutilização e desalento; recortes por sexo, idade, cor e escolaridade); Ministério do Trabalho — CAGED (empregos formais, fluxo de admissões e desligamentos); IPEADATA. Atenção à quebra metodológica entre PME e PNAD Contínua ao usar séries longas.
+
+## Resumo do capítulo
+
+- A pesquisa de emprego classifica a **população em idade de trabalhar** (14+) em **força de trabalho** (ocupados + desocupados) e **fora da força**. **Desocupado** é quem não tem trabalho, está disponível **e procura** ativamente.
+- **Taxa de desocupação** $= \dfrac{\text{desocupados}}{\text{força de trabalho}}\times100$ — o denominador é a força de trabalho, **não** a população total. A **taxa de participação** $= \dfrac{\text{força de trabalho}}{\text{PIT}}\times100$.
+- As duas taxas devem ser lidas **juntas**: o desemprego pode cair só porque desocupados viram **desalentados** e saem da força — uma piora disfarçada de melhora.
+- Três tipos de desemprego: **friccional** (busca normal por vaga, saudável), **estrutural** (descompasso de qualificação/localização, persistente) e **cíclico** (sobe nas recessões). A **taxa natural** = friccional + estrutural; **pleno emprego** não é desemprego zero.
+- A taxa oficial **subestima** o problema ao ignorar desalentados e subocupados por horas e ao não medir a **qualidade** do trabalho; medidas de **subutilização** captam melhor.
+- No Brasil, quem mede é a **PNAD Contínua** (IBGE). A marca do país é a **informalidade** (~40% dos ocupados) e uma subutilização muito acima da taxa de desocupação; o desemprego é maior entre jovens, mulheres, pretos/pardos e menos escolarizados.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver antes de abrir a solução. Os primeiros itens são conceituais; os do meio, numéricos; os últimos, de análise.
+:::
+
+**1.** Um estudante de 20 anos que só estuda e não procura emprego está desempregado? Em que categoria ele se encaixa?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Não** está desempregado (desocupado). Para ser desocupado é preciso não ter trabalho, estar **disponível** e **procurar ativamente**. Como ele não procura, está **fora da força de trabalho**. Ele faz parte da população em idade de trabalhar, mas não da força de trabalho — logo, não entra nem no numerador nem no denominador da taxa de desocupação.
+:::
+
+**2.** Explique por que o denominador da taxa de desocupação é a força de trabalho, e não a população total. O que daria de errado usar a população total?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A taxa quer medir a dificuldade de encontrar trabalho *entre quem o busca*. Usar a população total incluiria no denominador crianças, aposentados e estudantes que não querem trabalhar — pessoas para quem "estar sem emprego" não é um problema de mercado. Isso **diluiria** artificialmente a taxa e a tornaria sensível a fatores demográficos (como o envelhecimento) que nada têm a ver com a facilidade de conseguir emprego. Restringir ao conjunto de quem *quer* trabalhar isola o fenômeno de interesse.
+:::
+
+**3.** Numa economia, há 80 milhões de pessoas em idade de trabalhar: 48 mi ocupadas e 6 mi desocupadas. Calcule a força de trabalho, a taxa de desocupação e a taxa de participação.
+
+::: {.callout-tip collapse="true" title="Solução"}
+- Força de trabalho: $48 + 6 = 54$ mi.
+- Taxa de desocupação: $\frac{6}{54}\times100 = 11{,}1\%$.
+- Taxa de participação: $\frac{54}{80}\times100 = 67{,}5\%$.
+:::
+
+**4.** Partindo dos dados do exercício 3, suponha que 3 mi de desocupados fiquem **desalentados** e parem de procurar. Recalcule as duas taxas e interprete.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Ocupados seguem 48 mi; desocupados caem para 3 mi; força de trabalho vira 51 mi.
+- Taxa de desocupação: $\frac{3}{51}\times100 = 5{,}9\%$.
+- Taxa de participação: $\frac{51}{80}\times100 = 63{,}75\%$.
+
+O desemprego "caiu" de 11,1% para 5,9%, mas **nenhum emprego foi criado** — a queda vem inteiramente do desalento, denunciado pela participação que recuou de 67,5% para 63,75%. É a armadilha clássica: sem olhar a participação, concluiríamos erradamente que o mercado melhorou.
+:::
+
+**5.** Classifique cada situação como desemprego **friccional**, **estrutural** ou **cíclico**:
+(a) uma recessão faz uma montadora demitir 5.000 operários;
+(b) um economista recém-formado leva dois meses escolhendo entre propostas;
+(c) caixas de banco perdem o emprego com a digitalização e não têm as habilidades exigidas pelas novas vagas.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Cíclico** — a demissão acompanha a queda da atividade na recessão.
+(b) **Friccional** — busca normal e curta pelo emprego adequado, típica de um mercado dinâmico.
+(c) **Estrutural** — descompasso persistente entre as qualificações dos trabalhadores e as exigidas pelas vagas, causado por mudança tecnológica.
+:::
+
+**6.** Explique por que "desemprego zero" não é um objetivo desejável de política econômica. O que é, então, o pleno emprego?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Desemprego zero exigiria eliminar até o desemprego **friccional** — ou seja, ninguém jamais entre um emprego e outro, nenhuma busca por vaga melhor, nenhuma realocação. Isso descreveria uma economia **rígida e estagnada**, sem a rotatividade natural de um mercado dinâmico, e provavelmente com forte pressão inflacionária. **Pleno emprego** é operar na **taxa natural** de desemprego — apenas os componentes friccional e estrutural, sem o cíclico. É o máximo de emprego compatível com o funcionamento normal e não inflacionário da economia, não a ausência total de desemprego.
+:::
+
+**7.** (Análise de caso) A taxa de desocupação de um país é 8%, mas a taxa de subutilização é 22%. O que essa diferença revela sobre o mercado de trabalho? Relacione com o caso brasileiro.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A grande distância entre as duas taxas revela que a taxa de desocupação, sozinha, **subestima** bastante a ociosidade da força de trabalho. A subutilização soma aos desocupados os **subocupados por insuficiência de horas** (querem e precisam trabalhar mais) e a **força de trabalho potencial** (inclui **desalentados**, que desistiram de procurar mas trabalhariam). Um hiato de 8% para 22% indica muitos trabalhadores em jornada insuficiente e muitos desalentados — quadro típico do Brasil, onde a **informalidade** elevada e o desalento em recessões fazem a subutilização ficar bem acima da taxa de desocupação. A conclusão é que "estar ocupado" não garante trabalho adequado, e que avaliar o mercado brasileiro pela taxa de desocupação apenas é enganoso.
+:::
+
+**8.** (Desafio) Numa recuperação econômica, muitos desalentados voltam a procurar emprego. É possível que a taxa de desocupação **suba** justamente quando a economia começa a melhorar? Explique o mecanismo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Sim, é possível e comum. Quando a economia melhora, pessoas antes **desalentadas** (fora da força de trabalho) voltam a **procurar** emprego, atraídas pela expectativa de vagas. Ao retomar a procura, elas **reentram na força de trabalho** como **desocupadas**. Se a criação de vagas não absorve imediatamente todos esses reingressantes, o **numerador** (desocupados) e o **denominador** (força de trabalho) da taxa sobem, e a taxa de desocupação pode **aumentar** no curto prazo — acompanhada, porém, de **alta da taxa de participação**. É o espelho da armadilha do desalento: assim como o desemprego pode cair por um mau motivo, ele pode subir por um **bom** motivo (gente voltando a procurar porque enxerga oportunidade). Novamente, só a leitura conjunta das duas taxas evita o diagnóstico errado.
+:::
+
+## Para saber mais
+
+- @blanchard2017 — capítulo sobre o mercado de trabalho: categorias, taxa natural de desemprego e a relação com inflação (curva de Phillips).
+- @mankiw2020 — apresentação acessível das categorias do desemprego, tipos e por que a taxa nunca é zero.
+- @dornbusch2013 — tratamento do desemprego, rigidez de salários e determinantes da taxa natural.
+- @gremaud2017 — para as especificidades do mercado de trabalho brasileiro: informalidade, PNAD e as desigualdades regionais e de qualificação.

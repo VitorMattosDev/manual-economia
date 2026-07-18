@@ -1,0 +1,190 @@
+# Crescimento econômico: fatos estilizados {#sec-crescimento-fatos}
+
+Em 1960, o Brasil e a Coreia do Sul eram economias de renda parecida — a coreana, por vários critérios, até mais pobre. Passadas seis décadas, a renda por habitante da Coreia é várias vezes a brasileira, e o país asiático se tornou fabricante de semicondutores, navios e automóveis exportados ao mundo inteiro. O que separou tão radicalmente duas trajetórias que partiram do mesmo ponto? A resposta está numa única palavra, cuja aparência modesta esconde o fenômeno mais poderoso da economia de longo prazo: **crescimento**.
+
+Os capítulos anteriores nos ensinaram a *medir* a economia num dado momento — o PIB, os preços, o emprego. Agora mudamos a lente do instantâneo para o filme de longa duração. A pergunta deixa de ser "quanto se produz hoje?" e passa a ser "por que algumas economias produzem, década após década, cada vez mais por pessoa, enquanto outras estagnam?". É, nas palavras do economista Robert Lucas, uma questão cujas consequências para o bem-estar humano são tão grandes que, uma vez que se começa a pensar nela, é difícil pensar em qualquer outra coisa. Este capítulo apresenta os **fatos estilizados** do crescimento — os padrões robustos que qualquer teoria precisa explicar — e a contabilidade que decompõe suas fontes.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- definir **crescimento econômico** como aumento sustentado do **PIB real per capita** e distingui-lo de flutuações de curto prazo;
+- demonstrar o **poder dos juros compostos** aplicado ao crescimento e usar a **regra dos 70**;
+- enunciar os principais **fatos estilizados** do crescimento entre países;
+- decompor o crescimento em contribuições de **capital**, **trabalho** e **produtividade total dos fatores (PTF)** via contabilidade do crescimento;
+- explicar por que a **produtividade** é o motor do crescimento no longo prazo e discutir a ideia de **convergência**.
+
+## O que é crescimento e por que ele é tão poderoso
+
+::: {.callout-note title="Definição — Crescimento econômico"}
+**Crescimento econômico** é o aumento **sustentado**, ao longo do tempo, da capacidade produtiva de uma economia, medido usualmente pela taxa de variação do **PIB real per capita**. É um fenômeno de **longo prazo** e de **oferta** (capacidade de produzir), distinto das flutuações de curto prazo do ciclo econômico.
+:::
+
+Duas escolhas na definição são deliberadas. Primeiro, **real** (e não nominal): como vimos no @sec-pib-real-deflatores, só o PIB real, livre da inflação, mede produção genuína. Segundo, **per capita**: o que importa para o padrão de vida é a produção *por pessoa*. Um país cujo PIB cresce 2% enquanto a população cresce 2% não ficou mais rico por habitante — apenas maior.
+
+O que torna o crescimento tão decisivo é a **composição** — os juros compostos aplicados à economia. Diferenças que parecem minúsculas num ano tornam-se abissais ao longo de gerações. Uma economia que cresce **1% ao ano** leva 70 anos para dobrar de tamanho; uma que cresce **3% ao ano** dobra em pouco mais de 23 anos, e, em 70 anos, terá multiplicado sua renda por oito. A @fig-composicao ilustra essa divergência.
+
+::: {#fig-composicao}
+
+```{.tikz}
+%%| filename: fig-composicao
+%%| alt: Duas curvas de crescimento composto ao longo de 70 anos — uma a 1% e outra a 3% ao ano — divergindo dramaticamente.
+\begin{tikzpicture}
+\begin{axis}[
+  width=11cm, height=7cm,
+  xlabel={Anos}, ylabel={Renda per capita (índice, base 100)},
+  domain=0:70, samples=71,
+  legend pos=north west,
+  grid=both, grid style={manualgray!20},
+  axis lines=left,
+  xmin=0, xmax=70, ymin=0, ymax=850,
+]
+  \addplot[curva, manualblue, thick] {100*(1.03)^x};
+  \addlegendentry{crescimento de 3\% a.a.}
+  \addplot[curva, manualred, thick] {100*(1.01)^x};
+  \addlegendentry{crescimento de 1\% a.a.}
+\end{axis}
+\end{tikzpicture}
+```
+
+Duas economias partem do mesmo nível (índice 100). Em 70 anos, a que cresce 3% ao ano fica cerca de **quatro vezes** mais rica que a que cresce 1% — o poder dos juros compostos.
+:::
+
+::: {.callout-tip title="Intuição — a regra dos 70"}
+Para estimar em quantos anos uma grandeza que cresce a uma taxa constante **dobra**, divida 70 pela taxa (em %):
+$$
+\text{tempo para dobrar} \approx \frac{70}{\text{taxa de crescimento (\%)}}.
+$$
+A 2% ao ano, dobra em ~35 anos; a 7%, em ~10 anos. A regra decorre de $\ln 2 \approx 0{,}70$ e é uma das contas mais úteis da macroeconomia — vale para PIB, população, dívida ou qualquer coisa que cresça de forma composta.
+:::
+
+## Os fatos estilizados do crescimento
+
+Comparando as economias do mundo ao longo do tempo, os economistas identificaram **regularidades** robustas — os "fatos estilizados" que servem de teste para qualquer teoria do crescimento. Os principais:
+
+1. **As diferenças de renda entre países são enormes.** A renda per capita dos países mais ricos supera a dos mais pobres por um fator de dezenas de vezes. Essas diferenças são grandes demais para serem explicadas por sorte ou recursos naturais; refletem, sobretudo, diferenças de **produtividade**.
+2. **As taxas de crescimento variam muito, e mudam de posição.** Países não crescem todos ao mesmo ritmo, e o ranking se altera: nações que eram pobres (como os "tigres asiáticos") cresceram rápido e alcançaram os ricos; outras, antes prósperas, estagnaram. O crescimento não é destino fixo.
+3. **No longo prazo, o crescimento vem da produtividade.** Aumentar a renda por trabalhador de forma *sustentada* não se consegue apenas acumulando mais capital ou pondo mais gente para trabalhar — esses fatores têm **retornos decrescentes** (Volume 1 e Volume 5). O crescimento persistente vem de produzir **mais com os mesmos fatores**, ou seja, de ganhos de **produtividade** ligados à tecnologia, ao conhecimento e à eficiência institucional.
+4. **Há convergência — mas condicional.** Entre países com características semelhantes (instituições, escolaridade, taxas de poupança), os mais pobres tendem a crescer mais rápido e a *alcançar* os mais ricos, porque o capital é mais escasso e mais produtivo onde há pouco. Mas essa **convergência** não é automática entre países muito diferentes: sem as condições certas, os pobres podem ficar para trás — daí "convergência **condicional**".
+
+::: {.callout-warning title="Controvérsia — por que uns crescem e outros não?"}
+Não há consenso pleno sobre a causa última das diferenças de crescimento. Correntes distintas enfatizam: a **acumulação de capital físico e humano** (educação); as **instituições** — direitos de propriedade, Estado de direito, ambiente de negócios (tese central de autores como Acemoglu e North, tema do Volume 13); a **abertura ao comércio e à tecnologia**; a **geografia** e a dotação de recursos. O mais provável é que interajam. O que é consensual é o *fato* a explicar: no longuíssimo prazo, quase todo o ganho de renda per capita vem de **produtividade**, não de trabalhar mais horas.
+:::
+
+## A contabilidade do crescimento
+
+De onde vem, mecanicamente, o crescimento do produto? De três fontes, que a **contabilidade do crescimento** (*growth accounting*) separa. Parte-se de uma função de produção agregada em que o produto $Y$ depende do estoque de **capital** $K$, da quantidade de **trabalho** $L$ e de um fator de **produtividade** $A$ (a tecnologia e a eficiência com que se combinam capital e trabalho):
+
+$$
+Y = A \cdot F(K, L).
+$$
+
+Decompondo as variações, chega-se à equação central da contabilidade do crescimento:
+
+$$
+\underbrace{\frac{\Delta Y}{Y}}_{\text{cresc. do produto}} = \underbrace{\frac{\Delta A}{A}}_{\text{PTF}} + \alpha\,\frac{\Delta K}{K} + (1-\alpha)\,\frac{\Delta L}{L},
+$$ {#eq-growth-accounting}
+
+onde $\alpha$ é a participação do capital na renda (e $1-\alpha$, a do trabalho). Em palavras: o crescimento do produto é a soma do crescimento da **produtividade**, mais as contribuições do **capital** e do **trabalho**, cada uma ponderada por sua participação na renda.
+
+O termo $\dfrac{\Delta A}{A}$ é a **Produtividade Total dos Fatores (PTF)** — também chamada **resíduo de Solow**, porque é o que sobra do crescimento *depois* de descontar as contribuições de capital e trabalho.
+
+::: {.callout-note title="Definição — Produtividade Total dos Fatores (PTF)"}
+A **PTF** é a parcela do crescimento do produto **não** explicada pelo aumento das quantidades de capital e trabalho. Mede ganhos de **eficiência** — melhor tecnologia, melhor organização, melhores instituições — que fazem os *mesmos* fatores renderem mais. É calculada como resíduo: $\frac{\Delta A}{A} = \frac{\Delta Y}{Y} - \alpha\frac{\Delta K}{K} - (1-\alpha)\frac{\Delta L}{L}$.
+:::
+
+### Um exemplo numérico
+
+Suponha que, num ano, o produto de um país cresça 4%, o capital cresça 3% e o trabalho, 1%. A participação do capital na renda é $\alpha = 0{,}4$. Qual foi o crescimento da PTF?
+
+$$
+\frac{\Delta A}{A} = 4\% - 0{,}4\times 3\% - 0{,}6\times 1\% = 4\% - 1{,}2\% - 0{,}6\% = 2{,}2\%.
+$$
+
+Das 4 pontos percentuais de crescimento, 1,2 vieram de mais capital, 0,6 de mais trabalho e **2,2 da produtividade** — mais da metade. Esse tipo de decomposição, feita para longos períodos, revela o **fato 3**: nas economias que crescem de forma sustentada, a PTF costuma responder pela maior parte do avanço da renda por trabalhador. Onde a PTF estagna, o crescimento depende de empilhar cada vez mais capital — e os retornos decrescentes acabam por freá-lo.
+
+O modelo teórico que organiza essas relações e explica por que só a produtividade sustenta o crescimento no longuníssimo prazo é o **modelo de Solow**, que o Volume 13 desenvolverá em detalhe. Por ora, guarde o fato empírico: **produtividade é o motor**.
+
+## 🇧🇷 Brasil em Foco
+
+**Um passado de crescimento acelerado.** Nem sempre o Brasil foi sinônimo de baixo crescimento. Entre as décadas de 1930 e 1980, o país foi um dos que **mais cresceram no mundo**: a industrialização por substituição de importações e o "**milagre econômico**" (1968–1973, com taxas próximas de 10% ao ano) multiplicaram a renda per capita e transformaram um país agrário numa das maiores economias industriais. Essa fase — que o Volume 11 detalhará — mostra que crescer rápido esteve, sim, ao alcance do Brasil.
+
+**A grande desaceleração e a armadilha da renda média.** Desde os anos 1980, porém, o crescimento brasileiro **despencou e se tornou errático**. O PIB per capita cresceu pouco e de forma volátil, e o país parece preso na chamada **armadilha da renda média**: rico demais para competir por salários baixos com nações pobres, mas sem a produtividade e a tecnologia para competir com as ricas. Comparações com a **Coreia do Sul** — que partiu de renda semelhante nos anos 1960 e hoje é várias vezes mais rica — tornaram-se o símbolo dessa divergência, ilustrando na prática que a convergência é **condicional**, não garantida.
+
+**O diagnóstico da produtividade.** A contabilidade do crescimento aplicada ao Brasil aponta um culpado central: a **PTF praticamente parou de crescer** por longos períodos desde os anos 1980. Boa parte do pouco crescimento veio de acumulação de fatores (mais capital, mais gente na força de trabalho com a transição demográfica), não de ganhos de eficiência. Sem produtividade, o crescimento fica refém de uma **taxa de investimento** que, no Brasil, é historicamente baixa — a Formação Bruta de Capital Fixo raramente supera 15–20% do PIB (@sec-contas-nacionais), contra 30–40% nas economias asiáticas de crescimento rápido.
+
+**O "Custo Brasil" e a agenda de produtividade.** Os obstáculos à produtividade brasileira costumam ser reunidos sob o rótulo **Custo Brasil**: sistema tributário complexo, infraestrutura deficiente, insegurança jurídica, baixa qualidade da educação, economia relativamente fechada ao comércio. Cada um desses fatores aparece nos debates sobre reformas (tributária, trabalhista, comercial) precisamente porque, no longo prazo, elevar a PTF é a única forma de o Brasil escapar da semiestagnação — a lição mais importante deste capítulo aplicada ao país.
+
+> **Fontes e séries para explorar:** IBGE (PIB real e per capita); IPEADATA (séries longas de PIB per capita e investimento); Penn World Table e Banco Mundial (comparações internacionais de renda e PTF); IBRE/FGV e IPEA (estudos de produtividade e PTF do Brasil). Ao comparar países, use renda em **paridade de poder de compra (PPC)**.
+
+## Resumo do capítulo
+
+- **Crescimento econômico** é o aumento **sustentado** do **PIB real per capita** — fenômeno de **longo prazo** e de **oferta**, distinto das flutuações do ciclo.
+- O crescimento **compõe**: pequenas diferenças de taxa geram diferenças enormes de renda em poucas décadas. A **regra dos 70** estima o tempo para dobrar ($70 \div$ taxa).
+- **Fatos estilizados:** (1) diferenças de renda entre países são enormes; (2) as taxas de crescimento variam e o ranking muda; (3) no longo prazo o crescimento vem da **produtividade**, não de acumular fatores (que têm retornos decrescentes); (4) há **convergência condicional** — pobres alcançam ricos *se* tiverem instituições, educação e poupança semelhantes.
+- A **contabilidade do crescimento** decompõe $\frac{\Delta Y}{Y}$ em contribuições de **capital**, **trabalho** e **PTF** (resíduo de Solow). A **PTF** mede ganhos de eficiência e costuma responder pela maior parte do crescimento sustentado.
+- No Brasil, um passado de crescimento acelerado (até ~1980) deu lugar a semiestagnação e à **armadilha da renda média**; o diagnóstico central é a **PTF estagnada**, agravada por **baixo investimento** e pelo **Custo Brasil**.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver antes de abrir a solução. Os primeiros itens são conceituais; os do meio, numéricos; os últimos, de análise.
+:::
+
+**1.** Por que se mede crescimento pelo PIB **real per capita**, e não pelo PIB nominal ou pelo PIB total? Dê um exemplo em que o PIB total cresce mas o padrão de vida não melhora.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Usa-se **real** para excluir a inflação (só o real mede produção genuína) e **per capita** porque o padrão de vida depende da produção *por pessoa*. Exemplo: se o PIB real total cresce 2% e a população também cresce 2%, o **PIB real per capita fica estável** — há mais gente e mais produção, mas cada habitante, em média, não está melhor. O país ficou *maior*, não mais *rico* por pessoa.
+:::
+
+**2.** Use a regra dos 70. Em quantos anos dobra a renda de um país que cresce (a) 2% ao ano? (b) 5% ao ano? (c) 7% ao ano?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $70/2 = 35$ anos. (b) $70/5 = 14$ anos. (c) $70/7 = 10$ anos. Note como o tempo para dobrar cai rapidamente à medida que a taxa sobe — a essência da composição.
+:::
+
+**3.** Dois países partem da mesma renda per capita. A cresce 1% ao ano; B, 4% ao ano. Sem calcular exatamente, use a regra dos 70 para argumentar quão diferente será a renda dos dois após 70 anos.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A, a 1% ao ano, dobra em ~70 anos: sua renda fica cerca de **2 vezes** a inicial. B, a 4% ao ano, dobra em ~$70/4 \approx 17{,}5$ anos: em 70 anos dobra **quatro vezes** ($70/17{,}5 = 4$), ficando $2^4 = 16$ vezes a inicial. Ou seja, após 70 anos B é cerca de **8 vezes** mais rico que A ($16 \div 2$), embora tenham partido do mesmo ponto. É a divergência do tipo Brasil–Coreia.
+:::
+
+**4.** O produto de um país cresce 5% num ano; o capital cresce 4% e o trabalho, 2%. A participação do capital na renda é $\alpha = 0{,}3$. Calcule o crescimento da PTF e interprete.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$$
+\frac{\Delta A}{A} = 5\% - 0{,}3\times4\% - 0{,}7\times2\% = 5\% - 1{,}2\% - 1{,}4\% = 2{,}4\%.
+$$
+Das 5 pontos de crescimento, 1,2 vieram do capital, 1,4 do trabalho e **2,4 da produtividade (PTF)** — quase metade. Um crescimento com forte contribuição da PTF é mais **sustentável**, pois não depende só de acumular fatores sujeitos a retornos decrescentes.
+:::
+
+**5.** Explique por que a acumulação de capital, sozinha, não consegue sustentar o crescimento da renda per capita indefinidamente. Que conceito da microeconomia está por trás disso?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Por causa dos **retornos (rendimentos) decrescentes** do capital: mantendo trabalho e tecnologia fixos, cada unidade adicional de capital acrescenta cada vez **menos** produto (a produtividade marginal do capital cai). À medida que o país acumula capital, o retorno de mais uma máquina diminui, até que o investimento apenas repõe a depreciação e o produto por trabalhador **estabiliza**. Sem ganhos de **produtividade (PTF)**, o crescimento cessa. É o mesmo princípio da produtividade marginal decrescente da teoria da produção (Volume 5), aplicado ao agregado — e o cerne do modelo de Solow (Volume 13).
+:::
+
+**6.** O que é **convergência condicional** e como ela difere da convergência **absoluta**? Como o caso Brasil–Coreia do Sul se relaciona com isso?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Convergência absoluta** seria a ideia de que *todo* país pobre cresce mais rápido que os ricos e acaba alcançando-os, simplesmente por ser pobre. Os dados **rejeitam** essa versão. **Convergência condicional** diz que os países convergem para o *seu próprio* nível de longo prazo, determinado por instituições, educação, poupança/investimento etc.; entre países **semelhantes** nessas características, os mais pobres crescem mais rápido e alcançam os mais ricos. Brasil e Coreia partiram de renda parecida nos anos 1960, mas **divergiram**: a Coreia teve altas taxas de investimento, forte educação e ganhos de PTF, convergindo para o grupo rico; o Brasil, não. O contraste ilustra que a convergência depende de *condições* — não acontece automaticamente.
+:::
+
+**7.** (Análise de caso) Um país descobre uma enorme jazida de petróleo e sua renda per capita salta. Isso é "crescimento econômico" no sentido deste capítulo? Que ressalvas você faria sobre a **sustentabilidade** desse aumento?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O salto de renda é real, mas conceitualmente distinto do crescimento **sustentado** por **produtividade**. Uma jazida é um **estoque de recurso natural** que se **exaure**: a renda extra dura enquanto durar o petróleo (e o preço). Não reflete, por si, uma economia que aprendeu a produzir mais com os mesmos fatores. Ressalvas: (i) pode não ser sustentável — quando a jazida se esgota ou o preço cai, a renda recua; (ii) pode até *prejudicar* a produtividade de longo prazo se causar apreciação cambial que desindustrializa o país e desestimula setores mais dinâmicos (o fenômeno da "**doença holandesa**", tema do Volume 9). Crescimento duradouro exige elevar a **PTF**, não apenas explorar um recurso finito. Países que transformaram a renda do recurso em investimento, educação e diversificação se saíram melhor do que os que apenas a consumiram.
+:::
+
+**8.** (Desafio) Aplique a contabilidade do crescimento ao diagnóstico brasileiro. Se o Brasil quer voltar a crescer de forma sustentada, por que "apenas investir mais" (elevar $\Delta K/K$) pode ser insuficiente, e o que a equação sugere ser essencial?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela @eq-growth-accounting, $\frac{\Delta Y}{Y} = \frac{\Delta A}{A} + \alpha\frac{\Delta K}{K} + (1-\alpha)\frac{\Delta L}{L}$. Elevar só o investimento aumenta $\frac{\Delta K}{K}$, mas: (i) é ponderado por $\alpha$ (tipicamente ~0,3–0,4), então cada ponto extra de capital rende menos que um ponto no produto; (ii) o capital tem **retornos decrescentes**, de modo que empilhar capital sem ganho de eficiência esbarra num teto; (iii) a transição demográfica reduz o impulso de $\frac{\Delta L}{L}$ à medida que a população envelhece. O termo que **não** tem esse limite e que historicamente estagnou no Brasil é a **PTF** ($\frac{\Delta A}{A}$). A equação sugere, portanto, que o essencial é **destravar a produtividade** — via educação de qualidade, abertura comercial, melhoria institucional e redução do Custo Brasil —, e não apenas aumentar a taxa de investimento. Investir mais ajuda, mas sem PTF o efeito se esgota.
+:::
+
+## Para saber mais
+
+- @jones2000 — introdução moderna e acessível à teoria do crescimento: fatos estilizados, contabilidade do crescimento e o modelo de Solow. Referência ideal para aprofundar este capítulo.
+- @blanchard2017 — capítulos sobre crescimento de longo prazo, com a decomposição das fontes e a discussão de convergência.
+- @mankiw2020 — apresentação intuitiva do crescimento, da produtividade e de seus determinantes, com muitos dados comparativos.
+- @gremaud2017 — para o diagnóstico do crescimento (e da estagnação) brasileiro, a armadilha da renda média e a agenda de produtividade.

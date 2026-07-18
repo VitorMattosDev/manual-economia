@@ -1,0 +1,211 @@
+# Inflação: conceito, medidas (IPCA) e custos {#sec-inflacao}
+
+Pergunte a qualquer brasileiro com mais de quarenta anos o que é inflação e você ouvirá histórias, não definições: a corrida ao supermercado no dia do pagamento, os funcionários remarcando preços com a etiquetadora nas mãos, o salário que virava pó antes do fim do mês. Poucos países viveram a inflação de forma tão intensa quanto o Brasil, que chegou a conviver com preços subindo mais de 80% **ao mês** no início dos anos 1990. Domar esse monstro foi a maior conquista da política econômica brasileira recente — e entender o que ele é, como se mede e por que faz tanto mal é indispensável para ler a economia do país.
+
+Os capítulos anteriores já prepararam o terreno: vimos, no @sec-pib-real-deflatores, que um número-índice comprime muitos preços num só e que é preciso separar variações de preço de variações de quantidade. A inflação é, precisamente, a **variação do nível geral de preços** ao longo do tempo. Este capítulo define o conceito com rigor, mostra como o **IPCA** — o índice oficial do Brasil — é construído, distingue inflação de variações de preços relativos e cataloga os **custos** que justificam por que praticamente todos os bancos centrais do mundo a combatem.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- definir **inflação**, **deflação** e **desinflação**, e distinguir nível de preços de preços relativos;
+- explicar como se constrói um **índice de preços ao consumidor** e como o **IPCA** é calculado no Brasil (cesta, ponderação, coleta);
+- converter valores nominais em **reais** deflacionando por um índice e calcular a **inflação acumulada**;
+- enumerar e explicar os **custos** da inflação — esperada e não esperada — e o problema da inflação inercial;
+- reconhecer os principais índices brasileiros (IPCA, INPC, IGP-M) e para que serve cada um.
+
+## O que é (e o que não é) inflação
+
+::: {.callout-note title="Definição — Inflação"}
+**Inflação** é o aumento **contínuo e generalizado** do nível geral de preços de uma economia, o que equivale a uma **queda no poder de compra** da moeda. Mede-se pela variação percentual de um índice de preços entre dois períodos.
+:::
+
+Três palavras da definição merecem atenção. **Contínuo:** um salto isolado de preços que depois se estabiliza não é inflação no sentido pleno; inflação é um processo que se sustenta no tempo. **Generalizado:** o que sobe é o nível *geral* — a média de milhares de preços —, não o preço de um bem específico. **Poder de compra:** se todos os preços dobram, cada real compra metade; inflação e desvalorização da moeda são o mesmo fenômeno visto de dois ângulos.
+
+Dois conceitos-irmãos completam o vocabulário:
+
+- **Deflação** é o oposto: queda contínua e generalizada do nível de preços (inflação negativa). Parece boa notícia, mas costuma ser sintoma de crise — as pessoas adiam compras à espera de preços menores, a demanda despenca, e a economia pode entrar numa espiral recessiva (o Japão é o caso clássico).
+- **Desinflação** é a *desaceleração* da inflação: os preços ainda sobem, mas a um ritmo menor (por exemplo, a inflação cai de 10% para 4% ao ano). Não confunda com deflação — na desinflação, os preços continuam subindo.
+
+::: {.callout-important title="Armadilha comum — inflação × mudança de preço relativo"}
+Se o tomate encarece porque uma praga destruiu a safra, mas nada mais muda, isso **não é inflação** — é uma mudança de **preço relativo** (o tomate ficou caro *em relação* aos outros bens). Preços relativos são o mecanismo de sinalização dos mercados (Volume 3) e mudam o tempo todo, para cima e para baixo, sem que haja inflação. Inflação é o movimento do **nível geral**, quando *quase tudo* sobe junto. Confundir os dois leva a diagnósticos errados — como culpar um setor específico por um fenômeno macroeconômico e monetário.
+:::
+
+## Como se mede: o IPCA
+
+Para medir o nível geral de preços, constrói-se um **índice de preços ao consumidor**: escolhe-se uma **cesta** representativa do consumo das famílias, com **pesos** proporcionais à importância de cada item no orçamento, e acompanha-se o custo dessa cesta ao longo do tempo. Como vimos no @sec-pib-real-deflatores, é um índice do tipo **Laspeyres** — cesta fixa, atualizada de tempos em tempos.
+
+No Brasil, o índice oficial é o **IPCA — Índice Nacional de Preços ao Consumidor Amplo**, calculado pelo **IBGE**. Ele é a referência do **regime de metas de inflação** (tema do Volume 8): quando se diz que "a meta de inflação é 3%", fala-se do IPCA. Vale conhecer sua anatomia:
+
+- **População-alvo:** famílias com renda de 1 a 40 salários mínimos, em treze grandes regiões metropolitanas e alguns municípios. (O IPCA é "amplo" por abranger essa faixa larga de renda.)
+- **Cesta e pesos:** centenas de itens divididos em grandes grupos — Alimentação e bebidas, Habitação, Transportes, Saúde, Educação, Vestuário, entre outros. Os pesos vêm da **Pesquisa de Orçamentos Familiares (POF)**, que mapeia no que as famílias gastam.
+- **Coleta:** pesquisadores do IBGE coletam mensalmente milhares de preços em estabelecimentos, e o índice é divulgado como a variação percentual do custo da cesta.
+
+A @fig-cesta-ipca ilustra a ideia de ponderação: a inflação de cada grupo entra na inflação cheia proporcionalmente ao seu peso no orçamento. Por isso um aumento em Transportes ou Alimentação — grupos de peso alto — mexe muito mais no IPCA do que a mesma variação percentual em Vestuário.
+
+::: {#fig-cesta-ipca}
+
+```{.tikz}
+%%| filename: fig-cesta-ipca
+%%| alt: Barras horizontais representando os pesos aproximados dos grandes grupos na cesta do IPCA, com Alimentação, Habitação e Transportes entre os maiores.
+\begin{tikzpicture}[font=\small]
+  \def\bar#1#2#3#4{% y, largura(cm), rótulo, valor
+    \fill[#4] (0,#1) rectangle (#2,#1+0.5);
+    \node[left] at (0,#1+0.25) {#3};
+    \node[right] at (#2,#1+0.25) {#2 \%};
+  }
+  \bar{4.2}{2.2}{Alimentação e bebidas}{manualblue!70}
+  \bar{3.4}{1.5}{Habitação}{manualred!70}
+  \bar{2.6}{1.8}{Transportes}{manualgreen!70}
+  \bar{1.8}{1.3}{Saúde}{manualyellow!80}
+  \bar{1.0}{0.6}{Vestuário}{manualgray!70}
+  \bar{0.2}{2.6}{Demais grupos}{manualblue!35}
+  \node[align=left, font=\footnotesize, manualgray] at (4.5,-0.9)
+    {pesos aproximados (ordem de grandeza);\\os valores exatos vêm da POF/IBGE e mudam a cada revisão};
+\end{tikzpicture}
+```
+
+A inflação cheia é a média das inflações de cada grupo, ponderada pelo peso no orçamento familiar (pesos ilustrativos).
+:::
+
+### Inflação acumulada e deflacionamento
+
+Índices de preços vêm em variações mensais, mas raramente as somamos: inflação **compõe**, como juros. A inflação acumulada de vários períodos multiplica os fatores $(1+\pi)$:
+
+$$
+1 + \pi_{\text{acum}} = (1+\pi_1)(1+\pi_2)\cdots(1+\pi_n).
+$$ {#eq-inflacao-acumulada}
+
+Por exemplo, três meses com inflação de 1% cada acumulam $(1{,}01)^3 - 1 = 3{,}03\%$ — não 3%. Numa hiperinflação, essa diferença é brutal: 20% ao mês durante um ano acumulam $(1{,}20)^{12}-1 \approx 791\%$, não 240%.
+
+O deflacionamento (visto no @sec-pib-real-deflatores) transforma valores nominais de épocas diferentes em **poder de compra comparável**. Para trazer um valor do passado a preços de hoje:
+
+$$
+\text{Valor a preços de hoje} = \text{Valor nominal antigo} \times \frac{\text{Índice hoje}}{\text{Índice na época}}.
+$$
+
+É assim que se responde a perguntas como "quanto valeria, hoje, o salário mínimo de 1995?" — comparações que só fazem sentido em termos **reais**.
+
+## Os custos da inflação
+
+Se a inflação apenas multiplicasse todos os preços e rendas pelo mesmo fator, ao mesmo tempo, ela seria quase inofensiva — todos os valores nominais mudariam juntos e nada real se alteraria. O problema é que a inflação real **nunca** funciona assim: ela é desigual, imprevisível e corrói mecanismos que a economia usa para coordenar decisões. Convém separar os custos da inflação **esperada** dos da **não esperada**.
+
+### Custos da inflação esperada (mesmo antecipada, ela custa)
+
+- **Custos de sola de sapato:** com a moeda perdendo valor, vale a pena manter menos dinheiro parado e ir mais vezes ao banco (na imagem clássica, "gastando a sola do sapato"). É o custo de economizar em algo — moeda — que a inflação tributa.
+- **Custos de menu:** empresas precisam remarcar preços com frequência — reimprimir cardápios, etiquetas, tabelas. Quanto maior a inflação, mais recursos se gastam só para atualizar preços.
+- **Distorções tributárias:** muitos tributos incidem sobre valores nominais. A inflação pode empurrar contribuintes para faixas mais altas ou tributar ganhos que são apenas correção monetária, não ganho real.
+
+### Custos da inflação não esperada (os mais graves)
+
+- **Redistribuição arbitrária entre credores e devedores:** contratos fixados em termos nominais são reescritos pela inflação surpresa. Se a inflação vem acima do previsto, o **devedor** ganha (paga de volta uma dívida que vale menos) e o **credor** perde. Essa transferência não segue mérito nem justiça — é loteria.
+- **Corrosão de rendas fixas:** quem vive de salários ou aposentadorias reajustados apenas periodicamente perde poder de compra entre um reajuste e outro. A inflação é, historicamente, um **imposto regressivo** — pesa mais sobre os mais pobres, que têm menos acesso a instrumentos de proteção (aplicações indexadas, ativos reais).
+- **Ruído no sistema de preços:** o preço é o sinal que informa onde há escassez e para onde dirigir recursos (Volume 3). Com tudo subindo e a ritmos diferentes, fica difícil distinguir um aumento de preço *relativo* (que pede realocação) de um aumento *geral* (que não pede nada). A inflação alta embaralha esses sinais e prejudica a eficiência da economia.
+- **Encurtamento de horizontes e menos investimento:** com o futuro dos preços incerto, contratos longos somem, o crédito encurta e o investimento — que depende de previsibilidade — é desestimulado. É um dos canais pelos quais inflação alta e crônica reduz o crescimento.
+
+::: {.callout-warning title="Controvérsia — inflação inercial e o desafio da estabilização"}
+Uma das grandes contribuições de economistas brasileiros ao pensamento macroeconômico foi o conceito de **inflação inercial**: quando a inflação passada é formalmente indexada em contratos, salários e aluguéis, ela se **perpetua** — a inflação de ontem vira, automaticamente, a inflação de hoje, independentemente da demanda corrente. Isso explica por que planos que só cortavam a demanda ou congelavam preços fracassavam no Brasil: não atacavam a *inércia*. O **Plano Real** (1994) teve êxito, entre outras razões, por desarmar essa inércia com um engenhoso índice de transição (a URV) antes da troca de moeda — episódio que o Volume 11 detalhará.
+:::
+
+## Os índices de preços brasileiros
+
+O Brasil tem vários índices, e saber qual é qual evita confusão (@tbl-indices-br):
+
+| Índice | Quem calcula | Para que serve |
+|:--|:--|:--|
+| **IPCA** | IBGE | Índice **oficial**; meta de inflação do Banco Central; renda 1–40 s.m. |
+| **INPC** | IBGE | Custo de vida de famílias de baixa renda (1–5 s.m.); reajuste de salários |
+| **IGP-M** | FGV | Muito sensível a atacado e câmbio; usado em **aluguéis** e tarifas |
+| **IPCA-15** | IBGE | Prévia do IPCA, com coleta antecipada |
+
+: Principais índices de preços do Brasil. {#tbl-indices-br}
+
+A distinção IPCA × IGP-M costuma aparecer no noticiário: o **IGP-M**, por incluir preços no atacado e ser muito sensível ao **câmbio** e às **commodities**, oscila muito mais que o IPCA. Em anos de desvalorização do real, o IGP-M dispara e provoca a polêmica dos reajustes de aluguel — motivo pelo qual muitos contratos migraram para o IPCA.
+
+## 🇧🇷 Brasil em Foco
+
+**Do trauma ao regime de metas.** Nenhum tema econômico marcou tanto o Brasil quanto a inflação. Entre meados dos anos 1980 e 1994, o país viveu **hiperinflação** — em alguns meses de 1989–1990, os preços subiram mais de 80% *ao mês*. Sucessivos planos (Cruzado, Bresser, Verão, Collor) fracassaram até o **Plano Real** (1994) estabilizar a moeda. Desde 1999, o Brasil opera sob **regime de metas de inflação**: o **Copom** (Comitê de Política Monetária do Banco Central) fixa a taxa **Selic** para manter o **IPCA** próximo de uma meta definida pelo **CMN** (nos últimos anos, centrada em torno de 3%, com banda de tolerância). Foi uma mudança de regime que trouxe a inflação de quatro dígitos para um dígito — ainda que com sustos periódicos.
+
+**A inflação de alimentos e o peso sobre os mais pobres.** Como o grupo **Alimentação e bebidas** tem peso alto na cesta e peso *ainda maior* no orçamento das famílias de baixa renda, choques de alimentos (uma seca, uma disparada do câmbio que encarece fertilizantes e grãos exportáveis) atingem os mais pobres de forma desproporcional. É por isso que o **INPC** (voltado a 1–5 salários mínimos) costuma divergir do IPCA em episódios de choque alimentar, e por que a inflação é frequentemente descrita como o mais **regressivo** dos impostos no Brasil.
+
+**Câmbio, energia e preços administrados.** Três fontes de pressão são recorrentes na inflação brasileira: a **taxa de câmbio** (uma desvalorização do real encarece importados e commodities cotadas em dólar), os **preços de energia** (combustíveis e a conta de luz, esta com seu sistema de bandeiras tarifárias ligado ao regime de chuvas e à geração térmica) e os **preços administrados** (regulados ou contratados, como energia elétrica, planos de saúde e transporte público). Acompanhar o IPCA no Brasil exige olhar esses componentes, que muitas vezes explicam por que o índice cheio destoa da percepção de "núcleo" da inflação.
+
+> **Fontes e séries para explorar:** IBGE — IPCA, IPCA-15 e INPC (SNIPC); FGV — IGP-M e IGP-DI; Banco Central — SGS (IPCA e núcleos de inflação), Relatório de Política Monetária e comunicados do Copom; POF/IBGE (estrutura de pesos). Confira a data e a meta vigente, que é revista periodicamente pelo CMN.
+
+## Resumo do capítulo
+
+- **Inflação** é o aumento **contínuo e generalizado** do nível geral de preços — equivalente à queda do poder de compra da moeda. **Deflação** é o oposto; **desinflação** é a inflação *desacelerando* (preços ainda sobem).
+- Não confunda inflação (nível geral) com mudança de **preço relativo** (um bem encarece *em relação* a outros). Preços relativos mudam o tempo todo sem que haja inflação.
+- Mede-se por **índices de preços ao consumidor** (tipo Laspeyres, cesta fixa). No Brasil, o oficial é o **IPCA** (IBGE), referência do regime de metas; pesos vêm da **POF**, e grupos como Alimentação, Habitação e Transportes têm peso alto.
+- Inflação **compõe**: a acumulada multiplica os fatores $(1+\pi)$, não os soma. **Deflacionar** por um índice permite comparar valores de épocas diferentes em termos reais.
+- Custos da inflação **esperada**: sola de sapato, menu, distorções tributárias. Custos da **não esperada** (piores): redistribui arbitrariamente entre credores e devedores, corrói rendas fixas (imposto **regressivo**), embaralha o sistema de preços e desestimula investimento.
+- A **inflação inercial** (indexação que perpetua a inflação passada) explica por que estabilizar o Brasil foi tão difícil; o **Plano Real** a desarmou.
+- Índices brasileiros: **IPCA** (oficial/metas), **INPC** (baixa renda), **IGP-M** (atacado/câmbio, aluguéis). Desde 1999 o Brasil opera sob **metas de inflação**, com o **Copom** ajustando a **Selic**.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver antes de abrir a solução. Os primeiros itens são conceituais; os do meio, numéricos; os últimos, de análise.
+:::
+
+**1.** Distinga **deflação** de **desinflação** e dê um exemplo numérico de cada.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Desinflação:** a inflação continua positiva, mas cai de ritmo — por exemplo, a inflação anual passa de 9% para 4%. Os preços ainda **sobem**, só que mais devagar. **Deflação:** a inflação fica **negativa** — por exemplo, o índice de preços cai 1% no ano, e os preços de fato **recuam**. Na desinflação o nível de preços sobe; na deflação, desce.
+:::
+
+**2.** O preço da gasolina subiu 15% num mês em que quase todos os outros preços ficaram estáveis. Isso é inflação? Justifique com o conceito de preço relativo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Não caracteriza inflação no sentido pleno. Inflação é aumento **generalizado e contínuo** do nível *geral* de preços. Se apenas a gasolina subiu, houve uma mudança de **preço relativo** (a gasolina ficou cara *em relação* aos demais bens), não uma alta do nível geral. Esse choque *contribui* para a inflação do mês na proporção do peso da gasolina no índice, mas, isolado, é um movimento de preço relativo — o mecanismo normal de sinalização dos mercados.
+:::
+
+**3.** Em três meses, a inflação foi de 2%, 1% e 3%. Qual a inflação acumulada no trimestre? Por que não é simplesmente 6%?
+
+::: {.callout-tip collapse="true" title="Solução"}
+$$
+1 + \pi_{\text{acum}} = (1{,}02)(1{,}01)(1{,}03) = 1{,}0611 \Rightarrow \pi_{\text{acum}} = 6{,}11\%.
+$$
+Não é 6% porque a inflação **compõe**: a alta do segundo mês incide sobre preços já elevados pela do primeiro, e assim por diante — como juros sobre juros. Somar as taxas ignora essa composição e subestima o acumulado.
+:::
+
+**4.** Um salário de R\$\,1.000 em janeiro não teve reajuste durante um ano em que o IPCA acumulou 8%. Qual o poder de compra desse salário, em reais de janeiro, ao fim do ano? Quanto de poder de compra se perdeu?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Deflacionando o valor nominal (que continuou R\$\,1.000) pela inflação acumulada:
+$$
+\text{Salário real} = \frac{1.000}{1{,}08} = R\$\,925{,}93 \text{ (em reais de janeiro).}
+$$
+A perda de poder de compra foi de cerca de **7,4%** ($1 - 1/1{,}08$). Note que a perda percentual (7,4%) é um pouco menor que a inflação (8%), porque a base de comparação é diferente — outra sutileza da composição.
+:::
+
+**5.** Explique por que uma inflação **não esperada** e alta transfere renda de **credores** para **devedores**. Quem tende a se proteger melhor e por quê?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Contratos de dívida costumam fixar valores **nominais**. Se a inflação vem **acima** do que se previa ao assinar o contrato, o valor real do que o devedor pagará de volta encolhe: ele quita a dívida com moeda que vale menos. O **credor** recebe de volta um poder de compra menor do que emprestou — perde; o **devedor** ganha. Protegem-se melhor os agentes com acesso a **indexação** (contratos corrigidos por índice de preços) e a **ativos reais** (imóveis, ações, aplicações indexadas) — tipicamente os mais ricos e sofisticados. Os mais pobres, com renda fixa e pouca proteção, são os mais penalizados — daí o caráter **regressivo** da inflação.
+:::
+
+**6.** Um contrato de aluguel é reajustado pelo IGP-M; outro, pelo IPCA. Num ano de forte desvalorização do real, qual inquilino provavelmente terá o reajuste maior? Por quê?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Provavelmente o do contrato indexado ao **IGP-M**. O IGP-M (FGV) tem forte peso de preços no **atacado** e é muito sensível ao **câmbio** e às **commodities** cotadas em dólar. Numa desvalorização do real, esses preços disparam e o IGP-M sobe bem mais que o IPCA, que mede preços ao consumidor final e é menos exposto de forma direta ao atacado. Foi justamente por causa desses saltos que muitos contratos de aluguel migraram do IGP-M para o IPCA.
+:::
+
+**7.** (Análise de caso) Um plano de estabilização apenas **congela** todos os preços por decreto, sem mudar mais nada. Usando o conceito de **inflação inercial**, explique por que é provável que ele fracasse quando o congelamento acabar.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Um congelamento trata o **sintoma** (os preços subindo), não a **causa inercial** nem as pressões de demanda ou de custos por trás dela. Enquanto os preços estão congelados, as expectativas de inflação e os mecanismos de **indexação** permanecem vivos; desequilíbrios se acumulam (escassez, filas, mercado paralelo) porque os preços não podem sinalizar. Quando o congelamento termina, os agentes remarcam de uma vez para recompor margens e repor a inflação reprimida, e a **inércia** — reajustes baseados na inflação passada — reacende o processo. Foi o destino de vários planos brasileiros pré-Real: sem desarmar a inércia (como o Real fez com a URV), o congelamento só adia e às vezes agrava a inflação.
+:::
+
+**8.** (Desafio) Suponha uma inflação perfeitamente equilibrada e antecipada: todos os preços, salários e contratos sobem exatamente 10% ao ano, e todos sabem disso. Ainda assim, restam custos econômicos? Cite ao menos dois e explique.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Sim. Mesmo perfeitamente antecipada e uniforme, a inflação impõe: (i) **custos de sola de sapato** — como a moeda perde valor a 10% ao ano, vale a pena manter menos saldo monetário e ir mais vezes ao banco, gastando tempo e recursos para economizar em moeda; (ii) **custos de menu** — preços e tabelas precisam ser remarcados continuamente, consumindo recursos reais; (iii) **distorções tributárias** — tributos que incidem sobre valores nominais podem tributar ganhos que são pura correção monetária ou empurrar contribuintes para faixas superiores. Além disso, a moeda física não pode ser indexada (rende 0% nominal), então segurá-la implica perda real garantida. Esses custos, embora menores que os da inflação-surpresa, justificam por que os bancos centrais miram inflação **baixa**, não apenas **estável**.
+:::
+
+## Para saber mais
+
+- @blanchard2017 — capítulos sobre inflação, a relação entre moeda e preços e os custos da inflação, com a distinção entre esperada e não esperada.
+- @mankiw2020 — apresentação didática da medida do custo de vida e dos custos da inflação, com muitos exemplos.
+- @gremaud2017 — leitura essencial para a história inflacionária brasileira, os planos de estabilização e a inflação inercial.
+- @dornbusch2013 — tratamento mais formal da inflação, expectativas e indexação.

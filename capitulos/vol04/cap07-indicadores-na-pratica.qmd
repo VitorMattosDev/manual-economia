@@ -1,0 +1,182 @@
+# Lendo indicadores na prática: IBGE, Bacen e IPEA {#sec-indicadores-pratica}
+
+Você abre um portal de notícias econômicas e é bombardeado por siglas: "IPCA-15 desacelera", "PNAD mostra queda na desocupação", "Focus revisa PIB para cima", "Tesouro divulga resultado primário", "dívida bruta fecha em X% do PIB". Cada frase esconde uma pesquisa, uma metodologia, uma instituição e uma armadilha de interpretação. Os capítulos anteriores lhe deram os **conceitos** — PIB, inflação, desemprego, poupança. Este capítulo, que fecha o volume, ensina a **prática**: onde encontrar esses números, quem os produz e — sobretudo — como lê-los sem cair nas armadilhas que enganam até jornalistas experientes.
+
+A diferença entre um leitor ingênuo e um leitor competente de dados econômicos não está em decorar valores, que envelhecem a cada divulgação, mas em saber **fazer as perguntas certas** diante de qualquer número: é real ou nominal? Estoque ou fluxo? A variação é contra que período? O dado é dessazonalizado? Foi revisado? Essas perguntas, que você já encontrou espalhadas pelo volume, são reunidas aqui num método. Ao final, você saberá navegar sozinho pelas fontes oficiais brasileiras e transformar uma sopa de siglas num diagnóstico coerente da economia.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- identificar as principais **instituições** produtoras de estatísticas econômicas no Brasil e o que cada uma divulga;
+- localizar séries nas fontes oficiais (**SIDRA/IBGE**, **SGS/Bacen**, **IPEADATA**, **Relatório Focus**);
+- aplicar uma **checklist crítica** ao ler qualquer indicador (real × nominal, estoque × fluxo, base de comparação, dessazonalização, revisão);
+- distinguir tipos de variação (mensal, interanual, acumulada em 12 meses, trimestre contra trimestre) e escolher a adequada;
+- combinar indicadores para formar um diagnóstico do **momento econômico**.
+
+## O mapa das instituições
+
+No Brasil, a produção de estatísticas econômicas é dividida entre algumas instituições, cada uma com um mandato. Conhecê-las é o primeiro passo para saber *onde procurar* (@fig-mapa-instituicoes).
+
+::: {#fig-mapa-instituicoes}
+
+```{.tikz}
+%%| filename: fig-mapa-instituicoes
+%%| alt: Diagrama com as instituições produtoras de dados econômicos no Brasil — IBGE, Banco Central, IPEA, Tesouro Nacional e FGV — e os principais indicadores de cada uma.
+\begin{tikzpicture}[font=\footnotesize]
+  \node[draw, rounded corners, fill=manualblue!15, align=center, text width=3.4cm]
+    (ibge) at (0,3) {\textbf{IBGE}\\PIB · IPCA/INPC ·\\PNAD Contínua · POF};
+  \node[draw, rounded corners, fill=manualred!15, align=center, text width=3.4cm]
+    (bacen) at (4.6,3) {\textbf{Banco Central}\\Selic · câmbio · crédito ·\\balanço de pagamentos · Focus};
+  \node[draw, rounded corners, fill=manualgreen!15, align=center, text width=3.4cm]
+    (ipea) at (9.2,3) {\textbf{IPEA}\\IPEADATA:\\séries agregadas e longas};
+  \node[draw, rounded corners, fill=manualyellow!25, align=center, text width=3.4cm]
+    (tesouro) at (2.3,0.6) {\textbf{Tesouro Nacional}\\dívida pública ·\\resultado fiscal};
+  \node[draw, rounded corners, fill=manualgray!18, align=center, text width=3.4cm]
+    (fgv) at (6.9,0.6) {\textbf{FGV/IBRE}\\IGP-M/IGP-DI ·\\sondagens de confiança};
+\end{tikzpicture}
+```
+
+Quem produz o quê. Saber o mandato de cada instituição é o primeiro passo para localizar um dado.
+:::
+
+- **IBGE (Instituto Brasileiro de Geografia e Estatística):** o produtor central. Divulga o **PIB** (Contas Nacionais), a inflação ao consumidor (**IPCA**, **INPC**, IPCA-15), o mercado de trabalho (**PNAD Contínua**) e a estrutura de consumo (**POF**), além de produção industrial (PIM), comércio (PMC) e serviços (PMS). Portal de dados: **SIDRA**.
+- **Banco Central do Brasil (Bacen):** cuida das estatísticas monetárias e financeiras — **Selic**, taxas de **câmbio**, **crédito** e **spread**, **balanço de pagamentos**, agregados monetários — e coordena o **Relatório Focus**, a pesquisa de expectativas de mercado. Portal de dados: **SGS (Sistema Gerenciador de Séries Temporais)**.
+- **IPEA (Instituto de Pesquisa Econômica Aplicada):** não produz a maioria dos dados primários, mas os **organiza e disponibiliza** de forma amigável no **IPEADATA**, com séries longas, regionais e sociais — ótimo ponto de partida para pesquisa histórica.
+- **Tesouro Nacional:** divulga as estatísticas **fiscais** — resultado primário e nominal do governo, e a **dívida pública** (Relatório Mensal da Dívida, Resultado do Tesouro Nacional).
+- **FGV/IBRE:** instituição privada que calcula os índices da família **IGP** (IGP-M, IGP-DI) e as **sondagens de confiança** (empresarial e do consumidor), termômetros de expectativas.
+
+Outras fontes aparecem em temas específicos: o **CADE** (defesa da concorrência, Volume 5), a **B3** (mercado de capitais, Volume 14), o **Ministério do Trabalho** (CAGED, emprego formal) e o **Ministério do Desenvolvimento** (balança comercial).
+
+## A checklist crítica: cinco perguntas para qualquer número
+
+Antes de interpretar qualquer indicador, passe-o por cinco filtros. Eles não são novidade — você os encontrou ao longo do volume; aqui viram um hábito.
+
+**1. É real ou nominal?** Um valor **nominal** mistura preço e quantidade (@sec-pib-real-deflatores). Toda comparação no tempo de valores monetários — salários, arrecadação, PIB, gastos — deve ser feita em termos **reais**, deflacionando por um índice de preços (@sec-inflacao). "A arrecadação bateu recorde nominal" pode significar arrecadação real **estável** ou até em queda.
+
+**2. É estoque ou fluxo?** (@sec-contas-nacionais) Dívida, patrimônio e base monetária são **estoques** (medidos num instante); PIB, déficit, investimento e crédito concedido no mês são **fluxos** (por período). Razões que misturam os dois — como **dívida/PIB** — são legítimas, mas exigem entender que o numerador é um estoque acumulado e o denominador, um fluxo anual.
+
+**3. A variação é contra qual período?** Esta é a fonte mais comum de erro. Um mesmo indicador rende números muito diferentes conforme a base:
+
+| Tipo de variação | Compara com | Uso típico |
+|:--|:--|:--|
+| **Mensal** (MoM) | mês anterior | ritmo mais recente; ruidosa |
+| **Interanual** (YoY) | mesmo mês do ano anterior | tendência; remove sazonalidade |
+| **Acumulada no ano** | de janeiro até o mês | desempenho parcial do ano |
+| **Acumulada em 12 meses** | soma dos últimos 12 meses | inflação e fluxos, suaviza sazonal |
+| **Trimestre / trim. anterior** | trimestre imediatamente anterior | PIB; ritmo, exige dessazonalização |
+
+: Tipos de variação de um indicador e seus usos. {#tbl-tipos-variacao}
+
+Confundir "IPCA de 0,4% **no mês**" com "0,4% **no ano**" é erro grosseiro, mas acontece. E "o PIB cresceu 2%" pode significar contra o trimestre anterior (ritmo) ou contra o mesmo trimestre do ano passado (tendência) — números e interpretações distintos.
+
+**4. O dado é dessazonalizado?** Muitas séries têm **padrão sazonal** — o comércio sempre sobe em dezembro, o desemprego oscila com as safras. Comparar dezembro com novembro sem ajuste confunde o efeito sazonal com tendência. Séries **dessazonalizadas** (ou "com ajuste sazonal") removem esse padrão para revelar o movimento genuíno; para comparações mês contra mês ou trimestre contra trimestre, use sempre a versão dessazonalizada.
+
+::: {.callout-note title="Definição — Dessazonalização"}
+**Dessazonalizar** (ou ajuste sazonal) é remover de uma série o componente que se repete em datas fixas do ano (festas, safras, férias), isolando a **tendência** e o **ciclo**. Sem esse ajuste, comparações entre períodos vizinhos confundem variação sazonal previsível com mudança real de rumo.
+:::
+
+**5. O dado foi (ou será) revisado?** Muitos indicadores são divulgados em versões **preliminares** e revisados depois, quando chegam informações mais completas — é o caso do **PIB** e de séries do balanço de pagamentos. A primeira estimativa de um trimestre pode mudar meses depois. Ao comparar, verifique se está usando a mesma "safra" de dados.
+
+::: {.callout-important title="Armadilha comum — comparar o incomparável"}
+As três ciladas mais frequentes: (i) comparar valores **nominais** de anos diferentes sem deflacionar; (ii) comparar países usando câmbio de mercado em vez de **paridade de poder de compra (PPC)**, que corrige diferenças de custo de vida; (iii) comparar séries após uma **quebra metodológica** (como a passagem da antiga PME para a PNAD Contínua, ou uma mudança de ano-base do PIB) como se fossem contínuas. Cada uma produz conclusões espetacularmente erradas — e todas são evitáveis com as cinco perguntas.
+:::
+
+## Expectativas: o Relatório Focus
+
+Um indicador merece destaque por sua natureza peculiar: o **Relatório Focus**, divulgado semanalmente pelo Banco Central. Ele não mede o que **já** aconteceu, mas o que o mercado **espera** que aconteça: reúne as projeções de dezenas de instituições financeiras para IPCA, PIB, Selic e câmbio nos próximos anos.
+
+Por que expectativas importam? Porque, como vimos, boa parte da economia é *forward-looking*: a inflação depende da inflação **esperada** (via reajustes e contratos), o investimento depende do juro **esperado**, o câmbio reflete cenários futuros. O Focus é, por isso, uma bússola: quando as expectativas de inflação "desancoram" (sobem acima da meta), o Banco Central tende a reagir com juros mais altos. Acompanhar o Focus é acompanhar o **humor prospectivo** da economia — um complemento indispensável aos dados retrospectivos.
+
+## Juntando as peças: um diagnóstico integrado
+
+Indicadores isolados enganam; o valor está em **combiná-los**. Suponha o seguinte quadro num trimestre: PIB dessazonalizado em leve queda, desocupação subindo, IPCA em 12 meses acima da meta, e o Focus projetando inflação futura em alta. A leitura integrada sugere **estagflação** incipiente — atividade fraca *com* inflação resistente —, um dos dilemas mais difíceis para a política econômica, pois combater a inflação (subir juros) tende a agravar o desemprego, e vice-versa (a tensão que a curva de Phillips, no Volume 7, formaliza).
+
+Outro exemplo: PIB acelerando, desocupação em mínimas, crédito crescendo e IPCA começando a subir. Aqui o diagnóstico é de **economia aquecida**, possivelmente acima do potencial, com risco de pressão inflacionária à frente — cenário em que se espera aperto monetário. O ponto central é que **nenhum indicador, sozinho, conta a história**: é a leitura cruzada — atividade, preços, emprego, expectativas, contas públicas e externas — que produz um diagnóstico econômico honesto.
+
+## 🇧🇷 Brasil em Foco
+
+**O calendário da economia brasileira.** Acompanhar a economia é, em boa medida, seguir um **calendário de divulgações**. O IBGE anuncia com antecedência as datas do IPCA (por volta do dia 10 de cada mês), do IPCA-15 (prévia, meados do mês), da PNAD Contínua e do PIB trimestral. O Bacen tem seu próprio ritmo: o **Relatório Focus** sai toda segunda-feira, e as decisões de **Selic** ocorrem nas reuniões do **Copom** (a cada 45 dias, aproximadamente). Nas semanas em que o Copom se reúne junto com decisões relevantes de outros bancos centrais, o mercado fala em "**Super Quarta**". Já o Tesouro divulga mensalmente o resultado fiscal e a dívida. Saber o calendário é saber *quando* cada peça do quebra-cabeça é revelada.
+
+**Onde clicar.** Para o leitor brasileiro que quer ir à fonte: o **SIDRA** (`sidra.ibge.gov.br`) traz as tabelas do IBGE (PIB, IPCA, PNAD); o **SGS do Bacen** (`www3.bcb.gov.br/sgs`) permite baixar milhares de séries por código (a Selic, por exemplo, tem código próprio); o **IPEADATA** (`ipeadata.gov.br`) é o mais amigável para séries longas e regionais; o **Relatório Focus** e o **Tesouro Transparente** completam o kit. Todos são gratuitos e públicos — a alfabetização de dados econômicos, no Brasil, está a poucos cliques.
+
+**Uma cultura de dados abertos.** O Brasil é, apesar de suas deficiências, um país com estatísticas públicas de **alta qualidade e boa cobertura** para os padrões de uma economia em desenvolvimento. O IBGE é reconhecido internacionalmente, e a transparência de Bacen e Tesouro melhorou muito nas últimas décadas. Isso significa que o cidadão brasileiro pode, sem intermediários, verificar afirmações econômicas que ouve — checar se a arrecadação "recorde" é real ou nominal, se o desemprego caiu por criação de vagas ou por desalento (@sec-desemprego), se o crescimento anunciado é contra o trimestre ou contra o ano. Este capítulo lhe deu as perguntas; as fontes brasileiras dão as respostas.
+
+> **Fontes e séries para explorar:** IBGE/SIDRA (PIB, IPCA, PNAD, PIM, PMC); Banco Central/SGS e Relatório Focus (Selic, câmbio, crédito, expectativas); IPEADATA (séries longas e regionais); Tesouro Nacional (Resultado do Tesouro, Relatório Mensal da Dívida); FGV/IBRE (IGP e sondagens). Consulte sempre o calendário de divulgações e a nota metodológica de cada série.
+
+## Resumo do capítulo
+
+- No Brasil, os dados econômicos vêm principalmente de **IBGE** (PIB, IPCA/INPC, PNAD, POF), **Banco Central** (Selic, câmbio, crédito, balanço de pagamentos, Focus), **IPEA/IPEADATA** (séries organizadas e longas), **Tesouro** (fiscal e dívida) e **FGV/IBRE** (IGP, sondagens).
+- Portais de acesso: **SIDRA** (IBGE), **SGS** (Bacen), **IPEADATA**, **Relatório Focus**, **Tesouro Transparente** — todos públicos e gratuitos.
+- **Checklist crítica** para qualquer número: (1) real ou nominal? (2) estoque ou fluxo? (3) variação contra qual período? (4) dessazonalizado? (5) sujeito a revisão?
+- Os **tipos de variação** (mensal, interanual, acumulada no ano, acumulada em 12 meses, trimestre contra trimestre) contam histórias diferentes; escolher o errado distorce o diagnóstico. Para comparações entre períodos vizinhos, use séries **dessazonalizadas**.
+- Cuidado com **comparações inválidas**: valores nominais sem deflacionar, países sem **PPC**, séries com **quebra metodológica**.
+- O **Relatório Focus** mede **expectativas** (o que o mercado projeta), não o passado — bússola prospectiva relevante porque a economia é *forward-looking*.
+- Nenhum indicador isolado basta: o diagnóstico honesto vem da **leitura cruzada** de atividade, preços, emprego, expectativas e contas públicas e externas.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver antes de abrir a solução. Os primeiros itens são conceituais; os do meio, práticos; os últimos, de análise.
+:::
+
+**1.** Para cada dado, indique a **instituição** e o **portal** onde você o buscaria: (a) a taxa Selic diária; (b) a taxa de desocupação; (c) a inflação IPCA; (d) a dívida pública federal; (e) a expectativa de mercado para o PIB do próximo ano.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Selic → **Banco Central**, portal **SGS**. (b) Desocupação → **IBGE** (PNAD Contínua), portal **SIDRA**. (c) IPCA → **IBGE**, portal **SIDRA**. (d) Dívida pública → **Tesouro Nacional** (Relatório Mensal da Dívida / Tesouro Transparente). (e) Expectativa de PIB → **Banco Central**, **Relatório Focus**. (Muitas dessas séries também estão espelhadas no **IPEADATA**.)
+:::
+
+**2.** Um político afirma: "a arrecadação federal atingiu recorde histórico este ano". Que **duas** perguntas da checklist você faria antes de aceitar que a situação fiscal melhorou?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(i) **Real ou nominal?** Um "recorde nominal" pode ser apenas efeito da inflação; é preciso **deflacionar** para saber se a arrecadação real cresceu. (ii) **Contra qual período / que base de comparação?** Recorde em nível não diz se está crescendo ou caindo na margem, nem se acompanha o crescimento do PIB (a razão arrecadação/PIB pode ter caído). Bônus: arrecadação é **fluxo**; compará-la à **dívida** (estoque) sem cuidado seria outro erro. Sem deflacionar e sem uma base clara, "recorde" não prova melhora fiscal.
+:::
+
+**3.** O IPCA de um mês foi 0,5%. Um site noticia "inflação de 0,5% ao ano". Qual o erro, e qual seria a inflação anual aproximada se esse ritmo se mantivesse?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O erro é confundir variação **mensal** com **anual**. 0,5% é a inflação **do mês**. Se esse ritmo se mantivesse por 12 meses, a inflação anual seria, por composição (@sec-inflacao), $(1{,}005)^{12} - 1 \approx 6{,}2\%$ — não 0,5% nem 6% (a soma simples). O erro superestimaria brutalmente a estabilidade de preços.
+:::
+
+**4.** Explique por que, para avaliar se o desemprego "melhorou de novembro para dezembro", você deve usar a série **dessazonalizada**. O que poderia enganar na série sem ajuste?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque o mercado de trabalho tem **padrão sazonal**: dezembro costuma ter mais contratações temporárias (comércio de fim de ano), então a desocupação tende a cair *todo* dezembro, por sazonalidade, não por melhora estrutural. Comparar dezembro com novembro na série **sem ajuste** confundiria esse efeito de calendário com uma mudança de tendência. A série **dessazonalizada** remove o componente sazonal e revela se houve melhora **genuína** na margem. Sem o ajuste, poderíamos "comemorar" uma queda que se repete todo ano e se reverte em janeiro.
+:::
+
+**5.** Distinga "o PIB cresceu 3% **contra o mesmo trimestre do ano anterior**" de "o PIB cresceu 3% **contra o trimestre anterior**". Qual das duas leituras exige dessazonalização e por quê?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A comparação **interanual** (contra o mesmo trimestre do ano anterior) mede a **tendência** ao longo de um ano e, por comparar o mesmo período do calendário, já **neutraliza a sazonalidade** naturalmente — não precisa de ajuste sazonal para isso. A comparação **contra o trimestre anterior** (ex.: 2º tri contra 1º tri) mede o **ritmo recente**, mas compara períodos com sazonalidades diferentes; por isso **exige a série dessazonalizada**, sem a qual o número misturaria crescimento genuíno com efeito de calendário. As duas leituras podem divergir bastante: a economia pode acelerar na margem (alta contra o trimestre anterior) e ainda mostrar queda interanual, ou vice-versa.
+:::
+
+**6.** Por que comparar a renda per capita do Brasil e dos Estados Unidos convertendo o PIB brasileiro pelo câmbio de mercado pode enganar? Que ajuste corrige isso?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque o **câmbio de mercado** não reflete as diferenças de **custo de vida** entre países: muitos bens e serviços (aluguel, serviços, alimentação) são muito mais baratos no Brasil, de modo que um real compra, internamente, mais do que a conversão em dólar sugere. Converter pelo câmbio **subestima** o poder de compra real da renda brasileira. O ajuste correto é usar a **paridade de poder de compra (PPC)**, que compara rendas pelo que elas efetivamente compram em cada país. Comparações internacionais de renda e produtividade devem usar valores em **PPC**.
+:::
+
+**7.** (Prática) Você quer responder: "o salário mínimo teve ganho **real** na última década?". Descreva o passo a passo — que dados buscar, em que fontes, e que cálculo fazer.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Passo 1 — dados do salário mínimo nominal:** buscar a série do salário mínimo (valores nominais anuais) no **IPEADATA** ou no Ministério do Trabalho, para o início e o fim do período.
+
+**Passo 2 — índice de preços:** buscar o **INPC** ou **IPCA** acumulado no período no **IBGE/SIDRA** (o INPC é o mais adequado por refletir o custo de vida de famílias de baixa renda, público do salário mínimo — @sec-inflacao).
+
+**Passo 3 — deflacionar:** trazer o salário mínimo nominal antigo a preços do ano final (ou o final a preços do inicial) usando $\text{valor real} = \text{nominal} \times \frac{\text{índice final}}{\text{índice inicial}}$ (@sec-pib-real-deflatores).
+
+**Passo 4 — comparar:** se o salário mínimo **real** (deflacionado) do fim supera o do início, houve **ganho real**; a diferença percentual mede o ganho de poder de compra. Cuidados da checklist: usar valores reais (não nominais), verificar se não há quebra na série e escolher o índice de preços coerente com o público.
+:::
+
+**8.** (Análise de caso) Num trimestre, os dados mostram: PIB dessazonalizado caindo 0,3%, desocupação subindo, IPCA acumulado em 12 meses acima da meta e o Focus elevando a projeção de inflação. Que diagnóstico você faz? Por que esse cenário é especialmente difícil para a política econômica?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O quadro combina **atividade em queda e desemprego em alta** (economia fraca) com **inflação corrente e esperada acima da meta** (pressão de preços persistente) — um caso de **estagflação** incipiente. É especialmente difícil porque os dois problemas pedem remédios **opostos**: combater a inflação exige **subir juros** (política monetária contracionista), o que tende a **agravar** a queda da atividade e o desemprego; estimular a atividade exige **afrouxar** as condições, o que tende a **agravar** a inflação. Não há uma direção que resolva os dois ao mesmo tempo — o banco central enfrenta um *trade-off* agudo (a tensão da curva de Phillips, Volume 7). A leitura **cruzada** dos indicadores é o que revela o dilema: nenhum deles, isolado, mostraria a armadilha. O diagnóstico honesto depende de olhar atividade, emprego, preços e expectativas em conjunto — exatamente a lição final deste volume.
+:::
+
+## Para saber mais
+
+- @blanchard2017 — o apêndice sobre contas nacionais e a leitura de indicadores macroeconômicos ajuda a conectar conceitos e dados.
+- @gremaud2017 — apresenta os indicadores da economia brasileira e suas fontes, com foco nas instituições nacionais.
+- @vasconcellos2019 — bom panorama introdutório dos agregados macroeconômicos brasileiros e de como interpretá-los.
+- Portais oficiais (gratuitos): **SIDRA/IBGE**, **SGS** e **Relatório Focus** do **Banco Central**, **IPEADATA** e **Tesouro Transparente** — as fontes primárias para praticar tudo o que este volume ensinou.
