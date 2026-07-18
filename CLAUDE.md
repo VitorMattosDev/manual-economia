@@ -105,6 +105,11 @@ Estas regras existem porque cada uma custou horas de depuração em manuais ante
    git push origin $(git commit-tree $(git hash-object -t tree /dev/null) -m 'init gh-pages'):refs/heads/gh-pages
    ```
 
+7. **No CI, o bin do TinyTeX NÃO está no PATH e `tlmgr` precisa se autoatualizar antes de instalar.** Custou 4 builds vermelhos no primeiro deploy. O passo `Preparar TeX` do `publish.yml` deve, **antes** do render:
+   - localizar `pdflatex` com `command -v` (ou `find ~ -name pdflatex` **sem** `-type f`, pois `pdflatex`/`tlmgr` são **symlinks** e `-type f` os ignora), derivar o bin e adicioná-lo a `$GITHUB_PATH`;
+   - rodar **`tlmgr update --self`** antes de `tlmgr install ...` — em TeX Live novo (ex.: 2026), o `tlmgr` empacotado recusa instalar com "tlmgr itself needs to be updated" e **todo** `tlmgr install` falha em silêncio, deixando faltar `pgfplots.sty` e o binário `dvisvgm`;
+   - linkar os binários em `/usr/local/bin` (sempre no PATH) como rede de segurança e **verificar** com `kpsewhich pgfplots.sty`/`standalone.cls` e `dvisvgm --version` (sem `|| true`, para falhar alto). Lembre: o template do TikZ sempre faz `\usepackage{pgfplots}`, então **toda** figura precisa de `pgfplots`, mesmo sem gráfico calculado.
+
 ## Validação por capítulo (antes do commit)
 
 1. `quarto render capitulos/volNN/capNN-*.qmd --to html` sem erros nem warnings novos

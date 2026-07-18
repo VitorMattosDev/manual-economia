@@ -229,4 +229,4 @@
 | I5 | `.github/workflows/publish.yml` com `quarto install chrome-headless-shell` antes do render | ✅ |
 | I6 | Branch `gh-pages` criada remotamente (commit-tree vazio) antes do primeiro workflow | ✅ |
 | I7 | Capítulo gabarito (Vol 1, Cap 1) escrito integralmente e validado em HTML + PDF | ✅ |
-| I8 | Primeiro deploy verde no GitHub Pages | ⬜ |
+| I8 | Primeiro deploy verde no GitHub Pages | ✅ (https://vitormattosdev.github.io/manual-economia/) |
