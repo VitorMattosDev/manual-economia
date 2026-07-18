@@ -29,27 +29,26 @@ jobs:
           set -e
           # A extensão TikZ chama pdflatex/dvisvgm pelo nome, então esses
           # binários PRECISAM estar no PATH visto pelo processo de render.
-          # Diagnóstico:
-          echo "PATH atual: $PATH"
-          command -v tlmgr pdflatex dvisvgm || true
           # Localiza o pdflatex (é symlink -> NÃO usar -type f). Prefere o PATH.
           PDFLATEX=$(command -v pdflatex || true)
           [ -n "$PDFLATEX" ] || PDFLATEX=$(find ~ /root /opt /usr -name pdflatex 2>/dev/null | head -n1)
-          echo "pdflatex localizado: $PDFLATEX"
-          test -n "$PDFLATEX"
           TEXBIN=$(cd "$(dirname "$PDFLATEX")" && pwd)
           echo "TeX bin: $TEXBIN"
           echo "$TEXBIN" >> "$GITHUB_PATH"
-          # Instala os pacotes TikZ.
-          TLMGR=$(command -v tlmgr || echo "$TEXBIN/tlmgr")
-          "$TLMGR" install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts || true
-          # Rede de segurança: linka para /usr/local/bin, que está sempre no PATH.
-          for b in pdflatex latex dvisvgm kpsewhich mktexfmt; do
+          export PATH="$TEXBIN:$PATH"
+          # TeX Live novo: tlmgr recusa instalar até se atualizar. Isso é o que
+          # impedia pgfplots/dvisvgm de instalarem (mensagem "tlmgr needs update").
+          tlmgr update --self || true
+          # Agora as instalações funcionam (sem mascarar erro).
+          tlmgr install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts
+          # Rede de segurança: linka binários para /usr/local/bin (sempre no PATH).
+          for b in pdflatex latex dvisvgm kpsewhich; do
             [ -e "$TEXBIN/$b" ] && sudo ln -sf "$TEXBIN/$b" "/usr/local/bin/$b" || true
           done
-          "$TEXBIN/pdflatex" --version | head -n1
-          "$TEXBIN/dvisvgm" --version | head -n1
-          echo "checagem final via /usr/local/bin:"; /usr/local/bin/pdflatex --version | head -n1; /usr/local/bin/dvisvgm --version | head -n1
+          # Verificação: falha alto se algo essencial ainda faltar.
+          kpsewhich standalone.cls
+          kpsewhich pgfplots.sty
+          dvisvgm --version | head -n1
 
       - name: Renderizar e publicar (HTML + PDF)
         uses: quarto-dev/quarto-actions/publish@v2
