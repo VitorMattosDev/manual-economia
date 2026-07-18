@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>12&nbsp; Otimização com restrições: multiplicadores de Lagrange – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol02/cap07-integrais-excedentes.html" rel="next">
+<link href="../../capitulos/vol02/cap05-otimizacao-livre.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html">Volume 2 — Matemática para Economistas</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap06-lagrange.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">12.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#o-problema-com-restrição" id="toc-o-problema-com-restrição" class="nav-link" data-scroll-target="#o-problema-com-restrição"><span class="header-section-number">12.2</span> O problema com restrição</a></li>
+  <li><a href="#a-função-lagrangiana" id="toc-a-função-lagrangiana" class="nav-link" data-scroll-target="#a-função-lagrangiana"><span class="header-section-number">12.3</span> A função lagrangiana</a>
+  <ul class="collapse">
+  <li><a href="#deduzindo-a-condição-de-tangência" id="toc-deduzindo-a-condição-de-tangência" class="nav-link" data-scroll-target="#deduzindo-a-condição-de-tangência"><span class="header-section-number">12.3.1</span> Deduzindo a condição de tangência</a></li>
+  </ul></li>
+  <li><a href="#resolvendo-o-problema-do-consumidor-um-exemplo-completo" id="toc-resolvendo-o-problema-do-consumidor-um-exemplo-completo" class="nav-link" data-scroll-target="#resolvendo-o-problema-do-consumidor-um-exemplo-completo"><span class="header-section-number">12.4</span> Resolvendo o problema do consumidor: um exemplo completo</a></li>
+  <li><a href="#o-multiplicador-é-o-preço-sombra" id="toc-o-multiplicador-é-o-preço-sombra" class="nav-link" data-scroll-target="#o-multiplicador-é-o-preço-sombra"><span class="header-section-number">12.5</span> O multiplicador é o preço-sombra</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">12.6</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">12.7</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">12.8</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">12.9</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol02/cap06-lagrange.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html">Volume 2 — Matemática para Economistas</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap06-lagrange.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-lagrange" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>O capítulo anterior resolveu problemas de otimização <strong>livre</strong> — a firma escolhia a quantidade sem nenhuma amarra. Mas a maior parte das decisões econômicas não é livre: ela esbarra numa <strong>restrição</strong>. O consumidor quer a máxima satisfação, <em>mas seu gasto não pode ultrapassar a renda</em>. A firma quer o máximo produto, <em>mas seu orçamento de insumos é limitado</em>. O governo quer o máximo bem-estar, <em>mas a arrecadação impõe um teto</em>. Em cada caso, há um objetivo a maximizar <strong>sujeito a</strong> uma condição que não pode ser violada. Este é o problema de <strong>otimização com restrições</strong>, e sua ferramenta canônica — elegante e onipresente na Economia — é o <strong>método dos multiplicadores de Lagrange</strong>.</p>
+<p>A grande recompensa deste capítulo é dupla. Primeiro, um método mecânico que resolve o problema do consumidor e da firma restrita. Segundo, e mais profundo, a descoberta de que o “multiplicador” que aparece na conta não é um artifício algébrico: ele tem um significado econômico riquíssimo — é o <strong>preço-sombra</strong> da restrição, o valor de afrouxá-la em uma unidade.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">12.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>formular um problema de <strong>otimização com restrição</strong> de igualdade;</li>
+<li>montar a <strong>função lagrangiana</strong> e aplicar suas condições de primeira ordem;</li>
+<li>deduzir a <strong>condição de tangência</strong> (razão das derivadas marginais = razão dos preços) e interpretá-la;</li>
+<li>resolver o problema do consumidor que <strong>maximiza a utilidade</strong> sujeito à restrição orçamentária;</li>
+<li>interpretar o <strong>multiplicador de Lagrange</strong> <span class="math inline">\(\lambda\)</span> como o <strong>preço-sombra</strong> da restrição;</li>
+<li>reconhecer a ligação entre a solução de Lagrange e a igualdade das <strong>utilidades marginais por real gasto</strong>.</li>
+</ul>
+</section>
+<section id="o-problema-com-restrição" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="o-problema-com-restrição"><span class="header-section-number">12.2</span> O problema com restrição</h2>
+<p>Comece pela estrutura. Queremos maximizar uma <strong>função objetivo</strong> <span class="math inline">\(f(x, y)\)</span> — a utilidade, o produto —, mas as escolhas de <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> estão presas a uma <strong>restrição</strong> <span class="math inline">\(g(x, y) = b\)</span> — o orçamento, a capacidade. Em símbolos:</p>
+<p><span class="math display">\[
+\max_{x,\,y} \; f(x, y) \quad \text{sujeito a} \quad g(x, y) = b.
+\]</span></p>
+<p>O caso econômico central é o <strong>problema do consumidor</strong>. Ele tem uma <strong>função utilidade</strong> <span class="math inline">\(U(x, y)\)</span>, que mede a satisfação obtida ao consumir quantidades <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> de dois bens, e uma <strong>restrição orçamentária</strong>: o gasto <span class="math inline">\(p_x x + p_y y\)</span> não pode exceder a renda <span class="math inline">\(m\)</span>. Supondo que ele gaste toda a renda (não deixa dinheiro na mesa), a restrição é a igualdade</p>
+<p><span class="math display">\[
+p_x\, x + p_y\, y = m.
+\]</span></p>
+<p>A <a href="#fig-tangencia" class="quarto-xref">Figura&nbsp;<span>12.1</span></a> mostra a geometria da solução, que vale a pena entender <strong>antes</strong> da álgebra. As curvas em azul são <strong>curvas de indiferença</strong> — combinações de <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> que dão a mesma satisfação (quanto mais afastada da origem, maior a utilidade). A reta vermelha é a <strong>restrição orçamentária</strong> — as combinações que custam exatamente a renda. O consumidor quer alcançar a curva de indiferença mais alta possível <strong>sem sair</strong> da reta orçamentária. Isso acontece no ponto <span class="math inline">\(E\)</span>, onde a curva de indiferença <strong>tangencia</strong> a restrição.</p>
+<div id="fig-tangencia" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tangencia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="246.732573pt" height="209.658022pt" viewbox="-68.014948 -68.014944 246.732573 209.658022">
+<defs>
+<path id="tz_fig_tangencia_g0-24" d="M2.414944 .167372H1.809215V.557908C2.351183 .565878 2.518555 .797011 2.518555 .980324C2.518555 1.251308 2.207721 1.41071 1.370859 1.41071H1.099875V1.633873H1.474471C1.578082 1.633873 2.12802 1.625903 2.478705 1.546202C2.797509 1.474471 3.124284 1.338979 3.124284 .980324C3.124284 .557908 2.677958 .430386 2.414944 .382565V.167372Z"></path>
+<path id="tz_fig_tangencia_g0-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_tangencia_g0-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_tangencia_g0-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_tangencia_g0-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_tangencia_g0-102" d="M1.522291-3.172105H2.478705V-3.435118H1.498381V-4.335741C1.498381-5.029141 1.888917-5.387796 2.239601-5.387796C2.367123-5.387796 2.438854-5.355915 2.470735-5.347945C2.327273-5.276214 2.287422-5.140722 2.287422-5.037111C2.287422-4.829888 2.438854-4.678456 2.646077-4.678456C2.86127-4.678456 3.004732-4.829888 3.004732-5.037111C3.004732-5.379826 2.669988-5.610959 2.247572-5.610959C1.649813-5.610959 .940473-5.180573 .940473-4.327771V-3.435118H.286924V-3.172105H.940473V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.083935-.02391 1.275218-.02391C1.745455-.02391 1.761395-.02391 2.279452 0V-.263014H2.12005C1.538232-.263014 1.522291-.350685 1.522291-.637609V-3.172105Z"></path>
+<path id="tz_fig_tangencia_g0-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_tangencia_g0-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_tangencia_g0-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_tangencia_g0-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_tangencia_g0-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+<path id="tz_fig_tangencia_g0-118" d="M3.53076-2.614197C3.722042-3.060523 3.993026-3.164134 4.28792-3.172105V-3.435118C4.008966-3.411208 3.993026-3.411208 3.666252-3.411208C3.594521-3.411208 3.219925-3.411208 2.972852-3.435118V-3.172105C3.251806-3.156164 3.323537-2.980822 3.323537-2.84533C3.323537-2.765629 3.307597-2.725778 3.275716-2.654047L2.414944-.645579L1.474471-2.805479C1.42665-2.909091 1.42665-2.956912 1.42665-2.972852C1.42665-3.172105 1.713574-3.172105 1.849066-3.172105V-3.435118C1.506351-3.411208 1.131756-3.411208 .980324-3.411208C.812951-3.411208 .430386-3.411208 .175342-3.435118V-3.172105C.661519-3.172105 .70137-3.124284 .820922-2.8533L2.016438-.095641C2.072229 .02391 2.12005 .079701 2.231631 .079701S2.399004 .01594 2.438854-.079701L3.53076-2.614197Z"></path>
+<path id="tz_fig_tangencia_g1-3" d="M2.779577-.842839C2.934994-.735243 2.946949-.735243 2.988792-.735243C3.090411-.735243 3.186052-.824907 3.186052-.944458S3.096389-1.099875 3.048568-1.123786C2.743711-1.249315 2.438854-1.374844 2.12802-1.488418C2.737733-1.739477 2.905106-1.799253 3.012702-1.847073C3.102366-1.888917 3.186052-1.918804 3.186052-2.038356S3.090411-2.247572 2.988792-2.247572C2.940971-2.247572 2.905106-2.223661 2.857285-2.193773L2.008468-1.655791C2.014446-1.739477 2.038356-1.948692 2.044334-2.020423C2.056289-2.139975 2.10411-2.49863 2.10411-2.600249S2.014446-2.779577 1.906849-2.779577C1.80523-2.779577 1.709589-2.701868 1.709589-2.600249C1.709589-2.588294 1.763387-2.050311 1.769365-2.026401C1.775342-1.960648 1.799253-1.733499 1.80523-1.655791L.956413-2.193773C.908593-2.223661 .872727-2.247572 .824907-2.247572C.723288-2.247572 .627646-2.157908 .627646-2.038356S.71731-1.882939 .765131-1.859029C1.069988-1.733499 1.374844-1.60797 1.685679-1.494396C1.075965-1.243337 .908593-1.183562 .800996-1.135741C.711333-1.093898 .627646-1.06401 .627646-.944458S.723288-.735243 .824907-.735243C.872727-.735243 .974346-.800996 1.046077-.848817C1.129763-.896638 1.333001-1.028144 1.41071-1.081943C1.60797-1.207472 1.679701-1.255293 1.80523-1.327024C1.799253-1.243337 1.775342-1.034122 1.769365-.962391L1.709589-.382565C1.709589-.280946 1.80523-.203238 1.906849-.203238C2.014446-.203238 2.10411-.280946 2.10411-.382565C2.10411-.388543 2.050311-.926526 2.044334-.956413C2.038356-1.022167 2.014446-1.249315 2.008468-1.327024L2.779577-.842839Z"></path>
+<path id="tz_fig_tangencia_g2-69" d="M2.815442-3.030635H3.730012C4.366625-3.030635 4.501121-2.923039 4.501121-2.627148C4.501121-2.555417 4.474222-2.367123 4.438356-2.223661C4.420423-2.169863 4.411457-2.125031 4.411457-2.098132C4.411457-2.089166 4.411457-1.981569 4.52802-1.981569C4.635616-1.981569 4.644583-2.044334 4.680448-2.178829L5.155666-4.061768C5.191532-4.187298 5.191532-4.20523 5.191532-4.241096C5.191532-4.312827 5.137733-4.357659 5.066002-4.357659C4.967372-4.357659 4.958406-4.303861 4.913574-4.133499C4.734247-3.425156 4.456289-3.308593 3.738979-3.308593H2.887173C3.021669-3.864508 3.443088-5.56812 3.48792-5.675716C3.541719-5.801245 3.604483-5.819178 3.900374-5.819178H5.218431C6.339228-5.819178 6.590286-5.550187 6.590286-4.82391C6.590286-4.545953 6.545455-4.276961 6.545455-4.214197C6.545455-4.142466 6.590286-4.079701 6.670984-4.079701C6.77858-4.079701 6.787547-4.142466 6.805479-4.303861L6.993773-5.971606C6.993773-6.097136 6.90411-6.097136 6.733748-6.097136H2.116065C1.945704-6.097136 1.847073-6.097136 1.847073-5.935741C1.847073-5.819178 1.936737-5.819178 2.125031-5.819178C2.160897-5.819178 2.322291-5.819178 2.465753-5.801245C2.663014-5.774346 2.67198-5.738481 2.67198-5.657783C2.67198-5.630884 2.67198-5.612951 2.627148-5.451557L1.43462-.681445C1.353923-.358655 1.33599-.277958 .663512-.277958C.493151-.277958 .394521-.277958 .394521-.116563C.394521 0 .484184 0 .645579 0H5.379826C5.54122 0 5.559153 0 5.586052-.026899C5.612951-.044832 5.621918-.053798 5.675716-.170361C5.783313-.412453 6.545455-2.116065 6.545455-2.196762C6.545455-2.268493 6.491656-2.313325 6.419925-2.313325S6.339228-2.304359 6.240598-2.098132C5.684682-.842839 5.317061-.277958 3.828643-.277958H2.456787C2.331258-.277958 2.313325-.277958 2.27746-.286924C2.187796-.29589 2.160897-.304857 2.160897-.367621C2.160897-.394521 2.160897-.412453 2.205729-.573848L2.815442-3.030635Z"></path>
+<path id="tz_fig_tangencia_g2-120" d="M4.411457-3.622416C4.079701-3.559651 3.981071-3.272727 3.981071-3.138232C3.981071-2.96787 4.1066-2.815442 4.33076-2.815442C4.581818-2.815442 4.82391-3.030635 4.82391-3.344458C4.82391-3.756912 4.375592-3.963138 3.954172-3.963138C3.416189-3.963138 3.102366-3.48792 2.99477-3.299626C2.824408-3.738979 2.429888-3.963138 1.999502-3.963138C1.0401-3.963138 .52005-2.815442 .52005-2.582316C.52005-2.501619 .582814-2.47472 .645579-2.47472C.726276-2.47472 .753176-2.519552 .771108-2.57335C1.049066-3.461021 1.640847-3.738979 1.981569-3.738979C2.241594-3.738979 2.47472-3.568618 2.47472-3.147198C2.47472-2.824408 2.089166-1.389788 1.972603-.959402C1.900872-.681445 1.63188-.125529 1.13873-.125529C.959402-.125529 .771108-.188294 .681445-.242092C.923537-.286924 1.102864-.493151 1.102864-.726276C1.102864-.950436 .932503-1.049066 .762142-1.049066C.502117-1.049066 .268991-.824907 .268991-.52005C.268991-.080697 .753176 .09863 1.129763 .09863C1.649813 .09863 1.95467-.331756 2.089166-.573848C2.313325 .017933 2.842341 .09863 3.084433 .09863C4.052802 .09863 4.563885-1.066999 4.563885-1.282192C4.563885-1.327024 4.536986-1.389788 4.447323-1.389788C4.348692-1.389788 4.339726-1.353923 4.294894-1.219427C4.097634-.573848 3.577584-.125529 3.111333-.125529C2.851308-.125529 2.609215-.286924 2.609215-.71731C2.609215-.91457 2.734745-1.407721 2.815442-1.748443C2.851308-1.909838 3.0934-2.878207 3.111333-2.940971C3.218929-3.263761 3.48792-3.738979 3.945205-3.738979C4.1066-3.738979 4.276961-3.71208 4.411457-3.622416Z"></path>
+<path id="tz_fig_tangencia_g2-121" d="M4.501121-3.452055C4.510087-3.496887 4.52802-3.550685 4.52802-3.604483C4.52802-3.721046 4.447323-3.864508 4.250062-3.864508C4.133499-3.864508 3.972105-3.792777 3.900374-3.622416C3.891407-3.58655 3.801743-3.218929 3.747945-3.021669L3.299626-1.228394C3.227895-.968369 3.227895-.950436 3.209963-.869738C3.200996-.833873 2.824408-.125529 2.178829-.125529C1.622914-.125529 1.622914-.690411 1.622914-.860772C1.622914-1.264259 1.739477-1.703611 2.125031-2.707846C2.196762-2.914072 2.25056-3.039601 2.25056-3.209963C2.25056-3.649315 1.918804-3.963138 1.479452-3.963138C.61868-3.963138 .260025-2.689913 .260025-2.582316C.260025-2.501619 .32279-2.47472 .385554-2.47472C.484184-2.47472 .493151-2.528518 .529016-2.645081C.71731-3.308593 1.075965-3.738979 1.452553-3.738979C1.667746-3.738979 1.667746-3.568618 1.667746-3.443088C1.667746-3.29066 1.63188-3.129265 1.551183-2.914072C1.129763-1.802242 1.0132-1.425654 1.0132-.995268C1.0132 0 1.820174 .09863 2.15193 .09863C2.591283 .09863 2.905106-.134496 3.066501-.29589C2.949938 .161395 2.851308 .564882 2.501619 1.0132C2.232628 1.371856 1.873973 1.613948 1.479452 1.613948C1.228394 1.613948 .932503 1.524284 .806974 1.273225C1.282192 1.273225 1.344956 .878705 1.344956 .789041C1.344956 .591781 1.201494 .466252 1.004234 .466252C.789041 .466252 .502117 .636613 .502117 1.049066C.502117 1.515318 .91457 1.838107 1.479452 1.838107C2.394022 1.838107 3.371357 1.058032 3.631382 .008966L4.501121-3.452055Z"></path>
+<path id="tz_fig_tangencia_g3-24" d="M1.407721 1.604981C1.327024 1.604981 1.264259 1.604981 1.201494 1.613948V1.838107C1.578082 1.811208 1.981569 1.85604 2.501619 1.775342C3.048568 1.694645 3.398257 1.515318 3.398257 1.120797S3.057534 .537983 2.636115 .466252V.19726H1.972603V.636613C2.492653 .645579 2.734745 .869738 2.734745 1.120797C2.734745 1.596015 1.891905 1.604981 1.604981 1.604981H1.407721Z"></path>
+<path id="tz_fig_tangencia_g3-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+<path id="tz_fig_tangencia_g3-98" d="M1.622914-2.860274C1.622914-3.030635 1.622914-3.039601 1.721544-3.183064C2.026401-3.595517 2.465753-3.738979 2.806476-3.738979C3.19203-3.738979 3.550685-3.523786 3.783811-3.147198C4.016936-2.761644 4.034869-2.232628 4.034869-1.945704C4.034869-1.524284 3.981071-1.049066 3.747945-.690411C3.550685-.403487 3.183064-.125529 2.707846-.125529C2.304359-.125529 1.963636-.340722 1.748443-.672478C1.622914-.860772 1.622914-.869738 1.622914-1.0401V-2.860274ZM1.542217-.546949C1.820174-.152428 2.268493 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.057534 3.918306-3.963138 2.842341-3.963138C2.232628-3.963138 1.811208-3.649315 1.596015-3.407223V-6.222665L.268991-6.124035V-5.846077C.878705-5.846077 .959402-5.783313 .959402-5.34396V0H1.210461L1.542217-.546949Z"></path>
+<path id="tz_fig_tangencia_g3-99" d="M3.263761-3.523786C3.075467-3.48792 2.896139-3.362391 2.896139-3.102366C2.896139-2.86924 3.075467-2.689913 3.308593-2.689913S3.730012-2.842341 3.730012-3.120299C3.730012-3.676214 3.102366-4.016936 2.313325-4.016936C1.165629-4.016936 .304857-3.057534 .304857-1.936737C.304857-.780075 1.23736 .09863 2.295392 .09863C3.541719 .09863 3.828643-.986301 3.828643-1.066999C3.828643-1.174595 3.730012-1.174595 3.703113-1.174595C3.604483-1.174595 3.604483-1.156663 3.550685-1.004234C3.344458-.385554 2.842341-.152428 2.385056-.152428C1.811208-.152428 1.075965-.61868 1.075965-1.945704C1.075965-3.344458 1.793275-3.765878 2.331258-3.765878C2.447821-3.765878 2.932005-3.747945 3.263761-3.523786Z"></path>
+<path id="tz_fig_tangencia_g3-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+<path id="tz_fig_tangencia_g3-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+<path id="tz_fig_tangencia_g3-109" d="M1.667746-2.322291C1.667746-3.29066 2.367123-3.738979 2.905106-3.738979C3.398257-3.738979 3.559651-3.38929 3.559651-2.761644V-.690411C3.559651-.277958 3.461021-.277958 2.86924-.277958V0C3.29066-.017933 3.461021-.026899 3.891407-.026899S4.438356-.017933 4.913574 0V-.277958C4.321793-.277958 4.223163-.277958 4.223163-.690411V-2.322291C4.223163-3.29066 4.92254-3.738979 5.460523-3.738979C5.953674-3.738979 6.115068-3.38929 6.115068-2.761644V-.690411C6.115068-.277958 6.016438-.277958 5.424658-.277958V0C5.846077-.017933 6.016438-.026899 6.446824-.026899S6.993773-.017933 7.468991 0V-.277958C7.011706-.277958 6.787547-.277958 6.77858-.555915V-2.27746C6.77858-3.057534 6.77858-3.308593 6.48269-3.640349C6.294396-3.855542 5.935741-3.963138 5.523288-3.963138C4.877709-3.963138 4.438356-3.58655 4.187298-3.111333C4.079701-3.640349 3.721046-3.963138 2.96787-3.963138C2.25056-3.963138 1.811208-3.496887 1.622914-3.084433H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_tangencia_g3-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_tangencia_g3-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+<path id="tz_fig_tangencia_g3-115" d="M3.084433-3.783811C3.084433-3.936239 3.084433-4.016936 2.976837-4.016936C2.932005-4.016936 2.914072-4.016936 2.797509-3.90934C2.779577-3.891407 2.698879-3.81071 2.645081-3.765878C2.367123-3.963138 2.089166-4.016936 1.784309-4.016936C.600747-4.016936 .304857-3.362391 .304857-2.905106C.304857-2.618182 .430386-2.385056 .636613-2.187796C.941469-1.909838 1.282192-1.847073 1.739477-1.766376C2.196762-1.676712 2.349191-1.649813 2.546451-1.497385C2.636115-1.425654 2.860274-1.255293 2.860274-.91457C2.860274-.125529 1.95467-.125529 1.829141-.125529C.91457-.125529 .681445-.887671 .573848-1.371856C.546949-1.461519 .537983-1.515318 .430386-1.515318C.304857-1.515318 .304857-1.443587 .304857-1.282192V-.134496C.304857 .017933 .304857 .09863 .412453 .09863C.466252 .09863 .475218 .089664 .636613-.080697C.672478-.134496 .771108-.251059 .81594-.29589C1.192528 .071731 1.604981 .09863 1.829141 .09863C2.932005 .09863 3.317559-.546949 3.317559-1.147696C3.317559-1.551183 3.138232-1.793275 2.940971-1.999502C2.636115-2.295392 2.313325-2.358157 1.649813-2.483686C1.416687-2.528518 .762142-2.645081 .762142-3.156164C.762142-3.443088 .968369-3.819676 1.784309-3.819676C2.752677-3.819676 2.815442-3.075467 2.833375-2.851308C2.842341-2.743711 2.842341-2.689913 2.958904-2.689913C3.084433-2.689913 3.084433-2.752677 3.084433-2.923039V-3.783811Z"></path>
+<path id="tz_fig_tangencia_g3-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+<path id="tz_fig_tangencia_g3-126" d="M3.667248-5.998506C3.425156-5.756413 3.218929-5.586052 2.940971-5.586052C2.743711-5.586052 2.57335-5.66675 2.295392-5.819178C2.178829-5.881943 1.972603-5.998506 1.75741-5.998506C1.425654-5.998506 1.255293-5.819178 .771108-5.290162L.932503-5.137733C1.174595-5.379826 1.380822-5.550187 1.65878-5.550187C1.85604-5.550187 2.026401-5.469489 2.304359-5.317061C2.420922-5.254296 2.627148-5.137733 2.842341-5.137733C3.174097-5.137733 3.344458-5.317061 3.828643-5.846077L3.667248-5.998506Z"></path>
+</defs>
+<g id="tz_fig_tangencia_page1">
+<g stroke-miterlimit="10" transform="translate(-51.997332,128.212532)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H197.16924" fill="none"></path>
+<g transform="translate(197.16924,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(202.70218,-3.125)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-51.997332,128.212532)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-51.997332" y="128.212532" href="#tz_fig_tangencia_g3-98"></use>
+<use x="-46.621693" y="128.212532" href="#tz_fig_tangencia_g3-101"></use>
+<use x="-42.522505" y="128.212532" href="#tz_fig_tangencia_g3-109"></use>
+<use x="-31.771226" y="128.212532" href="#tz_fig_tangencia_g2-120"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V180.09741" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,180.09741)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-12.59018,187.38036)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-51.997332,128.212532)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-51.997332" y="128.212532" href="#tz_fig_tangencia_g3-98"></use>
+<use x="-46.621693" y="128.212532" href="#tz_fig_tangencia_g3-101"></use>
+<use x="-42.522505" y="128.212532" href="#tz_fig_tangencia_g3-109"></use>
+<use x="-31.771226" y="128.212532" href="#tz_fig_tangencia_g2-121"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M0 156.49008L170.71646 0" fill="none"></path>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(17.3906,149.23482)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-51.997332,128.212532)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-51.997332" y="128.212532" href="#tz_fig_tangencia_g3-114"></use>
+<use x="-48.392811" y="128.212532" href="#tz_fig_tangencia_g3-101"></use>
+<use x="-44.293622" y="128.212532" href="#tz_fig_tangencia_g3-115"></use>
+<use x="-40.65866" y="128.212532" href="#tz_fig_tangencia_g3-116"></use>
+<use x="-37.0749" y="128.212532" href="#tz_fig_tangencia_g3-114"></use>
+<use x="-33.470379" y="128.212532" href="#tz_fig_tangencia_g3-105"></use>
+<use x="-30.910551" y="128.212532" href="#tz_fig_tangencia_g3-24"></use>
+<use x="-30.910551" y="128.212532" href="#tz_fig_tangencia_g3-99"></use>
+<use x="-26.814826" y="128.212532" href="#tz_fig_tangencia_g3-126"></use>
+<use x="-26.814826" y="128.212532" href="#tz_fig_tangencia_g3-97"></use>
+<use x="-22.207135" y="128.212532" href="#tz_fig_tangencia_g3-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#93c0f1" stroke="#93c0f1">
+<path d="M19.91682 159.33553C45.52455 56.90549 56.90549 45.52455 159.33553 19.91682" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<path d="M35.56592 156.49008C65.44139 73.9773 73.9773 65.44139 156.49008 35.56592" fill="none"></path>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#93c0f1" stroke="#93c0f1">
+<path d="M68.2864 159.33553C99.5846 96.73915 96.73915 99.5846 159.33553 68.2864" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M80.08366 77.3915C80.08366 78.40694 79.26048 79.23012 78.24504 79.23012S76.40642 78.40694 76.40642 77.3915C76.40642 76.37605 77.2296 75.55287 78.24504 75.55287S80.08366 76.37605 80.08366 77.3915ZM78.24504 77.3915" stroke="none"></path>
+</g>
+<g transform="translate(78.24504,77.3915)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-51.997332,128.212532)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(81.77802,80.92447)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-51.997332,128.212532)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-51.997332" y="128.212532" href="#tz_fig_tangencia_g2-69"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M76.20642 77.3915H0" fill="none"></path>
+<g transform="translate(-12.7447,74.95901)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-51.997332,128.212532)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-51.997332" y="128.212532" href="#tz_fig_tangencia_g2-121"></use>
+<use x="-47.137127" y="124.403528" href="#tz_fig_tangencia_g1-3"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M78.24504 75.35287V0" fill="none"></path>
+<g transform="translate(73.45686,-10.14793)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-51.997332,128.212532)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-51.997332" y="128.212532" href="#tz_fig_tangencia_g2-120"></use>
+<use x="-46.773875" y="124.403528" href="#tz_fig_tangencia_g1-3"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(133.41812,91.11636)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-51.997332,128.212532)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-51.997332" y="128.212532" href="#tz_fig_tangencia_g0-99"></use>
+<use x="-48.233614" y="128.212532" href="#tz_fig_tangencia_g0-117"></use>
+<use x="-43.528966" y="128.212532" href="#tz_fig_tangencia_g0-114"></use>
+<use x="-40.228796" y="128.212532" href="#tz_fig_tangencia_g0-118"></use>
+<use x="-36.229845" y="128.212532" href="#tz_fig_tangencia_g0-97"></use>
+<use x="-31.995663" y="128.212532" href="#tz_fig_tangencia_g0-115"></use>
+<use x="-25.832571" y="128.212532" href="#tz_fig_tangencia_g0-100"></use>
+<use x="-21.127924" y="128.212532" href="#tz_fig_tangencia_g0-101"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(130.60837,81.83829)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-51.997332,128.212532)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-51.997332" y="128.212532" href="#tz_fig_tangencia_g0-105"></use>
+<use x="-49.645008" y="128.212532" href="#tz_fig_tangencia_g0-110"></use>
+<use x="-44.94036" y="128.212532" href="#tz_fig_tangencia_g0-100"></use>
+<use x="-40.235713" y="128.212532" href="#tz_fig_tangencia_g0-105"></use>
+<use x="-37.883389" y="128.212532" href="#tz_fig_tangencia_g0-102"></use>
+<use x="-35.295833" y="128.212532" href="#tz_fig_tangencia_g0-101"></use>
+<use x="-31.532115" y="128.212532" href="#tz_fig_tangencia_g0-114"></use>
+<use x="-28.231945" y="128.212532" href="#tz_fig_tangencia_g0-101"></use>
+<use x="-24.468226" y="128.212532" href="#tz_fig_tangencia_g0-110"></use>
+<use x="-19.763579" y="128.212532" href="#tz_fig_tangencia_g0-24"></use>
+<use x="-19.763579" y="128.212532" href="#tz_fig_tangencia_g0-99"></use>
+<use x="-15.999861" y="128.212532" href="#tz_fig_tangencia_g0-97"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tangencia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;12.1: A escolha ótima do consumidor é o ponto <span class="math inline">\(E\)</span> onde a curva de indiferença mais alta possível tangencia a restrição orçamentária.
+</figcaption>
+</figure>
+</div>
+<p>Por que a tangência? Porque <strong>as inclinações se igualam</strong> no ponto ótimo. A inclinação da curva de indiferença é a <strong>taxa marginal de substituição</strong> (quanto de <span class="math inline">\(y\)</span> o consumidor troca por uma unidade de <span class="math inline">\(x\)</span> mantendo a satisfação); a inclinação da reta orçamentária é a razão de preços <span class="math inline">\(p_x/p_y\)</span> (quanto de <span class="math inline">\(y\)</span> o mercado obriga a abrir mão por uma unidade de <span class="math inline">\(x\)</span>). No ótimo, o que o consumidor <strong>está disposto</strong> a trocar iguala o que o mercado <strong>exige</strong> que ele troque. Se fossem diferentes, ele poderia rearranjar o consumo e subir para uma curva mais alta. O método de Lagrange é a máquina algébrica que encontra esse ponto de tangência.</p>
+</section>
+<section id="a-função-lagrangiana" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="a-função-lagrangiana"><span class="header-section-number">12.3</span> A função lagrangiana</h2>
+<p>O truque de Joseph-Louis Lagrange (1736–1813) foi transformar um problema <strong>com</strong> restrição num problema <strong>sem</strong> restrição, incorporando a amarra à própria função objetivo por meio de uma nova variável, <span class="math inline">\(\lambda\)</span> (lambda), o <strong>multiplicador</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Função lagrangiana">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Função lagrangiana
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para maximizar <span class="math inline">\(f(x, y)\)</span> sujeito a <span class="math inline">\(g(x, y) = b\)</span>, define-se a <strong>função lagrangiana</strong> <span id="eq-lagrangiana"><span class="math display">\[
+\mathcal{L}(x, y, \lambda) = f(x, y) + \lambda\,\bigl[\,b - g(x, y)\,\bigr].
+\tag{12.1}\]</span></span> O termo entre colchetes é zero quando a restrição é satisfeita; <span class="math inline">\(\lambda\)</span> é o <strong>multiplicador de Lagrange</strong>.</p>
+</div>
+</div>
+<p>O método então trata <span class="math inline">\(\mathcal{L}\)</span> como uma otimização livre em <strong>três</strong> variáveis (<span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> e <span class="math inline">\(\lambda\)</span>) e aplica a condição de primeira ordem a cada uma: as três derivadas parciais se anulam no ótimo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="O que é uma derivada parcial">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>O que é uma derivada parcial
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quando uma função depende de mais de uma variável, a <strong>derivada parcial</strong> em relação a uma delas — escrita <span class="math inline">\(\partial f/\partial x\)</span> — é a derivada tratando as <strong>outras variáveis como constantes</strong>. Mede a taxa de variação de <span class="math inline">\(f\)</span> quando só <span class="math inline">\(x\)</span> muda, tudo o mais fixo — a versão em cálculo do <em>ceteris paribus</em>. As regras de derivação do <a href="cap04-derivadas-analise-marginal.html" class="quarto-xref"><span>Capítulo 10</span></a> continuam valendo; apenas congelamos as demais variáveis.</p>
+</div>
+</div>
+<p>As <strong>condições de primeira ordem</strong> do lagrangiano são:</p>
+<p><span class="math display">\[
+\frac{\partial \mathcal{L}}{\partial x} = \frac{\partial f}{\partial x} - \lambda\,\frac{\partial g}{\partial x} = 0, \qquad
+\frac{\partial \mathcal{L}}{\partial y} = \frac{\partial f}{\partial y} - \lambda\,\frac{\partial g}{\partial y} = 0,
+\]</span> <span class="math display">\[
+\frac{\partial \mathcal{L}}{\partial \lambda} = b - g(x, y) = 0.
+\]</span></p>
+<p>A terceira condição apenas <strong>recupera a restrição</strong> — garante que a solução a respeita. As duas primeiras, combinadas, produzem a condição de tangência.</p>
+<section id="deduzindo-a-condição-de-tangência" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="deduzindo-a-condição-de-tangência"><span class="header-section-number">12.3.1</span> Deduzindo a condição de tangência</h3>
+<p>Das duas primeiras condições, isolamos <span class="math inline">\(\lambda\)</span> em cada uma e igualamos:</p>
+<p><span id="eq-tangencia"><span class="math display">\[
+\lambda = \frac{\partial f/\partial x}{\partial g/\partial x} = \frac{\partial f/\partial y}{\partial g/\partial y}
+\;\Longrightarrow\;
+\frac{\partial f/\partial x}{\partial f/\partial y} = \frac{\partial g/\partial x}{\partial g/\partial y}.
+\tag{12.2}\]</span></span></p>
+<p>O lado esquerdo é a <strong>taxa marginal de substituição</strong> (razão das utilidades marginais); o lado direito, para a restrição orçamentária <span class="math inline">\(g = p_x x + p_y y\)</span>, é a <strong>razão de preços</strong> <span class="math inline">\(p_x/p_y\)</span>. Recuperamos, algebricamente, a condição de tangência que a <a href="#fig-tangencia" class="quarto-xref">Figura&nbsp;<span>12.1</span></a> mostrava geometricamente:</p>
+<p><span class="math display">\[
+\underbrace{\frac{\partial U/\partial x}{\partial U/\partial y}}_{\text{TMS}} = \frac{p_x}{p_y}.
+\]</span></p>
+</section>
+</section>
+<section id="resolvendo-o-problema-do-consumidor-um-exemplo-completo" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="resolvendo-o-problema-do-consumidor-um-exemplo-completo"><span class="header-section-number">12.4</span> Resolvendo o problema do consumidor: um exemplo completo</h2>
+<p>Seja a utilidade <span class="math inline">\(U(x, y) = x\,y\)</span> (uma Cobb-Douglas simples), preços <span class="math inline">\(p_x = 2\)</span>, <span class="math inline">\(p_y = 4\)</span> e renda <span class="math inline">\(m = 80\)</span>. Queremos maximizar <span class="math inline">\(U\)</span> sujeito a <span class="math inline">\(2x + 4y = 80\)</span>.</p>
+<p><strong>Passo 1 — montar o lagrangiano:</strong></p>
+<p><span class="math display">\[
+\mathcal{L} = x y + \lambda\,(80 - 2x - 4y).
+\]</span></p>
+<p><strong>Passo 2 — condições de primeira ordem:</strong></p>
+<p><span class="math display">\[
+\frac{\partial \mathcal{L}}{\partial x} = y - 2\lambda = 0, \qquad
+\frac{\partial \mathcal{L}}{\partial y} = x - 4\lambda = 0, \qquad
+\frac{\partial \mathcal{L}}{\partial \lambda} = 80 - 2x - 4y = 0.
+\]</span></p>
+<p><strong>Passo 3 — resolver.</strong> Das duas primeiras: <span class="math inline">\(y = 2\lambda\)</span> e <span class="math inline">\(x = 4\lambda\)</span>, logo <span class="math inline">\(x = 2y\)</span> (dividindo uma pela outra elimina <span class="math inline">\(\lambda\)</span>). Isso é a condição de tangência: a utilidade marginal de <span class="math inline">\(x\)</span> é <span class="math inline">\(y\)</span>, a de <span class="math inline">\(y\)</span> é <span class="math inline">\(x\)</span>, e <span class="math inline">\(\text{TMS} = y/x = p_x/p_y = 2/4\)</span>, ou seja, <span class="math inline">\(x = 2y\)</span>. Substituindo na restrição:</p>
+<p><span class="math display">\[
+2(2y) + 4y = 80 \;\Longrightarrow\; 8y = 80 \;\Longrightarrow\; y^{*} = 10, \quad x^{*} = 20.
+\]</span></p>
+<p>E o multiplicador: <span class="math inline">\(\lambda = y/2 = 5\)</span>. O consumidor compra <span class="math inline">\(20\)</span> unidades de <span class="math inline">\(x\)</span> e <span class="math inline">\(10\)</span> de <span class="math inline">\(y\)</span>, obtendo utilidade <span class="math inline">\(U = 20 \times 10 = 200\)</span>. Guarde o valor <span class="math inline">\(\lambda = 5\)</span>; ele tem um significado que revelaremos já a seguir.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — esquecer de usar a restrição">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — esquecer de usar a restrição
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As duas primeiras condições (tangência) dão apenas a <strong>proporção</strong> entre os bens (<span class="math inline">\(x = 2y\)</span>), não as quantidades. É a <strong>terceira</strong> condição — a restrição orçamentária — que fixa a escala e determina os valores absolutos. Um erro frequente é parar na condição de tangência e esquecer de substituí-la na restrição. Sem a restrição, o problema fica indeterminado.</p>
+</div>
+</div>
+</section>
+<section id="o-multiplicador-é-o-preço-sombra" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="o-multiplicador-é-o-preço-sombra"><span class="header-section-number">12.5</span> O multiplicador é o preço-sombra</h2>
+<p>Aqui está a joia do capítulo. O multiplicador <span class="math inline">\(\lambda\)</span> parece um mero auxiliar de cálculo, mas carrega uma interpretação econômica profunda:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Interpretação — Multiplicador como preço-sombra">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Interpretação — Multiplicador como preço-sombra
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No ótimo, o multiplicador de Lagrange <span class="math inline">\(\lambda\)</span> mede <strong>quanto o valor máximo da função objetivo aumenta se a restrição for afrouxada em uma unidade</strong>: <span class="math display">\[
+\lambda = \frac{\partial f^{*}}{\partial b},
+\]</span> onde <span class="math inline">\(f^{*}\)</span> é o valor ótimo. Por isso <span class="math inline">\(\lambda\)</span> é chamado de <strong>preço-sombra</strong> (ou valor marginal) da restrição.</p>
+</div>
+</div>
+<p>No nosso exemplo, <span class="math inline">\(\lambda = 5\)</span> significa que, se a renda <span class="math inline">\(m\)</span> subisse de <span class="math inline">\(80\)</span> para <span class="math inline">\(81\)</span>, a utilidade máxima aumentaria em aproximadamente <span class="math inline">\(5\)</span> unidades. É a <strong>utilidade marginal da renda</strong>: o valor, em satisfação, de um real a mais no orçamento. Essa leitura transforma <span class="math inline">\(\lambda\)</span> de subproduto algébrico em informação econômica de primeira ordem.</p>
+<p>O conceito de preço-sombra é usado o tempo todo fora dos livros-texto. Numa fábrica com capacidade limitada, o preço-sombra da restrição de capacidade diz <strong>quanto valeria</strong> uma máquina a mais — e, portanto, quanto vale a pena pagar para expandir. Numa restrição ambiental (teto de emissões), o preço-sombra é o custo marginal de cumprir a meta — a base econômica dos <strong>mercados de carbono</strong>. Sempre que algo é escasso e amarra uma decisão, seu preço-sombra mede o valor de relaxá-la.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — a igualdade das &quot;utilidades por real&quot;">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — a igualdade das “utilidades por real”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A condição de tangência tem uma forma equivalente muito intuitiva. Reorganizando <span class="math inline">\(\dfrac{U_x}{U_y} = \dfrac{p_x}{p_y}\)</span>, obtemos <span class="math display">\[
+\frac{U_x}{p_x} = \frac{U_y}{p_y} \;(= \lambda).
+\]</span> Ou seja: no ótimo, <strong>o último real gasto em cada bem rende a mesma satisfação</strong>. Se um real gasto em <span class="math inline">\(x\)</span> desse mais utilidade que em <span class="math inline">\(y\)</span>, o consumidor realocaria gasto para <span class="math inline">\(x\)</span>. O equilíbrio é atingido quando todas as “utilidades marginais por real” se igualam — e esse valor comum é exatamente <span class="math inline">\(\lambda\)</span>, a utilidade marginal da renda. É a lei da igualdade das utilidades marginais ponderadas, coração da teoria do consumidor.</p>
+</div>
+</div>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">12.6</span> 🇧🇷 Brasil em Foco</h2>
+<p><strong>O preço-sombra da restrição fiscal.</strong> A ideia de multiplicador de Lagrange como valor de afrouxar uma restrição ilumina o debate fiscal brasileiro. O <strong>arcabouço fiscal</strong> (que sucedeu o teto de gastos) impõe, na prática, uma restrição orçamentária ao governo: o total de despesas não pode crescer além de certo limite. Toda decisão de política pública passa, então, por um problema de otimização com restrição — maximizar o bem-estar social sujeito ao limite de gastos. O <strong>preço-sombra</strong> dessa restrição é o valor, em bem-estar, de poder gastar um real a mais. Quando economistas discutem se vale a pena abrir uma exceção ao limite para investir em infraestrutura ou educação, estão, no fundo, comparando o <strong>preço-sombra dos recursos públicos</strong> (o retorno social do melhor uso alternativo) com o retorno da despesa proposta. É a mesma lógica do <span class="math inline">\(\lambda\)</span>: o custo de oportunidade de cada real dentro de um orçamento apertado.</p>
+<p><strong>A escolha do consumidor brasileiro sob inflação de alimentos.</strong> A condição de tangência — igualar a taxa marginal de substituição à razão de preços — descreve como as famílias reagem a mudanças de preços relativos, algo especialmente visível no Brasil quando a inflação de alimentos dispara. Quando o preço da carne sobe muito em relação ao do frango ou do ovo (movimentos que o IBGE capta no IPCA e na POF), a razão de preços <span class="math inline">\(p_x/p_y\)</span> muda, o ponto de tangência se desloca, e as famílias <strong>substituem</strong> a proteína mais cara pela mais barata. Estudos de demanda com dados da POF estimam essas substituições, e elas são a razão pela qual a “inflação sentida” varia tanto entre faixas de renda: famílias pobres, que gastam parcela maior do orçamento em alimentos, têm sua restrição orçamentária muito mais afetada por choques de preços de comida. A teoria deste capítulo é o esqueleto desses estudos de demanda.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> IBGE — Pesquisa de Orçamentos Familiares (POF) e IPCA por grupo (alimentação), para estimar substituição entre bens; Instituição Fiscal Independente (IFI) e Tesouro Nacional, para o arcabouço fiscal e o custo de oportunidade do gasto público. Verifique as datas de referência das cestas e limites.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">12.7</span> Resumo do capítulo</h2>
+<ul>
+<li>A <strong>otimização com restrição</strong> maximiza <span class="math inline">\(f(x,y)\)</span> sujeito a <span class="math inline">\(g(x,y) = b\)</span>. O caso central é o consumidor que maximiza a utilidade <span class="math inline">\(U(x,y)\)</span> sujeito à restrição orçamentária <span class="math inline">\(p_x x + p_y y = m\)</span>.</li>
+<li>A solução ótima é o ponto de <strong>tangência</strong> entre a curva de indiferença mais alta possível e a reta orçamentária.</li>
+<li>O <strong>método de Lagrange</strong> monta <span class="math inline">\(\mathcal{L} = f + \lambda(b - g)\)</span> e anula as três derivadas parciais. A condição de <span class="math inline">\(\lambda\)</span> recupera a restrição; as de <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> dão a <strong>condição de tangência</strong> <span class="math inline">\(\dfrac{U_x}{U_y} = \dfrac{p_x}{p_y}\)</span>.</li>
+<li>Equivalentemente, no ótimo <strong>as utilidades marginais por real se igualam</strong>: <span class="math inline">\(\dfrac{U_x}{p_x} = \dfrac{U_y}{p_y} = \lambda\)</span> — o último real gasto em cada bem rende a mesma satisfação.</li>
+<li>O <strong>multiplicador <span class="math inline">\(\lambda\)</span></strong> é o <strong>preço-sombra</strong> da restrição: quanto o valor ótimo aumenta se a restrição afrouxar em uma unidade. No problema do consumidor, é a <strong>utilidade marginal da renda</strong>.</li>
+<li>A condição de tangência dá só a <strong>proporção</strong> entre os bens; é a <strong>restrição</strong> que fixa as quantidades absolutas.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">12.8</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique, com suas palavras, por que a escolha ótima do consumidor ocorre onde a curva de indiferença <strong>tangencia</strong> a reta orçamentária, e não onde elas se cruzam.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Se a curva de indiferença <strong>cruza</strong> a reta orçamentária (dois pontos de interseção), então parte da reta fica <strong>acima</strong> dessa curva — ou seja, há combinações acessíveis que dão <strong>mais</strong> utilidade. O consumidor pode melhorar deslizando ao longo da reta até uma curva de indiferença mais alta. Só quando a curva apenas <strong>toca</strong> (tangencia) a reta é que não existe ponto acessível com utilidade maior: a tangência marca a curva de indiferença mais alta alcançável dentro do orçamento. No cruzamento, ainda há ganho a explorar; na tangência, não.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Monte a função lagrangiana para o problema: maximizar <span class="math inline">\(U(x,y) = x^2 y\)</span> sujeito a <span class="math inline">\(3x + 5y = 60\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\mathcal{L}(x, y, \lambda) = x^2 y + \lambda\,(60 - 3x - 5y).
+\]</span></p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Para <span class="math inline">\(U(x,y) = xy\)</span>, preços <span class="math inline">\(p_x = 1\)</span>, <span class="math inline">\(p_y = 1\)</span> e renda <span class="math inline">\(m = 40\)</span>, encontre a cesta ótima <span class="math inline">\((x^{*}, y^{*})\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Lagrangiano: <span class="math inline">\(\mathcal{L} = xy + \lambda(40 - x - y)\)</span>. CPO: <span class="math inline">\(y - \lambda = 0\)</span>, <span class="math inline">\(x - \lambda = 0\)</span>, logo <span class="math inline">\(x = y\)</span>. Restrição: <span class="math inline">\(x + y = 40 \Rightarrow 2x = 40 \Rightarrow x^{*} = 20\)</span>, <span class="math inline">\(y^{*} = 20\)</span>. (Com preços iguais e utilidade simétrica, o consumidor divide a renda igualmente.)</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> No exercício 3, calcule o multiplicador <span class="math inline">\(\lambda\)</span> e interprete seu significado econômico.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Da CPO, <span class="math inline">\(\lambda = x = y = 20\)</span>. Interpretação: <span class="math inline">\(\lambda = 20\)</span> é o <strong>preço-sombra da renda</strong> — se a renda subisse de 40 para 41, a utilidade máxima aumentaria em aproximadamente 20 unidades. É a <strong>utilidade marginal da renda</strong> nesse ponto.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Para <span class="math inline">\(U(x,y) = xy\)</span>, preços <span class="math inline">\(p_x = 4\)</span>, <span class="math inline">\(p_y = 2\)</span> e renda <span class="math inline">\(m = 120\)</span>, encontre a cesta ótima e verifique a condição de igualdade das utilidades marginais por real.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>As utilidades marginais são <span class="math inline">\(U_x = \partial(xy)/\partial x = y\)</span> e <span class="math inline">\(U_y = \partial(xy)/\partial y = x\)</span>. A condição de tangência é <span class="math display">\[
+\frac{U_x}{U_y} = \frac{y}{x} = \frac{p_x}{p_y} = \frac{4}{2} = 2 \;\Longrightarrow\; y = 2x.
+\]</span> Restrição: <span class="math inline">\(4x + 2y = 120\)</span>. Substituindo <span class="math inline">\(y = 2x\)</span>: <span class="math inline">\(4x + 4x = 120 \Rightarrow x^{*} = 15\)</span>, <span class="math inline">\(y^{*} = 30\)</span>. Verificação da igualdade das utilidades marginais por real: <span class="math inline">\(\dfrac{U_x}{p_x} = \dfrac{y}{4} = \dfrac{30}{4} = 7{,}5\)</span> e <span class="math inline">\(\dfrac{U_y}{p_y} = \dfrac{x}{2} = \dfrac{15}{2} = 7{,}5\)</span>. São <strong>iguais</strong> (e valem <span class="math inline">\(\lambda = 7{,}5\)</span>), como exige o ótimo.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Uma firma tem função de produção <span class="math inline">\(Q(K, L) = KL\)</span> e enfrenta preços dos fatores <span class="math inline">\(r = 2\)</span> (capital) e <span class="math inline">\(w = 8\)</span> (trabalho), com orçamento de custo <span class="math inline">\(C = 160\)</span>. Quanto de <span class="math inline">\(K\)</span> e de <span class="math inline">\(L\)</span> maximiza a produção?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Maximizar <span class="math inline">\(KL\)</span> sujeito a <span class="math inline">\(2K + 8L = 160\)</span>. Lagrangiano: <span class="math inline">\(\mathcal{L} = KL + \lambda(160 - 2K - 8L)\)</span>. CPO: <span class="math inline">\(L - 2\lambda = 0\)</span>, <span class="math inline">\(K - 8\lambda = 0 \Rightarrow K = 4L\)</span>. Restrição: <span class="math inline">\(2(4L) + 8L = 160 \Rightarrow 16L = 160 \Rightarrow L^{*} = 10\)</span>, <span class="math inline">\(K^{*} = 40\)</span>. A firma usa 40 de capital e 10 de trabalho (mais capital porque ele é relativamente mais barato).</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) Um governo com <strong>restrição orçamentária</strong> apertada avalia gastar mais R$,1 bilhão. O preço-sombra estimado desse real de gasto público é 1,8 (cada real gera R$,1,80 de benefício social no melhor uso alternativo). Um projeto de infraestrutura proposto renderia benefício social de R$,1,50 por real investido. (a) O projeto deve ser aprovado, do ponto de vista do preço-sombra? (b) Relacione com o debate do arcabouço fiscal em Brasil em Foco.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><strong>Não</strong>, pelo critério do preço-sombra. O preço-sombra da restrição (1,8) representa o retorno social do <strong>melhor</strong> uso alternativo daquele real. Como o projeto proposto rende apenas 1,5 por real — menos que 1,8 —, os recursos gerariam mais bem-estar em outra aplicação. Aprovar o projeto significaria abrir mão de 1,8 para obter 1,5, uma perda líquida de 0,3 por real.</li>
+<li>É exatamente a lógica do arcabouço fiscal: sob um limite de gastos, cada real tem um custo de oportunidade (seu preço-sombra), e um novo gasto só se justifica se seu retorno social superar esse preço-sombra. O multiplicador de Lagrange formaliza a régua com que se avaliam exceções ao limite: gasta-se onde o retorno bate o preço-sombra dos recursos públicos, não em qualquer projeto de retorno positivo.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) Para a utilidade Cobb-Douglas geral <span class="math inline">\(U(x,y) = x^a y^b\)</span>, com preços <span class="math inline">\(p_x\)</span>, <span class="math inline">\(p_y\)</span> e renda <span class="math inline">\(m\)</span>, mostre que a fração da renda gasta no bem <span class="math inline">\(x\)</span> é <span class="math inline">\(\dfrac{a}{a+b}\)</span>, independentemente dos preços.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Utilidades marginais: <span class="math inline">\(U_x = a x^{a-1} y^b\)</span>, <span class="math inline">\(U_y = b x^a y^{b-1}\)</span>. Condição de tangência: <span class="math display">\[
+\frac{U_x}{U_y} = \frac{a x^{a-1} y^b}{b x^a y^{b-1}} = \frac{a}{b}\cdot\frac{y}{x} = \frac{p_x}{p_y}
+\;\Longrightarrow\; p_x x = \frac{a}{b}\, p_y y.
+\]</span> Substituindo na restrição <span class="math inline">\(p_x x + p_y y = m\)</span>: <span class="math display">\[
+\frac{a}{b} p_y y + p_y y = m \;\Longrightarrow\; p_y y\left(\frac{a+b}{b}\right) = m \;\Longrightarrow\; p_y y = \frac{b}{a+b}\,m.
+\]</span> Logo o gasto em <span class="math inline">\(y\)</span> é a fração <span class="math inline">\(\dfrac{b}{a+b}\)</span> da renda, e por simetria (ou usando <span class="math inline">\(p_x x = m - p_y y\)</span>) o gasto em <span class="math inline">\(x\)</span> é <span class="math inline">\(\dfrac{a}{a+b}\,m\)</span>. As frações de gasto dependem <strong>só dos expoentes</strong> <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>, não dos preços nem da renda — a propriedade célebre das preferências Cobb-Douglas, muito usada em modelos aplicados.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="12.9">
+<h2 data-number="12.9" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">12.9</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="chiang2006">Chiang; Wainwright (<a href="#ref-chiang2006" role="doc-biblioref">2006</a>)</span> — os capítulos sobre otimização com restrição de igualdade e multiplicadores de Lagrange, com a interpretação econômica do multiplicador, são a referência direta deste capítulo.</li>
+<li><span class="citation" data-cites="varian2015">Varian (<a href="#ref-varian2015" role="doc-biblioref">2015</a>)</span> — apresenta a escolha ótima do consumidor (tangência, utilidades marginais por real) com profundidade e intuição econômica; o complemento natural.</li>
+<li><span class="citation" data-cites="simon2004">Simon; Blume (<a href="#ref-simon2004" role="doc-biblioref">2004</a>)</span> — para o tratamento matemático rigoroso de Lagrange, incluindo condições de segunda ordem e o teorema do envelope, que fundamenta o preço-sombra.</li>
+<li><span class="citation" data-cites="sydsaeter2018">Sydsæter et al. (<a href="#ref-sydsaeter2018" role="doc-biblioref">2018</a>)</span> — otimização com restrições e interpretação do multiplicador, com muitos exemplos aplicados à Economia.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-chiang2006" class="csl-entry" role="listitem">
+CHIANG, Alpha C.; WAINWRIGHT, Kevin. <strong>Matemática para Economistas</strong>. 4. ed. Rio de Janeiro: Elsevier, 2006.
+</div>
+<div id="ref-simon2004" class="csl-entry" role="listitem">
+SIMON, Carl P.; BLUME, Lawrence. <strong>Mathematics for Economists</strong>. New York: W. W. Norton, 2004.
+</div>
+<div id="ref-sydsaeter2018" class="csl-entry" role="listitem">
+SYDSÆTER, Knut <em>et al.</em> <strong>Essential Mathematics for Economic Analysis</strong>. 5. ed. Harlow: Pearson, 2018.
+</div>
+<div id="ref-varian2015" class="csl-entry" role="listitem">
+VARIAN, Hal R. <strong>Microeconomia: uma abordagem moderna</strong>. 9. ed. Rio de Janeiro: Elsevier, 2015.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="pagination-link" aria-label="Otimização sem restrições">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="pagination-link" aria-label="Integrais e o cálculo de excedentes">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol02/cap06-lagrange.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>11&nbsp; Otimização sem restrições – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol02/cap06-lagrange.html" rel="next">
+<link href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html">Volume 2 — Matemática para Economistas</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap05-otimizacao-livre.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">11.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#máximos-e-mínimos-o-que-procuramos" id="toc-máximos-e-mínimos-o-que-procuramos" class="nav-link" data-scroll-target="#máximos-e-mínimos-o-que-procuramos"><span class="header-section-number">11.2</span> Máximos e mínimos: o que procuramos</a></li>
+  <li><a href="#a-condição-de-primeira-ordem" id="toc-a-condição-de-primeira-ordem" class="nav-link" data-scroll-target="#a-condição-de-primeira-ordem"><span class="header-section-number">11.3</span> A condição de primeira ordem</a></li>
+  <li><a href="#a-condição-de-segunda-ordem" id="toc-a-condição-de-segunda-ordem" class="nav-link" data-scroll-target="#a-condição-de-segunda-ordem"><span class="header-section-number">11.4</span> A condição de segunda ordem</a>
+  <ul class="collapse">
+  <li><a href="#um-exemplo-completo" id="toc-um-exemplo-completo" class="nav-link" data-scroll-target="#um-exemplo-completo"><span class="header-section-number">11.4.1</span> Um exemplo completo</a></li>
+  </ul></li>
+  <li><a href="#o-problema-central-da-firma-maximizar-o-lucro" id="toc-o-problema-central-da-firma-maximizar-o-lucro" class="nav-link" data-scroll-target="#o-problema-central-da-firma-maximizar-o-lucro"><span class="header-section-number">11.5</span> O problema central da firma: maximizar o lucro</a>
+  <ul class="collapse">
+  <li><a href="#um-exemplo-numérico-da-firma" id="toc-um-exemplo-numérico-da-firma" class="nav-link" data-scroll-target="#um-exemplo-numérico-da-firma"><span class="header-section-number">11.5.1</span> Um exemplo numérico da firma</a></li>
+  </ul></li>
+  <li><a href="#outros-problemas-clássicos-de-otimização" id="toc-outros-problemas-clássicos-de-otimização" class="nav-link" data-scroll-target="#outros-problemas-clássicos-de-otimização"><span class="header-section-number">11.6</span> Outros problemas clássicos de otimização</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">11.7</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">11.8</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">11.9</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">11.10</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol02/cap05-otimizacao-livre.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html">Volume 2 — Matemática para Economistas</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap05-otimizacao-livre.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-otimizacao-livre" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>A Economia é, antes de tudo, uma ciência da <strong>otimização</strong>: firmas que buscam o <strong>máximo</strong> lucro, consumidores que buscam a <strong>máxima</strong> satisfação, governos que buscam <strong>minimizar</strong> o custo de uma política. Cada uma dessas frases contém um superlativo — máximo, mínimo —, e todo superlativo é, matematicamente, um problema de encontrar o <strong>ponto ótimo</strong> de uma função. No capítulo anterior, vimos que a derivada mede a inclinação. Agora usamos esse instrumento para o que talvez seja seu propósito mais nobre em Economia: localizar os picos e os vales das funções que descrevem o comportamento dos agentes.</p>
+<p>A ideia central é de uma simplicidade elegante. No topo de uma colina, o terreno é, por um instante, <strong>plano</strong> — a inclinação é zero. No fundo de um vale, idem. Logo, os candidatos a máximo e a mínimo de uma função são os pontos onde sua <strong>derivada se anula</strong>. Este capítulo transforma essa intuição geométrica num método completo e o aplica à decisão fundamental da firma: quanto produzir para lucrar o máximo.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">11.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>distinguir <strong>máximos</strong> e <strong>mínimos</strong> locais e globais de uma função;</li>
+<li>aplicar a <strong>condição de primeira ordem</strong> (CPO): <span class="math inline">\(f'(x) = 0\)</span> para localizar pontos críticos;</li>
+<li>aplicar a <strong>condição de segunda ordem</strong> (CSO) para classificar um ponto crítico como máximo ou mínimo;</li>
+<li>resolver o problema da firma que <strong>maximiza o lucro</strong> e deduzir a regra “<strong>receita marginal = custo marginal</strong>”;</li>
+<li>resolver problemas de <strong>maximização de receita</strong> e de <strong>minimização de custo médio</strong>;</li>
+<li>reconhecer as limitações do método (ótimos de fronteira, pontos de inflexão).</li>
+</ul>
+</section>
+<section id="máximos-e-mínimos-o-que-procuramos" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="máximos-e-mínimos-o-que-procuramos"><span class="header-section-number">11.2</span> Máximos e mínimos: o que procuramos</h2>
+<p>Antes do método, o vocabulário. Um <strong>máximo</strong> de uma função é um ponto em que ela atinge um valor maior que o dos pontos vizinhos (máximo <strong>local</strong>) ou maior que o de todos os demais (máximo <strong>global</strong>). Mínimos definem-se analogamente, com “menor” no lugar de “maior”. Coletivamente, máximos e mínimos são os <strong>extremos</strong> (ou <strong>ótimos</strong>) da função.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Máximo e mínimo locais">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Máximo e mínimo locais
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma função <span class="math inline">\(f\)</span> tem um <strong>máximo local</strong> em <span class="math inline">\(x^{*}\)</span> se <span class="math inline">\(f(x^{*}) \ge f(x)\)</span> para todo <span class="math inline">\(x\)</span> numa vizinhança de <span class="math inline">\(x^{*}\)</span>; tem um <strong>mínimo local</strong> se <span class="math inline">\(f(x^{*}) \le f(x)\)</span> nessa vizinhança. São <strong>globais</strong> se a desigualdade vale para todo o domínio.</p>
+</div>
+</div>
+<p>A <a href="#fig-extremos" class="quarto-xref">Figura&nbsp;<span>11.1</span></a> mostra os dois tipos de extremo numa mesma curva, com o traço decisivo: em ambos, a reta tangente é <strong>horizontal</strong>.</p>
+<div id="fig-extremos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-extremos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="222.729016pt" height="162.789669pt" viewbox="-68.014948 -68.014947 222.729016 162.789669">
+<defs>
+<path id="tz_fig_extremos_g0-102" d="M3.353425-3.58655H4.160399C4.339726-3.58655 4.42939-3.58655 4.42939-3.747945C4.42939-3.864508 4.339726-3.864508 4.169365-3.864508H3.407223C3.505853-4.402491 3.631382-5.137733 3.747945-5.621918C3.828643-5.971606 4.043836-6.097136 4.223163-6.097136C4.276961-6.097136 4.483188-6.079203 4.635616-5.971606C4.456289-5.935741 4.196264-5.774346 4.196264-5.478456C4.196264-5.254296 4.366625-5.155666 4.536986-5.155666C4.779078-5.155666 5.030137-5.352927 5.030137-5.693649C5.030137-6.097136 4.635616-6.321295 4.214197-6.321295C3.81071-6.321295 3.407223-6.034371 3.218929-5.66675C3.021669-5.281196 2.958904-4.931507 2.77061-3.864508H2.125031C1.95467-3.864508 1.847073-3.864508 1.847073-3.703113C1.847073-3.58655 1.945704-3.58655 2.107098-3.58655H2.716812C2.465753-2.286426 2.15193-.493151 1.95467 .439352C1.847073 .932503 1.703611 1.613948 1.273225 1.613948C1.13873 1.613948 .959402 1.560149 .869738 1.488418C1.093898 1.452553 1.318057 1.264259 1.318057 .995268C1.318057 .771108 1.147696 .672478 .977335 .672478C.735243 .672478 .484184 .869738 .484184 1.210461C.484184 1.622914 .896638 1.838107 1.273225 1.838107C2.187796 1.838107 2.609215 .349689 2.752677-.42142L3.353425-3.58655Z"></path>
+<path id="tz_fig_extremos_g0-120" d="M4.411457-3.622416C4.079701-3.559651 3.981071-3.272727 3.981071-3.138232C3.981071-2.96787 4.1066-2.815442 4.33076-2.815442C4.581818-2.815442 4.82391-3.030635 4.82391-3.344458C4.82391-3.756912 4.375592-3.963138 3.954172-3.963138C3.416189-3.963138 3.102366-3.48792 2.99477-3.299626C2.824408-3.738979 2.429888-3.963138 1.999502-3.963138C1.0401-3.963138 .52005-2.815442 .52005-2.582316C.52005-2.501619 .582814-2.47472 .645579-2.47472C.726276-2.47472 .753176-2.519552 .771108-2.57335C1.049066-3.461021 1.640847-3.738979 1.981569-3.738979C2.241594-3.738979 2.47472-3.568618 2.47472-3.147198C2.47472-2.824408 2.089166-1.389788 1.972603-.959402C1.900872-.681445 1.63188-.125529 1.13873-.125529C.959402-.125529 .771108-.188294 .681445-.242092C.923537-.286924 1.102864-.493151 1.102864-.726276C1.102864-.950436 .932503-1.049066 .762142-1.049066C.502117-1.049066 .268991-.824907 .268991-.52005C.268991-.080697 .753176 .09863 1.129763 .09863C1.649813 .09863 1.95467-.331756 2.089166-.573848C2.313325 .017933 2.842341 .09863 3.084433 .09863C4.052802 .09863 4.563885-1.066999 4.563885-1.282192C4.563885-1.327024 4.536986-1.389788 4.447323-1.389788C4.348692-1.389788 4.339726-1.353923 4.294894-1.219427C4.097634-.573848 3.577584-.125529 3.111333-.125529C2.851308-.125529 2.609215-.286924 2.609215-.71731C2.609215-.91457 2.734745-1.407721 2.815442-1.748443C2.851308-1.909838 3.0934-2.878207 3.111333-2.940971C3.218929-3.263761 3.48792-3.738979 3.945205-3.738979C4.1066-3.738979 4.276961-3.71208 4.411457-3.622416Z"></path>
+<path id="tz_fig_extremos_g1-16" d="M.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138L.358655-3.864508Z"></path>
+<path id="tz_fig_extremos_g1-19" d="M3.425156-5.612951C3.541719-5.702615 3.61345-5.774346 3.61345-5.908842C3.61345-6.115068 3.434122-6.258531 3.272727-6.258531C3.120299-6.258531 3.075467-6.195766 2.99477-6.097136L1.900872-4.743213L2.071233-4.554919L3.425156-5.612951Z"></path>
+<path id="tz_fig_extremos_g1-40" d="M3.057534 2.133998C3.057534 2.089166 3.030635 2.062267 2.976837 1.999502C1.820174 .941469 1.470486-.672478 1.470486-2.241594C1.470486-3.631382 1.739477-5.317061 3.003736-6.518555C3.039601-6.554421 3.057534-6.58132 3.057534-6.626152C3.057534-6.688917 3.012702-6.724782 2.949938-6.724782C2.842341-6.724782 2.035367-6.079203 1.551183-5.101868C1.120797-4.241096 .905604-3.317559 .905604-2.25056C.905604-1.604981 .986301-.582814 1.479452 .475218C2.008468 1.578082 2.842341 2.232628 2.949938 2.232628C3.012702 2.232628 3.057534 2.196762 3.057534 2.133998Z"></path>
+<path id="tz_fig_extremos_g1-41" d="M2.67198-2.25056C2.67198-2.985803 2.564384-3.972105 2.098132-4.967372C1.569116-6.070237 .735243-6.724782 .627646-6.724782C.537983-6.724782 .52005-6.653051 .52005-6.626152C.52005-6.58132 .537983-6.554421 .600747-6.491656C1.120797-6.025405 2.107098-4.805978 2.107098-2.25056C2.107098-.968369 1.873973 .81594 .573848 2.026401C.555915 2.0533 .52005 2.089166 .52005 2.133998C.52005 2.160897 .537983 2.232628 .627646 2.232628C.735243 2.232628 1.542217 1.587049 2.026401 .609714C2.456787-.251059 2.67198-1.174595 2.67198-2.25056Z"></path>
+<path id="tz_fig_extremos_g1-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+<path id="tz_fig_extremos_g1-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+<path id="tz_fig_extremos_g1-109" d="M1.667746-2.322291C1.667746-3.29066 2.367123-3.738979 2.905106-3.738979C3.398257-3.738979 3.559651-3.38929 3.559651-2.761644V-.690411C3.559651-.277958 3.461021-.277958 2.86924-.277958V0C3.29066-.017933 3.461021-.026899 3.891407-.026899S4.438356-.017933 4.913574 0V-.277958C4.321793-.277958 4.223163-.277958 4.223163-.690411V-2.322291C4.223163-3.29066 4.92254-3.738979 5.460523-3.738979C5.953674-3.738979 6.115068-3.38929 6.115068-2.761644V-.690411C6.115068-.277958 6.016438-.277958 5.424658-.277958V0C5.846077-.017933 6.016438-.026899 6.446824-.026899S6.993773-.017933 7.468991 0V-.277958C7.011706-.277958 6.787547-.277958 6.77858-.555915V-2.27746C6.77858-3.057534 6.77858-3.308593 6.48269-3.640349C6.294396-3.855542 5.935741-3.963138 5.523288-3.963138C4.877709-3.963138 4.438356-3.58655 4.187298-3.111333C4.079701-3.640349 3.721046-3.963138 2.96787-3.963138C2.25056-3.963138 1.811208-3.496887 1.622914-3.084433H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_extremos_g1-110" d="M1.667746-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.133998-3.963138 1.748443-3.344458 1.622914-3.0934H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_extremos_g1-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_extremos_g1-120" d="M2.734745-2.017435C2.67198-2.098132 2.67198-2.107098 2.67198-2.116065C2.67198-2.133998 3.371357-2.985803 3.443088-3.057534C3.721046-3.362391 4.025903-3.577584 4.572852-3.58655V-3.864508C4.312827-3.837609 4.070735-3.837609 3.81071-3.837609C3.469988-3.837609 3.308593-3.837609 2.949938-3.864508V-3.58655C3.084433-3.568618 3.200996-3.496887 3.200996-3.317559C3.200996-3.174097 3.120299-3.075467 3.075467-3.021669L2.501619-2.313325L1.802242-3.200996C1.739477-3.281694 1.721544-3.299626 1.721544-3.362391C1.721544-3.469988 1.820174-3.577584 2.026401-3.58655V-3.864508C1.685679-3.846575 1.452553-3.837609 1.049066-3.837609C1.031133-3.837609 .52005-3.837609 .170361-3.864508V-3.58655C.789041-3.58655 .806974-3.568618 1.219427-3.039601L2.142964-1.882939C1.945704-1.649813 1.470486-1.058032 1.273225-.833873C.824907-.29589 .313823-.277958 .125529-.277958V0C.385554-.026899 .627646-.026899 .887671-.026899C1.174595-.026899 1.461519-.017933 1.748443 0V-.277958C1.524284-.304857 1.497385-.457285 1.497385-.546949C1.497385-.573848 1.497385-.699377 1.63188-.860772C1.847073-1.13873 2.080199-1.407721 2.304359-1.676712L3.012702-.771108C3.183064-.573848 3.183064-.555915 3.183064-.502117C3.183064-.403487 3.0934-.286924 2.878207-.277958V0C3.254795-.017933 3.469988-.026899 3.855542-.026899C3.873474-.026899 4.384558-.026899 4.734247 0V-.277958C4.375592-.277958 4.1066-.277958 3.90934-.529016L2.734745-2.017435Z"></path>
+</defs>
+<g id="tz_fig_extremos_page1">
+<g stroke-miterlimit="10" transform="translate(-55.774792,89.52395)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H197.16924" fill="none"></path>
+<g transform="translate(197.16924,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(202.70218,-1.93748)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-55.774792,89.52395)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-55.774792" y="89.52395" href="#tz_fig_extremos_g0-120"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V140.26375" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,140.26375)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-8.95308,148.04669)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-55.774792,89.52395)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-55.774792" y="89.52395" href="#tz_fig_extremos_g0-102"></use>
+<use x="-50.326489" y="89.52395" href="#tz_fig_extremos_g1-40"></use>
+<use x="-46.742729" y="89.52395" href="#tz_fig_extremos_g0-120"></use>
+<use x="-41.519272" y="89.52395" href="#tz_fig_extremos_g1-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<path d="M8.5359 28.45274C39.83366 130.88278 73.9773 130.88278 99.5846 68.2864C119.50143 19.91682 147.95418 19.91682 184.94283 108.1205" fill="none"></path>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M58.74411 122.34688C58.74411 123.36232 57.92093 124.1855 56.90549 124.1855S55.06686 123.36232 55.06686 122.34688S55.89005 120.50826 56.90549 120.50826S58.74411 121.33144 58.74411 122.34688ZM56.90549 122.34688" stroke="none"></path>
+</g>
+<g transform="translate(56.90549,122.34688)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-55.774792,89.52395)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(40.84657,125.87985)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-55.774792,89.52395)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-55.774792" y="89.52395" href="#tz_fig_extremos_g1-109"></use>
+<use x="-48.095308" y="89.52395" href="#tz_fig_extremos_g1-19"></use>
+<use x="-48.095308" y="89.52395" href="#tz_fig_extremos_g1-97"></use>
+<use x="-43.487617" y="89.52395" href="#tz_fig_extremos_g1-120"></use>
+<use x="-38.623944" y="89.52395" href="#tz_fig_extremos_g1-105"></use>
+<use x="-36.064116" y="89.52395" href="#tz_fig_extremos_g1-109"></use>
+<use x="-28.384631" y="89.52395" href="#tz_fig_extremos_g1-111"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M28.45274 122.34688H85.35823" fill="none"></path>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M134.14369 20.48601C134.14369 21.50145 133.32051 22.32463 132.30507 22.32463S130.46645 21.50145 130.46645 20.48601S131.28963 18.64738 132.30507 18.64738S134.14369 19.47057 134.14369 20.48601ZM132.30507 20.48601" stroke="none"></path>
+</g>
+<g transform="translate(132.30507,20.48601)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-55.774792,89.52395)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(117.14545,10.70303)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-55.774792,89.52395)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-55.774792" y="89.52395" href="#tz_fig_extremos_g1-109"></use>
+<use x="-49.119239" y="89.52395" href="#tz_fig_extremos_g1-19"></use>
+<use x="-48.095308" y="89.52395" href="#tz_fig_extremos_g1-16"></use>
+<use x="-45.53548" y="89.52395" href="#tz_fig_extremos_g1-110"></use>
+<use x="-40.415823" y="89.52395" href="#tz_fig_extremos_g1-105"></use>
+<use x="-37.855995" y="89.52395" href="#tz_fig_extremos_g1-109"></use>
+<use x="-30.176511" y="89.52395" href="#tz_fig_extremos_g1-111"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M105.27505 20.48601H159.33553" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-extremos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;11.1: Nos extremos de uma função, a reta tangente é horizontal: a derivada se anula.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="a-condição-de-primeira-ordem" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="a-condição-de-primeira-ordem"><span class="header-section-number">11.3</span> A condição de primeira ordem</h2>
+<p>A observação da figura é o método inteiro em embrião. Se num ponto de máximo ou de mínimo <strong>interior</strong> e <strong>suave</strong> a tangente é horizontal, e a inclinação da tangente é a derivada, então a derivada vale zero nesse ponto.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Condição de primeira ordem (CPO)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Condição de primeira ordem (CPO)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se <span class="math inline">\(f\)</span> é derivável e tem um extremo local em um ponto interior <span class="math inline">\(x^{*}\)</span>, então <span id="eq-cpo"><span class="math display">\[
+f'(x^{*}) = 0.
+\tag{11.1}\]</span></span> Os pontos que satisfazem <span class="math inline">\(f'(x) = 0\)</span> são chamados <strong>pontos críticos</strong> (ou estacionários) e são os <strong>candidatos</strong> a máximo ou mínimo.</p>
+</div>
+</div>
+<p>Preste atenção à palavra <strong>candidatos</strong>. A CPO é uma condição <strong>necessária</strong>, não suficiente: todo extremo interior suave é ponto crítico, mas nem todo ponto crítico é extremo. A derivada também se anula em <strong>pontos de inflexão</strong> (onde a curva muda de concavidade sem ser pico nem vale — como o ponto de sela de uma sela de cavalo). Por isso precisamos de um segundo teste para separar os máximos dos mínimos e descartar os falsos candidatos.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — por que a derivada zera no topo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — por que a derivada zera no topo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Imagine subindo uma colina. Enquanto sobe, o terreno inclina para cima (derivada positiva); quando começa a descer, inclina para baixo (derivada negativa). Para passar de positiva a negativa, a inclinação tem de cruzar o <strong>zero</strong> em algum ponto — e esse ponto é o topo. O mesmo raciocínio, invertido, vale para o fundo de um vale. O zero da derivada é a fronteira entre subir e descer.</p>
+</div>
+</div>
+</section>
+<section id="a-condição-de-segunda-ordem" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="a-condição-de-segunda-ordem"><span class="header-section-number">11.4</span> A condição de segunda ordem</h2>
+<p>Como saber se um ponto crítico é um máximo (pico) ou um mínimo (vale)? A resposta está na <strong>concavidade</strong>, que — como vimos no <a href="cap04-derivadas-analise-marginal.html" class="quarto-xref"><span>Capítulo 10</span></a> — é dada pela <strong>segunda derivada</strong>.</p>
+<p>Num <strong>máximo</strong>, a curva é côncava (curva para baixo): a inclinação vem caindo de positiva a negativa, logo <span class="math inline">\(f'' &lt; 0\)</span>. Num <strong>mínimo</strong>, a curva é convexa (curva para cima): a inclinação sobe de negativa a positiva, logo <span class="math inline">\(f'' &gt; 0\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Condição de segunda ordem (CSO)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Condição de segunda ordem (CSO)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Seja <span class="math inline">\(x^{*}\)</span> um ponto crítico (<span class="math inline">\(f'(x^{*}) = 0\)</span>). Então:</p>
+<ul>
+<li>se <span class="math inline">\(f''(x^{*}) &lt; 0\)</span>, <span class="math inline">\(x^{*}\)</span> é um <strong>máximo</strong> local (função côncava no ponto);</li>
+<li>se <span class="math inline">\(f''(x^{*}) &gt; 0\)</span>, <span class="math inline">\(x^{*}\)</span> é um <strong>mínimo</strong> local (função convexa no ponto);</li>
+<li>se <span class="math inline">\(f''(x^{*}) = 0\)</span>, o teste é <strong>inconclusivo</strong> (pode ser inflexão; requer análise adicional).</li>
+</ul>
+</div>
+</div>
+<p>O procedimento completo de otimização tem, então, três passos:</p>
+<ol type="1">
+<li><strong>Derivar</strong> e resolver <span class="math inline">\(f'(x) = 0\)</span> para achar os pontos críticos (CPO).</li>
+<li><strong>Calcular <span class="math inline">\(f''\)</span></strong> em cada ponto crítico e classificá-lo pela CSO.</li>
+<li><strong>Avaliar <span class="math inline">\(f\)</span></strong> nos pontos ótimos (e nas fronteiras do domínio, se houver) para achar o valor extremo.</li>
+</ol>
+<section id="um-exemplo-completo" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="um-exemplo-completo"><span class="header-section-number">11.4.1</span> Um exemplo completo</h3>
+<p>Maximize <span class="math inline">\(f(x) = 60x - 3x^2\)</span>. Passo 1: <span class="math inline">\(f'(x) = 60 - 6x = 0 \Rightarrow x^{*} = 10\)</span>. Passo 2: <span class="math inline">\(f''(x) = -6 &lt; 0\)</span>, logo <span class="math inline">\(x^{*} = 10\)</span> é um <strong>máximo</strong>. Passo 3: o valor máximo é <span class="math inline">\(f(10) = 600 - 300 = 300\)</span>. Simples, mecânico e completo — e é exatamente esse maquinário que aplicaremos à firma.</p>
+</section>
+</section>
+<section id="o-problema-central-da-firma-maximizar-o-lucro" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="o-problema-central-da-firma-maximizar-o-lucro"><span class="header-section-number">11.5</span> O problema central da firma: maximizar o lucro</h2>
+<p>Aqui a matemática encontra a decisão econômica mais importante da microeconomia. O <strong>lucro</strong> <span class="math inline">\(\pi\)</span> é a diferença entre a receita total e o custo total, ambos funções da quantidade produzida <span class="math inline">\(q\)</span>:</p>
+<p><span class="math display">\[
+\pi(q) = R(q) - C(q).
+\]</span></p>
+<p>A firma escolhe <span class="math inline">\(q\)</span> para <strong>maximizar</strong> <span class="math inline">\(\pi\)</span>. Aplicamos a CPO — derivamos e igualamos a zero:</p>
+<p><span id="eq-rmg-cmg"><span class="math display">\[
+\pi'(q) = R'(q) - C'(q) = 0 \;\Longrightarrow\; R'(q) = C'(q).
+\tag{11.2}\]</span></span></p>
+<p>Este é um dos resultados mais célebres de toda a Economia. Reconhecendo que <span class="math inline">\(R'(q)\)</span> é a <strong>receita marginal</strong> e <span class="math inline">\(C'(q)\)</span> é o <strong>custo marginal</strong>, a condição de lucro máximo é:</p>
+<p><span class="math display">\[
+\boxed{\text{Receita marginal} = \text{Custo marginal.}}
+\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Por que RMg = CMg maximiza o lucro">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Por que RMg = CMg maximiza o lucro
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A intuição é impecável. Se a receita marginal supera o custo marginal (<span class="math inline">\(RMg &gt; CMg\)</span>), a próxima unidade rende mais do que custa: produza-a, o lucro sobe. Se <span class="math inline">\(RMg &lt; CMg\)</span>, a última unidade custou mais do que rendeu: produza menos. Só quando <span class="math inline">\(RMg = CMg\)</span> não há ganho em mudar — é o <strong>ótimo</strong>. A firma expande a produção exatamente até o ponto em que a última unidade se paga por si mesma, nem mais, nem menos.</p>
+</div>
+</div>
+<p>A condição de segunda ordem confirma que é um máximo (e não um mínimo de lucro): precisamos de <span class="math inline">\(\pi''(q) = R''(q) - C''(q) &lt; 0\)</span>, isto é, que o custo marginal esteja crescendo mais rápido que a receita marginal no ponto — o que corresponde à curva de custo marginal cortando a de receita marginal <strong>de baixo para cima</strong>.</p>
+<section id="um-exemplo-numérico-da-firma" class="level3" data-number="11.5.1">
+<h3 data-number="11.5.1" class="anchored" data-anchor-id="um-exemplo-numérico-da-firma"><span class="header-section-number">11.5.1</span> Um exemplo numérico da firma</h3>
+<p>Seja <span class="math inline">\(R(q) = 40q\)</span> (um preço de mercado de <span class="math inline">\(R\$\,40\)</span>, firma tomadora de preço) e <span class="math inline">\(C(q) = 100 + 4q + 0{,}5q^2\)</span>. O lucro é</p>
+<p><span class="math display">\[
+\pi(q) = 40q - (100 + 4q + 0{,}5q^2) = -100 + 36q - 0{,}5q^2.
+\]</span></p>
+<p><strong>CPO:</strong> <span class="math inline">\(\pi'(q) = 36 - q = 0 \Rightarrow q^{*} = 36\)</span>. Equivalentemente, <span class="math inline">\(RMg = 40\)</span> e <span class="math inline">\(CMg = 4 + q\)</span>; igualando, <span class="math inline">\(40 = 4 + q \Rightarrow q = 36\)</span>. <strong>CSO:</strong> <span class="math inline">\(\pi''(q) = -1 &lt; 0\)</span>, é máximo. O lucro ótimo é</p>
+<p><span class="math display">\[
+\pi(36) = -100 + 36\times 36 - 0{,}5\times 36^2 = -100 + 1296 - 648 = R\$\,548.
+\]</span></p>
+<p>A firma produz 36 unidades e lucra <span class="math inline">\(R\$\,548\)</span>. A <a href="#fig-lucro" class="quarto-xref">Figura&nbsp;<span>11.2</span></a> mostra a lógica: o lucro é a distância vertical entre receita e custo, e é máxima onde as duas curvas têm a <strong>mesma inclinação</strong> (retas tangentes paralelas — RMg = CMg).</p>
+<div id="fig-lucro" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lucro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="233.321574pt" height="195.931816pt" viewbox="-68.014948 -68.014943 233.321574 195.931816">
+<defs>
+<path id="tz_fig_lucro_g0-67" d="M6.344209-5.395766C6.352179-5.427646 6.36812-5.475467 6.36812-5.515318C6.36812-5.571108 6.320299-5.610959 6.264508-5.610959S6.184807-5.587049 6.121046-5.515318L5.563138-4.901619C5.491407-5.00523 5.068991-5.610959 4.136488-5.610959C2.287422-5.610959 .422416-3.897385 .422416-2.064259C.422416-.67746 1.474471 .167372 2.741719 .167372C3.785803 .167372 4.670486-.470237 5.100872-1.091905C5.363885-1.482441 5.467497-1.865006 5.467497-1.912827C5.467497-1.984558 5.419676-2.016438 5.347945-2.016438C5.252304-2.016438 5.236364-1.976588 5.212453-1.888917C4.877709-.789041 3.801743-.095641 2.84533-.095641C2.032379-.095641 1.179577-.573848 1.179577-1.793275C1.179577-2.048319 1.267248-3.379328 2.15193-4.375592C2.749689-5.045081 3.56264-5.347945 4.192279-5.347945C5.196513-5.347945 5.610959-4.542964 5.610959-3.785803C5.610959-3.674222 5.579078-3.52279 5.579078-3.427148C5.579078-3.323537 5.68269-3.323537 5.71457-3.323537C5.818182-3.323537 5.834122-3.355417 5.866002-3.498879L6.344209-5.395766Z"></path>
+<path id="tz_fig_lucro_g0-77" d="M7.738979-4.798007C7.81868-5.108842 7.83462-5.180573 8.392528-5.180573C8.575841-5.180573 8.671482-5.180573 8.671482-5.332005C8.671482-5.443587 8.56787-5.443587 8.424408-5.443587H7.396264C7.181071-5.443587 7.157161-5.443587 7.053549-5.284184L4.048817-.73325L3.339477-5.228394C3.307597-5.427646 3.299626-5.443587 3.060523-5.443587H1.984558C1.841096-5.443587 1.737484-5.443587 1.737484-5.292154C1.737484-5.180573 1.841096-5.180573 1.968618-5.180573C2.231631-5.180573 2.462765-5.180573 2.462765-5.053051C2.462765-5.021171 2.454795-5.0132 2.430884-4.909589L1.41868-.852802C1.323039-.454296 1.115816-.278954 .581818-.263014C.533998-.263014 .438356-.255044 .438356-.111582C.438356-.063761 .478207 0 .557908 0C.589788 0 .773101-.02391 1.346949-.02391C1.976588-.02391 2.096139 0 2.16787 0C2.199751 0 2.319303 0 2.319303-.151432C2.319303-.247073 2.231631-.263014 2.175841-.263014C1.888917-.270984 1.649813-.318804 1.649813-.597758C1.649813-.637609 1.673724-.749191 1.673724-.757161L2.757659-5.084932H2.765629L3.53873-.215193C3.56264-.087671 3.57061 0 3.682192 0S3.849564-.087671 3.897385-.159402L7.173101-5.148692L7.181071-5.140722L6.057285-.629639C5.985554-.326775 5.969614-.263014 5.379826-.263014C5.228394-.263014 5.132752-.263014 5.132752-.111582C5.132752-.079701 5.156663 0 5.260274 0S5.602989-.01594 5.71457-.02391H6.224658C6.965878-.02391 7.157161 0 7.212951 0C7.260772 0 7.372354 0 7.372354-.151432C7.372354-.263014 7.268742-.263014 7.13325-.263014C7.10934-.263014 6.965878-.263014 6.830386-.278954C6.663014-.294894 6.647073-.318804 6.647073-.390535C6.647073-.430386 6.663014-.478207 6.670984-.518057L7.738979-4.798007Z"></path>
+<path id="tz_fig_lucro_g0-82" d="M3.092403-4.885679C3.164134-5.156663 3.172105-5.180573 3.498879-5.180573H4.144458C4.798007-5.180573 5.411706-5.0132 5.411706-4.367621C5.411706-4.016936 5.228394-3.459029 4.861768-3.196015C4.479203-2.925031 4.024907-2.83736 3.56264-2.83736H2.582316L3.092403-4.885679ZM4.447323-2.709838C5.427646-2.956912 6.192777-3.55467 6.192777-4.23213C6.192777-4.925529 5.411706-5.443587 4.303861-5.443587H1.952677C1.809215-5.443587 1.705604-5.443587 1.705604-5.292154C1.705604-5.180573 1.809215-5.180573 1.936737-5.180573C2.199751-5.180573 2.430884-5.180573 2.430884-5.053051C2.430884-5.021171 2.422914-5.0132 2.399004-4.909589L1.331009-.629639C1.259278-.326775 1.243337-.263014 .653549-.263014C.502117-.263014 .406476-.263014 .406476-.111582C.406476-.079701 .430386 0 .533998 0C.68543 0 .868742-.01594 1.028144-.02391H1.522291C2.263512-.02391 2.494645 0 2.542466 0S2.701868 0 2.701868-.151432C2.701868-.263014 2.598257-.263014 2.462765-.263014C2.438854-.263014 2.295392-.263014 2.1599-.278954C1.992528-.294894 1.976588-.318804 1.976588-.390535C1.976588-.430386 1.992528-.478207 2.000498-.518057L2.518555-2.614197H3.55467C4.27198-2.614197 4.495143-2.231631 4.495143-1.904857C4.495143-1.793275 4.439352-1.570112 4.399502-1.40274C4.335741-1.171606 4.25604-.852802 4.25604-.70934C4.25604-.095641 4.782067 .167372 5.371856 .167372C6.065255 .167372 6.39203-.613699 6.39203-.765131C6.39203-.797011 6.36812-.876712 6.264508-.876712C6.176837-.876712 6.152927-.804981 6.144956-.773101C5.969614-.223163 5.626899-.055791 5.395766-.055791C5.100872-.055791 5.068991-.278954 5.068991-.541968S5.116812-1.155666 5.148692-1.41868C5.180573-1.657783 5.180573-1.705604 5.180573-1.785305C5.180573-2.263512 4.869738-2.542466 4.447323-2.709838Z"></path>
+<path id="tz_fig_lucro_g0-103" d="M3.953176-2.940971C3.985056-3.060523 3.985056-3.108344 3.985056-3.116314C3.985056-3.299626 3.833624-3.363387 3.730012-3.363387C3.5467-3.363387 3.403238-3.219925 3.371357-3.052553C3.307597-3.172105 3.068493-3.514819 2.590286-3.514819C1.641843-3.514819 .605729-2.454795 .605729-1.291158C.605729-.430386 1.171606 0 1.761395 0C2.12802 0 2.454795-.199253 2.717808-.430386L2.542466 .286924C2.454795 .621669 2.399004 .852802 2.088169 1.115816C1.753425 1.40274 1.45056 1.40274 1.251308 1.40274S.860772 1.39477 .669489 1.354919C.844832 1.259278 .924533 1.091905 .924533 .956413C.924533 .765131 .781071 .661519 .613699 .661519C.414446 .661519 .167372 .820922 .167372 1.139726C.167372 1.594022 .789041 1.625903 1.267248 1.625903C2.399004 1.625903 2.964882 1.020174 3.084433 .533998L3.953176-2.940971ZM2.87721-1.052055C2.82142-.828892 2.646077-.669489 2.478705-.518057C2.406974-.462267 2.10411-.223163 1.777335-.223163C1.458531-.223163 1.227397-.486177 1.227397-.964384C1.227397-1.299128 1.42665-2.16787 1.641843-2.574346C1.896887-3.028643 2.271482-3.291656 2.590286-3.291656C3.124284-3.291656 3.267746-2.701868 3.267746-2.630137L3.243836-2.518555L2.87721-1.052055Z"></path>
+<path id="tz_fig_lucro_g1-19" d="M3.156164-4.98132C3.243836-5.045081 3.315567-5.116812 3.315567-5.244334C3.315567-5.427646 3.148194-5.563138 3.004732-5.563138C2.972852-5.563138 2.86127-5.563138 2.757659-5.435616L1.737484-4.224159L1.904857-4.040847L3.156164-4.98132Z"></path>
+<path id="tz_fig_lucro_g1-24" d="M2.414944 .167372H1.809215V.557908C2.351183 .565878 2.518555 .797011 2.518555 .980324C2.518555 1.251308 2.207721 1.41071 1.370859 1.41071H1.099875V1.633873H1.474471C1.578082 1.633873 2.12802 1.625903 2.478705 1.546202C2.797509 1.474471 3.124284 1.338979 3.124284 .980324C3.124284 .557908 2.677958 .430386 2.414944 .382565V.167372Z"></path>
+<path id="tz_fig_lucro_g1-58" d="M1.617933-2.988792C1.617933-3.259776 1.40274-3.435118 1.179577-3.435118C.908593-3.435118 .73325-3.219925 .73325-2.996762C.73325-2.725778 .948443-2.550436 1.171606-2.550436C1.44259-2.550436 1.617933-2.765629 1.617933-2.988792ZM1.617933-.438356C1.617933-.70934 1.40274-.884682 1.179577-.884682C.908593-.884682 .73325-.669489 .73325-.446326C.73325-.175342 .948443 0 1.171606 0C1.44259 0 1.617933-.215193 1.617933-.438356Z"></path>
+<path id="tz_fig_lucro_g1-61" d="M5.826152-2.654047C5.945704-2.654047 6.105106-2.654047 6.105106-2.83736S5.913823-3.020672 5.794271-3.020672H.781071C.661519-3.020672 .470237-3.020672 .470237-2.83736S.629639-2.654047 .749191-2.654047H5.826152ZM5.794271-.964384C5.913823-.964384 6.105106-.964384 6.105106-1.147696S5.945704-1.331009 5.826152-1.331009H.749191C.629639-1.331009 .470237-1.331009 .470237-1.147696S.661519-.964384 .781071-.964384H5.794271Z"></path>
+<path id="tz_fig_lucro_g1-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_lucro_g1-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_lucro_g1-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_lucro_g1-103" d="M1.378829-.549938C1.131756-.573848 .932503-.789041 .932503-1.075965C.932503-1.267248 .980324-1.338979 1.036115-1.41071C1.370859-1.211457 1.681694-1.171606 1.872976-1.171606C2.662017-1.171606 3.243836-1.721544 3.243836-2.343213C3.243836-2.646077 3.108344-2.901121 2.917061-3.108344C3.028643-3.203985 3.291656-3.371357 3.682192-3.379328C3.650311-3.355417 3.610461-3.315567 3.610461-3.188045C3.610461-3.044583 3.714072-2.940971 3.857534-2.940971C3.969116-2.940971 4.104608-3.012702 4.104608-3.196015C4.104608-3.331507 4.000996-3.602491 3.650311-3.602491C3.514819-3.602491 3.132254-3.57061 2.765629-3.235866C2.566376-3.379328 2.255542-3.514819 1.880946-3.514819C1.091905-3.514819 .510087-2.964882 .510087-2.343213C.510087-1.968618 .71731-1.689664 .884682-1.530262C.70934-1.331009 .645579-1.075965 .645579-.884682C.645579-.557908 .804981-.310834 .980324-.175342C.565878-.063761 .239103 .247073 .239103 .613699C.239103 1.187547 1.060025 1.633873 2.11208 1.633873C3.108344 1.633873 3.985056 1.227397 3.985056 .597758C3.985056 .167372 3.730012-.167372 3.466999-.302864C2.996762-.549938 2.606227-.549938 1.825156-.549938H1.378829ZM1.880946-1.40274C1.139726-1.40274 1.139726-2.16787 1.139726-2.343213C1.139726-2.638107 1.179577-2.84533 1.299128-3.004732C1.43462-3.188045 1.657783-3.283686 1.872976-3.283686C2.614197-3.283686 2.614197-2.518555 2.614197-2.343213C2.614197-2.048319 2.574346-1.841096 2.454795-1.681694C2.279452-1.458531 2.024408-1.40274 1.880946-1.40274ZM2.255542-.03188C2.470735-.03188 3.514819-.03188 3.514819 .605729C3.514819 1.036115 2.901121 1.40274 2.11208 1.40274C1.315068 1.40274 .70934 1.036115 .70934 .605729C.70934 .438356 .836862-.03188 1.490411-.03188H2.255542Z"></path>
+<path id="tz_fig_lucro_g1-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_lucro_g1-108" d="M1.522291-5.531258L.334745-5.443587V-5.180573C.876712-5.180573 .940473-5.124782 .940473-4.734247V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.227397-.02391C1.3868-.02391 1.817186-.02391 2.12802 0V-.263014C1.617933-.263014 1.522291-.263014 1.522291-.621669V-5.531258Z"></path>
+<path id="tz_fig_lucro_g1-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+<path id="tz_fig_lucro_g1-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_lucro_g1-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_lucro_g1-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_lucro_g1-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_lucro_g1-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+<path id="tz_fig_lucro_g1-120" d="M2.454795-1.865006C2.677958-2.14396 2.909091-2.414944 3.148194-2.677958C3.411208-2.956912 3.690162-3.164134 4.192279-3.172105V-3.435118C3.881445-3.411208 3.865504-3.411208 3.506849-3.411208C3.466999-3.411208 2.996762-3.411208 2.749689-3.435118V-3.172105C2.901121-3.156164 2.933001-3.060523 2.933001-2.956912S2.893151-2.757659 2.797509-2.646077L2.295392-2.056289L1.665753-2.805479C1.570112-2.917061 1.570112-2.972852 1.570112-2.988792C1.570112-3.044583 1.617933-3.164134 1.817186-3.172105V-3.435118C1.498381-3.411208 1.052055-3.411208 .964384-3.411208C.820922-3.411208 .414446-3.411208 .175342-3.435118V-3.172105C.71731-3.172105 .72528-3.164134 1.139726-2.677958L1.960648-1.681694L1.235367-.828892C1.036115-.605729 .74122-.278954 .135492-.263014V0C.430386-.02391 .486177-.02391 .820922-.02391C.836862-.02391 1.323039-.02391 1.578082 0V-.263014C1.474471-.278954 1.3868-.334745 1.3868-.478207S1.482441-.73325 1.506351-.773101C1.705604-1.012204 1.920797-1.251308 2.12802-1.482441L2.781569-.70137C2.940971-.518057 2.940971-.502117 2.940971-.446326C2.940971-.382565 2.885181-.270984 2.693898-.263014V0C3.036613-.02391 3.395268-.02391 3.5467-.02391C3.690162-.02391 4.096638-.02391 4.335741 0V-.263014C3.841594-.263014 3.761893-.302864 3.55467-.549938L2.454795-1.865006Z"></path>
+<path id="tz_fig_lucro_g1-126" d="M3.355417-5.347945C3.028643-4.98929 2.781569-4.98929 2.693898-4.98929C2.510585-4.98929 2.343213-5.068991 2.15193-5.172603C1.936737-5.276214 1.793275-5.347945 1.609963-5.347945C1.299128-5.347945 1.139726-5.180573 .70934-4.710336L.868742-4.558904C1.195517-4.917559 1.44259-4.917559 1.530262-4.917559C1.713574-4.917559 1.880946-4.837858 2.072229-4.734247C2.287422-4.630635 2.430884-4.558904 2.614197-4.558904C2.925031-4.558904 3.084433-4.726276 3.514819-5.196513L3.355417-5.347945Z"></path>
+<path id="tz_fig_lucro_g2-36" d="M2.15193-6.527522V-6.339228L1.918804-6.28543C1.111831-6.115068 .502117-5.388792 .502117-4.599751C.502117-4.070735 .806974-3.505853 1.264259-3.200996C1.479452-3.057534 1.596015-3.003736 1.900872-2.923039L2.142964-2.851308L2.15193-1.515318V-.170361L2.017435-.188294C1.497385-.268991 1.120797-.529016 .923537-.932503C.806974-1.183562 .806974-1.228394 .932503-1.228394C1.255293-1.228394 1.452553-1.596015 1.273225-1.85604C1.093898-2.125031 .735243-2.125031 .564882-1.847073C.457285-1.667746 .511083-1.183562 .681445-.81594C.789041-.600747 1.0401-.313823 1.264259-.170361C1.425654-.071731 1.75741 .035866 1.999502 .071731L2.15193 .089664V.29589V.502117H2.286426H2.429888V.29589V.089664L2.537484 .071731C2.914072 .008966 3.263761-.170361 3.541719-.448319C4.23213-1.147696 4.250062-2.286426 3.58655-3.012702C3.308593-3.317559 3.039601-3.469988 2.555417-3.595517L2.429888-3.631382V-4.841843C2.429888-5.550187 2.438854-6.052304 2.456787-6.052304C2.564384-6.052304 2.949938-5.953674 3.0934-5.899875C3.380324-5.76538 3.640349-5.478456 3.730012-5.191532C3.747945-5.128767 3.738979-5.128767 3.631382-5.128767C3.326526-5.128767 3.129265-4.770112 3.29066-4.501121C3.461021-4.23213 3.828643-4.223163 4.00797-4.492154C4.178331-4.743213 4.016936-5.406725 3.703113-5.774346C3.469988-6.043337 3.030635-6.258531 2.600249-6.312329L2.429888-6.330262V-6.518555V-6.715816H2.286426H2.15193ZM2.15193-4.868742V-3.685181L1.945704-3.747945C1.578082-3.846575 1.327024-4.016936 1.156663-4.259029C.654545-5.003238 1.156663-5.908842 2.133998-6.052304C2.142964-6.052304 2.15193-5.523288 2.15193-4.868742ZM2.77061-2.689913C3.532752-2.411955 3.855542-1.506351 3.434122-.806974C3.245828-.493151 2.940971-.286924 2.510585-.188294L2.429888-.170361V-1.479452V-2.788543L2.519552-2.77061C2.57335-2.761644 2.689913-2.725778 2.77061-2.689913Z"></path>
+<path id="tz_fig_lucro_g3-67" d="M6.939975-6.079203C6.966874-6.1868 6.966874-6.204732 6.966874-6.222665C6.966874-6.231631 6.957908-6.321295 6.859278-6.321295C6.805479-6.321295 6.77858-6.294396 6.715816-6.222665L6.168867-5.621918C6.133001-5.577086 6.097136-5.54122 6.088169-5.54122S6.070237-5.550187 6.016438-5.612951C5.881943-5.792279 5.478456-6.321295 4.545953-6.321295C2.492653-6.321295 .457285-4.33076 .457285-2.286426C.457285-.824907 1.524284 .19726 2.96787 .19726C3.900374 .19726 4.635616-.286924 4.985305-.600747C5.801245-1.327024 5.953674-2.116065 5.953674-2.15193S5.935741-2.25056 5.828144-2.25056C5.729514-2.25056 5.711582-2.196762 5.702615-2.160897C5.263263-.71731 3.981071-.080697 3.084433-.080697C2.214695-.080697 1.291158-.609714 1.291158-1.963636C1.291158-2.367123 1.425654-3.783811 2.331258-4.886675C2.86924-5.532254 3.747945-6.043337 4.608717-6.043337C5.603985-6.043337 6.133001-5.281196 6.133001-4.294894C6.133001-3.990037 6.106102-3.927273 6.106102-3.855542C6.106102-3.756912 6.213699-3.756912 6.240598-3.756912C6.357161-3.756912 6.357161-3.774844 6.401993-3.945205L6.939975-6.079203Z"></path>
+<path id="tz_fig_lucro_g3-82" d="M3.416189-5.496389C3.469988-5.720548 3.496887-5.810212 3.658281-5.837111C3.738979-5.846077 4.034869-5.846077 4.223163-5.846077C4.931507-5.846077 5.917808-5.846077 5.917808-4.940473C5.917808-4.608717 5.783313-3.936239 5.272229-3.550685C5.057036-3.407223 4.608717-3.174097 3.882441-3.174097H2.833375L3.416189-5.496389ZM4.805978-3.039601C6.025405-3.353425 6.77858-4.034869 6.77858-4.770112C6.77858-5.550187 5.926775-6.124035 4.734247-6.124035H2.133998C1.972603-6.124035 1.865006-6.124035 1.865006-5.96264C1.865006-5.846077 1.945704-5.846077 2.133998-5.846077C2.169863-5.846077 2.331258-5.846077 2.47472-5.828144C2.627148-5.810212 2.689913-5.792279 2.689913-5.693649C2.689913-5.648817 2.680946-5.612951 2.654047-5.514321L1.443587-.681445C1.362889-.358655 1.344956-.277958 .672478-.277958C.502117-.277958 .403487-.277958 .403487-.116563C.403487-.017933 .475218 0 .537983 0C.681445 0 .950436-.008966 1.102864-.017933C1.291158-.026899 1.309091-.026899 1.65878-.026899C1.945704-.026899 1.963636-.026899 2.232628-.017933C2.411955-.008966 2.636115 0 2.806476 0C2.86924 0 2.985803 0 2.985803-.161395C2.985803-.277958 2.896139-.277958 2.707846-.277958C2.67198-.277958 2.510585-.277958 2.367123-.29589C2.169863-.32279 2.160897-.358655 2.160897-.439352C2.160897-.466252 2.160897-.484184 2.205729-.645579L2.779577-2.949938H3.882441C4.689415-2.949938 4.895641-2.483686 4.895641-2.142964C4.895641-2.080199 4.895641-2.017435 4.841843-1.820174C4.62665-.995268 4.62665-.91457 4.62665-.780075C4.62665 .026899 5.388792 .19726 5.846077 .19726C6.626152 .19726 6.948941-.708344 6.948941-.851806C6.948941-.91457 6.895143-.959402 6.832379-.959402C6.733748-.959402 6.724782-.91457 6.688917-.806974C6.536488-.340722 6.204732-.026899 5.872976-.026899C5.532254-.026899 5.514321-.29589 5.514321-.555915C5.514321-.780075 5.577086-1.300125 5.586052-1.362889C5.603985-1.506351 5.648817-1.865006 5.648817-1.999502C5.648817-2.510585 5.326027-2.860274 4.805978-3.039601Z"></path>
+<path id="tz_fig_lucro_g3-113" d="M4.133499-3.658281C4.169365-3.783811 4.169365-3.801743 4.169365-3.837609C4.169365-3.945205 4.079701-3.963138 4.061768-3.963138C3.972105-3.963138 3.631382-3.658281 3.452055-3.344458C3.308593-3.667248 3.030635-3.963138 2.57335-3.963138C1.53325-3.963138 .376588-2.725778 .376588-1.353923C.376588-.367621 1.004234 .09863 1.604981 .09863C1.990535 .09863 2.340224-.09863 2.67198-.412453L2.331258 .968369C2.214695 1.425654 2.205729 1.452553 1.640847 1.461519C1.53325 1.461519 1.425654 1.461519 1.425654 1.622914C1.425654 1.640847 1.425654 1.739477 1.551183 1.739477C1.748443 1.739477 2.259527 1.712578 2.456787 1.712578C2.752677 1.712578 2.77061 1.712578 2.914072 1.721544C3.030635 1.730511 3.281694 1.739477 3.38929 1.739477C3.443088 1.739477 3.559651 1.739477 3.559651 1.578082C3.559651 1.461519 3.469988 1.461519 3.317559 1.461519C2.896139 1.461519 2.896139 1.398755 2.896139 1.318057C2.896139 1.309091 2.896139 1.255293 2.932005 1.120797L4.133499-3.658281ZM2.842341-1.093898C2.797509-.923537 2.797509-.91457 2.654047-.744209C2.331258-.358655 1.963636-.125529 1.63188-.125529C1.192528-.125529 1.0401-.582814 1.0401-.968369C1.0401-1.407721 1.300125-2.438854 1.515318-2.86924C1.802242-3.407223 2.214695-3.738979 2.57335-3.738979C3.174097-3.738979 3.308593-3.021669 3.308593-2.958904C3.308593-2.914072 3.29066-2.860274 3.281694-2.824408L2.842341-1.093898Z"></path>
+<path id="tz_fig_lucro_g4-40" d="M3.057534 2.133998C3.057534 2.089166 3.030635 2.062267 2.976837 1.999502C1.820174 .941469 1.470486-.672478 1.470486-2.241594C1.470486-3.631382 1.739477-5.317061 3.003736-6.518555C3.039601-6.554421 3.057534-6.58132 3.057534-6.626152C3.057534-6.688917 3.012702-6.724782 2.949938-6.724782C2.842341-6.724782 2.035367-6.079203 1.551183-5.101868C1.120797-4.241096 .905604-3.317559 .905604-2.25056C.905604-1.604981 .986301-.582814 1.479452 .475218C2.008468 1.578082 2.842341 2.232628 2.949938 2.232628C3.012702 2.232628 3.057534 2.196762 3.057534 2.133998Z"></path>
+<path id="tz_fig_lucro_g4-41" d="M2.67198-2.25056C2.67198-2.985803 2.564384-3.972105 2.098132-4.967372C1.569116-6.070237 .735243-6.724782 .627646-6.724782C.537983-6.724782 .52005-6.653051 .52005-6.626152C.52005-6.58132 .537983-6.554421 .600747-6.491656C1.120797-6.025405 2.107098-4.805978 2.107098-2.25056C2.107098-.968369 1.873973 .81594 .573848 2.026401C.555915 2.0533 .52005 2.089166 .52005 2.133998C.52005 2.160897 .537983 2.232628 .627646 2.232628C.735243 2.232628 1.542217 1.587049 2.026401 .609714C2.456787-.251059 2.67198-1.174595 2.67198-2.25056Z"></path>
+<path id="tz_fig_lucro_g4-82" d="M2.0533-3.174097V-5.478456C2.0533-5.711582 2.071233-5.792279 2.241594-5.828144C2.322291-5.846077 2.609215-5.846077 2.797509-5.846077C3.568618-5.846077 4.707347-5.846077 4.707347-4.510087C4.707347-3.738979 4.312827-3.174097 3.0934-3.174097H2.0533ZM4.070735-3.039601C4.92254-3.281694 5.621918-3.81071 5.621918-4.510087C5.621918-5.397758 4.536986-6.124035 3.218929-6.124035H.358655V-5.846077H.564882C1.255293-5.846077 1.273225-5.747447 1.273225-5.415691V-.708344C1.273225-.376588 1.255293-.277958 .564882-.277958H.358655V0C.780075-.026899 1.228394-.026899 1.65878-.026899S2.537484-.026899 2.96787 0V-.277958H2.761644C2.071233-.277958 2.0533-.376588 2.0533-.708344V-2.949938H3.129265C3.774844-2.949938 4.061768-2.609215 4.097634-2.57335C4.366625-2.241594 4.366625-2.107098 4.366625-1.470486C4.366625-.869738 4.366625-.475218 4.797011-.134496C5.218431 .19726 5.756413 .19726 5.855044 .19726C6.608219 .19726 6.742715-.582814 6.742715-.798007C6.742715-.851806 6.742715-.959402 6.617186-.959402C6.500623-.959402 6.500623-.878705 6.491656-.806974C6.446824-.242092 6.168867-.026899 5.890909-.026899C5.603985-.026899 5.505355-.206227 5.433624-.358655C5.352927-.555915 5.272229-1.165629 5.218431-1.569116C5.1467-2.125031 5.066002-2.725778 4.070735-3.039601Z"></path>
+</defs>
+<g id="tz_fig_lucro_page1">
+<g stroke-miterlimit="10" transform="translate(-58.999714,121.79437)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H211.3956" fill="none"></path>
+<g transform="translate(211.3956,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(216.92854,-1.06248)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.999714,121.79437)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-58.999714" y="121.79437" href="#tz_fig_lucro_g3-113"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V174.40695" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,174.40695)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-5.71606,180.43977)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.999714,121.79437)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-58.999714" y="121.79437" href="#tz_fig_lucro_g4-82"></use>
+<use x="-52.216862" y="121.79437" href="#tz_fig_lucro_g2-36"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<path d="M0 0L199.1692 159.33553" fill="none"></path>
+<g transform="translate(203.10217,157.08553)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.999714,121.79437)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-58.999714" y="121.79437" href="#tz_fig_lucro_g3-82"></use>
+<use x="-51.963991" y="121.79437" href="#tz_fig_lucro_g4-40"></use>
+<use x="-48.380232" y="121.79437" href="#tz_fig_lucro_g3-113"></use>
+<use x="-43.941019" y="121.79437" href="#tz_fig_lucro_g4-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M0 28.45274C71.13185 45.52455 128.03734 91.04869 199.1692 170.71646" fill="none"></path>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(202.90218,168.46646)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.999714,121.79437)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-58.999714" y="121.79437" href="#tz_fig_lucro_g3-67"></use>
+<use x="-51.783911" y="121.79437" href="#tz_fig_lucro_g4-40"></use>
+<use x="-48.200152" y="121.79437" href="#tz_fig_lucro_g3-113"></use>
+<use x="-43.760939" y="121.79437" href="#tz_fig_lucro_g4-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M128.03734 102.43004V61.17322" fill="none"></path>
+</g>
+</g>
+</g>
+<g transform="translate(113.28018,36.57407)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.999714,121.79437)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-53.475203" y="112.329862" href="#tz_fig_lucro_g1-108"></use>
+<use x="-51.12288" y="112.329862" href="#tz_fig_lucro_g1-117"></use>
+<use x="-46.418232" y="112.329862" href="#tz_fig_lucro_g1-99"></use>
+<use x="-42.654514" y="112.329862" href="#tz_fig_lucro_g1-114"></use>
+<use x="-39.354344" y="112.329862" href="#tz_fig_lucro_g1-111"></use>
+<use x="-58.999714" y="121.79437" href="#tz_fig_lucro_g1-109"></use>
+<use x="-51.942742" y="121.79437" href="#tz_fig_lucro_g1-19"></use>
+<use x="-51.942742" y="121.79437" href="#tz_fig_lucro_g1-97"></use>
+<use x="-47.708559" y="121.79437" href="#tz_fig_lucro_g1-120"></use>
+<use x="-43.239144" y="121.79437" href="#tz_fig_lucro_g1-105"></use>
+<use x="-40.88682" y="121.79437" href="#tz_fig_lucro_g1-109"></use>
+<use x="-33.829849" y="121.79437" href="#tz_fig_lucro_g1-111"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#3fb618" stroke="#3fb618">
+<g stroke-width="0.8">
+<path d="M128.03734 98.40738V65.19589" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,128.03734,98.40738)">
+<path d="M2.59995 0L-1.55997 2.07996L0 0L-1.55997-2.07996" stroke="none"></path>
+</g>
+<g transform="matrix(0.0,-1.0,1.0,0.0,128.03734,65.19589)">
+<path d="M2.59995 0L-1.55997 2.07996L0 0L-1.55997-2.07996" stroke="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g fill="#6c757d" stroke="#6c757d">
+</g>
+<g transform="translate(134.76775,117.50143)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.999714,121.79437)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-58.999714" y="121.79437" href="#tz_fig_lucro_g1-105"></use>
+<use x="-56.64739" y="121.79437" href="#tz_fig_lucro_g1-110"></use>
+<use x="-51.942742" y="121.79437" href="#tz_fig_lucro_g1-99"></use>
+<use x="-48.179024" y="121.79437" href="#tz_fig_lucro_g1-108"></use>
+<use x="-45.8267" y="121.79437" href="#tz_fig_lucro_g1-105"></use>
+<use x="-43.474376" y="121.79437" href="#tz_fig_lucro_g1-110"></use>
+<use x="-38.769729" y="121.79437" href="#tz_fig_lucro_g1-97"></use>
+<use x="-34.535546" y="121.79437" href="#tz_fig_lucro_g1-24"></use>
+<use x="-34.535546" y="121.79437" href="#tz_fig_lucro_g1-99"></use>
+<use x="-30.771828" y="121.79437" href="#tz_fig_lucro_g1-126"></use>
+<use x="-30.771828" y="121.79437" href="#tz_fig_lucro_g1-111"></use>
+<use x="-26.537645" y="121.79437" href="#tz_fig_lucro_g1-101"></use>
+<use x="-22.773927" y="121.79437" href="#tz_fig_lucro_g1-115"></use>
+<use x="-16.610836" y="121.79437" href="#tz_fig_lucro_g1-105"></use>
+<use x="-14.258512" y="121.79437" href="#tz_fig_lucro_g1-103"></use>
+<use x="-10.024329" y="121.79437" href="#tz_fig_lucro_g1-117"></use>
+<use x="-5.319681" y="121.79437" href="#tz_fig_lucro_g1-97"></use>
+<use x="-1.085498" y="121.79437" href="#tz_fig_lucro_g1-105"></use>
+<use x="1.266825" y="121.79437" href="#tz_fig_lucro_g1-115"></use>
+<use x="4.607128" y="121.79437" href="#tz_fig_lucro_g1-58"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g fill="#6c757d" stroke="#6c757d">
+</g>
+<g transform="translate(142.31944,107.58768)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.999714,121.79437)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-58.999714" y="121.79437" href="#tz_fig_lucro_g0-82"></use>
+<use x="-52.572354" y="121.79437" href="#tz_fig_lucro_g0-77"></use>
+<use x="-43.590655" y="121.79437" href="#tz_fig_lucro_g0-103"></use>
+<use x="-36.922515" y="121.79437" href="#tz_fig_lucro_g1-61"></use>
+<use x="-27.983684" y="121.79437" href="#tz_fig_lucro_g0-67"></use>
+<use x="-21.385016" y="121.79437" href="#tz_fig_lucro_g0-77"></use>
+<use x="-12.403317" y="121.79437" href="#tz_fig_lucro_g0-103"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lucro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;11.2: O lucro (distância vertical entre <span class="math inline">\(R\)</span> e <span class="math inline">\(C\)</span>) é máximo onde as curvas têm a mesma inclinação — isto é, onde <span class="math inline">\(RMg = CMg\)</span>.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="outros-problemas-clássicos-de-otimização" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="outros-problemas-clássicos-de-otimização"><span class="header-section-number">11.6</span> Outros problemas clássicos de otimização</h2>
+<p>O mesmo método resolve toda uma família de problemas econômicos. Dois merecem menção.</p>
+<p><strong>Maximização de receita.</strong> Um vendedor com poder de mercado escolhe <span class="math inline">\(q\)</span> (e, com ele, o preço) para maximizar <span class="math inline">\(R(q) = p(q)\cdot q\)</span>. Como vimos, a receita é máxima onde <span class="math inline">\(R'(q) = 0\)</span>, ou seja, onde a <strong>receita marginal é zero</strong> — que, não por acaso, é o ponto de <strong>elasticidade unitária</strong> da demanda. Cobrar acima disso reduz tanto a quantidade que a receita cai; cobrar abaixo, idem.</p>
+<p><strong>Minimização de custo médio.</strong> A firma que busca o menor custo por unidade resolve <span class="math inline">\(\min_q CMe(q)\)</span>. A CPO dá <span class="math inline">\(CMe'(q) = 0\)</span>, e no capítulo anterior (exercício 8) provamos que isso ocorre exatamente onde <strong>custo marginal = custo médio</strong>. O ponto de mínimo do custo médio — a <strong>escala eficiente</strong> — é um dos conceitos mais usados na teoria da firma (Volume 5).</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Cuidado — a CPO não vê as fronteiras">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Cuidado — a CPO não vê as fronteiras
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O método <span class="math inline">\(f'(x) = 0\)</span> encontra apenas ótimos <strong>interiores e suaves</strong>. Se o ótimo estiver numa <strong>fronteira</strong> do domínio (produção zero, capacidade máxima) ou num “bico” da função (onde a derivada não existe), a CPO o ignora. Numa firma que teria lucro máximo produzindo o máximo permitido por sua capacidade, por exemplo, o ótimo é a fronteira, não um ponto de derivada nula. Sempre confira os extremos do domínio, além dos pontos críticos.</p>
+</div>
+</div>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">11.7</span> 🇧🇷 Brasil em Foco</h2>
+<p><strong>A regra RMg = CMg e a decisão de investir na indústria brasileira.</strong> A condição de lucro máximo não é abstração acadêmica: é o esqueleto lógico de qualquer decisão de “quanto produzir” e “quanto expandir”. Quando uma mineradora como a Vale decide o nível de produção de minério de ferro, ou quando uma usina sucroalcooleira decide quanto moer, a lógica é comparar a receita da próxima tonelada (que depende do preço internacional, muitas vezes volátil) com o custo marginal de extraí-la ou processá-la. Em setores intensivos em capital, o custo marginal cresce com a produção (à medida que se lança mão de jazidas piores ou se força a capacidade), exatamente a forma convexa da <a href="#fig-lucro" class="quarto-xref">Figura&nbsp;<span>11.2</span></a>. Quedas de preço internacional — como as dos ciclos de commodities — reduzem a receita marginal e, pela regra <span class="math inline">\(RMg = CMg\)</span>, levam as firmas a <strong>cortar produção</strong> e adiar investimentos. É a otimização deste capítulo explicando a prociclicidade do investimento no Brasil exportador de commodities.</p>
+<p><strong>Escala eficiente e o desafio da produtividade.</strong> O ponto de mínimo do custo médio — a escala eficiente — ajuda a entender um problema estrutural brasileiro. Boa parte das empresas do país, sobretudo micro e pequenas, opera <strong>abaixo</strong> de sua escala eficiente: produz pouco, num trecho em que o custo médio ainda cairia se a produção aumentasse. Dados do IBGE e do Sebrae sobre a estrutura empresarial brasileira mostram uma economia com enorme número de firmas pequenas e baixa produtividade média. Em linguagem deste capítulo, muitas firmas não atingem o ponto onde <span class="math inline">\(CMg = CMe\)</span>; barreiras a crescer (crédito caro, informalidade, complexidade tributária) as prendem aquém da escala que minimizaria seu custo unitário. Elevar a produtividade passa, em parte, por permitir que mais firmas <strong>cheguem</strong> à sua escala eficiente.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> IBGE — Estatísticas do Cadastro Central de Empresas e Pesquisa Industrial Anual (distribuição de firmas por porte e produtividade); Sebrae — estudos sobre produtividade das MPEs; relatórios de resultados de empresas de commodities (produção e custos) para ver a regra <span class="math inline">\(RMg = CMg\)</span> na prática. Verifique o ano de referência.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">11.8</span> Resumo do capítulo</h2>
+<ul>
+<li><strong>Otimizar</strong> é encontrar máximos ou mínimos de uma função. Extremos interiores e suaves ocorrem onde a reta tangente é horizontal.</li>
+<li><strong>Condição de primeira ordem (CPO):</strong> <span class="math inline">\(f'(x^{*}) = 0\)</span> identifica os <strong>pontos críticos</strong> — apenas <em>candidatos</em> a extremo (condição necessária, não suficiente).</li>
+<li><strong>Condição de segunda ordem (CSO):</strong> num ponto crítico, <span class="math inline">\(f'' &lt; 0\)</span> indica <strong>máximo</strong> (côncava) e <span class="math inline">\(f'' &gt; 0\)</span> indica <strong>mínimo</strong> (convexa); <span class="math inline">\(f'' = 0\)</span> é inconclusivo.</li>
+<li>A firma maximiza o lucro <span class="math inline">\(\pi(q) = R(q) - C(q)\)</span> onde <span class="math inline">\(\pi'(q) = 0\)</span>, ou seja, onde <strong>receita marginal = custo marginal</strong>. Produz-se cada unidade que rende ao menos o que custa.</li>
+<li>O mesmo método dá: <strong>receita máxima</strong> onde <span class="math inline">\(RMg = 0\)</span> (elasticidade unitária) e <strong>custo médio mínimo</strong> (escala eficiente) onde <span class="math inline">\(CMg = CMe\)</span>.</li>
+<li>A CPO só enxerga ótimos <strong>interiores e suaves</strong>; ótimos de <strong>fronteira</strong> ou em “bicos” exigem verificação à parte.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="11.9">
+<h2 data-number="11.9" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">11.9</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique, com suas palavras, por que a derivada se anula tanto num máximo quanto num mínimo. Como distinguir os dois casos?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Em ambos, a reta tangente é <strong>horizontal</strong> — a função para de subir e passa a descer (máximo) ou para de descer e passa a subir (mínimo) —, e a inclinação da tangente (a derivada) é zero. Distinguimos os dois pela <strong>segunda derivada</strong> (concavidade): num máximo a curva é côncava (<span class="math inline">\(f'' &lt; 0\)</span>); num mínimo, convexa (<span class="math inline">\(f'' &gt; 0\)</span>).</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Encontre e classifique os extremos de <span class="math inline">\(f(x) = 80x - 4x^2\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>CPO: <span class="math inline">\(f'(x) = 80 - 8x = 0 \Rightarrow x^{*} = 10\)</span>. CSO: <span class="math inline">\(f''(x) = -8 &lt; 0\)</span>, logo é <strong>máximo</strong>. Valor: <span class="math inline">\(f(10) = 800 - 400 = 400\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Uma firma tem receita <span class="math inline">\(R(q) = 50q\)</span> e custo <span class="math inline">\(C(q) = 200 + 10q + q^2\)</span>. (a) Escreva a função lucro. (b) Encontre a quantidade que maximiza o lucro pela regra <span class="math inline">\(RMg = CMg\)</span>. (c) Qual o lucro máximo?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(\pi(q) = 50q - (200 + 10q + q^2) = -200 + 40q - q^2\)</span>.</li>
+<li><span class="math inline">\(RMg = 50\)</span>; <span class="math inline">\(CMg = C'(q) = 10 + 2q\)</span>. Igualando: <span class="math inline">\(50 = 10 + 2q \Rightarrow q^{*} = 20\)</span>. (CSO: <span class="math inline">\(\pi''(q) = -2 &lt; 0\)</span>, máximo.)</li>
+<li><span class="math inline">\(\pi(20) = -200 + 40\times 20 - 20^2 = -200 + 800 - 400 = R\$\,200\)</span>.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Encontre e classifique <strong>todos</strong> os pontos críticos de <span class="math inline">\(f(x) = x^3 - 6x^2 + 9x + 2\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>CPO: <span class="math inline">\(f'(x) = 3x^2 - 12x + 9 = 3(x^2 - 4x + 3) = 3(x-1)(x-3) = 0 \Rightarrow x = 1\)</span> ou <span class="math inline">\(x = 3\)</span>. CSO: <span class="math inline">\(f''(x) = 6x - 12\)</span>. Em <span class="math inline">\(x = 1\)</span>: <span class="math inline">\(f''(1) = -6 &lt; 0\)</span>, <strong>máximo</strong> local. Em <span class="math inline">\(x = 3\)</span>: <span class="math inline">\(f''(3) = 6 &gt; 0\)</span>, <strong>mínimo</strong> local. (Valores: <span class="math inline">\(f(1) = 6\)</span>, <span class="math inline">\(f(3) = 2\)</span>.)</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> A demanda que uma firma enfrenta é <span class="math inline">\(p = 100 - 2q\)</span> (forma inversa). (a) Escreva a receita total <span class="math inline">\(R(q)\)</span>. (b) Encontre a quantidade que maximiza a receita. (c) Mostre que, nesse ponto, a receita marginal é zero.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(R(q) = p\cdot q = (100 - 2q)q = 100q - 2q^2\)</span>.</li>
+<li>CPO: <span class="math inline">\(R'(q) = 100 - 4q = 0 \Rightarrow q^{*} = 25\)</span>. (CSO: <span class="math inline">\(R'' = -4 &lt; 0\)</span>, máximo.)</li>
+<li><span class="math inline">\(RMg(25) = 100 - 4\times 25 = 0\)</span>. Confirma que a receita é máxima onde a receita marginal se anula — o ponto de elasticidade unitária da demanda.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> O custo médio de uma firma é <span class="math inline">\(CMe(q) = \dfrac{400}{q} + 5 + 0{,}5q\)</span>. Encontre a quantidade que minimiza o custo médio (a escala eficiente) e o valor mínimo do custo médio.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>CPO: <span class="math inline">\(CMe'(q) = -\dfrac{400}{q^2} + 0{,}5 = 0 \Rightarrow q^2 = \dfrac{400}{0{,}5} = 800 \Rightarrow q^{*} = \sqrt{800} \approx 28{,}28\)</span>. CSO: <span class="math inline">\(CMe''(q) = \dfrac{800}{q^3} &gt; 0\)</span> para <span class="math inline">\(q &gt; 0\)</span>, logo é <strong>mínimo</strong>. Valor mínimo: <span class="math inline">\(CMe(28{,}28) = \dfrac{400}{28{,}28} + 5 + 0{,}5\times 28{,}28 \approx 14{,}14 + 5 + 14{,}14 = R\$\,33{,}28\)</span> por unidade.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) Uma mineradora enfrenta preço internacional <span class="math inline">\(p = 300\)</span>/tonelada e custo total <span class="math inline">\(C(q) = 5.000 + 100q + 2q^2\)</span> (com <span class="math inline">\(q\)</span> em mil toneladas). (a) Encontre a produção ótima. (b) O preço cai para <span class="math inline">\(p = 180\)</span>. Recalcule a produção ótima. (c) Explique, com a regra <span class="math inline">\(RMg = CMg\)</span>, por que quedas de preço de commodities levam a cortes de produção — relacionando com Brasil em Foco.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(RMg = 300\)</span>; <span class="math inline">\(CMg = 100 + 4q\)</span>. Igualando: <span class="math inline">\(300 = 100 + 4q \Rightarrow q^{*} = 50\)</span>.</li>
+<li>Com <span class="math inline">\(p = 180\)</span>: <span class="math inline">\(180 = 100 + 4q \Rightarrow q^{*} = 20\)</span>. A produção ótima cai de 50 para 20 mil toneladas.</li>
+<li>A firma produz até <span class="math inline">\(RMg = CMg\)</span>. Como <span class="math inline">\(RMg\)</span> é o próprio preço (firma tomadora de preço) e o <span class="math inline">\(CMg\)</span> é <strong>crescente</strong> em <span class="math inline">\(q\)</span>, uma queda de preço reduz o nível em que <span class="math inline">\(RMg\)</span> ainda cobre o <span class="math inline">\(CMg\)</span>: as últimas toneladas, que só se pagavam ao preço alto, passam a custar mais do que rendem. A firma corta produção até reencontrar a igualdade. É por isso que, no Brasil exportador de commodities, os ciclos de baixa de preços derrubam a produção e o investimento — a otimização marginal em ação.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) Uma firma monopolista tem demanda <span class="math inline">\(p = 120 - q\)</span> e custo total <span class="math inline">\(C(q) = 30q\)</span>. (a) Escreva o lucro. (b) Encontre a quantidade e o preço de lucro máximo. (c) Compare a quantidade com a que maximizaria a <strong>receita</strong> e comente por que diferem.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(R(q) = (120 - q)q = 120q - q^2\)</span>; com <span class="math inline">\(C(q) = 30q\)</span>, o lucro é <span class="math inline">\(\pi(q) = 120q - q^2 - 30q = 90q - q^2\)</span>.</li>
+<li>CPO: <span class="math inline">\(\pi'(q) = 90 - 2q = 0 \Rightarrow q^{*} = 45\)</span>. (CSO: <span class="math inline">\(\pi'' = -2 &lt; 0\)</span>, máximo.) Preço: <span class="math inline">\(p = 120 - 45 = R\$\,75\)</span>.</li>
+<li>A <strong>receita</strong> seria máxima onde <span class="math inline">\(R'(q) = 120 - 2q = 0 \Rightarrow q = 60\)</span>. O monopolista lucro-maximizador produz <strong>menos</strong> (45 &lt; 60) porque leva em conta o <strong>custo marginal</strong> (R$,30 por unidade), ausente do problema de pura receita. Maximizar lucro não é maximizar receita: a firma para antes, no ponto em que a receita marginal iguala o custo marginal, e não onde a receita marginal se anula. É a diferença que a regra <span class="math inline">\(RMg = CMg\)</span> captura.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="11.10">
+<h2 data-number="11.10" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">11.10</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="chiang2006">Chiang; Wainwright (<a href="#ref-chiang2006" role="doc-biblioref">2006</a>)</span> — os capítulos de otimização de funções de uma variável, com a dedução de <span class="math inline">\(RMg = CMg\)</span> e aplicações à firma, são a referência direta.</li>
+<li><span class="citation" data-cites="sydsaeter2018">Sydsæter et al. (<a href="#ref-sydsaeter2018" role="doc-biblioref">2018</a>)</span> — apresenta condições de primeira e segunda ordem com rigor e muitos exemplos econômicos de máximos e mínimos.</li>
+<li><span class="citation" data-cites="varian2015">Varian (<a href="#ref-varian2015" role="doc-biblioref">2015</a>)</span> — mostra a maximização de lucro e a minimização de custo no contexto completo da teoria da firma; leia-o após dominar o método aqui.</li>
+<li><span class="citation" data-cites="simon2004">Simon; Blume (<a href="#ref-simon2004" role="doc-biblioref">2004</a>)</span> — para o leitor que quiser a base matemática mais geral da otimização, incluindo condições para ótimos globais.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-chiang2006" class="csl-entry" role="listitem">
+CHIANG, Alpha C.; WAINWRIGHT, Kevin. <strong>Matemática para Economistas</strong>. 4. ed. Rio de Janeiro: Elsevier, 2006.
+</div>
+<div id="ref-simon2004" class="csl-entry" role="listitem">
+SIMON, Carl P.; BLUME, Lawrence. <strong>Mathematics for Economists</strong>. New York: W. W. Norton, 2004.
+</div>
+<div id="ref-sydsaeter2018" class="csl-entry" role="listitem">
+SYDSÆTER, Knut <em>et al.</em> <strong>Essential Mathematics for Economic Analysis</strong>. 5. ed. Harlow: Pearson, 2018.
+</div>
+<div id="ref-varian2015" class="csl-entry" role="listitem">
+VARIAN, Hal R. <strong>Microeconomia: uma abordagem moderna</strong>. 9. ed. Rio de Janeiro: Elsevier, 2015.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="pagination-link" aria-label="Derivadas e a análise marginal">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol02/cap06-lagrange.html" class="pagination-link" aria-label="Otimização com restrições: multiplicadores de Lagrange">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol02/cap05-otimizacao-livre.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
