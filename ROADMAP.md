@@ -31,7 +31,7 @@
 |---|----------|---------|--------|
 | 1 | O que é Economia: escassez, escolha e custo de oportunidade | `capitulos/vol01/cap01-o-que-e-economia.qmd` | ✅ (GABARITO) |
 | 2 | O método da Economia: modelos, ceteris paribus e a FPP | `capitulos/vol01/cap02-metodo-da-economia.qmd` | ✅ |
-| 3 | Sistemas econômicos: mercado, Estado e economias mistas | `capitulos/vol01/cap03-sistemas-economicos.qmd` | ⬜ |
+| 3 | Sistemas econômicos: mercado, Estado e economias mistas | `capitulos/vol01/cap03-sistemas-economicos.qmd` | ✅ |
 | 4 | Vantagem comparativa, especialização e trocas | `capitulos/vol01/cap04-vantagem-comparativa.qmd` | ⬜ |
 | 5 | O fluxo circular da renda e os agentes econômicos | `capitulos/vol01/cap05-fluxo-circular.qmd` | ⬜ |
 | 6 | Microeconomia e Macroeconomia: os dois olhares | `capitulos/vol01/cap06-micro-e-macro.qmd` | ⬜ |
