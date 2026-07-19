@@ -94,13 +94,13 @@
 
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
-| 1 | Introdução à teoria dos jogos: dominância e equilíbrio de Nash | `capitulos/vol06/cap01-teoria-dos-jogos.qmd` | ⬜ |
-| 2 | Jogos sequenciais, repetidos e aplicações | `capitulos/vol06/cap02-jogos-repetidos.qmd` | ⬜ |
-| 3 | Externalidades e o teorema de Coase | `capitulos/vol06/cap03-externalidades.qmd` | ⬜ |
-| 4 | Bens públicos e recursos comuns | `capitulos/vol06/cap04-bens-publicos.qmd` | ⬜ |
-| 5 | Informação assimétrica: seleção adversa e risco moral | `capitulos/vol06/cap05-informacao-assimetrica.qmd` | ⬜ |
-| 6 | Economia do trabalho: salários, capital humano e informalidade | `capitulos/vol06/cap06-economia-do-trabalho.qmd` | ⬜ |
-| 7 | Escolha sob incerteza: utilidade esperada e aversão ao risco | `capitulos/vol06/cap07-escolha-sob-incerteza.qmd` | ⬜ |
+| 1 | Introdução à teoria dos jogos: dominância e equilíbrio de Nash | `capitulos/vol06/cap01-teoria-dos-jogos.qmd` | ✅ |
+| 2 | Jogos sequenciais, repetidos e aplicações | `capitulos/vol06/cap02-jogos-repetidos.qmd` | ✅ |
+| 3 | Externalidades e o teorema de Coase | `capitulos/vol06/cap03-externalidades.qmd` | ✅ |
+| 4 | Bens públicos e recursos comuns | `capitulos/vol06/cap04-bens-publicos.qmd` | ✅ |
+| 5 | Informação assimétrica: seleção adversa e risco moral | `capitulos/vol06/cap05-informacao-assimetrica.qmd` | ✅ |
+| 6 | Economia do trabalho: salários, capital humano e informalidade | `capitulos/vol06/cap06-economia-do-trabalho.qmd` | ✅ |
+| 7 | Escolha sob incerteza: utilidade esperada e aversão ao risco | `capitulos/vol06/cap07-escolha-sob-incerteza.qmd` | ✅ |
 
 ### Volume 7 — Macroeconomia II: Modelos e Política Econômica
 

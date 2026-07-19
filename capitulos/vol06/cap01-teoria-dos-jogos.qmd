@@ -1,0 +1,212 @@
+# Introdução à teoria dos jogos: dominância e equilíbrio de Nash {#sec-teoria-dos-jogos}
+
+Dois postos de gasolina na mesma esquina observam-se de manhã. Se um baixar o preço, rouba os clientes do outro — a menos que o outro reaja e baixe também, e então ambos ganham menos. Duas montadoras decidem, cada uma no seu conselho, se lançam agora o carro elétrico ou esperam a rival dar o primeiro passo. Um país pondera se corta emissões, sabendo que o esforço só compensa se os outros também cortarem. Em todos esses casos, o melhor que cada um pode fazer **depende do que o outro faz** — e o outro está pensando exatamente a mesma coisa sobre você. Não há como decidir bem sem se colocar na cabeça do adversário.
+
+O estudo formal dessas situações — em que o resultado de cada agente depende das escolhas de todos — é a **teoria dos jogos**. Ela nasceu na matemática e na economia em meados do século XX e hoje é a linguagem comum do oligopólio (@sec-oligopolio), da política, da biologia evolutiva e até das negociações internacionais. Este capítulo apresenta seus fundamentos: o que é um jogo, como resolvê-lo por **eliminação de estratégias dominadas** e, sobretudo, o conceito que organiza quase tudo o que virá — o **equilíbrio de Nash**.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- descrever os elementos de um **jogo** — jogadores, estratégias e *payoffs* — e representá-lo na forma normal (matriz);
+- identificar **estratégias dominantes** e **dominadas** e resolver jogos por eliminação iterada;
+- definir e localizar o **equilíbrio de Nash** em jogos simples;
+- analisar o **dilema do prisioneiro** e entender por que a racionalidade individual pode levar a um resultado coletivamente ruim;
+- reconhecer jogos sem equilíbrio em estratégias puras e a ideia de **estratégia mista**;
+- aplicar a análise a situações econômicas brasileiras (cartéis, guerra fiscal, filas).
+
+## O que é um jogo
+
+Na linguagem da teoria dos jogos, um **jogo** não é necessariamente uma brincadeira: é qualquer situação de interação estratégica com três ingredientes.
+
+::: {.callout-note title="Definição — Jogo"}
+Um **jogo** é composto por:
+
+- **Jogadores** — os agentes que decidem (pessoas, firmas, governos);
+- **Estratégias** — o conjunto de ações que cada jogador pode escolher;
+- ***Payoffs*** (retornos) — o resultado que cada jogador obtém para *cada combinação* de estratégias de todos os jogadores. É o que ele quer maximizar (lucro, utilidade, votos).
+
+O traço definidor é a **interdependência**: o *payoff* de cada jogador depende não só da própria escolha, mas também da dos demais.
+:::
+
+Vamos supor, por ora, três coisas que simplificam a análise e que relaxaremos depois: os jogadores são **racionais** (escolhem a estratégia que maximiza seu *payoff*), decidem **simultaneamente** (sem observar a escolha do outro antes de agir) e o jogo é de **informação completa** (todos conhecem as estratégias e os *payoffs* de todos). Jogos sequenciais e com informação incompleta virão no próximo capítulo (@sec-jogos-repetidos) e adiante.
+
+### A forma normal: a matriz de *payoffs*
+
+Um jogo com dois jogadores e poucas estratégias é representado por uma **matriz de *payoffs***, ou forma normal. Considere duas firmas, Alfa e Beta, que decidem cada uma se cobram **preço alto** ou **preço baixo**. A @tbl-jogo-precos mostra os lucros (em milhões de reais) de cada combinação: em cada célula, o **primeiro** número é o *payoff* da Alfa (jogadora das linhas), o **segundo** o da Beta (jogadora das colunas).
+
+| Alfa \\ Beta | Beta: Preço alto | Beta: Preço baixo |
+|:---|:---:|:---:|
+| **Alfa: Preço alto** | 10 , 10 | 2 , 14 |
+| **Alfa: Preço baixo** | 14 , 2 | 5 , 5 |
+
+: Matriz de *payoffs* de um jogo de preços (lucros em R\$ milhões). {#tbl-jogo-precos}
+
+Leia a matriz assim: se ambas cobram preço alto, cada uma ganha 10; se a Alfa baixa e a Beta mantém alto, a Alfa fatura 14 (rouba o mercado) e a Beta só 2. Guarde esta matriz — ela é, veremos, um **dilema do prisioneiro** disfarçado.
+
+## Estratégias dominantes e dominadas
+
+A primeira ferramenta para resolver um jogo é procurar estratégias que sejam boas (ou ruins) *independentemente* do que o adversário faça.
+
+::: {.callout-note title="Definição — Estratégia dominante e dominada"}
+Uma estratégia é **estritamente dominante** para um jogador se lhe dá um *payoff* maior do que qualquer outra das suas estratégias, **qualquer que seja** a escolha dos demais. A estratégia inferior é **dominada**: nunca vale a pena jogá-la.
+:::
+
+Voltemos à @tbl-jogo-precos e raciocinemos pela Alfa. Ela não sabe o que a Beta fará, então examina os dois cenários:
+
+- **Se a Beta cobra alto:** Alfa ganha 10 cobrando alto ou 14 cobrando baixo → baixo é melhor.
+- **Se a Beta cobra baixo:** Alfa ganha 2 cobrando alto ou 5 cobrando baixo → baixo é melhor.
+
+Em *ambos* os casos, cobrar **baixo** rende mais. Logo, "preço baixo" é a **estratégia dominante** da Alfa, e "preço alto" é dominada. Como o jogo é simétrico, o mesmo vale para a Beta. A previsão é imediata: **ambas cobram preço baixo** e ganham 5 cada — mesmo que ambas soubessem que, cobrando alto, ganhariam 10 cada. A racionalidade individual as leva a um resultado pior para as duas. Esse é o cerne do dilema do prisioneiro, que já encontramos no cartel do oligopólio.
+
+### Eliminação iterada de estratégias dominadas
+
+Nem todo jogador tem uma estratégia dominante, mas às vezes conseguimos resolver o jogo em etapas: eliminamos uma estratégia dominada, e no jogo reduzido uma nova estratégia pode passar a ser dominada, e assim por diante. Esse método — **eliminação iterada de estratégias estritamente dominadas** — encolhe o jogo e, em casos felizes, aponta um único resultado. Sua justificativa é a **racionalidade comum**: eu sei que você é racional, você sabe que eu sei, e ninguém joga uma estratégia que sabe ser sempre pior.
+
+::: {.callout-important title="Armadilha comum — dominância exige comparar dentro da mesma coluna"}
+Ao checar se uma estratégia da Alfa é dominante, compare os *payoffs* **da Alfa** mantendo fixa a escolha da Beta (isto é, dentro de cada coluna), nunca comparando o número da Alfa com o da Beta. O erro clássico é olhar a célula (14, 2) e concluir "a Alfa ganha mais que a Beta, então joga baixo". A comparação certa é entre as *linhas* da Alfa, coluna por coluna.
+:::
+
+## O equilíbrio de Nash
+
+A dominância resolve poucos jogos. O conceito central da teoria dos jogos — que rendeu o Nobel a John Nash em 1994 e vale para praticamente qualquer jogo — é mais geral e mais sutil.
+
+::: {.callout-note title="Definição — Equilíbrio de Nash"}
+Um conjunto de estratégias, uma para cada jogador, é um **equilíbrio de Nash** se **nenhum jogador consegue melhorar seu próprio *payoff* mudando unilateralmente de estratégia**, dadas as estratégias dos demais. Em equilíbrio, cada jogador está dando a **melhor resposta** à estratégia do outro — e ninguém tem motivo para se arrepender ou desviar sozinho [@nash1951].
+:::
+
+A ideia é a de um estado **autoconsistente** ou "sem arrependimento": se o jogo parasse ali e cada um pudesse rever sua jogada isoladamente, ninguém quereria mudar. Note a palavra decisiva: **unilateralmente**. O equilíbrio não é o melhor resultado possível para o grupo; é apenas um ponto estável às mudanças individuais.
+
+### Como encontrar o equilíbrio de Nash
+
+O método prático para uma matriz 2×2 é o das **melhores respostas**:
+
+1. Para cada estratégia da Beta (cada coluna), sublinhe o maior *payoff* da Alfa naquela coluna — é a melhor resposta da Alfa.
+2. Para cada estratégia da Alfa (cada linha), sublinhe o maior *payoff* da Beta naquela linha — a melhor resposta da Beta.
+3. Toda célula em que **os dois** *payoffs* estão sublinhados é um equilíbrio de Nash: cada jogador está dando a melhor resposta ao outro.
+
+Aplicando à @tbl-jogo-precos: a melhor resposta da Alfa é sempre "baixo" (14 > 10; 5 > 2), e a da Beta também. A célula (baixo, baixo) = (5, 5) tem os dois sublinhados. É o **único** equilíbrio de Nash — e coincide com o resultado por dominância, como sempre ocorre quando há estratégias dominantes.
+
+::: {.callout-tip title="Intuição — dominância implica Nash, mas não o contrário"}
+Se todos os jogadores têm estratégia dominante, o perfil de estratégias dominantes é automaticamente um equilíbrio de Nash. Mas o equilíbrio de Nash é mais amplo: existe em muitos jogos sem qualquer estratégia dominante, e é por isso que ele, e não a dominância, é a ferramenta-padrão.
+:::
+
+## O dilema do prisioneiro
+
+O jogo mais famoso da disciplina merece sua história original. Dois suspeitos de um crime são presos e interrogados em salas separadas, sem poder se comunicar. O promotor propõe a cada um o mesmo trato:
+
+- Se **você confessa (delata)** e o outro fica calado, você sai livre e ele pega 10 anos.
+- Se **ambos confessam**, cada um pega 8 anos.
+- Se **ambos ficam calados**, a polícia só tem provas para 1 ano de cadeia para cada.
+
+A @tbl-prisioneiro traduz isso em *payoffs* (anos de prisão, com sinal negativo porque prisão é ruim — quanto maior o número, melhor).
+
+| Preso 1 \\ Preso 2 | Ficar calado | Confessar |
+|:---|:---:|:---:|
+| **Ficar calado** | −1 , −1 | −10 , 0 |
+| **Confessar** | 0 , −10 | −8 , −8 |
+
+: O dilema do prisioneiro (*payoffs* = −anos de prisão). {#tbl-prisioneiro}
+
+Analise pela dominância: para o Preso 1, se o Preso 2 fica calado, confessar (0) é melhor que ficar calado (−1); se o Preso 2 confessa, confessar (−8) é melhor que calar (−10). **Confessar é dominante para ambos.** O equilíbrio de Nash é (confessar, confessar), com −8 cada. E aqui está o dilema: se os dois tivessem ficado calados, pegariam só 1 ano cada — resultado muito melhor **para ambos**. A busca individual pelo melhor resultado produz um desfecho coletivamente ruim.
+
+::: {.callout-warning title="Por que o dilema do prisioneiro é tão importante"}
+O dilema captura a tensão entre **interesse individual** e **bem-estar coletivo** que reaparece em incontáveis contextos: o cartel que colapsa porque cada firma quer trair (@sec-oligopolio), a corrida armamentista, a sobrepesca, a poluição, a sonegação de impostos, a guerra fiscal entre estados. Em todos, a estratégia "egoísta" domina, mas leva todos a um resultado pior que a cooperação. Entender *por que* a cooperação falha é o primeiro passo para desenhar instituições que a sustentem — tema do próximo capítulo.
+:::
+
+O equilíbrio de Nash do dilema é um resultado que **não é eficiente no sentido de Pareto**: existe outro resultado (calar, calar) que melhora a situação de ambos. Isso desfaz um mal-entendido comum: o equilíbrio de Nash descreve o que agentes racionais *farão*, não o que seria *melhor* que fizessem.
+
+## Jogos de coordenação e conflito
+
+Nem todo jogo é um dilema. Duas outras famílias são instrutivas — e ambas têm equilíbrios de Nash múltiplos ou nenhum em estratégias puras.
+
+**Coordenação.** Imagine que você e um amigo perderam o contato num shopping, sem celular. Cada um pode ir à praça de alimentação ou à entrada principal. Vocês só se reencontram se forem ao **mesmo** lugar; o local em si é indiferente. Há **dois** equilíbrios de Nash (ambos na praça; ambos na entrada): dado que o outro vai a um lugar, sua melhor resposta é ir ao mesmo. O problema não é conflito de interesses — é **coordenar** expectativas. Esses jogos explicam por que padrões (a tomada de três pinos, o lado da rua em que se dirige, uma norma técnica) se firmam: uma vez estabelecido um ponto focal, ninguém quer desviar.
+
+**Conflito puro e estratégias mistas.** Considere par ou ímpar, ou o pênalti no futebol: o batedor quer chutar para onde o goleiro *não* vai; o goleiro quer pular para onde a bola *vai*. Se o batedor sempre chutasse à direita, o goleiro aprenderia e pularia à direita. Não existe par de estratégias **puras** (uma escolha fixa) que seja equilíbrio, porque de qualquer célula um dos dois quer desviar. A solução é a **estratégia mista**: cada jogador **aleatoriza** entre as opções com certas probabilidades (o batedor chuta à direita com probabilidade $p$), de modo a deixar o adversário indiferente. Nash provou que **todo jogo finito tem pelo menos um equilíbrio** — em estratégias puras ou mistas. Por isso bons batedores e goleiros são imprevisíveis: a imprevisibilidade é, literalmente, o equilíbrio.
+
+::: {.callout-note title="Definição — Estratégia pura e mista"}
+Uma **estratégia pura** é a escolha determinística de uma única ação. Uma **estratégia mista** é uma distribuição de probabilidade sobre as ações possíveis — o jogador sorteia sua jogada segundo essas probabilidades. Em equilíbrio de estratégias mistas, cada jogador escolhe as probabilidades que tornam o adversário indiferente entre as opções dele.
+:::
+
+## Brasil em Foco {#sec-jogos-brasil}
+
+A teoria dos jogos ilumina disputas cotidianas e de política econômica no Brasil.
+
+**Guerra fiscal entre estados: um dilema do prisioneiro federativo.** Por décadas, estados brasileiros concederam reduções de **ICMS** para atrair fábricas e centros de distribuição — a chamada **guerra fiscal**. A estrutura é a de um dilema: para cada estado, oferecer o incentivo é estratégia dominante (se os outros não oferecem, ele atrai a empresa; se oferecem, ele precisa oferecer para não perder). Mas quando **todos** concedem, as empresas se instalam onde já se instalariam e a arrecadação de todos cai — resultado pior para o conjunto dos estados, exatamente como (confessar, confessar). A resposta institucional foi tentar **mudar o jogo**: a Lei Complementar 160/2017 e decisões do STF buscaram disciplinar os incentivos, e a reforma tributária (EC 132/2023), ao criar o IBS com cobrança no destino, tende a esvaziar a guerra fiscal — ou seja, remover o próprio incentivo a "trair".
+
+**Cartéis e a leniência do CADE.** Como vimos no oligopólio (@sec-oligopolio), o cartel é um dilema do prisioneiro: cada firma quer trair o acordo. Os **acordos de leniência** do CADE turbinam esse incentivo, oferecendo imunidade a quem delatar primeiro — transformam a instabilidade natural do cartel em ferramenta de detecção. É teoria dos jogos aplicada à política antitruste.
+
+**Filas, trânsito e o "furar".** No trânsito de qualquer capital brasileira, fechar o cruzamento no amarelo é individualmente tentador e coletivamente desastroso (o *gridlock* que trava todos). Furar a fila, buzinar, avançar o sinal — são microdilemas do prisioneiro em que a estratégia "esperta" domina e o resultado agregado piora para todos. Normas, multas e fiscalização são tentativas de alterar os *payoffs* para tornar a cooperação (respeitar a fila e o sinal) a melhor resposta individual.
+
+> **Fontes e séries para explorar:** CONFAZ e Ministério da Fazenda (convênios de ICMS e guerra fiscal); textos do STF sobre incentivos de ICMS e a EC 132/2023 (reforma tributária); CADE (casos de cartel e acordos de leniência). Ao citar a reforma tributária, verifique o cronograma de transição, que se estende ao longo dos anos seguintes à promulgação.
+
+## Resumo do capítulo
+
+- Um **jogo** tem jogadores, estratégias e *payoffs*; o que o define é a **interdependência estratégica** — o resultado de cada um depende das escolhas de todos.
+- A **forma normal** representa o jogo numa **matriz de *payoffs***. Em cada célula, o primeiro número é o *payoff* do jogador das linhas; o segundo, o das colunas.
+- Uma **estratégia dominante** é melhor qualquer que seja a jogada do outro; uma **dominada** nunca compensa. Podem-se eliminar dominadas iterativamente para simplificar o jogo.
+- O **equilíbrio de Nash** é o perfil de estratégias em que ninguém melhora **desviando unilateralmente**: cada um dá a **melhor resposta** ao outro. Localiza-se pelo método das melhores respostas (sublinhar os máximos).
+- Dominância implica Nash, mas há equilíbrio de Nash em muitos jogos sem estratégia dominante — por isso Nash é a ferramenta-padrão.
+- No **dilema do prisioneiro**, a estratégia dominante (trair/confessar) leva a um equilíbrio **pior para ambos** que a cooperação: interesse individual × bem-estar coletivo.
+- Há jogos de **coordenação** (equilíbrios múltiplos; o desafio é alinhar expectativas) e de **conflito puro** (sem equilíbrio em estratégias puras; a solução é **aleatorizar** — estratégia mista). Todo jogo finito tem ao menos um equilíbrio de Nash.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva cada item antes de abrir a solução. A dificuldade cresce: conceituais, depois numéricos, por fim análise de caso.
+:::
+
+**1.** Defina, com suas palavras, o que torna uma situação um "jogo" no sentido da teoria dos jogos. Dê um exemplo do seu cotidiano que **não** seja um jogo e explique por quê.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Uma situação é um jogo quando há **interdependência estratégica**: o resultado (payoff) de cada agente depende não só da sua escolha, mas também da dos outros, e cada um leva isso em conta ao decidir. Decidir se levo guarda-chuva olhando a previsão do tempo **não** é um jogo: a chuva não "reage" à minha escolha; é uma decisão sob incerteza contra a natureza, não contra um agente que também otimiza. Já decidir o preço da minha barraca de pastel na feira, sabendo que o vizinho ajustará o dele em resposta, é um jogo.
+:::
+
+**2.** Na @tbl-jogo-precos, mostre passo a passo por que "preço baixo" é estratégia dominante para a Alfa. Em seguida, explique por que o equilíbrio (baixo, baixo) é pior para as duas firmas do que (alto, alto).
+
+::: {.callout-tip collapse="true" title="Solução"}
+Comparando as linhas da Alfa, coluna por coluna: se a Beta joga **alto**, a Alfa ganha 14 (baixo) contra 10 (alto) → baixo melhor. Se a Beta joga **baixo**, a Alfa ganha 5 (baixo) contra 2 (alto) → baixo melhor. Como baixo vence nas duas colunas, é **dominante**. O mesmo para a Beta (simetria). Logo o equilíbrio é (baixo, baixo) = (5, 5). Mas (alto, alto) daria (10, 10), melhor para **ambas**. Cada firma, ao buscar seu melhor resultado individual, contribui para um desfecho coletivamente inferior — é um dilema do prisioneiro. A cooperação (ambas alto) não é sustentável porque cada uma tem incentivo a trair (baixar) e ganhar 14.
+:::
+
+**3.** Considere o jogo abaixo (payoffs Linha, Coluna). Encontre todos os equilíbrios de Nash em estratégias puras pelo método das melhores respostas.
+
+| L \\ C | Esquerda | Direita |
+|:---|:---:|:---:|
+| **Cima** | 3 , 3 | 0 , 2 |
+| **Baixo** | 2 , 0 | 1 , 1 |
+
+::: {.callout-tip collapse="true" title="Solução"}
+Melhores respostas da Linha: se Coluna joga Esquerda, Linha compara 3 (Cima) vs 2 (Baixo) → **Cima**. Se Coluna joga Direita, 0 (Cima) vs 1 (Baixo) → **Baixo**. Melhores respostas da Coluna: se Linha joga Cima, 3 (Esq) vs 2 (Dir) → **Esquerda**. Se Linha joga Baixo, 0 (Esq) vs 1 (Dir) → **Direita**. As células onde ambos dão melhor resposta: (Cima, Esquerda) = (3,3) — Linha quer Cima e Coluna quer Esquerda, confere; e (Baixo, Direita) = (1,1) — Linha quer Baixo e Coluna quer Direita, confere. **Há dois equilíbrios de Nash:** (Cima, Esquerda) e (Baixo, Direita). É um jogo de coordenação — note que (3,3) é melhor para os dois, mas (1,1) também é estável: dele nenhum desvia sozinho.
+:::
+
+**4.** Explique a diferença entre "equilíbrio de Nash" e "resultado que maximiza o bem-estar do grupo". Use o dilema do prisioneiro para ilustrar.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O equilíbrio de Nash é um ponto **estável a desvios unilaterais**: dado o que os outros fazem, ninguém melhora mudando sozinho. Isso não garante que seja o melhor para o grupo. No dilema do prisioneiro, o equilíbrio (confessar, confessar) dá −8 a cada um, mas (calar, calar) daria −1 a cada — muito melhor para ambos. (calar, calar), porém, **não é equilíbrio**: a partir dele, cada preso melhora confessando (passa de −1 a 0). Assim, o equilíbrio de Nash prevê o comportamento de agentes racionais e egoístas, que pode ser coletivamente ineficiente (não ótimo de Pareto). Maximizar o bem-estar do grupo pode exigir um resultado que não é auto-sustentável sem um mecanismo externo (contrato, punição, repetição).
+:::
+
+**5.** Por que o pênalti no futebol não tem equilíbrio de Nash em estratégias puras? O que a teoria prevê que bons batedores e goleiros façam?
+
+::: {.callout-tip collapse="true" title="Solução"}
+É um jogo de **conflito puro** (soma aproximadamente zero): o batedor quer chutar para onde o goleiro não vai; o goleiro quer ir para onde a bola vai. Para qualquer par de escolhas fixas, um dos dois quer desviar: se o batedor sempre chuta à direita, o goleiro pula à direita, e então o batedor prefere a esquerda; e assim por diante, sem ponto de repouso. Não há, portanto, equilíbrio em estratégias **puras**. A teoria prevê **estratégias mistas**: cada um aleatoriza suas escolhas com probabilidades que deixam o adversário indiferente, tornando-se **imprevisível**. Dados reais de pênaltis são notavelmente consistentes com o equilíbrio de estratégias mistas — os jogadores de fato se comportam de modo próximo ao aleatório ótimo.
+:::
+
+**6.** (Análise de caso) A guerra fiscal do ICMS entre estados brasileiros é frequentemente descrita como um dilema do prisioneiro. (a) Modele-a: quem são os jogadores, quais as estratégias, por que "conceder incentivo" é dominante? (b) Por que o resultado é ruim para o conjunto dos estados? (c) Como a reforma tributária tenta resolver o problema?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**(a)** Jogadores: os estados (simplifique para dois). Estratégias: "conceder incentivo de ICMS" ou "não conceder". Conceder é dominante porque: se o outro não concede, eu atraio a empresa concedendo; se o outro concede, preciso conceder também para não perder a empresa. Em qualquer cenário, conceder é a melhor resposta — como "confessar". **(b)** Quando **todos** concedem, as empresas acabam se instalando onde já teria feito sentido por razões de mercado (logística, mão de obra), mas agora **sem pagar** o imposto que pagariam: a arrecadação conjunta cai e o benefício foi capturado pelas empresas, sem ganho líquido de investimento para o conjunto — resultado pior para todos os estados, análogo a (confessar, confessar). **(c)** A reforma tributária (EC 132/2023) substitui o ICMS pelo IBS com tributação **no destino** (onde o bem é consumido, não onde é produzido). Isso **remove o incentivo** a conceder benefícios na origem para atrair fábricas, pois o imposto passa a ser devido no estado consumidor — muda a estrutura de *payoffs* do jogo, esvaziando a guerra fiscal em vez de apenas proibi-la. É o princípio geral: para escapar de um dilema do prisioneiro, mude as regras do jogo.
+:::
+
+**7.** (Desafio) Um jogo de coordenação tem dois equilíbrios de Nash, um deles melhor para os dois jogadores (como o exercício 3). Se os jogadores não podem se comunicar, o que pode fazê-los convergir para um equilíbrio específico? Relacione com a ideia de "ponto focal" e dê um exemplo econômico.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Sem comunicação, a teoria pura não seleciona entre equilíbrios múltiplos — ambos são estáveis. O que resolve na prática é um **ponto focal** (conceito de Schelling): algo saliente, culturalmente compartilhado ou historicamente estabelecido, que faz os jogadores esperarem que o outro escolha uma opção específica. Ex.: se dois se perdem numa cidade, tendem a ir a um marco óbvio (uma praça central); a saliência coordena as expectativas. Em economia, pontos focais explicam por que **padrões** e **normas** se firmam: o dólar como moeda de referência internacional, um preço "redondo" como âncora numa negociação, uma norma técnica adotada porque "todo mundo usa". Uma vez que um equilíbrio vira ponto focal, cada agente espera que os outros o sigam, e desviar deixa de compensar — a expectativa se torna autorrealizável. Isso também esclarece por que padrões inferiores podem persistir (teclado QWERTY): a coordenação prende todos ao equilíbrio estabelecido, mesmo que outro fosse melhor.
+:::
+
+## Para saber mais
+
+- @varian2015 — capítulos de teoria dos jogos e oligopólio; apresenta dominância, Nash e estratégias mistas de forma acessível e conectada à microeconomia.
+- @pindyck2013 — desenvolve o dilema do prisioneiro, jogos de coordenação e aplicações a oligopólio com exemplos abundantes.
+- @nash1951 — o artigo seminal, de duas páginas, que definiu o equilíbrio que leva seu nome e provou sua existência em jogos finitos.
+- @neumann1944 — a obra fundadora da teoria dos jogos, que introduziu a forma normal e o tratamento de jogos de soma zero.
+- @nicholson2019 — tratamento mais formal, com a definição rigorosa de equilíbrio e extensões.

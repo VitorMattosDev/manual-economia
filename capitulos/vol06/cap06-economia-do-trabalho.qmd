@@ -1,0 +1,195 @@
+# Economia do trabalho: salários, capital humano e informalidade {#sec-economia-do-trabalho}
+
+Por que um engenheiro ganha mais que um faxineiro? Por que o mesmo trabalho paga mais em São Paulo do que no interior do Maranhão? Por que quase metade dos trabalhadores brasileiros está na informalidade, sem carteira assinada, sem férias, sem FGTS? E a pergunta que divide economistas há um século: aumentar o salário mínimo ajuda ou prejudica os trabalhadores mais pobres? O mercado de trabalho é, para a imensa maioria das pessoas, o mais importante de todos os mercados — é dele que vem o salário que paga o aluguel, a comida e a escola dos filhos. E é um mercado peculiar, porque a "mercadoria" negociada é o tempo e o esforço de seres humanos, com tudo o que isso traz de dignidade, direitos e conflito.
+
+Este capítulo aplica as ferramentas da microeconomia — oferta, demanda, produtividade marginal — ao trabalho, e as combina com conceitos deste volume, como a informação assimétrica do capítulo anterior. Veremos como se forma o salário, por que a educação eleva a renda (a teoria do **capital humano**), o que a economia diz — com honestas divergências — sobre o **salário mínimo**, e por que a **informalidade** é um traço tão persistente do mercado de trabalho brasileiro.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- derivar a **demanda por trabalho** a partir do produto marginal e a **oferta de trabalho** da escolha entre trabalho e lazer;
+- explicar a formação do **salário de equilíbrio** e as fontes de **diferenciais salariais**;
+- apresentar a teoria do **capital humano** e distinguir seus efeitos dos de **sinalização**;
+- expor, com **pluralismo**, o debate econômico sobre o **salário mínimo**;
+- analisar as causas e consequências da **informalidade** no mercado de trabalho brasileiro;
+- interpretar dados do trabalho no Brasil (PNAD Contínua, salário mínimo, informalidade).
+
+## A demanda por trabalho: produto marginal e salário
+
+Por que uma empresa contrata alguém? Não por caridade, mas porque aquele trabalhador **acrescenta à produção** mais do que custa. Retomando a teoria da produção (@sec-teoria-da-producao), o valor que um trabalhador adicional gera é o **valor do produto marginal do trabalho** ($VPMg_L$): quanto ele produz a mais, multiplicado pelo preço do produto.
+
+::: {.callout-note title="Definição — Regra de contratação da firma"}
+Uma firma competitiva contrata trabalhadores até o ponto em que o **valor do produto marginal do trabalho** iguala o **salário**:
+$$
+VPMg_L = P \times PMg_L = w,
+$$
+onde $P$ é o preço do produto, $PMg_L$ o produto marginal do trabalho e $w$ o salário. Contratar além disso custaria mais do que o trabalhador acrescenta; contratar menos deixaria lucro na mesa.
+:::
+
+Como o produto marginal do trabalho é **decrescente** (a lei dos rendimentos decrescentes: cada trabalhador extra, com capital fixo, acrescenta um pouco menos), a curva de $VPMg_L$ — que é a **curva de demanda por trabalho** da firma — é **descendente**: a salários menores, contrata-se mais. Isso já explica a intuição fundamental: **salário e produtividade caminham juntos**. Trabalhadores mais produtivos (por talento, educação, tecnologia que os acompanha) têm $VPMg_L$ maior e comandam salários maiores.
+
+## A oferta de trabalho: trabalho versus lazer
+
+Do lado do trabalhador, ofertar trabalho é abrir mão de **lazer** (todo tempo não trabalhado: descanso, estudo, família). O salário é o **custo de oportunidade do lazer** — cada hora de folga "custa" o salário que se deixa de ganhar. Quando o salário sobe, dois efeitos se opõem:
+
+- **Efeito substituição:** lazer ficou mais caro (renuncia-se a mais salário para descansar) → trabalha-se **mais**.
+- **Efeito renda:** com salário maior, a pessoa está mais rica e pode "comprar" mais lazer (trabalhar menos e ainda ganhar bem) → trabalha-se **menos**.
+
+Em geral, a salários baixos o efeito substituição domina (a oferta sobe com o salário); a salários muito altos, o efeito renda pode dominar, e a curva de oferta individual chega a **dobrar para trás**. No agregado, porém, a oferta de mercado é normalmente crescente. O salário de equilíbrio surge do encontro entre a demanda (das firmas) e a oferta (dos trabalhadores), como na @fig-mercado-trabalho.
+
+::: {#fig-mercado-trabalho}
+
+```{.tikz}
+%%| filename: fig-mercado-trabalho
+%%| alt: Gráfico do mercado de trabalho com salário no eixo vertical e quantidade de trabalho no horizontal. A demanda por trabalho é descendente e a oferta ascendente, cruzando no equilíbrio. Uma linha horizontal de salário mínimo acima do equilíbrio gera excesso de oferta (desemprego), marcado entre a quantidade demandada e a ofertada a esse salário.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (7,0) node[right] {$L$ (trabalho)};
+  \draw[eixo] (0,0) -- (0,6.3) node[above] {$w$ (salário)};
+  % Demanda por trabalho (VPMg) descendente
+  \draw[curva, manualblue, thick] (0.4,5.6) -- (6.2,0.8) node[below right, font=\footnotesize] {$D_L = VPMg_L$};
+  % Oferta de trabalho ascendente
+  \draw[curva, manualred, thick] (0.6,0.7) -- (6.0,5.4) node[right, font=\footnotesize] {$S_L$};
+  % Equilíbrio ~ (3.3, 3.3)
+  \node[ponto] at (3.35,3.2) {};
+  \draw[auxiliar] (3.35,0) -- (3.35,3.2);
+  \draw[auxiliar] (0,3.2) -- (3.35,3.2);
+  \node[left, font=\footnotesize] at (0,3.2) {$w^{*}$};
+  \node[below, font=\footnotesize] at (3.35,0) {$L^{*}$};
+  % Salário mínimo acima do equilíbrio
+  \draw[destaque, manualgreen, thick] (0,4.5) -- (6.3,4.5) node[right, font=\footnotesize] {$w_{\min}$};
+  % Quantidade demandada a w_min (na demanda): resolve ~ (2.3, 4.5)
+  \draw[auxiliar] (2.25,0) -- (2.25,4.5);
+  \node[below, font=\scriptsize] at (2.15,0) {$L_D$};
+  % Quantidade ofertada a w_min (na oferta): ~ (4.45, 4.5)
+  \draw[auxiliar] (4.45,0) -- (4.45,4.5);
+  \node[below, font=\scriptsize] at (4.55,0) {$L_S$};
+  % excesso de oferta
+  \draw[<->, manualgray] (2.25,1.2) -- (4.45,1.2);
+  \node[font=\scriptsize, manualgray, align=center] at (3.35,0.85) {excesso de oferta\\(desemprego)};
+\end{tikzpicture}
+```
+
+Mercado de trabalho: equilíbrio em $(L^{*}, w^{*})$ e o efeito de um salário mínimo $w_{\min}$ acima do equilíbrio.
+:::
+
+## Diferenciais de salário e o capital humano
+
+Se o salário reflete a produtividade, o que faz uns serem mais produtivos que outros? A resposta central é o **capital humano**.
+
+::: {.callout-note title="Definição — Capital humano"}
+**Capital humano** é o estoque de conhecimentos, habilidades, saúde e experiência incorporado nas pessoas, que aumenta sua produtividade. Como o capital físico, é acumulado por **investimento** — educação, treinamento, experiência — que tem custos (mensalidade, tempo, renda sacrificada) e retornos (salários mais altos ao longo da vida) [@becker1964].
+:::
+
+A teoria do capital humano, desenvolvida por Gary Becker, explica por que a escolaridade eleva a renda: educar-se é **investir** em produtividade futura, e o mercado remunera essa produtividade maior. Ela racionaliza o **prêmio salarial da educação** — o retorno de cada ano adicional de estudo — observado em praticamente todos os países.
+
+::: {.callout-warning title="Capital humano ou sinalização? Um debate em aberto"}
+Há duas leituras rivais para o prêmio da educação, e a verdade tem das duas. Na visão do **capital humano** (Becker), a escola **torna** a pessoa mais produtiva — ela aprende coisas úteis. Na visão da **sinalização** (Spence, @sec-informacao-assimetrica), o diploma **revela** uma produtividade que já existia, sem necessariamente aumentá-la — funciona como um sinal num mercado com informação assimétrica. As duas têm implicações de política diferentes: se é capital humano, expandir a educação eleva a produtividade agregada; se é puro sinal, pode apenas encarecer a "corrida por credenciais" sem ganho social. A evidência sugere que a educação faz **as duas coisas** — gera habilidades reais *e* sinaliza —, e separar as duas parcelas é um dos problemas empíricos mais difíceis da economia do trabalho.
+:::
+
+Nem todo diferencial salarial vem do capital humano. Há também **diferenciais compensatórios** (trabalhos perigosos ou desagradáveis pagam mais para atrair gente — o adicional de periculosidade), diferenças de **talento** e **sorte**, o poder de **sindicatos** e de **salário-eficiência** (firmas que pagam acima do mercado para reter e motivar), e, infelizmente, a **discriminação** — diferenças salariais entre grupos (por gênero, raça) não explicadas por produtividade, um tema central e sensível da área.
+
+## O debate sobre o salário mínimo
+
+Poucos temas em economia geram tanto debate — e tão instrutivo sobre o próprio método da ciência — quanto o **salário mínimo**. Aqui, mais do que em qualquer outro ponto deste volume, cabe o **pluralismo**: apresentar as posições com seus melhores argumentos.
+
+**A visão neoclássica tradicional.** No modelo competitivo da @fig-mercado-trabalho, um salário mínimo fixado **acima** do equilíbrio ($w_{\min} > w^{*}$) reduz a quantidade de trabalho demandada ($L_D$) e aumenta a ofertada ($L_S$), gerando **excesso de oferta** — ou seja, **desemprego**. Quem mantém o emprego ganha mais; quem perde (ou não consegue entrar) fica pior. Como os afetados tendem a ser os **menos qualificados** (jovens, primeiro emprego), o mínimo alto poderia prejudicar justamente quem pretende ajudar, e ainda empurrar trabalhadores para a **informalidade**, onde o mínimo não é cumprido.
+
+**A visão revisionista (evidência empírica).** A partir dos anos 1990, estudos empíricos influentes (notadamente de Card e Krueger nos EUA) encontraram que aumentos moderados do salário mínimo tiveram efeito **pequeno ou nulo** sobre o emprego — contrariando a previsão simples. Como explicar? Se o empregador tem **poder de mercado** sobre o trabalho (**monopsônio** — poucos empregadores numa região), ele paga abaixo da produtividade; nesse caso, um mínimo bem calibrado pode **elevar salário e emprego** ao mesmo tempo, corrigindo o poder do empregador. Some-se a isso que salários maiores podem reduzir rotatividade e elevar produtividade (salário-eficiência).
+
+::: {.callout-warning title="O que a economia realmente diz sobre o salário mínimo"}
+O debate mostra que a resposta **depende da magnitude e do contexto**. Há relativo consenso de que um mínimo **muito alto** em relação à produtividade e ao salário mediano **destrói empregos** e alimenta a informalidade; e que aumentos **moderados**, em mercados com poder de monopsônio, podem ter efeito pequeno sobre o emprego e melhorar a renda dos mais pobres. A questão empírica é *onde* está o limite — que varia entre países, regiões e momentos. É também um debate em parte **normativo**: quanto se está disposto a arriscar em emprego para elevar a renda de quem trabalha. Um bom economista distingue a dimensão positiva (qual o efeito?) da normativa (qual objetivo priorizar?), como vimos em @sec-o-que-e-economia.
+:::
+
+## Informalidade
+
+Um traço define o mercado de trabalho brasileiro e de boa parte do mundo em desenvolvimento: a **informalidade**.
+
+::: {.callout-note title="Definição — Informalidade"}
+O **trabalho informal** é aquele que ocorre à margem da regulação trabalhista e tributária: sem carteira assinada (no caso do emprego), sem contribuição à previdência, sem os direitos e proteções legais. Inclui empregados sem registro, trabalhadores por conta própria não formalizados e o trabalho "por fora".
+:::
+
+Por que a informalidade é tão persistente? As explicações se combinam:
+
+- **Custo da formalização.** Encargos trabalhistas, tributos e a burocracia elevam o custo de contratar formalmente; parte das firmas e trabalhadores opta pela informalidade para escapar desse custo (a "cunha" entre o custo para a firma e o líquido do trabalhador).
+- **Baixa produtividade.** Trabalhadores e negócios de baixa produtividade não geram valor suficiente para arcar com os custos da formalidade — a informalidade é, em parte, sintoma do subdesenvolvimento produtivo.
+- **Rigidez regulatória e fiscalização limitada.** Regras rígidas com fiscalização fraca criam espaço para a informalidade.
+- **Porta de entrada e colchão.** Para muitos, o setor informal é a alternativa ao desemprego — absorve quem não encontra vaga formal, funcionando como amortecedor nas crises.
+
+A informalidade tem custos: o trabalhador fica sem proteção (previdência, seguro-desemprego, FGTS), a arrecadação e a base previdenciária encolhem, e a produtividade agregada sofre. Mas também reflete uma **escolha racional** diante dos custos da formalidade — por isso reduzi-la exige mais do que fiscalizar: exige baixar o custo de ser formal e elevar a produtividade.
+
+## Brasil em Foco {#sec-economia-do-trabalho-brasil}
+
+O mercado de trabalho é onde a economia brasileira mais diretamente toca a vida das pessoas.
+
+**O salário mínimo e sua política de valorização.** O salário mínimo é uma instituição central no Brasil, com alcance que vai além do emprego formal: indexa o piso de aposentadorias e o Benefício de Prestação Continuada (BPC), afetando dezenas de milhões de pessoas. Por isso seus reajustes têm forte impacto **fiscal** (elevam despesas previdenciárias) e **distributivo**. As **políticas de valorização** (regras de reajuste ligadas à inflação e ao crescimento do PIB) elevaram o mínimo real de forma expressiva em certos períodos. O debate brasileiro reproduz o do capítulo: de um lado, a valorização reduziu a desigualdade e a pobreza; de outro, discute-se seu efeito sobre o emprego formal dos menos qualificados e sobre as contas públicas. É um caso onde a dimensão positiva (efeitos sobre emprego) e a normativa (redução da desigualdade *versus* sustentabilidade fiscal) se entrelaçam.
+
+**Informalidade: perto de 40% da força de trabalho.** Segundo a **PNAD Contínua (IBGE)**, a taxa de informalidade no Brasil tem oscilado em torno de **38% a 40%** da população ocupada nos últimos anos — dezenas de milhões de trabalhadores sem as proteções da formalidade. A informalidade é maior entre jovens, menos escolarizados, nas regiões Norte e Nordeste e no trabalho por conta própria. A reforma trabalhista de 2017 e a criação de figuras como o **MEI (Microempreendedor Individual)** buscaram reduzir o custo da formalização; o debate sobre seus efeitos segue aberto. A informalidade também explica por que o **desemprego** medido pode subestimar a precariedade: muita gente "ocupada" está em trabalhos frágeis e de baixa renda (subutilização da força de trabalho, também medida pela PNAD).
+
+**Diferenciais e discriminação.** Os dados da PNAD Contínua e do RAIS/CAGED revelam diferenciais salariais persistentes por **escolaridade** (forte prêmio da educação, coerente com o capital humano), por **região** e por **gênero e raça**. A diferença de rendimento entre homens e mulheres e entre brancos e negros, mesmo controlando por escolaridade e ocupação, é um dos temas mais estudados e debatidos, remetendo tanto à discriminação quanto a diferenças de trajetória e acesso — assunto que retomaremos ao tratar de pobreza e desigualdade.
+
+> **Fontes e séries para explorar:** IBGE/PNAD Contínua (ocupação, informalidade, rendimento, subutilização); Ministério do Trabalho — Novo CAGED e RAIS (emprego formal); DIEESE e IPEA (salário mínimo e sua valorização); histórico do salário mínimo real. Ao citar taxas de informalidade e desemprego, verifique o trimestre de referência, pois há sazonalidade.
+
+## Resumo do capítulo
+
+- A **demanda por trabalho** deriva do **valor do produto marginal**: a firma contrata até $VPMg_L = w$. Como o produto marginal é decrescente, a demanda é descendente — **salário acompanha produtividade**.
+- A **oferta de trabalho** vem da escolha entre trabalho e lazer; um aumento de salário tem **efeito substituição** (trabalhar mais) e **efeito renda** (trabalhar menos), podendo dobrar a curva para trás em salários altos.
+- O **salário de equilíbrio** iguala oferta e demanda. Diferenciais salariais vêm de **capital humano**, diferenciais **compensatórios**, talento, sindicatos, salário-eficiência e **discriminação**.
+- **Capital humano** (Becker): educação e treinamento são investimento em produtividade, explicando o **prêmio da educação**. Debate com a **sinalização** (o diploma revela em vez de criar produtividade) — a evidência aponta para os dois efeitos.
+- **Salário mínimo** (pluralismo): a visão neoclássica prevê **desemprego** se o mínimo ficar acima do equilíbrio; a evidência revisionista mostra efeito pequeno para aumentos moderados, sobretudo sob **monopsônio**. A resposta depende da **magnitude e do contexto**, e envolve juízos normativos.
+- **Informalidade**: trabalho à margem da regulação, persistente no Brasil (~40% dos ocupados), explicada pelo custo da formalização, baixa produtividade, rigidez regulatória e por servir de amortecedor ao desemprego.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva antes de abrir a solução. Dificuldade crescente.
+:::
+
+**1.** Explique por que a curva de demanda por trabalho de uma firma é descendente. Relacione com a lei dos rendimentos decrescentes.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A firma contrata trabalho até o valor do produto marginal do trabalho igualar o salário ($VPMg_L = w$). O $VPMg_L = P \times PMg_L$ depende do **produto marginal do trabalho** ($PMg_L$), que é **decrescente** pela lei dos rendimentos decrescentes: mantendo o capital fixo, cada trabalhador adicional acrescenta um pouco menos à produção do que o anterior (aglomeração, capital limitado por pessoa). Como o $PMg_L$ cai à medida que se contrata mais gente, o $VPMg_L$ também cai — e como a firma iguala $VPMg_L$ ao salário, ela só contrata mais trabalhadores se o salário for **menor**. Logo a curva de demanda por trabalho (que é a curva de $VPMg_L$) é **descendente**: a salários menores, contrata-se mais.
+:::
+
+**2.** O que são o efeito renda e o efeito substituição na oferta de trabalho? Como eles explicam que a curva de oferta individual possa "dobrar para trás"?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Quando o salário sobe: o **efeito substituição** torna o lazer mais **caro** (cada hora de folga custa mais salário renunciado), o que incentiva a pessoa a **substituir lazer por trabalho** — trabalhar **mais**. O **efeito renda** decorre de a pessoa ficar mais **rica** com o salário maior; como o lazer é um bem normal, ela deseja consumir **mais** lazer — trabalhar **menos**. Os dois efeitos atuam em sentidos opostos. A salários **baixos**, o efeito substituição costuma dominar e a oferta sobe com o salário. A salários **muito altos**, o efeito renda pode dominar (a pessoa já ganha bem e prefere mais tempo livre), fazendo a quantidade ofertada de trabalho **cair** quando o salário sobe ainda mais — a curva de oferta individual **dobra para trás**.
+:::
+
+**3.** Distinga a teoria do capital humano da teoria da sinalização como explicações para o prêmio salarial da educação. Que implicação de política cada uma sugere?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Capital humano** (Becker): a educação **aumenta** a produtividade do trabalhador — ele aprende conhecimentos e habilidades úteis —, e o mercado remunera essa produtividade maior; o prêmio da educação reflete um ganho **real** de capacidade produtiva. **Sinalização** (Spence): a educação **revela** uma produtividade que o indivíduo já tinha, sem necessariamente aumentá-la; o diploma serve de **sinal** num mercado com informação assimétrica, e o prêmio reflete a informação transmitida, não uma habilidade criada. **Implicações de política:** se vale o capital humano, **expandir e melhorar a educação eleva a produtividade agregada** da economia — investir em escolaridade tem retorno social alto. Se vale a sinalização pura, expandir diplomas pode gerar só uma **corrida por credenciais** (inflação de diplomas) que reordena quem consegue os empregos sem elevar a produtividade total — o retorno social seria menor que o privado. Na prática, a educação faz as duas coisas, o que sustenta o investimento em ensino mas recomenda atenção à sua **qualidade** (que gera habilidade real), não só à quantidade de diplomas.
+:::
+
+**4.** Usando a @fig-mercado-trabalho, explique o efeito de um salário mínimo fixado acima do equilíbrio segundo o modelo competitivo tradicional. Quem ganha e quem perde?
+
+::: {.callout-tip collapse="true" title="Solução"}
+No modelo competitivo, ao salário de equilíbrio $w^{*}$ o mercado se equilibra em $L^{*}$. Um salário mínimo $w_{\min} > w^{*}$ é um **piso** que impede o salário de cair ao equilíbrio. A esse salário mais alto, as firmas demandam **menos** trabalho ($L_D < L^{*}$, movimento ao longo da demanda) e mais gente quer trabalhar ($L_S > L^{*}$, ao longo da oferta). O resultado é um **excesso de oferta** de trabalho ($L_S - L_D$), isto é, **desemprego** involuntário. **Ganham** os trabalhadores que **mantêm** o emprego, pois recebem $w_{\min} > w^{*}$. **Perdem** os que **perdem o emprego** (ou não conseguem ser contratados) — a diferença entre $L^{*}$ e $L_D$ — e os que gostariam de trabalhar a esse salário mas não encontram vaga. Como os afetados tendem a ser os **menos qualificados** (jovens, sem experiência), o modelo tradicional alerta que o mínimo alto pode prejudicar justamente os mais vulneráveis, além de empurrá-los à informalidade.
+:::
+
+**5.** Por que a evidência empírica de que aumentos moderados do salário mínimo têm efeito pequeno sobre o emprego não contradiz necessariamente a teoria econômica? Cite o papel do monopsônio.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O resultado "desemprego" da @fig-mercado-trabalho depende de uma hipótese específica: mercado de trabalho **perfeitamente competitivo**, em que a firma toma o salário como dado. Se essa hipótese não vale, a conclusão muda — e a teoria acomoda isso. O caso mais importante é o **monopsônio** (ou poder de monopsônio): quando há **poucos empregadores** numa região ou setor, a firma tem poder de mercado sobre o trabalho e paga um salário **abaixo** da produtividade marginal (restringe contratações para pagar menos). Nesse cenário, um salário mínimo bem calibrado pode **elevar simultaneamente o salário e o emprego**, porque força a firma a pagar mais perto do valor do produto marginal e remove a restrição artificial de contratação — o oposto do resultado competitivo. Somam-se efeitos de **salário-eficiência** (salários maiores reduzem rotatividade e elevam esforço/produtividade). Assim, a evidência de efeito pequeno para aumentos moderados é **consistente** com uma teoria mais rica que incorpora poder de mercado — não uma refutação da economia, mas um refinamento de qual modelo se aplica. O que permanece é que um mínimo **muito alto** em relação à produtividade tende a destruir empregos em qualquer modelo.
+:::
+
+**6.** (Análise de caso) A informalidade no Brasil gira em torno de 40% dos ocupados. (a) Liste três causas. (b) Explique por que a informalidade pode ser uma escolha racional do trabalhador e da firma. (c) Quais os custos sociais dessa informalidade elevada?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**(a)** Três causas: **(1)** o **custo da formalização** — encargos trabalhistas, tributos e burocracia elevam o custo de contratar com carteira, criando uma "cunha" entre o que a firma paga e o que o trabalhador recebe líquido; **(2)** a **baixa produtividade** de muitos trabalhadores e pequenos negócios, que não geram valor suficiente para arcar com os custos da formalidade; **(3)** a **rigidez regulatória combinada com fiscalização limitada**, que abre espaço para operar à margem, além de a informalidade servir de **amortecedor** ao desemprego (absorve quem não acha vaga formal). **(b)** Pode ser racional porque, na margem, tanto a firma quanto o trabalhador podem sair **ganhando no curto prazo**: a firma economiza encargos e tributos; o trabalhador pode receber um líquido maior "por fora" (sem descontos) ou simplesmente preferir um trabalho informal a **não ter trabalho algum**. Diante dos custos da formalidade e da baixa produtividade, informalizar é a resposta ótima individual — mesmo que coletivamente indesejável. **(c)** Custos sociais: o trabalhador fica **desprotegido** (sem previdência, FGTS, seguro-desemprego, direitos), o que aumenta a vulnerabilidade e a pobreza na velhice ou no desemprego; a **base previdenciária e tributária** encolhe, agravando as contas públicas e sobrecarregando quem é formal; a **produtividade agregada** sofre (negócios informais tendem a ser pequenos, sem acesso a crédito e escala); e a concorrência fica **distorcida** (firmas informais competem com custos artificialmente menores). Reduzir a informalidade exige, portanto, **baixar o custo de ser formal** (simplificação tributária, MEI) e **elevar a produtividade**, não apenas fiscalizar.
+:::
+
+**7.** (Desafio) O salário mínimo no Brasil indexa aposentadorias e benefícios como o BPC, alcançando dezenas de milhões de pessoas além dos assalariados formais. (a) Como isso amplia os efeitos de um reajuste? (b) Que *trade-off* entre objetivos ele cria? (c) Relacione com a distinção entre economia positiva e normativa.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**(a)** Como o mínimo é o **piso** de aposentadorias, pensões e do BPC, um reajuste não afeta apenas o salário de quem ganha o mínimo no mercado de trabalho, mas **automaticamente eleva a despesa** com dezenas de milhões de benefícios previdenciários e assistenciais. O impacto **fiscal** de cada reajuste é, portanto, muito maior do que sugeriria olhar só o emprego formal — o mínimo é um dos principais determinantes do crescimento do gasto público obrigatório. Também amplifica o efeito **distributivo e macroeconômico** (renda e consumo de milhões de famílias de baixa renda). **(b)** Cria um *trade-off* entre **redução da pobreza/desigualdade** (elevar o mínimo aumenta a renda dos mais pobres, muitos deles idosos e beneficiários) e a **sustentabilidade fiscal** (o mesmo reajuste pressiona o orçamento e a dívida pública, podendo forçar cortes em outras áreas ou aumento de impostos — um custo de oportunidade, como em @sec-o-que-e-economia); há ainda o *trade-off* clássico com o **emprego formal** dos menos qualificados. **(c)** A distinção positiva/normativa organiza o debate: perguntas **positivas** (testáveis) são "qual o efeito de um reajuste do mínimo sobre o emprego? sobre a despesa previdenciária? sobre a pobreza?"; a resposta é matéria de evidência empírica. A pergunta **normativa** é "**quanto** vale a pena arriscar em emprego formal e em pressão fiscal para reduzir a pobreza de idosos e trabalhadores?" — que depende de **juízos de valor** sobre quais objetivos priorizar. Bons formuladores separam as duas: estimam os efeitos (positivo) e decidem os pesos (normativo) de forma transparente, em vez de disfarçar preferências de valor como se fossem fatos.
+:::
+
+## Para saber mais
+
+- @becker1964 — a obra que fundou a teoria do capital humano; base para entender o retorno da educação e do treinamento.
+- @mankiw2020 — capítulos sobre os mercados de fatores e a economia do trabalho, com o debate do salário mínimo.
+- @pindyck2013 — trata de mercados de fatores, monopsônio e determinação de salários com rigor gráfico.
+- @spence1973 — para a leitura de sinalização como alternativa ao capital humano na explicação do prêmio da educação.

@@ -1,0 +1,192 @@
+# Externalidades e o teorema de Coase {#sec-externalidades}
+
+A fábrica rio acima despeja resíduos que estragam a pesca rio abaixo, mas não paga por isso. O vizinho do apartamento de cima faz uma festa às três da manhã e o custo do seu sono perdido não entra na conta dele. O carro que você dirige na hora do rush torna o trânsito de todos os outros um pouco pior, e ninguém lhe cobra por isso. Do outro lado, quem vacina os filhos protege também as crianças da vizinhança, quem restaura a fachada histórica embeleza a rua inteira, quem se educa gera ideias que beneficiam desconhecidos — sem receber por esses ganhos. Em todos esses casos, uma ação de alguém afeta terceiros que não participaram da decisão, e o mercado, sozinho, não dá conta do recado.
+
+Esse descolamento entre o que é bom para o indivíduo e o que é bom para a sociedade é uma **falha de mercado** — uma situação em que a busca do interesse próprio, tão eficiente nos capítulos anteriores, **deixa de levar ao melhor resultado coletivo**. A causa aqui é a **externalidade**. Este capítulo mostra por que externalidades levam o mercado a produzir demais (do que polui) ou de menos (do que beneficia), e examina as duas grandes famílias de solução: a **intervenção corretiva** de Pigou (impostos e subsídios) e a **negociação privada** de Coase.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- definir **externalidade** e distinguir externalidades **negativas** e **positivas**, de produção e de consumo;
+- separar **custo (ou benefício) privado** de **custo (ou benefício) social** e localizar o **ótimo social**;
+- demonstrar graficamente a **ineficiência** (peso morto) gerada por externalidades;
+- explicar as soluções de **Pigou** (impostos e subsídios corretivos) e comparar com **normas e mercados de licenças**;
+- enunciar e aplicar o **teorema de Coase**, entendendo o papel dos **direitos de propriedade** e dos **custos de transação**;
+- analisar problemas ambientais e urbanos brasileiros à luz desses conceitos.
+
+## O que é uma externalidade
+
+::: {.callout-note title="Definição — Externalidade"}
+Uma **externalidade** ocorre quando a ação de um agente (produção ou consumo) impõe um **custo** ou confere um **benefício** a terceiros que **não participam** da transação, sem que esse efeito seja compensado por um preço. Quando prejudica terceiros, é uma externalidade **negativa**; quando os beneficia, **positiva**.
+:::
+
+O ponto essencial é que o efeito sobre terceiros **não passa pelo mercado**: não há preço que o registre. Por isso quem decide **ignora** esse efeito — o poluidor não sente o custo que impõe, o vacinado não colhe o benefício que gera. As decisões privadas passam a divergir do que seria melhor para a sociedade.
+
+Convém distinguir dois pares de conceitos:
+
+- **Custo privado marginal (CPM)**: o custo que recai sobre quem produz. **Custo social marginal (CSM)**: o custo privado *mais* o custo externo imposto a terceiros. Numa externalidade negativa de produção, $CSM = CPM + \text{custo externo} > CPM$.
+- **Benefício privado marginal (BPM)**: o benefício de quem consome. **Benefício social marginal (BSM)**: o privado *mais* o benefício externo. Numa externalidade positiva de consumo, $BSM = BPM + \text{benefício externo} > BPM$.
+
+O mercado equilibra oferta e demanda usando os valores **privados**. O ótimo social usa os valores **sociais**. A distância entre eles é a ineficiência.
+
+## Externalidade negativa: por que o mercado produz demais
+
+Considere uma fábrica que polui. Sua curva de oferta reflete o **custo privado marginal** (insumos, trabalho, capital), mas ignora o dano da poluição a terceiros. A curva de **custo social marginal** está **acima**, pela distância do custo externo. O mercado equilibra onde a demanda cruza o CPM, no ponto $(Q_m, P_m)$; o ótimo social está onde a demanda cruza o CSM, em $Q^{*} < Q_m$. O mercado **produz demais** — e cada unidade entre $Q^{*}$ e $Q_m$ custa à sociedade mais do que vale, gerando um **peso morto**. A @fig-ext-negativa ilustra.
+
+::: {#fig-ext-negativa}
+
+```{.tikz}
+%%| filename: fig-ext-negativa
+%%| alt: Gráfico com preço no eixo vertical e quantidade no horizontal. A curva de demanda desce; a curva de custo privado marginal (oferta) sobe; a curva de custo social marginal está acima e paralela à privada. O equilíbrio de mercado ocorre à direita e abaixo do ótimo social. Um triângulo sombreado entre as curvas e as duas quantidades marca o peso morto.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (7,0) node[right] {$Q$};
+  \draw[eixo] (0,0) -- (0,6.5) node[above] {$P$};
+  % Demanda
+  \draw[curva, manualblue, thick] (0.3,5.8) -- (6.3,0.6) node[below right, font=\footnotesize] {$D = BSM$};
+  % CPM (oferta privada)
+  \draw[curva, manualred, thick] (0.3,0.8) -- (6.0,5.2) node[right, font=\footnotesize] {$CPM$ (oferta)};
+  % CSM (acima)
+  \draw[curva, manualgreen, thick] (0.3,2.2) -- (5.0,5.8) node[right, font=\footnotesize] {$CSM$};
+  % Mercado: interseção D x CPM ~ (3.7, 3.5)
+  \node[ponto] at (3.75,3.45) {};
+  \draw[auxiliar] (3.75,0) -- (3.75,3.45);
+  \node[below, font=\footnotesize] at (3.9,0) {$Q_m$};
+  % Ótimo: interseção D x CSM ~ (2.7, 4.3)
+  \node[ponto] at (2.65,4.35) {};
+  \draw[auxiliar] (2.65,0) -- (2.65,4.35);
+  \node[below, font=\footnotesize] at (2.5,0) {$Q^{*}$};
+  % Peso morto (triângulo entre CSM, D, de Q* a Qm)
+  \fill[manualgray, opacity=0.30] (2.65,4.35) -- (3.75,3.45) -- (3.75,4.95) -- cycle;
+  \node[font=\scriptsize, manualgray] at (5.0,2.3) {peso morto};
+  \draw[->, manualgray] (4.6,2.5) -- (3.5,4.1);
+\end{tikzpicture}
+```
+
+Externalidade negativa de produção: o mercado produz $Q_m > Q^{*}$; o triângulo é o peso morto.
+:::
+
+## Externalidade positiva: por que o mercado produz de menos
+
+O caso simétrico é o de uma externalidade **positiva**, como a vacinação ou a educação. Quem se vacina considera só o **benefício privado**; ignora que reduz o contágio para os demais. O **benefício social marginal** está **acima** da demanda privada. O mercado se equilibra em $Q_m$, mas o ótimo social está em $Q^{*} > Q_m$: o mercado **produz de menos** do bem que gera benefícios externos. Também aqui há peso morto — desta vez por *subprodução*.
+
+::: {.callout-tip title="Intuição — a regra é simples"}
+**Externalidade negativa ⇒ excesso de mercado** (produz-se mais do que o socialmente ótimo, porque parte do custo é jogada nos outros). **Externalidade positiva ⇒ escassez de mercado** (produz-se menos, porque parte do benefício vaza para os outros e não é remunerada). Em ambos os casos, o preço de mercado "mente" sobre o verdadeiro valor social.
+:::
+
+## A solução de Pigou: internalizar a externalidade
+
+Como corrigir? A ideia do economista Arthur Pigou (1920) é **internalizar** a externalidade — fazer o agente sentir, no próprio bolso, o custo ou benefício que impõe a terceiros [@pigou1920].
+
+::: {.callout-note title="Definição — Imposto e subsídio pigouvianos"}
+Um **imposto pigouviano** é um tributo sobre uma atividade que gera externalidade **negativa**, calibrado para igualar o **custo externo marginal** no ótimo. Ao pagá-lo, o produtor passa a arcar com o custo social, e o equilíbrio de mercado se desloca para $Q^{*}$. Simetricamente, um **subsídio pigouviano** premia uma atividade com externalidade **positiva**, levando o mercado a produzir a quantidade eficiente.
+:::
+
+O imposto pigouviano tem uma virtude que a proibição pura não tem: em vez de vetar a atividade, ele **precifica** o dano e deixa o mercado decidir onde vale a pena reduzir. Um imposto sobre carbono, por exemplo, faz cada empresa cortar emissões justamente onde cortar é mais barato — atinge a redução ao **menor custo total** para a sociedade. Por isso os economistas costumam preferir instrumentos de preço a comandos rígidos.
+
+Há três grandes famílias de resposta às externalidades negativas:
+
+1. **Comando e controle (normas):** o governo fixa limites diretos (padrão de emissão, proibição, zoneamento). Simples de entender, mas rígido — não explora as diferenças de custo entre poluidores.
+2. **Instrumentos de preço (impostos pigouvianos):** tributam o dano e deixam a quantidade se ajustar. Eficientes, mas exigem estimar o custo externo.
+3. **Mercados de licenças (*cap-and-trade*):** o governo fixa a quantidade total de poluição permitida, emite licenças e deixa que sejam **negociadas**. Quem consegue reduzir barato vende licenças a quem reduziria caro; o corte total ocorre ao menor custo. É a solução de mercado para um problema de mercado.
+
+## O teorema de Coase
+
+Em 1960, Ronald Coase virou o problema do avesso. E se as externalidades pudessem ser resolvidas **sem** o governo, pela própria negociação entre as partes? Sua resposta é um dos resultados mais célebres — e mais mal compreendidos — da economia [@coase1960].
+
+::: {.callout-note title="Definição — Teorema de Coase"}
+Se os **direitos de propriedade** sobre o recurso em disputa forem bem definidos e os **custos de transação** forem desprezíveis, as partes afetadas por uma externalidade **negociarão** entre si até alcançar o resultado **eficiente**, **independentemente de a quem** os direitos tenham sido inicialmente atribuídos. A atribuição de direitos afeta *quem paga a quem* (a distribuição), mas não a *eficiência* do resultado final.
+:::
+
+Um exemplo torna a ideia concreta. Uma fábrica polui um rio onde um pescador trabalha. O dano ao pescador é R\$\,100; eliminar a poluição custaria à fábrica R\$\,60. O eficiente é **eliminar** (gastar 60 para evitar 100 de dano). O teorema diz que, com direitos claros e negociação sem atrito, é isso que acontecerá, **quem quer que seja o dono do direito**:
+
+- **Se o pescador tem direito à água limpa:** a fábrica só pode poluir se o compensar. Como poluir causa 100 de dano e limpar custa só 60, à fábrica compensa gastar 60 para limpar. Resultado: rio limpo.
+- **Se a fábrica tem direito de poluir:** o pescador pode pagá-la para parar. Ele perde 100 com a poluição e limpar custa 60; ele oferece, digamos, 70 para a fábrica limpar — bom para os dois. Resultado: rio limpo.
+
+Em ambos os casos, o **resultado eficiente** (rio limpo) prevalece. O que muda é *quem arca com o custo*: no primeiro, a fábrica paga; no segundo, o pescador. A eficiência independe da atribuição inicial; a **justiça distributiva**, não.
+
+::: {.callout-warning title="A verdadeira lição de Coase é sobre os custos de transação"}
+Coase **não** disse que o governo é desnecessário. A leitura mais fértil do teorema é ao **contrário**: como no mundo real os **custos de transação** raramente são desprezíveis, a negociação privada frequentemente **falha**, e aí a intervenção pode ser justificada. Custos de transação altos surgem quando há **muitas partes** (milhões de vítimas da poluição do ar não têm como se sentar à mesa com milhares de poluidores), **informação assimétrica**, **problemas de free-rider** ou **direitos de propriedade mal definidos**. A contribuição duradoura de Coase foi mostrar que a escolha entre mercado, negociação e Estado depende, caso a caso, de **onde os custos de transação são menores** — e que **definir bem os direitos de propriedade** é, muitas vezes, o primeiro e mais poderoso remédio.
+:::
+
+::: {.callout-important title="Armadilha comum — 'Coase prova que não precisa de governo'"}
+Essa é a interpretação equivocada mais difundida. Coase mostra que a negociação privada resolve *quando os custos de transação são baixos* — condição que vale para poucas partes e direitos claros (o vizinho barulhento, dois fazendeiros lindeiros), mas quase nunca para poluição difusa, mudança climática ou congestionamento urbano, onde há milhões de envolvidos. Nesses casos, Pigou (impostos), normas ou licenças costumam ser superiores. Coase e Pigou são ferramentas **complementares**, escolhidas conforme os custos de transação.
+:::
+
+## Brasil em Foco {#sec-externalidades-brasil}
+
+Externalidades estão no centro dos maiores desafios econômicos e ambientais do Brasil.
+
+**Desmatamento e a Amazônia: externalidade global.** O desmatamento gera externalidades negativas que extrapolam fronteiras: emissão de carbono (contribuindo para a mudança climática global), perda de biodiversidade e alteração de regimes de chuva que afetam a agricultura em outras regiões. O agente que desmata captura o benefício privado (pasto, madeira, soja) mas não arca com o custo social. As respostas brasileiras combinam as três famílias: **comando e controle** (fiscalização do IBAMA, Código Florestal, áreas protegidas), **instrumentos de preço/pagamento** (pagamentos por serviços ambientais, o **Fundo Amazônia**, que remunera a redução do desmatamento) e a construção de um **mercado regulado de carbono** (Lei 15.042/2024, o SBCE), que é, em essência, um sistema *cap-and-trade* à brasileira. A definição de direitos de propriedade — a **regularização fundiária** — é também parte do problema: terra sem dono claro é terra sem quem internalize o custo do desmatamento, um ponto coasiano.
+
+**Congestionamento urbano.** Cada motorista que entra numa via congestionada de São Paulo ou do Rio impõe tempo perdido a todos os outros — uma externalidade negativa clássica, sem preço. As respostas incluem **rodízio de placas** (comando e controle), **pedágio urbano** e zonas de restrição (instrumentos de preço, discutidos em várias capitais) e investimento em transporte público (que gera externalidade positiva). O rodízio é uma norma rígida; o pedágio de congestionamento é a solução pigouviana — cobra pelo dano e deixa cada um decidir se a viagem vale o custo social.
+
+**Vacinação e o SUS: externalidade positiva.** A vacinação é o exemplo-livro de externalidade positiva: quem se vacina protege também os não vacinados (imunidade de rebanho). Deixada só ao cálculo privado, a cobertura ficaria abaixo do ótimo social. Por isso o Brasil trata a vacinação como bem quase público, com o **Programa Nacional de Imunizações (PNI)** oferecendo vacinas gratuitas pelo SUS — um subsídio de 100%, forma extrema de subsídio pigouviano para levar a cobertura ao nível socialmente desejável.
+
+> **Fontes e séries para explorar:** INPE/PRODES (taxas de desmatamento da Amazônia); Ministério do Meio Ambiente e BNDES (Fundo Amazônia); Lei 15.042/2024 (Sistema Brasileiro de Comércio de Emissões — SBCE); Ministério da Saúde/PNI (coberturas vacinais); estudos de mobilidade urbana das prefeituras. Ao citar desmatamento, verifique o ano e o bioma de referência.
+
+## Resumo do capítulo
+
+- Uma **externalidade** é um custo ou benefício imposto a terceiros que não passa pelo mercado; é uma **falha de mercado** porque o agente ignora o efeito sobre os outros.
+- Distingue-se **custo/benefício privado** de **social**. O mercado equilibra pelos valores privados; o ótimo, pelos sociais. A diferença gera **peso morto**.
+- **Externalidade negativa ⇒ superprodução** ($Q_m > Q^{*}$); **positiva ⇒ subprodução** ($Q_m < Q^{*}$).
+- A solução de **Pigou** é **internalizar**: **imposto** sobre a externalidade negativa e **subsídio** sobre a positiva, calibrados pelo custo/benefício externo, deslocando o mercado ao ótimo.
+- Instrumentos: **comando e controle** (normas, rígido), **impostos pigouvianos** (preço, eficiente) e **mercados de licenças** (*cap-and-trade*, corte ao menor custo).
+- O **teorema de Coase**: com **direitos de propriedade** bem definidos e **custos de transação** baixos, a negociação privada atinge o resultado eficiente, qualquer que seja a atribuição inicial dos direitos — que afeta a distribuição, não a eficiência.
+- A lição prática de Coase é sobre **custos de transação**: quando são altos (muitas partes, informação assimétrica, direitos mal definidos), a negociação falha e Pigou/normas/licenças se justificam. Coase e Pigou são **complementares**.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva antes de abrir a solução. Dificuldade crescente.
+:::
+
+**1.** Classifique cada caso como externalidade positiva ou negativa, e de produção ou de consumo: (a) uma siderúrgica emite fumaça; (b) um vizinho cuida bem do jardim, valorizando as casas ao redor; (c) alguém fuma num restaurante; (d) uma empresa treina funcionários que depois levam habilidades para outras firmas.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Negativa de produção** — a poluição é subproduto do processo produtivo e prejudica terceiros. (b) **Positiva de consumo** — o cuidado com o jardim (consumo/uso do bem próprio) beneficia os vizinhos. (c) **Negativa de consumo** — o ato de consumir (fumar) prejudica quem está ao redor. (d) **Positiva de produção** — o treinamento (atividade da firma) gera benefício que "vaza" para outras firmas via mobilidade dos trabalhadores.
+:::
+
+**2.** Explique, usando as curvas de custo privado e social marginal, por que uma externalidade negativa leva o mercado a produzir mais do que o socialmente ótimo. Onde está o peso morto?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Com externalidade negativa de produção, o **custo social marginal (CSM)** está acima do **custo privado marginal (CPM)**, pela distância do custo externo. O mercado equilibra onde a demanda cruza o **CPM** (os produtores só consideram seus custos privados), na quantidade $Q_m$. O ótimo social é onde a demanda cruza o **CSM**, em $Q^{*} < Q_m$. Assim o mercado produz demais. Entre $Q^{*}$ e $Q_m$, cada unidade tem custo social (CSM) **maior** que o benefício que gera (dado pela demanda), de modo que sua produção subtrai bem-estar. A soma dessas perdas é o **peso morto**, o triângulo entre a curva CSM e a curva de demanda, de $Q^{*}$ a $Q_m$ (@fig-ext-negativa).
+:::
+
+**3.** Por que os economistas costumam preferir um imposto pigouviano (ou um mercado de licenças) a uma norma que fixe o mesmo limite de emissão para todas as empresas?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque empresas diferentes têm **custos diferentes** de reduzir poluição. Uma norma uniforme obriga todas a cortar igual, inclusive as que só conseguem cortar a custo altíssimo. Já o **imposto** (ou o **mercado de licenças**) faz cada empresa comparar o custo de reduzir com o preço do imposto/licença: quem reduz barato reduz muito; quem reduziria caro prefere pagar o imposto (ou comprar licenças). O resultado é que a **mesma redução total** de poluição é alcançada ao **menor custo agregado** possível para a sociedade — eficiência que a norma uniforme desperdiça. Além disso, o preço cria incentivo contínuo à inovação em tecnologias limpas, o que o limite fixo não faz depois de atingido.
+:::
+
+**4.** No exemplo do rio (dano ao pescador = R\$\,100; custo de limpar = R\$\,60), mostre que o resultado eficiente ocorre tanto se o pescador tiver direito à água limpa quanto se a fábrica tiver direito de poluir. O que muda entre os dois casos?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O eficiente é **limpar**, pois gastar 60 evita 100 de dano (ganho líquido de 40). **Caso 1 — pescador tem o direito:** a fábrica só pode poluir compensando o pescador em 100; como limpar custa apenas 60, é mais barato **limpar** do que poluir e pagar 100. Rio limpo; a **fábrica** arca com os 60. **Caso 2 — fábrica tem o direito:** o pescador, que perde 100 com a poluição, oferece pagar à fábrica para limpar; qualquer valor entre 60 (custo da fábrica) e 100 (dano do pescador) beneficia ambos — digamos 70. A fábrica limpa e recebe 70; o pescador gasta 70 mas evita 100 de dano. Rio limpo; o **pescador** arca com o pagamento. Em ambos os casos o resultado é o mesmo — **rio limpo (eficiente)** — confirmando Coase. O que muda é a **distribuição**: quem paga (a fábrica no caso 1, o pescador no caso 2). A atribuição de direitos determina a repartição do ônus, não a eficiência.
+:::
+
+**5.** Enuncie o teorema de Coase e explique por que ele **não** implica que o governo seja dispensável no combate à poluição do ar de uma metrópole.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Teorema de Coase:** com direitos de propriedade bem definidos e custos de transação desprezíveis, as partes negociam até o resultado eficiente, independentemente de a quem os direitos foram atribuídos. A condição-chave é **custos de transação baixos**. Na poluição do ar de uma metrópole, essa condição **falha grosseiramente**: há **milhões** de vítimas (todos os que respiram) e milhares de fontes poluidoras (veículos, indústrias); é impossível reunir todos para negociar, os direitos sobre o ar são difusos e há forte problema de *free-rider* (cada vítima espera que outra pague pela redução). Com custos de transação proibitivos, a negociação coasiana **não** acontece, e o resultado privado permanece ineficiente. Aí se justificam as soluções de Pigou (imposto sobre combustível, pedágio), normas (padrões de emissão) ou mercados de licenças. Coase mostra *quando* o mercado resolve sozinho — e, por contraste, *quando* o Estado é necessário.
+:::
+
+**6.** (Análise de caso) O Fundo Amazônia paga por reduções comprovadas de desmatamento, e a Lei 15.042/2024 cria um mercado de carbono no Brasil. Analise cada um como resposta a uma externalidade: que família de solução representam e por que a definição de direitos de propriedade sobre a terra é relevante?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O desmatamento é uma externalidade **negativa** (emissão de carbono, perda de biodiversidade e de serviços ecossistêmicos que afetam terceiros, inclusive globalmente). O **Fundo Amazônia** funciona como um mecanismo de **pagamento por serviço ambiental / subsídio**: em vez de tributar o dano, remunera o comportamento desejável (manter a floresta em pé), aproximando o benefício privado de conservar do benefício social — é a face "positiva" da lógica pigouviana, útil quando o objetivo é premiar a preservação. O **mercado de carbono** (SBCE) é um sistema ***cap-and-trade***: fixa um teto de emissões, distribui/leiloa permissões e deixa que sejam negociadas, de modo que a redução ocorra onde é mais barata, ao menor custo total. A **definição de direitos de propriedade sobre a terra** é central por uma razão coasiana: onde a posse é indefinida ("terra de ninguém", grilagem), **ninguém internaliza** o custo de longo prazo do desmatamento nem pode ser responsabilizado ou remunerado por preservar; a regularização fundiária cria o titular que pode receber pagamentos por conservar, ser multado por desmatar e participar do mercado de carbono. Sem direitos claros, nem Coase, nem Pigou, nem *cap-and-trade* funcionam bem.
+:::
+
+**7.** (Desafio) Duas políticas para reduzir o congestionamento em São Paulo: o **rodízio de placas** (proíbe cada carro de circular um dia por semana) e um **pedágio urbano** (cobra para entrar na área central em horário de pico). Compare-as em termos de eficiência econômica, usando os conceitos deste capítulo. Que efeitos colaterais cada uma pode ter?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O congestionamento é uma externalidade **negativa** de consumo (cada motorista impõe tempo perdido aos demais sem pagar por isso). O **rodízio** é **comando e controle**: uma norma uniforme que proíbe indistintamente, sem considerar quem mais valoriza a viagem nem quem polui/congestiona mais. É simples, mas **ineficiente**: impede viagens de alto valor (uma emergência, um profissional cuja hora vale muito) e permite viagens de baixo valor nos dias liberados; não cobra pelo dano marginal. Efeito colateral clássico: famílias compram um **segundo carro** (com placa de final diferente) para driblar o rodízio, o que aumenta a frota e pode piorar a poluição e o congestionamento no longo prazo. O **pedágio urbano** é a solução **pigouviana**: precifica o custo social da entrada no pico, fazendo cada motorista **internalizar** o congestionamento que causa. Quem mais valoriza a viagem paga e entra; quem valoriza menos adia, muda de horário ou usa transporte público — a redução se concentra nas viagens de menor valor social, atingindo o ótimo ao menor custo de bem-estar. É mais eficiente que o rodízio. Efeitos colaterais/objeções: é **regressivo** se mal desenhado (pesa mais no orçamento de quem tem menos), exige infraestrutura de cobrança e boa alternativa de transporte público; parte da receita pode (e deve, por equidade) ser reinvestida em mobilidade coletiva. A comparação ilustra a preferência dos economistas por instrumentos de preço sobre comandos rígidos, ressalvadas as questões distributivas.
+:::
+
+## Para saber mais
+
+- @mankiw2020 — capítulos sobre externalidades e bens públicos; exposição clara de Pigou, Coase e instrumentos de política ambiental.
+- @coase1960 — o artigo original "The Problem of Social Cost", uma das obras mais citadas da economia; leitura desafiadora mas fundamental.
+- @pigou1920 — a obra que introduziu a ideia de impostos corretivos para externalidades.
+- @varian2015 — tratamento formal das externalidades e da eficiência, com a derivação do ótimo social.
+- @pindyck2013 — desenvolve externalidades, direitos de propriedade e políticas ambientais com aplicações empíricas.

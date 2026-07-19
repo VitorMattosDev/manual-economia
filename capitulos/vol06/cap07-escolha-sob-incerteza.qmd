@@ -1,0 +1,221 @@
+# Escolha sob incerteza: utilidade esperada e aversão ao risco {#sec-escolha-sob-incerteza}
+
+Você aceitaria uma aposta em que ganha R\$\,1.000 se der cara e perde R\$\,1.000 se der coroa, num cara ou coroa honesto? Quase ninguém aceita — embora o ganho e a perda "médios" se cancelem exatamente. E, no entanto, milhões de brasileiros pagam todo mês por um seguro de carro, sabendo que, na média, a seguradora lucra com isso (senão quebraria). No primeiro caso, recusamos um jogo justo; no segundo, aceitamos um jogo desfavorável. Não há contradição: em ambos, estamos fazendo a mesma coisa — **fugindo do risco**. Recusar a aposta e comprar o seguro são duas faces da **aversão ao risco**, o traço que molda decisões que vão de investimentos e seguros a escolhas de carreira e de safra.
+
+Até aqui, o consumidor deste manual escolhia num mundo de certezas: sabia exatamente o que cada opção lhe traria. Mas quase toda decisão econômica importante envolve **incerteza** — sobre o retorno de um investimento, o preço futuro de uma commodity, a ocorrência de um acidente, o sucesso de um negócio. Este capítulo, que fecha o volume de microeconomia, apresenta a teoria que governa a escolha sob incerteza: a **utilidade esperada** de von Neumann e Morgenstern, o conceito de **aversão ao risco** e suas consequências — por que existem seguros, por que se diversifica, e por que, às vezes, as pessoas se afastam sistematicamente da própria teoria.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- calcular o **valor esperado** de uma loteria e reconhecer suas limitações;
+- explicar a teoria da **utilidade esperada** e por que ela substitui o valor esperado;
+- relacionar **aversão ao risco** à concavidade da função de utilidade e definir o **equivalente de certeza** e o **prêmio de risco**;
+- entender por que a aversão ao risco fundamenta os mercados de **seguro** e a **diversificação**;
+- reconhecer os desvios sistemáticos previstos pela **teoria do prospecto** (economia comportamental);
+- aplicar esses conceitos a seguros, previdência, investimentos e agricultura no Brasil.
+
+## Valor esperado e por que ele não basta
+
+O ponto de partida é o **valor esperado**: a média dos resultados possíveis, ponderada por suas probabilidades.
+
+::: {.callout-note title="Definição — Valor esperado"}
+Para uma **loteria** (situação de risco) que paga $x_1, x_2, \dots, x_n$ com probabilidades $p_1, p_2, \dots, p_n$, o **valor esperado** é
+$$
+E[X] = p_1 x_1 + p_2 x_2 + \cdots + p_n x_n.
+$$
+É o resultado médio que se obteria repetindo a loteria infinitas vezes.
+:::
+
+No cara ou coroa do início, o valor esperado é $0{,}5 \times (+1000) + 0{,}5 \times (-1000) = 0$: um jogo **atuarialmente justo**. Se as pessoas decidissem só pelo valor esperado, seriam **indiferentes** a aceitá-lo. Mas elas recusam. E há um caso ainda mais gritante — o **paradoxo de São Petersburgo**: uma loteria em que se joga uma moeda até sair a primeira cara, e o prêmio dobra a cada rodada ($2, 4, 8, 16, \dots$), tem valor esperado **infinito**; ainda assim, ninguém pagaria mais que alguns reais para participar. O valor esperado, sozinho, **não** descreve como as pessoas decidem sob incerteza. Falta algo.
+
+## A utilidade esperada
+
+O que falta é reconhecer que as pessoas não valorizam o **dinheiro** linearmente, mas a **utilidade** que ele traz — e que um real a mais vale menos para quem já tem muito (utilidade marginal decrescente, @sec-preferencias-utilidade). A solução, formalizada por von Neumann e Morgenstern, é avaliar loterias pela **utilidade esperada**, não pelo valor monetário esperado [@neumann1944].
+
+::: {.callout-note title="Definição — Utilidade esperada"}
+Sob a teoria da **utilidade esperada**, o agente escolhe a loteria que maximiza a **esperança da utilidade** dos resultados:
+$$
+EU = p_1\,u(x_1) + p_2\,u(x_2) + \cdots + p_n\,u(x_n),
+$$
+onde $u(\cdot)$ é a **função utilidade** do agente sobre a riqueza. Ele compara loterias pelo $EU$, e não pelo valor esperado $E[X]$.
+:::
+
+A diferença é sutil mas decisiva: aplicamos a média **depois** de passar cada resultado pela função utilidade. Como essa função tem **utilidade marginal decrescente** para quem é avesso ao risco, a dor de perder R\$\,1.000 (que corta unidades de utilidade "valiosas") supera o prazer de ganhar R\$\,1.000 (que adiciona unidades "menos valiosas"). Por isso o cara ou coroa justo é recusado: sua utilidade esperada é **negativa**, embora seu valor esperado seja zero.
+
+## Aversão ao risco e a concavidade da utilidade
+
+A relação entre a forma da função utilidade e a atitude perante o risco é o coração do capítulo.
+
+::: {.callout-note title="Definição — Atitudes perante o risco"}
+- **Avesso ao risco:** prefere um valor certo à loteria de mesmo valor esperado. Sua função utilidade é **côncava** ($u'' < 0$; utilidade marginal decrescente).
+- **Neutro ao risco:** indiferente entre a loteria e seu valor esperado. Utilidade **linear**.
+- **Propenso ao risco (*risk-lover*):** prefere a loteria ao valor certo equivalente. Utilidade **convexa** ($u'' > 0$).
+
+A maioria das pessoas, na maioria das decisões relevantes, é **avessa ao risco**.
+:::
+
+A @fig-aversao-risco ilustra o caso avesso. Considere alguém com riqueza que pode ser $A$ (pouco) ou $B$ (muito), cada uma com probabilidade 50%. O valor esperado da riqueza é o ponto médio $E[X]$ no eixo horizontal. A **utilidade esperada** ($EU$) é o ponto médio no eixo vertical entre $u(A)$ e $u(B)$ — está sobre a **corda** que liga os dois pontos da curva. Compare-a com a utilidade de receber o valor esperado **com certeza**, $u(E[X])$, que está sobre a **curva**. Como a curva é côncava, $u(E[X]) > EU$: **a certeza vale mais que a loteria de mesmo valor esperado**. É a definição gráfica da aversão ao risco.
+
+::: {#fig-aversao-risco}
+
+```{.tikz}
+%%| filename: fig-aversao-risco
+%%| alt: Função utilidade côncava da riqueza. Nos pontos A e B da riqueza estão u(A) e u(B) sobre a curva. A utilidade esperada da loteria 50-50 está no ponto médio da corda entre u(A) e u(B), abaixo da curva. A utilidade do valor esperado, sobre a curva, é maior. O equivalente de certeza fica à esquerda do valor esperado, e a distância entre eles é o prêmio de risco.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (8,0) node[right] {riqueza};
+  \draw[eixo] (0,0) -- (0,6) node[above] {$u$};
+  % curva côncava: usar sqrt-like. Pontos: A=(1,1.6), B=(7,5.2)
+  \draw[curva, manualblue, thick, domain=0.3:7.6, samples=60]
+    plot (\x, {1.95*sqrt(\x)}) node[right, font=\footnotesize] {$u(\text{riqueza})$};
+  % A
+  \coordinate (A) at (1,1.95);
+  \coordinate (B) at (7,5.16);
+  \node[ponto] at (A) {};
+  \node[ponto] at (B) {};
+  \node[below, font=\scriptsize] at (1,0) {$A$};
+  \node[below, font=\scriptsize] at (7,0) {$B$};
+  \node[left, font=\scriptsize] at (0,1.95) {$u(A)$};
+  \node[left, font=\scriptsize] at (0,5.16) {$u(B)$};
+  \draw[auxiliar] (1,0) -- (A);
+  \draw[auxiliar] (7,0) -- (B);
+  % corda
+  \draw[auxiliar, manualgray] (A) -- (B);
+  % ponto médio da corda: x=4, y=(1.95+5.16)/2=3.555 -> EU
+  \node[ponto, manualred] at (4,3.555) {};
+  \draw[auxiliar] (4,0) -- (4,3.555);
+  \node[below, font=\scriptsize] at (4,0) {$E[X]$};
+  \node[right, font=\scriptsize, manualred] at (4.05,3.4) {$EU$ (loteria)};
+  % u(E[X]) sobre a curva: x=4, y=1.95*2=3.9
+  \node[ponto, manualgreen] at (4,3.9) {};
+  \node[above right, font=\scriptsize, manualgreen] at (4.0,3.95) {$u(E[X])$};
+  % equivalente de certeza: onde u = EU=3.555 -> sqrt(x)=3.555/1.95=1.823 -> x=3.32
+  \draw[auxiliar] (3.32,0) -- (3.32,3.555);
+  \node[below, font=\scriptsize] at (3.15,0) {$EC$};
+  % prêmio de risco: entre EC e E[X]
+  \draw[<->, manualgray] (3.32,0.5) -- (4,0.5);
+  \node[font=\scriptsize, manualgray] at (5.4,0.5) {prêmio de risco};
+  \draw[->, manualgray] (4.75,0.5) -- (3.7,0.5);
+\end{tikzpicture}
+```
+
+Aversão ao risco: com utilidade côncava, $u(E[X]) > EU$. O equivalente de certeza $EC$ é menor que $E[X]$; a diferença é o prêmio de risco.
+:::
+
+### Equivalente de certeza e prêmio de risco
+
+Dois conceitos completam a figura:
+
+::: {.callout-note title="Definição — Equivalente de certeza e prêmio de risco"}
+O **equivalente de certeza (EC)** é o valor **certo** que deixa o agente **indiferente** entre recebê-lo e enfrentar a loteria — ou seja, o valor certo cuja utilidade iguala a utilidade esperada da loteria: $u(EC) = EU$. O **prêmio de risco** é a diferença
+$$
+\text{prêmio de risco} = E[X] - EC,
+$$
+isto é, **quanto de valor esperado o agente está disposto a abrir mão** para eliminar o risco. Para um avesso ao risco, $EC < E[X]$ e o prêmio de risco é **positivo**.
+:::
+
+O prêmio de risco é o preço que a pessoa aceita pagar pela **tranquilidade** da certeza. É ele que torna possível o negócio de seguros.
+
+## Por que existem seguros e diversificação
+
+**Seguros.** Você paga um prêmio (mensal, anual) a uma seguradora; em troca, ela assume o risco de um sinistro (roubo, acidente, incêndio). Por que isso funciona para ambos? Porque você é **avesso ao risco**: prefere pagar um valor **certo** (o prêmio) a enfrentar a pequena chance de uma perda **enorme**. Você aceita pagar até seu prêmio de risco acima do valor atuarialmente justo. A seguradora, por sua vez, **agrupa milhares de riscos independentes** e, pela **lei dos grandes números**, tem sinistros previsíveis no agregado — ela é praticamente **neutra ao risco**. O seguro transfere o risco de quem o teme (o segurado) para quem consegue diluí-lo (a seguradora), e ambos saem ganhando. É a aversão ao risco que cria o mercado.
+
+::: {.callout-tip title="Intuição — seguro é caro na média, e ainda assim vale a pena"}
+Todo seguro é, na média, um "mau negócio" monetário: a seguradora precisa cobrar mais do que o valor esperado do sinistro para pagar custos e lucrar. Então por que comprá-lo? Porque a decisão não é sobre o valor **esperado**, e sim sobre a **utilidade esperada**. Para um avesso ao risco, a perda de utilidade de um sinistro catastrófico (perder o carro, a casa) é desproporcionalmente grande; pagar um prêmio certo e modesto para evitá-la **aumenta** a utilidade esperada, mesmo custando mais que o justo atuarial. Note também que seguro faz sentido para perdas **grandes e raras**, não para pequenos aborrecimentos — daí a lógica das franquias (@sec-informacao-assimetrica).
+:::
+
+**Diversificação.** "Não ponha todos os ovos na mesma cesta." Um agente avesso ao risco reduz o risco distribuindo a riqueza entre vários ativos cujos retornos **não sejam perfeitamente correlacionados**: quando um vai mal, outro pode ir bem, e a variabilidade do conjunto cai sem sacrificar (muito) o retorno esperado. A diversificação é a aplicação mais poderosa da aversão ao risco às finanças — e será a base do estudo de risco, retorno e do CAPM no volume de economia financeira.
+
+## Quando a teoria falha: a economia comportamental
+
+A teoria da utilidade esperada é elegante e poderosa, mas décadas de experimentos mostraram que as pessoas **desviam sistematicamente** dela. Daniel Kahneman e Amos Tversky propuseram, em 1979, a **teoria do prospecto** (*prospect theory*), que descreve como as pessoas **de fato** decidem sob risco [@kahneman1979].
+
+::: {.callout-warning title="Controvérsia — utilidade esperada descreve ou apenas prescreve?"}
+A utilidade esperada é ótima como teoria **normativa** (como um agente racional *deveria* decidir), mas falha como teoria **descritiva** (como as pessoas realmente decidem). Os principais desvios documentados:
+
+- **Aversão à perda:** a dor de perder R\$\,100 é maior que o prazer de ganhar R\$\,100 (cerca de 2 vezes). As pessoas avaliam ganhos e perdas em relação a um **ponto de referência**, não à riqueza total — e são muito mais sensíveis a perdas.
+- **Ponderação de probabilidades:** as pessoas **superestimam** probabilidades pequenas (por isso jogam na loteria *e* compram seguro contra eventos raros) e **subestimam** as grandes.
+- **Efeito enquadramento (*framing*):** a mesma escolha, descrita como "ganho" ou como "perda", produz decisões opostas — algo impossível na teoria clássica.
+
+A teoria do prospecto acomoda esses fatos com uma **função de valor** em forma de S (côncava para ganhos, convexa para perdas, mais íngreme nas perdas) e uma ponderação distorcida de probabilidades. Ela não invalida a utilidade esperada como ideal de racionalidade, mas a complementa como retrato do comportamento real — tema que o volume final de economia comportamental aprofundará.
+:::
+
+## Brasil em Foco {#sec-escolha-sob-incerteza-brasil}
+
+A escolha sob incerteza está por trás de decisões financeiras e de política pública muito brasileiras.
+
+**Um mercado de seguros em expansão — e a subproteção.** O mercado segurador brasileiro (regulado pela **SUSEP**) cresceu bastante, mas a penetração do seguro ainda é baixa para vários riscos: uma minoria dos veículos tem seguro, e a cobertura de residências e de safras é limitada. A aversão ao risco explica a demanda por seguros; o baixo alcance reflete renda restrita, custo dos prêmios e, em parte, vieses comportamentais (subestimar riscos, "não vai acontecer comigo"). O **seguro rural** e programas públicos de garantia agrícola atacam um risco específico e enorme para o Brasil: o clima.
+
+**Agricultura: decisão sob incerteza climática.** O produtor rural brasileiro é um tomador de decisão sob incerteza por excelência: planta sem saber a chuva, o preço futuro da commodity ou o câmbio na colheita. Instrumentos para lidar com isso incluem o **seguro rural** (e a subvenção federal ao prêmio), o **Proagro** (programa de garantia da atividade agropecuária), e o uso de **mercados futuros e de opções** na B3 para travar preços (*hedge*) — todos formas de **transferir risco** de quem o teme para quem pode assumi-lo, exatamente a lógica deste capítulo. A diversificação de culturas é outra resposta clássica à incerteza.
+
+**Previdência e aposentadoria: risco de longevidade e vieses.** Decidir quanto poupar para a aposentadoria é uma escolha sob incerteza (quanto tempo se viverá, qual o retorno dos investimentos). A economia comportamental é especialmente relevante aqui: as pessoas tendem a poupar **menos** do que gostariam por miopia e viés do presente. Isso motiva desenhos institucionais que usam a **inércia** a favor do poupador — como planos de previdência com **adesão automática** (o trabalhador entra por padrão, podendo sair), um "empurrão" (*nudge*) coerente com a teoria do prospecto. O debate sobre previdência complementar e o desenho do sistema previdenciário brasileiro dialoga diretamente com esses achados.
+
+> **Fontes e séries para explorar:** SUSEP (dados do mercado de seguros e penetração); Ministério da Agricultura (seguro rural, subvenção ao prêmio, Proagro); B3 (mercados futuros e de opções agrícolas); estudos de economia comportamental aplicados à previdência. Ao citar penetração de seguros, verifique o ramo (auto, residencial, rural) e o ano.
+
+## Resumo do capítulo
+
+- O **valor esperado** é a média dos resultados ponderada por probabilidades, mas **não** descreve a escolha sob incerteza (recusa-se o cara ou coroa justo; paradoxo de São Petersburgo).
+- A teoria da **utilidade esperada** (von Neumann-Morgenstern) avalia loterias pela **esperança da utilidade** dos resultados, $EU = \sum p_i\,u(x_i)$, aplicando a média **depois** da função utilidade.
+- **Aversão ao risco** corresponde a uma função utilidade **côncava** (utilidade marginal decrescente): $u(E[X]) > EU$ — a certeza vale mais que a loteria de igual valor esperado. Neutralidade = utilidade linear; propensão = convexa.
+- O **equivalente de certeza (EC)** satisfaz $u(EC)=EU$; o **prêmio de risco** $= E[X]-EC$ é quanto se abre mão para eliminar o risco (positivo para o avesso).
+- A aversão ao risco explica os **seguros** (transferir risco a uma seguradora quase neutra, que dilui riscos pela lei dos grandes números) e a **diversificação** ("não pôr os ovos numa cesta só").
+- A **teoria do prospecto** (Kahneman-Tversky) descreve desvios sistemáticos: **aversão à perda**, ponto de referência, ponderação distorcida de probabilidades e efeito **enquadramento**. A utilidade esperada é boa como norma, imperfeita como descrição.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva antes de abrir a solução. Dificuldade crescente.
+:::
+
+**1.** Calcule o valor esperado da seguinte loteria: 30% de chance de ganhar R\$\,200, 50% de ganhar R\$\,100 e 20% de perder R\$\,50. Uma pessoa neutra ao risco pagaria quanto, no máximo, para participar?
+
+::: {.callout-tip collapse="true" title="Solução"}
+$$
+E[X] = 0{,}30 \times 200 + 0{,}50 \times 100 + 0{,}20 \times (-50) = 60 + 50 - 10 = R\$\,100.
+$$
+Uma pessoa **neutra ao risco** decide pelo valor esperado, então pagaria **no máximo R\$\,100** para participar (acima disso, o jogo teria valor esperado líquido negativo para ela). Um **avesso ao risco** pagaria **menos** que R\$\,100 (o equivalente de certeza, abaixo do valor esperado); um **propenso ao risco**, possivelmente mais.
+:::
+
+**2.** Explique, usando utilidade marginal decrescente, por que uma pessoa avessa ao risco recusa um cara ou coroa justo (ganhar ou perder R\$\,1.000 com 50% cada).
+
+::: {.callout-tip collapse="true" title="Solução"}
+O valor esperado do jogo é zero ($0{,}5 \times 1000 + 0{,}5 \times (-1000) = 0$), mas a decisão se dá pela **utilidade esperada**, não pelo valor monetário. Como a pessoa tem **utilidade marginal decrescente da riqueza** (função côncava), os R\$\,1.000 **ganhos** adicionam unidades de utilidade "menos valiosas" (ela já parte de sua riqueza atual), enquanto os R\$\,1.000 **perdidos** cortam unidades de utilidade "mais valiosas" (aproximam-se de níveis de riqueza mais baixos, onde cada real importa mais). Assim, a **dor** da perda (em utilidade) supera o **prazer** do ganho de mesmo valor monetário, e a utilidade esperada do jogo é **negativa**: $0{,}5\,u(W+1000) + 0{,}5\,u(W-1000) < u(W)$. Como ficar parado (riqueza $W$ com certeza) dá utilidade maior que jogar, a pessoa **recusa** o cara ou coroa justo. É a assinatura da aversão ao risco.
+:::
+
+**3.** Defina equivalente de certeza e prêmio de risco. Para uma pessoa avessa ao risco, o equivalente de certeza é maior ou menor que o valor esperado da loteria? E o prêmio de risco?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O **equivalente de certeza (EC)** é o valor **certo** que deixa a pessoa indiferente entre recebê-lo com certeza e enfrentar a loteria — formalmente, o valor tal que $u(EC) = EU$ (utilidade esperada da loteria). O **prêmio de risco** é $E[X] - EC$: quanto de valor esperado a pessoa abre mão para eliminar o risco. Para uma pessoa **avessa ao risco** (utilidade côncava), o equivalente de certeza é **menor** que o valor esperado ($EC < E[X]$): ela aceita receber menos, desde que com certeza, do que a média incerta da loteria. Consequentemente, o **prêmio de risco é positivo**. (Para um neutro, $EC = E[X]$ e o prêmio é zero; para um propenso, $EC > E[X]$ e o prêmio é negativo.)
+:::
+
+**4.** Por que os seguros funcionam? Explique o papel da aversão ao risco do segurado e da lei dos grandes números para a seguradora. Por que o seguro pode ser um "mau negócio" na média e ainda assim valer a pena?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O **segurado** é **avesso ao risco**: prefere pagar um prêmio **certo** e modesto a enfrentar a pequena probabilidade de uma perda **grande** (roubo, acidente, incêndio), cuja perda de utilidade seria desproporcional. Ele está disposto a pagar até o valor esperado do sinistro **mais** seu prêmio de risco. A **seguradora** agrupa **milhares de riscos independentes**; pela **lei dos grandes números**, a proporção de sinistros no conjunto é altamente previsível, ainda que cada caso individual seja incerto. Isso a torna, na prática, **neutra ao risco** em relação à carteira: ela sabe quanto pagará no agregado. Assim, o seguro **transfere** o risco de quem o teme (segurado, avesso) para quem consegue diluí-lo (seguradora, quase neutra), e ambos ganham. O seguro é um "mau negócio" **na média monetária** porque a seguradora precisa cobrar mais que o valor esperado do sinistro (para cobrir custos e lucro) — o valor esperado líquido para o segurado é negativo. Mesmo assim **vale a pena** porque a decisão se baseia na **utilidade esperada**, não no valor esperado: pagar o prêmio certo eleva a utilidade esperada de um avesso ao risco, ao remover a ameaça de uma perda catastrófica de utilidade. Racionalmente, isso vale sobretudo para perdas **grandes e raras**.
+:::
+
+**5.** O que a teoria do prospecto acrescenta à teoria da utilidade esperada? Explique a "aversão à perda" e por que ela pode fazer alguém comprar bilhete de loteria e seguro ao mesmo tempo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A **teoria do prospecto** (Kahneman-Tversky) é uma teoria **descritiva**: descreve como as pessoas **realmente** decidem sob risco, corrigindo desvios sistemáticos da utilidade esperada (que é sobretudo **normativa**). Acrescenta três ideias: (i) as pessoas avaliam resultados como **ganhos e perdas** em relação a um **ponto de referência**, não pela riqueza total; (ii) exibem **aversão à perda** — a dor de perder é maior (cerca do dobro) que o prazer de ganhar a mesma quantia; e (iii) **distorcem probabilidades**, superestimando as muito pequenas e subestimando as grandes. A **aversão à perda** significa que a função de valor é mais íngreme no domínio das perdas: perder R\$\,100 "dói" mais do que ganhar R\$\,100 "agrada". O aparente paradoxo de comprar **loteria e seguro** ao mesmo tempo (um busca risco, o outro o evita) é explicado pela **ponderação distorcida de probabilidades**: as pessoas **superestimam eventos raros**. Um prêmio de loteria é raro mas superavaliado (por isso o bilhete atrai, apesar do valor esperado péssimo); um sinistro grave também é raro mas superavaliado (por isso o seguro atrai). Assim, a mesma pessoa pode pagar por uma pequena chance superestimada de **grande ganho** (loteria) e por evitar uma pequena chance superestimada de **grande perda** (seguro) — comportamento inconsistente com a utilidade esperada clássica, mas coerente com a teoria do prospecto.
+:::
+
+**6.** (Análise de caso) O produtor rural brasileiro decide o que plantar sob incerteza de clima, preço e câmbio. (a) Que instrumentos ele tem para transferir ou reduzir risco? (b) Explique como cada um se relaciona com a aversão ao risco. (c) Por que o governo subsidia o seguro rural?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**(a)** Instrumentos: **seguro rural** (e o **Proagro**), que cobre perdas de safra por eventos climáticos; **mercados futuros e de opções** na B3, que permitem travar antecipadamente o preço da commodity (*hedge*) e proteger-se de quedas; e a **diversificação** de culturas (plantar mais de um produto, com riscos não perfeitamente correlacionados), além de escalonar plantios. **(b)** Cada um serve à **aversão ao risco** do produtor: o **seguro** transfere o risco climático (grande e potencialmente catastrófico) para uma seguradora que o dilui — o produtor troca uma perda incerta e enorme por um prêmio certo e menor, elevando sua utilidade esperada. O ***hedge*** em mercados futuros transfere o risco de preço para quem está disposto a assumi-lo (especuladores ou contrapartes com posição oposta), garantindo ao produtor um preço certo. A **diversificação** reduz a variabilidade do resultado total sem transferi-lo, aplicando o "não pôr os ovos numa cesta só". Todos reduzem a exposição a resultados extremos, o que um avesso ao risco valoriza. **(c)** O governo subsidia o **seguro rural** (subvenção ao prêmio) por várias razões econômicas: o mercado de seguro agrícola sofre de **falhas** (riscos climáticos são **correlacionados** entre produtores de uma mesma região — uma seca atinge todos ao mesmo tempo —, o que dificulta a diluição pela lei dos grandes números e encarece ou inviabiliza o seguro privado; há também seleção adversa e risco moral, @sec-informacao-assimetrica); a atividade agrícola gera **externalidades positivas** e é estratégica (segurança alimentar, exportações); e a subvenção **aumenta a adesão**, ajudando a superar o subseguro causado tanto pela restrição de renda quanto por vieses comportamentais (subestimar o risco). Ao baratear o prêmio, o subsídio leva a cobertura para mais perto do nível socialmente desejável.
+:::
+
+**7.** (Desafio) Muitas pessoas poupam menos do que gostariam para a aposentadoria. (a) Que conceitos da economia comportamental explicam isso? (b) Como a "adesão automática" a planos de previdência (o trabalhador entra por padrão, podendo sair) usa esses conceitos a favor do poupador? (c) Isso limita a liberdade de escolha?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**(a)** Vários vieses explicam a subpoupança: o **viés do presente** (as pessoas valorizam demais o consumo imediato e descontam demais o futuro — preferem gastar hoje e "começam a poupar mês que vem", indefinidamente); a **miopia** e a dificuldade de imaginar a própria velhice; a **inércia/procrastinação** (poupar exige uma ação ativa que se adia); e a **complexidade** das escolhas financeiras, que paralisa. Na linguagem da teoria do prospecto, contribuir hoje é sentido como uma **perda** presente (redução do salário líquido) em relação ao ponto de referência, e a aversão à perda desestimula a adesão voluntária. **(b)** A **adesão automática** (*auto-enrollment*) inverte o padrão (o *default*): em vez de o trabalhador precisar **agir para entrar**, ele já entra por padrão e precisa **agir para sair**. Isso usa a **inércia** a favor do poupador — como a maioria segue o *default* por procrastinação ou por interpretá-lo como recomendação, a adesão e a poupança sobem drasticamente, sem proibir ninguém de nada. É um ***nudge*** (empurrão) clássico: muda o **enquadramento** e a opção-padrão para alinhar o comportamento efetivo ao que a própria pessoa diz desejar. **(c)** Não elimina a liberdade de escolha — o trabalhador **pode sair** a qualquer momento (é "paternalismo libertário"): preserva-se a opção de escolha, apenas mudando qual é o ponto de partida. O debate ético é se o Estado ou o empregador deve **escolher o *default*** por nós; os defensores argumentam que **algum** *default* sempre existe (não entrar também é um padrão), então é melhor que ele seja o que beneficia a maioria; os críticos temem a manipulação e a perda de autonomia. De todo modo, por não vedar a saída, a adesão automática restringe muito pouco a liberdade enquanto melhora substancialmente os resultados — razão de sua popularidade no desenho de previdência. O tema será aprofundado no volume de economia comportamental.
+:::
+
+## Para saber mais
+
+- @neumann1944 — a obra que axiomatizou a teoria da utilidade esperada, base de toda a análise de decisão sob risco.
+- @kahneman1979 — "Prospect Theory", o artigo que fundou a economia comportamental da decisão sob risco; um dos mais citados da economia.
+- @varian2015 — capítulo sobre incerteza, com utilidade esperada, aversão ao risco e diversificação de forma acessível.
+- @pindyck2013 — trata de escolha sob incerteza, prêmio de risco e demanda por seguro com aplicações.
+- @mankiw2020 — introdução à assimetria de informação e à economia comportamental, complementando este capítulo.

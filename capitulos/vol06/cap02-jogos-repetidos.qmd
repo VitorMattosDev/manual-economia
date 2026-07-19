@@ -1,0 +1,192 @@
+# Jogos sequenciais, repetidos e aplicações {#sec-jogos-repetidos}
+
+No capítulo anterior, os jogadores decidiam **ao mesmo tempo**, no escuro, sem observar a jogada do outro. Mas muitas das interações mais importantes da economia não são assim: elas têm **ordem**. Uma empresa já instalada decide como reagir *depois* que uma entrante ameaça o mercado. Um governo anuncia uma meta de inflação e só então os agentes formam preços. Você e o dono da padaria da esquina se enfrentam não uma vez, mas todo santo dia, ano após ano. Quando há sequência ou repetição, abrem-se possibilidades que o jogo simultâneo de uma rodada não comporta: **ameaças, promessas, reputação, punição e cooperação**.
+
+Este capítulo estende a teoria dos jogos em duas direções. Primeiro, os **jogos sequenciais**, resolvidos de trás para frente por **indução reversa**, onde aprenderemos por que algumas ameaças são levadas a sério e outras não. Depois, os **jogos repetidos**, que revelam a chave para escapar do dilema do prisioneiro: quando o jogo se repete indefinidamente, a **cooperação pode emergir** espontaneamente — o resultado talvez mais surpreendente e otimista de toda a disciplina.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- representar um **jogo sequencial** na forma extensiva (árvore de decisão);
+- resolver jogos sequenciais por **indução reversa** e identificar o **equilíbrio perfeito em subjogos**;
+- distinguir **ameaças e promessas críveis** de não-críveis e entender o valor do **comprometimento**;
+- explicar por que a repetição pode sustentar a **cooperação** no dilema do prisioneiro e o papel do **fator de desconto**;
+- descrever a estratégia ***tit-for-tat*** e a intuição do **teorema *folk***;
+- aplicar esses conceitos a cartéis, entrada em mercados, credibilidade da política monetária e relações comerciais brasileiras.
+
+## Jogos sequenciais e a forma extensiva
+
+Quando os jogadores agem em ordem e o segundo observa a jogada do primeiro, representamos o jogo por uma **árvore** — a **forma extensiva** — em vez de uma matriz. Os nós são pontos de decisão; os ramos, as ações possíveis; e nas pontas (folhas) estão os *payoffs*.
+
+Considere o **jogo da entrada**, um clássico da organização industrial. Uma firma **Entrante** decide se **entra** num mercado ou **fica de fora**. Se entrar, a firma **Estabelecida** decide se reage com uma **guerra de preços** ou **acomoda** a nova rival, dividindo o mercado. A @fig-arvore-entrada mostra a árvore, com *payoffs* (Entrante, Estabelecida) em milhões.
+
+::: {#fig-arvore-entrada}
+
+```{.tikz}
+%%| filename: fig-arvore-entrada
+%%| alt: Árvore de decisão do jogo da entrada. A Entrante decide entre ficar de fora (payoffs 0 para ela e 10 para a estabelecida) e entrar. Se entra, a Estabelecida escolhe entre guerra de preços (payoffs -2 e 2) e acomodar (payoffs 4 e 5).
+\begin{tikzpicture}[font=\small, level distance=20mm, sibling distance=34mm,
+  every node/.style={align=center}]
+  \node[draw, circle, fill=manualblue!15] (E) {Entrante}
+    child {node[font=\footnotesize] {Fica de fora\\[-1pt]\textbf{(0, 10)}}
+      edge from parent node[left, font=\scriptsize] {fora}}
+    child {node[draw, circle, fill=manualred!15] (S) {Estabe-\\lecida}
+      child {node[font=\footnotesize] {Guerra\\[-1pt]\textbf{(-2, 2)}}
+        edge from parent node[left, font=\scriptsize] {guerra}}
+      child {node[font=\footnotesize] {Acomoda\\[-1pt]\textbf{(4, 5)}}
+        edge from parent node[right, font=\scriptsize] {acomoda}}
+      edge from parent node[right, font=\scriptsize] {entra}};
+\end{tikzpicture}
+```
+
+O jogo da entrada na forma extensiva. *Payoffs*: (Entrante, Estabelecida).
+:::
+
+## Indução reversa e equilíbrio perfeito em subjogos
+
+Como resolver a árvore? Do **fim para o começo** — o método da **indução reversa**. Começamos pelo último a decidir e subimos.
+
+::: {.callout-note title="Definição — Indução reversa"}
+A **indução reversa** resolve um jogo sequencial de trás para frente: identifica-se a decisão ótima do **último** jogador em cada nó final; sabendo qual será essa reação, o jogador anterior escolhe sua melhor ação; e assim por diante até o primeiro nó. O resultado é o **equilíbrio perfeito em subjogos** — um equilíbrio de Nash em que a estratégia de cada jogador é ótima em **todo** ponto do jogo, e não só no caminho de equilíbrio.
+:::
+
+Apliquemos à @fig-arvore-entrada. **Último a decidir: a Estabelecida** (só age se houver entrada). Comparando seus *payoffs*: guerra dá 2, acomodar dá 5. Ela prefere **acomodar**. **Agora a Entrante**, antecipando que a reação será "acomodar": se entra, ganha 4; se fica de fora, ganha 0. Ela **entra**. O equilíbrio perfeito em subjogos é **(entra; acomoda)**, com *payoffs* (4, 5).
+
+### Ameaças não-críveis
+
+A Estabelecida bem que gostaria de **ameaçar**: "se você entrar, eu declaro guerra de preços e te quebro". Se a Entrante acreditasse, ficaria de fora (preferiria 0 a −2). Mas a ameaça é **não-crível**: uma vez que a entrada ocorreu, guerrear dá à Estabelecida um lucro de 2, menor que os 5 de acomodar. No momento de decidir de verdade, ela não cumpriria a ameaça — e a Entrante, racional, sabe disso. A indução reversa **descarta automaticamente** ameaças e promessas que não seriam cumpridas quando chegasse a hora.
+
+::: {.callout-important title="Armadilha comum — Nash sem perfeição admite ameaças vazias"}
+O par de estratégias "(Entrante fica de fora; Estabelecida faria guerra se entrasse)" é *tecnicamente* um equilíbrio de Nash: dado que a Entrante fica de fora, a Estabelecida nunca precisa agir, e dada a ameaça de guerra, ficar de fora é a melhor resposta. Mas ele se apoia numa ameaça que jamais seria executada. O **equilíbrio perfeito em subjogos** é mais exigente: elimina esses equilíbrios sustentados por ameaças não-críveis, exigindo racionalidade em cada nó. Por isso é o conceito-padrão para jogos sequenciais.
+:::
+
+## O valor do comprometimento
+
+Se a ameaça da Estabelecida não é crível, ela pode querer **torná-la** crível — mudando o próprio jogo antes de jogá-lo. Esse é o poder, à primeira vista paradoxal, do **comprometimento** (*commitment*): amarrar as próprias mãos pode ser vantajoso.
+
+Suponha que a Estabelecida invista **antes** numa capacidade de produção enorme, que só se paga se ela de fato inundar o mercado a preço baixo. Agora guerrear passou a ser sua melhor resposta *ex post* — e a ameaça vira crível. A Entrante, prevendo a guerra, fica de fora. Ao **reduzir suas próprias opções**, a Estabelecida melhorou seu resultado. É o mesmo princípio do general que queima as pontes atrás do exército: eliminar a retirada torna crível que se lutará até o fim.
+
+::: {.callout-tip title="Intuição — por que abrir mão de opções pode ser bom"}
+Na decisão individual, mais opções nunca prejudicam. Na **interação estratégica**, é o contrário: eliminar visivelmente uma opção sua muda o que os outros esperam de você — e pode fazê-los agir a seu favor. Contratos com multas, garantias públicas, reputações construídas e até regras que "amarram" o governo (metas fiscais, mandato do Banco Central) são formas de comprometimento que extraem seu valor justamente de serem difíceis de desfazer.
+:::
+
+## Jogos repetidos: a emergência da cooperação
+
+Voltemos ao dilema do prisioneiro (@sec-teoria-dos-jogos). Jogado **uma única vez**, seu desfecho é sombrio: ambos traem. Mas e se os mesmos jogadores se enfrentam **repetidamente** — como duas firmas que competem mês após mês, ou dois vizinhos comerciantes por anos a fio? A repetição muda tudo.
+
+A razão é que a repetição permite **condicionar** o comportamento futuro no de hoje: "eu coopero enquanto você cooperar; se você me trair, eu retalio nas próximas rodadas". A ameaça de perder a cooperação futura pode tornar a traição de hoje não-compensadora. O ganho imediato de trair é confrontado com o prejuízo de todas as rodadas futuras de guerra.
+
+### Horizonte finito × infinito
+
+Há uma sutileza crucial. Se o jogo se repete um número **finito e conhecido** de vezes, a cooperação **desmorona** por indução reversa: na última rodada não há futuro a preservar, então ambos traem; sabendo disso, na penúltima também traem (a última já está perdida); e o raciocínio desanda até a primeira. Este é o **paradoxo da repetição finita**.
+
+A cooperação se sustenta quando o horizonte é **infinito** ou **indefinido** — quando sempre há uma probabilidade relevante de haver uma "próxima vez". Não é preciso literalmente jogar para sempre: basta que, a cada rodada, os jogadores atribuam probabilidade suficiente à continuação. É por isso que relações comerciais duradouras e de fim incerto sustentam confiança, enquanto interações "de uma vez só" (o turista no ponto turístico) convidam à trapaça.
+
+### O fator de desconto
+
+Quanto o futuro pesa hoje é medido pelo **fator de desconto** $\delta$ (entre 0 e 1): um real de lucro daqui a uma rodada vale $\delta$ reais hoje. $\delta$ alto significa jogadores **pacientes** (ou rodadas frequentes, ou alta chance de continuação); $\delta$ baixo, jogadores imediatistas.
+
+::: {.callout-note title="Definição — Fator de desconto e a condição da cooperação"}
+O **fator de desconto** $\delta \in [0,1)$ traduz quanto os *payoffs* futuros valem no presente. A cooperação num dilema do prisioneiro repetido é sustentável em equilíbrio quando $\delta$ é **suficientemente alto**: o ganho de trair uma vez precisa ser menor que o valor presente das perdas futuras causadas pela retaliação. Em termos gerais,
+$$
+\underbrace{G_{\text{trair}}}_{\text{ganho de hoje}} \;\le\; \underbrace{\frac{\delta}{1-\delta}\,L_{\text{punição}}}_{\text{perda futura descontada}},
+$$
+onde $G_{\text{trair}}$ é o ganho imediato da traição e $L_{\text{punição}}$ a perda por rodada durante a punição. Quanto maior $\delta$, mais fácil satisfazer a desigualdade.
+:::
+
+A leitura é intuitiva: a cooperação floresce entre jogadores **pacientes**, que se enfrentam **com frequência** e esperam **continuar** se enfrentando. Some paciência e futuro, e a trapaça não compensa.
+
+## *Tit-for-tat* e o teorema *folk*
+
+Que estratégia sustenta a cooperação? A mais célebre é o ***tit-for-tat*** ("olho por olho"): **coopere na primeira rodada e, depois, faça o que o oponente fez na rodada anterior**. Ela coopera com quem coopera e pune quem trai — mas perdoa assim que o outro volta a cooperar. Nos famosos torneios de Robert Axelrod, em que estratégias competiam num dilema do prisioneiro repetido, o *tit-for-tat* venceu, apesar de simples. Axelrod destilou sua receita de sucesso: ser **gentil** (nunca trair primeiro), **retaliatório** (punir a traição), **clemente** (perdoar depois de punir) e **claro** (previsível o bastante para o outro aprender a cooperar) [@axelrod1984].
+
+Outra estratégia é o **gatilho** (*grim trigger*): coopere até a primeira traição, depois puna para sempre. É mais dura e menos clemente, mas também sustenta a cooperação com $\delta$ alto.
+
+O resultado geral que organiza tudo isso é o **teorema *folk***.
+
+::: {.callout-note title="Definição — Teorema *folk* (versão informal)"}
+No dilema do prisioneiro (e em jogos repetidos em geral) com horizonte infinito e jogadores suficientemente pacientes ($\delta$ perto de 1), **quase qualquer** resultado que dê a cada jogador mais do que o *payoff* de punição pode ser sustentado como equilíbrio — inclusive a cooperação plena. A repetição não gera *um* equilíbrio, mas uma **multiplicidade** deles.
+:::
+
+::: {.callout-warning title="A repetição explica a cooperação — mas também sua fragilidade"}
+O teorema *folk* é de dois gumes. Por um lado, mostra que a cooperação é *possível* sem contratos nem lei — sustentada só pela sombra do futuro. Por outro, como há **muitos** equilíbrios, a teoria não prevê *qual* ocorrerá: cooperação e conflito são ambos consistentes com a racionalidade. Instituições, normas e reputação servem justamente para selecionar, entre os equilíbrios possíveis, o cooperativo. É também por isso que **cartéis** conseguem, às vezes, sobreviver: a repetição lhes dá o mecanismo de punição (guerra de preços contra quem trai) que estabiliza a colusão — e é contra isso que a defesa da concorrência luta.
+:::
+
+## Brasil em Foco {#sec-jogos-repetidos-brasil}
+
+Sequência, comprometimento e repetição estão por toda parte na economia brasileira.
+
+**Credibilidade da política monetária: o comprometimento do Banco Central.** O maior exemplo brasileiro de comprometimento é o **regime de metas de inflação** e a **autonomia do Banco Central** (Lei Complementar 179/2021). O problema é clássico de jogo sequencial: se os agentes acreditam que a inflação será baixa e formam preços e salários com base nisso, o governo tem a tentação *ex post* de "surpreender" com mais inflação para estimular a economia — mas, se os agentes anteciparem essa tentação, embutem inflação nas expectativas e a política perde eficácia. A solução é **amarrar as mãos** do formulador: uma meta pública, um Banco Central com mandato e dirigentes com mandatos fixos tornam **crível** o compromisso com a inflação baixa. É comprometimento à la "queimar as pontes", aplicado à macroeconomia — tema que aprofundaremos em Economia Monetária.
+
+**Cartéis como jogo repetido.** Vimos que o cartel é um dilema do prisioneiro (@sec-oligopolio); a **repetição** é o que às vezes o mantém de pé. Postos de combustível de uma cidade, empresas que dividem licitações — todos se enfrentam repetidamente, e a ameaça implícita de "guerra de preços contra quem furar o acordo" (uma estratégia de gatilho) pode sustentar preços altos sem acordo formal (colusão tácita). O CADE combate isso justamente atacando os mecanismos de punição e monitoramento e oferecendo leniência a quem romper primeiro — reduzindo o $\delta$ efetivo da cooperação ilícita.
+
+**Relações de longo prazo e confiança sem contrato.** Boa parte do comércio brasileiro funciona na repetição: o fornecedor que "fia" para o cliente antigo, o feirante que mantém a qualidade porque a freguesa volta toda semana, a relação entre indústria e distribuidor. A confiança nasce da sombra do futuro — do valor de continuar negociando. Onde o horizonte encurta (o turista de passagem, a obra que não se repetirá), a tentação de trapacear cresce, o que ajuda a explicar por que ambientes de alta rotatividade e baixa aplicação de contratos sofrem mais com oportunismo.
+
+> **Fontes e séries para explorar:** Banco Central do Brasil (Relatório de Inflação, atas do Copom, e a Lei Complementar 179/2021 sobre autonomia); CADE (casos de cartel em licitações e combustíveis, acordos de leniência); literatura de organização industrial sobre colusão. Ao discutir credibilidade, acompanhe as expectativas de inflação no boletim Focus do Bacen.
+
+## Resumo do capítulo
+
+- Jogos **sequenciais** (com ordem de jogadas) são representados pela **forma extensiva** (árvore) e resolvidos por **indução reversa**: do último jogador para o primeiro.
+- A indução reversa gera o **equilíbrio perfeito em subjogos**, em que a estratégia é ótima em **todo** nó — o que **elimina ameaças e promessas não-críveis**.
+- Uma ameaça é **crível** apenas se, chegado o momento, cumpri-la for a melhor resposta. Ameaças vazias podem sustentar equilíbrios de Nash, mas não equilíbrios perfeitos em subjogos.
+- O **comprometimento** — reduzir visivelmente as próprias opções — pode ser vantajoso na interação estratégica, tornando críveis ameaças ou promessas (queimar as pontes, metas, contratos).
+- Na **repetição**, a cooperação pode emergir: a ameaça de perder a cooperação futura desestimula a traição de hoje. Isso exige horizonte **infinito/indefinido** e **fator de desconto $\delta$ alto** (jogadores pacientes, interação frequente).
+- Com horizonte **finito e conhecido**, a cooperação colapsa por indução reversa (paradoxo da repetição finita).
+- ***Tit-for-tat*** (gentil, retaliatório, clemente, claro) e o **gatilho** sustentam cooperação. O **teorema *folk*** mostra que muitos resultados — inclusive a cooperação plena — são equilíbrios quando $\delta$ é alto; a teoria admite multiplicidade.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Resolva antes de abrir a solução. Dificuldade crescente.
+:::
+
+**1.** Qual a diferença entre a forma normal (matriz) e a forma extensiva (árvore)? Em que tipo de jogo cada uma é mais adequada?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A **forma normal** (matriz de *payoffs*) representa bem jogos **simultâneos**, em que os jogadores decidem sem observar a jogada do outro — a matriz mostra todas as combinações de estratégias. A **forma extensiva** (árvore) representa jogos **sequenciais**, em que há ordem de jogadas e jogadores posteriores observam as anteriores; a árvore explicita quem joga quando, o que sabe e os *payoffs* nas pontas. Jogos sequenciais são resolvidos por indução reversa na árvore, algo que a matriz não deixa transparecer com naturalidade.
+:::
+
+**2.** No jogo da entrada (@fig-arvore-entrada), aplique a indução reversa passo a passo e diga qual é o equilíbrio perfeito em subjogos. Por que a ameaça de "guerra de preços" não é crível?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Passo 1 (último a decidir, a Estabelecida):** se houver entrada, ela compara guerra (payoff 2) com acomodar (5) → escolhe **acomodar**. **Passo 2 (a Entrante), antecipando "acomoda":** entrar dá 4, ficar de fora dá 0 → **entra**. Equilíbrio perfeito em subjogos: **(entra; acomoda)**, *payoffs* (4, 5). A ameaça de guerra não é crível porque, uma vez ocorrida a entrada, guerrear dá à Estabelecida apenas 2, contra 5 de acomodar: no momento de agir, ela não teria interesse em cumprir a ameaça, e a Entrante sabe disso. A indução reversa descarta a ameaça vazia.
+:::
+
+**3.** Explique por que "reduzir as próprias opções" pode ser vantajoso num jogo estratégico, embora nunca seja vantajoso numa decisão individual isolada. Dê um exemplo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Numa decisão individual, ter mais opções só pode ajudar (você sempre pode ignorar as que não quer). Num jogo, porém, o comportamento dos **outros** depende do que esperam de você. Ao eliminar visivelmente uma opção, você muda essas expectativas e pode induzir os outros a agir a seu favor. Exemplo: a Estabelecida que investe em capacidade excedente torna a guerra de preços sua melhor resposta, tornando a ameaça crível e afastando entrantes — melhora seu resultado ao **abrir mão** da flexibilidade de acomodar. Outros exemplos: um negociador que se compromete publicamente com um preço mínimo; um general que queima as pontes; um governo que adota regra fiscal difícil de reverter.
+:::
+
+**4.** Por que a cooperação no dilema do prisioneiro **repetido** desmorona quando o número de rodadas é finito e conhecido, mas pode se sustentar quando o horizonte é infinito ou indefinido?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Com horizonte **finito e conhecido**, aplica-se a indução reversa: na **última** rodada não há futuro a proteger, então ambos traem (é a estratégia dominante do jogo de uma rodada). Sabendo que a última será de traição, a cooperação na **penúltima** não pode ser sustentada por ameaça de punição futura (a última já está perdida), então traem na penúltima também; o argumento retrocede até a primeira rodada, e a cooperação colapsa por completo. Com horizonte **infinito ou indefinido**, **não há última rodada** conhecida para ancorar essa regressão: sempre há chance relevante de uma próxima vez, então a ameaça de perder a cooperação futura permanece viva e pode tornar a traição de hoje não-compensadora — desde que os jogadores sejam pacientes o bastante ($\delta$ alto).
+:::
+
+**5.** Descreva a estratégia *tit-for-tat* e as quatro características que, segundo Axelrod, explicam seu sucesso. Por que "ser clemente" importa?
+
+::: {.callout-tip collapse="true" title="Solução"}
+*Tit-for-tat*: **coopere na primeira rodada e, depois, repita o que o oponente fez na rodada anterior**. As quatro características: **gentil** (nunca é o primeiro a trair, o que evita conflitos desnecessários); **retaliatória** (pune imediatamente a traição, o que desestimula o outro a explorá-la); **clemente** (volta a cooperar assim que o outro coopera, o que impede ciclos intermináveis de vingança); e **clara** (é simples e previsível, o que permite ao oponente entender que cooperar é recompensado e trair é punido). "Ser clemente" importa porque, sem perdão, uma única traição (ou um erro/ruído) desencadearia punição eterna, destruindo os ganhos mútuos da cooperação; o perdão permite restaurar a cooperação e recuperar o excedente perdido.
+:::
+
+**6.** (Análise de caso) Explique como o regime brasileiro de metas de inflação e a autonomia do Banco Central podem ser entendidos como um problema de **comprometimento** num jogo sequencial entre governo e agentes econômicos.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O jogo: primeiro os **agentes** formam expectativas de inflação (e com elas fixam preços e salários); depois o **governo/BC** conduz a política monetária. Se os agentes esperam inflação baixa, o formulador tem a tentação *ex post* de gerar inflação-surpresa para estimular emprego e produção no curto prazo. Mas agentes racionais **antecipam** essa tentação (indução reversa): se sabem que o BC não é crível, embutem inflação alta nas expectativas, e o resultado é inflação alta sem ganho de produto — o "viés inflacionário". A promessa de "manter a inflação baixa" é, como a ameaça de guerra, **não-crível** se nada amarrar o formulador. A solução é o **comprometimento institucional**: uma **meta de inflação** pública e verificável, e a **autonomia** do BC (LC 179/2021), com dirigentes de mandato fixo, tornam custoso e visível desviar da meta. Isso muda os *payoffs* do formulador, tornando **crível** o compromisso, ancorando as expectativas em inflação baixa e permitindo alcançá-la a menor custo. É exatamente o valor do comprometimento: amarrar as próprias mãos melhora o resultado.
+:::
+
+**7.** (Desafio) Dois postos de gasolina vizinhos competem diariamente (jogo repetido). Eles conseguem manter preços altos sem qualquer acordo formal. (a) Que mecanismo sustenta esse resultado? (b) O que aconteceria com essa cooperação tácita se um dos postos anunciasse que vai fechar em três meses? (c) Como a atuação do CADE pode desestabilizá-la?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**(a)** É **colusão tácita** sustentada pela **repetição**: cada posto coopera (mantém preço alto) sob a ameaça implícita de que, se o outro baixar (trair), seguirá uma **guerra de preços** que anula os ganhos — uma estratégia de gatilho. Com jogadores pacientes e interação frequente (todo dia), o valor presente da cooperação futura supera o ganho de trair uma vez, e os preços altos se mantêm sem acordo explícito. **(b)** O anúncio de fechamento em três meses transforma o jogo num **horizonte finito e conhecido**. Por indução reversa, a cooperação colapsa: no último dia o posto que vai fechar não teme retaliação futura e baixa o preço para maximizar a venda final; antecipando isso, a deterioração retrocede, e a guerra de preços tende a começar bem antes do fechamento. Encurtar o horizonte destrói a cooperação. **(c)** O CADE ataca os pilares que sustentam a colusão: dificulta o **monitoramento** mútuo (sem observar o preço do rival, a punição fica incerta), pune a coordenação e, sobretudo, oferece **leniência** a quem delatar primeiro — o que introduz um forte incentivo a "trair" o arranjo e reduz o valor de mantê-lo. Isso equivale a reduzir o $\delta$ efetivo da cooperação ilícita e/ou aumentar o ganho de rompê-la, quebrando a desigualdade que sustentava os preços altos.
+:::
+
+## Para saber mais
+
+- @axelrod1984 — o livro que popularizou os torneios do dilema do prisioneiro repetido e a estratégia *tit-for-tat*; leitura acessível e influente sobre a evolução da cooperação.
+- @schelling1960 — obra pioneira sobre comprometimento, ameaças críveis e pontos focais; fundou boa parte da análise estratégica aplicada.
+- @varian2015 — desenvolve jogos sequenciais, indução reversa e jogos repetidos com aplicações à organização industrial.
+- @pindyck2013 — trata do jogo da entrada, comprometimento e colusão em oligopólio com exemplos empíricos.
+- @nicholson2019 — apresenta formalmente o equilíbrio perfeito em subjogos e o teorema *folk*.
