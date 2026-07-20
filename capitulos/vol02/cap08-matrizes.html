@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>14&nbsp; Matrizes e álgebra linear básica – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol03/cap01-demanda.html" rel="next">
+<link href="../../capitulos/vol02/cap07-integrais-excedentes.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-5284756066bd91586648e5f7a42d5559.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html">Volume 2 — Matemática para Economistas</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap08-matrizes.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">14.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#matrizes-e-vetores" id="toc-matrizes-e-vetores" class="nav-link" data-scroll-target="#matrizes-e-vetores"><span class="header-section-number">14.2</span> Matrizes e vetores</a></li>
+  <li><a href="#operações-com-matrizes" id="toc-operações-com-matrizes" class="nav-link" data-scroll-target="#operações-com-matrizes"><span class="header-section-number">14.3</span> Operações com matrizes</a></li>
+  <li><a href="#o-determinante" id="toc-o-determinante" class="nav-link" data-scroll-target="#o-determinante"><span class="header-section-number">14.4</span> O determinante</a></li>
+  <li><a href="#a-matriz-inversa-e-a-solução-de-sistemas" id="toc-a-matriz-inversa-e-a-solução-de-sistemas" class="nav-link" data-scroll-target="#a-matriz-inversa-e-a-solução-de-sistemas"><span class="header-section-number">14.5</span> A matriz inversa e a solução de sistemas</a></li>
+  <li><a href="#a-regra-de-cramer" id="toc-a-regra-de-cramer" class="nav-link" data-scroll-target="#a-regra-de-cramer"><span class="header-section-number">14.6</span> A regra de Cramer</a></li>
+  <li><a href="#o-modelo-de-insumo-produto-de-leontief" id="toc-o-modelo-de-insumo-produto-de-leontief" class="nav-link" data-scroll-target="#o-modelo-de-insumo-produto-de-leontief"><span class="header-section-number">14.7</span> O modelo de insumo-produto de Leontief</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">14.8</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">14.9</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">14.10</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">14.11</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol02/cap08-matrizes.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html">Volume 2 — Matemática para Economistas</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap08-matrizes.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-matrizes" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>No <a href="#sec-equacoes-e-equilibrio" class="quarto-xref"><span class="quarto-unresolved-ref">sec-equacoes-e-equilibrio</span></a>, resolvemos sistemas de duas equações e duas incógnitas por substituição e eliminação. Mas a economia real raramente tem só dois mercados. Uma economia moderna tem <strong>centenas</strong> de setores, cada um comprando insumos de muitos outros; um modelo macroeconométrico pode ter <strong>dezenas</strong> de equações simultâneas. Resolver isso equação por equação seria impraticável. É aqui que entra a <strong>álgebra linear</strong>: a linguagem que organiza grandes sistemas de equações em objetos compactos — as <strong>matrizes</strong> — e fornece métodos sistemáticos para resolvê-los todos de uma vez.</p>
+<p>Este capítulo fecha o volume de matemática apresentando os fundamentos: o que são matrizes e vetores, como operá-los, e como usá-los para resolver sistemas lineares por meio do <strong>determinante</strong> e da <strong>matriz inversa</strong>. A aplicação-síntese é o <strong>modelo de insumo-produto</strong> de Wassily Leontief, que representa uma economia inteira como um sistema matricial — e que o IBGE calcula para o Brasil.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">14.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>reconhecer <strong>matrizes</strong> e <strong>vetores</strong> e identificar sua ordem (dimensões);</li>
+<li>somar, subtrair e multiplicar matrizes, e multiplicar por escalar;</li>
+<li>entender a <strong>multiplicação de matrizes</strong> e por que ela representa a combinação de sistemas;</li>
+<li>calcular o <strong>determinante</strong> de matrizes <span class="math inline">\(2\times 2\)</span> e usá-lo para decidir se um sistema tem solução única;</li>
+<li>encontrar a <strong>matriz inversa</strong> de uma matriz <span class="math inline">\(2\times 2\)</span> e resolver sistemas na forma <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span>;</li>
+<li>aplicar a <strong>regra de Cramer</strong> a sistemas <span class="math inline">\(2\times 2\)</span>;</li>
+<li>interpretar o <strong>modelo de insumo-produto</strong> de Leontief como um sistema matricial.</li>
+</ul>
+</section>
+<section id="matrizes-e-vetores" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="matrizes-e-vetores"><span class="header-section-number">14.2</span> Matrizes e vetores</h2>
+<p>Uma <strong>matriz</strong> é apenas uma tabela retangular de números, organizada em linhas e colunas. Sua utilidade é organizar informação e, sobretudo, representar sistemas de equações de forma compacta.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Matriz">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Matriz
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma <strong>matriz</strong> de ordem <span class="math inline">\(m \times n\)</span> é um arranjo retangular de números com <span class="math inline">\(m\)</span> <strong>linhas</strong> e <span class="math inline">\(n\)</span> <strong>colunas</strong>. O número na linha <span class="math inline">\(i\)</span> e coluna <span class="math inline">\(j\)</span> é o <strong>elemento</strong> <span class="math inline">\(a_{ij}\)</span>. Uma matriz com uma única coluna (<span class="math inline">\(n = 1\)</span>) é um <strong>vetor coluna</strong>; com uma única linha, um <strong>vetor linha</strong>.</p>
+</div>
+</div>
+<p>Por exemplo,</p>
+<p><span class="math display">\[
+A = \begin{pmatrix} 2 &amp; 1 \\ 3 &amp; 4 \end{pmatrix} \quad(\text{ordem } 2\times 2), \qquad
+\mathbf{b} = \begin{pmatrix} 20 \\ 30 \end{pmatrix} \quad(\text{vetor coluna } 2\times 1).
+\]</span></p>
+<p>A conexão com sistemas é imediata. O sistema <span class="math display">\[
+\begin{cases} 2x + y = 20 \\ 3x + 4y = 30 \end{cases}
+\]</span> se escreve, em forma matricial, como <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span>, onde <span class="math inline">\(A\)</span> é a <strong>matriz de coeficientes</strong> acima, <span class="math inline">\(\mathbf{x} = \begin{pmatrix} x \\ y \end{pmatrix}\)</span> é o vetor de incógnitas e <span class="math inline">\(\mathbf{b}\)</span> é o vetor de termos independentes. Essa notação, que parece só uma abreviação, é na verdade a porta para métodos que resolvem sistemas de qualquer tamanho.</p>
+</section>
+<section id="operações-com-matrizes" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="operações-com-matrizes"><span class="header-section-number">14.3</span> Operações com matrizes</h2>
+<p><strong>Soma e subtração</strong> fazem-se elemento a elemento, e só entre matrizes de <strong>mesma ordem</strong>:</p>
+<p><span class="math display">\[
+\begin{pmatrix} 2 &amp; 1 \\ 3 &amp; 4 \end{pmatrix} + \begin{pmatrix} 0 &amp; 5 \\ 1 &amp; 2 \end{pmatrix} = \begin{pmatrix} 2 &amp; 6 \\ 4 &amp; 6 \end{pmatrix}.
+\]</span></p>
+<p><strong>Multiplicação por escalar</strong> multiplica cada elemento pelo número:</p>
+<p><span class="math display">\[
+3 \times \begin{pmatrix} 2 &amp; 1 \\ 3 &amp; 4 \end{pmatrix} = \begin{pmatrix} 6 &amp; 3 \\ 9 &amp; 12 \end{pmatrix}.
+\]</span></p>
+<p>A operação mais importante — e a que assusta iniciantes — é a <strong>multiplicação de matrizes</strong>. Ela não é feita elemento a elemento. O elemento na posição <span class="math inline">\((i, j)\)</span> do produto <span class="math inline">\(AB\)</span> é obtido combinando a <strong>linha <span class="math inline">\(i\)</span> de <span class="math inline">\(A\)</span></strong> com a <strong>coluna <span class="math inline">\(j\)</span> de <span class="math inline">\(B\)</span></strong>, multiplicando os pares correspondentes e somando (o “produto escalar” da linha pela coluna).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Multiplicação de matrizes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Multiplicação de matrizes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para <span class="math inline">\(C = AB\)</span>, o elemento <span class="math inline">\(c_{ij} = \sum_k a_{ik}\,b_{kj}\)</span>: multiplica-se a linha <span class="math inline">\(i\)</span> de <span class="math inline">\(A\)</span>, termo a termo, pela coluna <span class="math inline">\(j\)</span> de <span class="math inline">\(B\)</span>, e somam-se os produtos. O produto <span class="math inline">\(AB\)</span> só existe se o número de <strong>colunas de <span class="math inline">\(A\)</span></strong> for igual ao número de <strong>linhas de <span class="math inline">\(B\)</span></strong>.</p>
+</div>
+</div>
+<p>Um exemplo <span class="math inline">\(2\times 2\)</span>:</p>
+<p><span class="math display">\[
+\begin{pmatrix} 2 &amp; 1 \\ 3 &amp; 4 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 5 &amp; 2 \end{pmatrix} = \begin{pmatrix} 2\cdot 1 + 1\cdot 5 &amp; 2\cdot 0 + 1\cdot 2 \\ 3\cdot 1 + 4\cdot 5 &amp; 3\cdot 0 + 4\cdot 2 \end{pmatrix} = \begin{pmatrix} 7 &amp; 2 \\ 23 &amp; 8 \end{pmatrix}.
+\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — a ordem importa na multiplicação">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — a ordem importa na multiplicação
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Diferentemente dos números, a multiplicação de matrizes <strong>não é comutativa</strong>: em geral <span class="math inline">\(AB \ne BA\)</span>. A ordem dos fatores altera o resultado (e às vezes um dos produtos nem sequer existe, se as dimensões não casarem). Ao manipular expressões matriciais, nunca troque a ordem dos fatores como faria com números. Essa é a fonte de erro nº 1 de quem começa em álgebra linear.</p>
+</div>
+</div>
+<p>Por que essa regra estranha de multiplicação? Porque ela é exatamente a que faz a notação <span class="math inline">\(A\mathbf{x}\)</span> reproduzir o lado esquerdo de um sistema de equações. Verifique:</p>
+<p><span class="math display">\[
+\begin{pmatrix} 2 &amp; 1 \\ 3 &amp; 4 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 2x + y \\ 3x + 4y \end{pmatrix}.
+\]</span></p>
+<p>Igualar esse resultado a <span class="math inline">\(\mathbf{b} = \begin{pmatrix} 20 \\ 30 \end{pmatrix}\)</span> recupera as duas equações originais. A multiplicação de matrizes foi <em>definida</em> para que sistemas de equações virassem uma única equação matricial.</p>
+</section>
+<section id="o-determinante" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="o-determinante"><span class="header-section-number">14.4</span> O determinante</h2>
+<p>Antes de resolver o sistema, precisamos de um número que diz se ele <strong>tem</strong> solução única: o <strong>determinante</strong> da matriz de coeficientes.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Determinante de uma matriz 2×2">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Determinante de uma matriz 2×2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <strong>determinante</strong> da matriz <span class="math inline">\(A = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}\)</span> é <span id="eq-determinante"><span class="math display">\[
+\det A = ad - bc.
+\tag{14.1}\]</span></span></p>
+</div>
+</div>
+<p>O determinante é um teste de “invertibilidade”:</p>
+<ul>
+<li>se <span class="math inline">\(\det A \ne 0\)</span>, o sistema <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span> tem <strong>solução única</strong> (as retas se cruzam num ponto);</li>
+<li>se <span class="math inline">\(\det A = 0\)</span>, o sistema <strong>não tem solução única</strong> — ou não tem nenhuma (retas paralelas) ou tem infinitas (retas coincidentes).</li>
+</ul>
+<p>Reencontramos aqui, num único número, a classificação de sistemas do <a href="#sec-equacoes-e-equilibrio" class="quarto-xref"><span class="quarto-unresolved-ref">sec-equacoes-e-equilibrio</span></a>. Um determinante nulo significa que as duas equações são, em certo sentido, “redundantes ou contraditórias” — suas retas têm a mesma inclinação. Para <span class="math inline">\(A = \begin{pmatrix} 2 &amp; 1 \\ 3 &amp; 4 \end{pmatrix}\)</span>, <span class="math inline">\(\det A = 2\cdot 4 - 1\cdot 3 = 8 - 3 = 5 \ne 0\)</span>: solução única garantida.</p>
+</section>
+<section id="a-matriz-inversa-e-a-solução-de-sistemas" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="a-matriz-inversa-e-a-solução-de-sistemas"><span class="header-section-number">14.5</span> A matriz inversa e a solução de sistemas</h2>
+<p>Se um número <span class="math inline">\(a \ne 0\)</span> tem inverso <span class="math inline">\(a^{-1} = 1/a\)</span> tal que <span class="math inline">\(a\cdot a^{-1} = 1\)</span>, uma matriz <span class="math inline">\(A\)</span> com <span class="math inline">\(\det A \ne 0\)</span> tem uma <strong>matriz inversa</strong> <span class="math inline">\(A^{-1}\)</span> tal que <span class="math inline">\(A A^{-1} = I\)</span>, onde <span class="math inline">\(I\)</span> é a <strong>matriz identidade</strong> (com <span class="math inline">\(1\)</span> na diagonal e <span class="math inline">\(0\)</span> fora, o análogo matricial do número <span class="math inline">\(1\)</span>).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Inversa de uma matriz 2×2">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Inversa de uma matriz 2×2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para <span class="math inline">\(A = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}\)</span> com <span class="math inline">\(\det A \ne 0\)</span>, <span class="math display">\[
+A^{-1} = \frac{1}{\det A}\begin{pmatrix} d &amp; -b \\ -c &amp; a \end{pmatrix}.
+\]</span> “Troque <span class="math inline">\(a\)</span> e <span class="math inline">\(d\)</span> de lugar, inverta o sinal de <span class="math inline">\(b\)</span> e <span class="math inline">\(c\)</span>, e divida tudo pelo determinante.”</p>
+</div>
+</div>
+<p>Com a inversa, resolver o sistema fica formalmente idêntico a resolver <span class="math inline">\(ax = b\)</span> dividindo por <span class="math inline">\(a\)</span>. Partindo de <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span>, multiplicamos ambos os lados por <span class="math inline">\(A^{-1}\)</span> <strong>pela esquerda</strong> (a ordem importa!):</p>
+<p><span id="eq-solucao-matricial"><span class="math display">\[
+A^{-1}A\mathbf{x} = A^{-1}\mathbf{b} \;\Longrightarrow\; I\mathbf{x} = A^{-1}\mathbf{b} \;\Longrightarrow\; \mathbf{x} = A^{-1}\mathbf{b}.
+\tag{14.2}\]</span></span></p>
+<p>Essa fórmula — <span class="math inline">\(\mathbf{x} = A^{-1}\mathbf{b}\)</span> — resolve <strong>qualquer</strong> sistema linear com solução única, de duas ou de duas mil incógnitas (nos grandes, o computador faz o trabalho). É a razão de a álgebra linear ser a espinha dorsal da economia computacional, da econometria e dos modelos de equilíbrio geral.</p>
+</section>
+<section id="a-regra-de-cramer" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="a-regra-de-cramer"><span class="header-section-number">14.6</span> A regra de Cramer</h2>
+<p>Para sistemas <span class="math inline">\(2\times 2\)</span>, há um atalho prático que dispensa calcular a inversa inteira: a <strong>regra de Cramer</strong>, que expressa cada incógnita como uma razão de determinantes.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Regra de Cramer (2×2)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Regra de Cramer (2×2)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span> com <span class="math inline">\(\det A \ne 0\)</span>, cada incógnita é <span class="math display">\[
+x = \frac{\det A_x}{\det A}, \qquad y = \frac{\det A_y}{\det A},
+\]</span> onde <span class="math inline">\(A_x\)</span> é <span class="math inline">\(A\)</span> com a <strong>coluna de <span class="math inline">\(x\)</span> substituída por <span class="math inline">\(\mathbf{b}\)</span></strong>, e <span class="math inline">\(A_y\)</span> é <span class="math inline">\(A\)</span> com a <strong>coluna de <span class="math inline">\(y\)</span> substituída por <span class="math inline">\(\mathbf{b}\)</span></strong>.</p>
+</div>
+</div>
+<p>Apliquemos ao sistema <span class="math inline">\(\begin{cases} 2x + y = 20 \\ 3x + 4y = 30 \end{cases}\)</span>. Já temos <span class="math inline">\(\det A = 5\)</span>. Então:</p>
+<p><span class="math display">\[
+\det A_x = \det\begin{pmatrix} 20 &amp; 1 \\ 30 &amp; 4 \end{pmatrix} = 20\cdot 4 - 1\cdot 30 = 50, \qquad
+\det A_y = \det\begin{pmatrix} 2 &amp; 20 \\ 3 &amp; 30 \end{pmatrix} = 2\cdot 30 - 20\cdot 3 = 0.
+\]</span></p>
+<p>Logo <span class="math inline">\(x = 50/5 = 10\)</span> e <span class="math inline">\(y = 0/5 = 0\)</span>. A solução é <span class="math inline">\((x, y) = (10, 0)\)</span>. (Verifique nas equações originais: <span class="math inline">\(2\cdot 10 + 0 = 20\)</span> ✓; <span class="math inline">\(3\cdot 10 + 4\cdot 0 = 30\)</span> ✓.) A regra de Cramer é especialmente útil em Economia para a <strong>estática comparativa</strong> com muitos parâmetros, pois expressa a solução como fórmula explícita.</p>
+</section>
+<section id="o-modelo-de-insumo-produto-de-leontief" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="o-modelo-de-insumo-produto-de-leontief"><span class="header-section-number">14.7</span> O modelo de insumo-produto de Leontief</h2>
+<p>Encerramos com a aplicação que justifica todo o capítulo: representar uma <strong>economia inteira</strong> como um sistema matricial. Wassily Leontief (Nobel de 1973) modelou uma economia de vários setores em que cada setor usa produtos dos demais como insumos. A matriz de <strong>coeficientes técnicos</strong> <span class="math inline">\(A\)</span> registra quanto de cada setor é necessário para produzir uma unidade de cada outro; o vetor <span class="math inline">\(\mathbf{x}\)</span> é a produção total de cada setor; e o vetor <span class="math inline">\(\mathbf{d}\)</span> é a <strong>demanda final</strong> (o que sobra para consumo, investimento, exportação).</p>
+<p>A equação fundamental do modelo é:</p>
+<p><span class="math display">\[
+\mathbf{x} = A\mathbf{x} + \mathbf{d},
+\]</span></p>
+<p>que se lê: a produção total de cada setor (<span class="math inline">\(\mathbf{x}\)</span>) atende ao consumo dos outros setores como insumo (<span class="math inline">\(A\mathbf{x}\)</span>) mais a demanda final (<span class="math inline">\(\mathbf{d}\)</span>). Resolvendo para <span class="math inline">\(\mathbf{x}\)</span> — e aqui todo o maquinário deste capítulo entra em cena:</p>
+<p><span id="eq-leontief"><span class="math display">\[
+\mathbf{x} - A\mathbf{x} = \mathbf{d} \;\Longrightarrow\; (I - A)\mathbf{x} = \mathbf{d} \;\Longrightarrow\; \mathbf{x} = (I - A)^{-1}\,\mathbf{d}.
+\tag{14.3}\]</span></span></p>
+<p>A matriz <span class="math inline">\((I - A)^{-1}\)</span>, chamada <strong>matriz inversa de Leontief</strong>, é o coração do modelo: ela informa <strong>quanto cada setor precisa produzir</strong> para atender a uma dada demanda final, levando em conta todos os efeitos em cadeia (para produzir carros é preciso aço, para produzir aço é preciso energia, e assim por diante). É a álgebra linear capturando as interdependências de uma economia inteira num único objeto.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — por que a inversa capta os efeitos em cadeia">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — por que a inversa capta os efeitos em cadeia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Aumentar a demanda final por automóveis exige mais aço; mais aço exige mais minério e energia; mais energia exige mais… A cadeia é, em princípio, infinita. A mágica de <span class="math inline">\((I - A)^{-1}\)</span> é somar <strong>toda</strong> essa cadeia infinita de rodadas de produção num só cálculo (matematicamente, é a soma da série <span class="math inline">\(I + A + A^2 + A^3 + \dots\)</span>, o análogo matricial da soma de uma progressão geométrica). Por isso um choque de demanda num setor “puxa” a produção de muitos outros — o <strong>efeito multiplicador setorial</strong>, que a matriz de Leontief quantifica.</p>
+</div>
+</div>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="14.8">
+<h2 data-number="14.8" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">14.8</span> 🇧🇷 Brasil em Foco</h2>
+<p><strong>A Matriz de Insumo-Produto do Brasil.</strong> O modelo de Leontief não é teoria de quadro-negro: o <strong>IBGE</strong> calcula e publica periodicamente a <strong>Matriz de Insumo-Produto (MIP)</strong> da economia brasileira, um retrato de como as dezenas de setores do país compram e vendem insumos uns dos outros. Com ela, economistas respondem a perguntas concretas: se as exportações de soja crescerem, quanto de transporte, fertilizante, energia e serviços financeiros a economia terá de produzir a mais? Quais setores geram mais empregos por real de demanda (têm maior efeito multiplicador)? A MIP é usada para avaliar o impacto de grandes investimentos (uma nova refinaria, os projetos de infraestrutura), para estimar as chamadas “pegadas” (de carbono, de água, de emprego) das cadeias produtivas, e para orientar política industrial. Tudo isso é a equação <span class="math inline">\(\mathbf{x} = (I - A)^{-1}\mathbf{d}\)</span> deste capítulo, resolvida para uma matriz <span class="math inline">\(A\)</span> com dezenas de setores — impossível sem álgebra linear e computador.</p>
+<p><strong>Sistemas de equações e os modelos do Banco Central.</strong> A resolução simultânea de muitas equações — o problema que as matrizes organizam — está no coração dos modelos macroeconômicos que orientam a política monetária. Os modelos que o <strong>Banco Central do Brasil</strong> usa para projetar inflação e simular cenários de Selic (modelos semiestruturais e de equilíbrio geral) são, no fundo, grandes sistemas de equações resolvidos por métodos matriciais. Quando o Copom avalia “o que acontece com a inflação daqui a dois anos se a Selic subir 1 ponto”, a resposta sai de um sistema em que muitas variáveis (juros, câmbio, hiato do produto, expectativas) se determinam simultaneamente. A álgebra linear é a ferramenta que torna esses sistemas solúveis — o Volume 10 retomará os métodos quantitativos, e aqui fica registrada a base: economia moderna e álgebra matricial são inseparáveis.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> IBGE — Matriz de Insumo-Produto e as Tabelas de Recursos e Usos (TRU) do Sistema de Contas Nacionais; Banco Central do Brasil — documentação dos modelos de projeção (Relatório de Inflação/Relatório de Política Monetária). Verifique o ano de referência da MIP, publicada com defasagem.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="14.9">
+<h2 data-number="14.9" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">14.9</span> Resumo do capítulo</h2>
+<ul>
+<li>Uma <strong>matriz</strong> <span class="math inline">\(m\times n\)</span> é uma tabela de números; um <strong>vetor</strong> é uma matriz de uma só coluna (ou linha). Um sistema linear escreve-se compactamente como <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span>.</li>
+<li><strong>Soma</strong> e <strong>subtração</strong> são elemento a elemento (mesma ordem). A <strong>multiplicação de matrizes</strong> combina linhas de <span class="math inline">\(A\)</span> com colunas de <span class="math inline">\(B\)</span>; <strong>não é comutativa</strong> (<span class="math inline">\(AB \ne BA\)</span>) e foi definida para reproduzir sistemas de equações.</li>
+<li>O <strong>determinante</strong> (<span class="math inline">\(ad - bc\)</span> no caso <span class="math inline">\(2\times2\)</span>) decide a existência de solução única: <span class="math inline">\(\det A \ne 0\)</span> garante solução única; <span class="math inline">\(\det A = 0\)</span> indica nenhuma ou infinitas soluções.</li>
+<li>A <strong>matriz inversa</strong> <span class="math inline">\(A^{-1}\)</span> (existe se <span class="math inline">\(\det A \ne 0\)</span>) resolve o sistema por <span class="math inline">\(\mathbf{x} = A^{-1}\mathbf{b}\)</span> — o análogo matricial de “dividir por <span class="math inline">\(A\)</span>”.</li>
+<li>A <strong>regra de Cramer</strong> dá cada incógnita como razão de determinantes, útil para fórmulas explícitas e estática comparativa.</li>
+<li>O <strong>modelo de insumo-produto de Leontief</strong> representa uma economia inteira por <span class="math inline">\(\mathbf{x} = (I - A)^{-1}\mathbf{d}\)</span>; a inversa de Leontief soma todos os efeitos em cadeia. O IBGE calcula a Matriz de Insumo-Produto do Brasil.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="14.10">
+<h2 data-number="14.10" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">14.10</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique, com suas palavras, por que a multiplicação de matrizes não é comutativa, ao contrário da multiplicação de números.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Na multiplicação de matrizes, o elemento <span class="math inline">\((i,j)\)</span> do produto combina a <strong>linha <span class="math inline">\(i\)</span> do primeiro fator</strong> com a <strong>coluna <span class="math inline">\(j\)</span> do segundo</strong>. Trocar a ordem dos fatores troca o papel de linhas e colunas, produzindo (em geral) resultados diferentes — e às vezes o produto nem existe, se as dimensões não casarem. Como a operação é assimétrica entre os dois fatores por construção, <span class="math inline">\(AB \ne BA\)</span> em geral. Nos números, multiplicar é simétrico (<span class="math inline">\(3\times 5 = 5\times 3\)</span>), por isso a comutatividade vale lá, mas não aqui.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Dadas <span class="math inline">\(A = \begin{pmatrix} 1 &amp; 2 \\ 0 &amp; 3 \end{pmatrix}\)</span> e <span class="math inline">\(B = \begin{pmatrix} 4 &amp; 1 \\ 2 &amp; 5 \end{pmatrix}\)</span>, calcule (a) <span class="math inline">\(A + B\)</span> e (b) <span class="math inline">\(AB\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(A + B = \begin{pmatrix} 5 &amp; 3 \\ 2 &amp; 8 \end{pmatrix}\)</span>.</li>
+<li><span class="math inline">\(AB = \begin{pmatrix} 1\cdot4 + 2\cdot2 &amp; 1\cdot1 + 2\cdot5 \\ 0\cdot4 + 3\cdot2 &amp; 0\cdot1 + 3\cdot5 \end{pmatrix} = \begin{pmatrix} 8 &amp; 11 \\ 6 &amp; 15 \end{pmatrix}\)</span>.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Calcule o determinante de <span class="math inline">\(A = \begin{pmatrix} 3 &amp; 2 \\ 6 &amp; 4 \end{pmatrix}\)</span> e diga o que ele revela sobre o sistema <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\det A = 3\cdot 4 - 2\cdot 6 = 12 - 12 = 0\)</span>. Como o determinante é <strong>zero</strong>, o sistema <strong>não tem solução única</strong>: ou não tem nenhuma (retas paralelas), ou tem infinitas (retas coincidentes). De fato, a segunda linha é o dobro da primeira, revelando redundância.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Encontre a inversa de <span class="math inline">\(A = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\det A = 2\cdot 1 - 1\cdot 1 = 1\)</span>. Então <span class="math display">\[
+A^{-1} = \frac{1}{1}\begin{pmatrix} 1 &amp; -1 \\ -1 &amp; 2 \end{pmatrix} = \begin{pmatrix} 1 &amp; -1 \\ -1 &amp; 2 \end{pmatrix}.
+\]</span> (Verificação: <span class="math inline">\(AA^{-1} = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}\begin{pmatrix} 1 &amp; -1 \\ -1 &amp; 2 \end{pmatrix} = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} = I\)</span> ✓.)</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Resolva o sistema pela regra de Cramer: <span class="math display">\[
+\begin{cases} 3x + 2y = 12 \\ x + 2y = 8 \end{cases}
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\det A = \det\begin{pmatrix} 3 &amp; 2 \\ 1 &amp; 2 \end{pmatrix} = 6 - 2 = 4\)</span>. <span class="math inline">\(\det A_x = \det\begin{pmatrix} 12 &amp; 2 \\ 8 &amp; 2 \end{pmatrix} = 24 - 16 = 8\)</span>; <span class="math inline">\(\det A_y = \det\begin{pmatrix} 3 &amp; 12 \\ 1 &amp; 8 \end{pmatrix} = 24 - 12 = 12\)</span>. Logo <span class="math inline">\(x = 8/4 = 2\)</span> e <span class="math inline">\(y = 12/4 = 3\)</span>. Solução: <span class="math inline">\((2, 3)\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Um mercado com dois bens tem o sistema de equilíbrio (demandas em função dos dois preços) que leva a <span class="math inline">\(\begin{cases} 2p_1 + p_2 = 50 \\ p_1 + 3p_2 = 60 \end{cases}\)</span>. Resolva pela forma <span class="math inline">\(\mathbf{x} = A^{-1}\mathbf{b}\)</span> ou por Cramer.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(A = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 3 \end{pmatrix}\)</span>, <span class="math inline">\(\det A = 6 - 1 = 5\)</span>. Por Cramer: <span class="math inline">\(\det A_{p_1} = \det\begin{pmatrix} 50 &amp; 1 \\ 60 &amp; 3 \end{pmatrix} = 150 - 60 = 90\)</span>; <span class="math inline">\(\det A_{p_2} = \det\begin{pmatrix} 2 &amp; 50 \\ 1 &amp; 60 \end{pmatrix} = 120 - 50 = 70\)</span>. Logo <span class="math inline">\(p_1 = 90/5 = 18\)</span> e <span class="math inline">\(p_2 = 70/5 = 14\)</span>. Os preços de equilíbrio são <span class="math inline">\(p_1 = 18\)</span> e <span class="math inline">\(p_2 = 14\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) Uma economia tem dois setores, agricultura e indústria, com matriz de coeficientes técnicos <span class="math inline">\(A = \begin{pmatrix} 0{,}2 &amp; 0{,}3 \\ 0{,}4 &amp; 0{,}1 \end{pmatrix}\)</span> (cada coluna diz quanto de cada setor entra como insumo para produzir uma unidade do setor). A demanda final é <span class="math inline">\(\mathbf{d} = \begin{pmatrix} 100 \\ 60 \end{pmatrix}\)</span>. Monte o sistema de Leontief <span class="math inline">\((I - A)\mathbf{x} = \mathbf{d}\)</span> (não é preciso resolver) e explique o que a inversa de Leontief representaria.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Primeiro, <span class="math inline">\(I - A = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} - \begin{pmatrix} 0{,}2 &amp; 0{,}3 \\ 0{,}4 &amp; 0{,}1 \end{pmatrix} = \begin{pmatrix} 0{,}8 &amp; -0{,}3 \\ -0{,}4 &amp; 0{,}9 \end{pmatrix}\)</span>. O sistema é <span class="math display">\[
+\begin{pmatrix} 0{,}8 &amp; -0{,}3 \\ -0{,}4 &amp; 0{,}9 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 100 \\ 60 \end{pmatrix}.
+\]</span> A solução <span class="math inline">\(\mathbf{x} = (I-A)^{-1}\mathbf{d}\)</span> daria a <strong>produção total</strong> de cada setor necessária para atender à demanda final de 100 (agricultura) e 60 (indústria), <strong>já incluindo</strong> todo o insumo que os setores consomem um do outro em cadeia. A inversa de Leontief <span class="math inline">\((I-A)^{-1}\)</span> traduz demanda final em produção total, capturando os efeitos multiplicadores setoriais — é o que o IBGE calcula com a Matriz de Insumo-Produto do Brasil.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) Resolva o sistema de Leontief do exercício 7, encontrando a produção total de cada setor. (Dica: calcule <span class="math inline">\((I-A)^{-1}\)</span> e multiplique por <span class="math inline">\(\mathbf{d}\)</span>.)</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Seja <span class="math inline">\(M = I - A = \begin{pmatrix} 0{,}8 &amp; -0{,}3 \\ -0{,}4 &amp; 0{,}9 \end{pmatrix}\)</span>. Determinante: <span class="math inline">\(\det M = 0{,}8\times 0{,}9 - (-0{,}3)(-0{,}4) = 0{,}72 - 0{,}12 = 0{,}60\)</span>. Inversa: <span class="math display">\[
+M^{-1} = \frac{1}{0{,}60}\begin{pmatrix} 0{,}9 &amp; 0{,}3 \\ 0{,}4 &amp; 0{,}8 \end{pmatrix} = \begin{pmatrix} 1{,}5 &amp; 0{,}5 \\ 0{,}667 &amp; 1{,}333 \end{pmatrix}.
+\]</span> Então: <span class="math display">\[
+\mathbf{x} = M^{-1}\mathbf{d} = \begin{pmatrix} 1{,}5 &amp; 0{,}5 \\ 0{,}667 &amp; 1{,}333 \end{pmatrix}\begin{pmatrix} 100 \\ 60 \end{pmatrix} = \begin{pmatrix} 150 + 30 \\ 66{,}7 + 80 \end{pmatrix} = \begin{pmatrix} 180 \\ 146{,}7 \end{pmatrix}.
+\]</span> A agricultura precisa produzir cerca de <strong>180</strong> e a indústria cerca de <strong>147</strong> para atender a uma demanda final de apenas 100 e 60, respectivamente. A diferença (80 e 87) é o que os setores consomem um do outro como insumo — o efeito em cadeia que a inversa de Leontief quantifica.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="14.11">
+<h2 data-number="14.11" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">14.11</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="chiang2006">Chiang; Wainwright (<a href="#ref-chiang2006" role="doc-biblioref">2006</a>)</span> — a Parte sobre álgebra linear (matrizes, determinantes, inversas e a regra de Cramer aplicada a modelos de mercado e insumo-produto) é a referência direta deste capítulo.</li>
+<li><span class="citation" data-cites="simon2004">Simon; Blume (<a href="#ref-simon2004" role="doc-biblioref">2004</a>)</span> — tratamento rigoroso e completo de álgebra linear para economistas, incluindo sistemas de qualquer dimensão e suas aplicações.</li>
+<li><span class="citation" data-cites="leontief1936">Leontief (<a href="#ref-leontief1936" role="doc-biblioref">1936</a>)</span> — o artigo seminal em que Leontief introduziu a análise de insumo-produto, base da MIP calculada pelo IBGE.</li>
+<li><span class="citation" data-cites="sydsaeter2018">Sydsæter et al. (<a href="#ref-sydsaeter2018" role="doc-biblioref">2018</a>)</span> — capítulos de álgebra matricial com aplicações econômicas, um bom complemento em português acessível pela abordagem.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-chiang2006" class="csl-entry" role="listitem">
+CHIANG, Alpha C.; WAINWRIGHT, Kevin. <strong>Matemática para Economistas</strong>. 4. ed. Rio de Janeiro: Elsevier, 2006.
+</div>
+<div id="ref-leontief1936" class="csl-entry" role="listitem">
+LEONTIEF, Wassily W. Quantitative Input and Output Relations in the Economic System of the United States. <strong>The Review of Economics and Statistics</strong>, v. 18, n. 3, p. 105–125, 1936.
+</div>
+<div id="ref-simon2004" class="csl-entry" role="listitem">
+SIMON, Carl P.; BLUME, Lawrence. <strong>Mathematics for Economists</strong>. New York: W. W. Norton, 2004.
+</div>
+<div id="ref-sydsaeter2018" class="csl-entry" role="listitem">
+SYDSÆTER, Knut <em>et al.</em> <strong>Essential Mathematics for Economic Analysis</strong>. 5. ed. Harlow: Pearson, 2018.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="pagination-link" aria-label="Integrais e o cálculo de excedentes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol03/cap01-demanda.html" class="pagination-link" aria-label="A demanda: determinantes e a curva de demanda">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol02/cap08-matrizes.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

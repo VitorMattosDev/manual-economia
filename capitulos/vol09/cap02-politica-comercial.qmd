@@ -1,0 +1,225 @@
+# Política comercial: tarifas, quotas e acordos {#sec-politica-comercial}
+
+Se o comércio aumenta a renda total de um país (@sec-teorias-do-comercio), por que praticamente todos os governos do mundo o restringem? Por que existe uma tarifa sobre o carro importado, uma cota para o leite, um imposto sobre o vinho, uma exigência sanitária que barra a carne estrangeira? A resposta está na outra metade da lição do capítulo anterior: o comércio cria **perdedores** concentrados e organizados, enquanto seus ganhos são **difusos** — repartidos entre milhões de consumidores que mal percebem. Essa assimetria política é o motor de toda a política comercial.
+
+Este capítulo abre a "caixa de ferramentas" do protecionismo — tarifas, quotas, subsídios, barreiras não tarifárias — e mede, com o instrumental de excedentes do consumidor e do produtor que você viu na microeconomia, **quem ganha e quem perde** com uma tarifa. Depois examinamos os argumentos legítimos e ilegítimos a favor da proteção, e a arquitetura que tenta disciplinar o comércio mundial: a **OMC** e os blocos regionais, com o **Mercosul** em foco.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- identificar os principais **instrumentos de política comercial**: tarifas, quotas, subsídios e barreiras não tarifárias;
+- fazer a **análise de bem-estar de uma tarifa**: efeitos sobre consumidores, produtores, governo e o **peso morto**;
+- avaliar criticamente os **argumentos protecionistas** (indústria nascente, segurança, comércio estratégico, *dumping*);
+- distinguir os graus de **integração regional** (área de livre comércio, união aduaneira, mercado comum);
+- entender o papel do **GATT/OMC** e a diferença entre **criação** e **desvio** de comércio;
+- analisar a estrutura de proteção do Brasil e o **Mercosul**.
+
+## Os instrumentos da proteção
+
+O Estado dispõe de várias ferramentas para restringir importações ou favorecer a produção doméstica:
+
+- **Tarifa (imposto de importação):** um imposto sobre o bem importado. Pode ser *ad valorem* (percentual sobre o preço, ex.: 20%) ou específica (valor fixo por unidade). É o instrumento mais transparente.
+- **Quota (cota):** um limite **quantitativo** à importação de um bem. Em vez de encarecer, restringe o volume.
+- **Subsídio à exportação ou à produção:** transferência do governo que barateia o produto nacional, tornando-o mais competitivo.
+- **Barreiras não tarifárias (BNTs):** exigências técnicas, sanitárias, ambientais, licenças, regras de conteúdo local e burocracia alfandegária. São hoje as mais difundidas — e as mais difíceis de medir e contestar.
+
+::: {.callout-tip title="Intuição — tarifa e quota são primos"}
+Uma tarifa restringe a importação pelo **preço**; uma quota, pela **quantidade**. Ambas encarecem o produto no mercado interno e produzem efeitos de bem-estar parecidos. A diferença crucial está em **quem fica com a renda**: na tarifa, o governo arrecada; na quota, o ganho extra (a "renda da quota") vai para quem detém a licença de importar — muitas vezes o produtor estrangeiro ou o importador beneficiado, e não o Tesouro.
+:::
+
+## A análise de bem-estar de uma tarifa
+
+Vamos medir os efeitos de uma tarifa num mercado. Considere um país **pequeno** (que não afeta o preço mundial) que importa um bem ao preço internacional $P_m$. Sem tarifa, o preço interno é $P_m$, os consumidores compram muito e os produtores nacionais ofertam pouco; a diferença é importada. Ao impor uma tarifa $t$, o preço interno sobe para $P_m + t$. A @fig-tarifa mostra o que acontece.
+
+::: {#fig-tarifa}
+
+```{.tikz}
+%%| filename: fig-tarifa
+%%| alt: Diagrama de oferta e demanda de um país pequeno com preço mundial e preço com tarifa, destacando as áreas de ganho do produtor, receita do governo e os dois triângulos de peso morto.
+\begin{tikzpicture}[scale=1.05]
+  \draw[eixo] (0,0) -- (0,6) node[above] {preço};
+  \draw[eixo] (0,0) -- (8,0) node[right] {quantidade};
+  % demanda e oferta
+  \draw[curva, manualblue] (0.3,5.3) -- (7.3,0.6) node[right] {$D$};
+  \draw[curva, manualred] (0.3,0.6) -- (7,5.3) node[right] {$S$};
+  % preço mundial Pm e preço com tarifa
+  \draw[destaque, manualgray] (0,2) -- (7.5,2) node[right, font=\footnotesize] {$P_m$};
+  \draw[destaque, manualgray] (0,3) -- (7.5,3) node[right, font=\footnotesize] {$P_m+t$};
+  \node[left, font=\footnotesize] at (0,2) {$P_m$};
+  \node[left, font=\footnotesize] at (0,3) {$P_m+t$};
+  % quantidades no preço mundial: S1=1.7 D1=5.3 ; com tarifa S2=2.7 D2=4.3 (aprox)
+  % pontos
+  \filldraw[ponto] (1.7,2) circle (1.3pt);
+  \filldraw[ponto] (5.3,2) circle (1.3pt);
+  \filldraw[ponto] (2.7,3) circle (1.3pt);
+  \filldraw[ponto] (4.3,3) circle (1.3pt);
+  \draw[auxiliar] (1.7,2) -- (1.7,0) node[below, font=\scriptsize] {$S_1$};
+  \draw[auxiliar] (2.7,3) -- (2.7,0) node[below, font=\scriptsize] {$S_2$};
+  \draw[auxiliar] (4.3,3) -- (4.3,0) node[below, font=\scriptsize] {$D_2$};
+  \draw[auxiliar] (5.3,2) -- (5.3,0) node[below, font=\scriptsize] {$D_1$};
+  % áreas: a (ganho produtor) triangulo/trapezio entre S1 S2
+  \fill[manualred!20, opacity=0.6] (1.7,2) -- (2.7,3) -- (2.7,2) -- cycle;
+  \node[font=\scriptsize] at (2.15,2.35) {$a$};
+  % c receita governo (retangulo S2-D2 entre 2 e 3)
+  \fill[manualgreen!25, opacity=0.6] (2.7,2) rectangle (4.3,3);
+  \node[font=\scriptsize] at (3.5,2.5) {$c$};
+  % b e d pesos mortos
+  \fill[manualgray!40, opacity=0.7] (2.7,2) -- (2.7,3) -- (1.7,2) -- cycle;
+  \node[font=\scriptsize] at (2.5,1.75) {$b$};
+  \fill[manualgray!40, opacity=0.7] (4.3,2) -- (4.3,3) -- (5.3,2) -- cycle;
+  \node[font=\scriptsize] at (4.5,1.75) {$d$};
+\end{tikzpicture}
+```
+
+Efeitos de uma tarifa num país pequeno. A tarifa eleva o preço de $P_m$ para $P_m+t$: os produtores ganham a área $a$; o governo arrecada $c$; os triângulos $b$ e $d$ são o **peso morto** — perda líquida de eficiência.
+:::
+
+Contabilizando as variações de excedente:
+
+- **Consumidores perdem** as áreas $a + b + c + d$ (pagam mais caro e consomem menos).
+- **Produtores nacionais ganham** a área $a$ (produzem e vendem mais, a preço maior).
+- **O governo arrecada** a área $c$ (a tarifa vezes a quantidade importada).
+- Sobram os triângulos $b$ e $d$, que **ninguém captura**: são o **peso morto** (*deadweight loss*).
+
+$$
+\text{Perda líquida de bem-estar} = \underbrace{(a+b+c+d)}_{\text{perda do consumidor}} - \underbrace{a}_{\text{ganho do produtor}} - \underbrace{c}_{\text{receita do governo}} = b + d.
+$$ {#eq-peso-morto-tarifa}
+
+O triângulo $b$ é a **perda de eficiência na produção** (recursos nacionais desviados para produzir algo que sairia mais barato importado); $d$ é a **perda de eficiência no consumo** (consumidores que deixam de comprar algo que valorizavam mais que o custo mundial). A tarifa, portanto, **transfere** renda de consumidores para produtores e para o governo, mas **destrói** um pedaço no caminho.
+
+::: {.callout-important title="Armadilha comum — 'a tarifa protege empregos, logo é boa'"}
+A tarifa realmente sustenta empregos no setor protegido (área $a$). Mas o custo é pago por **todos os consumidores** (área $a+b+c+d$) e há uma perda líquida ($b+d$). Estudos costumam mostrar que o "custo por emprego salvo" via tarifa supera de longe o salário do emprego — porque os consumidores pagam muito mais caro do que o trabalhador recebe. O emprego é visível; o custo, difuso e invisível. Essa assimetria é o cerne da economia política do protecionismo.
+:::
+
+## Os argumentos a favor da proteção
+
+Nem todo argumento protecionista é falacioso. Vale separar os que têm respaldo teórico dos que não têm.
+
+**Indústria nascente (o mais respeitável).** Um setor novo pode não sobreviver à concorrência estrangeira madura, mas, se protegido temporariamente, ganharia escala e experiência (*learning by doing*) até tornar-se competitivo. É o argumento de Friedrich List e da tradição estruturalista latino-americana. A crítica: na prática, a proteção "temporária" vira permanente, o setor se acomoda e nunca amadurece; e, se o negócio é realmente viável no futuro, o mercado de crédito poderia financiá-lo sem tarifa.
+
+**Segurança nacional.** Um país pode querer manter capacidade doméstica em setores estratégicos (alimentos, energia, defesa, semicondutores) para não depender do exterior em crises. Argumento legítimo, mas facilmente capturado: quase todo setor se declara "estratégico" para obter proteção.
+
+**Comércio estratégico.** Em setores com grandes economias de escala e poucos competidores globais (aviação, por exemplo), um subsídio inicial pode ajudar a empresa nacional a capturar o mercado mundial. Teoricamente possível (Brander-Spencer), mas exige informação que os governos raramente têm e convida à retaliação.
+
+**Antidumping e concorrência desleal.** Se um exportador estrangeiro vende abaixo do custo (*dumping*) para quebrar concorrentes e depois subir preços, ou é subsidiado por seu governo, medidas de defesa comercial podem se justificar. Na prática, o antidumping é frequentemente **abusado** como protecionismo disfarçado.
+
+::: {.callout-warning title="Controvérsia — livre-cambismo × desenvolvimentismo"}
+Este é um dos debates mais antigos da Economia. Os **livre-cambistas** (na linha de Smith, Ricardo e do consenso liberal) sustentam que a proteção reduz a eficiência, encarece o consumo e acomoda setores ineficientes; o caminho do crescimento é a exposição à concorrência. Os **desenvolvimentistas** (List, Prebisch, a CEPAL, e economistas como Ha-Joon Chang) contrapõem que praticamente todos os países hoje ricos industrializaram-se sob proteção, e que abrir cedo demais condena o país à especialização em produtos de baixo valor. A evidência é mista: proteção bem desenhada e **temporária**, com metas de desempenho, teve êxito em alguns casos asiáticos; proteção permanente e sem contrapartidas fracassou em muitos outros. O manual apresenta as duas posições; a síntese depende do desenho e da disciplina da política.
+:::
+
+## A arquitetura do comércio mundial: do GATT à OMC
+
+Após a devastação das guerras tarifárias dos anos 1930 — quando países ergueram barreiras retaliatórias que afundaram o comércio mundial e agravaram a Depressão —, criou-se em 1947 o **GATT** (Acordo Geral sobre Tarifas e Comércio), sucedido em 1995 pela **Organização Mundial do Comércio (OMC)**. Seus princípios centrais:
+
+- **Não discriminação (cláusula da nação mais favorecida):** uma vantagem tarifária concedida a um país deve estender-se a todos os membros.
+- **Tratamento nacional:** produto importado, uma vez dentro do país, não pode ser tratado pior que o nacional.
+- **Reduções negociadas e consolidadas:** tarifas reduzidas em rodadas de negociação e "amarradas" (não podem subir livremente depois).
+- **Solução de controvérsias:** um sistema arbitral para julgar disputas comerciais entre membros — um dos maiores êxitos da OMC, hoje sob tensão.
+
+A OMC reduziu tarifas médias mundiais drasticamente ao longo de décadas. Mas as rodadas multilaterais emperraram (a Rodada de Doha nunca se concluiu), e o centro de gravidade migrou para os **acordos regionais e bilaterais**.
+
+## Integração regional: graus de aprofundamento
+
+Blocos regionais aprofundam a integração entre poucos países. Há uma escada de intensidade crescente:
+
+| Grau | O que elimina/harmoniza | Exemplo |
+|------|--------------------------|---------|
+| **Área de livre comércio** | Tarifas **entre** membros; cada um mantém sua tarifa externa | Nafta/USMCA |
+| **União aduaneira** | + **Tarifa externa comum** frente a terceiros | Mercosul |
+| **Mercado comum** | + Livre circulação de **fatores** (trabalho, capital) | União Europeia (fase) |
+| **União econômica e monetária** | + Moeda e políticas comuns | Zona do euro |
+
+: Graus de integração regional, do mais raso ao mais profundo. {#tbl-integracao}
+
+A integração regional tem dois efeitos opostos sobre o bem-estar, distinção clássica de Jacob Viner:
+
+- **Criação de comércio:** membros passam a importar do parceiro **mais eficiente** do bloco, em vez de produzir internamente a custo maior. Ganho de eficiência — **bom**.
+- **Desvio de comércio:** membros passam a importar do parceiro do bloco (agora sem tarifa) em vez de um produtor **mais eficiente de fora** (que ainda paga a tarifa externa). Perda de eficiência — **ruim**.
+
+::: {.callout-note title="Definição — criação e desvio de comércio"}
+Um bloco **cria comércio** quando substitui produção doméstica cara por importação mais barata de um sócio; **desvia comércio** quando substitui importação eficiente de fora do bloco por importação menos eficiente de dentro, apenas por causa da isenção tarifária interna. O saldo líquido de um acordo depende de qual efeito predomina.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+**O Brasil é uma economia relativamente fechada.** Apesar de ser um dos maiores exportadores agrícolas do mundo, o Brasil tem um **grau de abertura comercial** (soma de exportações e importações sobre o PIB) **baixo** para os padrões internacionais — recorrentemente na faixa de cerca de um quarto a um terço do PIB, contra metade ou mais em muitas economias comparáveis. A tarifa média de importação e, sobretudo, a densa teia de **barreiras não tarifárias**, exigências de **conteúdo local** e complexidade tributária figuram entre as mais restritivas de grandes economias, segundo levantamentos da **OCDE**, do **Banco Mundial** e da própria **OMC**. Esse fechamento é objeto de debate: críticos apontam perda de produtividade e de competitividade; defensores invocam o argumento da indústria e do emprego.
+
+**O Mercosul: união aduaneira imperfeita.** Criado pelo **Tratado de Assunção (1991)**, o **Mercosul** (Brasil, Argentina, Paraguai, Uruguai — com a Venezuela suspensa) é formalmente uma **união aduaneira**, com uma **Tarifa Externa Comum (TEC)** frente a terceiros. Na prática, é "imperfeita": há longas listas de exceções à TEC, e a livre circulação interna é limitada por barreiras não tarifárias e disputas setoriais (automóveis, açúcar). O bloco gerou **criação de comércio** entre os sócios — o intercâmbio Brasil–Argentina, sobretudo de manufaturas e automóveis, é intenso —, mas também **desvio**, ao proteger produtores regionais menos eficientes que fornecedores globais. A negociação do **acordo Mercosul–União Europeia**, concluída em 2019 após duas décadas e ainda em ratificação, é vista como um teste da capacidade do bloco de se abrir ao mundo.
+
+**Defesa comercial e reforma tributária.** O Brasil é usuário frequente de medidas **antidumping**, sobretudo contra produtos siderúrgicos, químicos e têxteis asiáticos — instrumentos legítimos pela OMC, mas às vezes acusados de protecionismo disfarçado. No plano interno, a **reforma tributária do consumo** (Emenda Constitucional 132/2023, com IBS e CBS) promete simplificar a tributação que hoje encarece e distorce o comércio exterior brasileiro, ainda que seus efeitos sobre a competitividade só se materializem ao longo da transição. Órgãos como a **SECEX/MDIC** e a **CAMEX** conduzem a política comercial e as investigações de defesa comercial.
+
+> **Fontes e séries para explorar:** MDIC / Comex Stat e SECEX (balança, tarifas, defesa comercial); Banco Central (grau de abertura, setor externo); OMC (World Tariff Profiles, perfil do Brasil); OCDE e Banco Mundial (indicadores de restritividade e facilitação de comércio); textos do IPEA sobre política comercial. Confira sempre o ano de referência.
+
+## Resumo do capítulo
+
+- Os instrumentos de proteção são **tarifas** (restringem pelo preço), **quotas** (pela quantidade), **subsídios** e **barreiras não tarifárias** (hoje as mais difundidas).
+- Na análise de bem-estar de uma tarifa num país pequeno, os consumidores perdem $a+b+c+d$, os produtores ganham $a$, o governo arrecada $c$ e sobra um **peso morto** de $b+d$ — perda líquida de eficiência.
+- A tarifa **transfere** renda de consumidores para produtores e governo, mas **destrói** eficiência; o "custo por emprego salvo" costuma superar em muito o salário do emprego.
+- Argumentos protecionistas variam de respeitáveis (**indústria nascente**, **segurança nacional**, **antidumping** legítimo) a facilmente capturados; a proteção "temporária" tende a se eternizar.
+- O debate **livre-cambismo × desenvolvimentismo** não tem vencedor único: proteção **temporária e disciplinada** teve êxito em alguns casos; permanente e sem contrapartidas fracassou em muitos.
+- O **GATT/OMC** disciplina o comércio mundial por não discriminação, tratamento nacional, tarifas consolidadas e solução de controvérsias; as rodadas multilaterais emperraram e cresceram os **acordos regionais**.
+- A integração regional escala de **área de livre comércio** a **união aduaneira**, **mercado comum** e **união monetária**; seu efeito líquido depende de **criação** *versus* **desvio** de comércio.
+- O Brasil é **relativamente fechado**; o **Mercosul** é uma união aduaneira imperfeita, com a TEC cheia de exceções e o acordo com a UE como teste de abertura.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique a diferença entre uma **tarifa** e uma **quota**. Em que ponto crucial elas divergem quanto a quem fica com a renda?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A **tarifa** é um imposto que restringe a importação encarecendo o produto (via preço); a **quota** limita diretamente a **quantidade** importada. Ambas elevam o preço interno e reduzem o volume importado, com efeitos de bem-estar parecidos. A divergência está em **quem captura a renda extra**: na tarifa, é o **governo** (arrecada o imposto); na quota, é quem detém a **licença de importação** (importador ou exportador estrangeiro beneficiado) — a chamada "renda da quota", que não vai ao Tesouro.
+:::
+
+**2.** Na @fig-tarifa, identifique a que corresponde cada área ($a$, $b$, $c$, $d$) e diga quem ganha, quem perde e qual é o peso morto.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$a$ = ganho de excedente do **produtor** nacional; $c$ = **receita do governo** (tarifa × quantidade importada); $b$ e $d$ = **peso morto** (perdas de eficiência na produção e no consumo, respectivamente). Os **consumidores perdem** $a+b+c+d$. A perda líquida de bem-estar é $b+d$: o que os consumidores perdem além do que produtores e governo ganham.
+:::
+
+**3.** Um país pequeno importa trigo ao preço mundial de R\$\,50/saca. Impõe uma tarifa de R\$\,10/saca. Antes, produzia 100 e consumia 400 sacas (importava 300); depois, produz 150 e consome 350 (importa 200). Calcule a receita tarifária do governo e explique o que houve com a importação.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Com a tarifa, o preço interno vai a R\$\,60. A importação cai de 300 para 200 sacas (o consumo cai de 400 para 350 e a produção nacional sobe de 100 para 150). A **receita do governo** é a tarifa vezes a quantidade importada com tarifa: $10 \times 200 = R\$\,2.000$. A importação encolheu porque o preço maior desestimulou o consumo e estimulou a produção doméstica — parte da demanda antes suprida por importação passou a ser produzida internamente (a custo maior, gerando o peso morto $b$).
+:::
+
+**4.** Avalie criticamente o argumento da **indústria nascente**. Em que condições ele se sustenta e por que costuma falhar na prática?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O argumento sustenta-se quando um setor **potencialmente competitivo** precisa de tempo para ganhar escala e aprendizado (*learning by doing*) que o tornariam viável — uma proteção **temporária** poderia viabilizá-lo. Falha na prática por três motivos: (i) a proteção "temporária" costuma virar **permanente**, pois o setor se acomoda e faz lobby para mantê-la; (ii) sem concorrência, falta incentivo para ganhar eficiência; (iii) se o setor for de fato viável no futuro, o **mercado de crédito** poderia financiá-lo sem transferir o custo aos consumidores. O êxito depende de proteção com **prazo e metas de desempenho** rígidos — raros na prática.
+:::
+
+**5.** Distinga **criação** de **desvio** de comércio num acordo regional. Dê um exemplo hipotético de cada um envolvendo o Mercosul.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Criação:** o Brasil deixa de produzir internamente um bem caro e passa a importá-lo mais barato da Argentina (sócio mais eficiente) — ganho de eficiência. Exemplo: trigo argentino substituindo produção brasileira menos eficiente. **Desvio:** o Brasil deixa de importar um bem de um produtor **eficiente de fora** do bloco (que paga a TEC) e passa a comprá-lo de um sócio **menos eficiente**, só porque este é isento de tarifa. Exemplo: importar autopeças argentinas mais caras, sem tarifa, em vez de asiáticas mais baratas, mas taxadas. O saldo do acordo depende de qual efeito predomina.
+:::
+
+**6.** Explique por que o comércio, apesar de gerar ganho líquido, é politicamente vulnerável ao protecionismo. Use a ideia de custos concentrados e benefícios difusos.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Os **perdedores** do comércio (um setor específico) são poucos, identificáveis e sofrem perdas grandes e concentradas — têm forte incentivo a se organizar e pressionar por proteção. Os **ganhadores** (consumidores) são milhões, cada um ganhando pouco (preços um pouco menores), com incentivo fraco a se mobilizar — o ganho é **difuso**. Essa assimetria faz o lobby protecionista prevalecer politicamente sobre o interesse difuso dos consumidores, mesmo quando a proteção reduz o bem-estar total. É um caso clássico de **falha de ação coletiva**.
+:::
+
+**7.** (Análise de caso) O Brasil é frequentemente descrito como uma economia "fechada". Liste dois custos e um possível benefício desse fechamento, e explique como uma abertura gradual poderia ser desenhada para reduzir os danos aos perdedores.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Custos:** (i) menor **produtividade** — empresas protegidas competem menos e inovam menos; (ii) **consumidor** paga mais caro e tem menos variedade; some-se a menor integração às cadeias globais de valor. **Benefício possível:** preservação de **empregos e capacidade industrial** em setores sensíveis no curto prazo (argumentos de indústria e segurança). **Abertura gradual bem desenhada:** cronograma **previsível** de redução tarifária (dá tempo de ajuste), combinado com políticas de **compensação e transição** (requalificação profissional, seguro-desemprego, crédito à modernização) para os setores perdedores — preservando o ganho agregado e repartindo-o de modo menos injusto (ligação com Stolper-Samuelson, @sec-teorias-do-comercio).
+:::
+
+**8.** (Desafio) Explique por que a cláusula da **nação mais favorecida** da OMC pode, paradoxalmente, ter estimulado a proliferação de acordos regionais (que são, por definição, discriminatórios).
+
+::: {.callout-tip collapse="true" title="Solução"}
+A cláusula da nação mais favorecida obriga a estender a **todos** os membros da OMC qualquer redução tarifária concedida a um — o que dificulta concessões "sob medida" e torna as rodadas multilaterais lentas, pois exigem consenso amplo. Os **acordos regionais** são uma exceção permitida à regra: dentro deles, os membros podem se conceder mutuamente vantagens **sem** estendê-las ao resto do mundo. Assim, países frustrados com a lentidão multilateral migram para acordos regionais/bilaterais, onde negociam mais rápido e mais fundo com poucos parceiros — ainda que ao custo de **discriminar** terceiros e potencialmente **desviar comércio**. O princípio universalista da OMC, ao emperrar, acabou empurrando o comércio para arranjos preferenciais.
+:::
+
+## Para saber mais
+
+- @krugman2015 — capítulos sobre instrumentos de política comercial, análise de bem-estar de tarifas e economia política do protecionismo.
+- @gremaud2017 — para a política comercial brasileira, o Mercosul e a estrutura de proteção nacional.
+- @vasconcellos2019 — introdução em português aos efeitos de tarifas e quotas.
+- @giambiagi2016 — para o vínculo entre política comercial, tributação e competitividade no Brasil.
+- @smith1996 — a defesa clássica do livre comércio, ainda o contraponto de referência ao protecionismo.

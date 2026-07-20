@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Derivadas e a análise marginal – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol02/cap05-otimizacao-livre.html" rel="next">
+<link href="../../capitulos/vol02/cap03-limites-e-continuidade.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-5284756066bd91586648e5f7a42d5559.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html">Volume 2 — Matemática para Economistas</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">10.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#da-secante-à-tangente-a-definição-de-derivada" id="toc-da-secante-à-tangente-a-definição-de-derivada" class="nav-link" data-scroll-target="#da-secante-à-tangente-a-definição-de-derivada"><span class="header-section-number">10.2</span> Da secante à tangente: a definição de derivada</a></li>
+  <li><a href="#as-regras-de-derivação" id="toc-as-regras-de-derivação" class="nav-link" data-scroll-target="#as-regras-de-derivação"><span class="header-section-number">10.3</span> As regras de derivação</a>
+  <ul class="collapse">
+  <li><a href="#regra-da-constante-e-da-potência" id="toc-regra-da-constante-e-da-potência" class="nav-link" data-scroll-target="#regra-da-constante-e-da-potência"><span class="header-section-number">10.3.1</span> Regra da constante e da potência</a></li>
+  <li><a href="#regras-da-soma-e-da-constante-multiplicativa" id="toc-regras-da-soma-e-da-constante-multiplicativa" class="nav-link" data-scroll-target="#regras-da-soma-e-da-constante-multiplicativa"><span class="header-section-number">10.3.2</span> Regras da soma e da constante multiplicativa</a></li>
+  <li><a href="#regra-do-produto-e-do-quociente" id="toc-regra-do-produto-e-do-quociente" class="nav-link" data-scroll-target="#regra-do-produto-e-do-quociente"><span class="header-section-number">10.3.3</span> Regra do produto e do quociente</a></li>
+  <li><a href="#regra-da-cadeia" id="toc-regra-da-cadeia" class="nav-link" data-scroll-target="#regra-da-cadeia"><span class="header-section-number">10.3.4</span> Regra da cadeia</a></li>
+  </ul></li>
+  <li><a href="#marginal-derivada-o-dicionário-da-análise-econômica" id="toc-marginal-derivada-o-dicionário-da-análise-econômica" class="nav-link" data-scroll-target="#marginal-derivada-o-dicionário-da-análise-econômica"><span class="header-section-number">10.4</span> Marginal = derivada: o dicionário da análise econômica</a></li>
+  <li><a href="#primeira-e-segunda-derivadas-crescimento-e-concavidade" id="toc-primeira-e-segunda-derivadas-crescimento-e-concavidade" class="nav-link" data-scroll-target="#primeira-e-segunda-derivadas-crescimento-e-concavidade"><span class="header-section-number">10.5</span> Primeira e segunda derivadas: crescimento e concavidade</a></li>
+  <li><a href="#elasticidade-a-derivada-em-forma-percentual" id="toc-elasticidade-a-derivada-em-forma-percentual" class="nav-link" data-scroll-target="#elasticidade-a-derivada-em-forma-percentual"><span class="header-section-number">10.6</span> Elasticidade: a derivada em forma percentual</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">10.7</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">10.8</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">10.9</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">10.10</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol02/cap04-derivadas-analise-marginal.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html">Volume 2 — Matemática para Economistas</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-derivadas-analise-marginal" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Se houvesse um único conceito matemático a levar para toda a Economia, seria este. Lá no primeiro capítulo do manual (<a href="#sec-o-que-e-economia" class="quarto-xref"><span class="quarto-unresolved-ref">sec-o-que-e-economia</span></a>), aprendemos que decisões racionais são tomadas <strong>à margem</strong> — comparando o benefício de “um pouquinho a mais” com o seu custo. Naquele momento, “um pouquinho a mais” era uma ideia intuitiva. Agora ela ganha corpo matemático exato: a <strong>derivada</strong> é, literalmente, a taxa de variação de “um pouquinho a mais”. Custo marginal, receita marginal, produto marginal, utilidade marginal, propensão marginal a consumir — toda vez que você lê a palavra <strong>marginal</strong> em Economia, está lendo a palavra <strong>derivada</strong>.</p>
+<p>Este capítulo transforma a taxa média de variação do capítulo anterior em taxa <strong>instantânea</strong>, apresenta as regras práticas para calcular derivadas e mostra por que elas são a linguagem natural da decisão econômica.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">10.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>definir a <strong>derivada</strong> como limite da taxa média de variação e interpretá-la como inclinação da reta <strong>tangente</strong>;</li>
+<li>aplicar as <strong>regras de derivação</strong> — da potência, da soma, do produto, do quociente e da cadeia;</li>
+<li>traduzir “<strong>marginal</strong>” como “<strong>derivada</strong>” e calcular custo, receita e produto marginais;</li>
+<li>relacionar o sinal da <strong>primeira derivada</strong> ao crescimento/decrescimento e o da <strong>segunda derivada</strong> à concavidade;</li>
+<li>entender os <strong>retornos decrescentes</strong> como uma afirmação sobre a segunda derivada;</li>
+<li>calcular a <strong>elasticidade</strong> usando derivadas.</li>
+</ul>
+</section>
+<section id="da-secante-à-tangente-a-definição-de-derivada" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="da-secante-à-tangente-a-definição-de-derivada"><span class="header-section-number">10.2</span> Da secante à tangente: a definição de derivada</h2>
+<p>Retomemos exatamente onde paramos. A taxa média de variação de <span class="math inline">\(f\)</span> entre <span class="math inline">\(a\)</span> e <span class="math inline">\(a + h\)</span> é a inclinação da secante:</p>
+<p><span class="math display">\[
+\frac{f(a + h) - f(a)}{h}.
+\]</span></p>
+<p>Essa é uma média sobre um intervalo de largura <span class="math inline">\(h\)</span>. Para obter a taxa <strong>no ponto</strong> <span class="math inline">\(a\)</span> — a inclinação <strong>instantânea</strong> —, encolhemos o intervalo, fazendo <span class="math inline">\(h\)</span> tender a zero. À medida que <span class="math inline">\(h \to 0\)</span>, o segundo ponto desliza sobre a curva até colar no primeiro, e a reta secante gira até se tornar a reta <strong>tangente</strong>. Esse limite é a derivada.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Derivada">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Derivada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>derivada</strong> de <span class="math inline">\(f\)</span> no ponto <span class="math inline">\(a\)</span>, denotada <span class="math inline">\(f'(a)\)</span>, é o limite da taxa média de variação quando o intervalo tende a zero: <span id="eq-derivada"><span class="math display">\[
+f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h},
+\tag{10.1}\]</span></span> quando esse limite existe. Geometricamente, <span class="math inline">\(f'(a)\)</span> é a <strong>inclinação da reta tangente</strong> ao gráfico de <span class="math inline">\(f\)</span> no ponto <span class="math inline">\((a, f(a))\)</span>; economicamente, é a <strong>taxa instantânea de variação</strong> de <span class="math inline">\(f\)</span> em relação a <span class="math inline">\(x\)</span>.</p>
+</div>
+</div>
+<p>A <a href="#fig-tangente" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-tangente</span></a> ilustra a ideia: a secante (que corta a curva em dois pontos) gira, conforme <span class="math inline">\(h\)</span> diminui, até virar a tangente (que toca a curva num ponto só).</p>
+<div id="fig-tangente" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tangente-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="238.254605pt" height="168.458869pt" viewbox="-68.014948 -68.014947 238.254605 168.458869">
+
+<defs>
+
+<path id="tz_fig_tangente_g0-97" d="M3.425156-3.407223C3.254795-3.730012 2.976837-3.963138 2.57335-3.963138C1.53325-3.963138 .376588-2.725778 .376588-1.353923C.376588-.367621 1.004234 .09863 1.604981 .09863C2.187796 .09863 2.663014-.385554 2.806476-.555915C2.905106-.062765 3.353425 .09863 3.640349 .09863C3.900374 .09863 4.124533-.017933 4.321793-.394521C4.483188-.690411 4.608717-1.246326 4.608717-1.282192C4.608717-1.327024 4.581818-1.389788 4.492154-1.389788C4.384558-1.389788 4.375592-1.344956 4.339726-1.174595C4.142466-.394521 3.945205-.125529 3.667248-.125529C3.443088-.125529 3.38929-.340722 3.38929-.537983C3.38929-.708344 3.434122-.887671 3.514819-1.201494L3.738979-2.125031C3.801743-2.349191 3.963138-3.021669 3.999004-3.156164C4.034869-3.281694 4.088667-3.496887 4.088667-3.523786C4.088667-3.667248 3.972105-3.783811 3.81071-3.783811C3.694147-3.783811 3.469988-3.71208 3.425156-3.407223ZM2.842341-1.093898C2.797509-.923537 2.797509-.91457 2.654047-.744209C2.331258-.358655 1.963636-.125529 1.63188-.125529C1.192528-.125529 1.0401-.582814 1.0401-.968369C1.0401-1.407721 1.300125-2.438854 1.515318-2.86924C1.802242-3.407223 2.214695-3.738979 2.57335-3.738979C3.174097-3.738979 3.308593-3.021669 3.308593-2.958904C3.308593-2.914072 3.29066-2.860274 3.281694-2.824408L2.842341-1.093898Z"></path>
+
+<path id="tz_fig_tangente_g0-102" d="M3.353425-3.58655H4.160399C4.339726-3.58655 4.42939-3.58655 4.42939-3.747945C4.42939-3.864508 4.339726-3.864508 4.169365-3.864508H3.407223C3.505853-4.402491 3.631382-5.137733 3.747945-5.621918C3.828643-5.971606 4.043836-6.097136 4.223163-6.097136C4.276961-6.097136 4.483188-6.079203 4.635616-5.971606C4.456289-5.935741 4.196264-5.774346 4.196264-5.478456C4.196264-5.254296 4.366625-5.155666 4.536986-5.155666C4.779078-5.155666 5.030137-5.352927 5.030137-5.693649C5.030137-6.097136 4.635616-6.321295 4.214197-6.321295C3.81071-6.321295 3.407223-6.034371 3.218929-5.66675C3.021669-5.281196 2.958904-4.931507 2.77061-3.864508H2.125031C1.95467-3.864508 1.847073-3.864508 1.847073-3.703113C1.847073-3.58655 1.945704-3.58655 2.107098-3.58655H2.716812C2.465753-2.286426 2.15193-.493151 1.95467 .439352C1.847073 .932503 1.703611 1.613948 1.273225 1.613948C1.13873 1.613948 .959402 1.560149 .869738 1.488418C1.093898 1.452553 1.318057 1.264259 1.318057 .995268C1.318057 .771108 1.147696 .672478 .977335 .672478C.735243 .672478 .484184 .869738 .484184 1.210461C.484184 1.622914 .896638 1.838107 1.273225 1.838107C2.187796 1.838107 2.609215 .349689 2.752677-.42142L3.353425-3.58655Z"></path>
+
+<path id="tz_fig_tangente_g0-104" d="M2.57335-5.917808C2.609215-6.043337 2.609215-6.06127 2.609215-6.097136C2.609215-6.177833 2.555417-6.222665 2.47472-6.222665C2.349191-6.222665 1.560149-6.150934 1.380822-6.133001C1.291158-6.124035 1.192528-6.115068 1.192528-5.96264C1.192528-5.846077 1.291158-5.846077 1.43462-5.846077C1.85604-5.846077 1.85604-5.783313 1.85604-5.702615C1.85604-5.66675 1.85604-5.648817 1.811208-5.487422L.529016-.331756C.493151-.206227 .493151-.188294 .493151-.161395C.493151-.017933 .609714 .09863 .771108 .09863C.923537 .09863 1.049066 .008966 1.111831-.116563C1.129763-.161395 1.210461-.484184 1.255293-.672478L1.461519-1.470486C1.488418-1.604981 1.578082-1.945704 1.604981-2.080199L1.712578-2.47472C1.75741-2.680946 2.268493-3.738979 3.236862-3.738979C3.721046-3.738979 3.721046-3.263761 3.721046-3.111333C3.721046-2.564384 3.299626-1.470486 3.200996-1.192528C3.0934-.91457 3.057534-.824907 3.057534-.654545C3.057534-.170361 3.425156 .09863 3.828643 .09863C4.689415 .09863 5.039103-1.183562 5.039103-1.282192C5.039103-1.327024 5.012204-1.389788 4.92254-1.389788C4.82391-1.389788 4.814944-1.344956 4.779078-1.228394C4.554919-.466252 4.178331-.125529 3.855542-.125529C3.792777-.125529 3.631382-.125529 3.631382-.412453C3.631382-.636613 3.721046-.869738 3.792777-1.066999C3.972105-1.524284 4.33076-2.47472 4.33076-2.976837C4.33076-3.774844 3.738979-3.963138 3.263761-3.963138C2.725778-3.963138 2.268493-3.71208 1.909838-3.272727L2.57335-5.917808Z"></path>
+
+<path id="tz_fig_tangente_g0-120" d="M4.411457-3.622416C4.079701-3.559651 3.981071-3.272727 3.981071-3.138232C3.981071-2.96787 4.1066-2.815442 4.33076-2.815442C4.581818-2.815442 4.82391-3.030635 4.82391-3.344458C4.82391-3.756912 4.375592-3.963138 3.954172-3.963138C3.416189-3.963138 3.102366-3.48792 2.99477-3.299626C2.824408-3.738979 2.429888-3.963138 1.999502-3.963138C1.0401-3.963138 .52005-2.815442 .52005-2.582316C.52005-2.501619 .582814-2.47472 .645579-2.47472C.726276-2.47472 .753176-2.519552 .771108-2.57335C1.049066-3.461021 1.640847-3.738979 1.981569-3.738979C2.241594-3.738979 2.47472-3.568618 2.47472-3.147198C2.47472-2.824408 2.089166-1.389788 1.972603-.959402C1.900872-.681445 1.63188-.125529 1.13873-.125529C.959402-.125529 .771108-.188294 .681445-.242092C.923537-.286924 1.102864-.493151 1.102864-.726276C1.102864-.950436 .932503-1.049066 .762142-1.049066C.502117-1.049066 .268991-.824907 .268991-.52005C.268991-.080697 .753176 .09863 1.129763 .09863C1.649813 .09863 1.95467-.331756 2.089166-.573848C2.313325 .017933 2.842341 .09863 3.084433 .09863C4.052802 .09863 4.563885-1.066999 4.563885-1.282192C4.563885-1.327024 4.536986-1.389788 4.447323-1.389788C4.348692-1.389788 4.339726-1.353923 4.294894-1.219427C4.097634-.573848 3.577584-.125529 3.111333-.125529C2.851308-.125529 2.609215-.286924 2.609215-.71731C2.609215-.91457 2.734745-1.407721 2.815442-1.748443C2.851308-1.909838 3.0934-2.878207 3.111333-2.940971C3.218929-3.263761 3.48792-3.738979 3.945205-3.738979C4.1066-3.738979 4.276961-3.71208 4.411457-3.622416Z"></path>
+
+<path id="tz_fig_tangente_g0-121" d="M4.501121-3.452055C4.510087-3.496887 4.52802-3.550685 4.52802-3.604483C4.52802-3.721046 4.447323-3.864508 4.250062-3.864508C4.133499-3.864508 3.972105-3.792777 3.900374-3.622416C3.891407-3.58655 3.801743-3.218929 3.747945-3.021669L3.299626-1.228394C3.227895-.968369 3.227895-.950436 3.209963-.869738C3.200996-.833873 2.824408-.125529 2.178829-.125529C1.622914-.125529 1.622914-.690411 1.622914-.860772C1.622914-1.264259 1.739477-1.703611 2.125031-2.707846C2.196762-2.914072 2.25056-3.039601 2.25056-3.209963C2.25056-3.649315 1.918804-3.963138 1.479452-3.963138C.61868-3.963138 .260025-2.689913 .260025-2.582316C.260025-2.501619 .32279-2.47472 .385554-2.47472C.484184-2.47472 .493151-2.528518 .529016-2.645081C.71731-3.308593 1.075965-3.738979 1.452553-3.738979C1.667746-3.738979 1.667746-3.568618 1.667746-3.443088C1.667746-3.29066 1.63188-3.129265 1.551183-2.914072C1.129763-1.802242 1.0132-1.425654 1.0132-.995268C1.0132 0 1.820174 .09863 2.15193 .09863C2.591283 .09863 2.905106-.134496 3.066501-.29589C2.949938 .161395 2.851308 .564882 2.501619 1.0132C2.232628 1.371856 1.873973 1.613948 1.479452 1.613948C1.228394 1.613948 .932503 1.524284 .806974 1.273225C1.282192 1.273225 1.344956 .878705 1.344956 .789041C1.344956 .591781 1.201494 .466252 1.004234 .466252C.789041 .466252 .502117 .636613 .502117 1.049066C.502117 1.515318 .91457 1.838107 1.479452 1.838107C2.394022 1.838107 3.371357 1.058032 3.631382 .008966L4.501121-3.452055Z"></path>
+
+<path id="tz_fig_tangente_g1-40" d="M3.057534 2.133998C3.057534 2.089166 3.030635 2.062267 2.976837 1.999502C1.820174 .941469 1.470486-.672478 1.470486-2.241594C1.470486-3.631382 1.739477-5.317061 3.003736-6.518555C3.039601-6.554421 3.057534-6.58132 3.057534-6.626152C3.057534-6.688917 3.012702-6.724782 2.949938-6.724782C2.842341-6.724782 2.035367-6.079203 1.551183-5.101868C1.120797-4.241096 .905604-3.317559 .905604-2.25056C.905604-1.604981 .986301-.582814 1.479452 .475218C2.008468 1.578082 2.842341 2.232628 2.949938 2.232628C3.012702 2.232628 3.057534 2.196762 3.057534 2.133998Z"></path>
+
+<path id="tz_fig_tangente_g1-41" d="M2.67198-2.25056C2.67198-2.985803 2.564384-3.972105 2.098132-4.967372C1.569116-6.070237 .735243-6.724782 .627646-6.724782C.537983-6.724782 .52005-6.653051 .52005-6.626152C.52005-6.58132 .537983-6.554421 .600747-6.491656C1.120797-6.025405 2.107098-4.805978 2.107098-2.25056C2.107098-.968369 1.873973 .81594 .573848 2.026401C.555915 2.0533 .52005 2.089166 .52005 2.133998C.52005 2.160897 .537983 2.232628 .627646 2.232628C.735243 2.232628 1.542217 1.587049 2.026401 .609714C2.456787-.251059 2.67198-1.174595 2.67198-2.25056Z"></path>
+
+<path id="tz_fig_tangente_g1-43" d="M6.330262-2.0533C6.455791-2.0533 6.644085-2.0533 6.644085-2.241594C6.644085-2.438854 6.473724-2.438854 6.330262-2.438854H3.774844V-5.003238C3.774844-5.1467 3.774844-5.317061 3.577584-5.317061C3.38929-5.317061 3.38929-5.128767 3.38929-5.003238V-2.438854H.824907C.699377-2.438854 .511083-2.438854 .511083-2.25056C.511083-2.0533 .681445-2.0533 .824907-2.0533H3.38929V.511083C3.38929 .654545 3.38929 .824907 3.58655 .824907C3.774844 .824907 3.774844 .636613 3.774844 .511083V-2.0533H6.330262Z"></path>
+
+<path id="tz_fig_tangente_g1-61" d="M6.348194-2.96787C6.473724-2.96787 6.644085-2.96787 6.644085-3.156164C6.644085-3.353425 6.446824-3.353425 6.312329-3.353425H.842839C.708344-3.353425 .511083-3.353425 .511083-3.156164C.511083-2.96787 .690411-2.96787 .806974-2.96787H6.348194ZM6.312329-1.13873C6.446824-1.13873 6.644085-1.13873 6.644085-1.33599C6.644085-1.524284 6.473724-1.524284 6.348194-1.524284H.806974C.690411-1.524284 .511083-1.524284 .511083-1.33599C.511083-1.13873 .708344-1.13873 .842839-1.13873H6.312329Z"></path>
+
+<path id="tz_fig_tangente_g1-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+
+<path id="tz_fig_tangente_g1-99" d="M3.263761-3.523786C3.075467-3.48792 2.896139-3.362391 2.896139-3.102366C2.896139-2.86924 3.075467-2.689913 3.308593-2.689913S3.730012-2.842341 3.730012-3.120299C3.730012-3.676214 3.102366-4.016936 2.313325-4.016936C1.165629-4.016936 .304857-3.057534 .304857-1.936737C.304857-.780075 1.23736 .09863 2.295392 .09863C3.541719 .09863 3.828643-.986301 3.828643-1.066999C3.828643-1.174595 3.730012-1.174595 3.703113-1.174595C3.604483-1.174595 3.604483-1.156663 3.550685-1.004234C3.344458-.385554 2.842341-.152428 2.385056-.152428C1.811208-.152428 1.075965-.61868 1.075965-1.945704C1.075965-3.344458 1.793275-3.765878 2.331258-3.765878C2.447821-3.765878 2.932005-3.747945 3.263761-3.523786Z"></path>
+
+<path id="tz_fig_tangente_g1-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+
+<path id="tz_fig_tangente_g1-103" d="M1.120797-1.604981C1.344956-1.461519 1.622914-1.327024 2.035367-1.327024C2.887173-1.327024 3.532752-1.936737 3.532752-2.645081C3.532752-3.084433 3.281694-3.38929 3.165131-3.514819C3.523786-3.837609 3.945205-3.837609 4.052802-3.837609C4.00797-3.81071 3.936239-3.765878 3.936239-3.604483C3.936239-3.505853 3.999004-3.335492 4.20523-3.335492C4.33076-3.335492 4.474222-3.425156 4.474222-3.61345C4.474222-3.783811 4.348692-4.061768 3.990037-4.061768C3.730012-4.061768 3.326526-3.963138 3.012702-3.640349C2.77061-3.837609 2.420922-3.963138 2.044334-3.963138C1.192528-3.963138 .546949-3.353425 .546949-2.645081C.546949-2.187796 .81594-1.865006 .959402-1.730511C.941469-1.712578 .690411-1.398755 .690411-.986301C.690411-.681445 .833873-.358655 1.075965-.19726C.61868-.053798 .260025 .277958 .260025 .699377C.260025 1.33599 1.147696 1.847073 2.295392 1.847073C3.398257 1.847073 4.339726 1.371856 4.339726 .681445C4.339726 .313823 4.169365-.080697 3.837609-.29589C3.335492-.609714 2.815442-.609714 1.963636-.609714C1.784309-.609714 1.497385-.609714 1.425654-.627646C1.165629-.681445 .995268-.923537 .995268-1.210461C.995268-1.353923 1.0401-1.488418 1.120797-1.604981ZM2.035367-1.569116C1.23736-1.569116 1.23736-2.447821 1.23736-2.645081C1.23736-2.887173 1.255293-3.19203 1.407721-3.407223C1.542217-3.58655 1.784309-3.721046 2.035367-3.721046C2.842341-3.721046 2.842341-2.851308 2.842341-2.645081S2.842341-1.569116 2.035367-1.569116ZM2.447821-.044832C2.734745-.044832 3.837609-.035866 3.837609 .690411C3.837609 1.201494 3.147198 1.604981 2.304359 1.604981C1.425654 1.604981 .762142 1.183562 .762142 .690411C.762142 .546949 .851806-.044832 1.622914-.044832H2.447821Z"></path>
+
+<path id="tz_fig_tangente_g1-110" d="M1.667746-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.133998-3.963138 1.748443-3.344458 1.622914-3.0934H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+
+<path id="tz_fig_tangente_g1-115" d="M3.084433-3.783811C3.084433-3.936239 3.084433-4.016936 2.976837-4.016936C2.932005-4.016936 2.914072-4.016936 2.797509-3.90934C2.779577-3.891407 2.698879-3.81071 2.645081-3.765878C2.367123-3.963138 2.089166-4.016936 1.784309-4.016936C.600747-4.016936 .304857-3.362391 .304857-2.905106C.304857-2.618182 .430386-2.385056 .636613-2.187796C.941469-1.909838 1.282192-1.847073 1.739477-1.766376C2.196762-1.676712 2.349191-1.649813 2.546451-1.497385C2.636115-1.425654 2.860274-1.255293 2.860274-.91457C2.860274-.125529 1.95467-.125529 1.829141-.125529C.91457-.125529 .681445-.887671 .573848-1.371856C.546949-1.461519 .537983-1.515318 .430386-1.515318C.304857-1.515318 .304857-1.443587 .304857-1.282192V-.134496C.304857 .017933 .304857 .09863 .412453 .09863C.466252 .09863 .475218 .089664 .636613-.080697C.672478-.134496 .771108-.251059 .81594-.29589C1.192528 .071731 1.604981 .09863 1.829141 .09863C2.932005 .09863 3.317559-.546949 3.317559-1.147696C3.317559-1.551183 3.138232-1.793275 2.940971-1.999502C2.636115-2.295392 2.313325-2.358157 1.649813-2.483686C1.416687-2.528518 .762142-2.645081 .762142-3.156164C.762142-3.443088 .968369-3.819676 1.784309-3.819676C2.752677-3.819676 2.815442-3.075467 2.833375-2.851308C2.842341-2.743711 2.842341-2.689913 2.958904-2.689913C3.084433-2.689913 3.084433-2.752677 3.084433-2.923039V-3.783811Z"></path>
+
+<path id="tz_fig_tangente_g1-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+
+</defs>
+
+<g id="tz_fig_tangente_page1">
+
+<g stroke-miterlimit="10" transform="translate(-47.201109,95.193151)scale(0.996264,-0.996264)">
+
+<g fill="#000" stroke="#000">
+
+<g stroke-width="0.4">
+
+<g fill="#808080" stroke="#808080">
+
+<g stroke-width="0.4">
+
+<path d="M0 0H197.16924" fill="none"></path>
+
+<g transform="translate(197.16924,0.0)">
+
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+
+</g>
+
+<g transform="translate(202.70218,-1.93748)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.201109,95.193151)scale(-1,-1)">
+
+<g fill="#808080">
+
+<g stroke="none">
+
+<g fill="#808080">
+
+<use x="-47.201109" y="95.193151" href="#tz_fig_tangente_g0-120"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#808080" stroke="#808080">
+
+<g stroke-width="0.4">
+
+<path d="M0 0V145.95421" fill="none"></path>
+
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,145.95421)">
+
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+
+</g>
+
+<g transform="translate(-17.55891,153.73715)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.201109,95.193151)scale(-1,-1)">
+
+<g fill="#808080">
+
+<g stroke="none">
+
+<g fill="#808080">
+
+<use x="-47.201109" y="95.193151" href="#tz_fig_tangente_g0-121"></use>
+
+<use x="-39.781076" y="95.193151" href="#tz_fig_tangente_g1-61"></use>
+
+<use x="-30.053729" y="95.193151" href="#tz_fig_tangente_g0-102"></use>
+
+<use x="-24.605425" y="95.193151" href="#tz_fig_tangente_g1-40"></use>
+
+<use x="-21.021666" y="95.193151" href="#tz_fig_tangente_g0-120"></use>
+
+<use x="-15.798209" y="95.193151" href="#tz_fig_tangente_g1-41"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#2780e3" stroke="#2780e3">
+
+<g stroke-width="1.2">
+
+<path d="M8.5359 14.22636C71.13185 34.1432 113.81097 91.04869 184.94283 133.7278" fill="none"></path>
+
+</g>
+
+</g>
+
+<g fill="#000">
+
+<g fill="#000">
+
+<path d="M72.97047 44.10184C72.97047 45.11728 72.1473 45.94046 71.13185 45.94046C70.11641 45.94046 69.29323 45.11728 69.29323 44.10184S70.11641 42.26321 71.13185 42.26321C72.1473 42.26321 72.97047 43.0864 72.97047 44.10184ZM71.13185 44.10184" stroke="none"></path>
+
+</g>
+
+<g transform="translate(71.13185,44.10184)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.201109,95.193151)scale(-1,-1)">
+
+<g fill="#000">
+
+<g stroke="none"></g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g transform="translate(74.66483,36.6939)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.201109,95.193151)scale(-1,-1)">
+
+<g fill="#000">
+
+<g stroke="none">
+
+<use x="-47.201109" y="95.193151" href="#tz_fig_tangente_g0-97"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#000">
+
+<g fill="#6c757d">
+
+<g fill="#000">
+
+<g fill="#6c757d">
+
+<path d="M152.63824 105.27505C152.63824 106.2905 151.81506 107.11368 150.79962 107.11368S148.961 106.2905 148.961 105.27505C148.961 104.25961 149.78418 103.43643 150.79962 103.43643S152.63824 104.25961 152.63824 105.27505ZM150.79962 105.27505" stroke="none"></path>
+
+</g>
+
+</g>
+
+<g transform="translate(150.79962,105.27505)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.201109,95.193151)scale(-1,-1)">
+
+<g fill="#000">
+
+<g stroke="none"></g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#6c757d" stroke="#6c757d">
+
+<g fill="#6c757d" stroke="#6c757d">
+
+</g>
+
+<g transform="translate(125.73103,109.64134)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.201109,95.193151)scale(-1,-1)">
+
+<g fill="#6c757d">
+
+<g stroke="none">
+
+<g fill="#6c757d">
+
+<use x="-47.201109" y="95.193151" href="#tz_fig_tangente_g0-97"></use>
+
+<use x="-40.271239" y="95.193151" href="#tz_fig_tangente_g1-43"></use>
+
+<use x="-31.055858" y="95.193151" href="#tz_fig_tangente_g0-104"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#6c757d" stroke="#6c757d">
+
+<g stroke-width="0.4">
+
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+
+<g stroke-width="0.8">
+
+<path d="M36.98865 21.33955L182.09738 130.88278" fill="none"></path>
+
+<g fill="#6c757d" stroke="#6c757d">
+
+<g fill="#6c757d" stroke="#6c757d">
+
+</g>
+
+<g transform="translate(185.83035,128.11493)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.201109,95.193151)scale(-1,-1)">
+
+<g fill="#6c757d">
+
+<g stroke="none">
+
+<g fill="#6c757d">
+
+<use x="-47.201109" y="95.193151" href="#tz_fig_tangente_g1-115"></use>
+
+<use x="-43.566146" y="95.193151" href="#tz_fig_tangente_g1-101"></use>
+
+<use x="-39.466958" y="95.193151" href="#tz_fig_tangente_g1-99"></use>
+
+<use x="-35.371233" y="95.193151" href="#tz_fig_tangente_g1-97"></use>
+
+<use x="-30.763542" y="95.193151" href="#tz_fig_tangente_g1-110"></use>
+
+<use x="-25.899869" y="95.193151" href="#tz_fig_tangente_g1-116"></use>
+
+<use x="-22.316109" y="95.193151" href="#tz_fig_tangente_g1-101"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#d7433b" stroke="#d7433b">
+
+<g stroke-width="0.8">
+
+<path d="M25.60728 9.95863L130.88278 88.20367" fill="none"></path>
+
+<g fill="#d7433b" stroke="#d7433b">
+
+<g fill="#d7433b" stroke="#d7433b">
+
+</g>
+
+<g transform="translate(134.61575,86.31082)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.201109,95.193151)scale(-1,-1)">
+
+<g fill="#d7433b">
+
+<g stroke="none">
+
+<g fill="#d7433b">
+
+<use x="-47.201109" y="95.193151" href="#tz_fig_tangente_g1-116"></use>
+
+<use x="-43.617349" y="95.193151" href="#tz_fig_tangente_g1-97"></use>
+
+<use x="-39.009659" y="95.193151" href="#tz_fig_tangente_g1-110"></use>
+
+<use x="-33.890002" y="95.193151" href="#tz_fig_tangente_g1-103"></use>
+
+<use x="-29.282312" y="95.193151" href="#tz_fig_tangente_g1-101"></use>
+
+<use x="-25.183124" y="95.193151" href="#tz_fig_tangente_g1-110"></use>
+
+<use x="-20.31945" y="95.193151" href="#tz_fig_tangente_g1-116"></use>
+
+<use x="-16.735691" y="95.193151" href="#tz_fig_tangente_g1-101"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#6c757d" stroke="#6c757d">
+
+<path d="M145.10916 110.96552C112.8468 103.9466 92.56548 85.50949 83.12164 55.96497" fill="none"></path>
+
+<g transform="matrix(-0.30444,-0.95248,0.95248,-0.30444,83.12164,55.96497)">
+
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tangente-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.1: Quando <span class="math inline">\(h \to 0\)</span>, o ponto <span class="math inline">\(a+h\)</span> desliza até <span class="math inline">\(a\)</span> e a reta secante gira até virar a tangente: sua inclinação é a derivada <span class="math inline">\(f'(a)\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>Escrevemos a derivada de várias formas equivalentes: <span class="math inline">\(f'(x)\)</span>, <span class="math inline">\(\dfrac{dy}{dx}\)</span>, <span class="math inline">\(\dfrac{df}{dx}\)</span>. A notação de Leibniz, <span class="math inline">\(\dfrac{dy}{dx}\)</span>, é especialmente sugestiva: lembra que a derivada é um quociente de variações <strong>infinitesimais</strong> — “<span class="math inline">\(dy\)</span> por <span class="math inline">\(dx\)</span>” —, a versão instantânea do “<span class="math inline">\(\Delta y\)</span> por <span class="math inline">\(\Delta x\)</span>”.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — a derivada é o velocímetro">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — a derivada é o velocímetro
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Num carro, a distância percorrida é uma função do tempo. A velocidade <strong>média</strong> de uma viagem é <span class="math inline">\(\Delta\text{distância}/\Delta\text{tempo}\)</span> (a secante). Mas o <strong>velocímetro</strong> não mostra a média da viagem: mostra a velocidade <strong>neste instante</strong> — a derivada da distância em relação ao tempo. A derivada é o velocímetro de qualquer função: a taxa de variação exata em cada ponto.</p>
+</div>
+</div>
+</section>
+<section id="as-regras-de-derivação" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="as-regras-de-derivação"><span class="header-section-number">10.3</span> As regras de derivação</h2>
+<p>Felizmente, quase nunca precisamos calcular o limite da definição na prática. Um punhado de <strong>regras</strong> cobre praticamente todas as funções da Economia. Reúno as essenciais.</p>
+<section id="regra-da-constante-e-da-potência" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="regra-da-constante-e-da-potência"><span class="header-section-number">10.3.1</span> Regra da constante e da potência</h3>
+<p>A derivada de uma constante é zero (uma reta horizontal não tem inclinação). E a regra mais usada de todas, a <strong>regra da potência</strong>:</p>
+<p><span class="math display">\[
+\text{se } f(x) = x^n, \text{ então } f'(x) = n\,x^{n-1}.
+\]</span></p>
+<p>“Traga o expoente para baixo como multiplicador e reduza o expoente em um.” Assim, a derivada de <span class="math inline">\(x^2\)</span> é <span class="math inline">\(2x\)</span>; a de <span class="math inline">\(x^3\)</span> é <span class="math inline">\(3x^2\)</span>; a de <span class="math inline">\(x = x^1\)</span> é <span class="math inline">\(1\)</span>.</p>
+</section>
+<section id="regras-da-soma-e-da-constante-multiplicativa" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="regras-da-soma-e-da-constante-multiplicativa"><span class="header-section-number">10.3.2</span> Regras da soma e da constante multiplicativa</h3>
+<p>A derivada de uma <strong>soma</strong> é a soma das derivadas, e constantes multiplicativas “passam para fora”:</p>
+<p><span class="math display">\[
+[f(x) + g(x)]' = f'(x) + g'(x), \qquad [c\,f(x)]' = c\,f'(x).
+\]</span></p>
+<p>Com essas três regras já derivamos qualquer polinômio. Por exemplo, se <span class="math inline">\(C(q) = 300 + 5q + 0{,}2q^2\)</span>, então</p>
+<p><span class="math display">\[
+C'(q) = 0 + 5 + 0{,}2 \times 2q = 5 + 0{,}4q.
+\]</span></p>
+<p>Essa <span class="math inline">\(C'(q)\)</span> é o <strong>custo marginal</strong> — voltaremos a ela em instantes.</p>
+</section>
+<section id="regra-do-produto-e-do-quociente" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="regra-do-produto-e-do-quociente"><span class="header-section-number">10.3.3</span> Regra do produto e do quociente</h3>
+<p>Para produtos e quocientes de funções:</p>
+<p><span class="math display">\[
+[f g]' = f' g + f g', \qquad \left[\frac{f}{g}\right]' = \frac{f' g - f g'}{g^2}.
+\]</span></p>
+<p>A regra do quociente é indispensável, por exemplo, para derivar o <strong>custo médio</strong> <span class="math inline">\(CMe(q) = C(q)/q\)</span> e mostrar a relação entre custo médio e marginal.</p>
+</section>
+<section id="regra-da-cadeia" class="level3" data-number="10.3.4">
+<h3 data-number="10.3.4" class="anchored" data-anchor-id="regra-da-cadeia"><span class="header-section-number">10.3.4</span> Regra da cadeia</h3>
+<p>Para funções <strong>compostas</strong> — uma função dentro da outra, <span class="math inline">\(f(g(x))\)</span> —, usamos a <strong>regra da cadeia</strong>:</p>
+<p><span class="math display">\[
+[f(g(x))]' = f'(g(x)) \cdot g'(x).
+\]</span></p>
+<p>“Derive a de fora mantendo a de dentro, e multiplique pela derivada da de dentro.” Ela é essencial quando uma variável econômica depende de outra que, por sua vez, depende de uma terceira — cadeias causais que abundam em Economia. Por exemplo, se o lucro depende da quantidade e a quantidade depende do tempo, a regra da cadeia dá a taxa de variação do lucro no tempo.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Derivadas de exponencial e logaritmo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Derivadas de exponencial e logaritmo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Duas derivadas notáveis, muito usadas em crescimento e em finanças: <span class="math display">\[
+(e^x)' = e^x, \qquad (\ln x)' = \frac{1}{x}.
+\]</span> A exponencial é a única função (a menos de constante) que é <strong>igual à sua própria derivada</strong> — razão de sua onipresença em modelos de crescimento a taxa constante.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="marginal-derivada-o-dicionário-da-análise-econômica" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="marginal-derivada-o-dicionário-da-análise-econômica"><span class="header-section-number">10.4</span> Marginal = derivada: o dicionário da análise econômica</h2>
+<p>Chegamos ao ponto onde matemática e Economia se fundem. Em cada área da teoria, uma grandeza “marginal” é a <strong>derivada</strong> de uma grandeza “total”. Este é o dicionário mais importante do volume:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Grandeza total</th>
+<th>Grandeza marginal (= derivada)</th>
+<th>Interpretação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Custo total <span class="math inline">\(C(q)\)</span></td>
+<td>Custo marginal <span class="math inline">\(C'(q)\)</span></td>
+<td>custo de produzir mais uma unidade</td>
+</tr>
+<tr class="even">
+<td>Receita total <span class="math inline">\(R(q)\)</span></td>
+<td>Receita marginal <span class="math inline">\(R'(q)\)</span></td>
+<td>receita de vender mais uma unidade</td>
+</tr>
+<tr class="odd">
+<td>Produção <span class="math inline">\(Q(L)\)</span></td>
+<td>Produto marginal <span class="math inline">\(Q'(L)\)</span></td>
+<td>produto do trabalhador adicional</td>
+</tr>
+<tr class="even">
+<td>Utilidade <span class="math inline">\(U(x)\)</span></td>
+<td>Utilidade marginal <span class="math inline">\(U'(x)\)</span></td>
+<td>satisfação da unidade adicional</td>
+</tr>
+<tr class="odd">
+<td>Consumo <span class="math inline">\(C(Y)\)</span></td>
+<td>Propensão marginal a consumir <span class="math inline">\(C'(Y)\)</span></td>
+<td>consumo por real de renda extra</td>
+</tr>
+</tbody>
+</table>
+<p>Um exemplo concreto amarra tudo. Seja a receita <span class="math inline">\(R(q) = 20q - 0{,}1 q^2\)</span>. A <strong>receita marginal</strong> é sua derivada:</p>
+<p><span class="math display">\[
+R'(q) = 20 - 0{,}2q.
+\]</span></p>
+<p>Para <span class="math inline">\(q = 50\)</span>, <span class="math inline">\(R'(50) = 20 - 10 = 10\)</span>: a quinquagésima primeira unidade acrescenta cerca de <span class="math inline">\(R\$\,10\)</span> à receita. Repare que a receita marginal <strong>cai</strong> conforme a quantidade sobe (o coeficiente de <span class="math inline">\(q\)</span> é negativo) — um fato central para entender por que um vendedor com poder de mercado não baixa o preço indefinidamente. E note a beleza da correspondência: aquela “taxa média de <span class="math inline">\(R\$\,17\)</span>” que calculamos no capítulo anterior entre <span class="math inline">\(q=10\)</span> e <span class="math inline">\(q=20\)</span> era uma aproximação; agora obtemos a receita marginal <strong>exata</strong> em cada ponto.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — marginal não é média">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — marginal não é média
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Custo <strong>marginal</strong> (<span class="math inline">\(C'(q)\)</span>, o custo da próxima unidade) não é o mesmo que custo <strong>médio</strong> (<span class="math inline">\(C(q)/q\)</span>, o custo por unidade acumulado). São grandezas distintas, com fórmulas distintas. Uma relação útil: o custo médio <strong>cai</strong> enquanto o marginal está <strong>abaixo</strong> dele, e <strong>sobe</strong> quando o marginal o <strong>ultrapassa</strong> — por isso a curva de custo marginal cruza a de custo médio exatamente no ponto mínimo do custo médio. Confundir marginal com médio é um dos erros mais frequentes em microeconomia.</p>
+</div>
+</div>
+</section>
+<section id="primeira-e-segunda-derivadas-crescimento-e-concavidade" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="primeira-e-segunda-derivadas-crescimento-e-concavidade"><span class="header-section-number">10.5</span> Primeira e segunda derivadas: crescimento e concavidade</h2>
+<p>A derivada carrega duas informações preciosas sobre o comportamento de uma função, e uma <strong>segunda</strong> derivada acrescenta a terceira.</p>
+<p>O <strong>sinal da primeira derivada</strong> diz se a função cresce ou decresce:</p>
+<ul>
+<li><span class="math inline">\(f'(x) &gt; 0\)</span>: a função está <strong>crescendo</strong> (inclinação positiva);</li>
+<li><span class="math inline">\(f'(x) &lt; 0\)</span>: a função está <strong>decrescendo</strong>;</li>
+<li><span class="math inline">\(f'(x) = 0\)</span>: a função tem uma <strong>tangente horizontal</strong> — candidata a máximo ou mínimo (o tema do próximo capítulo).</li>
+</ul>
+<p>A <strong>segunda derivada</strong>, <span class="math inline">\(f''(x)\)</span> — a derivada da derivada —, mede como a <strong>própria inclinação</strong> está mudando, o que se traduz na <strong>concavidade</strong>:</p>
+<ul>
+<li><span class="math inline">\(f''(x) &gt; 0\)</span>: a função é <strong>convexa</strong> (concavidade para cima), a inclinação cresce;</li>
+<li><span class="math inline">\(f''(x) &lt; 0\)</span>: a função é <strong>côncava</strong> (concavidade para baixo), a inclinação diminui.</li>
+</ul>
+<p>Essa segunda derivada é a expressão matemática exata da <strong>lei dos retornos decrescentes</strong>, encontrada de forma intuitiva no <a href="#sec-metodo-da-economia" class="quarto-xref"><span class="quarto-unresolved-ref">sec-metodo-da-economia</span></a>. Quando dizemos que “cada trabalhador adicional produz um pouco menos que o anterior”, estamos dizendo que o produto marginal <span class="math inline">\(Q'(L)\)</span> é positivo mas <strong>decrescente</strong> — ou seja, <span class="math inline">\(Q'(L) &gt; 0\)</span> e <span class="math inline">\(Q''(L) &lt; 0\)</span>. Retornos decrescentes são, em uma frase, “primeira derivada positiva, segunda derivada negativa”: a produção ainda cresce, mas a ritmo cada vez menor. Toda a forma côncava da função de produção mora nessa desigualdade sobre a segunda derivada.</p>
+</section>
+<section id="elasticidade-a-derivada-em-forma-percentual" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="elasticidade-a-derivada-em-forma-percentual"><span class="header-section-number">10.6</span> Elasticidade: a derivada em forma percentual</h2>
+<p>Uma última aplicação fecha o capítulo e antecipa o Volume 3. A <strong>elasticidade-preço da demanda</strong> mede a sensibilidade percentual da quantidade a variações percentuais do preço. Ela é, no fundo, uma derivada reescrita em termos percentuais:</p>
+<p><span class="math display">\[
+\varepsilon = \frac{dq}{dp} \cdot \frac{p}{q}.
+\]</span></p>
+<p>O fator <span class="math inline">\(dq/dp\)</span> é a derivada da demanda; o fator <span class="math inline">\(p/q\)</span> converte a taxa absoluta numa <strong>razão de variações percentuais</strong>. Por exemplo, para a demanda <span class="math inline">\(q = 100 - 2p\)</span>, temos <span class="math inline">\(dq/dp = -2\)</span>; no ponto <span class="math inline">\(p = 20\)</span>, <span class="math inline">\(q = 60\)</span>, a elasticidade é</p>
+<p><span class="math display">\[
+\varepsilon = -2 \cdot \frac{20}{60} = -\frac{2}{3} \approx -0{,}67.
+\]</span></p>
+<p>Como o valor absoluto é menor que <span class="math inline">\(1\)</span>, a demanda é <strong>inelástica</strong> nesse ponto: a quantidade responde menos que proporcionalmente ao preço. Usar a derivada em vez de variações discretas dá a elasticidade <strong>exata em cada ponto</strong>, sem depender do tamanho do intervalo escolhido — uma das razões pelas quais economistas preferem a formulação com cálculo.</p>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">10.7</span> 🇧🇷 Brasil em Foco</h2>
+<p><strong>Custo marginal e a formação de preços da indústria.</strong> A regra de ouro da microeconomia — produzir até onde a <strong>receita marginal</strong> iguala o <strong>custo marginal</strong> — é o esqueleto de como firmas decidem quanto produzir, e o custo marginal é, matematicamente, a derivada da função de custo. No setor elétrico brasileiro, isso aparece de forma explícita e institucionalizada: o despacho de usinas pelo <strong>Operador Nacional do Sistema (ONS)</strong> segue a <strong>ordem de mérito</strong>, acionando primeiro as usinas de menor <strong>custo marginal</strong> de geração (hidrelétricas, em geral baratas) e, à medida que a demanda sobe, as de custo marginal crescente (térmicas a gás, a óleo). O preço da energia no mercado de curto prazo — o <strong>PLD/CMO</strong>, calculado pela CCEE — é justamente o <strong>custo marginal de operação</strong> do sistema: o custo de gerar o próximo megawatt. É a análise marginal deste capítulo operando, em tempo real, num mercado de bilhões de reais.</p>
+<p><strong>A propensão marginal a consumir e o multiplicador.</strong> Já encontramos, no <a href="#sec-funcoes-e-graficos" class="quarto-xref"><span class="quarto-unresolved-ref">sec-funcoes-e-graficos</span></a>, a função consumo keynesiana <span class="math inline">\(C = C_0 + c\,Y\)</span>. Agora podemos ser precisos: a <strong>propensão marginal a consumir</strong> <span class="math inline">\(c\)</span> é a <strong>derivada</strong> do consumo em relação à renda, <span class="math inline">\(dC/dY\)</span>. Estudos com dados do IBGE (POF) e da renda das famílias brasileiras estimam essa derivada por faixa de renda, e ela alimenta diretamente o cálculo do <strong>multiplicador fiscal</strong> — quanto o PIB varia quando o governo gasta um real a mais. Quanto maior a derivada <span class="math inline">\(dC/dY\)</span> do grupo beneficiado, maior o multiplicador. Não por acaso, avaliações de programas de transferência de renda no Brasil (como o Bolsa Família) buscam estimar essa propensão marginal para dimensionar o efeito multiplicador dos programas sobre a atividade econômica local.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> CCEE e ONS — metodologia do PLD/CMO e curva de custo marginal de operação (ordem de mérito); IBGE — Pesquisa de Orçamentos Familiares (POF) para estimar a propensão marginal a consumir; literatura de avaliação de impacto do Bolsa Família sobre consumo e atividade local.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">10.8</span> Resumo do capítulo</h2>
+<ul>
+<li>A <strong>derivada</strong> <span class="math inline">\(f'(a)\)</span> é o limite da taxa média de variação quando o intervalo tende a zero: a inclinação da reta <strong>tangente</strong> e a taxa <strong>instantânea</strong> de variação. É o “velocímetro” de uma função.</li>
+<li>As <strong>regras de derivação</strong> — potência (<span class="math inline">\(x^n \to n x^{n-1}\)</span>), soma, produto, quociente e cadeia — permitem derivar quase toda função econômica sem recorrer ao limite. Ainda: <span class="math inline">\((e^x)' = e^x\)</span> e <span class="math inline">\((\ln x)' = 1/x\)</span>.</li>
+<li><strong>“Marginal” = “derivada”.</strong> Custo, receita, produto e utilidade marginais são as derivadas das respectivas grandezas totais; a propensão marginal a consumir é <span class="math inline">\(dC/dY\)</span>.</li>
+<li><strong>Marginal ≠ médio.</strong> O custo marginal cruza o custo médio no mínimo deste último.</li>
+<li>O <strong>sinal de <span class="math inline">\(f'\)</span></strong> indica crescimento (<span class="math inline">\(&gt;0\)</span>) ou decrescimento (<span class="math inline">\(&lt;0\)</span>); <span class="math inline">\(f' = 0\)</span> marca candidatos a máximo/mínimo. O <strong>sinal de <span class="math inline">\(f''\)</span></strong> dá a concavidade: <strong>convexa</strong> (<span class="math inline">\(f''&gt;0\)</span>) ou <strong>côncava</strong> (<span class="math inline">\(f''&lt;0\)</span>).</li>
+<li><strong>Retornos decrescentes</strong> são, em símbolos, <span class="math inline">\(f' &gt; 0\)</span> e <span class="math inline">\(f'' &lt; 0\)</span>: a grandeza cresce, mas a ritmo cada vez menor.</li>
+<li>A <strong>elasticidade</strong> <span class="math inline">\(\varepsilon = \frac{dq}{dp}\cdot\frac{p}{q}\)</span> é a derivada em forma percentual, dando a sensibilidade exata em cada ponto.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">10.9</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique, com suas palavras, a diferença entre a taxa <strong>média</strong> de variação e a taxa <strong>instantânea</strong> de variação. Use a analogia da velocidade.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A taxa <strong>média</strong> mede a variação total dividida pelo intervalo — como a velocidade média de uma viagem (<span class="math inline">\(\Delta\)</span>distância/<span class="math inline">\(\Delta\)</span>tempo), a inclinação da reta secante. A taxa <strong>instantânea</strong> (a derivada) mede a variação <strong>num único ponto</strong>, obtida encolhendo o intervalo até zero — como a velocidade que o velocímetro marca <strong>neste instante</strong>, a inclinação da reta tangente. A média resume um trecho; a instantânea descreve um ponto.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Derive as funções: (a) <span class="math inline">\(f(x) = x^4\)</span>; (b) <span class="math inline">\(g(x) = 7x^3 - 2x^2 + 5x - 9\)</span>; (c) <span class="math inline">\(h(q) = 300 + 5q + 0{,}2q^2\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(f'(x) = 4x^3\)</span>.</li>
+<li><span class="math inline">\(g'(x) = 21x^2 - 4x + 5\)</span>.</li>
+<li><span class="math inline">\(h'(q) = 5 + 0{,}4q\)</span> (a constante 300 derivada dá zero). Essa é a função de custo marginal.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> A receita de uma firma é <span class="math inline">\(R(q) = 60q - 0{,}5q^2\)</span>. (a) Encontre a função receita marginal. (b) Qual a receita marginal quando <span class="math inline">\(q = 20\)</span>? (c) A partir de que quantidade a receita marginal fica negativa?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(R'(q) = 60 - q\)</span>.</li>
+<li><span class="math inline">\(R'(20) = 60 - 20 = 40\)</span>: a 21ª unidade acrescenta cerca de R$,40 à receita.</li>
+<li><span class="math inline">\(R'(q) &lt; 0 \Leftrightarrow 60 - q &lt; 0 \Leftrightarrow q &gt; 60\)</span>. Acima de 60 unidades, vender mais <strong>reduz</strong> a receita total.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> O custo total é <span class="math inline">\(C(q) = 100 + 2q + 0{,}5q^2\)</span>. (a) Encontre o custo marginal <span class="math inline">\(C'(q)\)</span>. (b) Encontre o custo médio <span class="math inline">\(CMe(q)\)</span>. (c) Compare o custo marginal e o médio em <span class="math inline">\(q = 10\)</span> e explique o que a comparação implica para a trajetória do custo médio nesse ponto.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(C'(q) = 2 + q\)</span>.</li>
+<li><span class="math inline">\(CMe(q) = \dfrac{100 + 2q + 0{,}5q^2}{q} = \dfrac{100}{q} + 2 + 0{,}5q\)</span>.</li>
+<li>Em <span class="math inline">\(q = 10\)</span>: <span class="math inline">\(C'(10) = 2 + 10 = 12\)</span>; <span class="math inline">\(CMe(10) = 10 + 2 + 5 = 17\)</span>. O marginal (12) é <strong>menor</strong> que o médio (17), logo o custo médio ainda está <strong>caindo</strong> nesse ponto. Regra geral: quando marginal &lt; médio, o médio cai; quando marginal &gt; médio, o médio sobe; os dois se cruzam no <strong>mínimo</strong> do custo médio.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Uma função de produção é <span class="math inline">\(Q(L) = 20L - 0{,}5L^2\)</span> (com <span class="math inline">\(L\)</span> = número de trabalhadores). (a) Encontre o produto marginal do trabalho, <span class="math inline">\(Q'(L)\)</span>. (b) Calcule a segunda derivada e interprete o sinal. (c) Isso ilustra retornos decrescentes? A partir de quantos trabalhadores o produto marginal fica negativo?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(Q'(L) = 20 - L\)</span>.</li>
+<li><span class="math inline">\(Q''(L) = -1 &lt; 0\)</span>: a função é <strong>côncava</strong>, e o produto marginal <strong>decresce</strong> conforme se adicionam trabalhadores.</li>
+<li>Sim: <span class="math inline">\(Q' &gt; 0\)</span> (ainda produtivo) mas <span class="math inline">\(Q'' &lt; 0\)</span> (a ritmo decrescente) é exatamente a definição de <strong>retornos decrescentes</strong>. O produto marginal fica negativo quando <span class="math inline">\(20 - L &lt; 0\)</span>, isto é, <span class="math inline">\(L &gt; 20\)</span>: além de 20 trabalhadores, um a mais <strong>reduz</strong> a produção total (excesso de gente atrapalhando).</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Para a demanda <span class="math inline">\(q = 200 - 4p\)</span>, calcule a elasticidade-preço no ponto <span class="math inline">\(p = 25\)</span>. A demanda é elástica ou inelástica aí?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(dq/dp = -4\)</span>. Em <span class="math inline">\(p = 25\)</span>: <span class="math inline">\(q = 200 - 4\times 25 = 100\)</span>. <span class="math display">\[
+\varepsilon = \frac{dq}{dp}\cdot\frac{p}{q} = -4 \cdot \frac{25}{100} = -1.
+\]</span> O valor absoluto é exatamente <span class="math inline">\(1\)</span>: a demanda tem <strong>elasticidade unitária</strong> nesse ponto — a variação percentual da quantidade iguala a do preço. (Abaixo de <span class="math inline">\(p=25\)</span> ela é inelástica; acima, elástica.)</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) No mercado de energia elétrica de curto prazo, o preço reflete o <strong>custo marginal de operação</strong> do sistema. Suponha que a ordem de mérito seja: hidrelétricas (custo marginal R$,50/MWh) até 1.000 MW, depois térmicas a gás (R$,300/MWh) até 1.400 MW, depois térmicas a óleo (R$,700/MWh). (a) Qual o preço se a demanda for 900 MW? E se for 1.200 MW? E 1.500 MW? (b) Por que o preço “salta” em degraus? Relacione com custo marginal e com a <a href="#fig-continuidade" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-continuidade</span></a> do capítulo anterior.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>O preço iguala o custo marginal da <strong>última</strong> usina acionada para atender a demanda. Com 900 MW, só hidrelétricas: R$,50/MWh. Com 1.200 MW, entram as térmicas a gás: R$,300/MWh. Com 1.500 MW, entram as a óleo: R$,700/MWh.</li>
+<li>O custo marginal do sistema é uma função <strong>em degraus</strong> (descontínua) da demanda, porque as usinas têm custos marginais discretamente diferentes e são acionadas em blocos. Ao cruzar a capacidade de uma fonte barata, o sistema salta para a próxima, mais cara, e o preço pula. É exatamente a função descontínua da <a href="#fig-continuidade" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-continuidade</span></a> aplicada à precificação da energia: a análise marginal deste capítulo determina o preço, e a descontinuidade do capítulo anterior explica seus saltos.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) Mostre, usando a regra do quociente, que o custo médio <span class="math inline">\(CMe(q) = C(q)/q\)</span> tem derivada nula (ponto de mínimo candidato) exatamente quando o custo marginal iguala o custo médio.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Pela regra do quociente, com <span class="math inline">\(f = C(q)\)</span> e <span class="math inline">\(g = q\)</span>: <span class="math display">\[
+CMe'(q) = \frac{C'(q)\cdot q - C(q)\cdot 1}{q^2} = \frac{C'(q)\,q - C(q)}{q^2}.
+\]</span> Igualando a zero (o numerador deve se anular, pois <span class="math inline">\(q^2 &gt; 0\)</span>): <span class="math display">\[
+C'(q)\,q - C(q) = 0 \;\Longrightarrow\; C'(q) = \frac{C(q)}{q} = CMe(q).
+\]</span> Ou seja, o custo médio tem tangente horizontal (candidato a mínimo) precisamente onde o <strong>custo marginal iguala o custo médio</strong>. Isso prova algebricamente por que a curva de custo marginal cruza a de custo médio no ponto mínimo desta — um resultado que o Volume 5 usará à exaustão.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">10.10</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="chiang2006">Chiang; Wainwright (<a href="#ref-chiang2006" role="doc-biblioref">2006</a>)</span> — os capítulos sobre derivadas e sua aplicação à análise econômica (custo marginal, receita marginal, elasticidade) são a referência direta para este capítulo.</li>
+<li><span class="citation" data-cites="guidorizzi2018">Guidorizzi (<a href="#ref-guidorizzi2018" role="doc-biblioref">2018</a>)</span> — para consolidar a definição de derivada via limite e o domínio das regras de derivação, com muitos exercícios.</li>
+<li><span class="citation" data-cites="varian2015">Varian (<a href="#ref-varian2015" role="doc-biblioref">2015</a>)</span> — mostra a análise marginal em ação na teoria do consumidor e da firma; leia-o após este capítulo para ver a derivada “trabalhando”.</li>
+<li><span class="citation" data-cites="sydsaeter2018">Sydsæter et al. (<a href="#ref-sydsaeter2018" role="doc-biblioref">2018</a>)</span> — tratamento moderno de derivadas e elasticidades com aplicações econômicas abundantes.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-chiang2006" class="csl-entry" role="listitem">
+CHIANG, Alpha C.; WAINWRIGHT, Kevin. <strong>Matemática para Economistas</strong>. 4. ed. Rio de Janeiro: Elsevier, 2006.
+</div>
+<div id="ref-guidorizzi2018" class="csl-entry" role="listitem">
+GUIDORIZZI, Hamilton Luiz. <strong>Um Curso de Cálculo, Volume 1</strong>. 6. ed. Rio de Janeiro: LTC, 2018.
+</div>
+<div id="ref-sydsaeter2018" class="csl-entry" role="listitem">
+SYDSÆTER, Knut <em>et al.</em> <strong>Essential Mathematics for Economic Analysis</strong>. 5. ed. Harlow: Pearson, 2018.
+</div>
+<div id="ref-varian2015" class="csl-entry" role="listitem">
+VARIAN, Hal R. <strong>Microeconomia: uma abordagem moderna</strong>. 9. ed. Rio de Janeiro: Elsevier, 2015.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="pagination-link" aria-label="Limites, continuidade e comportamento de funções">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="pagination-link" aria-label="Otimização sem restrições">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol02/cap04-derivadas-analise-marginal.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

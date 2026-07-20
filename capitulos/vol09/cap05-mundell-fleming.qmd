@@ -1,0 +1,173 @@
+# Macroeconomia aberta: o modelo Mundell-Fleming {#sec-mundell-fleming}
+
+No Volume 7, o modelo IS-LM (@sec-is-lm) nos deu uma máquina para pensar a economia no curto prazo: como juros e renda se determinam juntos, e como as políticas fiscal e monetária os movem. Mas aquele modelo tinha uma parede: era uma **economia fechada**, sem comércio nem fluxos de capital. O mundo real não é assim. Quando o Banco Central baixa o juro, capital pode fugir para o exterior e derrubar o câmbio; quando o governo gasta mais, parte da demanda vaza em importações. A economia aberta muda — às vezes inverte — as conclusões do IS-LM.
+
+O modelo que fez essa ponte, desenvolvido por Robert Mundell e Marcus Fleming nos anos 1960, é o **Mundell-Fleming**: um IS-LM estendido para a economia aberta, com uma terceira relação, o equilíbrio externo. Seu resultado mais famoso é surpreendente e prático: **a eficácia das políticas fiscal e monetária depende do regime cambial**. Sob câmbio fixo, a política fiscal é potente e a monetária impotente; sob câmbio flutuante, é o inverso. Este capítulo demonstra por quê — e é a síntese teórica de tudo o que vimos sobre câmbio, capital e o trilema (@sec-cambio).
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- estender o IS-LM à economia aberta e traçar a curva **BP** (equilíbrio do balanço de pagamentos);
+- entender o caso de **perfeita mobilidade de capitais** (curva BP horizontal) e sua lógica;
+- analisar os efeitos das políticas **fiscal** e **monetária** sob **câmbio fixo**;
+- analisar os mesmos sob **câmbio flutuante**;
+- sintetizar os quatro resultados centrais de Mundell-Fleming e ligá-los à **trindade impossível**;
+- aplicar o modelo à experiência brasileira pós-1999.
+
+## O IS-LM aberto: acrescentando a curva BP
+
+O modelo Mundell-Fleming acrescenta ao plano IS-LM (juro $i$ no eixo vertical, renda $Y$ no horizontal) uma terceira curva: a **BP**, que representa as combinações de $i$ e $Y$ nas quais o **balanço de pagamentos está em equilíbrio** (@sec-balanco-de-pagamentos).
+
+A lógica da BP: a conta corrente piora quando a renda $Y$ sobe (mais renda, mais importação); a conta financeira melhora quando o juro $i$ sobe (juros altos atraem capital). Para o balanço permanecer equilibrado, um aumento de $Y$ (que piora a conta corrente) precisa ser compensado por um aumento de $i$ (que atrai capital). Logo, a **curva BP é ascendente** no plano $(Y, i)$.
+
+::: {.callout-note title="Definição — a curva BP"}
+A **curva BP** reúne as combinações de renda $Y$ e juro $i$ que mantêm o **balanço de pagamentos em equilíbrio**. Sua inclinação depende da **mobilidade de capitais**: quanto mais livre o capital, mais **horizontal** a BP, pois pequenas diferenças de juro provocam grandes fluxos.
+:::
+
+O caso mais instrutivo — e razoável para uma economia financeiramente integrada como o Brasil de hoje — é o de **perfeita mobilidade de capitais**. Nesse limite, o capital é tão sensível ao juro que a taxa doméstica **não pode desviar** da taxa internacional $i^{*}$ (mais o prêmio de risco): qualquer juro acima de $i^{*}$ atrairia uma enxurrada de capital; qualquer juro abaixo provocaria fuga total. A curva BP torna-se **horizontal** na altura $i = i^{*}$ (@fig-mundell-fleming).
+
+::: {#fig-mundell-fleming}
+
+```{.tikz}
+%%| filename: fig-mundell-fleming
+%%| alt: Diagrama IS-LM-BP com curva IS decrescente, LM crescente e curva BP horizontal na altura do juro internacional i-estrela, cruzando no equilíbrio.
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (0,6) node[above] {$i$};
+  \draw[eixo] (0,0) -- (8,0) node[right] {$Y$};
+  % IS decrescente
+  \draw[curva, manualblue] (0.6,5.2) -- (6.8,0.8) node[right] {IS};
+  % LM crescente
+  \draw[curva, manualred] (1.2,0.8) -- (6.6,5.2) node[right] {LM};
+  % BP horizontal em i*
+  \draw[destaque, very thick, manualgreen] (0,2.7) -- (7.6,2.7) node[right] {BP ($i=i^{*}$)};
+  \node[left, font=\footnotesize, manualgreen] at (0,2.7) {$i^{*}$};
+  % equilibrio
+  \filldraw[ponto] (3.75,2.7) circle (1.7pt) node[above right, font=\footnotesize] {$E$};
+  \draw[auxiliar] (3.75,2.7) -- (3.75,0) node[below, font=\footnotesize] {$Y_0$};
+\end{tikzpicture}
+```
+
+O modelo Mundell-Fleming com perfeita mobilidade de capitais. A curva **BP** é horizontal na altura do juro internacional $i^{*}$: o juro doméstico está "amarrado" a ele. O equilíbrio ocorre onde IS, LM e BP se cruzam.
+:::
+
+O ponto-chave: com a BP horizontal em $i^{*}$, qualquer política que tente empurrar o juro doméstico para longe de $i^{*}$ desencadeia fluxos de capital que forçam um ajuste — e a **natureza** desse ajuste depende do **regime cambial**. Veremos os quatro casos.
+
+## Câmbio fixo: a monetária é impotente, a fiscal é potente
+
+Sob **câmbio fixo**, o banco central compromete-se a manter a paridade, comprando e vendendo divisas — e, portanto, **não controla a oferta de moeda**, que se ajusta endogenamente para defender o câmbio.
+
+**Política monetária (expansionista) sob câmbio fixo.** Suponha que o BC tente expandir a moeda (desloca LM para a direita), buscando baixar o juro. O juro doméstico cai abaixo de $i^{*}$ → capital **foge** em busca de retorno maior lá fora → há excesso de demanda por dólares, pressionando o câmbio a **depreciar**. Para defender a paridade fixa, o BC precisa **vender reservas** e **recomprar moeda nacional** — o que **contrai a oferta de moeda de volta** (LM retorna à posição original). Resultado: a expansão monetária se **anula sozinha**; o juro volta a $i^{*}$ e a renda não muda. **A política monetária é impotente sob câmbio fixo.**
+
+**Política fiscal (expansionista) sob câmbio fixo.** Agora o governo aumenta gastos (desloca IS para a direita). Isso pressiona o juro doméstico **para cima**, acima de $i^{*}$ → capital **entra** atraído pelo juro maior → excesso de oferta de dólares, pressionando o câmbio a **apreciar**. Para defender a paridade, o BC **compra dólares** e **emite moeda nacional** — o que **expande a oferta monetária** (LM se desloca para a direita), reforçando a expansão. O juro volta a $i^{*}$, mas a renda sobe **bastante**. **A política fiscal é muito potente sob câmbio fixo** — não há o "efeito deslocamento" (*crowding out*) sobre o juro, pois a moeda se expande para acomodar.
+
+## Câmbio flutuante: a monetária é potente, a fiscal é impotente
+
+Sob **câmbio flutuante**, o BC **não intervém**: o câmbio se move livremente para equilibrar o balanço de pagamentos, e o BC **controla** a oferta de moeda.
+
+**Política monetária (expansionista) sob câmbio flutuante.** O BC expande a moeda (LM para a direita), o juro cai abaixo de $i^{*}$ → capital foge → o câmbio **deprecia** (agora livremente, sem defesa). A depreciação **barateia as exportações** e encarece importações → as exportações líquidas sobem → a **IS se desloca para a direita**. A renda cresce por **dois canais**: o estímulo monetário interno e o impulso das exportações via câmbio. **A política monetária é muito potente sob câmbio flutuante** — potencializada pelo câmbio.
+
+**Política fiscal (expansionista) sob câmbio flutuante.** O governo aumenta gastos (IS para a direita), o juro sobe acima de $i^{*}$ → capital **entra** → o câmbio **aprecia**. A apreciação **encarece as exportações** e barateia importações → as exportações líquidas **caem** → a **IS se desloca de volta para a esquerda**, anulando o estímulo fiscal. Resultado: a renda quase não muda; o que houve foi um **deslocamento (*crowding out*) externo** — o gasto público expulsou exportações líquidas via câmbio apreciado. **A política fiscal é impotente sob câmbio flutuante** (com perfeita mobilidade de capitais).
+
+::: {.callout-tip title="Intuição — o câmbio faz o ajuste"}
+A lógica de todos os quatro casos é a mesma: com o juro doméstico preso a $i^{*}$, **algo tem de se ajustar** para reequilibrar o balanço. Sob câmbio **fixo**, quem se ajusta é a **oferta de moeda** (o BC compra/vende reservas). Sob câmbio **flutuante**, quem se ajusta é o **câmbio**. Por isso a política que "usa" o canal do ajuste ganha força e a outra perde. Fixo → o dinheiro se ajusta → a fiscal manda. Flutuante → o câmbio se ajusta → a monetária manda.
+:::
+
+## A síntese Mundell-Fleming
+
+Os quatro resultados, com perfeita mobilidade de capitais, resumem-se na @tbl-mundell-fleming:
+
+| Política | Câmbio **fixo** | Câmbio **flutuante** |
+|----------|:---:|:---:|
+| **Monetária** | Impotente | **Potente** |
+| **Fiscal** | **Potente** | Impotente |
+
+: Eficácia das políticas econômicas segundo o regime cambial (perfeita mobilidade de capitais). {#tbl-mundell-fleming}
+
+Essa tabela é uma das mais úteis da macroeconomia aberta. Ela conversa diretamente com a **trindade impossível** (@sec-cambio): sob câmbio fixo com capital livre, o país **abriu mão da autonomia monetária** — daí a monetária ser impotente. Sob câmbio flutuante, o país **recupera** a autonomia monetária — daí a monetária ser potente —, mas o câmbio, ao flutuar, neutraliza a fiscal via exportações líquidas.
+
+::: {.callout-warning title="Controvérsia — os limites do modelo"}
+Mundell-Fleming é um modelo de **curto prazo**, com **preços fixos** e **expectativas simples**, e o caso extremo de perfeita mobilidade de capitais é uma idealização. Na prática: (i) a mobilidade é **imperfeita** e há **prêmio de risco** variável (a BP não é perfeitamente horizontal, e $i$ pode diferir de $i^{*}$); (ii) a política fiscal sob câmbio flutuante **não** é totalmente impotente, sobretudo com mobilidade imperfeita e no muito curto prazo; (iii) expectativas e credibilidade importam muito. O modelo é uma **bússola qualitativa** poderosa — dá a direção e a intuição dos efeitos —, não uma medida precisa. Use-o para pensar mecanismos, não para prever magnitudes.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+**O tripé de 1999 pela lente de Mundell-Fleming.** A escolha brasileira de 1999 — **câmbio flutuante + metas de inflação + responsabilidade fiscal** — é exatamente o quadrante "câmbio flutuante" do modelo. Ao flutuar, o Brasil **recuperou a potência da política monetária**: o Banco Central pode mover a Selic (@sec-taxa-de-juros-selic) para perseguir a meta de inflação, e o câmbio ajuda no ajuste. Foi o que tornou o **regime de metas** viável. Em contrapartida, o modelo prevê que a **política fiscal expansionista** tende a ser parcialmente neutralizada pela apreciação cambial e pelos juros — parte do debate sobre a limitada eficácia de estímulos fiscais para crescimento sustentado no Brasil ecoa esse resultado.
+
+**Câmbio flutuante como amortecedor de choques.** Um mérito prático do regime flutuante, coerente com o modelo, é que o **câmbio absorve choques externos**. Quando o preço das commodities cai ou o capital foge (aversão a risco global), o real **deprecia** e amortece o baque sobre a atividade e o balanço de pagamentos — em vez de forçar o país a queimar reservas ou subir juros drasticamente para defender uma paridade, como acontecia nas crises dos anos 1990 sob câmbio administrado. A depreciação estimula exportações e conta corrente, ajudando o ajuste automático. Foi assim que o Brasil atravessou choques como a crise de 2008 e as turbulências seguintes com muito mais resiliência do que nas décadas anteriores.
+
+**Mobilidade imperfeita e prêmio de risco.** O Brasil, porém, não é o caso-livro de perfeita mobilidade: o juro doméstico fica **bem acima** do internacional de forma persistente, refletindo **prêmio de risco** (fiscal, institucional) e expectativas de depreciação — exatamente a paridade de juros do @sec-cambio. Por isso a BP brasileira não é perfeitamente horizontal, e a política monetária, embora autônoma, opera sob a restrição do risco-país: episódios de deterioração fiscal elevam o prêmio de risco, depreciam o câmbio e **limitam** o espaço para cortar juros — mostrando, na prática, que a autonomia monetária conquistada em 1999 convive com a disciplina que os mercados de capital impõem.
+
+> **Fontes e séries para explorar:** Banco Central do Brasil (Selic, câmbio, reservas, intervenções; Relatório de Inflação para a leitura de conjuntura); IPEA (câmbio real, atividade); dados de risco-país (EMBI+). Para a teoria, os manuais listados abaixo. Verifique sempre o período de referência.
+
+## Resumo do capítulo
+
+- O modelo **Mundell-Fleming** estende o IS-LM à economia aberta, acrescentando a curva **BP** (equilíbrio do balanço de pagamentos), **ascendente** e tão mais **horizontal** quanto maior a mobilidade de capitais.
+- Com **perfeita mobilidade de capitais**, a BP é **horizontal** em $i = i^{*}$: o juro doméstico fica preso ao internacional (mais prêmio de risco), e o ajuste ocorre via moeda (fixo) ou câmbio (flutuante).
+- Sob **câmbio fixo**: a política **monetária é impotente** (a expansão vaza em perda de reservas e se anula) e a **fiscal é potente** (a defesa do câmbio expande a moeda, sem *crowding out*).
+- Sob **câmbio flutuante**: a política **monetária é potente** (reforçada pela depreciação, que eleva exportações líquidas) e a **fiscal é impotente** (a apreciação corta exportações líquidas — *crowding out* externo).
+- A síntese (@tbl-mundell-fleming) conversa com a **trindade impossível**: câmbio fixo sacrifica a autonomia monetária; flutuante a recupera, mas neutraliza a fiscal via câmbio.
+- O modelo é uma **bússola qualitativa** de curto prazo, com preços fixos e mobilidade idealizada; na prática, mobilidade imperfeita e prêmio de risco atenuam os resultados extremos.
+- O **tripé brasileiro de 1999** corresponde ao regime flutuante: recuperou a potência da política monetária (viabilizando as metas de inflação) e fez do câmbio um **amortecedor de choques**, sob a restrição do prêmio de risco.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique por que a curva **BP** é ascendente no plano $(Y, i)$ e por que ela se torna **horizontal** sob perfeita mobilidade de capitais.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A BP reúne os pontos de equilíbrio do balanço de pagamentos. Um aumento de $Y$ eleva as importações e **piora** a conta corrente; para reequilibrar o balanço, é preciso **atrair capital**, o que exige um juro $i$ **maior** — daí a relação positiva (ascendente) entre $Y$ e $i$. Sob **perfeita mobilidade de capitais**, o capital é infinitamente sensível ao juro: a menor diferença entre $i$ e $i^{*}$ provoca fluxos enormes, de modo que o juro doméstico não pode se afastar de $i^{*}$. A BP fica então **horizontal** na altura $i = i^{*}$.
+:::
+
+**2.** Sob câmbio fixo e perfeita mobilidade de capitais, o BC tenta uma expansão monetária. Descreva o processo e o resultado final sobre juro e renda.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A expansão desloca a LM para a direita e tende a **baixar o juro** abaixo de $i^{*}$. Isso provoca **fuga de capital**, gerando excesso de demanda por divisas e pressão de **depreciação**. Para defender a paridade fixa, o BC **vende reservas e recompra moeda nacional**, **contraindo** a oferta monetária de volta (LM retorna). No fim, o juro volta a $i^{*}$ e a **renda não muda**: a política monetária é **impotente** sob câmbio fixo. O único efeito duradouro é a **perda de reservas**.
+:::
+
+**3.** Repita a análise para uma **expansão fiscal** sob câmbio fixo. Por que não há *crowding out*?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A expansão fiscal desloca a IS para a direita, pressionando o juro **acima** de $i^{*}$. Isso **atrai capital**, gerando excesso de oferta de divisas e pressão de **apreciação**. Para manter a paridade fixa, o BC **compra dólares e emite moeda**, deslocando a **LM para a direita**. O juro retorna a $i^{*}$ e a **renda sobe fortemente**. Não há *crowding out* porque, em vez de o juro subir e cortar o investimento privado, a **oferta de moeda se expande** endogenamente para segurar o juro em $i^{*}$ — a fiscal é **potente**.
+:::
+
+**4.** Sob câmbio **flutuante**, analise uma **expansão monetária**. Por quais dois canais a renda aumenta?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A expansão monetária desloca a LM para a direita e baixa o juro abaixo de $i^{*}$, provocando fuga de capital e **depreciação** cambial (livre, pois o BC não defende paridade). A renda sobe por **dois canais**: (i) o **canal interno** do estímulo monetário (juro menor estimula demanda); (ii) o **canal externo**, pois a depreciação **barateia as exportações** e encarece importações, elevando as **exportações líquidas** e deslocando a IS para a direita. Por isso a monetária é **muito potente** sob câmbio flutuante.
+:::
+
+**5.** Explique por que a **política fiscal** é impotente sob câmbio flutuante com perfeita mobilidade de capitais. Que tipo de *crowding out* ocorre?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A expansão fiscal desloca a IS para a direita e pressiona o juro acima de $i^{*}$, **atraindo capital**, o que **aprecia** o câmbio. A apreciação **encarece as exportações** e barateia importações, reduzindo as **exportações líquidas** e deslocando a IS **de volta** para a esquerda, até a renda retornar ao ponto inicial. Ocorre um ***crowding out* externo**: em vez de o gasto público expulsar o investimento via juros (como na economia fechada), ele expulsa as **exportações líquidas** via câmbio apreciado. A fiscal, isolada, é **impotente**.
+:::
+
+**6.** Relacione a tabela de resultados de Mundell-Fleming com a **trindade impossível**. Por que a monetária é impotente sob câmbio fixo?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A trindade impossível diz que, com **mobilidade de capital**, o país só pode ter câmbio fixo **ou** autonomia monetária, não ambos. Sob **câmbio fixo**, o país **abre mão da autonomia monetária**: por isso a política monetária é **impotente** — o BC precisa usar a moeda para defender a paridade, não pode dirigi-la a objetivos internos. Sob **câmbio flutuante**, o país **preserva a autonomia**: a monetária volta a ser **potente**. A tabela de Mundell-Fleming é, no fundo, a trindade impossível traduzida em eficácia de políticas.
+:::
+
+**7.** (Análise de caso) Explique como o câmbio flutuante funcionou como "amortecedor" para o Brasil em choques externos (por exemplo, quedas no preço de commodities), à luz de Mundell-Fleming.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Sob câmbio flutuante, um choque externo negativo (queda de commodities, fuga de capital) leva o real a **depreciar** livremente, em vez de forçar o BC a queimar reservas ou subir juros para defender uma paridade. A depreciação **barateia as exportações** e encarece importações, melhorando as exportações líquidas e a conta corrente — desloca a IS para a direita e **amortece** a queda da atividade. O ajuste é **automático e via preço** (câmbio), poupando a economia do ajuste **brutal via juros/reservas** que o regime administrado impunha nos anos 1990. Por isso o Brasil atravessou choques como 2008 com muito mais resiliência.
+:::
+
+**8.** (Desafio) O modelo puro prevê que a política fiscal é totalmente impotente sob câmbio flutuante. Cite duas razões pelas quais, no Brasil real, a fiscal ainda tem **algum** efeito — e por que a deterioração fiscal ainda assim "aperta" a política monetária.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Duas razões para algum efeito fiscal: (i) a **mobilidade de capitais é imperfeita** e há **prêmio de risco** — a BP não é perfeitamente horizontal, então a apreciação não anula 100% do estímulo, e no muito curto prazo o multiplicador fiscal opera antes do ajuste cambial completo; (ii) **preços e expectativas** não são triviais — parte do gasto afeta a demanda antes de o câmbio reagir plenamente. Quanto ao aperto monetário: a **deterioração fiscal eleva o prêmio de risco-país**, o que **deprecia o câmbio** e **pressiona a inflação** (via bens comercializáveis e expectativas); para conter essa inflação e ancorar expectativas, o BC precisa **manter ou subir a Selic**. Assim, expansão fiscal indisciplinada acaba **limitando** o espaço para juros baixos — a dominância do risco fiscal sobre a política monetária, tema recorrente do debate brasileiro.
+:::
+
+## Para saber mais
+
+- @mundell1963 — o artigo seminal onde os resultados de eficácia das políticas segundo o regime cambial foram estabelecidos; rendeu a Mundell o Nobel de 1999.
+- @fleming1962 — o trabalho paralelo de Marcus Fleming, coautor intelectual do modelo.
+- @krugman2015 — apresentação didática do modelo de economia aberta e da produção de curto prazo.
+- @blanchard2017 — capítulos de economia aberta com o IS-LM estendido e a discussão de regimes cambiais.
+- @dornbusch2013 — tratamento clássico do Mundell-Fleming e da dinâmica cambial.

@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; Equações, sistemas lineares e a noção de equilíbrio – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol02/cap03-limites-e-continuidade.html" rel="next">
+<link href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-5284756066bd91586648e5f7a42d5559.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html">Volume 2 — Matemática para Economistas</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">8.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#resolvendo-equações-lineares" id="toc-resolvendo-equações-lineares" class="nav-link" data-scroll-target="#resolvendo-equações-lineares"><span class="header-section-number">8.2</span> Resolvendo equações lineares</a></li>
+  <li><a href="#sistemas-de-equações-lineares" id="toc-sistemas-de-equações-lineares" class="nav-link" data-scroll-target="#sistemas-de-equações-lineares"><span class="header-section-number">8.3</span> Sistemas de equações lineares</a>
+  <ul class="collapse">
+  <li><a href="#método-da-substituição" id="toc-método-da-substituição" class="nav-link" data-scroll-target="#método-da-substituição"><span class="header-section-number">8.3.1</span> Método da substituição</a></li>
+  <li><a href="#método-da-eliminação" id="toc-método-da-eliminação" class="nav-link" data-scroll-target="#método-da-eliminação"><span class="header-section-number">8.3.2</span> Método da eliminação</a></li>
+  </ul></li>
+  <li><a href="#o-equilíbrio-econômico" id="toc-o-equilíbrio-econômico" class="nav-link" data-scroll-target="#o-equilíbrio-econômico"><span class="header-section-number">8.4</span> O equilíbrio econômico</a>
+  <ul class="collapse">
+  <li><a href="#calculando-o-equilíbrio-de-mercado" id="toc-calculando-o-equilíbrio-de-mercado" class="nav-link" data-scroll-target="#calculando-o-equilíbrio-de-mercado"><span class="header-section-number">8.4.1</span> Calculando o equilíbrio de mercado</a></li>
+  <li><a href="#o-que-muda-quando-uma-curva-se-desloca" id="toc-o-que-muda-quando-uma-curva-se-desloca" class="nav-link" data-scroll-target="#o-que-muda-quando-uma-curva-se-desloca"><span class="header-section-number">8.4.2</span> O que muda quando uma curva se desloca</a></li>
+  </ul></li>
+  <li><a href="#o-ponto-de-nivelamento-break-even" id="toc-o-ponto-de-nivelamento-break-even" class="nav-link" data-scroll-target="#o-ponto-de-nivelamento-break-even"><span class="header-section-number">8.5</span> O ponto de nivelamento (<em>break-even</em>)</a></li>
+  <li><a href="#quando-não-há-solução-única" id="toc-quando-não-há-solução-única" class="nav-link" data-scroll-target="#quando-não-há-solução-única"><span class="header-section-number">8.6</span> Quando não há solução única</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">8.7</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">8.8</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">8.9</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">8.10</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol02/cap02-equacoes-e-equilibrio.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html">Volume 2 — Matemática para Economistas</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-equacoes-e-equilibrio" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Toda vez que um economista pergunta “a que preço o mercado se assenta?”, “quanto o país produz quando poupança e investimento se igualam?” ou “em que ponto a firma nem lucra nem tem prejuízo?”, ele está, no fundo, fazendo a mesma coisa: <strong>procurando o valor que satisfaz uma igualdade</strong>. Esse é o ofício da resolução de equações. E quando duas forças precisam se conciliar ao mesmo tempo — a oferta e a demanda, por exemplo —, o problema vira o de resolver um <strong>sistema</strong> de equações simultâneas.</p>
+<p>O conceito econômico que dá sentido a tudo isso é o de <strong>equilíbrio</strong>: uma situação em que forças opostas se anulam e nada mais empurra o sistema para lugar nenhum. Neste capítulo aprendemos a máquina algébrica que encontra equilíbrios — resolver equações e sistemas lineares — e, ao mesmo tempo, o significado econômico daquilo que essa máquina calcula.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">8.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>resolver <strong>equações lineares</strong> de uma incógnita e interpretar sua solução;</li>
+<li>resolver <strong>sistemas lineares</strong> <span class="math inline">\(2\times 2\)</span> pelos métodos da <strong>substituição</strong> e da <strong>eliminação</strong>;</li>
+<li>definir <strong>equilíbrio</strong> e reconhecê-lo como a solução de um sistema de equações;</li>
+<li>calcular o <strong>preço e a quantidade de equilíbrio</strong> de um mercado a partir das funções de oferta e demanda;</li>
+<li>interpretar o que acontece quando um deslocamento de curva altera o equilíbrio;</li>
+<li>encontrar o <strong>ponto de nivelamento</strong> (<em>break-even</em>) de uma firma;</li>
+<li>reconhecer os casos de sistema <strong>sem solução</strong> e com <strong>infinitas soluções</strong> e seu significado econômico.</li>
+</ul>
+</section>
+<section id="resolvendo-equações-lineares" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="resolvendo-equações-lineares"><span class="header-section-number">8.2</span> Resolvendo equações lineares</h2>
+<p>Uma <strong>equação</strong> é uma afirmação de que duas expressões são iguais; <strong>resolvê-la</strong> é encontrar o valor da incógnita que torna a igualdade verdadeira. O princípio que rege toda a manipulação é simples: <em>o que se faz de um lado da igualdade tem de ser feito do outro</em>, para preservar o equilíbrio da balança.</p>
+<p>Considere a pergunta: a que quantidade uma firma cobre exatamente seus custos, se a receita é <span class="math inline">\(R = 20q\)</span> e o custo é <span class="math inline">\(C = 300 + 5q\)</span>? Igualamos as duas e resolvemos:</p>
+<p><span class="math display">\[
+20q = 300 + 5q.
+\]</span></p>
+<p>Subtraímos <span class="math inline">\(5q\)</span> dos dois lados, agrupando a incógnita de um lado só:</p>
+<p><span class="math display">\[
+20q - 5q = 300 \;\Longrightarrow\; 15q = 300.
+\]</span></p>
+<p>Dividimos ambos os lados por <span class="math inline">\(15\)</span>:</p>
+<p><span class="math display">\[
+q = \frac{300}{15} = 20.
+\]</span></p>
+<p>A firma cobre os custos produzindo <span class="math inline">\(20\)</span> unidades. Toda resolução de equação linear segue esse mesmo ritual: <strong>agrupar</strong> a incógnita de um lado, os números do outro, e <strong>isolar</strong> dividindo pelo coeficiente. Nada mais.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — a equação como pergunta">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — a equação como pergunta
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma equação é uma pergunta disfarçada de afirmação. “<span class="math inline">\(20q = 300 + 5q\)</span>” pergunta: <em>para qual <span class="math inline">\(q\)</span> receita e custo coincidem?</em> Resolver é responder. Guardar essa leitura ajuda a não tratar a álgebra como manipulação cega de símbolos: cada passo aproxima você da resposta a uma pergunta econômica concreta.</p>
+</div>
+</div>
+</section>
+<section id="sistemas-de-equações-lineares" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="sistemas-de-equações-lineares"><span class="header-section-number">8.3</span> Sistemas de equações lineares</h2>
+<p>Muitos problemas econômicos envolvem <strong>duas</strong> incógnitas amarradas por <strong>duas</strong> condições ao mesmo tempo. O exemplo mestre é o mercado: a quantidade e o preço precisam satisfazer, simultaneamente, tanto a lei da demanda quanto a lei da oferta. Isso é um <strong>sistema linear</strong> <span class="math inline">\(2\times 2\)</span>:</p>
+<p><span class="math display">\[
+\begin{cases} y = a_1 + b_1 x \\ y = a_2 + b_2 x \end{cases}
+\]</span></p>
+<p><strong>Resolver o sistema</strong> é encontrar o par <span class="math inline">\((x, y)\)</span> que satisfaz as <strong>duas</strong> equações ao mesmo tempo — geometricamente, o <strong>ponto onde as duas retas se cruzam</strong>. Há dois métodos elementares.</p>
+<section id="método-da-substituição" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="método-da-substituição"><span class="header-section-number">8.3.1</span> Método da substituição</h3>
+<p>Isola-se uma variável numa equação e <strong>substitui-se</strong> na outra, reduzindo o sistema a uma única equação com uma única incógnita. Seja:</p>
+<p><span class="math display">\[
+\begin{cases} q = 100 - 2p \quad(\text{demanda}) \\ q = 10 + 3p \quad(\text{oferta}) \end{cases}
+\]</span></p>
+<p>Como ambas dão <span class="math inline">\(q\)</span>, igualamos as expressões (uma substituição direta):</p>
+<p><span class="math display">\[
+100 - 2p = 10 + 3p.
+\]</span></p>
+<p>Agrupando: <span class="math inline">\(100 - 10 = 3p + 2p \Rightarrow 90 = 5p \Rightarrow p = 18\)</span>. Substituindo de volta numa das equações, <span class="math inline">\(q = 10 + 3\times 18 = 64\)</span>. A solução é <span class="math inline">\((p, q) = (18, 64)\)</span>.</p>
+</section>
+<section id="método-da-eliminação" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="método-da-eliminação"><span class="header-section-number">8.3.2</span> Método da eliminação</h3>
+<p>Somam-se ou subtraem-se as equações (após multiplicá-las por constantes convenientes) para <strong>cancelar</strong> uma variável. Tome:</p>
+<p><span class="math display">\[
+\begin{cases} 2x + y = 20 \\ x - y = 1 \end{cases}
+\]</span></p>
+<p>Somando as duas equações membro a membro, o <span class="math inline">\(y\)</span> se cancela: <span class="math inline">\((2x + y) + (x - y) = 20 + 1 \Rightarrow 3x = 21 \Rightarrow x = 7\)</span>. Da segunda equação, <span class="math inline">\(7 - y = 1 \Rightarrow y = 6\)</span>. Solução: <span class="math inline">\((7, 6)\)</span>.</p>
+<p>Os dois métodos sempre chegam à mesma resposta; escolha o mais cômodo para a forma em que as equações se apresentam. Quando ambas já estão resolvidas para a mesma variável (como na oferta e demanda), a substituição por igualação é a mais rápida.</p>
+</section>
+</section>
+<section id="o-equilíbrio-econômico" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="o-equilíbrio-econômico"><span class="header-section-number">8.4</span> O equilíbrio econômico</h2>
+<p>Chegamos ao conceito que dá unidade a este capítulo. Em Economia, <strong>equilíbrio</strong> é uma situação de repouso: um estado em que as variáveis não têm tendência a mudar, porque as forças que atuam sobre elas se cancelam.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Equilíbrio">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Equilíbrio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um <strong>equilíbrio</strong> é uma configuração das variáveis de um modelo em que nenhum agente tem incentivo a alterar seu comportamento, de modo que o sistema permanece em repouso enquanto as condições externas não mudarem. Matematicamente, é a <strong>solução</strong> do sistema de equações que descreve o modelo.</p>
+</div>
+</div>
+<p>O caso emblemático é o <strong>equilíbrio de mercado</strong>: o preço em que a quantidade que os compradores desejam comprar iguala exatamente a que os vendedores desejam vender. Nesse preço, não há nem excesso de oferta (que pressionaria o preço para baixo) nem excesso de demanda (que o pressionaria para cima). O mercado “descansa” — até que algum fator externo desloque uma das curvas.</p>
+<section id="calculando-o-equilíbrio-de-mercado" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="calculando-o-equilíbrio-de-mercado"><span class="header-section-number">8.4.1</span> Calculando o equilíbrio de mercado</h3>
+<p>Retomemos o sistema de oferta e demanda de há pouco. A <a href="#fig-equilibrio" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-equilibrio</span></a> mostra o que a álgebra encontrou: o cruzamento das duas curvas no ponto <span class="math inline">\(E = (q^{*}, p^{*}) = (64, 18)\)</span>.</p>
+<div id="fig-equilibrio" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-equilibrio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="325.257156pt" height="228.309868pt" viewbox="-68.014948 -68.014947 325.257156 228.309868">
+
+<defs>
+
+<path id="tz_fig_equilibrio_g0-3" d="M2.779577-.842839C2.934994-.735243 2.946949-.735243 2.988792-.735243C3.090411-.735243 3.186052-.824907 3.186052-.944458S3.096389-1.099875 3.048568-1.123786C2.743711-1.249315 2.438854-1.374844 2.12802-1.488418C2.737733-1.739477 2.905106-1.799253 3.012702-1.847073C3.102366-1.888917 3.186052-1.918804 3.186052-2.038356S3.090411-2.247572 2.988792-2.247572C2.940971-2.247572 2.905106-2.223661 2.857285-2.193773L2.008468-1.655791C2.014446-1.739477 2.038356-1.948692 2.044334-2.020423C2.056289-2.139975 2.10411-2.49863 2.10411-2.600249S2.014446-2.779577 1.906849-2.779577C1.80523-2.779577 1.709589-2.701868 1.709589-2.600249C1.709589-2.588294 1.763387-2.050311 1.769365-2.026401C1.775342-1.960648 1.799253-1.733499 1.80523-1.655791L.956413-2.193773C.908593-2.223661 .872727-2.247572 .824907-2.247572C.723288-2.247572 .627646-2.157908 .627646-2.038356S.71731-1.882939 .765131-1.859029C1.069988-1.733499 1.374844-1.60797 1.685679-1.494396C1.075965-1.243337 .908593-1.183562 .800996-1.135741C.711333-1.093898 .627646-1.06401 .627646-.944458S.723288-.735243 .824907-.735243C.872727-.735243 .974346-.800996 1.046077-.848817C1.129763-.896638 1.333001-1.028144 1.41071-1.081943C1.60797-1.207472 1.679701-1.255293 1.80523-1.327024C1.799253-1.243337 1.775342-1.034122 1.769365-.962391L1.709589-.382565C1.709589-.280946 1.80523-.203238 1.906849-.203238C2.014446-.203238 2.10411-.280946 2.10411-.382565C2.10411-.388543 2.050311-.926526 2.044334-.956413C2.038356-1.022167 2.014446-1.249315 2.008468-1.327024L2.779577-.842839Z"></path>
+
+<path id="tz_fig_equilibrio_g1-69" d="M2.815442-3.030635H3.730012C4.366625-3.030635 4.501121-2.923039 4.501121-2.627148C4.501121-2.555417 4.474222-2.367123 4.438356-2.223661C4.420423-2.169863 4.411457-2.125031 4.411457-2.098132C4.411457-2.089166 4.411457-1.981569 4.52802-1.981569C4.635616-1.981569 4.644583-2.044334 4.680448-2.178829L5.155666-4.061768C5.191532-4.187298 5.191532-4.20523 5.191532-4.241096C5.191532-4.312827 5.137733-4.357659 5.066002-4.357659C4.967372-4.357659 4.958406-4.303861 4.913574-4.133499C4.734247-3.425156 4.456289-3.308593 3.738979-3.308593H2.887173C3.021669-3.864508 3.443088-5.56812 3.48792-5.675716C3.541719-5.801245 3.604483-5.819178 3.900374-5.819178H5.218431C6.339228-5.819178 6.590286-5.550187 6.590286-4.82391C6.590286-4.545953 6.545455-4.276961 6.545455-4.214197C6.545455-4.142466 6.590286-4.079701 6.670984-4.079701C6.77858-4.079701 6.787547-4.142466 6.805479-4.303861L6.993773-5.971606C6.993773-6.097136 6.90411-6.097136 6.733748-6.097136H2.116065C1.945704-6.097136 1.847073-6.097136 1.847073-5.935741C1.847073-5.819178 1.936737-5.819178 2.125031-5.819178C2.160897-5.819178 2.322291-5.819178 2.465753-5.801245C2.663014-5.774346 2.67198-5.738481 2.67198-5.657783C2.67198-5.630884 2.67198-5.612951 2.627148-5.451557L1.43462-.681445C1.353923-.358655 1.33599-.277958 .663512-.277958C.493151-.277958 .394521-.277958 .394521-.116563C.394521 0 .484184 0 .645579 0H5.379826C5.54122 0 5.559153 0 5.586052-.026899C5.612951-.044832 5.621918-.053798 5.675716-.170361C5.783313-.412453 6.545455-2.116065 6.545455-2.196762C6.545455-2.268493 6.491656-2.313325 6.419925-2.313325S6.339228-2.304359 6.240598-2.098132C5.684682-.842839 5.317061-.277958 3.828643-.277958H2.456787C2.331258-.277958 2.313325-.277958 2.27746-.286924C2.187796-.29589 2.160897-.304857 2.160897-.367621C2.160897-.394521 2.160897-.412453 2.205729-.573848L2.815442-3.030635Z"></path>
+
+<path id="tz_fig_equilibrio_g1-112" d="M.412453 1.120797C.349689 1.380822 .331756 1.461519-.053798 1.461519C-.152428 1.461519-.260025 1.461519-.260025 1.622914C-.260025 1.65878-.242092 1.739477-.143462 1.739477L.242092 1.721544C.29589 1.712578 .502117 1.712578 .627646 1.712578C.780075 1.712578 .932503 1.721544 1.084932 1.721544C1.228394 1.721544 1.380822 1.739477 1.515318 1.739477C1.569116 1.739477 1.685679 1.739477 1.685679 1.578082C1.685679 1.461519 1.596015 1.461519 1.443587 1.461519C1.022167 1.461519 1.022167 1.398755 1.022167 1.318057C1.022167 1.264259 1.084932 1.022167 1.120797 .878705L1.452553-.457285C1.542217-.268991 1.793275 .09863 2.304359 .09863C3.353425 .09863 4.501121-1.165629 4.501121-2.510585C4.501121-3.425156 3.936239-3.963138 3.263761-3.963138C3.075467-3.963138 2.627148-3.918306 2.080199-3.308593C1.945704-3.81071 1.53325-3.963138 1.228394-3.963138C.851806-3.963138 .663512-3.685181 .537983-3.443088C.385554-3.129265 .260025-2.618182 .260025-2.582316C.260025-2.501619 .32279-2.47472 .385554-2.47472C.484184-2.47472 .502117-2.519552 .546949-2.698879C.71731-3.407223 .905604-3.738979 1.210461-3.738979C1.479452-3.738979 1.479452-3.452055 1.479452-3.317559C1.479452-3.245828 1.470486-3.111333 1.452553-3.039601L.412453 1.120797ZM2.035367-2.761644C2.080199-2.940971 2.080199-2.958904 2.196762-3.0934C2.438854-3.398257 2.842341-3.738979 3.245828-3.738979C3.667248-3.738979 3.837609-3.317559 3.837609-2.896139C3.837609-2.492653 3.58655-1.380822 3.308593-.905604C3.003736-.394521 2.627148-.125529 2.295392-.125529C1.712578-.125529 1.569116-.833873 1.569116-.896638C1.569116-.950436 1.587049-.995268 1.596015-1.0401L2.035367-2.761644Z"></path>
+
+<path id="tz_fig_equilibrio_g1-113" d="M4.133499-3.658281C4.169365-3.783811 4.169365-3.801743 4.169365-3.837609C4.169365-3.945205 4.079701-3.963138 4.061768-3.963138C3.972105-3.963138 3.631382-3.658281 3.452055-3.344458C3.308593-3.667248 3.030635-3.963138 2.57335-3.963138C1.53325-3.963138 .376588-2.725778 .376588-1.353923C.376588-.367621 1.004234 .09863 1.604981 .09863C1.990535 .09863 2.340224-.09863 2.67198-.412453L2.331258 .968369C2.214695 1.425654 2.205729 1.452553 1.640847 1.461519C1.53325 1.461519 1.425654 1.461519 1.425654 1.622914C1.425654 1.640847 1.425654 1.739477 1.551183 1.739477C1.748443 1.739477 2.259527 1.712578 2.456787 1.712578C2.752677 1.712578 2.77061 1.712578 2.914072 1.721544C3.030635 1.730511 3.281694 1.739477 3.38929 1.739477C3.443088 1.739477 3.559651 1.739477 3.559651 1.578082C3.559651 1.461519 3.469988 1.461519 3.317559 1.461519C2.896139 1.461519 2.896139 1.398755 2.896139 1.318057C2.896139 1.309091 2.896139 1.255293 2.932005 1.120797L4.133499-3.658281ZM2.842341-1.093898C2.797509-.923537 2.797509-.91457 2.654047-.744209C2.331258-.358655 1.963636-.125529 1.63188-.125529C1.192528-.125529 1.0401-.582814 1.0401-.968369C1.0401-1.407721 1.300125-2.438854 1.515318-2.86924C1.802242-3.407223 2.214695-3.738979 2.57335-3.738979C3.174097-3.738979 3.308593-3.021669 3.308593-2.958904C3.308593-2.914072 3.29066-2.860274 3.281694-2.824408L2.842341-1.093898Z"></path>
+
+<path id="tz_fig_equilibrio_g2-24" d="M1.407721 1.604981C1.327024 1.604981 1.264259 1.604981 1.201494 1.613948V1.838107C1.578082 1.811208 1.981569 1.85604 2.501619 1.775342C3.048568 1.694645 3.398257 1.515318 3.398257 1.120797S3.057534 .537983 2.636115 .466252V.19726H1.972603V.636613C2.492653 .645579 2.734745 .869738 2.734745 1.120797C2.734745 1.596015 1.891905 1.604981 1.604981 1.604981H1.407721Z"></path>
+
+<path id="tz_fig_equilibrio_g2-49" d="M2.725778-5.729514C2.725778-5.953674 2.716812-5.971606 2.492653-5.971606C1.936737-5.397758 1.111831-5.397758 .833873-5.397758V-5.119801C1.004234-5.119801 1.551183-5.119801 2.035367-5.352927V-.71731C2.035367-.385554 2.008468-.277958 1.174595-.277958H.887671V0C1.210461-.026899 2.008468-.026899 2.37609-.026899S3.550685-.026899 3.873474 0V-.277958H3.58655C2.752677-.277958 2.725778-.385554 2.725778-.71731V-5.729514Z"></path>
+
+<path id="tz_fig_equilibrio_g2-52" d="M.260025-1.75741V-1.479452H2.707846V-.708344C2.707846-.376588 2.680946-.277958 2.008468-.277958H1.811208V0C2.37609-.026899 3.003736-.026899 3.066501-.026899C3.111333-.026899 3.756912-.026899 4.321793 0V-.277958H4.124533C3.452055-.277958 3.425156-.376588 3.425156-.708344V-1.479452H4.339726V-1.75741H3.425156V-5.828144C3.425156-6.007472 3.425156-6.070237 3.254795-6.070237C3.147198-6.070237 3.138232-6.06127 3.057534-5.935741L.260025-1.75741ZM.546949-1.75741L2.761644-5.074969V-1.75741H.546949Z"></path>
+
+<path id="tz_fig_equilibrio_g2-54" d="M1.201494-2.96787C1.201494-3.882441 1.300125-4.393524 1.542217-4.859776C1.721544-5.227397 2.160897-5.747447 2.824408-5.747447C3.003736-5.747447 3.416189-5.711582 3.622416-5.388792C3.29066-5.388792 3.147198-5.218431 3.147198-4.976339C3.147198-4.743213 3.308593-4.563885 3.559651-4.563885S3.981071-4.72528 3.981071-4.994271C3.981071-5.496389 3.622416-5.971606 2.806476-5.971606C1.649813-5.971606 .385554-4.832877 .385554-2.833375C.385554-.403487 1.479452 .19726 2.322291 .19726C3.317559 .19726 4.214197-.636613 4.214197-1.820174C4.214197-2.958904 3.38929-3.819676 2.37609-3.819676C1.838107-3.819676 1.452553-3.505853 1.201494-2.96787ZM2.313325-.053798C1.802242-.053798 1.506351-.475218 1.398755-.735243C1.228394-1.13873 1.219427-1.882939 1.219427-2.026401C1.219427-2.627148 1.497385-3.595517 2.358157-3.595517C2.501619-3.595517 2.940971-3.595517 3.227895-3.039601C3.398257-2.698879 3.398257-2.259527 3.398257-1.829141S3.398257-.959402 3.227895-.627646C2.949938-.116563 2.555417-.053798 2.313325-.053798Z"></path>
+
+<path id="tz_fig_equilibrio_g2-56" d="M1.542217-4.070735C1.273225-4.241096 1.066999-4.483188 1.066999-4.814944C1.066999-5.397758 1.694645-5.747447 2.286426-5.747447C2.976837-5.747447 3.532752-5.263263 3.532752-4.635616S2.99477-3.595517 2.636115-3.38929L1.542217-4.070735ZM2.860274-3.245828C3.308593-3.461021 3.963138-3.90934 3.963138-4.635616C3.963138-5.478456 3.120299-5.971606 2.313325-5.971606C1.371856-5.971606 .636613-5.299128 .636613-4.474222C.636613-4.133499 .762142-3.81071 .977335-3.550685C1.129763-3.380324 1.183562-3.344458 1.703611-3.012702C.91457-2.636115 .385554-2.089166 .385554-1.353923C.385554-.403487 1.327024 .19726 2.295392 .19726C3.335492 .19726 4.214197-.537983 4.214197-1.506351C4.214197-2.37609 3.550685-2.806476 3.326526-2.949938C3.227895-3.021669 2.96787-3.183064 2.860274-3.245828ZM1.945704-2.860274L3.075467-2.160897C3.281694-2.026401 3.730012-1.739477 3.730012-1.192528C3.730012-.484184 3.012702-.053798 2.304359-.053798C1.524284-.053798 .869738-.609714 .869738-1.353923C.869738-1.999502 1.318057-2.537484 1.945704-2.860274Z"></path>
+
+<path id="tz_fig_equilibrio_g2-61" d="M6.348194-2.96787C6.473724-2.96787 6.644085-2.96787 6.644085-3.156164C6.644085-3.353425 6.446824-3.353425 6.312329-3.353425H.842839C.708344-3.353425 .511083-3.353425 .511083-3.156164C.511083-2.96787 .690411-2.96787 .806974-2.96787H6.348194ZM6.312329-1.13873C6.446824-1.13873 6.644085-1.13873 6.644085-1.33599C6.644085-1.524284 6.473724-1.524284 6.348194-1.524284H.806974C.690411-1.524284 .511083-1.524284 .511083-1.33599C.511083-1.13873 .708344-1.13873 .842839-1.13873H6.312329Z"></path>
+
+<path id="tz_fig_equilibrio_g2-68" d="M.564882-5.846077C1.255293-5.846077 1.273225-5.747447 1.273225-5.415691V-.708344C1.273225-.376588 1.255293-.277958 .564882-.277958H.358655V0H3.694147C5.24533 0 6.518555-1.327024 6.518555-3.012702C6.518555-4.716314 5.272229-6.124035 3.694147-6.124035H.358655V-5.846077H.564882ZM2.492653-.277958C2.071233-.277958 2.0533-.340722 2.0533-.645579V-5.478456C2.0533-5.783313 2.071233-5.846077 2.492653-5.846077H3.452055C4.321793-5.846077 4.859776-5.388792 5.101868-5.066002C5.496389-4.545953 5.630884-3.900374 5.630884-3.012702C5.630884-2.645081 5.630884-1.703611 5.137733-1.075965C4.671482-.466252 4.025903-.277958 3.461021-.277958H2.492653Z"></path>
+
+<path id="tz_fig_equilibrio_g2-79" d="M6.644085-3.039601C6.644085-4.868742 5.254296-6.321295 3.577584-6.321295S.511083-4.859776 .511083-3.039601S1.909838 .19726 3.577584 .19726S6.644085-1.219427 6.644085-3.039601ZM3.577584-.071731C2.67198-.071731 1.425654-.860772 1.425654-3.174097C1.425654-5.361893 2.707846-6.070237 3.577584-6.070237S5.729514-5.361893 5.729514-3.174097C5.729514-.860772 4.483188-.071731 3.577584-.071731Z"></path>
+
+<path id="tz_fig_equilibrio_g2-80" d="M3.577584-2.815442C4.832877-2.815442 5.747447-3.595517 5.747447-4.456289C5.747447-5.34396 4.82391-6.124035 3.577584-6.124035H.358655V-5.846077H.564882C1.255293-5.846077 1.273225-5.747447 1.273225-5.415691V-.708344C1.273225-.376588 1.255293-.277958 .564882-.277958H.358655V0C.762142-.026899 1.264259-.026899 1.676712-.026899S2.591283-.026899 2.99477 0V-.277958H2.788543C2.098132-.277958 2.080199-.376588 2.080199-.708344V-2.815442H3.577584ZM2.0533-5.478456C2.0533-5.783313 2.071233-5.846077 2.492653-5.846077H3.353425C4.832877-5.846077 4.832877-4.859776 4.832877-4.456289S4.832877-3.066501 3.344458-3.066501H2.0533V-5.478456Z"></path>
+
+<path id="tz_fig_equilibrio_g2-81" d="M4.770112-.062765C5.729514-.457285 6.644085-1.560149 6.644085-3.039601C6.644085-4.868742 5.254296-6.321295 3.577584-6.321295S.511083-4.859776 .511083-3.039601S1.909838 .19726 3.577584 .19726C3.891407 .19726 4.23213 .134496 4.447323 .071731C4.608717 .959402 4.743213 1.739477 5.577086 1.739477C6.509589 1.739477 6.697883 .537983 6.697883 .080697C6.697883 0 6.697883-.107597 6.58132-.107597C6.518555-.107597 6.48269-.053798 6.473724-.008966C6.401993 .771108 5.792279 .824907 5.648817 .824907C5.164633 .824907 4.976339 .439352 4.770112-.062765ZM2.932005-.179328C2.062267-.511083 1.398755-1.43462 1.398755-3.039601C1.398755-5.263263 2.645081-6.070237 3.577584-6.070237S5.756413-5.272229 5.756413-3.039601C5.756413-1.85604 5.397758-.905604 4.62665-.385554C4.447323-.833873 4.169365-1.33599 3.58655-1.33599C3.147198-1.33599 2.824408-.986301 2.824408-.573848C2.824408-.358655 2.923039-.188294 2.932005-.179328ZM4.375592-.242092C4.115567-.107597 3.81071-.053798 3.577584-.053798C3.138232-.053798 3.048568-.430386 3.048568-.573848C3.048568-.842839 3.245828-1.111831 3.595517-1.111831C4.070735-1.111831 4.259029-.735243 4.375592-.242092Z"></path>
+
+<path id="tz_fig_equilibrio_g2-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+
+<path id="tz_fig_equilibrio_g2-99" d="M3.263761-3.523786C3.075467-3.48792 2.896139-3.362391 2.896139-3.102366C2.896139-2.86924 3.075467-2.689913 3.308593-2.689913S3.730012-2.842341 3.730012-3.120299C3.730012-3.676214 3.102366-4.016936 2.313325-4.016936C1.165629-4.016936 .304857-3.057534 .304857-1.936737C.304857-.780075 1.23736 .09863 2.295392 .09863C3.541719 .09863 3.828643-.986301 3.828643-1.066999C3.828643-1.174595 3.730012-1.174595 3.703113-1.174595C3.604483-1.174595 3.604483-1.156663 3.550685-1.004234C3.344458-.385554 2.842341-.152428 2.385056-.152428C1.811208-.152428 1.075965-.61868 1.075965-1.945704C1.075965-3.344458 1.793275-3.765878 2.331258-3.765878C2.447821-3.765878 2.932005-3.747945 3.263761-3.523786Z"></path>
+
+<path id="tz_fig_equilibrio_g2-100" d="M3.48792-1.075965C3.48792-.91457 3.48792-.887671 3.353425-.699377C3.075467-.29589 2.663014-.125529 2.304359-.125529C1.918804-.125529 1.560149-.340722 1.327024-.71731C1.093898-1.102864 1.075965-1.63188 1.075965-1.918804C1.075965-2.340224 1.129763-2.815442 1.362889-3.174097C1.560149-3.461021 1.927771-3.738979 2.402989-3.738979C2.779577-3.738979 3.138232-3.550685 3.380324-3.209963C3.48792-3.066501 3.48792-3.057534 3.48792-2.887173V-1.075965ZM3.514819-3.434122C3.469988-3.48792 3.066501-3.963138 2.367123-3.963138C1.264259-3.963138 .304857-3.084433 .304857-1.927771C.304857-.806974 1.201494 .09863 2.268493 .09863C2.923039 .09863 3.326526-.286924 3.48792-.475218V.09863L4.841843 0V-.277958C4.23213-.277958 4.151432-.340722 4.151432-.780075V-6.222665L2.824408-6.124035V-5.846077C3.434122-5.846077 3.514819-5.783313 3.514819-5.34396V-3.434122Z"></path>
+
+<path id="tz_fig_equilibrio_g2-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+
+<path id="tz_fig_equilibrio_g2-102" d="M2.689913-3.58655V-3.864508H1.622914V-4.877709C1.622914-5.693649 2.062267-6.097136 2.447821-6.097136C2.537484-6.097136 2.627148-6.079203 2.716812-6.043337C2.627148-6.007472 2.483686-5.899875 2.483686-5.675716C2.483686-5.44259 2.654047-5.281196 2.878207-5.281196C3.120299-5.281196 3.281694-5.451557 3.281694-5.684682C3.281694-6.025405 2.940971-6.321295 2.447821-6.321295C1.748443-6.321295 1.0132-5.792279 1.0132-4.895641V-3.864508H.304857V-3.58655H1.0132V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.798007-.017933 .91457-.026899 1.371856-.026899C1.730511-.026899 1.945704-.017933 2.510585 0V-.277958H2.331258C1.676712-.277958 1.649813-.376588 1.649813-.708344V-3.58655H2.689913Z"></path>
+
+<path id="tz_fig_equilibrio_g2-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+
+<path id="tz_fig_equilibrio_g2-109" d="M1.667746-2.322291C1.667746-3.29066 2.367123-3.738979 2.905106-3.738979C3.398257-3.738979 3.559651-3.38929 3.559651-2.761644V-.690411C3.559651-.277958 3.461021-.277958 2.86924-.277958V0C3.29066-.017933 3.461021-.026899 3.891407-.026899S4.438356-.017933 4.913574 0V-.277958C4.321793-.277958 4.223163-.277958 4.223163-.690411V-2.322291C4.223163-3.29066 4.92254-3.738979 5.460523-3.738979C5.953674-3.738979 6.115068-3.38929 6.115068-2.761644V-.690411C6.115068-.277958 6.016438-.277958 5.424658-.277958V0C5.846077-.017933 6.016438-.026899 6.446824-.026899S6.993773-.017933 7.468991 0V-.277958C7.011706-.277958 6.787547-.277958 6.77858-.555915V-2.27746C6.77858-3.057534 6.77858-3.308593 6.48269-3.640349C6.294396-3.855542 5.935741-3.963138 5.523288-3.963138C4.877709-3.963138 4.438356-3.58655 4.187298-3.111333C4.079701-3.640349 3.721046-3.963138 2.96787-3.963138C2.25056-3.963138 1.811208-3.496887 1.622914-3.084433H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+
+<path id="tz_fig_equilibrio_g2-110" d="M1.667746-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.133998-3.963138 1.748443-3.344458 1.622914-3.0934H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+
+<path id="tz_fig_equilibrio_g2-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+
+<path id="tz_fig_equilibrio_g2-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+
+<path id="tz_fig_equilibrio_g2-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+
+<path id="tz_fig_equilibrio_g2-117" d="M3.550685-1.497385C3.550685-.699377 3.102366-.125529 2.456787-.125529C1.712578-.125529 1.667746-.511083 1.667746-.995268V-3.963138L.313823-3.864508V-3.58655C1.004234-3.58655 1.004234-3.559651 1.004234-2.761644V-1.416687C1.004234-.833873 1.004234-.457285 1.416687-.143462C1.676712 .035866 2.044334 .09863 2.402989 .09863C2.86924 .09863 3.308593-.107597 3.568618-.645579H3.577584V.09863L4.904608 0V-.277958C4.294894-.277958 4.214197-.340722 4.214197-.780075V-3.963138L2.860274-3.864508V-3.58655C3.469988-3.58655 3.550685-3.523786 3.550685-3.084433V-1.497385Z"></path>
+
+</defs>
+
+<g id="tz_fig_equilibrio_page1">
+
+<g stroke-miterlimit="10" transform="translate(-30.728944,145.120912)scale(0.996264,-0.996264)">
+
+<g fill="#000" stroke="#000">
+
+<g stroke-width="0.4">
+
+<g fill="#808080" stroke="#808080">
+
+<g stroke-width="0.4">
+
+<path d="M0 0H225.62198" fill="none"></path>
+
+<g transform="translate(225.62198,0.0)">
+
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+
+</g>
+
+<g transform="translate(231.15492,-2.25)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-30.728944,145.120912)scale(-1,-1)">
+
+<g fill="#808080">
+
+<g stroke="none">
+
+<g fill="#808080">
+
+<use x="-30.728944" y="145.120912" href="#tz_fig_equilibrio_g2-81"></use>
+
+<use x="-23.561425" y="145.120912" href="#tz_fig_equilibrio_g2-117"></use>
+
+<use x="-18.441769" y="145.120912" href="#tz_fig_equilibrio_g2-97"></use>
+
+<use x="-13.834078" y="145.120912" href="#tz_fig_equilibrio_g2-110"></use>
+
+<use x="-8.970405" y="145.120912" href="#tz_fig_equilibrio_g2-116"></use>
+
+<use x="-5.386645" y="145.120912" href="#tz_fig_equilibrio_g2-105"></use>
+
+<use x="-2.826817" y="145.120912" href="#tz_fig_equilibrio_g2-100"></use>
+
+<use x="2.292839" y="145.120912" href="#tz_fig_equilibrio_g2-97"></use>
+
+<use x="6.90053" y="145.120912" href="#tz_fig_equilibrio_g2-100"></use>
+
+<use x="12.020186" y="145.120912" href="#tz_fig_equilibrio_g2-101"></use>
+
+<use x="19.191168" y="145.120912" href="#tz_fig_equilibrio_g1-113"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#808080" stroke="#808080">
+
+<g stroke-width="0.4">
+
+<path d="M0 0V197.16924" fill="none"></path>
+
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,197.16924)">
+
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+
+</g>
+
+<g transform="translate(-15.24486,204.45218)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-30.728944,145.120912)scale(-1,-1)">
+
+<g fill="#808080">
+
+<g stroke="none">
+
+<g fill="#808080">
+
+<use x="-30.728944" y="145.120912" href="#tz_fig_equilibrio_g2-80"></use>
+
+<use x="-24.458057" y="145.120912" href="#tz_fig_equilibrio_g2-114"></use>
+
+<use x="-20.853536" y="145.120912" href="#tz_fig_equilibrio_g2-101"></use>
+
+<use x="-16.754348" y="145.120912" href="#tz_fig_equilibrio_g2-24"></use>
+
+<use x="-16.754348" y="145.120912" href="#tz_fig_equilibrio_g2-99"></use>
+
+<use x="-12.658623" y="145.120912" href="#tz_fig_equilibrio_g2-111"></use>
+
+<use x="-4.979139" y="145.120912" href="#tz_fig_equilibrio_g1-112"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#2780e3" stroke="#2780e3">
+
+<g stroke-width="1.2">
+
+<path d="M0 177.82964L219.08603 0" fill="none"></path>
+
+<g transform="translate(36.79453,155.08925)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-30.728944,145.120912)scale(-1,-1)">
+
+<g fill="#2780e3">
+
+<g stroke="none">
+
+<g fill="#2780e3">
+
+<use x="-30.728944" y="145.120912" href="#tz_fig_equilibrio_g2-68"></use>
+
+<use x="-23.690109" y="145.120912" href="#tz_fig_equilibrio_g2-101"></use>
+
+<use x="-19.590921" y="145.120912" href="#tz_fig_equilibrio_g2-109"></use>
+
+<use x="-11.911436" y="145.120912" href="#tz_fig_equilibrio_g2-97"></use>
+
+<use x="-7.303746" y="145.120912" href="#tz_fig_equilibrio_g2-110"></use>
+
+<use x="-2.184089" y="145.120912" href="#tz_fig_equilibrio_g2-100"></use>
+
+<use x="2.935567" y="145.120912" href="#tz_fig_equilibrio_g2-97"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#d7433b" stroke="#d7433b">
+
+<g stroke-width="0.8">
+
+<path d="M21.90872 0L219.08603 151.08398" fill="none"></path>
+
+<g fill="#d7433b" stroke="#d7433b">
+
+<g fill="#d7433b" stroke="#d7433b">
+
+</g>
+
+<g transform="translate(159.80217,125.2973)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-30.728944,145.120912)scale(-1,-1)">
+
+<g fill="#d7433b">
+
+<g stroke="none">
+
+<g fill="#d7433b">
+
+<use x="-30.728944" y="145.120912" href="#tz_fig_equilibrio_g2-79"></use>
+
+<use x="-23.561425" y="145.120912" href="#tz_fig_equilibrio_g2-102"></use>
+
+<use x="-20.745614" y="145.120912" href="#tz_fig_equilibrio_g2-101"></use>
+
+<use x="-16.646426" y="145.120912" href="#tz_fig_equilibrio_g2-114"></use>
+
+<use x="-13.041905" y="145.120912" href="#tz_fig_equilibrio_g2-116"></use>
+
+<use x="-9.458145" y="145.120912" href="#tz_fig_equilibrio_g2-97"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#000">
+
+<g fill="#000">
+
+<path d="M141.82607 64.01866C141.82607 65.0341 141.00288 65.85728 139.98744 65.85728S138.14882 65.0341 138.14882 64.01866S138.972 62.18004 139.98744 62.18004S141.82607 63.00322 141.82607 64.01866ZM139.98744 64.01866" stroke="none"></path>
+
+</g>
+
+<g transform="translate(139.98744,64.01866)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-30.728944,145.120912)scale(-1,-1)">
+
+<g fill="#000">
+
+<g stroke="none"></g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g transform="translate(143.52042,67.55164)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-30.728944,145.120912)scale(-1,-1)">
+
+<g fill="#000">
+
+<g stroke="none">
+
+<use x="-30.728944" y="145.120912" href="#tz_fig_equilibrio_g1-69"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#6c757d" stroke="#6c757d">
+
+<g stroke-width="0.4">
+
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+
+<path d="M137.94882 64.01866H0" fill="none"></path>
+
+<g transform="translate(-34.09285,61.58618)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-30.728944,145.120912)scale(-1,-1)">
+
+<g fill="#6c757d">
+
+<g stroke="none">
+
+<g fill="#6c757d">
+
+<use x="-30.728944" y="145.120912" href="#tz_fig_equilibrio_g1-112"></use>
+
+<use x="-26.102903" y="141.311908" href="#tz_fig_equilibrio_g0-3"></use>
+
+<use x="-19.225951" y="145.120912" href="#tz_fig_equilibrio_g2-61"></use>
+
+<use x="-9.498604" y="145.120912" href="#tz_fig_equilibrio_g2-49"></use>
+
+<use x="-4.890913" y="145.120912" href="#tz_fig_equilibrio_g2-56"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#6c757d" stroke="#6c757d">
+
+<g stroke-width="0.4">
+
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+
+<path d="M139.98744 61.98004V0" fill="none"></path>
+
+<g transform="translate(124.80127,-10.14793)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-30.728944,145.120912)scale(-1,-1)">
+
+<g fill="#6c757d">
+
+<g stroke="none">
+
+<g fill="#6c757d">
+
+<use x="-30.728944" y="145.120912" href="#tz_fig_equilibrio_g1-113"></use>
+
+<use x="-26.289731" y="141.311908" href="#tz_fig_equilibrio_g0-3"></use>
+
+<use x="-19.412779" y="145.120912" href="#tz_fig_equilibrio_g2-61"></use>
+
+<use x="-9.685432" y="145.120912" href="#tz_fig_equilibrio_g2-54"></use>
+
+<use x="-5.077741" y="145.120912" href="#tz_fig_equilibrio_g2-52"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-equilibrio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;8.1: O equilíbrio de mercado <span class="math inline">\(E\)</span> é a solução do sistema oferta–demanda: o ponto onde as duas curvas se cruzam.
+</figcaption>
+</figure>
+</div>
+<p>O procedimento geral tem três passos, que você repetirá inúmeras vezes:</p>
+<ol type="1">
+<li><strong>Iguale</strong> as quantidades (ou os preços) das duas curvas — a condição de equilíbrio é <span class="math inline">\(q^d = q^s\)</span>.</li>
+<li><strong>Resolva</strong> para o preço, obtendo o <strong>preço de equilíbrio</strong> <span class="math inline">\(p^{*}\)</span>.</li>
+<li><strong>Substitua</strong> <span class="math inline">\(p^{*}\)</span> em qualquer das curvas para obter a <strong>quantidade de equilíbrio</strong> <span class="math inline">\(q^{*}\)</span>.</li>
+</ol>
+<p>No exemplo, <span class="math inline">\(p^{*} = 18\)</span> e <span class="math inline">\(q^{*} = 64\)</span>. Abaixo de $p^{*} $, a quantidade demandada supera a ofertada (escassez), e o preço tende a subir; acima, sobra mercadoria (excedente), e o preço tende a cair. Essas forças de ajuste — a “mão invisível” em ação — empurram o mercado de volta ao equilíbrio, tema que o Volume 3 desenvolve em detalhe.</p>
+</section>
+<section id="o-que-muda-quando-uma-curva-se-desloca" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="o-que-muda-quando-uma-curva-se-desloca"><span class="header-section-number">8.4.2</span> O que muda quando uma curva se desloca</h3>
+<p>O poder do modelo aparece na <strong>estática comparativa</strong>: comparar o equilíbrio antes e depois de um choque. Suponha que a renda dos consumidores aumente e a demanda se desloque para <span class="math inline">\(q^d = 130 - 2p\)</span>, com a oferta inalterada, <span class="math inline">\(q^s = 10 + 3p\)</span>. Refazendo a conta:</p>
+<p><span class="math display">\[
+130 - 2p = 10 + 3p \;\Longrightarrow\; 120 = 5p \;\Longrightarrow\; p^{*} = 24,\quad q^{*} = 10 + 3\times 24 = 82.
+\]</span></p>
+<p>O novo equilíbrio tem <strong>preço e quantidade maiores</strong> (<span class="math inline">\(24\)</span> e <span class="math inline">\(82\)</span>, contra <span class="math inline">\(18\)</span> e <span class="math inline">\(64\)</span>). A álgebra confirma a intuição: um aumento de demanda, tudo o mais constante, eleva tanto o preço quanto a quantidade transacionada. Resolver o sistema duas vezes — antes e depois — é a forma matemática de fazer estática comparativa.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — igualar preços quando se deveria igualar quantidades">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — igualar preços quando se deveria igualar quantidades
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ao computar o equilíbrio, certifique-se de que está igualando <strong>grandezas do mesmo tipo</strong>. Se as duas curvas estão na forma direta <span class="math inline">\(q = f(p)\)</span>, iguale as <strong>quantidades</strong> (<span class="math inline">\(q^d = q^s\)</span>). Se estão na forma inversa <span class="math inline">\(p = g(q)\)</span>, iguale os <strong>preços</strong>. Misturar as formas — igualar um preço a uma quantidade — é um erro que produz números sem sentido econômico.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="o-ponto-de-nivelamento-break-even" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="o-ponto-de-nivelamento-break-even"><span class="header-section-number">8.5</span> O ponto de nivelamento (<em>break-even</em>)</h2>
+<p>Um segundo tipo de equilíbrio, central em finanças de empresas, é o <strong>ponto de nivelamento</strong>: a quantidade em que a <strong>receita total</strong> iguala o <strong>custo total</strong>, de modo que o lucro é exatamente zero. Abaixo dele, a firma tem prejuízo; acima, lucra.</p>
+<p>Seja a receita <span class="math inline">\(R = p\,q\)</span> com preço de mercado <span class="math inline">\(p = 20\)</span>, e o custo total <span class="math inline">\(C = 300 + 5q\)</span> (custo fixo <span class="math inline">\(300\)</span>, custo variável unitário <span class="math inline">\(5\)</span>). O ponto de nivelamento resolve <span class="math inline">\(R = C\)</span>:</p>
+<p><span class="math display">\[
+20q = 300 + 5q \;\Longrightarrow\; 15q = 300 \;\Longrightarrow\; q_{be} = 20.
+\]</span></p>
+<p>A firma precisa vender <span class="math inline">\(20\)</span> unidades só para “empatar”. A margem <span class="math inline">\(p - 5 = 15\)</span> por unidade é o que sobra para cobrir o custo fixo de <span class="math inline">\(300\)</span>; daí <span class="math inline">\(300/15 = 20\)</span>. Esse raciocínio — dividir o custo fixo pela <strong>margem de contribuição</strong> unitária — é a fórmula prática do <em>break-even</em>, e reaparece em finanças pessoais e empresariais (Volume 14).</p>
+</section>
+<section id="quando-não-há-solução-única" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="quando-não-há-solução-única"><span class="header-section-number">8.6</span> Quando não há solução única</h2>
+<p>Nem todo sistema linear tem uma única solução, e cada caso conta uma história econômica:</p>
+<ul>
+<li><strong>Solução única</strong> — as retas têm inclinações diferentes e se cruzam em um ponto. É o caso normal: um equilíbrio bem definido.</li>
+<li><strong>Nenhuma solução</strong> — as retas são <strong>paralelas</strong> (mesma inclinação, interceptos diferentes) e nunca se cruzam. Economicamente, corresponde a um mercado sem equilíbrio a preços positivos — por exemplo, quando o preço mínimo pelo qual qualquer produtor venderia supera o preço máximo que qualquer consumidor pagaria.</li>
+<li><strong>Infinitas soluções</strong> — as duas equações descrevem a <strong>mesma</strong> reta (uma é múltipla da outra). Não há informação suficiente para determinar um ponto único; as equações são redundantes.</li>
+</ul>
+<p>Reconhecer esses casos evita procurar um número onde não há um — e, no capítulo de matrizes (<a href="#sec-matrizes" class="quarto-xref"><span class="quarto-unresolved-ref">sec-matrizes</span></a>), veremos que o <strong>determinante</strong> de um sistema é justamente o teste algébrico que distingue os três.</p>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">8.7</span> 🇧🇷 Brasil em Foco</h2>
+<p><strong>Tabelamento de preços: forçar um desequilíbrio.</strong> A teoria do equilíbrio ilumina por que <strong>controles de preço</strong> costumam gerar escassez. Quando o governo fixa um preço <strong>abaixo</strong> do equilíbrio de mercado — um teto —, a quantidade demandada supera a ofertada, e o resultado é fila, desabastecimento ou mercado paralelo. O Brasil tem farta experiência histórica: os <strong>congelamentos de preços</strong> dos planos heterodoxos dos anos 1980 (Plano Cruzado, 1986) fixaram preços por decreto e provocaram, em pouco tempo, sumiço de produtos das prateleiras e o famoso “ágio”. Em linguagem deste capítulo, o governo impôs um preço que <strong>não era solução</strong> do sistema oferta–demanda; como as curvas não haviam mudado, o preço tabelado gerava um excesso de demanda permanente. O Volume 11 conta essa história em detalhe; aqui fica a lição matemática: preços de equilíbrio não se decretam, resolvem-se.</p>
+<p><strong>Poupança igual a investimento: o equilíbrio macroeconômico.</strong> Em macroeconomia, uma das condições de equilíbrio mais importantes é a igualdade entre <strong>poupança</strong> (<span class="math inline">\(S\)</span>) e <strong>investimento</strong> (<span class="math inline">\(I\)</span>) — uma equação que determina, junto com outras, a renda de equilíbrio da economia. No Brasil, a persistente diferença entre a poupança doméstica e o investimento desejado ajuda a explicar por que o país recorre à poupança externa (déficits em conta corrente) para financiar parte de seus investimentos. O Banco Central e o IBGE publicam essas contas; quando poupança e investimento não “fecham” internamente, a diferença aparece nas contas externas. É o mesmo raciocínio de sistema de equações — só que agora as incógnitas são renda, poupança e investimento, e a solução é o equilíbrio macroeconômico que o Volume 7 formaliza.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> IBGE — Contas Nacionais (poupança e investimento como proporção do PIB); Banco Central — SGS e estatísticas do setor externo; para os congelamentos de preços, ver os índices de preços do IBGE nos anos de 1986–1994 e a literatura sobre os planos heterodoxos.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">8.8</span> Resumo do capítulo</h2>
+<ul>
+<li><strong>Resolver uma equação</strong> é encontrar o valor que torna a igualdade verdadeira; o método é agrupar a incógnita de um lado e isolá-la, sempre fazendo a mesma operação nos dois lados.</li>
+<li>Um <strong>sistema linear</strong> <span class="math inline">\(2\times 2\)</span> busca o par <span class="math inline">\((x, y)\)</span> que satisfaz <strong>duas</strong> equações ao mesmo tempo — o ponto onde as retas se cruzam. Resolve-se por <strong>substituição</strong> (isolar e trocar) ou <strong>eliminação</strong> (somar/subtrair para cancelar uma variável).</li>
+<li><strong>Equilíbrio</strong> é o estado de repouso de um modelo, em que as forças se anulam; matematicamente, é a <strong>solução</strong> do sistema de equações que o descreve.</li>
+<li>O <strong>equilíbrio de mercado</strong> se calcula igualando oferta e demanda (<span class="math inline">\(q^d = q^s\)</span>), resolvendo para <span class="math inline">\(p^{*}\)</span> e substituindo para achar <span class="math inline">\(q^{*}\)</span>. Um deslocamento de curva muda a solução — isso é <strong>estática comparativa</strong>.</li>
+<li>O <strong>ponto de nivelamento</strong> iguala receita e custo total (lucro zero); encontra-se dividindo o custo fixo pela margem de contribuição unitária.</li>
+<li>Um sistema pode ter <strong>solução única</strong> (retas concorrentes), <strong>nenhuma</strong> (retas paralelas) ou <strong>infinitas</strong> (retas coincidentes) — casos com leituras econômicas distintas.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">8.9</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: dos conceituais aos numéricos e à análise de caso.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique, com suas palavras, por que o equilíbrio de mercado é um “estado de repouso”. O que acontece se o preço estiver acima do preço de equilíbrio?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No equilíbrio, a quantidade que os compradores querem comprar iguala a que os vendedores querem vender: não há excesso de nenhum lado, e nenhum agente tem motivo para mudar de comportamento — daí o “repouso”. Se o preço estiver <strong>acima</strong> do equilíbrio, a quantidade ofertada supera a demandada: sobra mercadoria (excedente), os vendedores baixam os preços para escoar o estoque, e o preço é empurrado de volta ao equilíbrio.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Resolva a equação <span class="math inline">\(7q + 12 = 3q + 40\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Agrupando: <span class="math inline">\(7q - 3q = 40 - 12 \Rightarrow 4q = 28 \Rightarrow q = 7\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Resolva o sistema pelo método da eliminação: <span class="math display">\[
+\begin{cases} 3x + 2y = 16 \\ x - 2y = 0 \end{cases}
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Somando as duas equações (o <span class="math inline">\(2y\)</span> cancela): <span class="math inline">\(4x = 16 \Rightarrow x = 4\)</span>. Da segunda, <span class="math inline">\(4 - 2y = 0 \Rightarrow y = 2\)</span>. Solução: <span class="math inline">\((4, 2)\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Um mercado tem demanda <span class="math inline">\(q^d = 90 - 3p\)</span> e oferta <span class="math inline">\(q^s = -10 + 2p\)</span>. Encontre o preço e a quantidade de equilíbrio.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Igualando: <span class="math inline">\(90 - 3p = -10 + 2p \Rightarrow 100 = 5p \Rightarrow p^{*} = 20\)</span>. Substituindo na oferta: <span class="math inline">\(q^{*} = -10 + 2\times 20 = 30\)</span>. Equilíbrio: <span class="math inline">\((p^{*}, q^{*}) = (20, 30)\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> No mercado do exercício 4, um imposto sobre os produtores desloca a oferta para <span class="math inline">\(q^s = -25 + 2p\)</span>. Recalcule o equilíbrio e comente o que aconteceu com preço e quantidade.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Igualando: <span class="math inline">\(90 - 3p = -25 + 2p \Rightarrow 115 = 5p \Rightarrow p^{*} = 23\)</span>; <span class="math inline">\(q^{*} = -25 + 2\times 23 = 21\)</span>. Comparado ao original <span class="math inline">\((20, 30)\)</span>, o <strong>preço subiu</strong> (de 20 para 23) e a <strong>quantidade caiu</strong> (de 30 para 21). A redução da oferta (deslocamento para a esquerda) eleva o preço e reduz a quantidade transacionada — efeito típico de um imposto sobre a produção.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Uma firma vende cada unidade a R$,50. Seu custo total é <span class="math inline">\(C = 8.000 + 30q\)</span>. (a) Qual o ponto de nivelamento? (b) Qual o lucro se ela vender 500 unidades?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Margem de contribuição unitária: <span class="math inline">\(50 - 30 = 20\)</span>. Ponto de nivelamento: <span class="math inline">\(q_{be} = 8.000 / 20 = 400\)</span> unidades. (Verificação: <span class="math inline">\(R = 50\times 400 = 20.000 = 8.000 + 30\times 400 = C\)</span>.)</li>
+<li>Lucro <span class="math inline">\(= R - C = 50\times 500 - (8.000 + 30\times 500) = 25.000 - 23.000 = R\$\,2.000\)</span>.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> Considere o sistema <span class="math inline">\(\begin{cases} q = 100 - 2p \\ q = 130 - 2p \end{cases}\)</span>. Tente resolvê-lo e interprete o resultado economicamente.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Igualando: <span class="math inline">\(100 - 2p = 130 - 2p \Rightarrow 100 = 130\)</span>, um absurdo. O sistema <strong>não tem solução</strong>: as retas têm a mesma inclinação (<span class="math inline">\(-2\)</span>) e interceptos diferentes, logo são <strong>paralelas</strong> e nunca se cruzam. Economicamente, duas relações que respondem ao preço com a mesma sensibilidade, mas prometem quantidades diferentes a todo preço, são incompatíveis — não existe preço que concilie as duas.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Análise de caso) O governo fixa, para um alimento básico, um preço-teto de R$,15, enquanto o equilíbrio de mercado seria <span class="math inline">\(p^{*} = 20\)</span> (com demanda <span class="math inline">\(q^d = 90 - 3p\)</span> e oferta <span class="math inline">\(q^s = -10 + 2p\)</span>). (a) Calcule a quantidade demandada e a ofertada ao preço tabelado. (b) Há escassez ou excedente? De quanto? (c) Relacione com os congelamentos de preços discutidos em Brasil em Foco.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Ao preço <span class="math inline">\(p = 15\)</span>: <span class="math inline">\(q^d = 90 - 3\times 15 = 45\)</span>; <span class="math inline">\(q^s = -10 + 2\times 15 = 20\)</span>.</li>
+<li>A quantidade demandada (45) supera a ofertada (20): há <strong>escassez</strong> de <span class="math inline">\(45 - 20 = 25\)</span> unidades. O preço-teto, por estar <strong>abaixo</strong> do equilíbrio (<span class="math inline">\(20\)</span>), impede o mercado de assentar e cria excesso de demanda permanente.</li>
+<li>É exatamente o mecanismo dos congelamentos brasileiros dos anos 1980: fixar por decreto um preço que não é solução do sistema oferta–demanda produz filas e desabastecimento, porque as curvas não mudaram — só foram impedidas de se encontrar. O preço de equilíbrio não se decreta.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">8.10</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="chiang2006">Chiang; Wainwright (<a href="#ref-chiang2006" role="doc-biblioref">2006</a>)</span> — a Parte 2 trata da análise de equilíbrio estático e da resolução de modelos de mercado por sistemas de equações, exatamente na chave deste capítulo.</li>
+<li><span class="citation" data-cites="sydsaeter2018">Sydsæter et al. (<a href="#ref-sydsaeter2018" role="doc-biblioref">2018</a>)</span> — apresenta a álgebra de equações e sistemas lineares com aplicações a modelos econômicos simples e à estática comparativa.</li>
+<li><span class="citation" data-cites="mankiw2020">Mankiw (<a href="#ref-mankiw2020" role="doc-biblioref">2020</a>)</span> — os capítulos sobre as forças de mercado da oferta e da demanda mostram o equilíbrio e os efeitos de controles de preço com farto uso de gráficos.</li>
+<li><span class="citation" data-cites="vasconcellos2019">Vasconcellos; Garcia (<a href="#ref-vasconcellos2019" role="doc-biblioref">2019</a>)</span> — introdução em português ao equilíbrio de mercado e às intervenções de preço, com exemplos brasileiros.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-chiang2006" class="csl-entry" role="listitem">
+CHIANG, Alpha C.; WAINWRIGHT, Kevin. <strong>Matemática para Economistas</strong>. 4. ed. Rio de Janeiro: Elsevier, 2006.
+</div>
+<div id="ref-mankiw2020" class="csl-entry" role="listitem">
+MANKIW, N. Gregory. <strong>Introdução à Economia</strong>. 8. ed. São Paulo: Cengage Learning, 2020.
+</div>
+<div id="ref-sydsaeter2018" class="csl-entry" role="listitem">
+SYDSÆTER, Knut <em>et al.</em> <strong>Essential Mathematics for Economic Analysis</strong>. 5. ed. Harlow: Pearson, 2018.
+</div>
+<div id="ref-vasconcellos2019" class="csl-entry" role="listitem">
+VASCONCELLOS, Marco Antonio Sandoval de; GARCIA, Manuel Enriquez. <strong>Fundamentos de Economia</strong>. 6. ed. São Paulo: Saraiva, 2019.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="pagination-link" aria-label="Funções e gráficos na Economia">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="pagination-link" aria-label="Limites, continuidade e comportamento de funções">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol02/cap02-equacoes-e-equilibrio.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

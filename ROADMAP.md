@@ -131,13 +131,13 @@
 
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
-| 1 | Teorias do comércio internacional | `capitulos/vol09/cap01-teorias-do-comercio.qmd` | ⬜ |
-| 2 | Política comercial: tarifas, quotas e acordos (Mercosul, OMC) | `capitulos/vol09/cap02-politica-comercial.qmd` | ⬜ |
-| 3 | O balanço de pagamentos | `capitulos/vol09/cap03-balanco-de-pagamentos.qmd` | ⬜ |
-| 4 | Taxa de câmbio: determinação e regimes cambiais | `capitulos/vol09/cap04-cambio.qmd` | ⬜ |
-| 5 | Macroeconomia aberta: o modelo Mundell-Fleming | `capitulos/vol09/cap05-mundell-fleming.qmd` | ⬜ |
-| 6 | Globalização, cadeias globais de valor e o Brasil | `capitulos/vol09/cap06-globalizacao-brasil.qmd` | ⬜ |
-| 7 | Crises cambiais e fluxos de capitais | `capitulos/vol09/cap07-crises-cambiais.qmd` | ⬜ |
+| 1 | Teorias do comércio internacional | `capitulos/vol09/cap01-teorias-do-comercio.qmd` | ✅ |
+| 2 | Política comercial: tarifas, quotas e acordos (Mercosul, OMC) | `capitulos/vol09/cap02-politica-comercial.qmd` | ✅ |
+| 3 | O balanço de pagamentos | `capitulos/vol09/cap03-balanco-de-pagamentos.qmd` | ✅ |
+| 4 | Taxa de câmbio: determinação e regimes cambiais | `capitulos/vol09/cap04-cambio.qmd` | ✅ |
+| 5 | Macroeconomia aberta: o modelo Mundell-Fleming | `capitulos/vol09/cap05-mundell-fleming.qmd` | ✅ |
+| 6 | Globalização, cadeias globais de valor e o Brasil | `capitulos/vol09/cap06-globalizacao-brasil.qmd` | ✅ |
+| 7 | Crises cambiais e fluxos de capitais | `capitulos/vol09/cap07-crises-cambiais.qmd` | ✅ |
 
 ### Volume 10 — Estatística e Econometria Básica
 

@@ -1,0 +1,223 @@
+# Taxa de câmbio: determinação e regimes cambiais {#sec-cambio}
+
+O dólar subiu. Duas palavras, e o país inteiro reage: importadores recalculam margens, quem planejava viajar reconsidera, o preço da gasolina e do trigo ameaça subir, investidores reavaliam carteiras, e o noticiário econômico ganha manchete. Poucos preços na economia têm alcance tão amplo quanto a **taxa de câmbio** — o preço de uma moeda em termos de outra. Ela liga cada preço interno aos preços do mundo, transmite a política monetária, define a competitividade das exportações e é o termômetro mais sensível da confiança no país.
+
+Este capítulo explica **o que determina** a taxa de câmbio — no curto prazo, os fluxos de capital e os juros; no longo, os preços relativos e a paridade do poder de compra — e apresenta os **regimes cambiais** entre os quais os países escolhem, do câmbio fixo ao flutuante. Fecha com um dos resultados mais elegantes da macroeconomia aberta, a **trindade impossível**, que mostra por que nenhum país pode ter tudo ao mesmo tempo.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- distinguir taxa de câmbio **nominal** e **real** e o significado de **apreciação** e **depreciação**;
+- analisar o mercado de divisas por **oferta e demanda** de moeda estrangeira;
+- aplicar a **paridade do poder de compra (PPC)** e a **paridade de juros** na determinação do câmbio;
+- comparar os **regimes cambiais**: fixo, flutuante, flutuação administrada, *currency board* e dolarização;
+- enunciar e usar a **trindade impossível** (trilema da política econômica);
+- entender a **taxa de câmbio real**, a competitividade e a **doença holandesa** no Brasil.
+
+## Câmbio nominal e real, apreciação e depreciação
+
+A **taxa de câmbio nominal** ($E$) é o preço de uma moeda em outra. No Brasil, cotamos em reais por dólar (ex.: $E = R\$\,5{,}00/\text{US}\$$). Cuidado com a direção:
+
+- **Depreciação (ou desvalorização):** a moeda nacional perde valor — precisa-se de **mais reais** por dólar ($E$ sobe, de 5 para 6). O dólar "subiu".
+- **Apreciação (ou valorização):** a moeda nacional ganha valor — precisa-se de **menos reais** por dólar ($E$ cai, de 5 para 4). O dólar "caiu".
+
+::: {.callout-important title="Armadilha comum — 'real forte é sempre bom'"}
+Uma moeda apreciada barateia importações e viagens (bom para o consumidor), mas **encarece as exportações** e a produção nacional frente à concorrência importada (ruim para exportadores e indústria). Uma moeda depreciada faz o oposto. Não existe câmbio "bom" em abstrato: depende de quem você é (exportador, importador, turista) e do que a economia precisa. "Real forte" e "real fraco" têm cada um seus ganhadores e perdedores.
+:::
+
+Para medir competitividade, o que importa não é o câmbio nominal, mas a **taxa de câmbio real** ($\varepsilon$), que corrige o nominal pela razão entre os preços externos e internos:
+
+$$
+\varepsilon = E \times \frac{P^{*}}{P},
+$$ {#eq-cambio-real}
+
+onde $P^{*}$ é o nível de preços externo e $P$ o interno. A taxa real mede **quantos bens estrangeiros valem um bem nacional** — o poder de compra internacional dos produtos do país. Uma depreciação **real** (aumento de $\varepsilon$) torna os produtos nacionais mais baratos frente aos estrangeiros, elevando a competitividade; a inflação interna alta ($P$ subindo) corrói essa competitividade mesmo com câmbio nominal estável.
+
+## O mercado de divisas: oferta e demanda
+
+No curto prazo, a taxa de câmbio é um preço determinado por **oferta e demanda** de moeda estrangeira (@fig-mercado-cambio). Quem **demanda** dólares: importadores, turistas que viajam, empresas que remetem lucros e juros, investidores que querem aplicar no exterior. Quem **oferta** dólares: exportadores, turistas estrangeiros, e — crucialmente — investidores estrangeiros que trazem capital.
+
+::: {#fig-mercado-cambio}
+
+```{.tikz}
+%%| filename: fig-mercado-cambio
+%%| alt: Mercado de dólares com curva de demanda decrescente e oferta crescente; um deslocamento da demanda para a direita eleva a taxa de câmbio de equilíbrio (depreciação do real).
+\begin{tikzpicture}[scale=1.0]
+  \draw[eixo] (0,0) -- (0,6) node[above] {$E$ (R\$/US\$)};
+  \draw[eixo] (0,0) -- (8,0) node[right] {quantidade de US\$};
+  % demanda e oferta
+  \draw[curva, manualblue] (0.5,5) -- (7,1) node[right] {$D_{\$}$};
+  \draw[curva, manualred] (0.5,1) -- (7,5) node[right] {$S_{\$}$};
+  % equilibrio inicial E0
+  \filldraw[ponto] (3.75,3) circle (1.6pt) node[above left, font=\footnotesize] {$E_0$};
+  \draw[auxiliar] (3.75,3) -- (0,3);
+  \draw[auxiliar] (3.75,3) -- (3.75,0);
+  % deslocamento demanda (fuga de capital / mais importacao)
+  \draw[curva, manualblue!45] (1.7,5) -- (8.2,1) node[right, font=\footnotesize] {$D_{\$}'$};
+  \filldraw[ponto] (4.9,3.7) circle (1.6pt) node[above right, font=\footnotesize] {$E_1$};
+  \draw[auxiliar] (4.9,3.7) -- (0,3.7);
+  \draw[vetor, manualgray] (3.9,3.15) -- (4.75,3.55);
+\end{tikzpicture}
+```
+
+Mercado de dólares. Um aumento da demanda por dólares (mais importação, ou **fuga de capital**) desloca $D_{\$}$ para a direita: a taxa de câmbio sobe de $E_0$ para $E_1$ — o real se **deprecia**.
+:::
+
+Fatores que **depreciam** o real (deslocam a demanda por dólar para a direita ou a oferta para a esquerda): queda dos preços das commodities exportadas, aumento das importações, **queda dos juros internos** (menos atrativo para o capital), aumento do risco-país (fuga de capital), incerteza fiscal ou política. Fatores que **apreciam**: alta das commodities, juros internos altos, ingresso de investimento, melhora da confiança.
+
+## A paridade do poder de compra (PPC)
+
+No **longo prazo**, a teoria de referência para o câmbio é a **paridade do poder de compra**. A ideia (a "lei do preço único" aplicada a cestas de bens): na ausência de barreiras e custos de transporte, um mesmo bem deveria custar o mesmo em toda parte, quando expresso na mesma moeda. Se não custa, a arbitragem — comprar onde é barato, vender onde é caro — move o câmbio até igualar.
+
+::: {.callout-note title="Definição — Paridade do poder de compra (PPC)"}
+Pela **PPC**, a taxa de câmbio de equilíbrio de longo prazo é aquela que iguala o poder de compra das moedas: $E = P / P^{*}$. Uma implicação dinâmica: a moeda de um país com inflação mais alta tende a se **depreciar** na mesma proporção do diferencial de inflação.
+:::
+
+A versão popular é o **índice Big Mac**, da revista *The Economist*: compara o preço de um Big Mac em vários países para estimar se uma moeda está "cara" ou "barata" frente ao dólar. É uma aproximação lúdica — a PPC **não vale** com precisão no curto prazo, porque muitos bens e serviços não são comercializáveis (aluguel, corte de cabelo), há barreiras e os mercados de capital movem o câmbio muito mais rápido que os preços de bens. Mas, como âncora de **longo prazo** e para explicar grandes desalinhamentos, a PPC é indispensável.
+
+## A paridade de juros
+
+Se a PPC governa o longo prazo via preços de bens, no **curto prazo** o câmbio é dominado pelos **fluxos de capital**, e a teoria central é a **paridade de juros**. Um investidor global escolhe entre aplicar no país (rendendo o juro interno $i$) ou no exterior (rendendo $i^{*}$). Em equilíbrio, os retornos esperados **na mesma moeda** devem se igualar; caso contrário, o capital migra até igualar.
+
+A **paridade descoberta de juros** afirma:
+
+$$
+i = i^{*} + \frac{E^{e}_{+1} - E}{E},
+$$ {#eq-paridade-juros}
+
+isto é, o juro interno iguala o juro externo **mais** a depreciação esperada da moeda. Se o Brasil oferece juros muito acima do exterior, é porque o mercado espera uma **depreciação** futura do real que compense — ou porque exige um **prêmio de risco**. Essa relação explica por que juros altos, no curto prazo, **atraem capital e apreciam** a moeda (o *carry trade*), e por que expectativas de depreciação disparam saídas de capital.
+
+::: {.callout-tip title="Intuição — juros e câmbio no curto prazo"}
+Suba os juros internos e, tudo o mais constante, investidores estrangeiros correm para aplicar no país: a entrada de dólares **aprecia** a moeda. É por isso que decisões do Copom (@sec-taxa-de-juros-selic) movem o câmbio na hora, muito antes de afetarem preços de bens. No curto prazo, câmbio é **finança** (juros e risco); no longo prazo, é **preços** (PPC).
+:::
+
+## Os regimes cambiais
+
+Cada país escolhe **como** determinar sua taxa de câmbio. Os principais regimes, do mais rígido ao mais flexível:
+
+- **Câmbio fixo:** o banco central fixa a paridade (ex.: 1 dólar = X reais) e a defende comprando e vendendo divisas. Dá **previsibilidade**, mas exige reservas e **subordina a política monetária** à defesa do câmbio.
+- **Câmbio flutuante (puro):** o câmbio é livremente determinado pelo mercado; o banco central não intervém. Dá **autonomia** à política monetária, mas convive com **volatilidade**.
+- **Flutuação administrada ("suja"):** flutua, mas o banco central intervém pontualmente (comprando/vendendo dólares, atuando no mercado futuro) para suavizar oscilações excessivas. É o regime do Brasil hoje.
+- **Currency board:** forma extrema de fixo — a moeda nacional é lastreada 100% em moeda estrangeira, com emissão amarrada às reservas (Argentina nos anos 1990). Máxima credibilidade, autonomia monetária zero.
+- **Dolarização:** o país adota diretamente a moeda estrangeira (Equador, El Salvador). Elimina o risco cambial e a inflação importada da própria moeda, mas **abre mão totalmente** de política monetária e de emissor de última instância.
+
+## A trindade impossível
+
+Por que não existe o regime perfeito? Porque há uma incompatibilidade lógica, conhecida como **trindade impossível** (ou trilema): um país **não pode ter, simultaneamente**, os três objetivos abaixo (@fig-trilema). Deve escolher **dois**, abrindo mão do terceiro.
+
+::: {#fig-trilema}
+
+```{.tikz}
+%%| filename: fig-trilema
+%%| alt: Triângulo da trindade impossível com os três vértices — câmbio fixo, mobilidade de capital e política monetária autônoma — e os três lados indicando qual regime combina cada par.
+\begin{tikzpicture}[scale=1.0, font=\footnotesize]
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (6,0);
+  \coordinate (C) at (3,4.6);
+  \draw[curva, manualgray] (A) -- (B) -- (C) -- cycle;
+  \node[below left, manualblue] at (A) {Câmbio fixo};
+  \node[below right, manualblue] at (B) {Mobilidade de capital};
+  \node[above, manualblue] at (C) {Política monetária autônoma};
+  \node[align=center, manualred] at (3,-0.7) {\emph{escolha 2 lados}};
+  \node[align=center, font=\scriptsize] at (1.2,2.4) {fixo +\\autonomia\\(controle de\\capital)};
+  \node[align=center, font=\scriptsize] at (4.8,2.4) {flutuante +\\autonomia\\(abre mão\\do fixo)};
+  \node[align=center, font=\scriptsize] at (3,0.5) {fixo + mobilidade\\(abre mão da autonomia)};
+\end{tikzpicture}
+```
+
+A trindade impossível: câmbio fixo, livre mobilidade de capital e política monetária autônoma não coexistem. Cada arranjo real escolhe dois e sacrifica o terceiro.
+:::
+
+::: {.callout-note title="Definição — Trindade impossível (trilema)"}
+Um país pode escolher no máximo **dois** entre: (1) **câmbio fixo**, (2) **livre mobilidade de capitais** e (3) **política monetária autônoma**. As três combinações:
+
+- **Fixo + mobilidade** → sem autonomia monetária (o juro fica preso à defesa do câmbio; ex.: padrão-ouro, *currency board*).
+- **Fixo + autonomia** → exige **controle de capitais** (China por muito tempo).
+- **Mobilidade + autonomia** → câmbio **flutuante** (Brasil, EUA, área do euro frente ao mundo).
+:::
+
+A escolha do Brasil pós-1999 — **flutuante com mobilidade de capitais e política monetária autônoma** (metas de inflação) — é a combinação que a maioria das grandes economias adotou: preserva-se a autonomia do banco central para perseguir a meta de inflação e a integração financeira, ao custo de **conviver com um câmbio volátil**.
+
+## 🇧🇷 Brasil em Foco
+
+**Do câmbio administrado à flutuação: 1994–1999.** O **Plano Real** (1994) ancorou a estabilização inicial num câmbio quase fixo (semifixo, com bandas), que valorizou o real e ajudou a derrubar a inflação — mas ao custo de déficits em conta corrente crescentes e de perda de reservas sob ataques especulativos (crises do México, Ásia e Rússia). Em **janeiro de 1999**, sob pressão insustentável, o Brasil **abandonou o câmbio administrado e passou a flutuar**. Poucos meses depois, adotou o tripé macroeconômico que vige até hoje: **câmbio flutuante + metas de inflação + responsabilidade fiscal**. Em termos do trilema, o país optou por **mobilidade de capital e autonomia monetária**, abrindo mão do câmbio fixo.
+
+**Flutuação "suja" e o papel das reservas.** Na prática, o Brasil opera uma **flutuação administrada**: o câmbio é determinado pelo mercado, mas o Banco Central intervém para conter oscilações excessivas — vendendo dólares à vista, ofertando **swaps cambiais** (contratos que oferecem proteção sem gastar reservas físicas) e, em momentos de estresse, atuando com o colchão de **reservas internacionais** discutido no @sec-balanco-de-pagamentos. O real é uma das moedas emergentes mais **voláteis** do mundo, muito sensível ao preço das commodities, ao diferencial de juros (o *carry trade* com a Selic alta) e à percepção de **risco fiscal** e político.
+
+**Câmbio real, competitividade e a doença holandesa.** A **taxa de câmbio real** brasileira é acompanhada pelo IPEA e pelo Banco Central e revela ciclos importantes: no auge do superciclo de commodities (2010–2011), o real apreciou-se fortemente, encarecendo a indústria nacional e alimentando o debate sobre a **doença holandesa** — o fenômeno em que a exportação de recursos naturais aprecia o câmbio e **encolhe a indústria manufatureira**, menos competitiva com o câmbio valorizado. Críticos veem nisso um risco de **desindustrialização precoce**; outros ponderam que o câmbio apenas reflete a vantagem comparativa genuína do país (@sec-teorias-do-comercio) e que os problemas industriais têm raízes mais amplas (custo Brasil, tributação, infraestrutura). O debate segue aberto e é central para a estratégia de desenvolvimento nacional.
+
+> **Fontes e séries para explorar:** Banco Central do Brasil (SGS: taxa de câmbio R\$/US\$, intervenções, swaps, reservas; taxa de câmbio real efetiva); IPEA (câmbio real efetivo, índices de competitividade); *The Economist* (índice Big Mac, para PPC). Os patamares mudam diariamente — verifique a data.
+
+## Resumo do capítulo
+
+- A **taxa de câmbio nominal** é o preço de uma moeda em outra; **depreciação** (mais reais por dólar) barateia exportações e encarece importações; **apreciação** faz o oposto. Não há câmbio "bom" em abstrato.
+- A **taxa de câmbio real** ($\varepsilon = E\,P^{*}/P$) mede a competitividade; inflação interna corrói a competitividade mesmo com câmbio nominal estável.
+- No curto prazo, o câmbio é um preço de **oferta e demanda de divisas**, dominado por **fluxos de capital, juros e risco**; no longo prazo, tende à **paridade do poder de compra (PPC)**.
+- A **paridade de juros** ($i = i^{*} + $ depreciação esperada) explica por que juros altos atraem capital e **apreciam** a moeda no curto prazo (*carry trade*).
+- Os **regimes cambiais** vão do **fixo** (previsível, mas sem autonomia monetária) ao **flutuante** (autônomo, mas volátil), passando por flutuação administrada, *currency board* e dolarização.
+- A **trindade impossível** mostra que câmbio fixo, mobilidade de capital e autonomia monetária não coexistem: escolhe-se **dois**.
+- O Brasil, desde **1999**, adota **câmbio flutuante (administrado) + metas de inflação + responsabilidade fiscal**, optando por mobilidade e autonomia ao custo de volatilidade.
+- O câmbio real e a **doença holandesa** estão no centro do debate brasileiro sobre competitividade industrial e desindustrialização.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** A cotação passa de R\$\,5,00 para R\$\,5,50 por dólar. A moeda brasileira **apreciou** ou **depreciou**? Quem tende a ganhar e quem a perder?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Como agora são precisos **mais reais** por dólar, o real **depreciou** (o dólar "subiu"). **Ganham**: exportadores (recebem mais reais por dólar exportado) e a indústria nacional que compete com importados (agora mais caros). **Perdem**: importadores, quem viaja ao exterior e quem tem dívidas em dólar; e há pressão inflacionária sobre bens importados e comercializáveis.
+:::
+
+**2.** Explique por que a **taxa de câmbio real** é mais informativa que a nominal para avaliar a competitividade de um país. O que acontece se o câmbio nominal fica estável, mas a inflação interna é alta?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A taxa real ($\varepsilon = E\,P^{*}/P$) corrige o câmbio nominal pelos preços relativos, medindo quantos bens estrangeiros valem um bem nacional — a competitividade efetiva. Se o câmbio **nominal** fica estável ($E$ constante) mas a **inflação interna** é alta ($P$ sobe mais que $P^{*}$), então $\varepsilon$ **cai**: o país aprecia em termos **reais**, seus produtos ficam relativamente mais caros e ele **perde competitividade**, mesmo sem mudança na cotação. A inflação corrói a competitividade "por dentro".
+:::
+
+**3.** Uma cesta de bens custa R\$\,300 no Brasil e US\$\,50 nos EUA. Qual seria a taxa de câmbio prevista pela PPC? Se o câmbio de mercado for R\$\,5,00/US\$, a moeda está sub ou sobrevalorizada segundo a PPC?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela PPC, $E = P/P^{*} = 300/50 = R\$\,6{,}00/\text{US}\$$. O câmbio de mercado (R\$\,5,00) está **abaixo** do previsto pela PPC, ou seja, o real está mais **valorizado** (apreciado) do que a PPC sugeriria — a moeda estaria **sobrevalorizada** frente ao dólar por esse critério. (De forma equivalente: no câmbio de mercado, a cesta brasileira custa US\$\,60, mais que os US\$\,50 americanos.)
+:::
+
+**4.** Use a paridade descoberta de juros para explicar: se o juro brasileiro é 11% e o americano é 4%, o que o mercado deve estar esperando quanto ao câmbio, na ausência de prêmio de risco?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela paridade, $i = i^{*} + $ depreciação esperada, logo depreciação esperada $= i - i^{*} = 11\% - 4\% = 7\%$. Sem prêmio de risco, o mercado espera que o **real se deprecie cerca de 7% ao ano** frente ao dólar — é o que compensa o investidor por aplicar no exterior a juro menor. Se essa depreciação **não** ocorrer, o *carry trade* (tomar em dólar barato e aplicar em real caro) é lucrativo; parte do diferencial pode também refletir **prêmio de risco** em vez de depreciação esperada.
+:::
+
+**5.** Um país fixa seu câmbio e mantém livre mobilidade de capitais. Segundo a trindade impossível, do que ele abre mão? Explique o mecanismo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Ele abre mão da **autonomia da política monetária**. Com câmbio fixo e capital livre, o juro interno fica **preso** ao juro externo (mais o prêmio de risco): se o banco central tentar baixar o juro abaixo do externo, o capital foge em busca de retorno maior lá fora, pressionando o câmbio; para defender a paridade fixa, ele precisa vender reservas e/ou subir o juro de volta. Ou seja, não consegue usar o juro para objetivos domésticos (controlar inflação ou estimular a economia) — a política monetária fica subordinada à defesa do câmbio.
+:::
+
+**6.** Explique o mecanismo da **doença holandesa**. Por que um boom de exportação de commodities pode prejudicar a indústria manufatureira?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Um **boom de commodities** aumenta muito o ingresso de divisas (mais exportação e/ou mais investimento no setor de recursos), o que **aprecia o câmbio**. O câmbio apreciado **encarece as exportações industriais** e **barateia os importados** manufaturados, reduzindo a competitividade da indústria doméstica — que perde mercado, encolhe e, no limite, se desindustrializa. Além disso, o setor de commodities atrai trabalho e capital, elevando custos para os demais. Assim, a bonança de recursos naturais pode, paradoxalmente, **enfraquecer a manufatura** — daí "doença". É um risco discutido para o Brasil no auge dos ciclos de commodities.
+:::
+
+**7.** (Análise de caso) Em 1999, o Brasil abandonou o câmbio semifixo e passou a flutuar. Usando o trilema e a experiência das crises dos anos 1990, explique por que a mudança foi feita e o que o país escolheu preservar.
+
+::: {.callout-tip collapse="true" title="Solução"}
+No regime semifixo (pós-Real), o Brasil tentava manter **câmbio quase fixo + mobilidade de capital**, o que, pelo trilema, o obrigava a **abrir mão da autonomia monetária** e a defender o câmbio com **reservas** e **juros altíssimos**. Sob os choques externos (Ásia 1997, Rússia 1998), a defesa tornou-se insustentável: as reservas escoavam e os juros altos asfixiavam a economia. Ao **flutuar** em 1999, o país trocou de vértice: passou a preservar **mobilidade de capital + autonomia monetária** (para adotar metas de inflação), aceitando a **volatilidade cambial** como preço. A lição é que tentar fixar o câmbio com capital livre expõe o país a ataques especulativos; flutuar devolveu ao BC o instrumento do juro para perseguir a inflação.
+:::
+
+**8.** (Desafio) Compare **dolarização** e **câmbio flutuante com metas de inflação** como estratégias para um país com histórico de inflação alta. Cite uma vantagem e uma desvantagem decisiva de cada um.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Dolarização** — *vantagem:* elimina de vez a inflação da moeda própria e o risco cambial, importando a credibilidade da moeda estrangeira (útil onde a moeda nacional perdeu toda confiança); *desvantagem decisiva:* o país **abandona totalmente a política monetária** e a função de emprestador de última instância — não pode ajustar juros a suas condições nem responder a choques, e fica preso ao ciclo do país emissor. **Câmbio flutuante + metas de inflação** — *vantagem:* preserva **autonomia** para o banco central estabilizar inflação e atividade conforme as condições internas, com o câmbio absorvendo choques; *desvantagem:* depende da **construção de credibilidade** das instituições (BC independente, meta crível) e convive com **volatilidade cambial**. Para um país capaz de construir instituições monetárias sólidas, o regime de metas com câmbio flutuante costuma ser preferível por manter a autonomia; a dolarização é uma solução extrema para casos de colapso da moeda nacional.
+:::
+
+## Para saber mais
+
+- @krugman2015 — capítulos sobre determinação do câmbio, PPC, paridade de juros e regimes cambiais; referência central do tema.
+- @blanchard2017 — trata do câmbio real, da paridade de juros e da escolha de regimes na macroeconomia aberta.
+- @dornbusch2013 — o modelo de *overshooting* cambial (do próprio Dornbusch) e a dinâmica do câmbio.
+- @gremaud2017 — para a história cambial brasileira, o câmbio real e a doença holandesa.
+- @giambiagi2016 — para o tripé macroeconômico e a gestão cambial pós-1999 no Brasil.

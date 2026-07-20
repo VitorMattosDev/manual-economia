@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>13&nbsp; Integrais e o cálculo de excedentes – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol02/cap08-matrizes.html" rel="next">
+<link href="../../capitulos/vol02/cap06-lagrange.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-5284756066bd91586648e5f7a42d5559.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html">Volume 2 — Matemática para Economistas</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap07-integrais-excedentes.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">13.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#a-antiderivada-desfazendo-a-derivada" id="toc-a-antiderivada-desfazendo-a-derivada" class="nav-link" data-scroll-target="#a-antiderivada-desfazendo-a-derivada"><span class="header-section-number">13.2</span> A antiderivada: desfazendo a derivada</a>
+  <ul class="collapse">
+  <li><a href="#reconstruindo-o-custo-total-a-partir-do-marginal" id="toc-reconstruindo-o-custo-total-a-partir-do-marginal" class="nav-link" data-scroll-target="#reconstruindo-o-custo-total-a-partir-do-marginal"><span class="header-section-number">13.2.1</span> Reconstruindo o custo total a partir do marginal</a></li>
+  </ul></li>
+  <li><a href="#a-integral-definida-como-área" id="toc-a-integral-definida-como-área" class="nav-link" data-scroll-target="#a-integral-definida-como-área"><span class="header-section-number">13.3</span> A integral definida como área</a></li>
+  <li><a href="#os-excedentes-ganhos-de-bem-estar-como-áreas" id="toc-os-excedentes-ganhos-de-bem-estar-como-áreas" class="nav-link" data-scroll-target="#os-excedentes-ganhos-de-bem-estar-como-áreas"><span class="header-section-number">13.4</span> Os excedentes: ganhos de bem-estar como áreas</a>
+  <ul class="collapse">
+  <li><a href="#excedente-do-consumidor" id="toc-excedente-do-consumidor" class="nav-link" data-scroll-target="#excedente-do-consumidor"><span class="header-section-number">13.4.1</span> Excedente do consumidor</a></li>
+  <li><a href="#excedente-do-produtor" id="toc-excedente-do-produtor" class="nav-link" data-scroll-target="#excedente-do-produtor"><span class="header-section-number">13.4.2</span> Excedente do produtor</a></li>
+  <li><a href="#calculando-os-excedentes-com-integrais" id="toc-calculando-os-excedentes-com-integrais" class="nav-link" data-scroll-target="#calculando-os-excedentes-com-integrais"><span class="header-section-number">13.4.3</span> Calculando os excedentes com integrais</a></li>
+  </ul></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">13.5</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">13.6</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">13.7</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">13.8</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol02/cap07-integrais-excedentes.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html">Volume 2 — Matemática para Economistas</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol02/cap07-integrais-excedentes.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-integrais-excedentes" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Até aqui, o cálculo nos ensinou a <strong>desmontar</strong> grandezas totais em marginais: a derivada pega o custo total e extrai o custo marginal, pega a produção e extrai o produto marginal. Mas e o caminho inverso? Se conhecemos o <strong>custo marginal</strong> de cada unidade, como reconstruir o <strong>custo total</strong>? Se sabemos a que taxa uma dívida cresce, como achar seu montante acumulado? Essa operação de “somar todas as contribuições marginais para recuperar o total” é a <strong>integração</strong> — a operação inversa da derivada.</p>
+<p>A integral tem, além disso, uma segunda face de enorme utilidade econômica: ela mede <strong>áreas</strong> sob curvas. E acontece que algumas das grandezas mais importantes da Economia do bem-estar — o <strong>excedente do consumidor</strong> e o <strong>excedente do produtor</strong>, que medem os ganhos que compradores e vendedores obtêm num mercado — são, precisamente, áreas sob curvas de demanda e de oferta. Este capítulo apresenta a integral pelas duas portas e as reúne no cálculo dos excedentes, encerrando as ferramentas de cálculo do volume.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">13.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>entender a <strong>integral indefinida</strong> (antiderivada) como operação inversa da derivada;</li>
+<li>aplicar as <strong>regras básicas de integração</strong> de polinômios;</li>
+<li>interpretar a <strong>integral definida</strong> como a <strong>área sob uma curva</strong> e calculá-la pelo Teorema Fundamental do Cálculo;</li>
+<li>reconstruir uma grandeza <strong>total</strong> a partir de sua taxa <strong>marginal</strong> (custo total a partir do custo marginal);</li>
+<li>calcular o <strong>excedente do consumidor</strong> e o <strong>excedente do produtor</strong> como áreas;</li>
+<li>interpretar o <strong>excedente total</strong> como medida de ganho de bem-estar de um mercado.</li>
+</ul>
+</section>
+<section id="a-antiderivada-desfazendo-a-derivada" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="a-antiderivada-desfazendo-a-derivada"><span class="header-section-number">13.2</span> A antiderivada: desfazendo a derivada</h2>
+<p>Comece pela pergunta invertida. Derivar <span class="math inline">\(F(x) = x^2\)</span> dá <span class="math inline">\(F'(x) = 2x\)</span>. E se nos dessem <span class="math inline">\(f(x) = 2x\)</span> e pedissem a função <strong>de onde ela veio</strong>? Essa função — cuja derivada é <span class="math inline">\(f\)</span> — chama-se <strong>antiderivada</strong> (ou primitiva) de <span class="math inline">\(f\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Antiderivada (integral indefinida)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Antiderivada (integral indefinida)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma <strong>antiderivada</strong> de <span class="math inline">\(f(x)\)</span> é uma função <span class="math inline">\(F(x)\)</span> tal que <span class="math inline">\(F'(x) = f(x)\)</span>. O conjunto de todas as antiderivadas é a <strong>integral indefinida</strong>, escrita <span id="eq-indefinida"><span class="math display">\[
+\int f(x)\,dx = F(x) + C,
+\tag{13.1}\]</span></span> onde <span class="math inline">\(C\)</span> é uma <strong>constante de integração</strong> arbitrária.</p>
+</div>
+</div>
+<p>Por que a constante <span class="math inline">\(C\)</span>? Porque a derivada de qualquer constante é zero: <span class="math inline">\(x^2\)</span>, <span class="math inline">\(x^2 + 7\)</span> e <span class="math inline">\(x^2 - 100\)</span> têm todas a mesma derivada, <span class="math inline">\(2x\)</span>. Ao desfazer a derivação, não há como saber qual constante estava lá originalmente — daí somarmos um <span class="math inline">\(C\)</span> genérico. Como veremos, em problemas econômicos essa constante costuma ter um significado concreto (o custo fixo, por exemplo), e é determinada por uma informação adicional do problema.</p>
+<p>A regra prática espelha, ao contrário, a regra da potência da derivada:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Regra da potência para integrais">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Regra da potência para integrais
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\int x^n\,dx = \frac{x^{n+1}}{n+1} + C \quad (n \ne -1).
+\]</span> “Aumente o expoente em um e divida pelo novo expoente.” Some as integrais termo a termo, e constantes multiplicativas saem para fora.</p>
+</div>
+</div>
+<p>Confira que funciona: <span class="math inline">\(\int 2x\,dx = 2\cdot\dfrac{x^2}{2} + C = x^2 + C\)</span>. Derivando de volta, recuperamos <span class="math inline">\(2x\)</span>. A integração e a derivação são, de fato, operações inversas.</p>
+<section id="reconstruindo-o-custo-total-a-partir-do-marginal" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="reconstruindo-o-custo-total-a-partir-do-marginal"><span class="header-section-number">13.2.1</span> Reconstruindo o custo total a partir do marginal</h3>
+<p>Eis a primeira aplicação econômica direta. Suponha que o <strong>custo marginal</strong> de uma firma seja <span class="math inline">\(CMg(q) = 5 + 0{,}4q\)</span> (a derivada do custo total, como vimos no <a href="#sec-derivadas-analise-marginal" class="quarto-xref"><span class="quarto-unresolved-ref">sec-derivadas-analise-marginal</span></a>). Para recuperar o <strong>custo total</strong>, integramos:</p>
+<p><span class="math display">\[
+C(q) = \int (5 + 0{,}4q)\,dx = 5q + 0{,}2q^2 + C.
+\]</span></p>
+<p>A constante <span class="math inline">\(C\)</span> é aqui o <strong>custo fixo</strong> — o custo quando <span class="math inline">\(q = 0\)</span>. Se soubermos que a firma tem custo fixo de <span class="math inline">\(R\$\,300\)</span> (isto é, <span class="math inline">\(C(0) = 300\)</span>), então <span class="math inline">\(C = 300\)</span> e</p>
+<p><span class="math display">\[
+C(q) = 300 + 5q + 0{,}2q^2.
+\]</span></p>
+<p>Reconstruímos a função de custo total inteira a partir da informação marginal, mais um dado de “ponto de partida”. Esse vaivém entre marginal e total — derivar para descer ao marginal, integrar para subir ao total — é uma das simetrias mais úteis do cálculo econômico.</p>
+</section>
+</section>
+<section id="a-integral-definida-como-área" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="a-integral-definida-como-área"><span class="header-section-number">13.3</span> A integral definida como área</h2>
+<p>A integral tem uma segunda interpretação, geométrica, que é a fonte de suas aplicações ao bem-estar. Considere a área entre o gráfico de uma função <span class="math inline">\(f(x)\)</span> (positiva) e o eixo horizontal, no intervalo de <span class="math inline">\(x = a\)</span> a <span class="math inline">\(x = b\)</span>. Essa área é a <strong>integral definida</strong> de <span class="math inline">\(f\)</span> de <span class="math inline">\(a\)</span> a <span class="math inline">\(b\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Integral definida">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Integral definida
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>integral definida</strong> de <span class="math inline">\(f\)</span> entre <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>, escrita <span class="math inline">\(\displaystyle\int_a^b f(x)\,dx\)</span>, é a <strong>área</strong> com sinal entre a curva <span class="math inline">\(y = f(x)\)</span> e o eixo horizontal no intervalo <span class="math inline">\([a, b]\)</span>.</p>
+</div>
+</div>
+<p>Por que uma área representa uma “soma de contribuições marginais”? A intuição é a de fatiar o intervalo em retângulos finíssimos: cada retângulo tem largura <span class="math inline">\(dx\)</span> (um pedacinho do eixo <span class="math inline">\(x\)</span>) e altura <span class="math inline">\(f(x)\)</span> (a taxa naquele ponto), de modo que sua área <span class="math inline">\(f(x)\,dx\)</span> é a contribuição daquele pedaço. Somando (integrando) todos os retângulos, obtemos o total acumulado. Área e acumulação são a mesma ideia vista de dois ângulos.</p>
+<p>O elo entre as duas faces da integral — antiderivada e área — é um dos teoremas mais importantes da matemática:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Teorema Fundamental do Cálculo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Teorema Fundamental do Cálculo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se <span class="math inline">\(F\)</span> é uma antiderivada de <span class="math inline">\(f\)</span> (isto é, <span class="math inline">\(F' = f\)</span>), então <span id="eq-tfc"><span class="math display">\[
+\int_a^b f(x)\,dx = F(b) - F(a).
+\tag{13.2}\]</span></span> Calcula-se a área <strong>avaliando a antiderivada nos extremos e subtraindo</strong>.</p>
+</div>
+</div>
+<p>O teorema é o que torna as integrais definidas calculáveis na prática: em vez de somar infinitos retângulos, achamos uma antiderivada e fazemos uma subtração. Por exemplo, a área sob <span class="math inline">\(f(x) = 2x\)</span> entre <span class="math inline">\(0\)</span> e <span class="math inline">\(3\)</span>:</p>
+<p><span class="math display">\[
+\int_0^3 2x\,dx = \left[x^2\right]_0^3 = 3^2 - 0^2 = 9.
+\]</span></p>
+<p>(Confira geometricamente: é a área de um triângulo de base <span class="math inline">\(3\)</span> e altura <span class="math inline">\(f(3) = 6\)</span>, ou seja, <span class="math inline">\(\tfrac{1}{2}\cdot 3\cdot 6 = 9\)</span>. Bate.)</p>
+</section>
+<section id="os-excedentes-ganhos-de-bem-estar-como-áreas" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="os-excedentes-ganhos-de-bem-estar-como-áreas"><span class="header-section-number">13.4</span> Os excedentes: ganhos de bem-estar como áreas</h2>
+<p>Agora reunimos tudo na aplicação econômica mais bela da integral. Num mercado, compradores e vendedores obtêm <strong>ganhos</strong> ao negociar, e esses ganhos são áreas sob (e sobre) as curvas de demanda e de oferta.</p>
+<section id="excedente-do-consumidor" class="level3" data-number="13.4.1">
+<h3 data-number="13.4.1" class="anchored" data-anchor-id="excedente-do-consumidor"><span class="header-section-number">13.4.1</span> Excedente do consumidor</h3>
+<p>A curva de <strong>demanda</strong> revela, a cada quantidade, o <strong>preço máximo</strong> que algum consumidor estaria disposto a pagar por aquela unidade — sua <strong>disposição a pagar</strong>. Mas, no mercado, todos pagam o mesmo <strong>preço de equilíbrio</strong> <span class="math inline">\(p^{*}\)</span>. A diferença entre o que o consumidor estava disposto a pagar e o que efetivamente pagou é o seu ganho.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Excedente do consumidor">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Excedente do consumidor
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <strong>excedente do consumidor</strong> é a diferença entre a disposição total a pagar dos consumidores e o valor que efetivamente pagaram. Graficamente, é a <strong>área abaixo da curva de demanda e acima do preço</strong> <span class="math inline">\(p^{*}\)</span>, até a quantidade transacionada <span class="math inline">\(q^{*}\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="excedente-do-produtor" class="level3" data-number="13.4.2">
+<h3 data-number="13.4.2" class="anchored" data-anchor-id="excedente-do-produtor"><span class="header-section-number">13.4.2</span> Excedente do produtor</h3>
+<p>Simetricamente, a curva de <strong>oferta</strong> revela, a cada quantidade, o <strong>preço mínimo</strong> pelo qual algum produtor aceitaria vender aquela unidade — seu custo marginal. Como todos recebem o preço de equilíbrio <span class="math inline">\(p^{*}\)</span>, os produtores cujo custo é menor que <span class="math inline">\(p^{*}\)</span> ganham a diferença.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Excedente do produtor">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Excedente do produtor
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <strong>excedente do produtor</strong> é a diferença entre a receita recebida pelos produtores e o custo mínimo pelo qual aceitariam vender. Graficamente, é a <strong>área acima da curva de oferta e abaixo do preço</strong> <span class="math inline">\(p^{*}\)</span>, até <span class="math inline">\(q^{*}\)</span>.</p>
+</div>
+</div>
+<p>A <a href="#fig-excedentes" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-excedentes</span></a> mostra as duas áreas. A soma delas, o <strong>excedente total</strong>, mede o ganho de bem-estar que o mercado gera ao existir — o valor criado por permitir que compradores e vendedores negociem.</p>
+<div id="fig-excedentes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-excedentes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="289.426899pt" height="209.035328pt" viewbox="-68.014948 -68.014944 289.426899 209.035328">
+
+<defs>
+
+<path id="tz_fig_excedentes_g0-46" d="M1.617933-.438356C1.617933-.70934 1.40274-.884682 1.179577-.884682C.908593-.884682 .73325-.669489 .73325-.446326C.73325-.175342 .948443 0 1.171606 0C1.44259 0 1.617933-.215193 1.617933-.438356Z"></path>
+
+<path id="tz_fig_excedentes_g0-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+
+<path id="tz_fig_excedentes_g0-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+
+<path id="tz_fig_excedentes_g0-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+
+<path id="tz_fig_excedentes_g0-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+
+<path id="tz_fig_excedentes_g0-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+
+<path id="tz_fig_excedentes_g0-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+
+<path id="tz_fig_excedentes_g0-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+
+<path id="tz_fig_excedentes_g0-112" d="M2.096139 1.283188C1.586052 1.283188 1.490411 1.283188 1.490411 .924533V-.390535C1.865006 .01594 2.271482 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.717808 3.610461-3.514819 2.646077-3.514819C2.335243-3.514819 1.872976-3.435118 1.466501-3.020672V-3.514819L.278954-3.427148V-3.164134C.844832-3.164134 .884682-3.116314 .884682-2.781569V.924533C.884682 1.283188 .789041 1.283188 .278954 1.283188V1.546202C.621669 1.522291 .972354 1.522291 1.187547 1.522291C1.41868 1.522291 1.753425 1.522291 2.096139 1.546202V1.283188ZM1.490411-2.654047C1.673724-2.972852 2.072229-3.267746 2.574346-3.267746C3.188045-3.267746 3.706102-2.590286 3.706102-1.721544C3.706102-.804981 3.132254-.143462 2.486675-.143462C2.207721-.143462 1.841096-.263014 1.586052-.661519C1.490411-.797011 1.490411-.804981 1.490411-.956413V-2.654047Z"></path>
+
+<path id="tz_fig_excedentes_g0-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+
+<path id="tz_fig_excedentes_g0-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+
+<path id="tz_fig_excedentes_g0-116" d="M1.482441-3.172105H2.669988V-3.435118H1.482441V-4.901619H1.235367C1.227397-4.176339 .900623-3.419178 .159402-3.395268V-3.172105H.876712V-.996264C.876712-.063761 1.594022 .079701 1.960648 .079701C2.494645 .079701 2.81345-.398506 2.81345-.996264V-1.44259H2.566376V-1.012204C2.566376-.462267 2.319303-.167372 2.016438-.167372C1.482441-.167372 1.482441-.852802 1.482441-.980324V-3.172105Z"></path>
+
+<path id="tz_fig_excedentes_g0-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+
+<path id="tz_fig_excedentes_g0-120" d="M2.454795-1.865006C2.677958-2.14396 2.909091-2.414944 3.148194-2.677958C3.411208-2.956912 3.690162-3.164134 4.192279-3.172105V-3.435118C3.881445-3.411208 3.865504-3.411208 3.506849-3.411208C3.466999-3.411208 2.996762-3.411208 2.749689-3.435118V-3.172105C2.901121-3.156164 2.933001-3.060523 2.933001-2.956912S2.893151-2.757659 2.797509-2.646077L2.295392-2.056289L1.665753-2.805479C1.570112-2.917061 1.570112-2.972852 1.570112-2.988792C1.570112-3.044583 1.617933-3.164134 1.817186-3.172105V-3.435118C1.498381-3.411208 1.052055-3.411208 .964384-3.411208C.820922-3.411208 .414446-3.411208 .175342-3.435118V-3.172105C.71731-3.172105 .72528-3.164134 1.139726-2.677958L1.960648-1.681694L1.235367-.828892C1.036115-.605729 .74122-.278954 .135492-.263014V0C.430386-.02391 .486177-.02391 .820922-.02391C.836862-.02391 1.323039-.02391 1.578082 0V-.263014C1.474471-.278954 1.3868-.334745 1.3868-.478207S1.482441-.73325 1.506351-.773101C1.705604-1.012204 1.920797-1.251308 2.12802-1.482441L2.781569-.70137C2.940971-.518057 2.940971-.502117 2.940971-.446326C2.940971-.382565 2.885181-.270984 2.693898-.263014V0C3.036613-.02391 3.395268-.02391 3.5467-.02391C3.690162-.02391 4.096638-.02391 4.335741 0V-.263014C3.841594-.263014 3.761893-.302864 3.55467-.549938L2.454795-1.865006Z"></path>
+
+<path id="tz_fig_excedentes_g1-3" d="M2.779577-.842839C2.934994-.735243 2.946949-.735243 2.988792-.735243C3.090411-.735243 3.186052-.824907 3.186052-.944458S3.096389-1.099875 3.048568-1.123786C2.743711-1.249315 2.438854-1.374844 2.12802-1.488418C2.737733-1.739477 2.905106-1.799253 3.012702-1.847073C3.102366-1.888917 3.186052-1.918804 3.186052-2.038356S3.090411-2.247572 2.988792-2.247572C2.940971-2.247572 2.905106-2.223661 2.857285-2.193773L2.008468-1.655791C2.014446-1.739477 2.038356-1.948692 2.044334-2.020423C2.056289-2.139975 2.10411-2.49863 2.10411-2.600249S2.014446-2.779577 1.906849-2.779577C1.80523-2.779577 1.709589-2.701868 1.709589-2.600249C1.709589-2.588294 1.763387-2.050311 1.769365-2.026401C1.775342-1.960648 1.799253-1.733499 1.80523-1.655791L.956413-2.193773C.908593-2.223661 .872727-2.247572 .824907-2.247572C.723288-2.247572 .627646-2.157908 .627646-2.038356S.71731-1.882939 .765131-1.859029C1.069988-1.733499 1.374844-1.60797 1.685679-1.494396C1.075965-1.243337 .908593-1.183562 .800996-1.135741C.711333-1.093898 .627646-1.06401 .627646-.944458S.723288-.735243 .824907-.735243C.872727-.735243 .974346-.800996 1.046077-.848817C1.129763-.896638 1.333001-1.028144 1.41071-1.081943C1.60797-1.207472 1.679701-1.255293 1.80523-1.327024C1.799253-1.243337 1.775342-1.034122 1.769365-.962391L1.709589-.382565C1.709589-.280946 1.80523-.203238 1.906849-.203238C2.014446-.203238 2.10411-.280946 2.10411-.382565C2.10411-.388543 2.050311-.926526 2.044334-.956413C2.038356-1.022167 2.014446-1.249315 2.008468-1.327024L2.779577-.842839Z"></path>
+
+<path id="tz_fig_excedentes_g2-69" d="M2.815442-3.030635H3.730012C4.366625-3.030635 4.501121-2.923039 4.501121-2.627148C4.501121-2.555417 4.474222-2.367123 4.438356-2.223661C4.420423-2.169863 4.411457-2.125031 4.411457-2.098132C4.411457-2.089166 4.411457-1.981569 4.52802-1.981569C4.635616-1.981569 4.644583-2.044334 4.680448-2.178829L5.155666-4.061768C5.191532-4.187298 5.191532-4.20523 5.191532-4.241096C5.191532-4.312827 5.137733-4.357659 5.066002-4.357659C4.967372-4.357659 4.958406-4.303861 4.913574-4.133499C4.734247-3.425156 4.456289-3.308593 3.738979-3.308593H2.887173C3.021669-3.864508 3.443088-5.56812 3.48792-5.675716C3.541719-5.801245 3.604483-5.819178 3.900374-5.819178H5.218431C6.339228-5.819178 6.590286-5.550187 6.590286-4.82391C6.590286-4.545953 6.545455-4.276961 6.545455-4.214197C6.545455-4.142466 6.590286-4.079701 6.670984-4.079701C6.77858-4.079701 6.787547-4.142466 6.805479-4.303861L6.993773-5.971606C6.993773-6.097136 6.90411-6.097136 6.733748-6.097136H2.116065C1.945704-6.097136 1.847073-6.097136 1.847073-5.935741C1.847073-5.819178 1.936737-5.819178 2.125031-5.819178C2.160897-5.819178 2.322291-5.819178 2.465753-5.801245C2.663014-5.774346 2.67198-5.738481 2.67198-5.657783C2.67198-5.630884 2.67198-5.612951 2.627148-5.451557L1.43462-.681445C1.353923-.358655 1.33599-.277958 .663512-.277958C.493151-.277958 .394521-.277958 .394521-.116563C.394521 0 .484184 0 .645579 0H5.379826C5.54122 0 5.559153 0 5.586052-.026899C5.612951-.044832 5.621918-.053798 5.675716-.170361C5.783313-.412453 6.545455-2.116065 6.545455-2.196762C6.545455-2.268493 6.491656-2.313325 6.419925-2.313325S6.339228-2.304359 6.240598-2.098132C5.684682-.842839 5.317061-.277958 3.828643-.277958H2.456787C2.331258-.277958 2.313325-.277958 2.27746-.286924C2.187796-.29589 2.160897-.304857 2.160897-.367621C2.160897-.394521 2.160897-.412453 2.205729-.573848L2.815442-3.030635Z"></path>
+
+<path id="tz_fig_excedentes_g2-112" d="M.412453 1.120797C.349689 1.380822 .331756 1.461519-.053798 1.461519C-.152428 1.461519-.260025 1.461519-.260025 1.622914C-.260025 1.65878-.242092 1.739477-.143462 1.739477L.242092 1.721544C.29589 1.712578 .502117 1.712578 .627646 1.712578C.780075 1.712578 .932503 1.721544 1.084932 1.721544C1.228394 1.721544 1.380822 1.739477 1.515318 1.739477C1.569116 1.739477 1.685679 1.739477 1.685679 1.578082C1.685679 1.461519 1.596015 1.461519 1.443587 1.461519C1.022167 1.461519 1.022167 1.398755 1.022167 1.318057C1.022167 1.264259 1.084932 1.022167 1.120797 .878705L1.452553-.457285C1.542217-.268991 1.793275 .09863 2.304359 .09863C3.353425 .09863 4.501121-1.165629 4.501121-2.510585C4.501121-3.425156 3.936239-3.963138 3.263761-3.963138C3.075467-3.963138 2.627148-3.918306 2.080199-3.308593C1.945704-3.81071 1.53325-3.963138 1.228394-3.963138C.851806-3.963138 .663512-3.685181 .537983-3.443088C.385554-3.129265 .260025-2.618182 .260025-2.582316C.260025-2.501619 .32279-2.47472 .385554-2.47472C.484184-2.47472 .502117-2.519552 .546949-2.698879C.71731-3.407223 .905604-3.738979 1.210461-3.738979C1.479452-3.738979 1.479452-3.452055 1.479452-3.317559C1.479452-3.245828 1.470486-3.111333 1.452553-3.039601L.412453 1.120797ZM2.035367-2.761644C2.080199-2.940971 2.080199-2.958904 2.196762-3.0934C2.438854-3.398257 2.842341-3.738979 3.245828-3.738979C3.667248-3.738979 3.837609-3.317559 3.837609-2.896139C3.837609-2.492653 3.58655-1.380822 3.308593-.905604C3.003736-.394521 2.627148-.125529 2.295392-.125529C1.712578-.125529 1.569116-.833873 1.569116-.896638C1.569116-.950436 1.587049-.995268 1.596015-1.0401L2.035367-2.761644Z"></path>
+
+<path id="tz_fig_excedentes_g2-113" d="M4.133499-3.658281C4.169365-3.783811 4.169365-3.801743 4.169365-3.837609C4.169365-3.945205 4.079701-3.963138 4.061768-3.963138C3.972105-3.963138 3.631382-3.658281 3.452055-3.344458C3.308593-3.667248 3.030635-3.963138 2.57335-3.963138C1.53325-3.963138 .376588-2.725778 .376588-1.353923C.376588-.367621 1.004234 .09863 1.604981 .09863C1.990535 .09863 2.340224-.09863 2.67198-.412453L2.331258 .968369C2.214695 1.425654 2.205729 1.452553 1.640847 1.461519C1.53325 1.461519 1.425654 1.461519 1.425654 1.622914C1.425654 1.640847 1.425654 1.739477 1.551183 1.739477C1.748443 1.739477 2.259527 1.712578 2.456787 1.712578C2.752677 1.712578 2.77061 1.712578 2.914072 1.721544C3.030635 1.730511 3.281694 1.739477 3.38929 1.739477C3.443088 1.739477 3.559651 1.739477 3.559651 1.578082C3.559651 1.461519 3.469988 1.461519 3.317559 1.461519C2.896139 1.461519 2.896139 1.398755 2.896139 1.318057C2.896139 1.309091 2.896139 1.255293 2.932005 1.120797L4.133499-3.658281ZM2.842341-1.093898C2.797509-.923537 2.797509-.91457 2.654047-.744209C2.331258-.358655 1.963636-.125529 1.63188-.125529C1.192528-.125529 1.0401-.582814 1.0401-.968369C1.0401-1.407721 1.300125-2.438854 1.515318-2.86924C1.802242-3.407223 2.214695-3.738979 2.57335-3.738979C3.174097-3.738979 3.308593-3.021669 3.308593-2.958904C3.308593-2.914072 3.29066-2.860274 3.281694-2.824408L2.842341-1.093898Z"></path>
+
+<path id="tz_fig_excedentes_g3-24" d="M1.407721 1.604981C1.327024 1.604981 1.264259 1.604981 1.201494 1.613948V1.838107C1.578082 1.811208 1.981569 1.85604 2.501619 1.775342C3.048568 1.694645 3.398257 1.515318 3.398257 1.120797S3.057534 .537983 2.636115 .466252V.19726H1.972603V.636613C2.492653 .645579 2.734745 .869738 2.734745 1.120797C2.734745 1.596015 1.891905 1.604981 1.604981 1.604981H1.407721Z"></path>
+
+<path id="tz_fig_excedentes_g3-68" d="M.564882-5.846077C1.255293-5.846077 1.273225-5.747447 1.273225-5.415691V-.708344C1.273225-.376588 1.255293-.277958 .564882-.277958H.358655V0H3.694147C5.24533 0 6.518555-1.327024 6.518555-3.012702C6.518555-4.716314 5.272229-6.124035 3.694147-6.124035H.358655V-5.846077H.564882ZM2.492653-.277958C2.071233-.277958 2.0533-.340722 2.0533-.645579V-5.478456C2.0533-5.783313 2.071233-5.846077 2.492653-5.846077H3.452055C4.321793-5.846077 4.859776-5.388792 5.101868-5.066002C5.496389-4.545953 5.630884-3.900374 5.630884-3.012702C5.630884-2.645081 5.630884-1.703611 5.137733-1.075965C4.671482-.466252 4.025903-.277958 3.461021-.277958H2.492653Z"></path>
+
+<path id="tz_fig_excedentes_g3-79" d="M6.644085-3.039601C6.644085-4.868742 5.254296-6.321295 3.577584-6.321295S.511083-4.859776 .511083-3.039601S1.909838 .19726 3.577584 .19726S6.644085-1.219427 6.644085-3.039601ZM3.577584-.071731C2.67198-.071731 1.425654-.860772 1.425654-3.174097C1.425654-5.361893 2.707846-6.070237 3.577584-6.070237S5.729514-5.361893 5.729514-3.174097C5.729514-.860772 4.483188-.071731 3.577584-.071731Z"></path>
+
+<path id="tz_fig_excedentes_g3-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+
+<path id="tz_fig_excedentes_g3-99" d="M3.263761-3.523786C3.075467-3.48792 2.896139-3.362391 2.896139-3.102366C2.896139-2.86924 3.075467-2.689913 3.308593-2.689913S3.730012-2.842341 3.730012-3.120299C3.730012-3.676214 3.102366-4.016936 2.313325-4.016936C1.165629-4.016936 .304857-3.057534 .304857-1.936737C.304857-.780075 1.23736 .09863 2.295392 .09863C3.541719 .09863 3.828643-.986301 3.828643-1.066999C3.828643-1.174595 3.730012-1.174595 3.703113-1.174595C3.604483-1.174595 3.604483-1.156663 3.550685-1.004234C3.344458-.385554 2.842341-.152428 2.385056-.152428C1.811208-.152428 1.075965-.61868 1.075965-1.945704C1.075965-3.344458 1.793275-3.765878 2.331258-3.765878C2.447821-3.765878 2.932005-3.747945 3.263761-3.523786Z"></path>
+
+<path id="tz_fig_excedentes_g3-100" d="M3.48792-1.075965C3.48792-.91457 3.48792-.887671 3.353425-.699377C3.075467-.29589 2.663014-.125529 2.304359-.125529C1.918804-.125529 1.560149-.340722 1.327024-.71731C1.093898-1.102864 1.075965-1.63188 1.075965-1.918804C1.075965-2.340224 1.129763-2.815442 1.362889-3.174097C1.560149-3.461021 1.927771-3.738979 2.402989-3.738979C2.779577-3.738979 3.138232-3.550685 3.380324-3.209963C3.48792-3.066501 3.48792-3.057534 3.48792-2.887173V-1.075965ZM3.514819-3.434122C3.469988-3.48792 3.066501-3.963138 2.367123-3.963138C1.264259-3.963138 .304857-3.084433 .304857-1.927771C.304857-.806974 1.201494 .09863 2.268493 .09863C2.923039 .09863 3.326526-.286924 3.48792-.475218V.09863L4.841843 0V-.277958C4.23213-.277958 4.151432-.340722 4.151432-.780075V-6.222665L2.824408-6.124035V-5.846077C3.434122-5.846077 3.514819-5.783313 3.514819-5.34396V-3.434122Z"></path>
+
+<path id="tz_fig_excedentes_g3-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+
+<path id="tz_fig_excedentes_g3-102" d="M2.689913-3.58655V-3.864508H1.622914V-4.877709C1.622914-5.693649 2.062267-6.097136 2.447821-6.097136C2.537484-6.097136 2.627148-6.079203 2.716812-6.043337C2.627148-6.007472 2.483686-5.899875 2.483686-5.675716C2.483686-5.44259 2.654047-5.281196 2.878207-5.281196C3.120299-5.281196 3.281694-5.451557 3.281694-5.684682C3.281694-6.025405 2.940971-6.321295 2.447821-6.321295C1.748443-6.321295 1.0132-5.792279 1.0132-4.895641V-3.864508H.304857V-3.58655H1.0132V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.798007-.017933 .91457-.026899 1.371856-.026899C1.730511-.026899 1.945704-.017933 2.510585 0V-.277958H2.331258C1.676712-.277958 1.649813-.376588 1.649813-.708344V-3.58655H2.689913Z"></path>
+
+<path id="tz_fig_excedentes_g3-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+
+<path id="tz_fig_excedentes_g3-109" d="M1.667746-2.322291C1.667746-3.29066 2.367123-3.738979 2.905106-3.738979C3.398257-3.738979 3.559651-3.38929 3.559651-2.761644V-.690411C3.559651-.277958 3.461021-.277958 2.86924-.277958V0C3.29066-.017933 3.461021-.026899 3.891407-.026899S4.438356-.017933 4.913574 0V-.277958C4.321793-.277958 4.223163-.277958 4.223163-.690411V-2.322291C4.223163-3.29066 4.92254-3.738979 5.460523-3.738979C5.953674-3.738979 6.115068-3.38929 6.115068-2.761644V-.690411C6.115068-.277958 6.016438-.277958 5.424658-.277958V0C5.846077-.017933 6.016438-.026899 6.446824-.026899S6.993773-.017933 7.468991 0V-.277958C7.011706-.277958 6.787547-.277958 6.77858-.555915V-2.27746C6.77858-3.057534 6.77858-3.308593 6.48269-3.640349C6.294396-3.855542 5.935741-3.963138 5.523288-3.963138C4.877709-3.963138 4.438356-3.58655 4.187298-3.111333C4.079701-3.640349 3.721046-3.963138 2.96787-3.963138C2.25056-3.963138 1.811208-3.496887 1.622914-3.084433H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+
+<path id="tz_fig_excedentes_g3-110" d="M1.667746-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.133998-3.963138 1.748443-3.344458 1.622914-3.0934H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+
+<path id="tz_fig_excedentes_g3-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+
+<path id="tz_fig_excedentes_g3-112" d="M1.622914-3.012702C1.927771-3.532752 2.420922-3.71208 2.797509-3.71208C3.496887-3.71208 4.034869-2.905106 4.034869-1.936737C4.034869-.91457 3.425156-.125529 2.698879-.125529C2.295392-.125529 1.95467-.358655 1.739477-.672478C1.622914-.851806 1.622914-.869738 1.622914-1.0401V-3.012702ZM1.622914-.430386C1.85604-.19726 2.160897 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.066501 3.927273-3.963138 2.86924-3.963138C2.385056-3.963138 1.936737-3.765878 1.596015-3.398257V-3.963138L.268991-3.864508V-3.58655C.905604-3.58655 .959402-3.532752 .959402-3.147198V1.049066C.959402 1.461519 .860772 1.461519 .268991 1.461519V1.739477C.690411 1.721544 .860772 1.712578 1.291158 1.712578S1.838107 1.721544 2.313325 1.739477V1.461519C1.721544 1.461519 1.622914 1.461519 1.622914 1.049066V-.430386Z"></path>
+
+<path id="tz_fig_excedentes_g3-113" d="M3.58655-3.174097C3.165131-3.882441 2.654047-3.963138 2.340224-3.963138C1.282192-3.963138 .304857-3.102366 .304857-1.927771C.304857-.789041 1.219427 .09863 2.268493 .09863C2.645081 .09863 3.102366-.035866 3.48792-.529016V1.049066C3.48792 1.461519 3.38929 1.461519 2.797509 1.461519V1.739477C3.218929 1.721544 3.38929 1.712578 3.819676 1.712578S4.366625 1.721544 4.841843 1.739477V1.461519C4.250062 1.461519 4.151432 1.461519 4.151432 1.049066V-3.963138H3.927273L3.58655-3.174097ZM3.514819-1.23736C3.514819-1.075965 3.514819-1.0401 3.380324-.798007C3.156164-.412453 2.779577-.125529 2.304359-.125529C1.640847-.125529 1.075965-.91457 1.075965-1.927771C1.075965-2.96787 1.712578-3.71208 2.402989-3.71208C3.102366-3.71208 3.514819-2.96787 3.514819-2.47472V-1.23736Z"></path>
+
+<path id="tz_fig_excedentes_g3-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+
+<path id="tz_fig_excedentes_g3-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+
+<path id="tz_fig_excedentes_g3-117" d="M3.550685-1.497385C3.550685-.699377 3.102366-.125529 2.456787-.125529C1.712578-.125529 1.667746-.511083 1.667746-.995268V-3.963138L.313823-3.864508V-3.58655C1.004234-3.58655 1.004234-3.559651 1.004234-2.761644V-1.416687C1.004234-.833873 1.004234-.457285 1.416687-.143462C1.676712 .035866 2.044334 .09863 2.402989 .09863C2.86924 .09863 3.308593-.107597 3.568618-.645579H3.577584V.09863L4.904608 0V-.277958C4.294894-.277958 4.214197-.340722 4.214197-.780075V-3.963138L2.860274-3.864508V-3.58655C3.469988-3.58655 3.550685-3.523786 3.550685-3.084433V-1.497385Z"></path>
+
+</defs>
+
+<g id="tz_fig_excedentes_page1">
+
+<g stroke-miterlimit="10" transform="translate(-50.082135,125.846374)scale(0.996264,-0.996264)">
+
+<g fill="#000" stroke="#000">
+
+<g stroke-width="0.4">
+
+<g fill="#808080" stroke="#808080">
+
+<g stroke-width="0.4">
+
+<path d="M0 0H211.3956" fill="none"></path>
+
+<g transform="translate(211.3956,0.0)">
+
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+
+</g>
+
+<g transform="translate(216.92854,-2.25)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-50.082135,125.846374)scale(-1,-1)">
+
+<g fill="#808080">
+
+<g stroke="none">
+
+<g fill="#808080">
+
+<use x="-50.082135" y="125.846374" href="#tz_fig_excedentes_g3-113"></use>
+
+<use x="-45.218462" y="125.846374" href="#tz_fig_excedentes_g3-117"></use>
+
+<use x="-40.098806" y="125.846374" href="#tz_fig_excedentes_g3-97"></use>
+
+<use x="-35.491115" y="125.846374" href="#tz_fig_excedentes_g3-110"></use>
+
+<use x="-30.627441" y="125.846374" href="#tz_fig_excedentes_g3-116"></use>
+
+<use x="-27.043682" y="125.846374" href="#tz_fig_excedentes_g3-105"></use>
+
+<use x="-24.483854" y="125.846374" href="#tz_fig_excedentes_g3-100"></use>
+
+<use x="-19.364198" y="125.846374" href="#tz_fig_excedentes_g3-97"></use>
+
+<use x="-14.756507" y="125.846374" href="#tz_fig_excedentes_g3-100"></use>
+
+<use x="-9.636851" y="125.846374" href="#tz_fig_excedentes_g3-101"></use>
+
+<use x="-2.465869" y="125.846374" href="#tz_fig_excedentes_g2-113"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#808080" stroke="#808080">
+
+<g stroke-width="0.4">
+
+<path d="M0 0V180.09741" fill="none"></path>
+
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,180.09741)">
+
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+
+</g>
+
+<g transform="translate(-14.66708,187.38036)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-50.082135,125.846374)scale(-1,-1)">
+
+<g fill="#808080">
+
+<g stroke="none">
+
+<g fill="#808080">
+
+<use x="-50.082135" y="125.846374" href="#tz_fig_excedentes_g3-112"></use>
+
+<use x="-44.962479" y="125.846374" href="#tz_fig_excedentes_g3-114"></use>
+
+<use x="-41.357958" y="125.846374" href="#tz_fig_excedentes_g3-101"></use>
+
+<use x="-37.25877" y="125.846374" href="#tz_fig_excedentes_g3-24"></use>
+
+<use x="-37.25877" y="125.846374" href="#tz_fig_excedentes_g3-99"></use>
+
+<use x="-33.163045" y="125.846374" href="#tz_fig_excedentes_g3-111"></use>
+
+<use x="-25.48356" y="125.846374" href="#tz_fig_excedentes_g2-112"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#2780e3" stroke="#2780e3">
+
+<g stroke-width="1.2">
+
+<path d="M0 170.71646L184.94283 0" fill="none"></path>
+
+<g transform="translate(26.1252,154.16429)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-50.082135,125.846374)scale(-1,-1)">
+
+<g fill="#2780e3">
+
+<g stroke="none">
+
+<g fill="#2780e3">
+
+<use x="-50.082135" y="125.846374" href="#tz_fig_excedentes_g3-68"></use>
+
+<use x="-43.0433" y="125.846374" href="#tz_fig_excedentes_g3-101"></use>
+
+<use x="-38.944112" y="125.846374" href="#tz_fig_excedentes_g3-109"></use>
+
+<use x="-31.264628" y="125.846374" href="#tz_fig_excedentes_g3-97"></use>
+
+<use x="-26.656937" y="125.846374" href="#tz_fig_excedentes_g3-110"></use>
+
+<use x="-21.537281" y="125.846374" href="#tz_fig_excedentes_g3-100"></use>
+
+<use x="-16.417625" y="125.846374" href="#tz_fig_excedentes_g3-97"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#d7433b" stroke="#d7433b">
+
+<g stroke-width="0.8">
+
+<path d="M0 28.45274L184.94283 151.65317" fill="none"></path>
+
+<g fill="#d7433b" stroke="#d7433b">
+
+<g fill="#d7433b" stroke="#d7433b">
+
+</g>
+
+<g transform="translate(136.73894,136.20737)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-50.082135,125.846374)scale(-1,-1)">
+
+<g fill="#d7433b">
+
+<g stroke="none">
+
+<g fill="#d7433b">
+
+<use x="-50.082135" y="125.846374" href="#tz_fig_excedentes_g3-79"></use>
+
+<use x="-42.914616" y="125.846374" href="#tz_fig_excedentes_g3-102"></use>
+
+<use x="-40.098806" y="125.846374" href="#tz_fig_excedentes_g3-101"></use>
+
+<use x="-35.999617" y="125.846374" href="#tz_fig_excedentes_g3-114"></use>
+
+<use x="-32.395096" y="125.846374" href="#tz_fig_excedentes_g3-116"></use>
+
+<use x="-28.811337" y="125.846374" href="#tz_fig_excedentes_g3-97"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#000">
+
+<g fill="#000">
+
+<path d="M91.46458 87.91887C91.46458 88.93431 90.6414 89.75749 89.62596 89.75749S87.78734 88.93431 87.78734 87.91887S88.61052 86.08025 89.62596 86.08025S91.46458 86.90343 91.46458 87.91887ZM89.62596 87.91887" stroke="none"></path>
+
+</g>
+
+<g transform="translate(89.62596,87.91887)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-50.082135,125.846374)scale(-1,-1)">
+
+<g fill="#000">
+
+<g stroke="none"></g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g transform="translate(93.15894,84.84389)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-50.082135,125.846374)scale(-1,-1)">
+
+<g fill="#000">
+
+<g stroke="none">
+
+<use x="-50.082135" y="125.846374" href="#tz_fig_excedentes_g2-69"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#6c757d" stroke="#6c757d">
+
+<g stroke-width="0.4">
+
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+
+<path d="M87.58734 87.91887H0" fill="none"></path>
+
+<g transform="translate(-12.50966,85.48639)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-50.082135,125.846374)scale(-1,-1)">
+
+<g fill="#6c757d">
+
+<g stroke="none">
+
+<g fill="#6c757d">
+
+<use x="-50.082135" y="125.846374" href="#tz_fig_excedentes_g2-112"></use>
+
+<use x="-45.456094" y="122.03737" href="#tz_fig_excedentes_g1-3"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#6c757d" stroke="#6c757d">
+
+<g stroke-width="0.4">
+
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+
+<path d="M89.62596 85.88025V0" fill="none"></path>
+
+<g transform="translate(85.23138,-10.14793)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-50.082135,125.846374)scale(-1,-1)">
+
+<g fill="#6c757d">
+
+<g stroke="none">
+
+<g fill="#6c757d">
+
+<use x="-50.082135" y="125.846374" href="#tz_fig_excedentes_g2-113"></use>
+
+<use x="-45.642922" y="122.03737" href="#tz_fig_excedentes_g1-3"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#d8e9fa" stroke="#d8e9fa">
+
+<path d="M0 170.71646L89.62596 87.91887H0Z" stroke="none"></path>
+
+</g>
+
+<g fill="#2780e3" stroke="#2780e3">
+
+<g fill="#2780e3" stroke="#2780e3">
+
+</g>
+
+<g transform="translate(10.0208,117.66412)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-50.082135,125.846374)scale(-1,-1)">
+
+<g fill="#2780e3">
+
+<g stroke="none">
+
+<g fill="#2780e3">
+
+<use x="-40.293008" y="116.381866" href="#tz_fig_excedentes_g0-101"></use>
+
+<use x="-36.52929" y="116.381866" href="#tz_fig_excedentes_g0-120"></use>
+
+<use x="-32.059875" y="116.381866" href="#tz_fig_excedentes_g0-99"></use>
+
+<use x="-28.296157" y="116.381866" href="#tz_fig_excedentes_g0-101"></use>
+
+<use x="-24.532439" y="116.381866" href="#tz_fig_excedentes_g0-100"></use>
+
+<use x="-19.827791" y="116.381866" href="#tz_fig_excedentes_g0-46"></use>
+
+<use x="-50.082135" y="125.846374" href="#tz_fig_excedentes_g0-99"></use>
+
+<use x="-46.318417" y="125.846374" href="#tz_fig_excedentes_g0-111"></use>
+
+<use x="-42.084234" y="125.846374" href="#tz_fig_excedentes_g0-110"></use>
+
+<use x="-37.379587" y="125.846374" href="#tz_fig_excedentes_g0-115"></use>
+
+<use x="-34.039284" y="125.846374" href="#tz_fig_excedentes_g0-117"></use>
+
+<use x="-29.334636" y="125.846374" href="#tz_fig_excedentes_g0-109"></use>
+
+<use x="-22.277665" y="125.846374" href="#tz_fig_excedentes_g0-105"></use>
+
+<use x="-19.925341" y="125.846374" href="#tz_fig_excedentes_g0-100"></use>
+
+<use x="-15.220693" y="125.846374" href="#tz_fig_excedentes_g0-111"></use>
+
+<use x="-10.986511" y="125.846374" href="#tz_fig_excedentes_g0-114"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+<g fill="#f9e3e2" stroke="#f9e3e2">
+
+<path d="M0 28.45274L89.62596 87.91887H0Z" stroke="none"></path>
+
+</g>
+
+<g fill="#d7433b" stroke="#d7433b">
+
+<g fill="#d7433b" stroke="#d7433b">
+
+</g>
+
+<g transform="translate(14.88129,57.26866)">
+
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-50.082135,125.846374)scale(-1,-1)">
+
+<g fill="#d7433b">
+
+<g stroke="none">
+
+<g fill="#d7433b">
+
+<use x="-45.135338" y="116.381866" href="#tz_fig_excedentes_g0-101"></use>
+
+<use x="-41.37162" y="116.381866" href="#tz_fig_excedentes_g0-120"></use>
+
+<use x="-36.902205" y="116.381866" href="#tz_fig_excedentes_g0-99"></use>
+
+<use x="-33.138487" y="116.381866" href="#tz_fig_excedentes_g0-101"></use>
+
+<use x="-29.374769" y="116.381866" href="#tz_fig_excedentes_g0-100"></use>
+
+<use x="-24.670121" y="116.381866" href="#tz_fig_excedentes_g0-46"></use>
+
+<use x="-50.082135" y="125.846374" href="#tz_fig_excedentes_g0-112"></use>
+
+<use x="-45.377488" y="125.846374" href="#tz_fig_excedentes_g0-114"></use>
+
+<use x="-42.077317" y="125.846374" href="#tz_fig_excedentes_g0-111"></use>
+
+<use x="-37.607902" y="125.846374" href="#tz_fig_excedentes_g0-100"></use>
+
+<use x="-32.903255" y="125.846374" href="#tz_fig_excedentes_g0-117"></use>
+
+<use x="-28.198607" y="125.846374" href="#tz_fig_excedentes_g0-116"></use>
+
+<use x="-24.905354" y="125.846374" href="#tz_fig_excedentes_g0-111"></use>
+
+<use x="-20.671171" y="125.846374" href="#tz_fig_excedentes_g0-114"></use>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</g>
+
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-excedentes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;13.1: O excedente do consumidor (área azul) e o excedente do produtor (área vermelha). A soma é o excedente total, o ganho de bem-estar do mercado.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="calculando-os-excedentes-com-integrais" class="level3" data-number="13.4.3">
+<h3 data-number="13.4.3" class="anchored" data-anchor-id="calculando-os-excedentes-com-integrais"><span class="header-section-number">13.4.3</span> Calculando os excedentes com integrais</h3>
+<p>Quando as curvas são retas, os excedentes são <strong>triângulos</strong>, e a integral coincide com a fórmula da área do triângulo. Mas a integral é mais geral: vale para curvas de qualquer forma. Vejamos um exemplo.</p>
+<p>Sejam a demanda inversa <span class="math inline">\(p = 60 - q\)</span> e a oferta inversa <span class="math inline">\(p = 10 + 4q\)</span>. O equilíbrio: <span class="math inline">\(60 - q = 10 + 4q \Rightarrow 50 = 5q \Rightarrow q^{*} = 10\)</span>, <span class="math inline">\(p^{*} = 50\)</span>.</p>
+<p>O <strong>excedente do consumidor</strong> é a área abaixo da demanda e acima de <span class="math inline">\(p^{*} = 50\)</span>, de <span class="math inline">\(0\)</span> a <span class="math inline">\(10\)</span>:</p>
+<p><span class="math display">\[
+EC = \int_0^{10} \bigl[(60 - q) - 50\bigr]\,dq = \int_0^{10} (10 - q)\,dq = \left[10q - \tfrac{q^2}{2}\right]_0^{10} = 100 - 50 = R\$\,50.
+\]</span></p>
+<p>O <strong>excedente do produtor</strong> é a área acima da oferta e abaixo de <span class="math inline">\(p^{*} = 50\)</span>:</p>
+<p><span class="math display">\[
+EP = \int_0^{10} \bigl[50 - (10 + 4q)\bigr]\,dq = \int_0^{10} (40 - 4q)\,dq = \left[40q - 2q^2\right]_0^{10} = 400 - 200 = R\$\,200.
+\]</span></p>
+<p>O <strong>excedente total</strong> é <span class="math inline">\(EC + EP = 50 + 200 = R\$\,250\)</span>. Esse número mede o ganho líquido de bem-estar que o mercado gera ao permitir essas transações — a base da avaliação econômica de políticas, que retoma no Volume 3.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — confundir o que subtrair de quê">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — confundir o que subtrair de quê
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No excedente do <strong>consumidor</strong>, integramos <span class="math inline">\((\text{demanda} - p^{*})\)</span>: a disposição a pagar <strong>menos</strong> o preço. No excedente do <strong>produtor</strong>, integramos <span class="math inline">\((p^{*} - \text{oferta})\)</span>: o preço <strong>menos</strong> o custo mínimo. Inverter a ordem gera áreas negativas sem sentido. Guarde a lógica: o consumidor ganha o que estava disposto a pagar acima do preço; o produtor ganha o preço acima do que exigiria para vender.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — excedente mede bem-estar?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — excedente mede bem-estar?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O excedente é uma medida monetária de bem-estar poderosa, mas imperfeita. Ela soma reais de ricos e pobres com o mesmo peso — um real de excedente para um bilionário conta igual a um real para alguém na pobreza —, o que ignora a <strong>distribuição</strong>. Além disso, pressupõe que a disposição a pagar reflete o bem-estar verdadeiro, o que a economia comportamental (Volume 15) questiona. Use os excedentes como uma régua útil de <strong>eficiência</strong>, ciente de que <strong>equidade</strong> exige olhar além deles.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">13.5</span> 🇧🇷 Brasil em Foco</h2>
+<p><strong>Peso morto de impostos: quando o excedente evapora.</strong> A ferramenta dos excedentes é a base para medir o custo de eficiência de um imposto — o chamado <strong>peso morto</strong> (ou perda de eficiência). Quando o governo tributa um bem, o preço ao consumidor sobe, o preço ao produtor cai, a quantidade transacionada encolhe, e parte do excedente total <strong>desaparece</strong> (não vira arrecadação nem fica com ninguém): é a área do triângulo de peso morto, calculada por integração. No debate da <strong>reforma tributária</strong> brasileira (a criação do IVA dual — CBS e IBS —, aprovada em 2023 e em implementação), um dos argumentos centrais é justamente que o sistema antigo, com sua cumulatividade e sua enorme complexidade, gerava peso morto elevado: distorcia escolhas, encarecia a produção em cadeia e destruía excedente sem arrecadar. Simplificar e desonerar investimentos, nessa leitura, reduz o triângulo de peso morto e aumenta o excedente total da economia. A teoria deste capítulo é o instrumento com que economistas estimam esses ganhos.</p>
+<p><strong>Excedente do consumidor e a avaliação de programas sociais.</strong> A ideia de excedente do consumidor — o ganho de quem paga menos do que estaria disposto a pagar — aparece na avaliação de políticas de acesso a bens essenciais. Programas como a <strong>tarifa social de energia elétrica</strong> ou os subsídios ao <strong>gás de cozinha</strong> (Auxílio Gás) reduzem, para famílias de baixa renda, o preço de bens de altíssima disposição a pagar (energia e gás são quase indispensáveis). Em linguagem deste capítulo, o subsídio amplia o excedente do consumidor dessas famílias, e o tamanho desse ganho — uma área sob a curva de demanda — é o que se compara ao custo fiscal do programa numa avaliação de custo-benefício. O IPEA e órgãos de avaliação de políticas usam variações dessa medida para dimensionar o benefício social de intervenções sobre preços de bens essenciais.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> Ministério da Fazenda e Instituição Fiscal Independente (IFI) — estudos sobre a reforma tributária e estimativas de ganho de eficiência (redução de peso morto); IPEA — avaliações de programas de subsídio (tarifa social de energia, Auxílio Gás); ANEEL para a tarifa social. Verifique os anos de referência e as hipóteses de elasticidade usadas nas estimativas.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">13.6</span> Resumo do capítulo</h2>
+<ul>
+<li>A <strong>integral indefinida</strong> (antiderivada) é a operação <strong>inversa</strong> da derivada: <span class="math inline">\(\int f(x)\,dx = F(x) + C\)</span>, com <span class="math inline">\(F' = f\)</span>. A <strong>constante <span class="math inline">\(C\)</span></strong> aparece porque a derivada apaga constantes; em Economia, costuma ser o <strong>custo fixo</strong> ou análogo.</li>
+<li>Regra da potência: <span class="math inline">\(\int x^n dx = \dfrac{x^{n+1}}{n+1} + C\)</span> (para <span class="math inline">\(n \ne -1\)</span>). Integrar o <strong>custo marginal</strong> reconstrói o <strong>custo total</strong> (a menos da constante, fixada por um dado do problema).</li>
+<li>A <strong>integral definida</strong> <span class="math inline">\(\int_a^b f\,dx\)</span> é a <strong>área</strong> sob a curva; pelo <strong>Teorema Fundamental do Cálculo</strong>, calcula-se como <span class="math inline">\(F(b) - F(a)\)</span>.</li>
+<li>O <strong>excedente do consumidor</strong> é a área <strong>abaixo da demanda e acima do preço</strong>; o <strong>excedente do produtor</strong>, a área <strong>acima da oferta e abaixo do preço</strong>. A soma é o <strong>excedente total</strong>, medida de bem-estar do mercado.</li>
+<li>Com curvas lineares, os excedentes são triângulos; a integral generaliza para curvas de qualquer forma.</li>
+<li>O excedente mede <strong>eficiência</strong>, não <strong>equidade</strong> (soma reais de todos com o mesmo peso) — uma limitação a ter em mente.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">13.7</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique, com suas palavras, por que a integral indefinida traz uma constante de integração <span class="math inline">\(C\)</span>, mas a integral definida não.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A integral <strong>indefinida</strong> procura <em>todas</em> as funções cuja derivada é <span class="math inline">\(f\)</span>; como a derivada de uma constante é zero, há infinitas antiderivadas diferindo por uma constante — daí o <span class="math inline">\(+C\)</span>. Já a integral <strong>definida</strong> calcula uma <strong>diferença</strong> <span class="math inline">\(F(b) - F(a)\)</span>; a constante aparece nos dois termos e se <strong>cancela</strong> na subtração (<span class="math inline">\([F(b)+C] - [F(a)+C] = F(b)-F(a)\)</span>). Por isso a área não depende de <span class="math inline">\(C\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Calcule as integrais indefinidas: (a) <span class="math inline">\(\int 3x^2\,dx\)</span>; (b) <span class="math inline">\(\int (4 + 6q)\,dq\)</span>; (c) <span class="math inline">\(\int (10 - 2q)\,dq\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(\int 3x^2 dx = 3\cdot\dfrac{x^3}{3} + C = x^3 + C\)</span>.</li>
+<li><span class="math inline">\(\int (4 + 6q) dq = 4q + 3q^2 + C\)</span>.</li>
+<li><span class="math inline">\(\int (10 - 2q) dq = 10q - q^2 + C\)</span>.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> O custo marginal de uma firma é <span class="math inline">\(CMg(q) = 8 + 2q\)</span>, e seu custo fixo é R$,500. Reconstrua a função de custo total <span class="math inline">\(C(q)\)</span> e calcule <span class="math inline">\(C(20)\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(C(q) = \int (8 + 2q)\,dq = 8q + q^2 + C\)</span>. Como <span class="math inline">\(C(0) = 500\)</span> (custo fixo), a constante é <span class="math inline">\(C = 500\)</span>: <span class="math display">\[
+C(q) = 500 + 8q + q^2.
+\]</span> <span class="math inline">\(C(20) = 500 + 160 + 400 = R\$\,1.060\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Calcule a integral definida <span class="math inline">\(\displaystyle\int_0^5 (10 - 2q)\,dq\)</span> e confira o resultado pela área do triângulo correspondente.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\int_0^5 (10 - 2q)\,dq = \left[10q - q^2\right]_0^5 = (50 - 25) - 0 = 25.
+\]</span> Confirmação geométrica: a reta <span class="math inline">\(y = 10 - 2q\)</span> vai de <span class="math inline">\((0, 10)\)</span> a <span class="math inline">\((5, 0)\)</span>; a área é um triângulo de base 5 e altura 10, isto é, <span class="math inline">\(\tfrac{1}{2}\cdot 5\cdot 10 = 25\)</span>. Bate.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Num mercado, a demanda inversa é <span class="math inline">\(p = 80 - 2q\)</span> e a oferta inversa é <span class="math inline">\(p = 20 + q\)</span>. (a) Encontre o equilíbrio. (b) Calcule o excedente do consumidor por integração.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(80 - 2q = 20 + q \Rightarrow 60 = 3q \Rightarrow q^{*} = 20\)</span>, <span class="math inline">\(p^{*} = 40\)</span>.</li>
+<li>Excedente do consumidor: <span class="math display">\[
+EC = \int_0^{20} \bigl[(80 - 2q) - 40\bigr]\,dq = \int_0^{20} (40 - 2q)\,dq = \left[40q - q^2\right]_0^{20} = 800 - 400 = R\$\,400.
+\]</span></li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> No mercado do exercício 5, calcule o excedente do produtor e o excedente total.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+EP = \int_0^{20} \bigl[40 - (20 + q)\bigr]\,dq = \int_0^{20} (20 - q)\,dq = \left[20q - \tfrac{q^2}{2}\right]_0^{20} = 400 - 200 = R\$\,200.
+\]</span> Excedente total: <span class="math inline">\(EC + EP = 400 + 200 = R\$\,600\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) O governo institui um imposto que reduz a quantidade transacionada de um bem de <span class="math inline">\(q^{*} = 20\)</span> para <span class="math inline">\(q_t = 14\)</span>. Explique, em termos de excedentes e integrais, o que acontece com o excedente total e o que é o “peso morto” do imposto. Relacione com a reforma tributária discutida em Brasil em Foco.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Com o imposto, o preço ao consumidor sobe e o ao produtor cai, e a quantidade encolhe de 20 para 14. Parte do excedente total vira <strong>arrecadação</strong> do governo (a área do retângulo imposto × quantidade transacionada), mas outra parte — correspondente às transações que <strong>deixaram de ocorrer</strong> (entre <span class="math inline">\(q = 14\)</span> e <span class="math inline">\(q = 20\)</span>) — simplesmente <strong>desaparece</strong>: ninguém a captura. Essa perda é o <strong>peso morto</strong>, a área do triângulo entre a demanda e a oferta no intervalo das unidades não mais transacionadas, calculável por integração. Ele mede a <strong>ineficiência</strong> do imposto. A reforma tributária brasileira busca reduzir esse peso morto ao simplificar e desonerar cadeias produtivas: menos distorção significa triângulo menor e mais excedente preservado, mesmo mantendo a arrecadação.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) A demanda inversa por um bem é a curva <strong>não linear</strong> <span class="math inline">\(p = 100 - q^2\)</span>. Ao preço de equilíbrio <span class="math inline">\(p^{*} = 36\)</span>, a quantidade é <span class="math inline">\(q^{*} = 8\)</span> (pois <span class="math inline">\(100 - 64 = 36\)</span>). Calcule o excedente do consumidor por integração.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O excedente do consumidor é a área abaixo da demanda e acima de <span class="math inline">\(p^{*} = 36\)</span>, de <span class="math inline">\(0\)</span> a <span class="math inline">\(8\)</span>: <span class="math display">\[
+EC = \int_0^{8} \bigl[(100 - q^2) - 36\bigr]\,dq = \int_0^{8} (64 - q^2)\,dq.
+\]</span> Integrando: <span class="math display">\[
+EC = \left[64q - \frac{q^3}{3}\right]_0^{8} = 64\times 8 - \frac{8^3}{3} = 512 - \frac{512}{3} = 512 - 170{,}67 \approx R\$\,341{,}33.
+\]</span> Aqui a curva é uma parábola, não uma reta: a integral é indispensável, pois não há fórmula de triângulo que sirva. É a vantagem do método integral sobre a geometria elementar.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="13.8">
+<h2 data-number="13.8" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">13.8</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="guidorizzi2018">Guidorizzi (<a href="#ref-guidorizzi2018" role="doc-biblioref">2018</a>)</span> — apresentação rigorosa da integral, do Teorema Fundamental do Cálculo e das técnicas de integração, com muitos exercícios; a base matemática deste capítulo.</li>
+<li><span class="citation" data-cites="chiang2006">Chiang; Wainwright (<a href="#ref-chiang2006" role="doc-biblioref">2006</a>)</span> — trata da integração e de suas aplicações econômicas, incluindo a passagem de funções marginais para totais e o cálculo de excedentes.</li>
+<li><span class="citation" data-cites="varian2015">Varian (<a href="#ref-varian2015" role="doc-biblioref">2015</a>)</span> — desenvolve o excedente do consumidor e do produtor no contexto do bem-estar e da avaliação de políticas; leia-o para ver os excedentes em ação.</li>
+<li><span class="citation" data-cites="pindyck2013">Pindyck; Rubinfeld (<a href="#ref-pindyck2013" role="doc-biblioref">2013</a>)</span> — aplica excedentes à análise de eficiência, impostos e peso morto, com farto uso de exemplos e gráficos.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-chiang2006" class="csl-entry" role="listitem">
+CHIANG, Alpha C.; WAINWRIGHT, Kevin. <strong>Matemática para Economistas</strong>. 4. ed. Rio de Janeiro: Elsevier, 2006.
+</div>
+<div id="ref-guidorizzi2018" class="csl-entry" role="listitem">
+GUIDORIZZI, Hamilton Luiz. <strong>Um Curso de Cálculo, Volume 1</strong>. 6. ed. Rio de Janeiro: LTC, 2018.
+</div>
+<div id="ref-pindyck2013" class="csl-entry" role="listitem">
+PINDYCK, Robert S.; RUBINFELD, Daniel L. <strong>Microeconomia</strong>. 8. ed. São Paulo: Pearson, 2013.
+</div>
+<div id="ref-varian2015" class="csl-entry" role="listitem">
+VARIAN, Hal R. <strong>Microeconomia: uma abordagem moderna</strong>. 9. ed. Rio de Janeiro: Elsevier, 2015.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol02/cap06-lagrange.html" class="pagination-link" aria-label="Otimização com restrições: multiplicadores de Lagrange">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol02/cap08-matrizes.html" class="pagination-link" aria-label="Matrizes e álgebra linear básica">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol02/cap07-integrais-excedentes.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
