@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>37&nbsp; Introdução à teoria dos jogos: dominância e equilíbrio de Nash – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol06/cap02-jogos-repetidos.html" rel="next">
+<link href="../../capitulos/vol05/cap07-regulacao-cade.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">37.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#o-que-é-um-jogo" id="toc-o-que-é-um-jogo" class="nav-link" data-scroll-target="#o-que-é-um-jogo"><span class="header-section-number">37.2</span> O que é um jogo</a>
+  <ul class="collapse">
+  <li><a href="#a-forma-normal-a-matriz-de-payoffs" id="toc-a-forma-normal-a-matriz-de-payoffs" class="nav-link" data-scroll-target="#a-forma-normal-a-matriz-de-payoffs"><span class="header-section-number">37.2.1</span> A forma normal: a matriz de <em>payoffs</em></a></li>
+  </ul></li>
+  <li><a href="#estratégias-dominantes-e-dominadas" id="toc-estratégias-dominantes-e-dominadas" class="nav-link" data-scroll-target="#estratégias-dominantes-e-dominadas"><span class="header-section-number">37.3</span> Estratégias dominantes e dominadas</a>
+  <ul class="collapse">
+  <li><a href="#eliminação-iterada-de-estratégias-dominadas" id="toc-eliminação-iterada-de-estratégias-dominadas" class="nav-link" data-scroll-target="#eliminação-iterada-de-estratégias-dominadas"><span class="header-section-number">37.3.1</span> Eliminação iterada de estratégias dominadas</a></li>
+  </ul></li>
+  <li><a href="#o-equilíbrio-de-nash" id="toc-o-equilíbrio-de-nash" class="nav-link" data-scroll-target="#o-equilíbrio-de-nash"><span class="header-section-number">37.4</span> O equilíbrio de Nash</a>
+  <ul class="collapse">
+  <li><a href="#como-encontrar-o-equilíbrio-de-nash" id="toc-como-encontrar-o-equilíbrio-de-nash" class="nav-link" data-scroll-target="#como-encontrar-o-equilíbrio-de-nash"><span class="header-section-number">37.4.1</span> Como encontrar o equilíbrio de Nash</a></li>
+  </ul></li>
+  <li><a href="#o-dilema-do-prisioneiro" id="toc-o-dilema-do-prisioneiro" class="nav-link" data-scroll-target="#o-dilema-do-prisioneiro"><span class="header-section-number">37.5</span> O dilema do prisioneiro</a></li>
+  <li><a href="#jogos-de-coordenação-e-conflito" id="toc-jogos-de-coordenação-e-conflito" class="nav-link" data-scroll-target="#jogos-de-coordenação-e-conflito"><span class="header-section-number">37.6</span> Jogos de coordenação e conflito</a></li>
+  <li><a href="#sec-jogos-brasil" id="toc-sec-jogos-brasil" class="nav-link" data-scroll-target="#sec-jogos-brasil"><span class="header-section-number">37.7</span> Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">37.8</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">37.9</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">37.10</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol06/cap01-teoria-dos-jogos.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-teoria-dos-jogos" class="quarto-section-identifier"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Dois postos de gasolina na mesma esquina observam-se de manhã. Se um baixar o preço, rouba os clientes do outro — a menos que o outro reaja e baixe também, e então ambos ganham menos. Duas montadoras decidem, cada uma no seu conselho, se lançam agora o carro elétrico ou esperam a rival dar o primeiro passo. Um país pondera se corta emissões, sabendo que o esforço só compensa se os outros também cortarem. Em todos esses casos, o melhor que cada um pode fazer <strong>depende do que o outro faz</strong> — e o outro está pensando exatamente a mesma coisa sobre você. Não há como decidir bem sem se colocar na cabeça do adversário.</p>
+<p>O estudo formal dessas situações — em que o resultado de cada agente depende das escolhas de todos — é a <strong>teoria dos jogos</strong>. Ela nasceu na matemática e na economia em meados do século XX e hoje é a linguagem comum do oligopólio (<a href="../vol05/cap06-oligopolio.html" class="quarto-xref"><span>Capítulo 35</span></a>), da política, da biologia evolutiva e até das negociações internacionais. Este capítulo apresenta seus fundamentos: o que é um jogo, como resolvê-lo por <strong>eliminação de estratégias dominadas</strong> e, sobretudo, o conceito que organiza quase tudo o que virá — o <strong>equilíbrio de Nash</strong>.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="37.1">
+<h2 data-number="37.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">37.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>descrever os elementos de um <strong>jogo</strong> — jogadores, estratégias e <em>payoffs</em> — e representá-lo na forma normal (matriz);</li>
+<li>identificar <strong>estratégias dominantes</strong> e <strong>dominadas</strong> e resolver jogos por eliminação iterada;</li>
+<li>definir e localizar o <strong>equilíbrio de Nash</strong> em jogos simples;</li>
+<li>analisar o <strong>dilema do prisioneiro</strong> e entender por que a racionalidade individual pode levar a um resultado coletivamente ruim;</li>
+<li>reconhecer jogos sem equilíbrio em estratégias puras e a ideia de <strong>estratégia mista</strong>;</li>
+<li>aplicar a análise a situações econômicas brasileiras (cartéis, guerra fiscal, filas).</li>
+</ul>
+</section>
+<section id="o-que-é-um-jogo" class="level2" data-number="37.2">
+<h2 data-number="37.2" class="anchored" data-anchor-id="o-que-é-um-jogo"><span class="header-section-number">37.2</span> O que é um jogo</h2>
+<p>Na linguagem da teoria dos jogos, um <strong>jogo</strong> não é necessariamente uma brincadeira: é qualquer situação de interação estratégica com três ingredientes.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Jogo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Jogo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um <strong>jogo</strong> é composto por:</p>
+<ul>
+<li><strong>Jogadores</strong> — os agentes que decidem (pessoas, firmas, governos);</li>
+<li><strong>Estratégias</strong> — o conjunto de ações que cada jogador pode escolher;</li>
+<li><strong><em>Payoffs</em></strong> (retornos) — o resultado que cada jogador obtém para <em>cada combinação</em> de estratégias de todos os jogadores. É o que ele quer maximizar (lucro, utilidade, votos).</li>
+</ul>
+<p>O traço definidor é a <strong>interdependência</strong>: o <em>payoff</em> de cada jogador depende não só da própria escolha, mas também da dos demais.</p>
+</div>
+</div>
+<p>Vamos supor, por ora, três coisas que simplificam a análise e que relaxaremos depois: os jogadores são <strong>racionais</strong> (escolhem a estratégia que maximiza seu <em>payoff</em>), decidem <strong>simultaneamente</strong> (sem observar a escolha do outro antes de agir) e o jogo é de <strong>informação completa</strong> (todos conhecem as estratégias e os <em>payoffs</em> de todos). Jogos sequenciais e com informação incompleta virão no próximo capítulo (<a href="cap02-jogos-repetidos.html" class="quarto-xref"><span>Capítulo 38</span></a>) e adiante.</p>
+<section id="a-forma-normal-a-matriz-de-payoffs" class="level3" data-number="37.2.1">
+<h3 data-number="37.2.1" class="anchored" data-anchor-id="a-forma-normal-a-matriz-de-payoffs"><span class="header-section-number">37.2.1</span> A forma normal: a matriz de <em>payoffs</em></h3>
+<p>Um jogo com dois jogadores e poucas estratégias é representado por uma <strong>matriz de <em>payoffs</em></strong>, ou forma normal. Considere duas firmas, Alfa e Beta, que decidem cada uma se cobram <strong>preço alto</strong> ou <strong>preço baixo</strong>. A <a href="#tbl-jogo-precos" class="quarto-xref">Tabela&nbsp;<span>37.1</span></a> mostra os lucros (em milhões de reais) de cada combinação: em cada célula, o <strong>primeiro</strong> número é o <em>payoff</em> da Alfa (jogadora das linhas), o <strong>segundo</strong> o da Beta (jogadora das colunas).</p>
+<div id="tbl-jogo-precos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-jogo-precos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;37.1: Matriz de <em>payoffs</em> de um jogo de preços (lucros em R$ milhões).
+</figcaption>
+<div aria-describedby="tbl-jogo-precos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Alfa \ Beta</th>
+<th style="text-align: center;">Beta: Preço alto</th>
+<th style="text-align: center;">Beta: Preço baixo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Alfa: Preço alto</strong></td>
+<td style="text-align: center;">10 , 10</td>
+<td style="text-align: center;">2 , 14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Alfa: Preço baixo</strong></td>
+<td style="text-align: center;">14 , 2</td>
+<td style="text-align: center;">5 , 5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Leia a matriz assim: se ambas cobram preço alto, cada uma ganha 10; se a Alfa baixa e a Beta mantém alto, a Alfa fatura 14 (rouba o mercado) e a Beta só 2. Guarde esta matriz — ela é, veremos, um <strong>dilema do prisioneiro</strong> disfarçado.</p>
+</section>
+</section>
+<section id="estratégias-dominantes-e-dominadas" class="level2" data-number="37.3">
+<h2 data-number="37.3" class="anchored" data-anchor-id="estratégias-dominantes-e-dominadas"><span class="header-section-number">37.3</span> Estratégias dominantes e dominadas</h2>
+<p>A primeira ferramenta para resolver um jogo é procurar estratégias que sejam boas (ou ruins) <em>independentemente</em> do que o adversário faça.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Estratégia dominante e dominada">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Estratégia dominante e dominada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma estratégia é <strong>estritamente dominante</strong> para um jogador se lhe dá um <em>payoff</em> maior do que qualquer outra das suas estratégias, <strong>qualquer que seja</strong> a escolha dos demais. A estratégia inferior é <strong>dominada</strong>: nunca vale a pena jogá-la.</p>
+</div>
+</div>
+<p>Voltemos à <a href="#tbl-jogo-precos" class="quarto-xref">Tabela&nbsp;<span>37.1</span></a> e raciocinemos pela Alfa. Ela não sabe o que a Beta fará, então examina os dois cenários:</p>
+<ul>
+<li><strong>Se a Beta cobra alto:</strong> Alfa ganha 10 cobrando alto ou 14 cobrando baixo → baixo é melhor.</li>
+<li><strong>Se a Beta cobra baixo:</strong> Alfa ganha 2 cobrando alto ou 5 cobrando baixo → baixo é melhor.</li>
+</ul>
+<p>Em <em>ambos</em> os casos, cobrar <strong>baixo</strong> rende mais. Logo, “preço baixo” é a <strong>estratégia dominante</strong> da Alfa, e “preço alto” é dominada. Como o jogo é simétrico, o mesmo vale para a Beta. A previsão é imediata: <strong>ambas cobram preço baixo</strong> e ganham 5 cada — mesmo que ambas soubessem que, cobrando alto, ganhariam 10 cada. A racionalidade individual as leva a um resultado pior para as duas. Esse é o cerne do dilema do prisioneiro, que já encontramos no cartel do oligopólio.</p>
+<section id="eliminação-iterada-de-estratégias-dominadas" class="level3" data-number="37.3.1">
+<h3 data-number="37.3.1" class="anchored" data-anchor-id="eliminação-iterada-de-estratégias-dominadas"><span class="header-section-number">37.3.1</span> Eliminação iterada de estratégias dominadas</h3>
+<p>Nem todo jogador tem uma estratégia dominante, mas às vezes conseguimos resolver o jogo em etapas: eliminamos uma estratégia dominada, e no jogo reduzido uma nova estratégia pode passar a ser dominada, e assim por diante. Esse método — <strong>eliminação iterada de estratégias estritamente dominadas</strong> — encolhe o jogo e, em casos felizes, aponta um único resultado. Sua justificativa é a <strong>racionalidade comum</strong>: eu sei que você é racional, você sabe que eu sei, e ninguém joga uma estratégia que sabe ser sempre pior.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — dominância exige comparar dentro da mesma coluna">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — dominância exige comparar dentro da mesma coluna
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ao checar se uma estratégia da Alfa é dominante, compare os <em>payoffs</em> <strong>da Alfa</strong> mantendo fixa a escolha da Beta (isto é, dentro de cada coluna), nunca comparando o número da Alfa com o da Beta. O erro clássico é olhar a célula (14, 2) e concluir “a Alfa ganha mais que a Beta, então joga baixo”. A comparação certa é entre as <em>linhas</em> da Alfa, coluna por coluna.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="o-equilíbrio-de-nash" class="level2" data-number="37.4">
+<h2 data-number="37.4" class="anchored" data-anchor-id="o-equilíbrio-de-nash"><span class="header-section-number">37.4</span> O equilíbrio de Nash</h2>
+<p>A dominância resolve poucos jogos. O conceito central da teoria dos jogos — que rendeu o Nobel a John Nash em 1994 e vale para praticamente qualquer jogo — é mais geral e mais sutil.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Equilíbrio de Nash">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Equilíbrio de Nash
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um conjunto de estratégias, uma para cada jogador, é um <strong>equilíbrio de Nash</strong> se <strong>nenhum jogador consegue melhorar seu próprio <em>payoff</em> mudando unilateralmente de estratégia</strong>, dadas as estratégias dos demais. Em equilíbrio, cada jogador está dando a <strong>melhor resposta</strong> à estratégia do outro — e ninguém tem motivo para se arrepender ou desviar sozinho <span class="citation" data-cites="nash1951">(<a href="#ref-nash1951" role="doc-biblioref">Nash, 1951</a>)</span>.</p>
+</div>
+</div>
+<p>A ideia é a de um estado <strong>autoconsistente</strong> ou “sem arrependimento”: se o jogo parasse ali e cada um pudesse rever sua jogada isoladamente, ninguém quereria mudar. Note a palavra decisiva: <strong>unilateralmente</strong>. O equilíbrio não é o melhor resultado possível para o grupo; é apenas um ponto estável às mudanças individuais.</p>
+<section id="como-encontrar-o-equilíbrio-de-nash" class="level3" data-number="37.4.1">
+<h3 data-number="37.4.1" class="anchored" data-anchor-id="como-encontrar-o-equilíbrio-de-nash"><span class="header-section-number">37.4.1</span> Como encontrar o equilíbrio de Nash</h3>
+<p>O método prático para uma matriz 2×2 é o das <strong>melhores respostas</strong>:</p>
+<ol type="1">
+<li>Para cada estratégia da Beta (cada coluna), sublinhe o maior <em>payoff</em> da Alfa naquela coluna — é a melhor resposta da Alfa.</li>
+<li>Para cada estratégia da Alfa (cada linha), sublinhe o maior <em>payoff</em> da Beta naquela linha — a melhor resposta da Beta.</li>
+<li>Toda célula em que <strong>os dois</strong> <em>payoffs</em> estão sublinhados é um equilíbrio de Nash: cada jogador está dando a melhor resposta ao outro.</li>
+</ol>
+<p>Aplicando à <a href="#tbl-jogo-precos" class="quarto-xref">Tabela&nbsp;<span>37.1</span></a>: a melhor resposta da Alfa é sempre “baixo” (14 &gt; 10; 5 &gt; 2), e a da Beta também. A célula (baixo, baixo) = (5, 5) tem os dois sublinhados. É o <strong>único</strong> equilíbrio de Nash — e coincide com o resultado por dominância, como sempre ocorre quando há estratégias dominantes.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — dominância implica Nash, mas não o contrário">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — dominância implica Nash, mas não o contrário
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se todos os jogadores têm estratégia dominante, o perfil de estratégias dominantes é automaticamente um equilíbrio de Nash. Mas o equilíbrio de Nash é mais amplo: existe em muitos jogos sem qualquer estratégia dominante, e é por isso que ele, e não a dominância, é a ferramenta-padrão.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="o-dilema-do-prisioneiro" class="level2" data-number="37.5">
+<h2 data-number="37.5" class="anchored" data-anchor-id="o-dilema-do-prisioneiro"><span class="header-section-number">37.5</span> O dilema do prisioneiro</h2>
+<p>O jogo mais famoso da disciplina merece sua história original. Dois suspeitos de um crime são presos e interrogados em salas separadas, sem poder se comunicar. O promotor propõe a cada um o mesmo trato:</p>
+<ul>
+<li>Se <strong>você confessa (delata)</strong> e o outro fica calado, você sai livre e ele pega 10 anos.</li>
+<li>Se <strong>ambos confessam</strong>, cada um pega 8 anos.</li>
+<li>Se <strong>ambos ficam calados</strong>, a polícia só tem provas para 1 ano de cadeia para cada.</li>
+</ul>
+<p>A <a href="#tbl-prisioneiro" class="quarto-xref">Tabela&nbsp;<span>37.2</span></a> traduz isso em <em>payoffs</em> (anos de prisão, com sinal negativo porque prisão é ruim — quanto maior o número, melhor).</p>
+<div id="tbl-prisioneiro" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-prisioneiro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;37.2: O dilema do prisioneiro (<em>payoffs</em> = −anos de prisão).
+</figcaption>
+<div aria-describedby="tbl-prisioneiro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Preso 1 \ Preso 2</th>
+<th style="text-align: center;">Ficar calado</th>
+<th style="text-align: center;">Confessar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Ficar calado</strong></td>
+<td style="text-align: center;">−1 , −1</td>
+<td style="text-align: center;">−10 , 0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Confessar</strong></td>
+<td style="text-align: center;">0 , −10</td>
+<td style="text-align: center;">−8 , −8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Analise pela dominância: para o Preso 1, se o Preso 2 fica calado, confessar (0) é melhor que ficar calado (−1); se o Preso 2 confessa, confessar (−8) é melhor que calar (−10). <strong>Confessar é dominante para ambos.</strong> O equilíbrio de Nash é (confessar, confessar), com −8 cada. E aqui está o dilema: se os dois tivessem ficado calados, pegariam só 1 ano cada — resultado muito melhor <strong>para ambos</strong>. A busca individual pelo melhor resultado produz um desfecho coletivamente ruim.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Por que o dilema do prisioneiro é tão importante">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Por que o dilema do prisioneiro é tão importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O dilema captura a tensão entre <strong>interesse individual</strong> e <strong>bem-estar coletivo</strong> que reaparece em incontáveis contextos: o cartel que colapsa porque cada firma quer trair (<a href="../vol05/cap06-oligopolio.html" class="quarto-xref"><span>Capítulo 35</span></a>), a corrida armamentista, a sobrepesca, a poluição, a sonegação de impostos, a guerra fiscal entre estados. Em todos, a estratégia “egoísta” domina, mas leva todos a um resultado pior que a cooperação. Entender <em>por que</em> a cooperação falha é o primeiro passo para desenhar instituições que a sustentem — tema do próximo capítulo.</p>
+</div>
+</div>
+<p>O equilíbrio de Nash do dilema é um resultado que <strong>não é eficiente no sentido de Pareto</strong>: existe outro resultado (calar, calar) que melhora a situação de ambos. Isso desfaz um mal-entendido comum: o equilíbrio de Nash descreve o que agentes racionais <em>farão</em>, não o que seria <em>melhor</em> que fizessem.</p>
+</section>
+<section id="jogos-de-coordenação-e-conflito" class="level2" data-number="37.6">
+<h2 data-number="37.6" class="anchored" data-anchor-id="jogos-de-coordenação-e-conflito"><span class="header-section-number">37.6</span> Jogos de coordenação e conflito</h2>
+<p>Nem todo jogo é um dilema. Duas outras famílias são instrutivas — e ambas têm equilíbrios de Nash múltiplos ou nenhum em estratégias puras.</p>
+<p><strong>Coordenação.</strong> Imagine que você e um amigo perderam o contato num shopping, sem celular. Cada um pode ir à praça de alimentação ou à entrada principal. Vocês só se reencontram se forem ao <strong>mesmo</strong> lugar; o local em si é indiferente. Há <strong>dois</strong> equilíbrios de Nash (ambos na praça; ambos na entrada): dado que o outro vai a um lugar, sua melhor resposta é ir ao mesmo. O problema não é conflito de interesses — é <strong>coordenar</strong> expectativas. Esses jogos explicam por que padrões (a tomada de três pinos, o lado da rua em que se dirige, uma norma técnica) se firmam: uma vez estabelecido um ponto focal, ninguém quer desviar.</p>
+<p><strong>Conflito puro e estratégias mistas.</strong> Considere par ou ímpar, ou o pênalti no futebol: o batedor quer chutar para onde o goleiro <em>não</em> vai; o goleiro quer pular para onde a bola <em>vai</em>. Se o batedor sempre chutasse à direita, o goleiro aprenderia e pularia à direita. Não existe par de estratégias <strong>puras</strong> (uma escolha fixa) que seja equilíbrio, porque de qualquer célula um dos dois quer desviar. A solução é a <strong>estratégia mista</strong>: cada jogador <strong>aleatoriza</strong> entre as opções com certas probabilidades (o batedor chuta à direita com probabilidade <span class="math inline">\(p\)</span>), de modo a deixar o adversário indiferente. Nash provou que <strong>todo jogo finito tem pelo menos um equilíbrio</strong> — em estratégias puras ou mistas. Por isso bons batedores e goleiros são imprevisíveis: a imprevisibilidade é, literalmente, o equilíbrio.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Estratégia pura e mista">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Estratégia pura e mista
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma <strong>estratégia pura</strong> é a escolha determinística de uma única ação. Uma <strong>estratégia mista</strong> é uma distribuição de probabilidade sobre as ações possíveis — o jogador sorteia sua jogada segundo essas probabilidades. Em equilíbrio de estratégias mistas, cada jogador escolhe as probabilidades que tornam o adversário indiferente entre as opções dele.</p>
+</div>
+</div>
+</section>
+<section id="sec-jogos-brasil" class="level2" data-number="37.7">
+<h2 data-number="37.7" class="anchored" data-anchor-id="sec-jogos-brasil"><span class="header-section-number">37.7</span> Brasil em Foco</h2>
+<p>A teoria dos jogos ilumina disputas cotidianas e de política econômica no Brasil.</p>
+<p><strong>Guerra fiscal entre estados: um dilema do prisioneiro federativo.</strong> Por décadas, estados brasileiros concederam reduções de <strong>ICMS</strong> para atrair fábricas e centros de distribuição — a chamada <strong>guerra fiscal</strong>. A estrutura é a de um dilema: para cada estado, oferecer o incentivo é estratégia dominante (se os outros não oferecem, ele atrai a empresa; se oferecem, ele precisa oferecer para não perder). Mas quando <strong>todos</strong> concedem, as empresas se instalam onde já se instalariam e a arrecadação de todos cai — resultado pior para o conjunto dos estados, exatamente como (confessar, confessar). A resposta institucional foi tentar <strong>mudar o jogo</strong>: a Lei Complementar 160/2017 e decisões do STF buscaram disciplinar os incentivos, e a reforma tributária (EC 132/2023), ao criar o IBS com cobrança no destino, tende a esvaziar a guerra fiscal — ou seja, remover o próprio incentivo a “trair”.</p>
+<p><strong>Cartéis e a leniência do CADE.</strong> Como vimos no oligopólio (<a href="../vol05/cap06-oligopolio.html" class="quarto-xref"><span>Capítulo 35</span></a>), o cartel é um dilema do prisioneiro: cada firma quer trair o acordo. Os <strong>acordos de leniência</strong> do CADE turbinam esse incentivo, oferecendo imunidade a quem delatar primeiro — transformam a instabilidade natural do cartel em ferramenta de detecção. É teoria dos jogos aplicada à política antitruste.</p>
+<p><strong>Filas, trânsito e o “furar”.</strong> No trânsito de qualquer capital brasileira, fechar o cruzamento no amarelo é individualmente tentador e coletivamente desastroso (o <em>gridlock</em> que trava todos). Furar a fila, buzinar, avançar o sinal — são microdilemas do prisioneiro em que a estratégia “esperta” domina e o resultado agregado piora para todos. Normas, multas e fiscalização são tentativas de alterar os <em>payoffs</em> para tornar a cooperação (respeitar a fila e o sinal) a melhor resposta individual.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> CONFAZ e Ministério da Fazenda (convênios de ICMS e guerra fiscal); textos do STF sobre incentivos de ICMS e a EC 132/2023 (reforma tributária); CADE (casos de cartel e acordos de leniência). Ao citar a reforma tributária, verifique o cronograma de transição, que se estende ao longo dos anos seguintes à promulgação.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="37.8">
+<h2 data-number="37.8" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">37.8</span> Resumo do capítulo</h2>
+<ul>
+<li>Um <strong>jogo</strong> tem jogadores, estratégias e <em>payoffs</em>; o que o define é a <strong>interdependência estratégica</strong> — o resultado de cada um depende das escolhas de todos.</li>
+<li>A <strong>forma normal</strong> representa o jogo numa <strong>matriz de <em>payoffs</em></strong>. Em cada célula, o primeiro número é o <em>payoff</em> do jogador das linhas; o segundo, o das colunas.</li>
+<li>Uma <strong>estratégia dominante</strong> é melhor qualquer que seja a jogada do outro; uma <strong>dominada</strong> nunca compensa. Podem-se eliminar dominadas iterativamente para simplificar o jogo.</li>
+<li>O <strong>equilíbrio de Nash</strong> é o perfil de estratégias em que ninguém melhora <strong>desviando unilateralmente</strong>: cada um dá a <strong>melhor resposta</strong> ao outro. Localiza-se pelo método das melhores respostas (sublinhar os máximos).</li>
+<li>Dominância implica Nash, mas há equilíbrio de Nash em muitos jogos sem estratégia dominante — por isso Nash é a ferramenta-padrão.</li>
+<li>No <strong>dilema do prisioneiro</strong>, a estratégia dominante (trair/confessar) leva a um equilíbrio <strong>pior para ambos</strong> que a cooperação: interesse individual × bem-estar coletivo.</li>
+<li>Há jogos de <strong>coordenação</strong> (equilíbrios múltiplos; o desafio é alinhar expectativas) e de <strong>conflito puro</strong> (sem equilíbrio em estratégias puras; a solução é <strong>aleatorizar</strong> — estratégia mista). Todo jogo finito tem ao menos um equilíbrio de Nash.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="37.9">
+<h2 data-number="37.9" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">37.9</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Resolva cada item antes de abrir a solução. A dificuldade cresce: conceituais, depois numéricos, por fim análise de caso.</p>
+</div>
+</div>
+<p><strong>1.</strong> Defina, com suas palavras, o que torna uma situação um “jogo” no sentido da teoria dos jogos. Dê um exemplo do seu cotidiano que <strong>não</strong> seja um jogo e explique por quê.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Uma situação é um jogo quando há <strong>interdependência estratégica</strong>: o resultado (payoff) de cada agente depende não só da sua escolha, mas também da dos outros, e cada um leva isso em conta ao decidir. Decidir se levo guarda-chuva olhando a previsão do tempo <strong>não</strong> é um jogo: a chuva não “reage” à minha escolha; é uma decisão sob incerteza contra a natureza, não contra um agente que também otimiza. Já decidir o preço da minha barraca de pastel na feira, sabendo que o vizinho ajustará o dele em resposta, é um jogo.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Na <a href="#tbl-jogo-precos" class="quarto-xref">Tabela&nbsp;<span>37.1</span></a>, mostre passo a passo por que “preço baixo” é estratégia dominante para a Alfa. Em seguida, explique por que o equilíbrio (baixo, baixo) é pior para as duas firmas do que (alto, alto).</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Comparando as linhas da Alfa, coluna por coluna: se a Beta joga <strong>alto</strong>, a Alfa ganha 14 (baixo) contra 10 (alto) → baixo melhor. Se a Beta joga <strong>baixo</strong>, a Alfa ganha 5 (baixo) contra 2 (alto) → baixo melhor. Como baixo vence nas duas colunas, é <strong>dominante</strong>. O mesmo para a Beta (simetria). Logo o equilíbrio é (baixo, baixo) = (5, 5). Mas (alto, alto) daria (10, 10), melhor para <strong>ambas</strong>. Cada firma, ao buscar seu melhor resultado individual, contribui para um desfecho coletivamente inferior — é um dilema do prisioneiro. A cooperação (ambas alto) não é sustentável porque cada uma tem incentivo a trair (baixar) e ganhar 14.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Considere o jogo abaixo (payoffs Linha, Coluna). Encontre todos os equilíbrios de Nash em estratégias puras pelo método das melhores respostas.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">L \ C</th>
+<th style="text-align: center;">Esquerda</th>
+<th style="text-align: center;">Direita</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Cima</strong></td>
+<td style="text-align: center;">3 , 3</td>
+<td style="text-align: center;">0 , 2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Baixo</strong></td>
+<td style="text-align: center;">2 , 0</td>
+<td style="text-align: center;">1 , 1</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Melhores respostas da Linha: se Coluna joga Esquerda, Linha compara 3 (Cima) vs 2 (Baixo) → <strong>Cima</strong>. Se Coluna joga Direita, 0 (Cima) vs 1 (Baixo) → <strong>Baixo</strong>. Melhores respostas da Coluna: se Linha joga Cima, 3 (Esq) vs 2 (Dir) → <strong>Esquerda</strong>. Se Linha joga Baixo, 0 (Esq) vs 1 (Dir) → <strong>Direita</strong>. As células onde ambos dão melhor resposta: (Cima, Esquerda) = (3,3) — Linha quer Cima e Coluna quer Esquerda, confere; e (Baixo, Direita) = (1,1) — Linha quer Baixo e Coluna quer Direita, confere. <strong>Há dois equilíbrios de Nash:</strong> (Cima, Esquerda) e (Baixo, Direita). É um jogo de coordenação — note que (3,3) é melhor para os dois, mas (1,1) também é estável: dele nenhum desvia sozinho.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Explique a diferença entre “equilíbrio de Nash” e “resultado que maximiza o bem-estar do grupo”. Use o dilema do prisioneiro para ilustrar.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O equilíbrio de Nash é um ponto <strong>estável a desvios unilaterais</strong>: dado o que os outros fazem, ninguém melhora mudando sozinho. Isso não garante que seja o melhor para o grupo. No dilema do prisioneiro, o equilíbrio (confessar, confessar) dá −8 a cada um, mas (calar, calar) daria −1 a cada — muito melhor para ambos. (calar, calar), porém, <strong>não é equilíbrio</strong>: a partir dele, cada preso melhora confessando (passa de −1 a 0). Assim, o equilíbrio de Nash prevê o comportamento de agentes racionais e egoístas, que pode ser coletivamente ineficiente (não ótimo de Pareto). Maximizar o bem-estar do grupo pode exigir um resultado que não é auto-sustentável sem um mecanismo externo (contrato, punição, repetição).</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Por que o pênalti no futebol não tem equilíbrio de Nash em estratégias puras? O que a teoria prevê que bons batedores e goleiros façam?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>É um jogo de <strong>conflito puro</strong> (soma aproximadamente zero): o batedor quer chutar para onde o goleiro não vai; o goleiro quer ir para onde a bola vai. Para qualquer par de escolhas fixas, um dos dois quer desviar: se o batedor sempre chuta à direita, o goleiro pula à direita, e então o batedor prefere a esquerda; e assim por diante, sem ponto de repouso. Não há, portanto, equilíbrio em estratégias <strong>puras</strong>. A teoria prevê <strong>estratégias mistas</strong>: cada um aleatoriza suas escolhas com probabilidades que deixam o adversário indiferente, tornando-se <strong>imprevisível</strong>. Dados reais de pênaltis são notavelmente consistentes com o equilíbrio de estratégias mistas — os jogadores de fato se comportam de modo próximo ao aleatório ótimo.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> (Análise de caso) A guerra fiscal do ICMS entre estados brasileiros é frequentemente descrita como um dilema do prisioneiro. (a) Modele-a: quem são os jogadores, quais as estratégias, por que “conceder incentivo” é dominante? (b) Por que o resultado é ruim para o conjunto dos estados? (c) Como a reforma tributária tenta resolver o problema?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>(a)</strong> Jogadores: os estados (simplifique para dois). Estratégias: “conceder incentivo de ICMS” ou “não conceder”. Conceder é dominante porque: se o outro não concede, eu atraio a empresa concedendo; se o outro concede, preciso conceder também para não perder a empresa. Em qualquer cenário, conceder é a melhor resposta — como “confessar”. <strong>(b)</strong> Quando <strong>todos</strong> concedem, as empresas acabam se instalando onde já teria feito sentido por razões de mercado (logística, mão de obra), mas agora <strong>sem pagar</strong> o imposto que pagariam: a arrecadação conjunta cai e o benefício foi capturado pelas empresas, sem ganho líquido de investimento para o conjunto — resultado pior para todos os estados, análogo a (confessar, confessar). <strong>(c)</strong> A reforma tributária (EC 132/2023) substitui o ICMS pelo IBS com tributação <strong>no destino</strong> (onde o bem é consumido, não onde é produzido). Isso <strong>remove o incentivo</strong> a conceder benefícios na origem para atrair fábricas, pois o imposto passa a ser devido no estado consumidor — muda a estrutura de <em>payoffs</em> do jogo, esvaziando a guerra fiscal em vez de apenas proibi-la. É o princípio geral: para escapar de um dilema do prisioneiro, mude as regras do jogo.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Desafio) Um jogo de coordenação tem dois equilíbrios de Nash, um deles melhor para os dois jogadores (como o exercício 3). Se os jogadores não podem se comunicar, o que pode fazê-los convergir para um equilíbrio específico? Relacione com a ideia de “ponto focal” e dê um exemplo econômico.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Sem comunicação, a teoria pura não seleciona entre equilíbrios múltiplos — ambos são estáveis. O que resolve na prática é um <strong>ponto focal</strong> (conceito de Schelling): algo saliente, culturalmente compartilhado ou historicamente estabelecido, que faz os jogadores esperarem que o outro escolha uma opção específica. Ex.: se dois se perdem numa cidade, tendem a ir a um marco óbvio (uma praça central); a saliência coordena as expectativas. Em economia, pontos focais explicam por que <strong>padrões</strong> e <strong>normas</strong> se firmam: o dólar como moeda de referência internacional, um preço “redondo” como âncora numa negociação, uma norma técnica adotada porque “todo mundo usa”. Uma vez que um equilíbrio vira ponto focal, cada agente espera que os outros o sigam, e desviar deixa de compensar — a expectativa se torna autorrealizável. Isso também esclarece por que padrões inferiores podem persistir (teclado QWERTY): a coordenação prende todos ao equilíbrio estabelecido, mesmo que outro fosse melhor.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="37.10">
+<h2 data-number="37.10" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">37.10</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="varian2015">Varian (<a href="#ref-varian2015" role="doc-biblioref">2015</a>)</span> — capítulos de teoria dos jogos e oligopólio; apresenta dominância, Nash e estratégias mistas de forma acessível e conectada à microeconomia.</li>
+<li><span class="citation" data-cites="pindyck2013">Pindyck; Rubinfeld (<a href="#ref-pindyck2013" role="doc-biblioref">2013</a>)</span> — desenvolve o dilema do prisioneiro, jogos de coordenação e aplicações a oligopólio com exemplos abundantes.</li>
+<li><span class="citation" data-cites="nash1951">Nash (<a href="#ref-nash1951" role="doc-biblioref">1951</a>)</span> — o artigo seminal, de duas páginas, que definiu o equilíbrio que leva seu nome e provou sua existência em jogos finitos.</li>
+<li><span class="citation" data-cites="neumann1944">Neumann; Morgenstern (<a href="#ref-neumann1944" role="doc-biblioref">1944</a>)</span> — a obra fundadora da teoria dos jogos, que introduziu a forma normal e o tratamento de jogos de soma zero.</li>
+<li><span class="citation" data-cites="nicholson2019">Nicholson; Snyder (<a href="#ref-nicholson2019" role="doc-biblioref">2019</a>)</span> — tratamento mais formal, com a definição rigorosa de equilíbrio e extensões.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-nash1951" class="csl-entry" role="listitem">
+NASH, John. Non-Cooperative Games. <strong>Annals of Mathematics</strong>, v. 54, n. 2, p. 286–295, 1951.
+</div>
+<div id="ref-neumann1944" class="csl-entry" role="listitem">
+NEUMANN, John von; MORGENSTERN, Oskar. <strong>Theory of Games and Economic Behavior</strong>. Princeton: Princeton University Press, 1944.
+</div>
+<div id="ref-nicholson2019" class="csl-entry" role="listitem">
+NICHOLSON, Walter; SNYDER, Christopher. <strong>Teoria Microeconômica: Princípios Básicos e Aplicações</strong>. 11. ed. São Paulo: Cengage Learning, 2019.
+</div>
+<div id="ref-pindyck2013" class="csl-entry" role="listitem">
+PINDYCK, Robert S.; RUBINFELD, Daniel L. <strong>Microeconomia</strong>. 8. ed. São Paulo: Pearson, 2013.
+</div>
+<div id="ref-varian2015" class="csl-entry" role="listitem">
+VARIAN, Hal R. <strong>Microeconomia: uma abordagem moderna</strong>. 9. ed. Rio de Janeiro: Elsevier, 2015.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="pagination-link" aria-label="Regulação e defesa da concorrência: o CADE">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="pagination-link" aria-label="Jogos sequenciais, repetidos e aplicações">
+        <span class="nav-page-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol06/cap01-teoria-dos-jogos.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

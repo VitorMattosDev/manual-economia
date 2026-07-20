@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>32&nbsp; Concorrência perfeita – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol05/cap04-monopolio.html" rel="next">
+<link href="../../capitulos/vol05/cap02-custos.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol05/cap01-teoria-da-producao.html">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">32.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#as-hipóteses-do-modelo" id="toc-as-hipóteses-do-modelo" class="nav-link" data-scroll-target="#as-hipóteses-do-modelo"><span class="header-section-number">32.2</span> As hipóteses do modelo</a></li>
+  <li><a href="#a-receita-da-firma-competitiva" id="toc-a-receita-da-firma-competitiva" class="nav-link" data-scroll-target="#a-receita-da-firma-competitiva"><span class="header-section-number">32.3</span> A receita da firma competitiva</a></li>
+  <li><a href="#a-decisão-de-produção-p-cmg" id="toc-a-decisão-de-produção-p-cmg" class="nav-link" data-scroll-target="#a-decisão-de-produção-p-cmg"><span class="header-section-number">32.4</span> A decisão de produção: <span class="math inline">\(P = CMg\)</span></a></li>
+  <li><a href="#fechar-ou-continuar-a-condição-de-shutdown" id="toc-fechar-ou-continuar-a-condição-de-shutdown" class="nav-link" data-scroll-target="#fechar-ou-continuar-a-condição-de-shutdown"><span class="header-section-number">32.5</span> Fechar ou continuar? A condição de <em>shutdown</em></a></li>
+  <li><a href="#o-ajuste-de-longo-prazo-entrada-saída-e-lucro-zero" id="toc-o-ajuste-de-longo-prazo-entrada-saída-e-lucro-zero" class="nav-link" data-scroll-target="#o-ajuste-de-longo-prazo-entrada-saída-e-lucro-zero"><span class="header-section-number">32.6</span> O ajuste de longo prazo: entrada, saída e lucro zero</a></li>
+  <li><a href="#a-eficiência-da-concorrência-perfeita" id="toc-a-eficiência-da-concorrência-perfeita" class="nav-link" data-scroll-target="#a-eficiência-da-concorrência-perfeita"><span class="header-section-number">32.7</span> A eficiência da concorrência perfeita</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">32.8</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">32.9</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">32.10</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">32.11</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol05/cap03-concorrencia-perfeita.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol05/cap01-teoria-da-producao.html">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-concorrencia-perfeita" class="quarto-section-identifier"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Vá a uma feira livre e observe o vendedor de tomates. Ao lado dele há outros dez vendendo tomates quase idênticos, e do outro lado do corredor, mais dez. Se ele pedir R$,1 a mais que o vizinho pelo mesmo tomate, os fregueses simplesmente andam alguns passos e compram do concorrente. Ele não <em>escolhe</em> o preço: aceita o que a feira inteira pratica. Sua única decisão real é <strong>quanto</strong> vender àquele preço — e se vale a pena, no fim do dia, ter aberto a barraca.</p>
+<p>Essa situação, em que o produtor não tem nenhum poder sobre o preço, é o ponto de partida da teoria das estruturas de mercado. Chamamos de <strong>concorrência perfeita</strong>. É um modelo idealizado — poucos mercados reais satisfazem todas as suas hipóteses —, mas é a referência contra a qual todas as outras estruturas serão medidas. Ele nos dá o resultado mais celebrado da microeconomia: em concorrência perfeita, a busca egoísta de lucro conduz, sem que ninguém planeje, à <strong>eficiência</strong> — a “mão invisível” de Adam Smith, agora com a precisão de curvas de custo. Entender por que isso acontece aqui é entender, por contraste, o que dá errado no monopólio e no oligopólio dos próximos capítulos.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="32.1">
+<h2 data-number="32.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">32.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>enunciar as hipóteses da <strong>concorrência perfeita</strong> e o conceito de firma <strong>tomadora de preços</strong>;</li>
+<li>distinguir <strong>receita total</strong>, <strong>receita média</strong> e <strong>receita marginal</strong>, e mostrar que <span class="math inline">\(RMg = P\)</span> para a firma competitiva;</li>
+<li>derivar a regra de maximização de lucro <span class="math inline">\(P = CMg\)</span> e localizar o lucro no gráfico;</li>
+<li>deduzir a <strong>curva de oferta de curto prazo</strong> da firma e a condição de <strong>fechamento</strong> (<em>shutdown</em>);</li>
+<li>explicar o ajuste de <strong>longo prazo</strong> por entrada e saída de firmas e o resultado de <strong>lucro econômico zero</strong>;</li>
+<li>avaliar a <strong>eficiência</strong> da concorrência perfeita e reconhecer aproximações dela no Brasil.</li>
+</ul>
+</section>
+<section id="as-hipóteses-do-modelo" class="level2" data-number="32.2">
+<h2 data-number="32.2" class="anchored" data-anchor-id="as-hipóteses-do-modelo"><span class="header-section-number">32.2</span> As hipóteses do modelo</h2>
+<p>A concorrência perfeita é definida por quatro hipóteses. Nenhuma se cumpre à risca no mundo, mas juntas descrevem o limite de competição máxima.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Concorrência perfeita">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Concorrência perfeita
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um mercado é <strong>perfeitamente competitivo</strong> quando:</p>
+<ol type="1">
+<li>há <strong>muitos</strong> compradores e vendedores, cada um pequeno diante do mercado;</li>
+<li>o produto é <strong>homogêneo</strong> (idêntico entre vendedores);</li>
+<li>há <strong>livre entrada e saída</strong> de firmas no longo prazo;</li>
+<li>a <strong>informação</strong> sobre preços e qualidade é perfeita e gratuita.</li>
+</ol>
+</div>
+</div>
+<p>A consequência das duas primeiras hipóteses é decisiva: cada firma é <strong>tomadora de preços</strong> (<em>price taker</em>). Como é minúscula e vende exatamente o mesmo que as demais, ela não influencia o preço de mercado — apenas o aceita. Se cobrar acima do preço vigente, perde <em>todos</em> os clientes (compram do idêntico concorrente); cobrar abaixo é jogar dinheiro fora, pois ela vende tudo o que quiser pelo preço de mercado. A firma enxerga, portanto, uma <strong>demanda horizontal</strong> ao nível do preço <span class="math inline">\(P\)</span>, ainda que a demanda do <em>mercado</em> seja a curva descendente usual do <a href="../vol03/cap01-demanda.html" class="quarto-xref"><span>Capítulo 15</span></a>.</p>
+</section>
+<section id="a-receita-da-firma-competitiva" class="level2" data-number="32.3">
+<h2 data-number="32.3" class="anchored" data-anchor-id="a-receita-da-firma-competitiva"><span class="header-section-number">32.3</span> A receita da firma competitiva</h2>
+<p>Se a firma vende cada unidade pelo mesmo preço <span class="math inline">\(P\)</span>, suas medidas de receita são simples. A <strong>receita total</strong> é <span class="math inline">\(RT = P\cdot q\)</span>. A <strong>receita média</strong> é <span class="math inline">\(RMe = RT/q = P\)</span>. E a <strong>receita marginal</strong> — o acréscimo de receita por unidade extra vendida — é: <span id="eq-rmg-competitiva"><span class="math display">\[
+RMg = \frac{\Delta RT}{\Delta q} = \frac{\Delta (P\cdot q)}{\Delta q} = P,
+\tag{32.1}\]</span></span> pois <span class="math inline">\(P\)</span> é constante para a firma. Chegamos a uma igualdade central de todo o capítulo:</p>
+<p><span class="math display">\[
+\boxed{P = RMe = RMg} \quad \text{(firma competitiva).}
+\]</span></p>
+<p>Cada unidade a mais rende exatamente o preço, nem mais nem menos. Guarde este resultado: no monopólio (<a href="cap04-monopolio.html" class="quarto-xref"><span>Capítulo 33</span></a>), ele <strong>quebra</strong> — e é dessa quebra que nasce toda a diferença.</p>
+</section>
+<section id="a-decisão-de-produção-p-cmg" class="level2" data-number="32.4">
+<h2 data-number="32.4" class="anchored" data-anchor-id="a-decisão-de-produção-p-cmg"><span class="header-section-number">32.4</span> A decisão de produção: <span class="math inline">\(P = CMg\)</span></h2>
+<p>Quanto a firma deve produzir para maximizar o lucro? O lucro é <span class="math inline">\(\pi = RT - CT\)</span>. A regra marginal, herdada do <a href="../vol01/cap01-o-que-e-economia.html" class="quarto-xref"><span>Capítulo 1</span></a>, manda expandir a produção enquanto cada unidade extra acrescentar mais à receita do que ao custo, isto é, enquanto <span class="math inline">\(RMg &gt; CMg\)</span>; e parar quando os dois se igualam. A condição geral de maximização de lucro, válida para <em>qualquer</em> estrutura de mercado, é:</p>
+<p><span id="eq-otimo-geral"><span class="math display">\[
+RMg = CMg.
+\tag{32.2}\]</span></span></p>
+<p>Para a firma competitiva, como <span class="math inline">\(RMg = P\)</span>, ela se especializa em:</p>
+<p><span id="eq-p-igual-cmg"><span class="math display">\[
+\boxed{P = CMg.}
+\tag{32.3}\]</span></span></p>
+<p>A firma produz até o ponto em que o custo de mais uma unidade iguala o preço que ela recebe por essa unidade. A <a href="#fig-lucro-cp" class="quarto-xref">Figura&nbsp;<span>32.1</span></a> mostra a decisão. A firma escolhe <span class="math inline">\(q^{*}\)</span> onde a linha horizontal do preço cruza a curva de custo marginal (no trecho crescente). O lucro por unidade é a distância vertical entre o preço e o <span class="math inline">\(CTMe\)</span> naquela quantidade; o lucro total é a área do retângulo <span class="math inline">\((P - CTMe)\times q^{*}\)</span>.</p>
+<div id="fig-lucro-cp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lucro-cp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="275.680299pt" height="198.928488pt" viewbox="-68.014948 -68.014949 275.680299 198.928488">
+<defs>
+<path id="tz_fig_lucro_cp_g0-3" d="M2.779577-.842839C2.934994-.735243 2.946949-.735243 2.988792-.735243C3.090411-.735243 3.186052-.824907 3.186052-.944458S3.096389-1.099875 3.048568-1.123786C2.743711-1.249315 2.438854-1.374844 2.12802-1.488418C2.737733-1.739477 2.905106-1.799253 3.012702-1.847073C3.102366-1.888917 3.186052-1.918804 3.186052-2.038356S3.090411-2.247572 2.988792-2.247572C2.940971-2.247572 2.905106-2.223661 2.857285-2.193773L2.008468-1.655791C2.014446-1.739477 2.038356-1.948692 2.044334-2.020423C2.056289-2.139975 2.10411-2.49863 2.10411-2.600249S2.014446-2.779577 1.906849-2.779577C1.80523-2.779577 1.709589-2.701868 1.709589-2.600249C1.709589-2.588294 1.763387-2.050311 1.769365-2.026401C1.775342-1.960648 1.799253-1.733499 1.80523-1.655791L.956413-2.193773C.908593-2.223661 .872727-2.247572 .824907-2.247572C.723288-2.247572 .627646-2.157908 .627646-2.038356S.71731-1.882939 .765131-1.859029C1.069988-1.733499 1.374844-1.60797 1.685679-1.494396C1.075965-1.243337 .908593-1.183562 .800996-1.135741C.711333-1.093898 .627646-1.06401 .627646-.944458S.723288-.735243 .824907-.735243C.872727-.735243 .974346-.800996 1.046077-.848817C1.129763-.896638 1.333001-1.028144 1.41071-1.081943C1.60797-1.207472 1.679701-1.255293 1.80523-1.327024C1.799253-1.243337 1.775342-1.034122 1.769365-.962391L1.709589-.382565C1.709589-.280946 1.80523-.203238 1.906849-.203238C2.014446-.203238 2.10411-.280946 2.10411-.382565C2.10411-.388543 2.050311-.926526 2.044334-.956413C2.038356-1.022167 2.014446-1.249315 2.008468-1.327024L2.779577-.842839Z"></path>
+<path id="tz_fig_lucro_cp_g1-67" d="M6.344209-5.395766C6.352179-5.427646 6.36812-5.475467 6.36812-5.515318C6.36812-5.571108 6.320299-5.610959 6.264508-5.610959S6.184807-5.587049 6.121046-5.515318L5.563138-4.901619C5.491407-5.00523 5.068991-5.610959 4.136488-5.610959C2.287422-5.610959 .422416-3.897385 .422416-2.064259C.422416-.67746 1.474471 .167372 2.741719 .167372C3.785803 .167372 4.670486-.470237 5.100872-1.091905C5.363885-1.482441 5.467497-1.865006 5.467497-1.912827C5.467497-1.984558 5.419676-2.016438 5.347945-2.016438C5.252304-2.016438 5.236364-1.976588 5.212453-1.888917C4.877709-.789041 3.801743-.095641 2.84533-.095641C2.032379-.095641 1.179577-.573848 1.179577-1.793275C1.179577-2.048319 1.267248-3.379328 2.15193-4.375592C2.749689-5.045081 3.56264-5.347945 4.192279-5.347945C5.196513-5.347945 5.610959-4.542964 5.610959-3.785803C5.610959-3.674222 5.579078-3.52279 5.579078-3.427148C5.579078-3.323537 5.68269-3.323537 5.71457-3.323537C5.818182-3.323537 5.834122-3.355417 5.866002-3.498879L6.344209-5.395766Z"></path>
+<path id="tz_fig_lucro_cp_g1-77" d="M7.738979-4.798007C7.81868-5.108842 7.83462-5.180573 8.392528-5.180573C8.575841-5.180573 8.671482-5.180573 8.671482-5.332005C8.671482-5.443587 8.56787-5.443587 8.424408-5.443587H7.396264C7.181071-5.443587 7.157161-5.443587 7.053549-5.284184L4.048817-.73325L3.339477-5.228394C3.307597-5.427646 3.299626-5.443587 3.060523-5.443587H1.984558C1.841096-5.443587 1.737484-5.443587 1.737484-5.292154C1.737484-5.180573 1.841096-5.180573 1.968618-5.180573C2.231631-5.180573 2.462765-5.180573 2.462765-5.053051C2.462765-5.021171 2.454795-5.0132 2.430884-4.909589L1.41868-.852802C1.323039-.454296 1.115816-.278954 .581818-.263014C.533998-.263014 .438356-.255044 .438356-.111582C.438356-.063761 .478207 0 .557908 0C.589788 0 .773101-.02391 1.346949-.02391C1.976588-.02391 2.096139 0 2.16787 0C2.199751 0 2.319303 0 2.319303-.151432C2.319303-.247073 2.231631-.263014 2.175841-.263014C1.888917-.270984 1.649813-.318804 1.649813-.597758C1.649813-.637609 1.673724-.749191 1.673724-.757161L2.757659-5.084932H2.765629L3.53873-.215193C3.56264-.087671 3.57061 0 3.682192 0S3.849564-.087671 3.897385-.159402L7.173101-5.148692L7.181071-5.140722L6.057285-.629639C5.985554-.326775 5.969614-.263014 5.379826-.263014C5.228394-.263014 5.132752-.263014 5.132752-.111582C5.132752-.079701 5.156663 0 5.260274 0S5.602989-.01594 5.71457-.02391H6.224658C6.965878-.02391 7.157161 0 7.212951 0C7.260772 0 7.372354 0 7.372354-.151432C7.372354-.263014 7.268742-.263014 7.13325-.263014C7.10934-.263014 6.965878-.263014 6.830386-.278954C6.663014-.294894 6.647073-.318804 6.647073-.390535C6.647073-.430386 6.663014-.478207 6.670984-.518057L7.738979-4.798007Z"></path>
+<path id="tz_fig_lucro_cp_g1-80" d="M2.510585-2.486675H3.961146C5.108842-2.486675 6.304359-3.283686 6.304359-4.224159C6.304359-4.901619 5.66675-5.443587 4.638605-5.443587H1.952677C1.809215-5.443587 1.705604-5.443587 1.705604-5.292154C1.705604-5.180573 1.809215-5.180573 1.936737-5.180573C2.199751-5.180573 2.430884-5.180573 2.430884-5.053051C2.430884-5.021171 2.422914-5.0132 2.399004-4.909589L1.331009-.629639C1.259278-.334745 1.243337-.263014 .67746-.263014C.494147-.263014 .406476-.263014 .406476-.111582C.406476-.079701 .430386 0 .533998 0C.68543 0 .876712-.01594 1.028144-.02391H1.538232C2.303362-.02391 2.510585 0 2.566376 0C2.614197 0 2.725778 0 2.725778-.151432C2.725778-.263014 2.622167-.263014 2.486675-.263014C2.462765-.263014 2.319303-.263014 2.183811-.278954C2.016438-.294894 2.000498-.318804 2.000498-.390535C2.000498-.430386 2.016438-.478207 2.024408-.518057L2.510585-2.486675ZM3.092403-4.885679C3.164134-5.156663 3.172105-5.180573 3.498879-5.180573H4.375592C5.029141-5.180573 5.531258-4.98929 5.531258-4.399502C5.531258-4.29589 5.491407-3.58655 5.045081-3.148194C4.925529-3.028643 4.542964-2.725778 3.761893-2.725778H2.550436L3.092403-4.885679Z"></path>
+<path id="tz_fig_lucro_cp_g1-82" d="M3.092403-4.885679C3.164134-5.156663 3.172105-5.180573 3.498879-5.180573H4.144458C4.798007-5.180573 5.411706-5.0132 5.411706-4.367621C5.411706-4.016936 5.228394-3.459029 4.861768-3.196015C4.479203-2.925031 4.024907-2.83736 3.56264-2.83736H2.582316L3.092403-4.885679ZM4.447323-2.709838C5.427646-2.956912 6.192777-3.55467 6.192777-4.23213C6.192777-4.925529 5.411706-5.443587 4.303861-5.443587H1.952677C1.809215-5.443587 1.705604-5.443587 1.705604-5.292154C1.705604-5.180573 1.809215-5.180573 1.936737-5.180573C2.199751-5.180573 2.430884-5.180573 2.430884-5.053051C2.430884-5.021171 2.422914-5.0132 2.399004-4.909589L1.331009-.629639C1.259278-.326775 1.243337-.263014 .653549-.263014C.502117-.263014 .406476-.263014 .406476-.111582C.406476-.079701 .430386 0 .533998 0C.68543 0 .868742-.01594 1.028144-.02391H1.522291C2.263512-.02391 2.494645 0 2.542466 0S2.701868 0 2.701868-.151432C2.701868-.263014 2.598257-.263014 2.462765-.263014C2.438854-.263014 2.295392-.263014 2.1599-.278954C1.992528-.294894 1.976588-.318804 1.976588-.390535C1.976588-.430386 1.992528-.478207 2.000498-.518057L2.518555-2.614197H3.55467C4.27198-2.614197 4.495143-2.231631 4.495143-1.904857C4.495143-1.793275 4.439352-1.570112 4.399502-1.40274C4.335741-1.171606 4.25604-.852802 4.25604-.70934C4.25604-.095641 4.782067 .167372 5.371856 .167372C6.065255 .167372 6.39203-.613699 6.39203-.765131C6.39203-.797011 6.36812-.876712 6.264508-.876712C6.176837-.876712 6.152927-.804981 6.144956-.773101C5.969614-.223163 5.626899-.055791 5.395766-.055791C5.100872-.055791 5.068991-.278954 5.068991-.541968S5.116812-1.155666 5.148692-1.41868C5.180573-1.657783 5.180573-1.705604 5.180573-1.785305C5.180573-2.263512 4.869738-2.542466 4.447323-2.709838Z"></path>
+<path id="tz_fig_lucro_cp_g1-84" d="M3.602491-4.821918C3.674222-5.108842 3.682192-5.124782 4.008966-5.124782H4.614695C5.443587-5.124782 5.539228-4.861768 5.539228-4.463263C5.539228-4.26401 5.491407-3.921295 5.483437-3.881445C5.467497-3.793773 5.459527-3.722042 5.459527-3.706102C5.459527-3.602491 5.531258-3.57858 5.579078-3.57858C5.66675-3.57858 5.69863-3.626401 5.72254-3.777833L5.937733-5.276214C5.937733-5.387796 5.842092-5.387796 5.69863-5.387796H1.004234C.804981-5.387796 .789041-5.387796 .73325-5.220423L.247073-3.841594C.231133-3.801743 .207223-3.737983 .207223-3.690162C.207223-3.626401 .263014-3.57858 .326775-3.57858C.414446-3.57858 .430386-3.618431 .478207-3.753923C.932503-5.029141 1.163636-5.124782 2.375093-5.124782H2.685928C2.925031-5.124782 2.933001-5.116812 2.933001-5.053051C2.933001-5.029141 2.901121-4.869738 2.893151-4.837858L1.841096-.653549C1.769365-.350685 1.745455-.263014 .916563-.263014C.661519-.263014 .581818-.263014 .581818-.111582C.581818-.103611 .581818 0 .71731 0C.932503 0 1.482441-.02391 1.697634-.02391H2.375093C2.598257-.02391 3.156164 0 3.379328 0C3.443088 0 3.56264 0 3.56264-.151432C3.56264-.263014 3.474969-.263014 3.259776-.263014C3.068493-.263014 3.004732-.263014 2.797509-.278954C2.542466-.302864 2.510585-.334745 2.510585-.438356C2.510585-.470237 2.518555-.502117 2.542466-.581818L3.602491-4.821918Z"></path>
+<path id="tz_fig_lucro_cp_g1-101" d="M1.601993-1.817186C1.777335-1.817186 2.375093-1.825156 2.797509-1.976588C3.490909-2.215691 3.514819-2.693898 3.514819-2.81345C3.514819-3.259776 3.092403-3.514819 2.574346-3.514819C1.673724-3.514819 .390535-2.805479 .390535-1.39477C.390535-.581818 .884682 .079701 1.761395 .079701C3.004732 .079701 3.674222-.71731 3.674222-.828892C3.674222-.900623 3.594521-.956413 3.5467-.956413S3.474969-.932503 3.435118-.884682C2.805479-.143462 1.912827-.143462 1.777335-.143462C1.195517-.143462 1.020174-.637609 1.020174-1.083935C1.020174-1.323039 1.091905-1.681694 1.123786-1.817186H1.601993ZM1.187547-2.040349C1.44259-3.012702 2.16787-3.291656 2.574346-3.291656C2.893151-3.291656 3.196015-3.132254 3.196015-2.81345C3.196015-2.040349 1.888917-2.040349 1.554172-2.040349H1.187547Z"></path>
+<path id="tz_fig_lucro_cp_g1-103" d="M3.953176-2.940971C3.985056-3.060523 3.985056-3.108344 3.985056-3.116314C3.985056-3.299626 3.833624-3.363387 3.730012-3.363387C3.5467-3.363387 3.403238-3.219925 3.371357-3.052553C3.307597-3.172105 3.068493-3.514819 2.590286-3.514819C1.641843-3.514819 .605729-2.454795 .605729-1.291158C.605729-.430386 1.171606 0 1.761395 0C2.12802 0 2.454795-.199253 2.717808-.430386L2.542466 .286924C2.454795 .621669 2.399004 .852802 2.088169 1.115816C1.753425 1.40274 1.45056 1.40274 1.251308 1.40274S.860772 1.39477 .669489 1.354919C.844832 1.259278 .924533 1.091905 .924533 .956413C.924533 .765131 .781071 .661519 .613699 .661519C.414446 .661519 .167372 .820922 .167372 1.139726C.167372 1.594022 .789041 1.625903 1.267248 1.625903C2.399004 1.625903 2.964882 1.020174 3.084433 .533998L3.953176-2.940971ZM2.87721-1.052055C2.82142-.828892 2.646077-.669489 2.478705-.518057C2.406974-.462267 2.10411-.223163 1.777335-.223163C1.458531-.223163 1.227397-.486177 1.227397-.964384C1.227397-1.299128 1.42665-2.16787 1.641843-2.574346C1.896887-3.028643 2.271482-3.291656 2.590286-3.291656C3.124284-3.291656 3.267746-2.701868 3.267746-2.630137L3.243836-2.518555L2.87721-1.052055Z"></path>
+<path id="tz_fig_lucro_cp_g1-113" d="M3.793773-3.283686C3.801743-3.315567 3.809714-3.363387 3.809714-3.403238C3.809714-3.451059 3.777833-3.514819 3.706102-3.514819C3.610461-3.514819 3.283686-3.203985 3.156164-2.980822C3.068493-3.156164 2.82939-3.514819 2.335243-3.514819C1.3868-3.514819 .342715-2.406974 .342715-1.227397C.342715-.398506 .876712 .079701 1.490411 .079701C1.888917 .079701 2.215691-.151432 2.454795-.358655C2.446824-.334745 2.199751 .669489 2.16787 .804981C2.048319 1.267248 2.048319 1.275218 1.546202 1.283188C1.45056 1.283188 1.346949 1.283188 1.346949 1.43462C1.346949 1.482441 1.3868 1.546202 1.466501 1.546202C1.570112 1.546202 1.753425 1.530262 1.857036 1.522291H2.279452C2.917061 1.522291 3.060523 1.546202 3.124284 1.546202C3.156164 1.546202 3.275716 1.546202 3.275716 1.39477C3.275716 1.283188 3.164134 1.283188 3.068493 1.283188C2.685928 1.283188 2.685928 1.235367 2.685928 1.163636C2.685928 1.155666 2.685928 1.115816 2.717808 .996264L3.793773-3.283686ZM2.614197-.988294C2.582316-.868742 2.582316-.844832 2.446824-.6934C2.032379-.207223 1.681694-.143462 1.514321-.143462C1.147696-.143462 .964384-.478207 .964384-.892653C.964384-1.267248 1.179577-2.12005 1.354919-2.470735C1.586052-2.956912 1.976588-3.291656 2.343213-3.291656C2.87721-3.291656 3.012702-2.669988 3.012702-2.614197C3.012702-2.582316 2.996762-2.526526 2.988792-2.486675L2.614197-.988294Z"></path>
+<path id="tz_fig_lucro_cp_g2-61" d="M5.826152-2.654047C5.945704-2.654047 6.105106-2.654047 6.105106-2.83736S5.913823-3.020672 5.794271-3.020672H.781071C.661519-3.020672 .470237-3.020672 .470237-2.83736S.629639-2.654047 .749191-2.654047H5.826152ZM5.794271-.964384C5.913823-.964384 6.105106-.964384 6.105106-1.147696S5.945704-1.331009 5.826152-1.331009H.749191C.629639-1.331009 .470237-1.331009 .470237-1.147696S.661519-.964384 .781071-.964384H5.794271Z"></path>
+<path id="tz_fig_lucro_cp_g2-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_lucro_cp_g2-108" d="M1.522291-5.531258L.334745-5.443587V-5.180573C.876712-5.180573 .940473-5.124782 .940473-4.734247V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.227397-.02391C1.3868-.02391 1.817186-.02391 2.12802 0V-.263014C1.617933-.263014 1.522291-.263014 1.522291-.621669V-5.531258Z"></path>
+<path id="tz_fig_lucro_cp_g2-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_lucro_cp_g2-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_lucro_cp_g2-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+<path id="tz_fig_lucro_cp_g3-82" d="M3.73599-6.117061C3.795766-6.356164 3.825654-6.455791 4.014944-6.485679C4.104608-6.495641 4.423412-6.495641 4.622665-6.495641C5.330012-6.495641 6.435866-6.495641 6.435866-5.50934C6.435866-5.17061 6.276463-4.483188 5.88792-4.094645C5.628892-3.835616 5.100872-3.516812 4.204234-3.516812H3.088418L3.73599-6.117061ZM5.17061-3.387298C6.176837-3.606476 7.362391-4.303861 7.362391-5.310087C7.362391-6.166874 6.465753-6.804483 5.160648-6.804483H2.321295C2.122042-6.804483 2.032379-6.804483 2.032379-6.60523C2.032379-6.495641 2.122042-6.495641 2.311333-6.495641C2.331258-6.495641 2.520548-6.495641 2.689913-6.475716C2.86924-6.455791 2.958904-6.445828 2.958904-6.316314C2.958904-6.276463 2.948941-6.246575 2.919054-6.127024L1.58406-.777086C1.484433-.388543 1.464508-.308842 .67746-.308842C.498132-.308842 .408468-.308842 .408468-.109589C.408468 0 .52802 0 .547945 0C.826899 0 1.524284-.029888 1.803238-.029888S2.789539 0 3.068493 0C3.148194 0 3.267746 0 3.267746-.199253C3.267746-.308842 3.178082-.308842 2.988792-.308842C2.620174-.308842 2.34122-.308842 2.34122-.488169C2.34122-.547945 2.361146-.597758 2.371108-.657534L3.028643-3.297634H4.214197C5.120797-3.297634 5.300125-2.739726 5.300125-2.391034C5.300125-2.241594 5.220423-1.932752 5.160648-1.703611C5.090909-1.424658 5.001245-1.05604 5.001245-.856787C5.001245 .219178 6.196762 .219178 6.326276 .219178C7.173101 .219178 7.521793-.787049 7.521793-.926526C7.521793-1.046077 7.412204-1.046077 7.402242-1.046077C7.312578-1.046077 7.292653-.976339 7.272727-.9066C7.023661-.169365 6.595268 0 6.366127 0C6.03736 0 5.967621-.219178 5.967621-.607721C5.967621-.916563 6.027397-1.424658 6.067248-1.743462C6.087173-1.882939 6.107098-2.072229 6.107098-2.211706C6.107098-2.978829 5.439601-3.287671 5.17061-3.387298Z"></path>
+<path id="tz_fig_lucro_cp_g3-113" d="M4.503113-4.293898C4.503113-4.333748 4.473225-4.393524 4.403487-4.393524C4.293898-4.393524 3.895392-3.995019 3.726027-3.706102C3.506849-4.244085 3.118306-4.403487 2.799502-4.403487C1.62391-4.403487 .398506-2.929016 .398506-1.484433C.398506-.508095 .986301 .109589 1.713574 .109589C2.141968 .109589 2.530511-.129514 2.889166-.488169C2.799502-.139477 2.470735 1.205479 2.440847 1.295143C2.361146 1.574097 2.281445 1.613948 1.723537 1.62391C1.594022 1.62391 1.494396 1.62391 1.494396 1.823163C1.494396 1.833126 1.494396 1.932752 1.62391 1.932752C1.942715 1.932752 2.291407 1.902864 2.620174 1.902864C2.958904 1.902864 3.317559 1.932752 3.646326 1.932752C3.696139 1.932752 3.825654 1.932752 3.825654 1.733499C3.825654 1.62391 3.726027 1.62391 3.566625 1.62391C3.088418 1.62391 3.088418 1.554172 3.088418 1.464508C3.088418 1.39477 3.108344 1.334994 3.128269 1.24533L4.503113-4.293898ZM1.743462-.109589C1.145704-.109589 1.105853-.876712 1.105853-1.046077C1.105853-1.524284 1.39477-2.610212 1.564134-3.028643C1.872976-3.765878 2.391034-4.184309 2.799502-4.184309C3.447073-4.184309 3.58655-3.377335 3.58655-3.307597C3.58655-3.247821 3.038605-1.066002 3.008717-1.026152C2.859278-.747198 2.30137-.109589 1.743462-.109589Z"></path>
+<path id="tz_fig_lucro_cp_g4-36" d="M2.6401-3.098381C3.835616-2.849315 3.905355-1.882939 3.905355-1.643836C3.905355-.976339 3.427148-.308842 2.6401-.209215V-3.098381ZM2.331258-3.178082V-.209215C1.454545-.259029 .986301-.767123 .856787-1.384807C.896638-1.374844 .976339-1.364882 1.016189-1.364882C1.285181-1.364882 1.474471-1.554172 1.474471-1.823163C1.474471-2.102117 1.265255-2.281445 1.016189-2.281445C.956413-2.281445 .557908-2.261519 .557908-1.77335C.557908-.886675 1.085928 .029888 2.331258 .109589V.557908H2.6401V.099626C3.686177 .009963 4.41345-.916563 4.41345-1.942715C4.41345-2.769614 3.965131-3.277709 3.875467-3.367372C3.476961-3.805729 3.118306-3.895392 2.6401-4.014944V-6.704857C3.486924-6.665006 3.965131-6.22665 4.11457-5.668742C4.07472-5.678705 4.054795-5.688667 3.955168-5.688667C3.696139-5.688667 3.496887-5.50934 3.496887-5.230386C3.496887-4.921544 3.745953-4.772105 3.955168-4.772105C3.985056-4.772105 4.41345-4.782067 4.41345-5.270237C4.41345-6.236613 3.755915-6.963885 2.6401-7.023661V-7.47198H2.331258V-7.013699C1.225405-6.914072 .557908-6.017435 .557908-5.110834C.557908-4.423412 .926526-3.945205 1.105853-3.775841C1.484433-3.387298 1.823163-3.307597 2.331258-3.178082ZM2.331258-4.094645C1.105853-4.353674 1.066002-5.210461 1.066002-5.409714C1.066002-6.007472 1.534247-6.625156 2.331258-6.704857V-4.094645Z"></path>
+</defs>
+<g id="tz_fig_lucro_cp_page1">
+<g stroke-miterlimit="10" transform="translate(-35.559553,116.929465)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H225.62198" fill="none"></path>
+<g transform="translate(225.62198,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(231.15492,-1.18056)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-35.559553,116.929465)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-35.559553" y="116.929465" href="#tz_fig_lucro_cp_g3-113"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V168.71649" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,168.71649)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-6.33508,174.80498)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-35.559553,116.929465)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-35.559553" y="116.929465" href="#tz_fig_lucro_cp_g3-82"></use>
+<use x="-27.918056" y="116.929465" href="#tz_fig_lucro_cp_g4-36"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M22.76227 83.90164C22.76227 83.90164 27.55873 77.3689 29.40092 75.0501C31.24312 72.7313 34.19739 69.23305 36.03958 67.1893S40.83604 62.08862 42.67824 60.3201C44.52043 58.55157 47.4747 55.93637 49.3169 54.44296C51.15909 52.94955 54.11336 50.77498 55.95555 49.55655S60.75201 46.60464 62.59421 45.66132C64.4364 44.71799 67.39067 43.42584 69.23286 42.75769C71.07506 42.08954 74.02933 41.23872 75.87152 40.84567S80.66798 40.04283 82.51018 39.92484C84.35237 39.80684 87.30663 39.83813 89.14882 39.99516S93.94528 40.62453 95.78748 41.05667C97.62967 41.48882 100.58394 42.40254 102.42613 43.10979C104.26833 43.81703 107.2226 45.17178 109.06479 46.15408S113.86125 48.93208 115.70345 50.18954C117.54564 51.447 120.49991 53.68448 122.3421 55.21706C124.1843 56.74963 127.13857 59.42775 128.98076 61.2353C130.82295 63.04286 133.77722 66.16205 135.61942 68.24472C137.46161 70.3274 140.41588 73.88786 142.25807 76.24576C144.10027 78.60365 147.05453 82.60583 148.89673 85.23883C150.73892 87.87183 153.69318 92.31465 155.53537 95.22264S160.33183 103.0146 162.17403 106.19763C164.01622 109.38066 166.97049 114.70572 168.81268 118.1638C170.65488 121.62189 173.60915 127.38777 175.45134 131.12114C177.29353 134.8545 182.09 145.07138 182.09 145.07138" fill="none"></path>
+<g transform="translate(185.82297,143.11583)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-35.559553,116.929465)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-35.559553" y="116.929465" href="#tz_fig_lucro_cp_g1-67"></use>
+<use x="-28.960885" y="116.929465" href="#tz_fig_lucro_cp_g1-77"></use>
+<use x="-19.979186" y="116.929465" href="#tz_fig_lucro_cp_g1-103"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="0.8">
+<path d="M28.45274 103.52281C28.45274 103.52281 33.07793 98.88841 34.85434 97.19717C36.63075 95.50594 39.47954 92.89667 41.25595 91.3335C43.03236 89.77032 45.88115 87.36617 47.65756 85.93088C49.43398 84.49559 52.28275 82.29648 54.05916 80.98889S58.68436 77.68633 60.46077 76.50668C62.23718 75.32704 65.08597 73.53842 66.86238 72.48685C68.6388 71.43527 71.48756 69.8514 73.26398 68.92764C75.04039 68.00389 77.88918 66.625 79.66559 65.82909C81.442 65.03317 84.29079 63.85919 86.0672 63.19116S90.6924 61.5544 92.46881 61.01431C94.24522 60.47423 97.094 59.71068 98.8704 59.29854C100.64682 58.8864 103.4956 58.3281 105.27202 58.04384C107.04843 57.75958 109.89722 57.40614 111.67363 57.24977S116.29881 56.94525 118.07523 56.91676C119.85164 56.88828 122.70042 56.94502 124.47684 57.0444C126.25325 57.14378 129.10204 57.40579 130.87845 57.63312C132.65486 57.86044 135.50363 58.32774 137.28004 58.6829C139.05646 59.03807 141.90524 59.70985 143.68166 60.1929C145.45807 60.67595 148.30685 61.5534 150.08327 62.1644C151.85968 62.77539 154.70847 63.85759 156.48488 64.59653C158.26129 65.33546 161.11006 66.62334 162.88647 67.49016C164.66289 68.35698 167.51167 69.84937 169.28809 70.84401C171.0645 71.83865 173.91328 73.53639 175.6897 74.65892C177.46611 75.78145 182.0913 78.93448 182.0913 78.93448" fill="none"></path>
+<g transform="translate(185.82426,76.20116)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-35.559553,116.929465)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-35.559553" y="116.929465" href="#tz_fig_lucro_cp_g1-67"></use>
+<use x="-28.960885" y="116.929465" href="#tz_fig_lucro_cp_g1-84"></use>
+<use x="-22.854527" y="116.929465" href="#tz_fig_lucro_cp_g1-77"></use>
+<use x="-13.872827" y="116.929465" href="#tz_fig_lucro_cp_g1-101"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<g stroke-width="1.2">
+<path d="M0 113.81097H199.1692" fill="none"></path>
+<g transform="translate(203.10217,111.85542)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-35.559553,116.929465)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-35.559553" y="116.929465" href="#tz_fig_lucro_cp_g1-80"></use>
+<use x="-26.662254" y="116.929465" href="#tz_fig_lucro_cp_g2-61"></use>
+<use x="-17.723424" y="116.929465" href="#tz_fig_lucro_cp_g1-82"></use>
+<use x="-11.296064" y="116.929465" href="#tz_fig_lucro_cp_g1-77"></use>
+<use x="-2.314365" y="116.929465" href="#tz_fig_lucro_cp_g1-103"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M166.44872 0V113.81097" fill="none"></path>
+</g>
+</g>
+</g>
+<g transform="translate(162.24106,-9.14798)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-35.559553,116.929465)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-35.559553" y="116.929465" href="#tz_fig_lucro_cp_g1-113"></use>
+<use x="-31.492803" y="114.116679" href="#tz_fig_lucro_cp_g0-3"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M168.28734 113.81097C168.28734 114.82642 167.46416 115.6496 166.44872 115.6496C165.43327 115.6496 164.61009 114.82642 164.61009 113.81097C164.61009 112.79553 165.43327 111.97235 166.44872 111.97235C167.46416 111.97235 168.28734 112.79553 168.28734 113.81097ZM166.44872 113.81097" stroke="none"></path>
+</g>
+<g transform="translate(166.44872,113.81097)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-35.559553,116.929465)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M0 69.42476H166.44872" fill="none"></path>
+</g>
+</g>
+</g>
+<g transform="translate(-29.24413,66.69144)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-35.559553,116.929465)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-35.559553" y="116.929465" href="#tz_fig_lucro_cp_g1-67"></use>
+<use x="-28.960885" y="116.929465" href="#tz_fig_lucro_cp_g1-84"></use>
+<use x="-22.854527" y="116.929465" href="#tz_fig_lucro_cp_g1-77"></use>
+<use x="-13.872827" y="116.929465" href="#tz_fig_lucro_cp_g1-101"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-10.1025,111.07765)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-35.559553,116.929465)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-35.559553" y="116.929465" href="#tz_fig_lucro_cp_g1-80"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d9f1d1" stroke="#d9f1d1">
+<path d="M0 69.42476V113.81097H166.44872V69.42476ZM166.44872 113.81097" stroke="none"></path>
+</g>
+<g fill="#256d0e" stroke="#256d0e">
+<g fill="#256d0e" stroke="#256d0e">
+</g>
+<g transform="translate(76.1463,89.69363)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-35.559553,116.929465)scale(-1,-1)">
+<g fill="#256d0e">
+<g stroke="none">
+<g fill="#266d0e">
+<use x="-35.559553" y="116.929465" href="#tz_fig_lucro_cp_g2-108"></use>
+<use x="-33.207229" y="116.929465" href="#tz_fig_lucro_cp_g2-117"></use>
+<use x="-28.502582" y="116.929465" href="#tz_fig_lucro_cp_g2-99"></use>
+<use x="-24.738864" y="116.929465" href="#tz_fig_lucro_cp_g2-114"></use>
+<use x="-21.438694" y="116.929465" href="#tz_fig_lucro_cp_g2-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lucro-cp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;32.1: Firma competitiva com lucro econômico positivo: produz <span class="math inline">\(q^{*}\)</span> onde <span class="math inline">\(P = CMg\)</span>; o lucro é o retângulo entre <span class="math inline">\(P\)</span> e o <span class="math inline">\(CTMe\)</span>.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — maximizar lucro não é maximizar produção">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — maximizar lucro não é maximizar produção
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A firma <strong>não</strong> produz o máximo que consegue, nem a quantidade de menor custo médio. Ela para onde <span class="math inline">\(P = CMg\)</span>. Produzir além disso traria unidades cujo custo marginal supera o preço — cada uma <em>reduziria</em> o lucro. A regra é sempre marginal, nunca “produza tudo”.</p>
+</div>
+</div>
+<p>Dependendo do preço, o retângulo do lucro pode ser positivo (como na figura), nulo (se <span class="math inline">\(P = CTMe\)</span> mínimo) ou <strong>negativo</strong> — um prejuízo, quando <span class="math inline">\(P &lt; CTMe\)</span>. E aqui surge a pergunta que separa o curto do longo prazo: se está no prejuízo, a firma deve fechar?</p>
+</section>
+<section id="fechar-ou-continuar-a-condição-de-shutdown" class="level2" data-number="32.5">
+<h2 data-number="32.5" class="anchored" data-anchor-id="fechar-ou-continuar-a-condição-de-shutdown"><span class="header-section-number">32.5</span> Fechar ou continuar? A condição de <em>shutdown</em></h2>
+<p>No curto prazo, a firma tem custos fixos que paga produza ou não. Isso muda a lógica. Fechar não elimina o custo fixo — só elimina a receita e o custo variável. Logo, a comparação relevante é entre a receita e o <strong>custo variável</strong>, não o total.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Regra de fechamento (curto prazo)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Regra de fechamento (curto prazo)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A firma deve <strong>continuar produzindo</strong> (mesmo com prejuízo) enquanto o preço cobrir ao menos o custo variável médio: <span class="math inline">\(P \geq CVMe\)</span>. Deve <strong>fechar</strong> (produzir zero) se <span class="math inline">\(P &lt; CVMe_{\min}\)</span>.</p>
+</div>
+</div>
+<p>A intuição: se o preço cobre o custo variável e ainda sobra algo, essa sobra ajuda a pagar o custo fixo — que existiria de qualquer forma. Fechar significaria perder o custo fixo <em>inteiro</em>; continuar, perder só uma parte. Só quando o preço não cobre nem o custo variável é que cada unidade produzida aumenta o prejuízo, e aí sim vale fechar. O ponto <span class="math inline">\(P = CVMe_{\min}\)</span> é o <strong>ponto de fechamento</strong>.</p>
+<p>Disso resulta um fato notável, ilustrado na <a href="#fig-oferta-firma" class="quarto-xref">Figura&nbsp;<span>32.2</span></a>: <strong>a curva de oferta de curto prazo da firma competitiva é o trecho da curva de custo marginal acima do custo variável médio mínimo.</strong> Para cada preço, a firma escolhe <span class="math inline">\(q\)</span> tal que <span class="math inline">\(P = CMg\)</span>; abaixo do ponto de fechamento, oferta zero. A curva de oferta do mercado do <a href="../vol03/cap02-oferta.html" class="quarto-xref"><span>Capítulo 16</span></a> é a soma horizontal dessas curvas individuais — eis a fundação micro da oferta que usamos desde o Volume 3.</p>
+<div id="fig-oferta-firma" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-oferta-firma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="248.048687pt" height="191.378252pt" viewbox="-68.014948 -68.014951 248.048687 191.378252">
+<defs>
+<path id="tz_fig_oferta_firma_g0-67" d="M6.344209-5.395766C6.352179-5.427646 6.36812-5.475467 6.36812-5.515318C6.36812-5.571108 6.320299-5.610959 6.264508-5.610959S6.184807-5.587049 6.121046-5.515318L5.563138-4.901619C5.491407-5.00523 5.068991-5.610959 4.136488-5.610959C2.287422-5.610959 .422416-3.897385 .422416-2.064259C.422416-.67746 1.474471 .167372 2.741719 .167372C3.785803 .167372 4.670486-.470237 5.100872-1.091905C5.363885-1.482441 5.467497-1.865006 5.467497-1.912827C5.467497-1.984558 5.419676-2.016438 5.347945-2.016438C5.252304-2.016438 5.236364-1.976588 5.212453-1.888917C4.877709-.789041 3.801743-.095641 2.84533-.095641C2.032379-.095641 1.179577-.573848 1.179577-1.793275C1.179577-2.048319 1.267248-3.379328 2.15193-4.375592C2.749689-5.045081 3.56264-5.347945 4.192279-5.347945C5.196513-5.347945 5.610959-4.542964 5.610959-3.785803C5.610959-3.674222 5.579078-3.52279 5.579078-3.427148C5.579078-3.323537 5.68269-3.323537 5.71457-3.323537C5.818182-3.323537 5.834122-3.355417 5.866002-3.498879L6.344209-5.395766Z"></path>
+<path id="tz_fig_oferta_firma_g0-77" d="M7.738979-4.798007C7.81868-5.108842 7.83462-5.180573 8.392528-5.180573C8.575841-5.180573 8.671482-5.180573 8.671482-5.332005C8.671482-5.443587 8.56787-5.443587 8.424408-5.443587H7.396264C7.181071-5.443587 7.157161-5.443587 7.053549-5.284184L4.048817-.73325L3.339477-5.228394C3.307597-5.427646 3.299626-5.443587 3.060523-5.443587H1.984558C1.841096-5.443587 1.737484-5.443587 1.737484-5.292154C1.737484-5.180573 1.841096-5.180573 1.968618-5.180573C2.231631-5.180573 2.462765-5.180573 2.462765-5.053051C2.462765-5.021171 2.454795-5.0132 2.430884-4.909589L1.41868-.852802C1.323039-.454296 1.115816-.278954 .581818-.263014C.533998-.263014 .438356-.255044 .438356-.111582C.438356-.063761 .478207 0 .557908 0C.589788 0 .773101-.02391 1.346949-.02391C1.976588-.02391 2.096139 0 2.16787 0C2.199751 0 2.319303 0 2.319303-.151432C2.319303-.247073 2.231631-.263014 2.175841-.263014C1.888917-.270984 1.649813-.318804 1.649813-.597758C1.649813-.637609 1.673724-.749191 1.673724-.757161L2.757659-5.084932H2.765629L3.53873-.215193C3.56264-.087671 3.57061 0 3.682192 0S3.849564-.087671 3.897385-.159402L7.173101-5.148692L7.181071-5.140722L6.057285-.629639C5.985554-.326775 5.969614-.263014 5.379826-.263014C5.228394-.263014 5.132752-.263014 5.132752-.111582C5.132752-.079701 5.156663 0 5.260274 0S5.602989-.01594 5.71457-.02391H6.224658C6.965878-.02391 7.157161 0 7.212951 0C7.260772 0 7.372354 0 7.372354-.151432C7.372354-.263014 7.268742-.263014 7.13325-.263014C7.10934-.263014 6.965878-.263014 6.830386-.278954C6.663014-.294894 6.647073-.318804 6.647073-.390535C6.647073-.430386 6.663014-.478207 6.670984-.518057L7.738979-4.798007Z"></path>
+<path id="tz_fig_oferta_firma_g0-84" d="M3.602491-4.821918C3.674222-5.108842 3.682192-5.124782 4.008966-5.124782H4.614695C5.443587-5.124782 5.539228-4.861768 5.539228-4.463263C5.539228-4.26401 5.491407-3.921295 5.483437-3.881445C5.467497-3.793773 5.459527-3.722042 5.459527-3.706102C5.459527-3.602491 5.531258-3.57858 5.579078-3.57858C5.66675-3.57858 5.69863-3.626401 5.72254-3.777833L5.937733-5.276214C5.937733-5.387796 5.842092-5.387796 5.69863-5.387796H1.004234C.804981-5.387796 .789041-5.387796 .73325-5.220423L.247073-3.841594C.231133-3.801743 .207223-3.737983 .207223-3.690162C.207223-3.626401 .263014-3.57858 .326775-3.57858C.414446-3.57858 .430386-3.618431 .478207-3.753923C.932503-5.029141 1.163636-5.124782 2.375093-5.124782H2.685928C2.925031-5.124782 2.933001-5.116812 2.933001-5.053051C2.933001-5.029141 2.901121-4.869738 2.893151-4.837858L1.841096-.653549C1.769365-.350685 1.745455-.263014 .916563-.263014C.661519-.263014 .581818-.263014 .581818-.111582C.581818-.103611 .581818 0 .71731 0C.932503 0 1.482441-.02391 1.697634-.02391H2.375093C2.598257-.02391 3.156164 0 3.379328 0C3.443088 0 3.56264 0 3.56264-.151432C3.56264-.263014 3.474969-.263014 3.259776-.263014C3.068493-.263014 3.004732-.263014 2.797509-.278954C2.542466-.302864 2.510585-.334745 2.510585-.438356C2.510585-.470237 2.518555-.502117 2.542466-.581818L3.602491-4.821918Z"></path>
+<path id="tz_fig_oferta_firma_g0-86" d="M5.339975-4.495143C5.738481-5.100872 6.041345-5.164633 6.360149-5.180573C6.447821-5.188543 6.479701-5.268244 6.479701-5.332005C6.479701-5.355915 6.463761-5.443587 6.36812-5.443587S6.304359-5.419676 5.72254-5.419676C5.212453-5.419676 4.99726-5.443587 4.96538-5.443587C4.925529-5.443587 4.805978-5.443587 4.805978-5.292154C4.805978-5.188543 4.909589-5.180573 4.94944-5.180573C5.164633-5.164633 5.268244-5.084932 5.268244-4.941469C5.268244-4.813948 5.196513-4.710336 5.156663-4.646575L2.566376-.72528L1.904857-4.821918C1.896887-4.893649 1.888917-4.933499 1.888917-4.95741C1.888917-5.061021 2.008468-5.180573 2.414944-5.180573C2.510585-5.180573 2.614197-5.180573 2.614197-5.332005C2.614197-5.363885 2.590286-5.443587 2.486675-5.443587C2.414944-5.443587 2.096139-5.427646 2.032379-5.419676H1.530262C.812951-5.419676 .70934-5.443587 .637609-5.443587C.605729-5.443587 .486177-5.443587 .486177-5.292154C.486177-5.180573 .589788-5.180573 .70934-5.180573C1.115816-5.180573 1.123786-5.108842 1.155666-4.909589L1.936737-.055791C1.960648 .103611 1.968618 .167372 2.12005 .167372C2.255542 .167372 2.303362 .095641 2.359153 .00797L5.339975-4.495143Z"></path>
+<path id="tz_fig_oferta_firma_g0-101" d="M1.601993-1.817186C1.777335-1.817186 2.375093-1.825156 2.797509-1.976588C3.490909-2.215691 3.514819-2.693898 3.514819-2.81345C3.514819-3.259776 3.092403-3.514819 2.574346-3.514819C1.673724-3.514819 .390535-2.805479 .390535-1.39477C.390535-.581818 .884682 .079701 1.761395 .079701C3.004732 .079701 3.674222-.71731 3.674222-.828892C3.674222-.900623 3.594521-.956413 3.5467-.956413S3.474969-.932503 3.435118-.884682C2.805479-.143462 1.912827-.143462 1.777335-.143462C1.195517-.143462 1.020174-.637609 1.020174-1.083935C1.020174-1.323039 1.091905-1.681694 1.123786-1.817186H1.601993ZM1.187547-2.040349C1.44259-3.012702 2.16787-3.291656 2.574346-3.291656C2.893151-3.291656 3.196015-3.132254 3.196015-2.81345C3.196015-2.040349 1.888917-2.040349 1.554172-2.040349H1.187547Z"></path>
+<path id="tz_fig_oferta_firma_g0-103" d="M3.953176-2.940971C3.985056-3.060523 3.985056-3.108344 3.985056-3.116314C3.985056-3.299626 3.833624-3.363387 3.730012-3.363387C3.5467-3.363387 3.403238-3.219925 3.371357-3.052553C3.307597-3.172105 3.068493-3.514819 2.590286-3.514819C1.641843-3.514819 .605729-2.454795 .605729-1.291158C.605729-.430386 1.171606 0 1.761395 0C2.12802 0 2.454795-.199253 2.717808-.430386L2.542466 .286924C2.454795 .621669 2.399004 .852802 2.088169 1.115816C1.753425 1.40274 1.45056 1.40274 1.251308 1.40274S.860772 1.39477 .669489 1.354919C.844832 1.259278 .924533 1.091905 .924533 .956413C.924533 .765131 .781071 .661519 .613699 .661519C.414446 .661519 .167372 .820922 .167372 1.139726C.167372 1.594022 .789041 1.625903 1.267248 1.625903C2.399004 1.625903 2.964882 1.020174 3.084433 .533998L3.953176-2.940971ZM2.87721-1.052055C2.82142-.828892 2.646077-.669489 2.478705-.518057C2.406974-.462267 2.10411-.223163 1.777335-.223163C1.458531-.223163 1.227397-.486177 1.227397-.964384C1.227397-1.299128 1.42665-2.16787 1.641843-2.574346C1.896887-3.028643 2.271482-3.291656 2.590286-3.291656C3.124284-3.291656 3.267746-2.701868 3.267746-2.630137L3.243836-2.518555L2.87721-1.052055Z"></path>
+<path id="tz_fig_oferta_firma_g1-61" d="M5.826152-2.654047C5.945704-2.654047 6.105106-2.654047 6.105106-2.83736S5.913823-3.020672 5.794271-3.020672H.781071C.661519-3.020672 .470237-3.020672 .470237-2.83736S.629639-2.654047 .749191-2.654047H5.826152ZM5.794271-.964384C5.913823-.964384 6.105106-.964384 6.105106-1.147696S5.945704-1.331009 5.826152-1.331009H.749191C.629639-1.331009 .470237-1.331009 .470237-1.147696S.661519-.964384 .781071-.964384H5.794271Z"></path>
+<path id="tz_fig_oferta_firma_g1-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_oferta_firma_g1-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_oferta_firma_g1-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_oferta_firma_g1-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_oferta_firma_g1-102" d="M1.522291-3.172105H2.478705V-3.435118H1.498381V-4.335741C1.498381-5.029141 1.888917-5.387796 2.239601-5.387796C2.367123-5.387796 2.438854-5.355915 2.470735-5.347945C2.327273-5.276214 2.287422-5.140722 2.287422-5.037111C2.287422-4.829888 2.438854-4.678456 2.646077-4.678456C2.86127-4.678456 3.004732-4.829888 3.004732-5.037111C3.004732-5.379826 2.669988-5.610959 2.247572-5.610959C1.649813-5.610959 .940473-5.180573 .940473-4.327771V-3.435118H.286924V-3.172105H.940473V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.083935-.02391 1.275218-.02391C1.745455-.02391 1.761395-.02391 2.279452 0V-.263014H2.12005C1.538232-.263014 1.522291-.350685 1.522291-.637609V-3.172105Z"></path>
+<path id="tz_fig_oferta_firma_g1-104" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C2.032379-3.514819 1.665753-3.068493 1.522291-2.81345H1.514321V-5.531258L.326775-5.443587V-5.180573C.868742-5.180573 .932503-5.124782 .932503-4.734247V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_oferta_firma_g1-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+<path id="tz_fig_oferta_firma_g1-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_oferta_firma_g1-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_oferta_firma_g1-112" d="M2.096139 1.283188C1.586052 1.283188 1.490411 1.283188 1.490411 .924533V-.390535C1.865006 .01594 2.271482 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.717808 3.610461-3.514819 2.646077-3.514819C2.335243-3.514819 1.872976-3.435118 1.466501-3.020672V-3.514819L.278954-3.427148V-3.164134C.844832-3.164134 .884682-3.116314 .884682-2.781569V.924533C.884682 1.283188 .789041 1.283188 .278954 1.283188V1.546202C.621669 1.522291 .972354 1.522291 1.187547 1.522291C1.41868 1.522291 1.753425 1.522291 2.096139 1.546202V1.283188ZM1.490411-2.654047C1.673724-2.972852 2.072229-3.267746 2.574346-3.267746C3.188045-3.267746 3.706102-2.590286 3.706102-1.721544C3.706102-.804981 3.132254-.143462 2.486675-.143462C2.207721-.143462 1.841096-.263014 1.586052-.661519C1.490411-.797011 1.490411-.804981 1.490411-.956413V-2.654047Z"></path>
+<path id="tz_fig_oferta_firma_g1-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_oferta_firma_g1-116" d="M1.482441-3.172105H2.669988V-3.435118H1.482441V-4.901619H1.235367C1.227397-4.176339 .900623-3.419178 .159402-3.395268V-3.172105H.876712V-.996264C.876712-.063761 1.594022 .079701 1.960648 .079701C2.494645 .079701 2.81345-.398506 2.81345-.996264V-1.44259H2.566376V-1.012204C2.566376-.462267 2.319303-.167372 2.016438-.167372C1.482441-.167372 1.482441-.852802 1.482441-.980324V-3.172105Z"></path>
+<path id="tz_fig_oferta_firma_g2-82" d="M3.73599-6.117061C3.795766-6.356164 3.825654-6.455791 4.014944-6.485679C4.104608-6.495641 4.423412-6.495641 4.622665-6.495641C5.330012-6.495641 6.435866-6.495641 6.435866-5.50934C6.435866-5.17061 6.276463-4.483188 5.88792-4.094645C5.628892-3.835616 5.100872-3.516812 4.204234-3.516812H3.088418L3.73599-6.117061ZM5.17061-3.387298C6.176837-3.606476 7.362391-4.303861 7.362391-5.310087C7.362391-6.166874 6.465753-6.804483 5.160648-6.804483H2.321295C2.122042-6.804483 2.032379-6.804483 2.032379-6.60523C2.032379-6.495641 2.122042-6.495641 2.311333-6.495641C2.331258-6.495641 2.520548-6.495641 2.689913-6.475716C2.86924-6.455791 2.958904-6.445828 2.958904-6.316314C2.958904-6.276463 2.948941-6.246575 2.919054-6.127024L1.58406-.777086C1.484433-.388543 1.464508-.308842 .67746-.308842C.498132-.308842 .408468-.308842 .408468-.109589C.408468 0 .52802 0 .547945 0C.826899 0 1.524284-.029888 1.803238-.029888S2.789539 0 3.068493 0C3.148194 0 3.267746 0 3.267746-.199253C3.267746-.308842 3.178082-.308842 2.988792-.308842C2.620174-.308842 2.34122-.308842 2.34122-.488169C2.34122-.547945 2.361146-.597758 2.371108-.657534L3.028643-3.297634H4.214197C5.120797-3.297634 5.300125-2.739726 5.300125-2.391034C5.300125-2.241594 5.220423-1.932752 5.160648-1.703611C5.090909-1.424658 5.001245-1.05604 5.001245-.856787C5.001245 .219178 6.196762 .219178 6.326276 .219178C7.173101 .219178 7.521793-.787049 7.521793-.926526C7.521793-1.046077 7.412204-1.046077 7.402242-1.046077C7.312578-1.046077 7.292653-.976339 7.272727-.9066C7.023661-.169365 6.595268 0 6.366127 0C6.03736 0 5.967621-.219178 5.967621-.607721C5.967621-.916563 6.027397-1.424658 6.067248-1.743462C6.087173-1.882939 6.107098-2.072229 6.107098-2.211706C6.107098-2.978829 5.439601-3.287671 5.17061-3.387298Z"></path>
+<path id="tz_fig_oferta_firma_g2-113" d="M4.503113-4.293898C4.503113-4.333748 4.473225-4.393524 4.403487-4.393524C4.293898-4.393524 3.895392-3.995019 3.726027-3.706102C3.506849-4.244085 3.118306-4.403487 2.799502-4.403487C1.62391-4.403487 .398506-2.929016 .398506-1.484433C.398506-.508095 .986301 .109589 1.713574 .109589C2.141968 .109589 2.530511-.129514 2.889166-.488169C2.799502-.139477 2.470735 1.205479 2.440847 1.295143C2.361146 1.574097 2.281445 1.613948 1.723537 1.62391C1.594022 1.62391 1.494396 1.62391 1.494396 1.823163C1.494396 1.833126 1.494396 1.932752 1.62391 1.932752C1.942715 1.932752 2.291407 1.902864 2.620174 1.902864C2.958904 1.902864 3.317559 1.932752 3.646326 1.932752C3.696139 1.932752 3.825654 1.932752 3.825654 1.733499C3.825654 1.62391 3.726027 1.62391 3.566625 1.62391C3.088418 1.62391 3.088418 1.554172 3.088418 1.464508C3.088418 1.39477 3.108344 1.334994 3.128269 1.24533L4.503113-4.293898ZM1.743462-.109589C1.145704-.109589 1.105853-.876712 1.105853-1.046077C1.105853-1.524284 1.39477-2.610212 1.564134-3.028643C1.872976-3.765878 2.391034-4.184309 2.799502-4.184309C3.447073-4.184309 3.58655-3.377335 3.58655-3.307597C3.58655-3.247821 3.038605-1.066002 3.008717-1.026152C2.859278-.747198 2.30137-.109589 1.743462-.109589Z"></path>
+<path id="tz_fig_oferta_firma_g3-36" d="M2.6401-3.098381C3.835616-2.849315 3.905355-1.882939 3.905355-1.643836C3.905355-.976339 3.427148-.308842 2.6401-.209215V-3.098381ZM2.331258-3.178082V-.209215C1.454545-.259029 .986301-.767123 .856787-1.384807C.896638-1.374844 .976339-1.364882 1.016189-1.364882C1.285181-1.364882 1.474471-1.554172 1.474471-1.823163C1.474471-2.102117 1.265255-2.281445 1.016189-2.281445C.956413-2.281445 .557908-2.261519 .557908-1.77335C.557908-.886675 1.085928 .029888 2.331258 .109589V.557908H2.6401V.099626C3.686177 .009963 4.41345-.916563 4.41345-1.942715C4.41345-2.769614 3.965131-3.277709 3.875467-3.367372C3.476961-3.805729 3.118306-3.895392 2.6401-4.014944V-6.704857C3.486924-6.665006 3.965131-6.22665 4.11457-5.668742C4.07472-5.678705 4.054795-5.688667 3.955168-5.688667C3.696139-5.688667 3.496887-5.50934 3.496887-5.230386C3.496887-4.921544 3.745953-4.772105 3.955168-4.772105C3.985056-4.772105 4.41345-4.782067 4.41345-5.270237C4.41345-6.236613 3.755915-6.963885 2.6401-7.023661V-7.47198H2.331258V-7.013699C1.225405-6.914072 .557908-6.017435 .557908-5.110834C.557908-4.423412 .926526-3.945205 1.105853-3.775841C1.484433-3.387298 1.823163-3.307597 2.331258-3.178082ZM2.331258-4.094645C1.105853-4.353674 1.066002-5.210461 1.066002-5.409714C1.066002-6.007472 1.534247-6.625156 2.331258-6.704857V-4.094645Z"></path>
+</defs>
+<g id="tz_fig_oferta_firma_page1">
+<g stroke-miterlimit="10" transform="translate(-58.383008,116.929465)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H225.62198" fill="none"></path>
+<g transform="translate(225.62198,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(231.15492,-1.18056)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.383008,116.929465)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-58.383008" y="116.929465" href="#tz_fig_oferta_firma_g2-113"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V168.71649" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,168.71649)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-6.33508,174.80498)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.383008,116.929465)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-58.383008" y="116.929465" href="#tz_fig_oferta_firma_g2-82"></use>
+<use x="-50.741511" y="116.929465" href="#tz_fig_oferta_firma_g3-36"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#3fb618" stroke="#3fb618">
+<g stroke-width="0.8">
+<path d="M19.91682 67.76282C19.91682 67.76282 24.79892 63.81541 26.67401 62.39796S31.55609 58.82184 33.43118 57.54672S38.31328 54.34042 40.18837 53.20778C42.06346 52.07513 45.07045 50.37338 46.94554 49.38332C48.82063 48.39325 51.82764 46.91962 53.70273 46.07202C55.57782 45.22443 58.58481 43.97942 60.4599 43.27434S65.342 41.55281 67.21709 40.99025S72.09917 39.63986 73.97426 39.21977S78.85635 38.24002 80.73145 37.96245C82.60654 37.68488 85.61353 37.35422 87.48862 37.21918S92.37071 36.98167 94.2458 36.98907C96.1209 36.99648 99.12788 37.12265 101.00298 37.27258C102.87807 37.42252 105.88507 37.7773 107.76016 38.06969S112.64224 38.94511 114.51733 39.37997C116.39243 39.81483 119.39943 40.62642 121.27452 41.20386S126.1566 42.82182 128.0317 43.54178C129.90678 44.26173 132.91379 45.5305 134.78888 46.39287C136.66397 47.25523 139.67096 48.7523 141.54605 49.75713C143.42114 50.76195 146.42815 52.48753 148.30324 53.635C150.17833 54.78246 153.18532 56.73734 155.06041 58.02733S159.9425 61.50006 161.8176 62.9324C163.69269 64.36475 166.69968 66.77568 168.57477 68.35066S173.45686 72.56631 175.33195 74.28381C177.20705 76.00131 182.08913 80.72926 182.08913 80.72926" fill="none"></path>
+<g transform="translate(185.8221,77.99594)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.383008,116.929465)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none">
+<g fill="#3fb618">
+<use x="-58.383008" y="116.929465" href="#tz_fig_oferta_firma_g0-67"></use>
+<use x="-51.78434" y="116.929465" href="#tz_fig_oferta_firma_g0-86"></use>
+<use x="-44.970901" y="116.929465" href="#tz_fig_oferta_firma_g0-77"></use>
+<use x="-35.989201" y="116.929465" href="#tz_fig_oferta_firma_g0-101"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="0.8">
+<path d="M28.45274 103.52281C28.45274 103.52281 33.07793 98.88841 34.85434 97.19717C36.63075 95.50594 39.47954 92.89667 41.25595 91.3335C43.03236 89.77032 45.88115 87.36617 47.65756 85.93088C49.43398 84.49559 52.28275 82.29648 54.05916 80.98889S58.68436 77.68633 60.46077 76.50668C62.23718 75.32704 65.08597 73.53842 66.86238 72.48685C68.6388 71.43527 71.48756 69.8514 73.26398 68.92764C75.04039 68.00389 77.88918 66.625 79.66559 65.82909C81.442 65.03317 84.29079 63.85919 86.0672 63.19116S90.6924 61.5544 92.46881 61.01431C94.24522 60.47423 97.094 59.71068 98.8704 59.29854C100.64682 58.8864 103.4956 58.3281 105.27202 58.04384C107.04843 57.75958 109.89722 57.40614 111.67363 57.24977S116.29881 56.94525 118.07523 56.91676C119.85164 56.88828 122.70042 56.94502 124.47684 57.0444C126.25325 57.14378 129.10204 57.40579 130.87845 57.63312C132.65486 57.86044 135.50363 58.32774 137.28004 58.6829C139.05646 59.03807 141.90524 59.70985 143.68166 60.1929C145.45807 60.67595 148.30685 61.5534 150.08327 62.1644C151.85968 62.77539 154.70847 63.85759 156.48488 64.59653C158.26129 65.33546 161.11006 66.62334 162.88647 67.49016C164.66289 68.35698 167.51167 69.84937 169.28809 70.84401C171.0645 71.83865 173.91328 73.53639 175.6897 74.65892C177.46611 75.78145 182.0913 78.93448 182.0913 78.93448" fill="none"></path>
+<g transform="translate(185.82426,76.20116)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.383008,116.929465)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-58.383008" y="116.929465" href="#tz_fig_oferta_firma_g0-67"></use>
+<use x="-51.78434" y="116.929465" href="#tz_fig_oferta_firma_g0-84"></use>
+<use x="-45.677981" y="116.929465" href="#tz_fig_oferta_firma_g0-77"></use>
+<use x="-36.696282" y="116.929465" href="#tz_fig_oferta_firma_g0-101"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#6c757d" stroke="#6c757d">
+<path d="M19.91682 85.15373C19.91682 85.15373 21.37292 83.03104 21.93217 82.23318C22.49142 81.43533 23.38826 80.17586 23.94751 79.40337C24.50676 78.63087 25.40361 77.41278 25.96286 76.66559S27.41896 74.73994 27.97821 74.01811S29.4343 72.15958 29.99355 71.4631C30.5528 70.76663 31.44965 69.66957 32.0089 68.99841C32.56815 68.32726 33.465 67.2715 34.02425 66.62576C34.5835 65.98003 35.48033 64.96468 36.03958 64.34428C36.59883 63.72389 37.49568 62.7495 38.05493 62.1544C38.61418 61.55931 39.51102 60.62498 40.07027 60.05527C40.62952 59.48555 41.52637 58.59253 42.08562 58.04817S43.54172 56.65082 44.10097 56.13182S45.55705 54.80103 46.1163 54.3075C46.67555 53.81396 47.5724 53.04306 48.13165 52.57478S49.58775 51.37537 50.147 50.93239S51.60309 49.79958 52.16234 49.38202S53.61844 48.31502 54.17769 47.92282S55.63379 46.92213 56.19304 46.55524C56.75229 46.18834 57.64912 45.61993 58.20837 45.2784C58.76762 44.93686 59.66447 44.40976 60.22372 44.09358S61.67981 43.29033 62.23906 42.99951C62.79831 42.7087 63.69516 42.26294 64.25441 41.99748C64.81366 41.73203 65.71051 41.3263 66.26976 41.0862S68.2851 40.26695 68.2851 40.26695" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="1.2">
+<path d="M93.89413 37.80789C93.89413 37.80789 96.37785 38.34375 97.33177 38.60066S99.81549 39.32886 100.76941 39.65956S103.25311 40.57973 104.20703 40.98416C105.16095 41.3886 106.69075 42.09631 107.64467 42.57448C108.59859 43.05264 110.12839 43.87852 111.0823 44.43048C112.03622 44.98244 113.56602 45.92688 114.51994 46.55263S117.00366 48.24094 117.95758 48.94048C118.9115 49.64001 120.44128 50.82114 121.3952 51.59447S123.87892 53.66722 124.83284 54.51416S127.31656 56.77802 128.27048 57.69868C129.2244 58.61935 130.7542 60.1552 131.70811 61.14978C132.66203 62.14436 134.19183 63.79863 135.14575 64.867C136.09967 65.93538 137.62947 67.70782 138.58339 68.84993C139.53731 69.99203 141.0671 71.8828 142.02101 73.09857C142.97493 74.31435 144.50473 76.32297 145.45865 77.61247C146.41257 78.90198 147.94237 81.02916 148.89629 82.39252C149.8502 83.75587 151.38 86.00148 152.33392 87.43869S154.81764 91.24 155.77156 92.751C156.72548 94.26201 158.25528 96.7443 159.2092 98.32903S161.6929 102.51447 162.64682 104.17274C163.60074 105.83102 165.13054 108.54883 166.08446 110.28085C167.03838 112.01288 168.56818 114.84998 169.5221 116.65598C170.47601 118.46198 172.00581 121.41745 172.95973 123.29724S176.39737 130.20421 176.39737 130.20421" fill="none"></path>
+<g transform="translate(180.33034,128.20421)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.383008,116.929465)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-58.383008" y="116.929465" href="#tz_fig_oferta_firma_g1-111"></use>
+<use x="-54.148825" y="116.929465" href="#tz_fig_oferta_firma_g1-102"></use>
+<use x="-51.561269" y="116.929465" href="#tz_fig_oferta_firma_g1-101"></use>
+<use x="-47.797551" y="116.929465" href="#tz_fig_oferta_firma_g1-114"></use>
+<use x="-44.49738" y="116.929465" href="#tz_fig_oferta_firma_g1-116"></use>
+<use x="-41.204127" y="116.929465" href="#tz_fig_oferta_firma_g1-97"></use>
+<use x="-34.147156" y="116.929465" href="#tz_fig_oferta_firma_g1-61"></use>
+<use x="-25.208325" y="116.929465" href="#tz_fig_oferta_firma_g0-67"></use>
+<use x="-18.609657" y="116.929465" href="#tz_fig_oferta_firma_g0-77"></use>
+<use x="-9.627958" y="116.929465" href="#tz_fig_oferta_firma_g0-103"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M95.73276 36.98865C95.73276 38.00409 94.90958 38.82727 93.89413 38.82727C92.8787 38.82727 92.05551 38.00409 92.05551 36.98865C92.05551 35.9732 92.8787 35.15002 93.89413 35.15002C94.90958 35.15002 95.73276 35.9732 95.73276 36.98865ZM93.89413 36.98865" stroke="none"></path>
+</g>
+<g transform="translate(93.89413,36.98865)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.383008,116.929465)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(36.00935,74.985)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-58.383008,116.929465)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-53.795976" y="107.464957" href="#tz_fig_oferta_firma_g1-112"></use>
+<use x="-48.856096" y="107.464957" href="#tz_fig_oferta_firma_g1-111"></use>
+<use x="-44.621913" y="107.464957" href="#tz_fig_oferta_firma_g1-110"></use>
+<use x="-40.152498" y="107.464957" href="#tz_fig_oferta_firma_g1-116"></use>
+<use x="-36.859245" y="107.464957" href="#tz_fig_oferta_firma_g1-111"></use>
+<use x="-29.802273" y="107.464957" href="#tz_fig_oferta_firma_g1-100"></use>
+<use x="-25.097626" y="107.464957" href="#tz_fig_oferta_firma_g1-101"></use>
+<use x="-58.383008" y="116.929465" href="#tz_fig_oferta_firma_g1-102"></use>
+<use x="-55.795452" y="116.929465" href="#tz_fig_oferta_firma_g1-101"></use>
+<use x="-52.031733" y="116.929465" href="#tz_fig_oferta_firma_g1-99"></use>
+<use x="-48.503248" y="116.929465" href="#tz_fig_oferta_firma_g1-104"></use>
+<use x="-43.7986" y="116.929465" href="#tz_fig_oferta_firma_g1-97"></use>
+<use x="-39.564417" y="116.929465" href="#tz_fig_oferta_firma_g1-109"></use>
+<use x="-32.507446" y="116.929465" href="#tz_fig_oferta_firma_g1-101"></use>
+<use x="-28.743728" y="116.929465" href="#tz_fig_oferta_firma_g1-110"></use>
+<use x="-24.274313" y="116.929465" href="#tz_fig_oferta_firma_g1-116"></use>
+<use x="-20.981059" y="116.929465" href="#tz_fig_oferta_firma_g1-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<path d="M65.44139 71.13185L87.95383 42.99142" fill="none"></path>
+<g transform="matrix(0.62466,-0.78082,0.78082,0.62466,88.07874,42.83527)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.07999 2.39998C-1.69998 .95998-.85318 .28 0 0C-.85318-.28-1.69998-.95998-2.07999-2.39998" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-oferta-firma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;32.2: A oferta de curto prazo da firma é o ramo do custo marginal acima do mínimo do custo variável médio (o ponto de fechamento).
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="o-ajuste-de-longo-prazo-entrada-saída-e-lucro-zero" class="level2" data-number="32.6">
+<h2 data-number="32.6" class="anchored" data-anchor-id="o-ajuste-de-longo-prazo-entrada-saída-e-lucro-zero"><span class="header-section-number">32.6</span> O ajuste de longo prazo: entrada, saída e lucro zero</h2>
+<p>No longo prazo, entra em cena a terceira hipótese: <strong>livre entrada e saída</strong>. Ela é o motor que leva a concorrência perfeita ao seu destino.</p>
+<p>Suponha que as firmas do setor têm lucro econômico <strong>positivo</strong> (como na <a href="#fig-lucro-cp" class="quarto-xref">Figura&nbsp;<span>32.1</span></a>). Esse lucro é um sinal luminoso para quem está de fora: “há dinheiro a ganhar aqui”. Novas firmas <strong>entram</strong>. Mais firmas significam maior oferta de mercado, o que <strong>derruba o preço</strong> (deslocamento da oferta para a direita, <a href="../vol03/cap03-equilibrio-de-mercado.html" class="quarto-xref"><span>Capítulo 17</span></a>). O preço cai até que o lucro econômico desapareça. Simetricamente, se as firmas têm <strong>prejuízo</strong>, algumas <strong>saem</strong>, a oferta recua, o preço <strong>sobe</strong>, até o prejuízo cessar.</p>
+<p>O processo só para quando o lucro econômico é <strong>zero</strong> para a firma marginal — o que ocorre exatamente onde o preço iguala o mínimo do custo total médio de longo prazo:</p>
+<p><span id="eq-longo-prazo-cp"><span class="math display">\[
+\boxed{P = CMg = CTMe_{\min}} \quad \text{(equilíbrio de longo prazo).}
+\tag{32.4}\]</span></span></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — o preço é puxado para o custo médio mínimo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — o preço é puxado para o custo médio mínimo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A entrada e a saída de firmas funcionam como um termostato do lucro. Enquanto houver lucro econômico, entra gente e o preço cai; enquanto houver prejuízo, sai gente e o preço sobe. O repouso é o <strong>lucro econômico zero</strong>, com o preço igual ao <strong>menor custo médio possível</strong> — a escala eficiente do <a href="cap02-custos.html" class="quarto-xref"><span>Capítulo 31</span></a>. O mercado, sem que ninguém o comande, empurra cada firma a produzir da forma mais barata que a tecnologia permite.</p>
+</div>
+</div>
+<p>Lucro econômico zero, lembre da <a href="cap02-custos.html#eq-lucro-economico" class="quarto-xref">Equação&nbsp;<span>31.1</span></a>, <strong>não</strong> é miséria: as firmas cobrem todos os custos, inclusive o de oportunidade do capital e do trabalho dos donos (o lucro normal). É simplesmente a ausência de razão para entrar ou sair.</p>
+</section>
+<section id="a-eficiência-da-concorrência-perfeita" class="level2" data-number="32.7">
+<h2 data-number="32.7" class="anchored" data-anchor-id="a-eficiência-da-concorrência-perfeita"><span class="header-section-number">32.7</span> A eficiência da concorrência perfeita</h2>
+<p>Por que esse modelo idealizado é a referência de toda a microeconomia? Porque seu equilíbrio é <strong>eficiente</strong> em dois sentidos precisos:</p>
+<ul>
+<li><strong>Eficiência produtiva</strong>: no longo prazo, cada firma produz no mínimo do custo médio (<span class="math inline">\(CTMe_{\min}\)</span>). A sociedade obtém o produto ao <strong>menor custo de recursos</strong> possível.</li>
+<li><strong>Eficiência alocativa</strong>: como <span class="math inline">\(P = CMg\)</span>, o preço — que mede o valor da última unidade para o consumidor — iguala o custo marginal — que mede o custo dos recursos para produzi-la. Produz-se <strong>exatamente</strong> a quantidade em que o benefício da última unidade iguala seu custo. Nem falta (haveria unidades cujo valor supera o custo), nem sobra (não se produzem unidades que custam mais do que valem).</li>
+</ul>
+<p>Nessa quantidade, a soma do excedente do consumidor e do excedente do produtor (<a href="../vol02/cap07-integrais-excedentes.html" class="quarto-xref"><span>Capítulo 13</span></a>, <a href="../vol03/cap03-equilibrio-de-mercado.html" class="quarto-xref"><span>Capítulo 17</span></a>) é <strong>máxima</strong>: não há <strong>peso morto</strong>. É esse ideal — todo ganho de troca possível realizado — que o monopólio do próximo capítulo irá violar, e é por isso que a concorrência perfeita serve de vara de medir para o “bom” funcionamento dos mercados.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — um modelo que quase não existe é útil?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — um modelo que quase não existe é útil?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nenhum mercado real satisfaz todas as quatro hipóteses à risca. Críticos dizem que a concorrência perfeita é uma ficção. A defesa: seu valor não está em descrever mercados, mas em ser um <strong>padrão de referência</strong>. Ao apontar exatamente quais hipóteses falham em cada caso real (produto diferenciado, poucas firmas, barreiras à entrada, informação assimétrica), o modelo organiza o estudo de <em>todas</em> as demais estruturas — que são, no fundo, desvios dele. É um mapa, não o território.</p>
+</div>
+</div>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="32.8">
+<h2 data-number="32.8" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">32.8</span> 🇧🇷 Brasil em Foco</h2>
+<p>Embora a concorrência perfeita seja um ideal, alguns mercados brasileiros chegam perto o bastante para que o modelo seja útil.</p>
+<p><strong>A feira, o hortifrúti e os grãos.</strong> Mercados de produtos agrícolas pouco diferenciados aproximam-se das hipóteses do modelo: muitos produtores, produto relativamente homogêneo, entrada e saída sazonais. Um produtor de tomate ou de alface é, na prática, tomador de preços — o preço se forma nas centrais de abastecimento (as <strong>CEASAs</strong>) e ele o aceita. No atacado de commodities agrícolas como soja e milho, o produtor brasileiro é ainda mais claramente tomador de preços: o preço é ditado por bolsas internacionais (como a de Chicago) convertidas pelo câmbio, e nenhum produtor individual o move. A decisão do produtor é a do modelo: dado o preço, produzir onde <span class="math inline">\(P = CMg\)</span>, e plantar ou não conforme o preço cubra os custos variáveis da safra.</p>
+<p><strong>Entrada, saída e o “ciclo do porco”.</strong> O ajuste de longo prazo por entrada e saída aparece nos <strong>ciclos de preços agropecuários</strong>. Quando o preço de um produto (suínos, ovos, certas hortaliças) sobe e gera lucros, mais produtores entram; a oferta cresce, o preço despenca, alguns saem; o preço volta a subir — o clássico “ciclo do porco”. É a dinâmica da <a href="#eq-longo-prazo-cp" class="quarto-xref">Equação&nbsp;<span>32.4</span></a> operando com defasagens de produção, empurrando os lucros econômicos para perto de zero ao longo do ciclo.</p>
+<p><strong>Marketplaces e a queda das margens.</strong> Plataformas digitais aproximaram vários varejos das condições do modelo: em <em>marketplaces</em>, o consumidor compara preços de dezenas de vendedores de um produto idêntico com um clique (informação quase perfeita, produto homogêneo, muitos vendedores). O resultado é uma pressão competitiva intensa sobre as margens — o análogo digital da feira de tomates, empurrando o preço em direção ao custo. Onde a informação fica <em>mais</em> perfeita, o mercado real se aproxima do modelo.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> CEAGESP e CEASAs estaduais (preços de hortifrúti); CONAB e CEPEA/ESALQ (preços de commodities agrícolas e paridades); IBGE — Produção Agrícola Municipal. Ao usar dados de preços agrícolas, atente para a forte sazonalidade e para o papel do câmbio nas commodities.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="32.9">
+<h2 data-number="32.9" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">32.9</span> Resumo do capítulo</h2>
+<ul>
+<li>A <strong>concorrência perfeita</strong> supõe muitos agentes pequenos, produto homogêneo, livre entrada/saída e informação perfeita. A firma é <strong>tomadora de preços</strong>: enxerga demanda horizontal ao nível <span class="math inline">\(P\)</span>.</li>
+<li>Para a firma competitiva, <span class="math inline">\(P = RMe = RMg\)</span>: cada unidade extra rende o preço.</li>
+<li>A firma maximiza lucro produzindo onde <span class="math inline">\(RMg = CMg\)</span>, ou seja, <strong><span class="math inline">\(P = CMg\)</span></strong> (no ramo crescente). O lucro é o retângulo <span class="math inline">\((P - CTMe)\,q^{*}\)</span>, que pode ser positivo, nulo ou negativo.</li>
+<li><strong>Fechamento</strong>: no curto prazo, continua produzindo enquanto <span class="math inline">\(P \geq CVMe\)</span>; fecha se <span class="math inline">\(P &lt; CVMe_{\min}\)</span>. A <strong>curva de oferta de curto prazo</strong> é o ramo do <span class="math inline">\(CMg\)</span> acima do <span class="math inline">\(CVMe_{\min}\)</span>.</li>
+<li>No <strong>longo prazo</strong>, entrada e saída de firmas levam ao <strong>lucro econômico zero</strong>, com <span class="math inline">\(P = CMg = CTMe_{\min}\)</span>. Lucro zero é o retorno normal, não prejuízo.</li>
+<li>O equilíbrio é <strong>eficiente</strong>: produtivamente (custo médio mínimo) e alocativamente (<span class="math inline">\(P = CMg\)</span>), maximizando o excedente total, sem peso morto. Serve de referência para avaliar todas as outras estruturas.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="32.10">
+<h2 data-number="32.10" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">32.10</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Resolva antes de abrir a solução. Dificuldade crescente.</p>
+</div>
+</div>
+<p><strong>1.</strong> Por que a firma perfeitamente competitiva enxerga uma curva de demanda horizontal, se a demanda de mercado é descendente?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A demanda de <strong>mercado</strong> é descendente porque, para o conjunto dos consumidores, comprar mais exige preço menor. Mas a firma individual é minúscula e vende produto idêntico ao das demais. Se cobrar um centavo acima do preço de mercado, perde todos os clientes (vão ao concorrente idêntico); e pode vender quanto quiser ao preço vigente sem baixá-lo. Do ponto de vista dela, portanto, qualquer quantidade sai pelo mesmo preço <span class="math inline">\(P\)</span>: sua demanda é <strong>horizontal</strong> nesse nível. As duas coisas convivem — a curva do mercado é a soma de muitas decisões; a da firma reflete sua incapacidade de mover o preço.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Uma firma competitiva tem <span class="math inline">\(CMg = 2 + 2q\)</span> e enfrenta preço <span class="math inline">\(P = 12\)</span>. Qual a quantidade que maximiza o lucro?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Iguala-se preço ao custo marginal: <span class="math inline">\(P = CMg \Rightarrow 12 = 2 + 2q \Rightarrow 2q = 10 \Rightarrow q^{*} = 5\)</span>. A firma produz 5 unidades (no ramo crescente do <span class="math inline">\(CMg\)</span>).</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Explique por que uma firma pode racionalmente continuar produzindo com prejuízo no curto prazo. Quando, então, ela deve fechar?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No curto prazo, o custo fixo é pago produza-se ou não. Se o preço cobre o <strong>custo variável médio</strong> e ainda sobra algo, essa sobra abate parte do custo fixo — o prejuízo é <em>menor</em> do que seria com a firma fechada (que perderia o custo fixo inteiro). Logo, vale continuar enquanto <span class="math inline">\(P \geq CVMe\)</span>, mesmo com <span class="math inline">\(P &lt; CTMe\)</span> (prejuízo). A firma deve <strong>fechar</strong> apenas quando <span class="math inline">\(P &lt; CVMe_{\min}\)</span>: aí, cada unidade produzida não cobre nem seu custo variável e só aumenta o prejuízo. O ponto de fechamento é <span class="math inline">\(P = CVMe_{\min}\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> No longo prazo, o setor competitivo tem <span class="math inline">\(CTMe\)</span> com mínimo igual a R$,8, atingido em <span class="math inline">\(q = 100\)</span>. Qual será o preço de equilíbrio de longo prazo? Qual o lucro econômico de cada firma? O que garante esse resultado?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No equilíbrio de longo prazo, <span class="math inline">\(P = CTMe_{\min} = R\$\,8\)</span>, e cada firma produz <span class="math inline">\(q = 100\)</span> (a escala eficiente). O <strong>lucro econômico é zero</strong>, pois o preço iguala exatamente o custo médio mínimo. O que garante o resultado é a <strong>livre entrada e saída</strong>: qualquer lucro econômico positivo atrairia firmas (baixando o preço) e qualquer prejuízo expulsaria firmas (elevando o preço), até <span class="math inline">\(P = CTMe_{\min}\)</span>. Lucro zero aqui é o lucro <em>normal</em> — as firmas cobrem o custo de oportunidade de seus recursos.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Mostre, com o conceito de excedente, por que a quantidade em que <span class="math inline">\(P = CMg\)</span> é eficiente do ponto de vista alocativo, e o que aconteceria se a firma produzisse menos que isso.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O preço <span class="math inline">\(P\)</span> mede o valor da última unidade para o consumidor; o custo marginal <span class="math inline">\(CMg\)</span> mede o custo dos recursos para produzi-la. Quando <span class="math inline">\(P = CMg\)</span>, a última unidade produzida vale para o consumidor exatamente o que custa produzir — não há ganho líquido em produzir mais nem em produzir menos, e a soma dos excedentes do consumidor e do produtor é máxima. Se a firma (ou o mercado) produzisse <strong>menos</strong>, haveria unidades não produzidas para as quais <span class="math inline">\(P &gt; CMg\)</span> — o consumidor as valoriza mais do que custam. Deixar de produzi-las desperdiça ganhos de troca: surge um <strong>peso morto</strong>. Por isso <span class="math inline">\(P = CMg\)</span> é a condição de eficiência alocativa, e reduzir a produção abaixo dela (como fará o monopólio) gera ineficiência.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> (Análise de caso) Explique o “ciclo do porco” (oscilação de preços na suinocultura ou na produção de ovos) usando a dinâmica de entrada e saída da concorrência perfeita. Por que os lucros não permanecem altos?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Quando o preço do produto sobe (por um choque de demanda ou queda de oferta), as firmas passam a ter <strong>lucro econômico positivo</strong>. Isso atrai <strong>entrada</strong> de novos produtores e expansão dos existentes. Como a produção agropecuária tem defasagem (leva tempo criar animais), a nova oferta chega toda de uma vez algum tempo depois, <strong>derrubando o preço</strong> — muitas vezes abaixo do custo, gerando prejuízo. Aí alguns produtores <strong>saem</strong>, a oferta recua e o preço volta a subir, recomeçando o ciclo. Os lucros não permanecem altos justamente porque a livre entrada os corrói: qualquer lucro econômico é um sinal que atrai concorrência até que ele desapareça. É a <a href="#eq-longo-prazo-cp" class="quarto-xref">Equação&nbsp;<span>32.4</span></a> operando com defasagens, produzindo oscilação em vez de convergência suave.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Desafio) Um <em>marketplace</em> online exibe, para um mesmo produto, o preço de 50 vendedores ordenados do mais barato ao mais caro. Analise quais hipóteses da concorrência perfeita a plataforma aproxima e quais ainda podem falhar, e o efeito esperado sobre as margens dos vendedores.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A plataforma aproxima três hipóteses: <strong>muitos vendedores</strong> (50 ou mais), <strong>informação quase perfeita</strong> (preços comparáveis num clique) e, para produtos idênticos (mesmo modelo, mesma marca), <strong>produto homogêneo</strong>. A <strong>livre entrada</strong> também tende a valer em plataformas abertas. O efeito é forte pressão competitiva: como o consumidor vê o mais barato no topo, cada vendedor é quase tomador de preços, e as <strong>margens caem</strong> em direção ao custo — o análogo digital da feira de tomates. Hipóteses que ainda podem falhar: o produto pode <strong>não ser perfeitamente homogêneo</strong> (reputação do vendedor, prazo de entrega, frete, garantia diferenciam ofertas aparentemente iguais), e a informação pode não ser totalmente perfeita (custos de busca, avaliações manipuláveis, taxas ocultas). Na medida em que essas diferenças persistem, o mercado se afasta da concorrência perfeita e se aproxima da <strong>concorrência monopolística</strong> (<a href="cap05-concorrencia-monopolistica.html" class="quarto-xref"><span>Capítulo 34</span></a>), em que cada vendedor tem um pequeno poder de preço por ser um pouco diferente dos demais.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="32.11">
+<h2 data-number="32.11" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">32.11</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="mankiw2020">Mankiw (<a href="#ref-mankiw2020" role="doc-biblioref">2020</a>)</span> — a exposição da firma competitiva, da regra <span class="math inline">\(P = CMg\)</span> e do fechamento é um modelo de clareza introdutória.</li>
+<li><span class="citation" data-cites="pindyck2013">Pindyck; Rubinfeld (<a href="#ref-pindyck2013" role="doc-biblioref">2013</a>)</span> — deriva a oferta de curto e longo prazo e discute a eficiência do equilíbrio competitivo com rigor.</li>
+<li><span class="citation" data-cites="varian2015">Varian (<a href="#ref-varian2015" role="doc-biblioref">2015</a>)</span> — trata a firma competitiva e a curva de oferta a partir da maximização de lucro, com boa formalização.</li>
+<li><span class="citation" data-cites="smith1996">Smith (<a href="#ref-smith1996" role="doc-biblioref">1996</a>)</span> — a fonte original da “mão invisível”, a intuição que a eficiência competitiva torna precisa.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-mankiw2020" class="csl-entry" role="listitem">
+MANKIW, N. Gregory. <strong>Introdução à Economia</strong>. 8. ed. São Paulo: Cengage Learning, 2020.
+</div>
+<div id="ref-pindyck2013" class="csl-entry" role="listitem">
+PINDYCK, Robert S.; RUBINFELD, Daniel L. <strong>Microeconomia</strong>. 8. ed. São Paulo: Pearson, 2013.
+</div>
+<div id="ref-smith1996" class="csl-entry" role="listitem">
+SMITH, Adam. <strong>A Riqueza das Nações: investigação sobre sua natureza e suas causas</strong>. São Paulo: Nova Cultural, 1996.
+</div>
+<div id="ref-varian2015" class="csl-entry" role="listitem">
+VARIAN, Hal R. <strong>Microeconomia: uma abordagem moderna</strong>. 9. ed. Rio de Janeiro: Elsevier, 2015.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol05/cap02-custos.html" class="pagination-link" aria-label="Custos de produção: curto e longo prazo">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol05/cap04-monopolio.html" class="pagination-link" aria-label="Monopólio">
+        <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol05/cap03-concorrencia-perfeita.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

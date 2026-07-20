@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>45&nbsp; O modelo IS-LM – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" rel="next">
+<link href="../../capitulos/vol07/cap01-demanda-agregada.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol07/cap01-demanda-agregada.html">Volume 7 — Macroeconomia II: Modelos e Política Econômica</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol07/cap02-is-lm.html"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">45.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#o-mercado-de-bens-a-curva-is" id="toc-o-mercado-de-bens-a-curva-is" class="nav-link" data-scroll-target="#o-mercado-de-bens-a-curva-is"><span class="header-section-number">45.2</span> O mercado de bens: a curva IS</a>
+  <ul class="collapse">
+  <li><a href="#investimento-sensível-aos-juros" id="toc-investimento-sensível-aos-juros" class="nav-link" data-scroll-target="#investimento-sensível-aos-juros"><span class="header-section-number">45.2.1</span> Investimento sensível aos juros</a></li>
+  <li><a href="#da-cruz-keynesiana-à-is" id="toc-da-cruz-keynesiana-à-is" class="nav-link" data-scroll-target="#da-cruz-keynesiana-à-is"><span class="header-section-number">45.2.2</span> Da Cruz Keynesiana à IS</a></li>
+  <li><a href="#o-que-desloca-a-is" id="toc-o-que-desloca-a-is" class="nav-link" data-scroll-target="#o-que-desloca-a-is"><span class="header-section-number">45.2.3</span> O que desloca a IS</a></li>
+  </ul></li>
+  <li><a href="#o-mercado-monetário-a-curva-lm" id="toc-o-mercado-monetário-a-curva-lm" class="nav-link" data-scroll-target="#o-mercado-monetário-a-curva-lm"><span class="header-section-number">45.3</span> O mercado monetário: a curva LM</a>
+  <ul class="collapse">
+  <li><a href="#a-demanda-por-moeda" id="toc-a-demanda-por-moeda" class="nav-link" data-scroll-target="#a-demanda-por-moeda"><span class="header-section-number">45.3.1</span> A demanda por moeda</a></li>
+  <li><a href="#equilíbrio-monetário-e-a-lm" id="toc-equilíbrio-monetário-e-a-lm" class="nav-link" data-scroll-target="#equilíbrio-monetário-e-a-lm"><span class="header-section-number">45.3.2</span> Equilíbrio monetário e a LM</a></li>
+  <li><a href="#o-que-desloca-a-lm" id="toc-o-que-desloca-a-lm" class="nav-link" data-scroll-target="#o-que-desloca-a-lm"><span class="header-section-number">45.3.3</span> O que desloca a LM</a></li>
+  </ul></li>
+  <li><a href="#o-equilíbrio-geral-is-lm" id="toc-o-equilíbrio-geral-is-lm" class="nav-link" data-scroll-target="#o-equilíbrio-geral-is-lm"><span class="header-section-number">45.4</span> O equilíbrio geral IS-LM</a>
+  <ul class="collapse">
+  <li><a href="#como-a-economia-converge" id="toc-como-a-economia-converge" class="nav-link" data-scroll-target="#como-a-economia-converge"><span class="header-section-number">45.4.1</span> Como a economia converge</a></li>
+  <li><a href="#resolvendo-algebricamente" id="toc-resolvendo-algebricamente" class="nav-link" data-scroll-target="#resolvendo-algebricamente"><span class="header-section-number">45.4.2</span> Resolvendo algebricamente</a></li>
+  </ul></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">45.5</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">45.6</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">45.7</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">45.8</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol07/cap02-is-lm.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol07/cap01-demanda-agregada.html">Volume 7 — Macroeconomia II: Modelos e Política Econômica</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol07/cap02-is-lm.html"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-is-lm" class="quarto-section-identifier"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>No capítulo anterior, a Cruz Keynesiana tratou o investimento como um número fixo, caído do céu — uma decisão empresarial autônoma. Mas todo mundo sabe que investimento e <strong>juros</strong> andam de mãos dadas: quando a Selic sobe, financiar uma fábrica, um galpão ou um estoque fica mais caro, e muitos projetos são engavetados; quando os juros caem, o crédito destrava e os planos saem do papel. Faltava ao nosso modelo essa conexão. E faltava também a <strong>moeda</strong>: de onde vêm os juros, afinal?</p>
+<p>O modelo <strong>IS-LM</strong>, formulado por John Hicks em 1937 como uma leitura da <em>Teoria Geral</em> de Keynes <span class="citation" data-cites="hicks1937 keynes1996">(<a href="#ref-hicks1937" role="doc-biblioref">Hicks, 1937</a>; <a href="#ref-keynes1996" role="doc-biblioref">Keynes, 1996</a>)</span>, é a resposta clássica a essas lacunas. Ele une, num único diagrama, o <strong>mercado de bens</strong> (a curva <strong>IS</strong>) e o <strong>mercado monetário</strong> (a curva <strong>LM</strong>), e determina <strong>simultaneamente</strong> a renda <span class="math inline">\(Y\)</span> e a taxa de juros <span class="math inline">\(i\)</span> que equilibram os dois mercados ao mesmo tempo. É o cavalo de batalha da análise de política macroeconômica de curto prazo — e a base para entendermos, no próximo capítulo, como política fiscal e monetária de fato operam.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="45.1">
+<h2 data-number="45.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">45.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>explicar por que o <strong>investimento depende da taxa de juros</strong> e derivar a <strong>curva IS</strong>;</li>
+<li>entender a <strong>demanda por moeda</strong> e derivar a <strong>curva LM</strong> a partir do equilíbrio monetário;</li>
+<li>interpretar o significado econômico de cada ponto <strong>fora</strong> das curvas;</li>
+<li>localizar o <strong>equilíbrio geral</strong> de curto prazo na interseção IS-LM;</li>
+<li>reconhecer o que <strong>desloca</strong> cada curva (distinguindo deslocamento de movimento ao longo);</li>
+<li>compreender as hipóteses e os limites do modelo.</li>
+</ul>
+</section>
+<section id="o-mercado-de-bens-a-curva-is" class="level2" data-number="45.2">
+<h2 data-number="45.2" class="anchored" data-anchor-id="o-mercado-de-bens-a-curva-is"><span class="header-section-number">45.2</span> O mercado de bens: a curva IS</h2>
+<section id="investimento-sensível-aos-juros" class="level3" data-number="45.2.1">
+<h3 data-number="45.2.1" class="anchored" data-anchor-id="investimento-sensível-aos-juros"><span class="header-section-number">45.2.1</span> Investimento sensível aos juros</h3>
+<p>O ponto de partida é abandonar a hipótese de investimento autônomo. Agora o investimento planejado depende <strong>negativamente</strong> da taxa de juros:</p>
+<p><span id="eq-investimento"><span class="math display">\[
+I = I_0 - b\,i, \qquad b &gt; 0,
+\tag{45.1}\]</span></span></p>
+<p>onde <span class="math inline">\(i\)</span> é a taxa de juros (real) e <span class="math inline">\(b\)</span> mede a sensibilidade do investimento aos juros. A lógica é a do custo de oportunidade: a taxa de juros é o custo de tomar emprestado para investir — e também o retorno de simplesmente aplicar o dinheiro em vez de investir. Juros mais altos elevam esse custo e derrubam o número de projetos cujo retorno esperado ainda compensa. Juros menores fazem o inverso.</p>
+</section>
+<section id="da-cruz-keynesiana-à-is" class="level3" data-number="45.2.2">
+<h3 data-number="45.2.2" class="anchored" data-anchor-id="da-cruz-keynesiana-à-is"><span class="header-section-number">45.2.2</span> Da Cruz Keynesiana à IS</h3>
+<p>Retomemos a condição de equilíbrio do mercado de bens, <span class="math inline">\(Y = C + I + G\)</span>, agora com o investimento da <a href="#eq-investimento" class="quarto-xref">Equação&nbsp;<span>45.1</span></a>. Para cada taxa de juros <span class="math inline">\(i\)</span>, existe uma renda de equilíbrio <span class="math inline">\(Y\)</span> — exatamente como na Cruz Keynesiana, só que o nível do investimento (e portanto do gasto autônomo) muda quando <span class="math inline">\(i\)</span> muda.</p>
+<p>Pense no que acontece quando os juros <strong>caem</strong> de <span class="math inline">\(i_1\)</span> para <span class="math inline">\(i_2\)</span>:</p>
+<ol type="1">
+<li>O investimento <strong>aumenta</strong> (mais projetos compensam).</li>
+<li>Isso desloca a reta de despesa agregada para <strong>cima</strong> na Cruz Keynesiana.</li>
+<li>Pelo <strong>multiplicador</strong>, a renda de equilíbrio <strong>sobe</strong> de <span class="math inline">\(Y_1\)</span> para <span class="math inline">\(Y_2\)</span>.</li>
+</ol>
+<p>Ou seja: <strong>juros menores → renda de equilíbrio maior</strong>. Se marcarmos cada par <span class="math inline">\((Y, i)\)</span> que equilibra o mercado de bens num gráfico com <span class="math inline">\(Y\)</span> no eixo horizontal e <span class="math inline">\(i\)</span> no vertical, obtemos uma curva <strong>decrescente</strong>: a curva <strong>IS</strong>. A <a href="#fig-is" class="quarto-xref">Figura&nbsp;<span>45.1</span></a> mostra a construção.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Curva IS">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Curva IS
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>curva IS</strong> é o conjunto de todas as combinações de renda <span class="math inline">\(Y\)</span> e taxa de juros <span class="math inline">\(i\)</span> para as quais o <strong>mercado de bens</strong> está em equilíbrio (a produção iguala a despesa planejada). Ela é <strong>decrescente</strong>: juros menores estimulam o investimento, que, via multiplicador, eleva a renda de equilíbrio. A sigla vem de <em>Investment = Savings</em> — investimento igual à poupança, a condição de equilíbrio do mercado de bens.</p>
+</div>
+</div>
+<div id="fig-is" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-is-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="232.805549pt" height="192.629948pt" viewbox="-68.014948 -68.014948 232.805549 192.629948">
+<defs>
+<path id="tz_fig_is_g0-34" d="M2.295392-4.375592C2.510585-4.064757 2.749689-3.841594 2.964882-3.690162C3.482939-3.323537 3.969116-3.251806 3.985056-3.251806C4.104608-3.251806 4.104608-3.379328 4.104608-3.427148C4.104608-3.53076 4.088667-3.58655 4.000996-3.610461C2.582316-3.977086 2.311333-5.068991 2.215691-5.443587C2.215691-5.467497 2.183811-5.531258 2.11208-5.531258C2.096139-5.531258 2.024408-5.523288 2.008468-5.435616C1.936737-5.172603 1.825156-4.694396 1.3868-4.24807C.932503-3.793773 .454296-3.674222 .215193-3.610461C.127522-3.58655 .119552-3.506849 .119552-3.427148C.119552-3.379328 .119552-3.251806 .239103-3.251806C.255044-3.251806 .757161-3.323537 1.291158-3.706102C1.522291-3.881445 1.753425-4.112578 1.928767-4.375592V1.243337C1.928767 1.370859 1.928767 1.546202 2.11208 1.546202S2.295392 1.370859 2.295392 1.243337V-4.375592Z"></path>
+<path id="tz_fig_is_g0-35" d="M2.295392-5.228394C2.295392-5.355915 2.295392-5.531258 2.11208-5.531258S1.928767-5.355915 1.928767-5.228394V.390535C1.713574 .079701 1.474471-.143462 1.259278-.294894C.74122-.661519 .255044-.73325 .239103-.73325C.119552-.73325 .119552-.605729 .119552-.557908C.119552-.454296 .135492-.398506 .223163-.374595C1.641843-.00797 1.912827 1.075965 2.008468 1.45056C2.024408 1.546202 2.10411 1.546202 2.11208 1.546202C2.175841 1.546202 2.207721 1.498381 2.223661 1.45056C2.438854 .494147 3.028643-.127522 4.008966-.374595C4.096638-.398506 4.104608-.478207 4.104608-.557908C4.104608-.605729 4.104608-.73325 3.985056-.73325C3.969116-.73325 3.466999-.661519 2.933001-.278954C2.701868-.103611 2.470735 .127522 2.295392 .390535V-5.228394Z"></path>
+<path id="tz_fig_is_g0-41" d="M6.057285-2.654047C6.37609-2.391034 6.702864-2.191781 7.149191-1.992528C6.766625-1.817186 6.40797-1.625903 6.057285-1.331009H.765131C.629639-1.331009 .470237-1.331009 .470237-1.147696S.661519-.964384 .797011-.964384H5.650809C5.068991-.318804 4.877709 .135492 4.877709 .175342C4.877709 .286924 4.99726 .286924 5.061021 .286924C5.188543 .286924 5.196513 .278954 5.284184 .127522C5.977584-1.163636 7.037609-1.657783 7.898381-1.880946C7.946202-1.896887 7.994022-1.936737 7.994022-1.992528S7.946202-2.088169 7.898381-2.10411C6.718804-2.414944 5.842092-3.068493 5.284184-4.112578C5.196513-4.26401 5.188543-4.27198 5.061021-4.27198C4.99726-4.27198 4.877709-4.27198 4.877709-4.160399C4.877709-4.120548 5.061021-3.674222 5.650809-3.020672H.797011C.661519-3.020672 .470237-3.020672 .470237-2.83736S.629639-2.654047 .765131-2.654047H6.057285Z"></path>
+<path id="tz_fig_is_g1-73" d="M3.092403-4.821918C3.164134-5.100872 3.180075-5.180573 3.777833-5.180573C3.961146-5.180573 4.056787-5.180573 4.056787-5.332005C4.056787-5.339975 4.048817-5.443587 3.921295-5.443587C3.801743-5.443587 3.55467-5.427646 3.427148-5.419676H2.327273C2.215691-5.427646 1.928767-5.443587 1.817186-5.443587C1.785305-5.443587 1.657783-5.443587 1.657783-5.292154C1.657783-5.180573 1.753425-5.180573 1.912827-5.180573C2.414944-5.180573 2.414944-5.132752 2.414944-5.037111C2.414944-5.021171 2.414944-4.98132 2.383064-4.853798L1.323039-.629639C1.251308-.342715 1.227397-.263014 .637609-.263014C.446326-.263014 .358655-.263014 .358655-.111582C.358655-.071731 .390535 0 .486177 0C.597758 0 .860772-.01594 .980324-.02391H2.088169C2.199751-.01594 2.486675 0 2.598257 0C2.646077 0 2.757659 0 2.757659-.151432C2.757659-.263014 2.662017-.263014 2.494645-.263014C2.375093-.263014 2.327273-.263014 2.191781-.278954S1.992528-.302864 1.992528-.390535C1.992528-.430386 2.000498-.430386 2.024408-.541968L3.092403-4.821918Z"></path>
+<path id="tz_fig_is_g1-89" d="M5.061021-4.487173C5.116812-4.550934 5.188543-4.614695 5.252304-4.678456C5.547198-4.94944 5.810212-5.148692 6.256538-5.180573C6.328269-5.188543 6.42391-5.196513 6.42391-5.332005C6.42391-5.387796 6.36812-5.443587 6.312329-5.443587C6.216687-5.443587 6.232628-5.419676 5.650809-5.419676C5.124782-5.419676 4.941469-5.443587 4.893649-5.443587C4.861768-5.443587 4.742217-5.443587 4.742217-5.292154C4.742217-5.220423 4.798007-5.188543 4.869738-5.180573C5.108842-5.164633 5.116812-5.076961 5.116812-5.029141C5.116812-4.877709 4.869738-4.622665 4.869738-4.614695L2.925031-2.518555L1.920797-4.877709C1.904857-4.909589 1.872976-4.98929 1.872976-5.021171C1.872976-5.180573 2.247572-5.180573 2.319303-5.180573C2.399004-5.180573 2.510585-5.180573 2.510585-5.332005C2.510585-5.371856 2.478705-5.443587 2.383064-5.443587C2.271482-5.443587 2.008468-5.427646 1.888917-5.419676H1.39477C.661519-5.419676 .549938-5.443587 .478207-5.443587C.350685-5.443587 .326775-5.355915 .326775-5.292154C.326775-5.180573 .430386-5.180573 .541968-5.180573C.972354-5.180573 1.012204-5.092902 1.075965-4.941469L2.247572-2.183811L1.888917-.72528C1.777335-.294894 1.769365-.270984 1.155666-.263014C1.028144-.263014 .932503-.263014 .932503-.111582C.932503-.079701 .956413 0 1.060025 0C1.211457 0 1.39477-.01594 1.554172-.02391H2.566376C2.685928-.01594 2.956912 0 3.060523 0C3.108344 0 3.227895 0 3.227895-.151432C3.227895-.263014 3.124284-.263014 2.988792-.263014C2.980822-.263014 2.81345-.263014 2.685928-.278954C2.510585-.302864 2.502615-.318804 2.502615-.398506C2.502615-.462267 2.598257-.852802 2.654047-1.083935C2.749689-1.466501 2.82142-1.729514 2.901121-2.064259C2.925031-2.16787 2.933001-2.183811 3.004732-2.263512L5.061021-4.487173Z"></path>
+<path id="tz_fig_is_g1-105" d="M2.375093-4.97335C2.375093-5.148692 2.247572-5.276214 2.064259-5.276214C1.857036-5.276214 1.625903-5.084932 1.625903-4.845828C1.625903-4.670486 1.753425-4.542964 1.936737-4.542964C2.14396-4.542964 2.375093-4.734247 2.375093-4.97335ZM1.211457-2.048319L.781071-.948443C.74122-.828892 .70137-.73325 .70137-.597758C.70137-.207223 1.004234 .079701 1.42665 .079701C2.199751 .079701 2.526526-1.036115 2.526526-1.139726C2.526526-1.219427 2.462765-1.243337 2.406974-1.243337C2.311333-1.243337 2.295392-1.187547 2.271482-1.107846C2.088169-.470237 1.761395-.143462 1.44259-.143462C1.346949-.143462 1.251308-.183313 1.251308-.398506C1.251308-.589788 1.307098-.73325 1.41071-.980324C1.490411-1.195517 1.570112-1.41071 1.657783-1.625903L1.904857-2.271482C1.976588-2.454795 2.072229-2.701868 2.072229-2.83736C2.072229-3.235866 1.753425-3.514819 1.346949-3.514819C.573848-3.514819 .239103-2.399004 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.239601 .494147-2.319303C.71731-3.076463 1.083935-3.291656 1.323039-3.291656C1.43462-3.291656 1.514321-3.251806 1.514321-3.028643C1.514321-2.948941 1.506351-2.83736 1.42665-2.598257L1.211457-2.048319Z"></path>
+<path id="tz_fig_is_g2-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_fig_is_g2-50" d="M3.21594-1.117808H2.99477C2.982814-1.034122 2.923039-.639601 2.833375-.573848C2.791532-.537983 2.307347-.537983 2.223661-.537983H1.105853L1.870984-1.159651C2.074222-1.321046 2.606227-1.703611 2.791532-1.882939C2.970859-2.062267 3.21594-2.367123 3.21594-2.791532C3.21594-3.53873 2.540473-3.975093 1.739477-3.975093C.968369-3.975093 .430386-3.466999 .430386-2.905106C.430386-2.600249 .687422-2.564384 .753176-2.564384C.902615-2.564384 1.075965-2.67198 1.075965-2.887173C1.075965-3.01868 .998257-3.209963 .735243-3.209963C.872727-3.514819 1.23736-3.741968 1.649813-3.741968C2.27746-3.741968 2.612204-3.275716 2.612204-2.791532C2.612204-2.367123 2.331258-1.93076 1.912827-1.548194L.496139-.251059C.436364-.191283 .430386-.185305 .430386 0H3.030635L3.21594-1.117808Z"></path>
+<path id="tz_fig_is_g3-73" d="M3.726027-6.03736C3.815691-6.396015 3.845579-6.495641 4.632628-6.495641C4.871731-6.495641 4.951432-6.495641 4.951432-6.684932C4.951432-6.804483 4.841843-6.804483 4.801993-6.804483C4.513076-6.804483 3.775841-6.774595 3.486924-6.774595C3.188045-6.774595 2.460772-6.804483 2.161893-6.804483C2.092154-6.804483 1.96264-6.804483 1.96264-6.60523C1.96264-6.495641 2.052304-6.495641 2.241594-6.495641C2.660025-6.495641 2.929016-6.495641 2.929016-6.306351C2.929016-6.256538 2.929016-6.236613 2.909091-6.146949L1.564134-.777086C1.474471-.408468 1.444583-.308842 .657534-.308842C.428394-.308842 .33873-.308842 .33873-.109589C.33873 0 .458281 0 .488169 0C.777086 0 1.504359-.029888 1.793275-.029888C2.092154-.029888 2.82939 0 3.128269 0C3.20797 0 3.327522 0 3.327522-.18929C3.327522-.308842 3.247821-.308842 3.028643-.308842C2.849315-.308842 2.799502-.308842 2.600249-.328767C2.391034-.348692 2.351183-.388543 2.351183-.498132C2.351183-.577833 2.371108-.657534 2.391034-.727273L3.726027-6.03736Z"></path>
+<path id="tz_fig_is_g3-83" d="M6.425903-6.924035C6.425903-6.953923 6.405978-7.023661 6.316314-7.023661C6.266501-7.023661 6.256538-7.013699 6.136986-6.874222L5.65878-6.306351C5.399751-6.774595 4.881694-7.023661 4.234122-7.023661C2.968867-7.023661 1.77335-5.877958 1.77335-4.672478C1.77335-3.865504 2.30137-3.407223 2.809465-3.257783L3.875467-2.978829C4.244085-2.889166 4.79203-2.739726 4.79203-1.92279C4.79203-1.026152 3.975093-.089664 2.998755-.089664C2.361146-.089664 1.255293-.308842 1.255293-1.544209C1.255293-1.783313 1.305106-2.022416 1.315068-2.082192C1.325031-2.122042 1.334994-2.132005 1.334994-2.15193C1.334994-2.251557 1.265255-2.261519 1.215442-2.261519S1.145704-2.251557 1.115816-2.221669C1.075965-2.181818 .518057 .089664 .518057 .119552C.518057 .179328 .56787 .219178 .627646 .219178C.67746 .219178 .687422 .209215 .806974 .069738L1.295143-.498132C1.723537 .079701 2.400996 .219178 2.978829 .219178C4.333748 .219178 5.50934-1.105853 5.50934-2.34122C5.50934-3.028643 5.17061-3.367372 5.021171-3.506849C4.79203-3.73599 4.64259-3.775841 3.755915-4.004981C3.536737-4.064757 3.178082-4.164384 3.088418-4.184309C2.819427-4.273973 2.480697-4.562889 2.480697-5.090909C2.480697-5.897883 3.277709-6.744707 4.224159-6.744707C5.051059-6.744707 5.65878-6.316314 5.65878-5.200498C5.65878-4.881694 5.618929-4.702366 5.618929-4.64259C5.618929-4.632628 5.618929-4.542964 5.738481-4.542964C5.838107-4.542964 5.84807-4.572852 5.88792-4.742217L6.425903-6.924035Z"></path>
+<path id="tz_fig_is_g3-89" d="M5.947696-5.668742L6.087173-5.808219C6.386052-6.107098 6.714819-6.445828 7.392279-6.495641C7.501868-6.505604 7.591532-6.505604 7.591532-6.684932C7.591532-6.764633 7.541719-6.804483 7.462017-6.804483C7.202989-6.804483 6.914072-6.774595 6.645081-6.774595C6.316314-6.774595 5.967621-6.804483 5.648817-6.804483C5.589041-6.804483 5.459527-6.804483 5.459527-6.615193C5.459527-6.505604 5.559153-6.495641 5.608966-6.495641C5.678705-6.495641 5.967621-6.475716 5.967621-6.266501C5.967621-6.097136 5.738481-5.838107 5.69863-5.788294L3.387298-3.128269L2.291407-6.087173C2.231631-6.22665 2.231631-6.246575 2.231631-6.256538C2.231631-6.495641 2.719801-6.495641 2.819427-6.495641C2.958904-6.495641 3.058531-6.495641 3.058531-6.694894C3.058531-6.804483 2.938979-6.804483 2.909091-6.804483C2.630137-6.804483 1.932752-6.774595 1.653798-6.774595C1.404732-6.774595 .787049-6.804483 .537983-6.804483C.478207-6.804483 .348692-6.804483 .348692-6.60523C.348692-6.495641 .448319-6.495641 .577833-6.495641C1.175592-6.495641 1.215442-6.405978 1.305106-6.156912L2.530511-2.879203C2.540473-2.849315 2.570361-2.739726 2.570361-2.709838S2.171856-1.075965 2.122042-.896638C1.992528-.348692 1.982565-.318804 1.185554-.308842C.996264-.308842 .916563-.308842 .916563-.109589C.916563 0 1.036115 0 1.05604 0C1.334994 0 2.032379-.029888 2.311333-.029888S3.307597 0 3.58655 0C3.656289 0 3.775841 0 3.775841-.199253C3.775841-.308842 3.686177-.308842 3.496887-.308842C3.476961-.308842 3.287671-.308842 3.118306-.328767C2.909091-.348692 2.849315-.368618 2.849315-.488169C2.849315-.557908 2.938979-.9066 2.988792-1.115816L3.337484-2.520548C3.387298-2.709838 3.39726-2.739726 3.476961-2.82939L5.947696-5.668742Z"></path>
+<path id="tz_fig_is_g3-105" d="M2.82939-6.22665C2.82939-6.425903 2.689913-6.585305 2.460772-6.585305C2.191781-6.585305 1.92279-6.326276 1.92279-6.057285C1.92279-5.867995 2.062267-5.69863 2.30137-5.69863C2.530511-5.69863 2.82939-5.927771 2.82939-6.22665ZM2.072229-2.480697C2.191781-2.769614 2.191781-2.789539 2.291407-3.058531C2.371108-3.257783 2.420922-3.39726 2.420922-3.58655C2.420922-4.034869 2.102117-4.403487 1.603985-4.403487C.667497-4.403487 .288917-2.958904 .288917-2.86924C.288917-2.769614 .388543-2.769614 .408468-2.769614C.508095-2.769614 .518057-2.789539 .56787-2.948941C.836862-3.88543 1.235367-4.184309 1.574097-4.184309C1.653798-4.184309 1.823163-4.184309 1.823163-3.865504C1.823163-3.656289 1.753425-3.447073 1.713574-3.347447C1.633873-3.088418 1.185554-1.932752 1.026152-1.504359C.926526-1.24533 .797011-.916563 .797011-.707347C.797011-.239103 1.135741 .109589 1.613948 .109589C2.550436 .109589 2.919054-1.334994 2.919054-1.424658C2.919054-1.524284 2.82939-1.524284 2.799502-1.524284C2.699875-1.524284 2.699875-1.494396 2.650062-1.344956C2.470735-.71731 2.141968-.109589 1.633873-.109589C1.464508-.109589 1.39477-.209215 1.39477-.438356C1.39477-.687422 1.454545-.826899 1.683686-1.43462L2.072229-2.480697Z"></path>
+</defs>
+<g id="tz_fig_is_page1">
+<g stroke-miterlimit="10" transform="translate(-54.140479,111.221515)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H202.85838" fill="none"></path>
+<g transform="translate(202.85838,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(208.39133,-3.41666)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-54.140479" y="111.221515" href="#tz_fig_is_g3-89"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V164.44743" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,164.44743)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-1.72256,169.98038)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-54.140479" y="111.221515" href="#tz_fig_is_g3-105"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<path d="M25.60728 148.52237C89.62552 81.94325 128.03647 58.89685 192.0547 30.72867" fill="none"></path>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(195.98767,27.31201)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-54.140479" y="111.221515" href="#tz_fig_is_g3-73"></use>
+<use x="-48.979288" y="111.221515" href="#tz_fig_is_g3-83"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M58.17436 120.35374C58.17436 121.36919 57.35118 122.19237 56.33574 122.19237S54.49712 121.36919 54.49712 120.35374C54.49712 119.3383 55.3203 118.51512 56.33574 118.51512S58.17436 119.3383 58.17436 120.35374ZM56.33574 120.35374" stroke="none"></path>
+</g>
+<g transform="translate(56.33574,120.35374)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M150.36041 51.21437C150.36041 52.22981 149.53723 53.053 148.52179 53.053S146.68317 52.22981 146.68317 51.21437S147.50635 49.37575 148.52179 49.37575S150.36041 50.19893 150.36041 51.21437ZM148.52179 51.21437" stroke="none"></path>
+</g>
+<g transform="translate(148.52179,51.21437)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M56.33574 120.35374L56.33597 0" fill="none"></path>
+<g transform="translate(51.78943,-8.99963)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-54.140479" y="111.221515" href="#tz_fig_is_g1-89"></use>
+<use x="-49.232416" y="112.328463" href="#tz_fig_is_g2-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M56.33574 120.35374L0 120.3542" fill="none"></path>
+<g transform="translate(-10.59352,118.2654)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-54.140479" y="111.221515" href="#tz_fig_is_g1-105"></use>
+<use x="-51.257339" y="112.328463" href="#tz_fig_is_g2-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M148.52179 51.21437L148.52237 0" fill="none"></path>
+<g transform="translate(143.97583,-8.99963)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-54.140479" y="111.221515" href="#tz_fig_is_g1-89"></use>
+<use x="-49.232416" y="112.328463" href="#tz_fig_is_g2-50"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M148.52179 51.21437L0 51.21458" fill="none"></path>
+<g transform="translate(-10.59352,49.12578)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-54.140479" y="111.221515" href="#tz_fig_is_g1-105"></use>
+<use x="-51.257339" y="112.328463" href="#tz_fig_is_g2-50"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g fill="#6c757d" stroke="#6c757d">
+</g>
+<g transform="translate(110.49161,115.7937)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-54.140479" y="111.221515" href="#tz_fig_is_g1-105"></use>
+<use x="-48.905016" y="111.221515" href="#tz_fig_is_g0-35"></use>
+<use x="-44.670833" y="111.221515" href="#tz_fig_is_g0-41"></use>
+<use x="-33.850143" y="111.221515" href="#tz_fig_is_g1-73"></use>
+<use x="-27.204152" y="111.221515" href="#tz_fig_is_g0-34"></use>
+<use x="-22.969969" y="111.221515" href="#tz_fig_is_g0-41"></use>
+<use x="-12.14928" y="111.221515" href="#tz_fig_is_g1-89"></use>
+<use x="-3.007034" y="111.221515" href="#tz_fig_is_g0-34"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-is-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;45.1: A curva IS: cada ponto equilibra o mercado de bens. Juros menores → mais investimento → maior renda.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="o-que-desloca-a-is" class="level3" data-number="45.2.3">
+<h3 data-number="45.2.3" class="anchored" data-anchor-id="o-que-desloca-a-is"><span class="header-section-number">45.2.3</span> O que desloca a IS</h3>
+<p>Movimentos <strong>ao longo</strong> da IS resultam de mudanças nos juros. Mas um choque no <strong>gasto autônomo</strong> — mais consumo autônomo, mais investimento autônomo (<span class="math inline">\(I_0\)</span>), mais gasto público <span class="math inline">\(G\)</span>, ou menos impostos <span class="math inline">\(T\)</span> — desloca a <strong>curva inteira</strong>. Um aumento de <span class="math inline">\(G\)</span>, por exemplo, eleva a renda de equilíbrio para <strong>cada</strong> nível de juros, empurrando a IS para a <strong>direita</strong>. Sua magnitude é o deslocamento horizontal <span class="math inline">\(k \cdot \Delta A\)</span>, onde <span class="math inline">\(k\)</span> é o multiplicador. Guardaremos isso para o próximo capítulo.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — mudança de juros não desloca a IS">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — mudança de juros não desloca a IS
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma variação na <strong>taxa de juros</strong> produz um <strong>movimento ao longo</strong> da curva IS, não um deslocamento. A curva já incorpora a relação entre <span class="math inline">\(Y\)</span> e <span class="math inline">\(i\)</span>. O que <strong>desloca</strong> a IS são fatores de gasto autônomo (fiscais ou de confiança): <span class="math inline">\(G\)</span>, <span class="math inline">\(T\)</span>, <span class="math inline">\(C_0\)</span>, <span class="math inline">\(I_0\)</span>. Confundir os dois é o erro número um na leitura do modelo.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="o-mercado-monetário-a-curva-lm" class="level2" data-number="45.3">
+<h2 data-number="45.3" class="anchored" data-anchor-id="o-mercado-monetário-a-curva-lm"><span class="header-section-number">45.3</span> O mercado monetário: a curva LM</h2>
+<section id="a-demanda-por-moeda" class="level3" data-number="45.3.1">
+<h3 data-number="45.3.1" class="anchored" data-anchor-id="a-demanda-por-moeda"><span class="header-section-number">45.3.1</span> A demanda por moeda</h3>
+<p>Por que as pessoas seguram <strong>moeda</strong> (dinheiro em espécie e depósitos à vista), um ativo que não rende juros, em vez de aplicar tudo? Keynes apontou dois motivos que nos interessam:</p>
+<ul>
+<li><strong>Motivo transação:</strong> precisamos de moeda para as compras do dia a dia. Quanto <strong>maior a renda</strong> <span class="math inline">\(Y\)</span>, maior o volume de transações e mais moeda se deseja reter. A demanda por moeda <strong>cresce com <span class="math inline">\(Y\)</span></strong>.</li>
+<li><strong>Motivo especulação (ou preferência pela liquidez):</strong> a moeda concorre com ativos que rendem juros (títulos). A taxa de juros <span class="math inline">\(i\)</span> é o <strong>custo de oportunidade</strong> de reter moeda: quanto <strong>maior <span class="math inline">\(i\)</span></strong>, mais caro é ficar líquido e mais vale a pena aplicar. A demanda por moeda <strong>cai com <span class="math inline">\(i\)</span></strong>.</li>
+</ul>
+<p>Escrevemos a <strong>demanda real por moeda</strong> como:</p>
+<p><span id="eq-demanda-moeda"><span class="math display">\[
+\left(\frac{M}{P}\right)^{d} = L(Y, i) = kY - hi, \qquad k, h &gt; 0,
+\tag{45.2}\]</span></span></p>
+<p>onde <span class="math inline">\(M/P\)</span> é a quantidade de moeda medida em poder de compra (moeda <strong>real</strong>). O termo <span class="math inline">\(kY\)</span> capta a demanda por transação; o <span class="math inline">\(-hi\)</span>, a sensibilidade aos juros.</p>
+</section>
+<section id="equilíbrio-monetário-e-a-lm" class="level3" data-number="45.3.2">
+<h3 data-number="45.3.2" class="anchored" data-anchor-id="equilíbrio-monetário-e-a-lm"><span class="header-section-number">45.3.2</span> Equilíbrio monetário e a LM</h3>
+<p>A <strong>oferta de moeda</strong> <span class="math inline">\(M\)</span> é controlada pelo Banco Central e, por hipótese, é <strong>fixa</strong> no curto prazo; com o nível de preços <span class="math inline">\(P\)</span> rígido, a oferta <strong>real</strong> <span class="math inline">\(M/P\)</span> também é dada. O mercado monetário se equilibra quando a demanda iguala a oferta:</p>
+<p><span id="eq-equilibrio-monetario"><span class="math display">\[
+\frac{M}{P} = kY - hi.
+\tag{45.3}\]</span></span></p>
+<p>Aqui está o mecanismo-chave: se a renda <span class="math inline">\(Y\)</span> <strong>aumenta</strong>, a demanda por moeda para transações cresce. Mas a oferta de moeda é fixa. Para reequilibrar o mercado — isto é, para as pessoas se contentarem em reter a mesma quantidade de moeda apesar de quererem mais —, a taxa de juros <span class="math inline">\(i\)</span> precisa <strong>subir</strong> (encarecendo a liquidez até a demanda voltar à oferta disponível). Logo: <strong>renda maior → juros de equilíbrio maiores</strong>.</p>
+<p>Marcando cada par <span class="math inline">\((Y, i)\)</span> que equilibra o mercado monetário, obtemos a curva <strong>LM</strong>, <strong>crescente</strong> (<a href="#fig-lm" class="quarto-xref">Figura&nbsp;<span>45.2</span></a>).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Curva LM">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Curva LM
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>curva LM</strong> é o conjunto de todas as combinações de renda <span class="math inline">\(Y\)</span> e taxa de juros <span class="math inline">\(i\)</span> para as quais o <strong>mercado monetário</strong> está em equilíbrio (demanda por moeda igual à oferta). Ela é <strong>crescente</strong>: uma renda maior eleva a demanda por moeda e, com oferta fixa, exige juros mais altos. A sigla vem de <em>Liquidity preference = Money supply</em> — demanda por liquidez igual à oferta de moeda.</p>
+</div>
+</div>
+<div id="fig-lm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="232.805549pt" height="192.629948pt" viewbox="-68.014948 -68.014948 232.805549 192.629948">
+<defs>
+<path id="tz_fig_lm_g0-34" d="M2.295392-4.375592C2.510585-4.064757 2.749689-3.841594 2.964882-3.690162C3.482939-3.323537 3.969116-3.251806 3.985056-3.251806C4.104608-3.251806 4.104608-3.379328 4.104608-3.427148C4.104608-3.53076 4.088667-3.58655 4.000996-3.610461C2.582316-3.977086 2.311333-5.068991 2.215691-5.443587C2.215691-5.467497 2.183811-5.531258 2.11208-5.531258C2.096139-5.531258 2.024408-5.523288 2.008468-5.435616C1.936737-5.172603 1.825156-4.694396 1.3868-4.24807C.932503-3.793773 .454296-3.674222 .215193-3.610461C.127522-3.58655 .119552-3.506849 .119552-3.427148C.119552-3.379328 .119552-3.251806 .239103-3.251806C.255044-3.251806 .757161-3.323537 1.291158-3.706102C1.522291-3.881445 1.753425-4.112578 1.928767-4.375592V1.243337C1.928767 1.370859 1.928767 1.546202 2.11208 1.546202S2.295392 1.370859 2.295392 1.243337V-4.375592Z"></path>
+<path id="tz_fig_lm_g0-41" d="M6.057285-2.654047C6.37609-2.391034 6.702864-2.191781 7.149191-1.992528C6.766625-1.817186 6.40797-1.625903 6.057285-1.331009H.765131C.629639-1.331009 .470237-1.331009 .470237-1.147696S.661519-.964384 .797011-.964384H5.650809C5.068991-.318804 4.877709 .135492 4.877709 .175342C4.877709 .286924 4.99726 .286924 5.061021 .286924C5.188543 .286924 5.196513 .278954 5.284184 .127522C5.977584-1.163636 7.037609-1.657783 7.898381-1.880946C7.946202-1.896887 7.994022-1.936737 7.994022-1.992528S7.946202-2.088169 7.898381-2.10411C6.718804-2.414944 5.842092-3.068493 5.284184-4.112578C5.196513-4.26401 5.188543-4.27198 5.061021-4.27198C4.99726-4.27198 4.877709-4.27198 4.877709-4.160399C4.877709-4.120548 5.061021-3.674222 5.650809-3.020672H.797011C.661519-3.020672 .470237-3.020672 .470237-2.83736S.629639-2.654047 .765131-2.654047H6.057285Z"></path>
+<path id="tz_fig_lm_g1-100" d="M3.616438-3.969116C3.622416-3.993026 3.634371-4.028892 3.634371-4.05878C3.634371-4.154421 3.514819-4.148443 3.443088-4.142466L2.773599-4.088667C2.67198-4.08269 2.594271-4.076712 2.594271-3.939228C2.594271-3.843587 2.67198-3.843587 2.761644-3.843587C2.940971-3.843587 2.982814-3.831631 3.060523-3.801743C3.054545-3.71208 3.054545-3.700125 3.036613-3.622416C2.911083-3.108344 2.815442-2.707846 2.69589-2.27746C2.612204-2.414944 2.408966-2.636115 2.038356-2.636115C1.273225-2.636115 .448319-1.835118 .448319-.956413C.448319-.310834 .902615 .059776 1.41071 .059776C1.811208 .059776 2.15193-.215193 2.30137-.364633C2.414944 .011955 2.815442 .059776 2.946949 .059776C3.162142 .059776 3.317559-.059776 3.431133-.245081C3.580573-.484184 3.664259-.830884 3.664259-.860772C3.664259-.872727 3.658281-.944458 3.550685-.944458C3.461021-.944458 3.449066-.902615 3.425156-.806974C3.329514-.442341 3.203985-.137484 2.970859-.137484C2.767621-.137484 2.749689-.352677 2.749689-.442341C2.749689-.52005 2.749689-.537983 2.779577-.645579L3.616438-3.969116ZM2.32528-.783064C2.295392-.675467 2.295392-.663512 2.211706-.573848C1.882939-.203238 1.578082-.137484 1.428643-.137484C1.189539-.137484 .956413-.298879 .956413-.723288C.956413-.968369 1.081943-1.554172 1.273225-1.894894C1.452553-2.217684 1.75741-2.438854 2.044334-2.438854C2.492653-2.438854 2.606227-1.966625 2.606227-1.924782L2.588294-1.841096L2.32528-.783064Z"></path>
+<path id="tz_fig_lm_g2-76" d="M3.092403-4.821918C3.164134-5.092902 3.180075-5.180573 3.913325-5.180573C4.136488-5.180573 4.216189-5.180573 4.216189-5.332005C4.216189-5.347945 4.200249-5.443587 4.080697-5.443587C3.913325-5.443587 3.674222-5.427646 3.506849-5.419676H2.933001C2.10411-5.419676 1.912827-5.443587 1.857036-5.443587C1.825156-5.443587 1.697634-5.443587 1.697634-5.292154C1.697634-5.180573 1.801245-5.180573 1.928767-5.180573C2.191781-5.180573 2.422914-5.180573 2.422914-5.053051C2.422914-5.021171 2.414944-5.0132 2.391034-4.909589L1.323039-.629639C1.251308-.326775 1.235367-.263014 .645579-.263014C.494147-.263014 .398506-.263014 .398506-.111582C.398506 0 .502117 0 .637609 0H4.487173C4.686426 0 4.694396-.00797 4.758157-.159402C4.837858-.382565 5.419676-1.880946 5.419676-1.960648C5.419676-2.032379 5.355915-2.072229 5.300125-2.072229C5.212453-2.072229 5.196513-2.016438 5.140722-1.896887C4.853798-1.155666 4.511083-.263014 3.084433-.263014H2.072229C2.000498-.278954 1.976588-.278954 1.976588-.334745C1.976588-.398506 1.992528-.462267 2.008468-.510087L3.092403-4.821918Z"></path>
+<path id="tz_fig_lm_g2-89" d="M5.061021-4.487173C5.116812-4.550934 5.188543-4.614695 5.252304-4.678456C5.547198-4.94944 5.810212-5.148692 6.256538-5.180573C6.328269-5.188543 6.42391-5.196513 6.42391-5.332005C6.42391-5.387796 6.36812-5.443587 6.312329-5.443587C6.216687-5.443587 6.232628-5.419676 5.650809-5.419676C5.124782-5.419676 4.941469-5.443587 4.893649-5.443587C4.861768-5.443587 4.742217-5.443587 4.742217-5.292154C4.742217-5.220423 4.798007-5.188543 4.869738-5.180573C5.108842-5.164633 5.116812-5.076961 5.116812-5.029141C5.116812-4.877709 4.869738-4.622665 4.869738-4.614695L2.925031-2.518555L1.920797-4.877709C1.904857-4.909589 1.872976-4.98929 1.872976-5.021171C1.872976-5.180573 2.247572-5.180573 2.319303-5.180573C2.399004-5.180573 2.510585-5.180573 2.510585-5.332005C2.510585-5.371856 2.478705-5.443587 2.383064-5.443587C2.271482-5.443587 2.008468-5.427646 1.888917-5.419676H1.39477C.661519-5.419676 .549938-5.443587 .478207-5.443587C.350685-5.443587 .326775-5.355915 .326775-5.292154C.326775-5.180573 .430386-5.180573 .541968-5.180573C.972354-5.180573 1.012204-5.092902 1.075965-4.941469L2.247572-2.183811L1.888917-.72528C1.777335-.294894 1.769365-.270984 1.155666-.263014C1.028144-.263014 .932503-.263014 .932503-.111582C.932503-.079701 .956413 0 1.060025 0C1.211457 0 1.39477-.01594 1.554172-.02391H2.566376C2.685928-.01594 2.956912 0 3.060523 0C3.108344 0 3.227895 0 3.227895-.151432C3.227895-.263014 3.124284-.263014 2.988792-.263014C2.980822-.263014 2.81345-.263014 2.685928-.278954C2.510585-.302864 2.502615-.318804 2.502615-.398506C2.502615-.462267 2.598257-.852802 2.654047-1.083935C2.749689-1.466501 2.82142-1.729514 2.901121-2.064259C2.925031-2.16787 2.933001-2.183811 3.004732-2.263512L5.061021-4.487173Z"></path>
+<path id="tz_fig_lm_g2-105" d="M2.375093-4.97335C2.375093-5.148692 2.247572-5.276214 2.064259-5.276214C1.857036-5.276214 1.625903-5.084932 1.625903-4.845828C1.625903-4.670486 1.753425-4.542964 1.936737-4.542964C2.14396-4.542964 2.375093-4.734247 2.375093-4.97335ZM1.211457-2.048319L.781071-.948443C.74122-.828892 .70137-.73325 .70137-.597758C.70137-.207223 1.004234 .079701 1.42665 .079701C2.199751 .079701 2.526526-1.036115 2.526526-1.139726C2.526526-1.219427 2.462765-1.243337 2.406974-1.243337C2.311333-1.243337 2.295392-1.187547 2.271482-1.107846C2.088169-.470237 1.761395-.143462 1.44259-.143462C1.346949-.143462 1.251308-.183313 1.251308-.398506C1.251308-.589788 1.307098-.73325 1.41071-.980324C1.490411-1.195517 1.570112-1.41071 1.657783-1.625903L1.904857-2.271482C1.976588-2.454795 2.072229-2.701868 2.072229-2.83736C2.072229-3.235866 1.753425-3.514819 1.346949-3.514819C.573848-3.514819 .239103-2.399004 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.239601 .494147-2.319303C.71731-3.076463 1.083935-3.291656 1.323039-3.291656C1.43462-3.291656 1.514321-3.251806 1.514321-3.028643C1.514321-2.948941 1.506351-2.83736 1.42665-2.598257L1.211457-2.048319Z"></path>
+<path id="tz_fig_lm_g3-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_fig_lm_g3-50" d="M3.21594-1.117808H2.99477C2.982814-1.034122 2.923039-.639601 2.833375-.573848C2.791532-.537983 2.307347-.537983 2.223661-.537983H1.105853L1.870984-1.159651C2.074222-1.321046 2.606227-1.703611 2.791532-1.882939C2.970859-2.062267 3.21594-2.367123 3.21594-2.791532C3.21594-3.53873 2.540473-3.975093 1.739477-3.975093C.968369-3.975093 .430386-3.466999 .430386-2.905106C.430386-2.600249 .687422-2.564384 .753176-2.564384C.902615-2.564384 1.075965-2.67198 1.075965-2.887173C1.075965-3.01868 .998257-3.209963 .735243-3.209963C.872727-3.514819 1.23736-3.741968 1.649813-3.741968C2.27746-3.741968 2.612204-3.275716 2.612204-2.791532C2.612204-2.367123 2.331258-1.93076 1.912827-1.548194L.496139-.251059C.436364-.191283 .430386-.185305 .430386 0H3.030635L3.21594-1.117808Z"></path>
+<path id="tz_fig_lm_g4-76" d="M3.726027-6.027397C3.815691-6.386052 3.845579-6.495641 4.782067-6.495641C5.080946-6.495641 5.160648-6.495641 5.160648-6.684932C5.160648-6.804483 5.051059-6.804483 5.001245-6.804483C4.672478-6.804483 3.855542-6.774595 3.526775-6.774595C3.227895-6.774595 2.500623-6.804483 2.201743-6.804483C2.132005-6.804483 2.012453-6.804483 2.012453-6.60523C2.012453-6.495641 2.102117-6.495641 2.291407-6.495641C2.311333-6.495641 2.500623-6.495641 2.669988-6.475716C2.849315-6.455791 2.938979-6.445828 2.938979-6.316314C2.938979-6.276463 2.929016-6.246575 2.899128-6.127024L1.564134-.777086C1.464508-.388543 1.444583-.308842 .657534-.308842C.488169-.308842 .388543-.308842 .388543-.109589C.388543 0 .478207 0 .657534 0H5.270237C5.50934 0 5.519303 0 5.579078-.169365L6.366127-2.321295C6.405978-2.430884 6.405978-2.450809 6.405978-2.460772C6.405978-2.500623 6.37609-2.570361 6.286426-2.570361S6.1868-2.520548 6.117061-2.361146C5.778331-1.444583 5.339975-.308842 3.616438-.308842H2.67995C2.540473-.308842 2.520548-.308842 2.460772-.318804C2.361146-.328767 2.331258-.33873 2.331258-.418431C2.331258-.448319 2.331258-.468244 2.381071-.647572L3.726027-6.027397Z"></path>
+<path id="tz_fig_lm_g4-77" d="M9.225405-6.03736C9.315068-6.396015 9.334994-6.495641 10.082192-6.495641C10.311333-6.495641 10.400996-6.495641 10.400996-6.694894C10.400996-6.804483 10.30137-6.804483 10.132005-6.804483H8.816936C8.557908-6.804483 8.547945-6.804483 8.428394-6.615193L4.79203-.936488L4.014944-6.575342C3.985056-6.804483 3.965131-6.804483 3.706102-6.804483H2.34122C2.15193-6.804483 2.042341-6.804483 2.042341-6.615193C2.042341-6.495641 2.132005-6.495641 2.331258-6.495641C2.460772-6.495641 2.6401-6.485679 2.759651-6.475716C2.919054-6.455791 2.978829-6.425903 2.978829-6.316314C2.978829-6.276463 2.968867-6.246575 2.938979-6.127024L1.673724-1.05604C1.574097-.657534 1.404732-.33873 .597758-.308842C.547945-.308842 .418431-.298879 .418431-.119552C.418431-.029888 .478207 0 .557908 0C.876712 0 1.225405-.029888 1.554172-.029888C1.892902-.029888 2.251557 0 2.580324 0C2.630137 0 2.759651 0 2.759651-.199253C2.759651-.308842 2.650062-.308842 2.580324-.308842C2.012453-.318804 1.902864-.518057 1.902864-.747198C1.902864-.816936 1.912827-.86675 1.942715-.976339L3.297634-6.405978H3.307597L4.164384-.229141C4.184309-.109589 4.194271 0 4.313823 0C4.423412 0 4.483188-.109589 4.533001-.179328L8.557908-6.485679H8.56787L7.143213-.777086C7.043587-.388543 7.023661-.308842 6.236613-.308842C6.067248-.308842 5.957659-.308842 5.957659-.119552C5.957659 0 6.07721 0 6.107098 0C6.386052 0 7.063512-.029888 7.342466-.029888C7.750934-.029888 8.179328 0 8.587796 0C8.647572 0 8.777086 0 8.777086-.199253C8.777086-.308842 8.687422-.308842 8.498132-.308842C8.129514-.308842 7.85056-.308842 7.85056-.488169C7.85056-.52802 7.85056-.547945 7.900374-.727273L9.225405-6.03736Z"></path>
+<path id="tz_fig_lm_g4-89" d="M5.947696-5.668742L6.087173-5.808219C6.386052-6.107098 6.714819-6.445828 7.392279-6.495641C7.501868-6.505604 7.591532-6.505604 7.591532-6.684932C7.591532-6.764633 7.541719-6.804483 7.462017-6.804483C7.202989-6.804483 6.914072-6.774595 6.645081-6.774595C6.316314-6.774595 5.967621-6.804483 5.648817-6.804483C5.589041-6.804483 5.459527-6.804483 5.459527-6.615193C5.459527-6.505604 5.559153-6.495641 5.608966-6.495641C5.678705-6.495641 5.967621-6.475716 5.967621-6.266501C5.967621-6.097136 5.738481-5.838107 5.69863-5.788294L3.387298-3.128269L2.291407-6.087173C2.231631-6.22665 2.231631-6.246575 2.231631-6.256538C2.231631-6.495641 2.719801-6.495641 2.819427-6.495641C2.958904-6.495641 3.058531-6.495641 3.058531-6.694894C3.058531-6.804483 2.938979-6.804483 2.909091-6.804483C2.630137-6.804483 1.932752-6.774595 1.653798-6.774595C1.404732-6.774595 .787049-6.804483 .537983-6.804483C.478207-6.804483 .348692-6.804483 .348692-6.60523C.348692-6.495641 .448319-6.495641 .577833-6.495641C1.175592-6.495641 1.215442-6.405978 1.305106-6.156912L2.530511-2.879203C2.540473-2.849315 2.570361-2.739726 2.570361-2.709838S2.171856-1.075965 2.122042-.896638C1.992528-.348692 1.982565-.318804 1.185554-.308842C.996264-.308842 .916563-.308842 .916563-.109589C.916563 0 1.036115 0 1.05604 0C1.334994 0 2.032379-.029888 2.311333-.029888S3.307597 0 3.58655 0C3.656289 0 3.775841 0 3.775841-.199253C3.775841-.308842 3.686177-.308842 3.496887-.308842C3.476961-.308842 3.287671-.308842 3.118306-.328767C2.909091-.348692 2.849315-.368618 2.849315-.488169C2.849315-.557908 2.938979-.9066 2.988792-1.115816L3.337484-2.520548C3.387298-2.709838 3.39726-2.739726 3.476961-2.82939L5.947696-5.668742Z"></path>
+<path id="tz_fig_lm_g4-105" d="M2.82939-6.22665C2.82939-6.425903 2.689913-6.585305 2.460772-6.585305C2.191781-6.585305 1.92279-6.326276 1.92279-6.057285C1.92279-5.867995 2.062267-5.69863 2.30137-5.69863C2.530511-5.69863 2.82939-5.927771 2.82939-6.22665ZM2.072229-2.480697C2.191781-2.769614 2.191781-2.789539 2.291407-3.058531C2.371108-3.257783 2.420922-3.39726 2.420922-3.58655C2.420922-4.034869 2.102117-4.403487 1.603985-4.403487C.667497-4.403487 .288917-2.958904 .288917-2.86924C.288917-2.769614 .388543-2.769614 .408468-2.769614C.508095-2.769614 .518057-2.789539 .56787-2.948941C.836862-3.88543 1.235367-4.184309 1.574097-4.184309C1.653798-4.184309 1.823163-4.184309 1.823163-3.865504C1.823163-3.656289 1.753425-3.447073 1.713574-3.347447C1.633873-3.088418 1.185554-1.932752 1.026152-1.504359C.926526-1.24533 .797011-.916563 .797011-.707347C.797011-.239103 1.135741 .109589 1.613948 .109589C2.550436 .109589 2.919054-1.334994 2.919054-1.424658C2.919054-1.524284 2.82939-1.524284 2.799502-1.524284C2.699875-1.524284 2.699875-1.494396 2.650062-1.344956C2.470735-.71731 2.141968-.109589 1.633873-.109589C1.464508-.109589 1.39477-.209215 1.39477-.438356C1.39477-.687422 1.454545-.826899 1.683686-1.43462L2.072229-2.480697Z"></path>
+</defs>
+<g id="tz_fig_lm_page1">
+<g stroke-miterlimit="10" transform="translate(-54.140479,111.221515)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H202.85838" fill="none"></path>
+<g transform="translate(202.85838,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(208.39133,-3.41666)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-54.140479" y="111.221515" href="#tz_fig_lm_g4-89"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V164.44743" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,164.44743)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-1.72256,169.98038)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-54.140479" y="111.221515" href="#tz_fig_lm_g4-105"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<g stroke-width="1.2">
+<path d="M25.60728 30.72867C102.42917 51.21458 140.84012 89.62552 192.0547 151.08287" fill="none"></path>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(195.98767,147.66621)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-54.140479" y="111.221515" href="#tz_fig_lm_g4-76"></use>
+<use x="-47.360332" y="111.221515" href="#tz_fig_lm_g4-77"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M68.41747 43.53214C68.41747 44.54758 67.59428 45.37076 66.57884 45.37076S64.74022 44.54758 64.74022 43.53214S65.5634 41.69351 66.57884 41.69351S68.41747 42.5167 68.41747 43.53214ZM66.57884 43.53214" stroke="none"></path>
+</g>
+<g transform="translate(66.57884,43.53214)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M160.60316 112.67151C160.60316 113.68695 159.77998 114.51013 158.76454 114.51013S156.92592 113.68695 156.92592 112.67151S157.7491 110.83289 158.76454 110.83289S160.60316 111.65607 160.60316 112.67151ZM158.76454 112.67151" stroke="none"></path>
+</g>
+<g transform="translate(158.76454,112.67151)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M66.57884 43.53214L66.5791 0" fill="none"></path>
+<g transform="translate(62.03256,-8.99963)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-54.140479" y="111.221515" href="#tz_fig_lm_g2-89"></use>
+<use x="-49.232416" y="112.328463" href="#tz_fig_lm_g3-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M66.57884 43.53214L0 43.5323" fill="none"></path>
+<g transform="translate(-10.59352,41.4435)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-54.140479" y="111.221515" href="#tz_fig_lm_g2-105"></use>
+<use x="-51.257339" y="112.328463" href="#tz_fig_lm_g3-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M158.76454 112.67151L158.76515 0" fill="none"></path>
+<g transform="translate(154.21861,-8.99963)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-54.140479" y="111.221515" href="#tz_fig_lm_g2-89"></use>
+<use x="-49.232416" y="112.328463" href="#tz_fig_lm_g3-50"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M158.76454 112.67151L0 112.67194" fill="none"></path>
+<g transform="translate(-10.59352,110.58313)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-54.140479" y="111.221515" href="#tz_fig_lm_g2-105"></use>
+<use x="-51.257339" y="112.328463" href="#tz_fig_lm_g3-50"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g fill="#6c757d" stroke="#6c757d">
+</g>
+<g transform="translate(38.43912,120.19785)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-54.140479,111.221515)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-54.140479" y="111.221515" href="#tz_fig_lm_g2-89"></use>
+<use x="-44.998234" y="111.221515" href="#tz_fig_lm_g0-34"></use>
+<use x="-40.764051" y="111.221515" href="#tz_fig_lm_g0-41"></use>
+<use x="-29.943361" y="111.221515" href="#tz_fig_lm_g2-76"></use>
+<use x="-24.184318" y="108.408729" href="#tz_fig_lm_g1-100"></use>
+<use x="-17.493421" y="111.221515" href="#tz_fig_lm_g0-34"></use>
+<use x="-13.259238" y="111.221515" href="#tz_fig_lm_g0-41"></use>
+<use x="-2.438548" y="111.221515" href="#tz_fig_lm_g2-105"></use>
+<use x="2.796915" y="111.221515" href="#tz_fig_lm_g0-34"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;45.2: A curva LM: cada ponto equilibra o mercado monetário. Renda maior → mais demanda por moeda → juros mais altos.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="o-que-desloca-a-lm" class="level3" data-number="45.3.3">
+<h3 data-number="45.3.3" class="anchored" data-anchor-id="o-que-desloca-a-lm"><span class="header-section-number">45.3.3</span> O que desloca a LM</h3>
+<p>A LM se desloca quando muda a <strong>oferta real de moeda</strong> <span class="math inline">\(M/P\)</span>. Se o Banco Central <strong>expande</strong> a oferta de moeda (<span class="math inline">\(M\uparrow\)</span>), há mais moeda disponível para cada nível de renda; os juros de equilíbrio caem, e a LM se desloca para a <strong>direita/baixo</strong>. Uma <strong>queda no nível de preços</strong> <span class="math inline">\(P\)</span> tem o mesmo efeito, pois eleva <span class="math inline">\(M/P\)</span>. Uma contração monetária desloca a LM para a <strong>esquerda/cima</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — as duas curvas, dois mercados">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — as duas curvas, dois mercados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pense assim: a <strong>IS</strong> responde à pergunta “dado o juro, quanto se produz e gasta?” (mercado de bens). A <strong>LM</strong> responde “dada a renda, qual juro equilibra a oferta e a demanda por moeda?” (mercado monetário). Cada curva sozinha tem infinitas soluções possíveis; só o <strong>cruzamento</strong> fixa, ao mesmo tempo, um único <span class="math inline">\(Y\)</span> e um único <span class="math inline">\(i\)</span> compatíveis com os dois mercados.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="o-equilíbrio-geral-is-lm" class="level2" data-number="45.4">
+<h2 data-number="45.4" class="anchored" data-anchor-id="o-equilíbrio-geral-is-lm"><span class="header-section-number">45.4</span> O equilíbrio geral IS-LM</h2>
+<p>Sobrepondo as duas curvas (<a href="#fig-islm" class="quarto-xref">Figura&nbsp;<span>45.3</span></a>), o <strong>equilíbrio geral</strong> de curto prazo é o ponto <span class="math inline">\(E\)</span> onde elas se cruzam. Só ali os mercados de bens <strong>e</strong> monetário estão simultaneamente equilibrados. As coordenadas <span class="math inline">\((Y^{*}, i^{*})\)</span> são a renda e a taxa de juros que a economia efetivamente pratica no curto prazo.</p>
+<div id="fig-islm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-islm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="250.508692pt" height="210.228852pt" viewbox="-68.014948 -68.014946 250.508692 210.228852">
+<defs>
+<path id="tz_fig_islm_g0-3" d="M2.252553-1.736488C2.824408-1.987547 3.082441-2.085181 3.256787-2.168867C3.38929-2.224658 3.452055-2.252553 3.452055-2.385056C3.452055-2.503611 3.361395-2.608219 3.235866-2.608219C3.187049-2.608219 3.173101-2.608219 3.089415-2.545455L2.140971-1.910834L2.245579-2.942964C2.259527-3.068493 2.245579-3.242839 2.036364-3.242839C1.952677-3.242839 1.820174-3.187049 1.820174-3.033624C1.820174-2.970859 1.84807-2.761644 1.855044-2.691905C1.868991-2.57335 1.917808-2.071233 1.931756-1.910834L.990286-2.545455C.920548-2.587298 .899626-2.608219 .836862-2.608219C.711333-2.608219 .620672-2.503611 .620672-2.385056C.620672-2.245579 .704359-2.21071 .767123-2.182814L1.820174-1.743462C1.248319-1.492403 .990286-1.39477 .81594-1.311083C.683437-1.255293 .620672-1.227397 .620672-1.094894C.620672-.976339 .711333-.871731 .836862-.871731C.885679-.871731 .899626-.871731 .983313-.934496L1.931756-1.569116L1.820174-.446326C1.820174-.292902 1.952677-.237111 2.036364-.237111S2.252553-.292902 2.252553-.446326C2.252553-.509091 2.224658-.718306 2.217684-.788045C2.203736-.9066 2.154919-1.408717 2.140971-1.569116L2.977833-1.011208C3.159153-.871731 3.173101-.871731 3.235866-.871731C3.361395-.871731 3.452055-.976339 3.452055-1.094894C3.452055-1.234371 3.368369-1.26924 3.305604-1.297136L2.252553-1.736488Z"></path>
+<path id="tz_fig_islm_g1-69" d="M7.053549-2.321295C7.073474-2.371108 7.103362-2.440847 7.103362-2.460772C7.103362-2.470735 7.103362-2.570361 6.983811-2.570361C6.894147-2.570361 6.874222-2.510585 6.854296-2.450809C6.206725-.976339 5.838107-.308842 4.134496-.308842H2.67995C2.540473-.308842 2.520548-.308842 2.460772-.318804C2.361146-.328767 2.331258-.33873 2.331258-.418431C2.331258-.448319 2.331258-.468244 2.381071-.647572L3.058531-3.367372H4.044832C4.891656-3.367372 4.891656-3.158157 4.891656-2.909091C4.891656-2.839352 4.891656-2.719801 4.821918-2.420922C4.801993-2.371108 4.79203-2.34122 4.79203-2.311333C4.79203-2.261519 4.83188-2.201743 4.921544-2.201743C5.001245-2.201743 5.031133-2.251557 5.070984-2.400996L5.638854-4.732254C5.638854-4.79203 5.589041-4.841843 5.519303-4.841843C5.429639-4.841843 5.409714-4.782067 5.379826-4.662516C5.17061-3.905355 4.991283-3.676214 4.07472-3.676214H3.138232L3.73599-6.07721C3.825654-6.425903 3.835616-6.465753 4.273973-6.465753H5.678705C6.894147-6.465753 7.193026-6.176837 7.193026-5.3599C7.193026-5.120797 7.193026-5.100872 7.153176-4.83188C7.153176-4.772105 7.143213-4.702366 7.143213-4.652553S7.173101-4.533001 7.262765-4.533001C7.372354-4.533001 7.382316-4.592777 7.402242-4.782067L7.601494-6.505604C7.631382-6.774595 7.581569-6.774595 7.332503-6.774595H2.30137C2.102117-6.774595 2.002491-6.774595 2.002491-6.575342C2.002491-6.465753 2.092154-6.465753 2.281445-6.465753C2.650062-6.465753 2.929016-6.465753 2.929016-6.286426C2.929016-6.246575 2.929016-6.22665 2.879203-6.047323L1.564134-.777086C1.464508-.388543 1.444583-.308842 .657534-.308842C.488169-.308842 .37858-.308842 .37858-.119552C.37858 0 .468244 0 .657534 0H5.828144C6.057285 0 6.067248-.009963 6.136986-.169365L7.053549-2.321295Z"></path>
+<path id="tz_fig_islm_g1-73" d="M3.726027-6.03736C3.815691-6.396015 3.845579-6.495641 4.632628-6.495641C4.871731-6.495641 4.951432-6.495641 4.951432-6.684932C4.951432-6.804483 4.841843-6.804483 4.801993-6.804483C4.513076-6.804483 3.775841-6.774595 3.486924-6.774595C3.188045-6.774595 2.460772-6.804483 2.161893-6.804483C2.092154-6.804483 1.96264-6.804483 1.96264-6.60523C1.96264-6.495641 2.052304-6.495641 2.241594-6.495641C2.660025-6.495641 2.929016-6.495641 2.929016-6.306351C2.929016-6.256538 2.929016-6.236613 2.909091-6.146949L1.564134-.777086C1.474471-.408468 1.444583-.308842 .657534-.308842C.428394-.308842 .33873-.308842 .33873-.109589C.33873 0 .458281 0 .488169 0C.777086 0 1.504359-.029888 1.793275-.029888C2.092154-.029888 2.82939 0 3.128269 0C3.20797 0 3.327522 0 3.327522-.18929C3.327522-.308842 3.247821-.308842 3.028643-.308842C2.849315-.308842 2.799502-.308842 2.600249-.328767C2.391034-.348692 2.351183-.388543 2.351183-.498132C2.351183-.577833 2.371108-.657534 2.391034-.727273L3.726027-6.03736Z"></path>
+<path id="tz_fig_islm_g1-76" d="M3.726027-6.027397C3.815691-6.386052 3.845579-6.495641 4.782067-6.495641C5.080946-6.495641 5.160648-6.495641 5.160648-6.684932C5.160648-6.804483 5.051059-6.804483 5.001245-6.804483C4.672478-6.804483 3.855542-6.774595 3.526775-6.774595C3.227895-6.774595 2.500623-6.804483 2.201743-6.804483C2.132005-6.804483 2.012453-6.804483 2.012453-6.60523C2.012453-6.495641 2.102117-6.495641 2.291407-6.495641C2.311333-6.495641 2.500623-6.495641 2.669988-6.475716C2.849315-6.455791 2.938979-6.445828 2.938979-6.316314C2.938979-6.276463 2.929016-6.246575 2.899128-6.127024L1.564134-.777086C1.464508-.388543 1.444583-.308842 .657534-.308842C.488169-.308842 .388543-.308842 .388543-.109589C.388543 0 .478207 0 .657534 0H5.270237C5.50934 0 5.519303 0 5.579078-.169365L6.366127-2.321295C6.405978-2.430884 6.405978-2.450809 6.405978-2.460772C6.405978-2.500623 6.37609-2.570361 6.286426-2.570361S6.1868-2.520548 6.117061-2.361146C5.778331-1.444583 5.339975-.308842 3.616438-.308842H2.67995C2.540473-.308842 2.520548-.308842 2.460772-.318804C2.361146-.328767 2.331258-.33873 2.331258-.418431C2.331258-.448319 2.331258-.468244 2.381071-.647572L3.726027-6.027397Z"></path>
+<path id="tz_fig_islm_g1-77" d="M9.225405-6.03736C9.315068-6.396015 9.334994-6.495641 10.082192-6.495641C10.311333-6.495641 10.400996-6.495641 10.400996-6.694894C10.400996-6.804483 10.30137-6.804483 10.132005-6.804483H8.816936C8.557908-6.804483 8.547945-6.804483 8.428394-6.615193L4.79203-.936488L4.014944-6.575342C3.985056-6.804483 3.965131-6.804483 3.706102-6.804483H2.34122C2.15193-6.804483 2.042341-6.804483 2.042341-6.615193C2.042341-6.495641 2.132005-6.495641 2.331258-6.495641C2.460772-6.495641 2.6401-6.485679 2.759651-6.475716C2.919054-6.455791 2.978829-6.425903 2.978829-6.316314C2.978829-6.276463 2.968867-6.246575 2.938979-6.127024L1.673724-1.05604C1.574097-.657534 1.404732-.33873 .597758-.308842C.547945-.308842 .418431-.298879 .418431-.119552C.418431-.029888 .478207 0 .557908 0C.876712 0 1.225405-.029888 1.554172-.029888C1.892902-.029888 2.251557 0 2.580324 0C2.630137 0 2.759651 0 2.759651-.199253C2.759651-.308842 2.650062-.308842 2.580324-.308842C2.012453-.318804 1.902864-.518057 1.902864-.747198C1.902864-.816936 1.912827-.86675 1.942715-.976339L3.297634-6.405978H3.307597L4.164384-.229141C4.184309-.109589 4.194271 0 4.313823 0C4.423412 0 4.483188-.109589 4.533001-.179328L8.557908-6.485679H8.56787L7.143213-.777086C7.043587-.388543 7.023661-.308842 6.236613-.308842C6.067248-.308842 5.957659-.308842 5.957659-.119552C5.957659 0 6.07721 0 6.107098 0C6.386052 0 7.063512-.029888 7.342466-.029888C7.750934-.029888 8.179328 0 8.587796 0C8.647572 0 8.777086 0 8.777086-.199253C8.777086-.308842 8.687422-.308842 8.498132-.308842C8.129514-.308842 7.85056-.308842 7.85056-.488169C7.85056-.52802 7.85056-.547945 7.900374-.727273L9.225405-6.03736Z"></path>
+<path id="tz_fig_islm_g1-83" d="M6.425903-6.924035C6.425903-6.953923 6.405978-7.023661 6.316314-7.023661C6.266501-7.023661 6.256538-7.013699 6.136986-6.874222L5.65878-6.306351C5.399751-6.774595 4.881694-7.023661 4.234122-7.023661C2.968867-7.023661 1.77335-5.877958 1.77335-4.672478C1.77335-3.865504 2.30137-3.407223 2.809465-3.257783L3.875467-2.978829C4.244085-2.889166 4.79203-2.739726 4.79203-1.92279C4.79203-1.026152 3.975093-.089664 2.998755-.089664C2.361146-.089664 1.255293-.308842 1.255293-1.544209C1.255293-1.783313 1.305106-2.022416 1.315068-2.082192C1.325031-2.122042 1.334994-2.132005 1.334994-2.15193C1.334994-2.251557 1.265255-2.261519 1.215442-2.261519S1.145704-2.251557 1.115816-2.221669C1.075965-2.181818 .518057 .089664 .518057 .119552C.518057 .179328 .56787 .219178 .627646 .219178C.67746 .219178 .687422 .209215 .806974 .069738L1.295143-.498132C1.723537 .079701 2.400996 .219178 2.978829 .219178C4.333748 .219178 5.50934-1.105853 5.50934-2.34122C5.50934-3.028643 5.17061-3.367372 5.021171-3.506849C4.79203-3.73599 4.64259-3.775841 3.755915-4.004981C3.536737-4.064757 3.178082-4.164384 3.088418-4.184309C2.819427-4.273973 2.480697-4.562889 2.480697-5.090909C2.480697-5.897883 3.277709-6.744707 4.224159-6.744707C5.051059-6.744707 5.65878-6.316314 5.65878-5.200498C5.65878-4.881694 5.618929-4.702366 5.618929-4.64259C5.618929-4.632628 5.618929-4.542964 5.738481-4.542964C5.838107-4.542964 5.84807-4.572852 5.88792-4.742217L6.425903-6.924035Z"></path>
+<path id="tz_fig_islm_g1-89" d="M5.947696-5.668742L6.087173-5.808219C6.386052-6.107098 6.714819-6.445828 7.392279-6.495641C7.501868-6.505604 7.591532-6.505604 7.591532-6.684932C7.591532-6.764633 7.541719-6.804483 7.462017-6.804483C7.202989-6.804483 6.914072-6.774595 6.645081-6.774595C6.316314-6.774595 5.967621-6.804483 5.648817-6.804483C5.589041-6.804483 5.459527-6.804483 5.459527-6.615193C5.459527-6.505604 5.559153-6.495641 5.608966-6.495641C5.678705-6.495641 5.967621-6.475716 5.967621-6.266501C5.967621-6.097136 5.738481-5.838107 5.69863-5.788294L3.387298-3.128269L2.291407-6.087173C2.231631-6.22665 2.231631-6.246575 2.231631-6.256538C2.231631-6.495641 2.719801-6.495641 2.819427-6.495641C2.958904-6.495641 3.058531-6.495641 3.058531-6.694894C3.058531-6.804483 2.938979-6.804483 2.909091-6.804483C2.630137-6.804483 1.932752-6.774595 1.653798-6.774595C1.404732-6.774595 .787049-6.804483 .537983-6.804483C.478207-6.804483 .348692-6.804483 .348692-6.60523C.348692-6.495641 .448319-6.495641 .577833-6.495641C1.175592-6.495641 1.215442-6.405978 1.305106-6.156912L2.530511-2.879203C2.540473-2.849315 2.570361-2.739726 2.570361-2.709838S2.171856-1.075965 2.122042-.896638C1.992528-.348692 1.982565-.318804 1.185554-.308842C.996264-.308842 .916563-.308842 .916563-.109589C.916563 0 1.036115 0 1.05604 0C1.334994 0 2.032379-.029888 2.311333-.029888S3.307597 0 3.58655 0C3.656289 0 3.775841 0 3.775841-.199253C3.775841-.308842 3.686177-.308842 3.496887-.308842C3.476961-.308842 3.287671-.308842 3.118306-.328767C2.909091-.348692 2.849315-.368618 2.849315-.488169C2.849315-.557908 2.938979-.9066 2.988792-1.115816L3.337484-2.520548C3.387298-2.709838 3.39726-2.739726 3.476961-2.82939L5.947696-5.668742Z"></path>
+<path id="tz_fig_islm_g1-105" d="M2.82939-6.22665C2.82939-6.425903 2.689913-6.585305 2.460772-6.585305C2.191781-6.585305 1.92279-6.326276 1.92279-6.057285C1.92279-5.867995 2.062267-5.69863 2.30137-5.69863C2.530511-5.69863 2.82939-5.927771 2.82939-6.22665ZM2.072229-2.480697C2.191781-2.769614 2.191781-2.789539 2.291407-3.058531C2.371108-3.257783 2.420922-3.39726 2.420922-3.58655C2.420922-4.034869 2.102117-4.403487 1.603985-4.403487C.667497-4.403487 .288917-2.958904 .288917-2.86924C.288917-2.769614 .388543-2.769614 .408468-2.769614C.508095-2.769614 .518057-2.789539 .56787-2.948941C.836862-3.88543 1.235367-4.184309 1.574097-4.184309C1.653798-4.184309 1.823163-4.184309 1.823163-3.865504C1.823163-3.656289 1.753425-3.447073 1.713574-3.347447C1.633873-3.088418 1.185554-1.932752 1.026152-1.504359C.926526-1.24533 .797011-.916563 .797011-.707347C.797011-.239103 1.135741 .109589 1.613948 .109589C2.550436 .109589 2.919054-1.334994 2.919054-1.424658C2.919054-1.524284 2.82939-1.524284 2.799502-1.524284C2.699875-1.524284 2.699875-1.494396 2.650062-1.344956C2.470735-.71731 2.141968-.109589 1.633873-.109589C1.464508-.109589 1.39477-.209215 1.39477-.438356C1.39477-.687422 1.454545-.826899 1.683686-1.43462L2.072229-2.480697Z"></path>
+</defs>
+<g id="tz_fig_islm_page1">
+<g stroke-miterlimit="10" transform="translate(-53.162336,128.513466)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H219.6461" fill="none"></path>
+<g transform="translate(219.6461,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(225.17905,-3.41666)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-53.162336,128.513466)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-53.162336" y="128.513466" href="#tz_fig_islm_g1-89"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V181.80423" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,181.80423)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-1.72256,187.33717)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-53.162336,128.513466)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-53.162336" y="128.513466" href="#tz_fig_islm_g1-105"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<path d="M27.03001 159.47693C94.60506 89.19913 135.15009 64.87187 205.4283 35.1391" fill="none"></path>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(209.36127,31.72244)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-53.162336,128.513466)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-53.162336" y="128.513466" href="#tz_fig_islm_g1-73"></use>
+<use x="-48.001144" y="128.513466" href="#tz_fig_islm_g1-83"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<g stroke-width="1.2">
+<path d="M27.03001 35.1391C108.12007 56.7632 148.6651 97.30821 205.4283 162.18011" fill="none"></path>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(209.36127,158.76346)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-53.162336,128.513466)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-53.162336" y="128.513466" href="#tz_fig_islm_g1-76"></use>
+<use x="-46.382189" y="128.513466" href="#tz_fig_islm_g1-77"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M119.41681 89.19719C119.41681 90.21263 118.59363 91.03581 117.57819 91.03581C116.56274 91.03581 115.73956 90.21263 115.73956 89.19719S116.56274 87.35857 117.57819 87.35857C118.59363 87.35857 119.41681 88.18175 119.41681 89.19719ZM117.57819 89.19719" stroke="none"></path>
+</g>
+<g transform="translate(117.57819,89.19719)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-53.162336,128.513466)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(121.11116,92.73016)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-53.162336,128.513466)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-53.162336" y="128.513466" href="#tz_fig_islm_g1-69"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M117.57819 89.19719L117.58073 0" fill="none"></path>
+<g transform="translate(111.26823,-10.41884)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-53.162336,128.513466)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-53.162336" y="128.513466" href="#tz_fig_islm_g1-89"></use>
+<use x="-45.16453" y="124.898102" href="#tz_fig_islm_g0-3"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M117.57819 89.19719L0 89.19913" fill="none"></path>
+<g transform="translate(-11.57533,85.7562)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-53.162336,128.513466)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-53.162336" y="128.513466" href="#tz_fig_islm_g1-105"></use>
+<use x="-49.730077" y="124.898102" href="#tz_fig_islm_g0-3"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-islm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;45.3: O equilíbrio IS-LM. Em <span class="math inline">\(E\)</span>, os mercados de bens e monetário se equilibram simultaneamente, fixando <span class="math inline">\(Y^{*}\)</span> e <span class="math inline">\(i^{*}\)</span>.
+</figcaption>
+</figure>
+</div>
+<section id="como-a-economia-converge" class="level3" data-number="45.4.1">
+<h3 data-number="45.4.1" class="anchored" data-anchor-id="como-a-economia-converge"><span class="header-section-number">45.4.1</span> Como a economia converge</h3>
+<p>Fora de <span class="math inline">\(E\)</span>, há pressões que reconduzem a economia ao equilíbrio, e vale entender por quê — pois isso justifica que <span class="math inline">\(E\)</span> seja de fato o ponto de repouso. O <strong>mercado monetário</strong> ajusta-se muito <strong>rápido</strong> (via compra e venda de títulos, os juros se movem em segundos), então a economia tende a estar sempre <strong>sobre a LM</strong>. O <strong>mercado de bens</strong> ajusta-se mais <strong>devagar</strong> (produção e estoques levam tempo). Assim, a economia caminha ao longo da LM em direção à IS: se estiver à direita da IS (excesso de oferta de bens), a produção cai; se à esquerda (excesso de demanda), a produção sobe — até alcançar <span class="math inline">\(E\)</span>.</p>
+</section>
+<section id="resolvendo-algebricamente" class="level3" data-number="45.4.2">
+<h3 data-number="45.4.2" class="anchored" data-anchor-id="resolvendo-algebricamente"><span class="header-section-number">45.4.2</span> Resolvendo algebricamente</h3>
+<p>O equilíbrio resolve o sistema formado pelas equações da IS e da LM. Com um pouco de álgebra sobre <a href="#eq-investimento" class="quarto-xref">Equação&nbsp;<span>45.1</span></a> a <a href="#eq-equilibrio-monetario" class="quarto-xref">Equação&nbsp;<span>45.3</span></a>, obtêm-se expressões explícitas de <span class="math inline">\(Y^{*}\)</span> e <span class="math inline">\(i^{*}\)</span> em função de todos os parâmetros. Para nossos fins, o importante não é decorar a fórmula, mas dominar o <strong>método</strong>: escrever as duas equações e resolver o sistema. O exercício 6 faz isso passo a passo com números.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — o que o IS-LM esconde">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — o que o IS-LM esconde
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O IS-LM é poderoso, mas foi criticado por gerações de economistas — inclusive por keynesianos, que o acusam de “domesticar” Keynes. Suas limitações principais: (1) supõe <strong>preços fixos</strong>, logo não determina a inflação (corrigiremos isso com o AD-AS no <a href="cap05-ad-as-choques.html" class="quarto-xref"><span>Capítulo 48</span></a>); (2) trata as <strong>expectativas</strong> como dadas, quando elas são centrais na <em>Teoria Geral</em> e na macro moderna (<a href="cap06-expectativas.html" class="quarto-xref"><span>Capítulo 49</span></a>); (3) supõe o Banco Central controlando a <strong>quantidade de moeda</strong>, ao passo que os bancos centrais de hoje operam fixando a <strong>taxa de juros</strong> diretamente. Apesar disso, o IS-LM permanece a melhor porta de entrada para a análise de política de curto prazo, e sua intuição sobrevive nas versões modernas.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="45.5">
+<h2 data-number="45.5" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">45.5</span> 🇧🇷 Brasil em Foco</h2>
+<p><strong>A Selic no lugar da “oferta de moeda”.</strong> O IS-LM clássico imagina o Banco Central fixando a <strong>quantidade de moeda</strong> e deixando o juro se formar no mercado. O Banco Central do Brasil, como quase todos os bancos centrais modernos, faz o <strong>inverso</strong>: define diretamente a meta para a taxa <strong>Selic</strong> (via <strong>Copom</strong>) e ajusta a liquidez para sustentá-la. Na prática, é como se a autoridade escolhesse um ponto sobre o eixo dos juros e a LM se tornasse, no horizonte relevante, aproximadamente <strong>horizontal</strong> naquele patamar. A lógica do modelo continua valendo — juros e renda se determinam no encontro dos dois mercados —, mas o instrumento operacional é o <strong>preço</strong> (a taxa), não a <strong>quantidade</strong> de moeda. Voltaremos a isso no Volume 8, sobre economia monetária.</p>
+<p><strong>Investimento sensível a juros — e o custo do crédito no Brasil.</strong> A hipótese central da IS, <span class="math inline">\(I = I_0 - bi\)</span>, é vívida no Brasil, onde as taxas de juros ao tomador estão entre as mais altas do mundo. Quando a Selic sobe, o custo do crédito para capital de giro, financiamento de máquinas (via linhas do BNDES e do mercado) e crédito imobiliário sobe junto, e a <strong>Formação Bruta de Capital Fixo</strong> (o investimento nas Contas Nacionais do IBGE) costuma desacelerar com defasagem de alguns trimestres. A sensibilidade <span class="math inline">\(b\)</span> é real e observável nos ciclos brasileiros: apertos monetários fortes, como os de 2015 e de 2022-2023, foram seguidos de retração ou estagnação do investimento.</p>
+<p><strong>Demanda por moeda e a herança inflacionária.</strong> O motivo-transação da demanda por moeda tem uma história brasileira peculiar. Durante a alta inflação dos anos 1980 e início dos 1990, reter moeda que não rende juros era ruinoso — o dinheiro derretia de um dia para o outro —, e os brasileiros desenvolveram mecanismos sofisticados de fuga da moeda (a “moeda indexada”, aplicações de curtíssimo prazo). Com o <strong>Plano Real</strong> e a queda da inflação, a demanda por moeda (a “remonetização”) <strong>cresceu</strong> de forma expressiva, exatamente como prevê a teoria: com juros e inflação menores, o custo de oportunidade de reter moeda cai e as pessoas voltam a segurá-la.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> Banco Central do Brasil — SGS (meta Selic, agregados monetários M1/M2/M4, taxas médias de crédito); IBGE — Contas Nacionais Trimestrais (Formação Bruta de Capital Fixo). Compare os ciclos de Selic com a trajetória do investimento, atentando às defasagens.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="45.6">
+<h2 data-number="45.6" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">45.6</span> Resumo do capítulo</h2>
+<ul>
+<li>O modelo <strong>IS-LM</strong> determina <strong>simultaneamente</strong> a renda <span class="math inline">\(Y\)</span> e a taxa de juros <span class="math inline">\(i\)</span> de curto prazo, unindo o mercado de bens e o mercado monetário, com <strong>preços fixos</strong>.</li>
+<li>O <strong>investimento depende negativamente dos juros</strong> (<span class="math inline">\(I = I_0 - bi\)</span>): juros são o custo de oportunidade de investir.</li>
+<li>A <strong>curva IS</strong> reúne os pares <span class="math inline">\((Y, i)\)</span> que equilibram o <strong>mercado de bens</strong>; é <strong>decrescente</strong>, pois juros menores elevam o investimento e, via multiplicador, a renda. Desloca-se com mudanças no <strong>gasto autônomo</strong> (<span class="math inline">\(G\)</span>, <span class="math inline">\(T\)</span>, <span class="math inline">\(C_0\)</span>, <span class="math inline">\(I_0\)</span>).</li>
+<li>A <strong>demanda por moeda</strong> cresce com a renda (transação) e cai com os juros (custo de oportunidade da liquidez). Com oferta de moeda fixa, o equilíbrio monetário define a <strong>curva LM</strong>, <strong>crescente</strong>. Desloca-se com a <strong>oferta real de moeda</strong> (<span class="math inline">\(M/P\)</span>).</li>
+<li>O <strong>equilíbrio geral</strong> é a interseção IS-LM, <span class="math inline">\((Y^{*}, i^{*})\)</span> — o único par que equilibra os dois mercados ao mesmo tempo. O mercado monetário ajusta rápido; o de bens, devagar.</li>
+<li><strong>Movimento ao longo</strong> de uma curva vem de mudanças nos juros; <strong>deslocamento</strong> vem de fatores que a curva não incorpora (<span class="math inline">\(G/T/M\)</span>).</li>
+<li>O IS-LM supõe preços fixos e trata expectativas como dadas; bancos centrais modernos fixam a <strong>taxa de juros</strong>, não a quantidade de moeda — limitações a corrigir nos capítulos seguintes.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="45.7">
+<h2 data-number="45.7" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">45.7</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver antes de abrir a solução. Os primeiros itens são conceituais; os do meio, gráficos e numéricos; os últimos, de análise.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique por que a curva IS é <strong>decrescente</strong> e a curva LM é <strong>crescente</strong>. Em cada caso, identifique o mecanismo econômico.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>IS decrescente:</strong> uma queda nos juros aumenta o investimento (mais projetos compensam) e, via multiplicador, eleva a renda de equilíbrio do mercado de bens. Assim, juros menores associam-se a rendas maiores — inclinação negativa. <strong>LM crescente:</strong> uma renda maior aumenta a demanda por moeda para transações; com oferta de moeda fixa, o mercado monetário só reequilibra se os juros subirem (encarecendo a liquidez até a demanda cair de volta à oferta). Renda maior associa-se a juros maiores — inclinação positiva.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Para cada evento, diga se ele <strong>desloca</strong> a IS, <strong>desloca</strong> a LM, ou provoca apenas <strong>movimento ao longo</strong> de uma curva: (a) o governo aumenta o gasto público; (b) o Banco Central reduz a oferta de moeda; (c) a taxa de juros cai; (d) as empresas ficam mais otimistas e elevam o investimento autônomo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><strong>Desloca a IS</strong> para a direita (aumento do gasto autônomo).</li>
+<li><strong>Desloca a LM</strong> para a esquerda/cima (menos oferta real de moeda).</li>
+<li><strong>Movimento ao longo</strong> — mudanças de juros não deslocam curva alguma; movem-se pontos sobre IS e LM.</li>
+<li><strong>Desloca a IS</strong> para a direita (aumento do investimento autônomo <span class="math inline">\(I_0\)</span>).</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> No mercado monetário, a oferta real de moeda é fixa. Explique, passo a passo, o que acontece com a taxa de juros de equilíbrio se a renda <span class="math inline">\(Y\)</span> aumentar. Ilustre com a intuição de “custo de oportunidade da liquidez”.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Com <span class="math inline">\(Y\)</span> maior, cresce a demanda por moeda para transações (<span class="math inline">\(kY\)</span> sobe). Mas a oferta <span class="math inline">\(M/P\)</span> é fixa: não há moeda nova para satisfazer essa demanda extra. As pessoas, querendo mais liquidez, tentam vender títulos para obter moeda; a venda de títulos derruba seu preço e <strong>eleva a taxa de juros</strong>. Juros mais altos aumentam o custo de oportunidade de reter moeda, induzindo o público a economizar liquidez até que a demanda por moeda volte a igualar a oferta fixa. Resultado: renda maior → juros de equilíbrio maiores (a lógica ascendente da LM).</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Desenhe o diagrama IS-LM e mostre um ponto <strong>acima e à direita</strong> de ambas as curvas. Esse ponto representa excesso de oferta ou de demanda no mercado de bens? E no mercado monetário?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Um ponto <strong>à direita da IS</strong> tem renda alta demais para aquele juro: a produção supera a despesa planejada — <strong>excesso de oferta de bens</strong> (estoques acumulam, pressão para reduzir a produção). Um ponto <strong>acima da LM</strong> tem juro alto demais para aquela renda: a demanda por moeda é menor que a oferta — <strong>excesso de oferta de moeda</strong> (equivalente a excesso de demanda por títulos, pressão para os juros caírem). As forças de ajuste, então, empurram a renda para baixo e os juros para baixo, rumo a <span class="math inline">\(E\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Explique por que o modelo IS-LM só é apropriado para o <strong>curto prazo</strong>. Que hipótese impede seu uso para o longo prazo?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O IS-LM supõe o <strong>nível de preços <span class="math inline">\(P\)</span> fixo</strong>. Essa hipótese é razoável no curto prazo (preços rígidos, capacidade ociosa), mas insustentável no longo prazo, quando preços e salários se ajustam. No longo prazo, variações de demanda afetam sobretudo os <strong>preços</strong>, não o produto real, que tende ao pleno emprego. Para analisar horizontes mais longos e a inflação, é preciso deixar <span class="math inline">\(P\)</span> variar — o que se faz incorporando a <strong>oferta agregada</strong> e passando ao modelo AD-AS. Enquanto <span class="math inline">\(P\)</span> é fixo, o IS-LM descreve bem como demanda, juros e moeda interagem no curto prazo.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> (Numérico) Considere: mercado de bens com <span class="math inline">\(C = 100 + 0{,}8\,Y_d\)</span>, <span class="math inline">\(T = 0\)</span>, <span class="math inline">\(I = 200 - 500\,i\)</span>, <span class="math inline">\(G = 200\)</span>; mercado monetário com <span class="math inline">\(M/P = 500\)</span> e <span class="math inline">\(L = 0{,}5\,Y - 1000\,i\)</span>. (a) Deduza a equação da IS. (b) Deduza a equação da LM. (c) Encontre <span class="math inline">\(Y^{*}\)</span> e <span class="math inline">\(i^{*}\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><strong>IS:</strong> <span class="math inline">\(Y = C + I + G = 100 + 0{,}8Y + 200 - 500i + 200 = 500 + 0{,}8Y - 500i\)</span>. Então <span class="math inline">\(0{,}2Y = 500 - 500i \Rightarrow Y = 2500 - 2500i\)</span>. (Curva IS.)</li>
+<li><strong>LM:</strong> <span class="math inline">\(500 = 0{,}5Y - 1000i \Rightarrow 0{,}5Y = 500 + 1000i \Rightarrow Y = 1000 + 2000i\)</span>. (Curva LM.)</li>
+<li>Igualando: <span class="math inline">\(2500 - 2500i = 1000 + 2000i \Rightarrow 1500 = 4500i \Rightarrow i^{*} = \tfrac{1}{3} \approx 0{,}333\)</span> (33,3% no exemplo estilizado). Então <span class="math inline">\(Y^{*} = 1000 + 2000 \times \tfrac{1}{3} \approx 1.667\)</span>. (Confere na IS: <span class="math inline">\(2500 - 2500 \times \tfrac{1}{3} \approx 1.667\)</span>.)</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise) Um comentarista afirma: “Se o Banco Central quer estimular a economia, basta imprimir moeda; os juros caem e o investimento sobe automaticamente.” Usando o IS-LM, explique o mecanismo por trás dessa frase e aponte <strong>duas</strong> ressalvas que o modelo (e o mundo real) impõem.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Mecanismo correto no modelo:</strong> um aumento de <span class="math inline">\(M\)</span> desloca a LM para a direita/baixo; ao longo da IS, o juro de equilíbrio cai e a renda sobe, pois juros menores elevam o investimento. Até aí a frase acerta. <strong>Ressalvas:</strong> (1) O efeito depende das <strong>inclinações</strong>: se o investimento for pouco sensível aos juros (IS quase vertical) ou se a economia estiver numa “armadilha de liquidez” (LM horizontal, juros já no piso), a expansão monetária pouco estimula a renda. (2) O modelo supõe <strong>preços fixos</strong>; se a economia estiver perto do pleno emprego, “imprimir moeda” se traduz em <strong>inflação</strong>, não em mais produto real — algo que o IS-LM de preços fixos não mostra, mas o AD-AS sim. (Ressalva adicional: no regime brasileiro, o BC opera pela <strong>Selic</strong>, não emitindo moeda diretamente.)</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) O IS-LM supõe que o Banco Central controla a <strong>quantidade</strong> de moeda. Bancos centrais modernos, como o do Brasil, controlam a <strong>taxa de juros</strong>. Explique como reinterpretar a LM nesse regime e por que a lógica essencial do modelo sobrevive.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Se o Banco Central fixa a <strong>taxa de juros</strong> num patamar-alvo e ajusta a oferta de moeda passivamente para sustentá-la, a LM deixa de ser a curva crescente tradicional e passa a ser, no horizonte relevante, uma <strong>linha horizontal</strong> na altura do juro escolhido. O equilíbrio ainda é a interseção com a IS: dado o juro fixado, a IS determina a renda. A <strong>lógica essencial sobrevive</strong> — juros e renda continuam ligados pelo mercado de bens, e uma IS mais à direita (estímulo fiscal) eleva a renda ao juro dado. A diferença é operacional: em vez de a autoridade escolher <span class="math inline">\(M\)</span> e deixar <span class="math inline">\(i\)</span> endógeno, ela escolhe <span class="math inline">\(i\)</span> e deixa <span class="math inline">\(M\)</span> endógeno. Essa é a ponte entre o IS-LM clássico e a prática dos regimes de metas de inflação (Volume 8).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="45.8">
+<h2 data-number="45.8" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">45.8</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="hicks1937">Hicks (<a href="#ref-hicks1937" role="doc-biblioref">1937</a>)</span> — o artigo seminal onde o diagrama IS-LM (então “SI-LL”) nasceu como interpretação de Keynes. Curto e historicamente fundamental.</li>
+<li><span class="citation" data-cites="blanchard2017">Blanchard (<a href="#ref-blanchard2017" role="doc-biblioref">2017</a>)</span> — desenvolvimento moderno e didático do IS-LM, incluindo a versão com o Banco Central fixando a taxa de juros.</li>
+<li><span class="citation" data-cites="dornbusch2013">Dornbusch; Fischer; Startz (<a href="#ref-dornbusch2013" role="doc-biblioref">2013</a>)</span> — tratamento detalhado da derivação das curvas, das inclinações e da estática comparativa.</li>
+<li><span class="citation" data-cites="froyen2013">Froyen (<a href="#ref-froyen2013" role="doc-biblioref">2013</a>)</span> — bom para comparar a leitura keynesiana e a clássica do mesmo arcabouço.</li>
+<li><span class="citation" data-cites="mishkin2000">Mishkin (<a href="#ref-mishkin2000" role="doc-biblioref">2000</a>)</span> — para aprofundar a demanda por moeda e o mercado monetário que fundamentam a LM.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-blanchard2017" class="csl-entry" role="listitem">
+BLANCHARD, Olivier. <strong>Macroeconomia</strong>. 7. ed. São Paulo: Pearson, 2017.
+</div>
+<div id="ref-dornbusch2013" class="csl-entry" role="listitem">
+DORNBUSCH, Rudiger; FISCHER, Stanley; STARTZ, Richard. <strong>Macroeconomia</strong>. 11. ed. Porto Alegre: AMGH, 2013.
+</div>
+<div id="ref-froyen2013" class="csl-entry" role="listitem">
+FROYEN, Richard T. <strong>Macroeconomia: Teorias e Aplicações</strong>. 2. ed. São Paulo: Saraiva, 2013.
+</div>
+<div id="ref-hicks1937" class="csl-entry" role="listitem">
+HICKS, John R. Mr. Keynes and the <span>«Classics»</span>; A Suggested Interpretation. <strong>Econometrica</strong>, v. 5, n. 2, p. 147–159, 1937.
+</div>
+<div id="ref-keynes1996" class="csl-entry" role="listitem">
+KEYNES, John Maynard. <strong>A Teoria Geral do Emprego, do Juro e da Moeda</strong>. São Paulo: Nova Cultural, 1996.
+</div>
+<div id="ref-mishkin2000" class="csl-entry" role="listitem">
+MISHKIN, Frederic S. <strong>Moedas, Bancos e Mercados Financeiros</strong>. 5. ed. Rio de Janeiro: LTC, 2000.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="pagination-link" aria-label="Demanda agregada: consumo, investimento e o multiplicador">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="pagination-link" aria-label="Política fiscal e monetária no IS-LM">
+        <span class="nav-page-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol07/cap02-is-lm.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

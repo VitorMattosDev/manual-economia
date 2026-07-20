@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>43&nbsp; Escolha sob incerteza: utilidade esperada e aversão ao risco – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol07/cap01-demanda-agregada.html" rel="next">
+<link href="../../capitulos/vol06/cap06-economia-do-trabalho.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">43.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#valor-esperado-e-por-que-ele-não-basta" id="toc-valor-esperado-e-por-que-ele-não-basta" class="nav-link" data-scroll-target="#valor-esperado-e-por-que-ele-não-basta"><span class="header-section-number">43.2</span> Valor esperado e por que ele não basta</a></li>
+  <li><a href="#a-utilidade-esperada" id="toc-a-utilidade-esperada" class="nav-link" data-scroll-target="#a-utilidade-esperada"><span class="header-section-number">43.3</span> A utilidade esperada</a></li>
+  <li><a href="#aversão-ao-risco-e-a-concavidade-da-utilidade" id="toc-aversão-ao-risco-e-a-concavidade-da-utilidade" class="nav-link" data-scroll-target="#aversão-ao-risco-e-a-concavidade-da-utilidade"><span class="header-section-number">43.4</span> Aversão ao risco e a concavidade da utilidade</a>
+  <ul class="collapse">
+  <li><a href="#equivalente-de-certeza-e-prêmio-de-risco" id="toc-equivalente-de-certeza-e-prêmio-de-risco" class="nav-link" data-scroll-target="#equivalente-de-certeza-e-prêmio-de-risco"><span class="header-section-number">43.4.1</span> Equivalente de certeza e prêmio de risco</a></li>
+  </ul></li>
+  <li><a href="#por-que-existem-seguros-e-diversificação" id="toc-por-que-existem-seguros-e-diversificação" class="nav-link" data-scroll-target="#por-que-existem-seguros-e-diversificação"><span class="header-section-number">43.5</span> Por que existem seguros e diversificação</a></li>
+  <li><a href="#quando-a-teoria-falha-a-economia-comportamental" id="toc-quando-a-teoria-falha-a-economia-comportamental" class="nav-link" data-scroll-target="#quando-a-teoria-falha-a-economia-comportamental"><span class="header-section-number">43.6</span> Quando a teoria falha: a economia comportamental</a></li>
+  <li><a href="#sec-escolha-sob-incerteza-brasil" id="toc-sec-escolha-sob-incerteza-brasil" class="nav-link" data-scroll-target="#sec-escolha-sob-incerteza-brasil"><span class="header-section-number">43.7</span> Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">43.8</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">43.9</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">43.10</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol06/cap07-escolha-sob-incerteza.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-escolha-sob-incerteza" class="quarto-section-identifier"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Você aceitaria uma aposta em que ganha R$,1.000 se der cara e perde R$,1.000 se der coroa, num cara ou coroa honesto? Quase ninguém aceita — embora o ganho e a perda “médios” se cancelem exatamente. E, no entanto, milhões de brasileiros pagam todo mês por um seguro de carro, sabendo que, na média, a seguradora lucra com isso (senão quebraria). No primeiro caso, recusamos um jogo justo; no segundo, aceitamos um jogo desfavorável. Não há contradição: em ambos, estamos fazendo a mesma coisa — <strong>fugindo do risco</strong>. Recusar a aposta e comprar o seguro são duas faces da <strong>aversão ao risco</strong>, o traço que molda decisões que vão de investimentos e seguros a escolhas de carreira e de safra.</p>
+<p>Até aqui, o consumidor deste manual escolhia num mundo de certezas: sabia exatamente o que cada opção lhe traria. Mas quase toda decisão econômica importante envolve <strong>incerteza</strong> — sobre o retorno de um investimento, o preço futuro de uma commodity, a ocorrência de um acidente, o sucesso de um negócio. Este capítulo, que fecha o volume de microeconomia, apresenta a teoria que governa a escolha sob incerteza: a <strong>utilidade esperada</strong> de von Neumann e Morgenstern, o conceito de <strong>aversão ao risco</strong> e suas consequências — por que existem seguros, por que se diversifica, e por que, às vezes, as pessoas se afastam sistematicamente da própria teoria.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="43.1">
+<h2 data-number="43.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">43.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>calcular o <strong>valor esperado</strong> de uma loteria e reconhecer suas limitações;</li>
+<li>explicar a teoria da <strong>utilidade esperada</strong> e por que ela substitui o valor esperado;</li>
+<li>relacionar <strong>aversão ao risco</strong> à concavidade da função de utilidade e definir o <strong>equivalente de certeza</strong> e o <strong>prêmio de risco</strong>;</li>
+<li>entender por que a aversão ao risco fundamenta os mercados de <strong>seguro</strong> e a <strong>diversificação</strong>;</li>
+<li>reconhecer os desvios sistemáticos previstos pela <strong>teoria do prospecto</strong> (economia comportamental);</li>
+<li>aplicar esses conceitos a seguros, previdência, investimentos e agricultura no Brasil.</li>
+</ul>
+</section>
+<section id="valor-esperado-e-por-que-ele-não-basta" class="level2" data-number="43.2">
+<h2 data-number="43.2" class="anchored" data-anchor-id="valor-esperado-e-por-que-ele-não-basta"><span class="header-section-number">43.2</span> Valor esperado e por que ele não basta</h2>
+<p>O ponto de partida é o <strong>valor esperado</strong>: a média dos resultados possíveis, ponderada por suas probabilidades.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Valor esperado">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Valor esperado
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para uma <strong>loteria</strong> (situação de risco) que paga <span class="math inline">\(x_1, x_2, \dots, x_n\)</span> com probabilidades <span class="math inline">\(p_1, p_2, \dots, p_n\)</span>, o <strong>valor esperado</strong> é <span class="math display">\[
+E[X] = p_1 x_1 + p_2 x_2 + \cdots + p_n x_n.
+\]</span> É o resultado médio que se obteria repetindo a loteria infinitas vezes.</p>
+</div>
+</div>
+<p>No cara ou coroa do início, o valor esperado é <span class="math inline">\(0{,}5 \times (+1000) + 0{,}5 \times (-1000) = 0\)</span>: um jogo <strong>atuarialmente justo</strong>. Se as pessoas decidissem só pelo valor esperado, seriam <strong>indiferentes</strong> a aceitá-lo. Mas elas recusam. E há um caso ainda mais gritante — o <strong>paradoxo de São Petersburgo</strong>: uma loteria em que se joga uma moeda até sair a primeira cara, e o prêmio dobra a cada rodada (<span class="math inline">\(2, 4, 8, 16, \dots\)</span>), tem valor esperado <strong>infinito</strong>; ainda assim, ninguém pagaria mais que alguns reais para participar. O valor esperado, sozinho, <strong>não</strong> descreve como as pessoas decidem sob incerteza. Falta algo.</p>
+</section>
+<section id="a-utilidade-esperada" class="level2" data-number="43.3">
+<h2 data-number="43.3" class="anchored" data-anchor-id="a-utilidade-esperada"><span class="header-section-number">43.3</span> A utilidade esperada</h2>
+<p>O que falta é reconhecer que as pessoas não valorizam o <strong>dinheiro</strong> linearmente, mas a <strong>utilidade</strong> que ele traz — e que um real a mais vale menos para quem já tem muito (utilidade marginal decrescente, <a href="../vol03/cap06-preferencias-utilidade.html" class="quarto-xref"><span>Capítulo 20</span></a>). A solução, formalizada por von Neumann e Morgenstern, é avaliar loterias pela <strong>utilidade esperada</strong>, não pelo valor monetário esperado <span class="citation" data-cites="neumann1944">(<a href="#ref-neumann1944" role="doc-biblioref">Neumann; Morgenstern, 1944</a>)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Utilidade esperada">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Utilidade esperada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sob a teoria da <strong>utilidade esperada</strong>, o agente escolhe a loteria que maximiza a <strong>esperança da utilidade</strong> dos resultados: <span class="math display">\[
+EU = p_1\,u(x_1) + p_2\,u(x_2) + \cdots + p_n\,u(x_n),
+\]</span> onde <span class="math inline">\(u(\cdot)\)</span> é a <strong>função utilidade</strong> do agente sobre a riqueza. Ele compara loterias pelo <span class="math inline">\(EU\)</span>, e não pelo valor esperado <span class="math inline">\(E[X]\)</span>.</p>
+</div>
+</div>
+<p>A diferença é sutil mas decisiva: aplicamos a média <strong>depois</strong> de passar cada resultado pela função utilidade. Como essa função tem <strong>utilidade marginal decrescente</strong> para quem é avesso ao risco, a dor de perder R$,1.000 (que corta unidades de utilidade “valiosas”) supera o prazer de ganhar R$,1.000 (que adiciona unidades “menos valiosas”). Por isso o cara ou coroa justo é recusado: sua utilidade esperada é <strong>negativa</strong>, embora seu valor esperado seja zero.</p>
+</section>
+<section id="aversão-ao-risco-e-a-concavidade-da-utilidade" class="level2" data-number="43.4">
+<h2 data-number="43.4" class="anchored" data-anchor-id="aversão-ao-risco-e-a-concavidade-da-utilidade"><span class="header-section-number">43.4</span> Aversão ao risco e a concavidade da utilidade</h2>
+<p>A relação entre a forma da função utilidade e a atitude perante o risco é o coração do capítulo.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Atitudes perante o risco">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Atitudes perante o risco
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Avesso ao risco:</strong> prefere um valor certo à loteria de mesmo valor esperado. Sua função utilidade é <strong>côncava</strong> (<span class="math inline">\(u'' &lt; 0\)</span>; utilidade marginal decrescente).</li>
+<li><strong>Neutro ao risco:</strong> indiferente entre a loteria e seu valor esperado. Utilidade <strong>linear</strong>.</li>
+<li><strong>Propenso ao risco (<em>risk-lover</em>):</strong> prefere a loteria ao valor certo equivalente. Utilidade <strong>convexa</strong> (<span class="math inline">\(u'' &gt; 0\)</span>).</li>
+</ul>
+<p>A maioria das pessoas, na maioria das decisões relevantes, é <strong>avessa ao risco</strong>.</p>
+</div>
+</div>
+<p>A <a href="#fig-aversao-risco" class="quarto-xref">Figura&nbsp;<span>43.1</span></a> ilustra o caso avesso. Considere alguém com riqueza que pode ser <span class="math inline">\(A\)</span> (pouco) ou <span class="math inline">\(B\)</span> (muito), cada uma com probabilidade 50%. O valor esperado da riqueza é o ponto médio <span class="math inline">\(E[X]\)</span> no eixo horizontal. A <strong>utilidade esperada</strong> (<span class="math inline">\(EU\)</span>) é o ponto médio no eixo vertical entre <span class="math inline">\(u(A)\)</span> e <span class="math inline">\(u(B)\)</span> — está sobre a <strong>corda</strong> que liga os dois pontos da curva. Compare-a com a utilidade de receber o valor esperado <strong>com certeza</strong>, <span class="math inline">\(u(E[X])\)</span>, que está sobre a <strong>curva</strong>. Como a curva é côncava, <span class="math inline">\(u(E[X]) &gt; EU\)</span>: <strong>a certeza vale mais que a loteria de mesmo valor esperado</strong>. É a definição gráfica da aversão ao risco.</p>
+<div id="fig-aversao-risco" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-aversao-risco-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="289.047721pt" height="195.022565pt" viewbox="-68.014948 -68.014942 289.047721 195.022565">
+<defs>
+<path id="tz_fig_aversao_risco_g0-117" d="M2.988792-.868742C2.948941-.71731 2.574346-.143462 2.040349-.143462C1.649813-.143462 1.514321-.430386 1.514321-.789041C1.514321-1.259278 1.793275-1.976588 1.968618-2.422914C2.048319-2.622167 2.072229-2.693898 2.072229-2.83736C2.072229-3.275716 1.721544-3.514819 1.354919-3.514819C.565878-3.514819 .239103-2.391034 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.239601 .494147-2.319303C.70137-3.028643 1.052055-3.291656 1.331009-3.291656C1.45056-3.291656 1.522291-3.211955 1.522291-3.028643S1.45056-2.662017 1.346949-2.383064C1.012204-1.538232 .940473-1.195517 .940473-.908593C.940473-.127522 1.530262 .079701 2.000498 .079701C2.598257 .079701 2.964882-.398506 2.996762-.438356C3.124284-.063761 3.482939 .079701 3.769863 .079701C4.144458 .079701 4.327771-.239103 4.383562-.358655C4.542964-.645579 4.654545-1.107846 4.654545-1.139726C4.654545-1.187547 4.622665-1.243337 4.527024-1.243337S4.415442-1.203487 4.367621-.996264C4.26401-.597758 4.120548-.143462 3.793773-.143462C3.610461-.143462 3.53873-.294894 3.53873-.518057C3.53873-.653549 3.610461-.924533 3.658281-1.123786S3.825654-1.801245 3.857534-1.944707L4.016936-2.550436C4.064757-2.765629 4.160399-3.140224 4.160399-3.188045C4.160399-3.387298 4.000996-3.435118 3.905355-3.435118C3.793773-3.435118 3.618431-3.363387 3.56264-3.172105L2.988792-.868742Z"></path>
+<path id="tz_fig_aversao_risco_g1-40" d="M2.654047 1.992528C2.717808 1.992528 2.81345 1.992528 2.81345 1.896887C2.81345 1.865006 2.805479 1.857036 2.701868 1.753425C1.609963 .72528 1.338979-.757161 1.338979-1.992528C1.338979-4.28792 2.287422-5.363885 2.693898-5.730511C2.805479-5.834122 2.81345-5.842092 2.81345-5.881943S2.781569-5.977584 2.701868-5.977584C2.574346-5.977584 2.175841-5.571108 2.11208-5.499377C1.044085-4.383562 .820922-2.948941 .820922-1.992528C.820922-.207223 1.570112 1.227397 2.654047 1.992528Z"></path>
+<path id="tz_fig_aversao_risco_g1-41" d="M2.462765-1.992528C2.462765-2.749689 2.335243-3.658281 1.841096-4.598755C1.45056-5.332005 .72528-5.977584 .581818-5.977584C.502117-5.977584 .478207-5.921793 .478207-5.881943C.478207-5.850062 .478207-5.834122 .573848-5.738481C1.689664-4.678456 1.944707-3.219925 1.944707-1.992528C1.944707 .294894 .996264 1.378829 .589788 1.745455C.486177 1.849066 .478207 1.857036 .478207 1.896887S.502117 1.992528 .581818 1.992528C.70934 1.992528 1.107846 1.586052 1.171606 1.514321C2.239601 .398506 2.462765-1.036115 2.462765-1.992528Z"></path>
+<path id="tz_fig_aversao_risco_g1-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_aversao_risco_g1-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_aversao_risco_g1-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_aversao_risco_g1-113" d="M3.817684-3.514819H3.594521L3.299626-2.82142C3.036613-3.243836 2.654047-3.514819 2.15193-3.514819C1.155666-3.514819 .278954-2.741719 .278954-1.713574C.278954-.71731 1.099875 .079701 2.080199 .079701C2.654047 .079701 3.020672-.239103 3.211955-.478207V.924533C3.211955 1.283188 3.116314 1.283188 2.606227 1.283188V1.546202C2.948941 1.522291 3.299626 1.522291 3.514819 1.522291C3.745953 1.522291 4.080697 1.522291 4.423412 1.546202V1.283188C3.913325 1.283188 3.817684 1.283188 3.817684 .924533V-3.514819ZM3.235866-1.131756C3.235866-1.004234 3.235866-.956413 3.116314-.749191C2.82142-.263014 2.399004-.143462 2.12802-.143462C1.490411-.143462 .988294-.852802 .988294-1.713574C.988294-2.622167 1.578082-3.267746 2.207721-3.267746C2.8533-3.267746 3.235866-2.622167 3.235866-2.183811V-1.131756Z"></path>
+<path id="tz_fig_aversao_risco_g1-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_aversao_risco_g1-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+<path id="tz_fig_aversao_risco_g1-122" d="M3.307597-3.156164C3.363387-3.227895 3.379328-3.243836 3.379328-3.307597C3.379328-3.435118 3.283686-3.435118 3.156164-3.435118H.446326L.350685-2.10411H.597758C.645579-2.933001 .820922-3.211955 1.713574-3.211955H2.622167L.310834-.294894C.255044-.223163 .239103-.207223 .239103-.135492C.239103 0 .326775 0 .462267 0H3.259776L3.403238-1.538232H3.156164C3.076463-.613699 2.925031-.247073 1.944707-.247073H.996264L3.307597-3.156164Z"></path>
+<path id="tz_fig_aversao_risco_g2-117" d="M3.486924-.557908C3.596513-.14944 3.945205 .109589 4.373599 .109589C4.722291 .109589 4.951432-.119552 5.110834-.438356C5.280199-.797011 5.409714-1.404732 5.409714-1.424658C5.409714-1.524284 5.32005-1.524284 5.290162-1.524284C5.190535-1.524284 5.180573-1.484433 5.150685-1.344956C5.011208-.787049 4.821918-.109589 4.403487-.109589C4.194271-.109589 4.094645-.239103 4.094645-.56787C4.094645-.787049 4.214197-1.255293 4.293898-1.603985L4.572852-2.67995C4.60274-2.82939 4.702366-3.20797 4.742217-3.35741C4.79203-3.58655 4.891656-3.965131 4.891656-4.024907C4.891656-4.204234 4.752179-4.293898 4.60274-4.293898C4.552927-4.293898 4.293898-4.283935 4.214197-3.945205C4.024907-3.217933 3.58655-1.474471 3.466999-.946451C3.457036-.9066 3.058531-.109589 2.331258-.109589C1.8132-.109589 1.713574-.557908 1.713574-.926526C1.713574-1.484433 1.992528-2.271482 2.251557-2.958904C2.371108-3.257783 2.420922-3.39726 2.420922-3.58655C2.420922-4.034869 2.102117-4.403487 1.603985-4.403487C.657534-4.403487 .288917-2.958904 .288917-2.86924C.288917-2.769614 .388543-2.769614 .408468-2.769614C.508095-2.769614 .518057-2.789539 .56787-2.948941C.816936-3.815691 1.195517-4.184309 1.574097-4.184309C1.663761-4.184309 1.823163-4.174346 1.823163-3.855542C1.823163-3.616438 1.713574-3.327522 1.653798-3.178082C1.285181-2.191781 1.075965-1.574097 1.075965-1.085928C1.075965-.139477 1.763387 .109589 2.30137 .109589C2.958904 .109589 3.317559-.33873 3.486924-.557908Z"></path>
+<path id="tz_fig_aversao_risco_g3-65" d="M1.436613-.836862C1.192528-.460274 .969365-.278954 .557908-.251059C.488169-.244085 .397509-.244085 .397509-.104608C.397509-.027895 .460274 0 .495143 0C.676463 0 .9066-.027895 1.094894-.027895C1.318057-.027895 1.603985 0 1.8132 0C1.84807 0 1.952677 0 1.952677-.153425C1.952677-.244085 1.862017-.251059 1.834122-.251059C1.778331-.258032 1.527273-.27198 1.527273-.460274C1.527273-.54396 1.597011-.662516 1.63188-.72528L2.189788-1.590037H4.184309L4.351681-.432379C4.323786-.36264 4.281943-.251059 3.870486-.251059C3.7868-.251059 3.689166-.251059 3.689166-.097634C3.689166-.069738 3.710087 0 3.800747 0C4.002989 0 4.498132-.027895 4.700374-.027895C4.825903-.027895 4.986301-.020922 5.111831-.020922C5.23736-.013948 5.383811 0 5.50934 0C5.6 0 5.648817-.055791 5.648817-.146451C5.648817-.251059 5.565131-.251059 5.453549-.251059C5.049066-.251059 5.035118-.306849 5.014197-.474222L4.400498-4.777086C4.379577-4.923537 4.365629-4.972354 4.233126-4.972354S4.05878-4.909589 3.996015-4.811955L1.436613-.836862ZM2.357161-1.841096L3.821669-4.121544L4.14944-1.841096H2.357161Z"></path>
+<path id="tz_fig_aversao_risco_g3-66" d="M1.325031-.54396C1.262267-.306849 1.248319-.251059 .711333-.251059C.592777-.251059 .502117-.251059 .502117-.104608C.502117 0 .585803 0 .711333 0H3.410212C4.581818 0 5.481445-.801993 5.481445-1.492403C5.481445-1.987547 5.028144-2.412951 4.288917-2.489664C5.132752-2.643088 5.837111-3.173101 5.837111-3.772852C5.837111-4.302864 5.300125-4.763138 4.393524-4.763138H1.855044C1.72254-4.763138 1.63188-4.763138 1.63188-4.609714C1.63188-4.51208 1.715567-4.51208 1.855044-4.51208C1.862017-4.51208 1.994521-4.51208 2.12005-4.498132C2.266501-4.484184 2.280448-4.470237 2.280448-4.400498C2.280448-4.38655 2.280448-4.351681 2.252553-4.247073L1.325031-.54396ZM2.440847-2.57335L2.866252-4.274969C2.922042-4.491158 2.929016-4.51208 3.221918-4.51208H4.281943C4.993275-4.51208 5.153674-4.044832 5.153674-3.779826C5.153674-3.214944 4.519054-2.57335 3.584558-2.57335H2.440847ZM2.106102-.251059C1.889913-.251059 1.882939-.258032 1.882939-.320797C1.882939-.327771 1.882939-.36264 1.910834-.467248L2.39203-2.378082H3.870486C4.526027-2.378082 4.777086-1.945704 4.777086-1.54122C4.777086-.850809 4.072727-.251059 3.228892-.251059H2.106102Z"></path>
+<path id="tz_fig_aversao_risco_g3-67" d="M5.878954-4.811955C5.878954-4.846824 5.858032-4.902615 5.788294-4.902615C5.739477-4.902615 5.725529-4.888667 5.662765-4.818929L5.153674-4.281943C5.090909-4.365629 4.700374-4.902615 3.84259-4.902615C2.147945-4.902615 .488169-3.403238 .488169-1.827148C.488169-.690411 1.380822 .139477 2.629141 .139477C3.005729 .139477 3.675218 .062765 4.393524-.54396C4.944458-1.011208 5.097883-1.617933 5.097883-1.673724C5.097883-1.764384 5.014197-1.764384 4.979328-1.764384C4.888667-1.764384 4.87472-1.729514 4.853798-1.652802C4.56787-.697385 3.591532-.111582 2.747696-.111582C2.008468-.111582 1.185554-.509091 1.185554-1.610959C1.185554-1.8132 1.234371-2.915068 2.036364-3.793773C2.517559-4.33076 3.249813-4.651557 3.912329-4.651557C4.721295-4.651557 5.195517-4.065753 5.195517-3.284682C5.195517-3.089415 5.174595-3.040598 5.174595-2.998755C5.174595-2.908095 5.265255-2.908095 5.300125-2.908095C5.411706-2.908095 5.411706-2.929016 5.446575-3.061519L5.878954-4.811955Z"></path>
+<path id="tz_fig_aversao_risco_g3-69" d="M5.523288-1.610959C5.565131-1.701619 5.565131-1.729514 5.565131-1.736488C5.565131-1.778331 5.537235-1.834122 5.446575-1.834122C5.432628-1.834122 5.397758-1.834122 5.369863-1.806227C5.355915-1.792279 5.348941-1.785305 5.265255-1.603985C4.811955-.599751 4.456289-.251059 3.319552-.251059H2.133998C1.917808-.251059 1.910834-.258032 1.910834-.320797C1.910834-.327771 1.910834-.36264 1.93873-.467248L2.405978-2.336239H3.187049C3.737983-2.336239 3.821669-2.245579 3.821669-2.015442C3.821669-1.93873 3.800747-1.820174 3.772852-1.701619C3.75193-1.638854 3.75193-1.63188 3.75193-1.617933S3.758904-1.520299 3.870486-1.520299C3.96812-1.520299 3.975093-1.555168 4.002989-1.673724L4.38655-3.200996C4.407472-3.284682 4.407472-3.29863 4.407472-3.305604C4.407472-3.375342 4.351681-3.403238 4.288917-3.403238C4.198257-3.403238 4.191283-3.368369 4.14944-3.221918C4.002989-2.677958 3.793773-2.587298 3.200996-2.587298H2.468742L2.887173-4.247073C2.942964-4.463263 2.949938-4.484184 3.242839-4.484184H4.379577C5.293151-4.484184 5.523288-4.29589 5.523288-3.675218C5.523288-3.493898 5.495392-3.284682 5.495392-3.249813C5.495392-3.194022 5.516314-3.131258 5.613948-3.131258C5.718555-3.131258 5.725529-3.194022 5.739477-3.312578L5.865006-4.526027C5.885928-4.735243 5.837111-4.735243 5.662765-4.735243H1.827148C1.687671-4.735243 1.603985-4.735243 1.603985-4.581818C1.603985-4.484184 1.680697-4.484184 1.834122-4.484184C1.945704-4.484184 1.973599-4.484184 2.099128-4.470237C2.238605-4.456289 2.252553-4.442341 2.252553-4.372603C2.252553-4.323786 2.231631-4.254047 2.224658-4.219178L1.311083-.571856C1.241345-.299875 1.234371-.251059 .690411-.251059C.564882-.251059 .481196-.251059 .481196-.097634C.481196 0 .564882 0 .690411 0H4.630635C4.804981 0 4.811955 0 4.867746-.125529L5.523288-1.610959Z"></path>
+<path id="tz_fig_aversao_risco_g3-85" d="M4.930511-4.002989C5.000249-4.274969 5.111831-4.498132 5.669738-4.51208C5.704608-4.51208 5.809215-4.519054 5.809215-4.665504C5.809215-4.707347 5.774346-4.763138 5.704608-4.763138C5.481445-4.763138 5.216438-4.735243 4.986301-4.735243S4.463263-4.763138 4.254047-4.763138C4.219178-4.763138 4.11457-4.763138 4.11457-4.609714C4.11457-4.519054 4.20523-4.51208 4.267995-4.51208C4.595766-4.505106 4.714321-4.400498 4.714321-4.226152C4.714321-4.191283 4.707347-4.156413 4.700374-4.128518C4.595766-3.675218 4.086675-1.57609 3.996015-1.3599C3.605479-.467248 2.789539-.111582 2.217684-.111582C1.750436-.111582 1.255293-.348692 1.255293-1.039103C1.255293-1.206476 1.276214-1.373848 1.318057-1.534247L1.994521-4.219178C2.057285-4.456289 2.071233-4.51208 2.608219-4.51208C2.726775-4.51208 2.817435-4.51208 2.817435-4.665504C2.817435-4.6934 2.796513-4.763138 2.705853-4.763138C2.503611-4.763138 1.994521-4.735243 1.792279-4.735243C1.673724-4.735243 1.429639-4.735243 1.311083-4.742217C1.171606-4.749191 1.004234-4.763138 .871731-4.763138C.829888-4.763138 .72528-4.763138 .72528-4.609714C.72528-4.51208 .808966-4.51208 .948443-4.51208C.955417-4.51208 1.08792-4.51208 1.21345-4.498132C1.3599-4.484184 1.373848-4.470237 1.373848-4.400498C1.373848-4.358655 1.30411-4.086675 1.262267-3.93325L1.108842-3.319552L.711333-1.72254C.641594-1.436613 .641594-1.380822 .641594-1.241345C.641594-.376588 1.352927 .139477 2.189788 .139477C3.152179 .139477 4.086675-.641594 4.316812-1.555168L4.930511-4.002989Z"></path>
+<path id="tz_fig_aversao_risco_g3-88" d="M3.87746-2.66401L4.539975-3.326526C5.432628-4.20523 5.704608-4.47721 6.332254-4.51208C6.422914-4.519054 6.5066-4.519054 6.5066-4.658531C6.5066-4.742217 6.429888-4.763138 6.408966-4.763138C6.206725-4.763138 5.96264-4.735243 5.753425-4.735243C5.572105-4.735243 5.125778-4.763138 4.944458-4.763138C4.888667-4.763138 4.804981-4.742217 4.804981-4.609714C4.804981-4.60274 4.804981-4.519054 4.909589-4.51208C4.972354-4.505106 5.1467-4.491158 5.1467-4.337733C5.1467-4.233126 5.042092-4.121544 4.972354-4.051806C4.916563-4.002989 4.030884-3.138232 3.772852-2.873225L3.068493-4.2401C3.054545-4.261021 3.033624-4.309838 3.033624-4.337733C3.033624-4.38655 3.166127-4.498132 3.403238-4.51208C3.452055-4.51208 3.549689-4.519054 3.549689-4.665504C3.549689-4.672478 3.542715-4.763138 3.431133-4.763138C3.284682-4.763138 3.110336-4.742217 2.963885-4.742217S2.657036-4.735243 2.510585-4.735243C2.39203-4.735243 2.224658-4.735243 2.099128-4.742217C1.980573-4.749191 1.834122-4.763138 1.72254-4.763138C1.687671-4.763138 1.57609-4.763138 1.57609-4.609714C1.57609-4.51208 1.66675-4.51208 1.778331-4.51208C2.182814-4.51208 2.217684-4.442341 2.287422-4.302864L3.263761-2.378082L2.873225-1.987547C2.740722-1.862017 2.412951-1.548194 2.287422-1.415691C1.436613-.571856 1.150685-.278954 .523039-.251059C.425405-.244085 .348692-.244085 .348692-.097634C.348692-.069738 .369614 0 .446326 0C.648568 0 .885679-.027895 1.094894-.027895C1.21345-.027895 1.387796-.027895 1.506351-.020922C1.63188-.013948 1.785305 0 1.903861 0C1.93873 0 2.050311 0 2.050311-.146451C2.050311-.244085 1.966625-.251059 1.924782-.251059C1.855044-.258032 1.708593-.278954 1.708593-.425405C1.708593-.536986 1.799253-.627646 1.952677-.781071L3.368369-2.168867L4.212204-.516065C4.247073-.446326 4.254047-.432379 4.254047-.425405C4.254047-.383562 4.128518-.27198 3.884433-.251059C3.821669-.244085 3.731009-.244085 3.731009-.097634C3.731009-.09066 3.737983 0 3.849564 0C3.996015 0 4.170361-.020922 4.316812-.020922S4.623661-.027895 4.770112-.027895C4.888667-.027895 5.05604-.027895 5.181569-.020922C5.300125-.013948 5.446575 0 5.558157 0C5.593026 0 5.704608 0 5.704608-.153425C5.704608-.251059 5.613948-.251059 5.502366-.251059C5.097883-.251059 5.063014-.327771 5.000249-.446326L3.87746-2.66401Z"></path>
+<path id="tz_fig_aversao_risco_g3-117" d="M2.949938-1.129763C2.915068-.990286 2.852304-.72528 2.838356-.718306C2.705853-.502117 2.426899-.125529 1.994521-.125529C1.513325-.125529 1.513325-.578829 1.513325-.704359C1.513325-1.115816 1.708593-1.610959 1.903861-2.12005C1.959651-2.259527 2.001494-2.364134 2.001494-2.475716C2.001494-2.838356 1.694645-3.075467 1.338979-3.075467C.641594-3.075467 .327771-2.12005 .327771-2.008468C.327771-1.917808 .425405-1.917808 .446326-1.917808C.54396-1.917808 .550934-1.952677 .571856-2.02939C.739228-2.601245 1.046077-2.880199 1.318057-2.880199C1.436613-2.880199 1.492403-2.803487 1.492403-2.636115C1.492403-2.475716 1.436613-2.329265 1.366874-2.168867C.990286-1.206476 .990286-1.004234 .990286-.81594C.990286-.697385 .990286-.376588 1.248319-.153425C1.45056 .013948 1.72254 .069738 1.966625 .069738C2.405978 .069738 2.643088-.167372 2.873225-.390535C3.02665 .055791 3.493898 .069738 3.577584 .069738C3.814695 .069738 3.996015-.069738 4.128518-.299875C4.281943-.571856 4.379577-.976339 4.379577-.99726C4.379577-1.08792 4.281943-1.08792 4.261021-1.08792C4.163387-1.08792 4.156413-1.060025 4.107597-.871731C4.02391-.54396 3.891407-.125529 3.598506-.125529C3.417186-.125529 3.368369-.285928 3.368369-.467248C3.368369-.585803 3.424159-.836862 3.472976-1.018182C3.521793-1.206476 3.591532-1.492403 3.626401-1.645828L3.7868-2.266501C3.828643-2.440847 3.905355-2.747696 3.905355-2.782565C3.905355-2.922042 3.793773-3.005729 3.675218-3.005729C3.417186-3.005729 3.368369-2.803487 3.312578-2.580324L2.949938-1.129763Z"></path>
+<path id="tz_fig_aversao_risco_g4-97" d="M3.317559-.757161C3.35741-.358655 3.626401 .059776 4.094645 .059776C4.303861 .059776 4.911582-.079701 4.911582-.886675V-1.444583H4.662516V-.886675C4.662516-.308842 4.41345-.249066 4.303861-.249066C3.975093-.249066 3.935243-.697385 3.935243-.747198V-2.739726C3.935243-3.158157 3.935243-3.5467 3.576588-3.915318C3.188045-4.303861 2.689913-4.463263 2.211706-4.463263C1.39477-4.463263 .707347-3.995019 .707347-3.337484C.707347-3.038605 .9066-2.86924 1.165629-2.86924C1.444583-2.86924 1.62391-3.068493 1.62391-3.327522C1.62391-3.447073 1.574097-3.775841 1.115816-3.785803C1.384807-4.134496 1.872976-4.244085 2.191781-4.244085C2.67995-4.244085 3.247821-3.855542 3.247821-2.968867V-2.600249C2.739726-2.570361 2.042341-2.540473 1.414695-2.241594C.667497-1.902864 .418431-1.384807 .418431-.946451C.418431-.139477 1.384807 .109589 2.012453 .109589C2.669988 .109589 3.128269-.288917 3.317559-.757161ZM3.247821-2.391034V-1.39477C3.247821-.448319 2.530511-.109589 2.082192-.109589C1.594022-.109589 1.185554-.458281 1.185554-.956413C1.185554-1.504359 1.603985-2.331258 3.247821-2.391034Z"></path>
+<path id="tz_fig_aversao_risco_g4-101" d="M1.115816-2.510585C1.175592-3.995019 2.012453-4.244085 2.351183-4.244085C3.377335-4.244085 3.476961-2.899128 3.476961-2.510585H1.115816ZM1.105853-2.30137H3.88543C4.104608-2.30137 4.134496-2.30137 4.134496-2.510585C4.134496-3.496887 3.596513-4.463263 2.351183-4.463263C1.195517-4.463263 .278954-3.437111 .278954-2.191781C.278954-.856787 1.325031 .109589 2.470735 .109589C3.686177 .109589 4.134496-.996264 4.134496-1.185554C4.134496-1.285181 4.054795-1.305106 4.004981-1.305106C3.915318-1.305106 3.895392-1.24533 3.875467-1.165629C3.526775-.139477 2.630137-.139477 2.530511-.139477C2.032379-.139477 1.633873-.438356 1.404732-.806974C1.105853-1.285181 1.105853-1.942715 1.105853-2.30137Z"></path>
+<path id="tz_fig_aversao_risco_g4-105" d="M1.763387-4.403487L.368618-4.293898V-3.985056C1.016189-3.985056 1.105853-3.92528 1.105853-3.437111V-.757161C1.105853-.308842 .996264-.308842 .328767-.308842V0C.647572-.009963 1.185554-.029888 1.424658-.029888C1.77335-.029888 2.122042-.009963 2.460772 0V-.308842C1.803238-.308842 1.763387-.358655 1.763387-.747198V-4.403487ZM1.803238-6.136986C1.803238-6.455791 1.554172-6.665006 1.275218-6.665006C.966376-6.665006 .747198-6.396015 .747198-6.136986C.747198-5.867995 .966376-5.608966 1.275218-5.608966C1.554172-5.608966 1.803238-5.818182 1.803238-6.136986Z"></path>
+<path id="tz_fig_aversao_risco_g4-113" d="M3.785803-.607721V1.175592C3.785803 1.62391 3.676214 1.62391 3.008717 1.62391V1.932752C3.347447 1.92279 3.865504 1.902864 4.124533 1.902864C4.393524 1.902864 4.901619 1.92279 5.250311 1.932752V1.62391C4.582814 1.62391 4.473225 1.62391 4.473225 1.175592V-4.403487H4.254047L3.875467-3.496887C3.745953-3.775841 3.337484-4.403487 2.540473-4.403487C1.384807-4.403487 .33873-3.437111 .33873-2.141968C.33873-.896638 1.305106 .109589 2.460772 .109589C3.158157 .109589 3.566625-.318804 3.785803-.607721ZM3.815691-2.759651V-1.354919C3.815691-1.036115 3.636364-.757161 3.417186-.518057C3.287671-.37858 2.968867-.109589 2.500623-.109589C1.77335-.109589 1.165629-.996264 1.165629-2.141968C1.165629-3.327522 1.863014-4.154421 2.600249-4.154421C3.39726-4.154421 3.815691-3.287671 3.815691-2.759651Z"></path>
+<path id="tz_fig_aversao_risco_g4-114" d="M1.663761-3.307597V-4.403487L.278954-4.293898V-3.985056C.976339-3.985056 1.05604-3.915318 1.05604-3.427148V-.757161C1.05604-.308842 .946451-.308842 .278954-.308842V0C.667497-.009963 1.135741-.029888 1.414695-.029888C1.8132-.029888 2.281445-.029888 2.67995 0V-.308842H2.470735C1.733499-.308842 1.713574-.418431 1.713574-.777086V-2.311333C1.713574-3.297634 2.132005-4.184309 2.889166-4.184309C2.958904-4.184309 2.978829-4.184309 2.998755-4.174346C2.968867-4.164384 2.769614-4.044832 2.769614-3.785803C2.769614-3.506849 2.978829-3.35741 3.198007-3.35741C3.377335-3.35741 3.626401-3.476961 3.626401-3.795766S3.317559-4.403487 2.889166-4.403487C2.161893-4.403487 1.803238-3.73599 1.663761-3.307597Z"></path>
+<path id="tz_fig_aversao_risco_g4-117" d="M3.895392-.787049V.109589L5.330012 0V-.308842C4.632628-.308842 4.552927-.37858 4.552927-.86675V-4.403487L3.088418-4.293898V-3.985056C3.785803-3.985056 3.865504-3.915318 3.865504-3.427148V-1.653798C3.865504-.787049 3.387298-.109589 2.660025-.109589C1.823163-.109589 1.783313-.577833 1.783313-1.09589V-4.403487L.318804-4.293898V-3.985056C1.09589-3.985056 1.09589-3.955168 1.09589-3.068493V-1.574097C1.09589-.797011 1.09589 .109589 2.610212 .109589C3.16812 .109589 3.606476-.169365 3.895392-.787049Z"></path>
+<path id="tz_fig_aversao_risco_g4-122" d="M3.88543-3.995019C3.975093-4.104608 3.975093-4.124533 3.975093-4.164384C3.975093-4.293898 3.895392-4.293898 3.716065-4.293898H.52802L.418431-2.689913H.667497C.727273-3.706102 .916563-4.07472 2.012453-4.07472H3.148194L.368618-.318804C.278954-.209215 .278954-.18929 .278954-.139477C.278954 0 .348692 0 .537983 0H3.825654L3.995019-1.863014H3.745953C3.656289-.687422 3.447073-.249066 2.291407-.249066H1.115816L3.88543-3.995019Z"></path>
+<path id="tz_fig_aversao_risco_g5-40" d="M2.475716-5.230386C1.150685-4.29589 .801993-2.817435 .801993-1.750436C.801993-.767123 1.094894 .760149 2.475716 1.736488C2.531507 1.736488 2.615193 1.736488 2.615193 1.652802C2.615193 1.610959 2.594271 1.597011 2.545455 1.548194C1.617933 .711333 1.276214-.474222 1.276214-1.743462C1.276214-3.626401 1.994521-4.546949 2.566376-5.063014C2.594271-5.090909 2.615193-5.111831 2.615193-5.1467C2.615193-5.230386 2.531507-5.230386 2.475716-5.230386Z"></path>
+<path id="tz_fig_aversao_risco_g5-41" d="M.627646-5.230386C.578829-5.230386 .495143-5.230386 .495143-5.1467C.495143-5.111831 .516065-5.090909 .557908-5.042092C1.157659-4.491158 1.827148-3.549689 1.827148-1.750436C1.827148-.292902 1.373848 .808966 .620672 1.492403C.502117 1.610959 .495143 1.617933 .495143 1.652802S.516065 1.736488 .585803 1.736488C.669489 1.736488 1.332005 1.276214 1.792279 .404483C2.099128-.174346 2.30137-.927522 2.30137-1.743462C2.30137-2.726775 2.008468-4.254047 .627646-5.230386Z"></path>
+<path id="tz_fig_aversao_risco_g5-91" d="M2.022416 1.743462V1.401743H1.290162V-4.888667H2.022416V-5.230386H.948443V1.743462H2.022416Z"></path>
+<path id="tz_fig_aversao_risco_g5-93" d="M1.297136-5.230386H.223163V-4.888667H.955417V1.401743H.223163V1.743462H1.297136V-5.230386Z"></path>
+<path id="tz_fig_aversao_risco_g5-94" d="M1.980573-4.839851L.941469-3.912329L1.094894-3.731009L1.980573-4.42142L2.866252-3.731009L3.019676-3.912329L1.980573-4.839851Z"></path>
+<path id="tz_fig_aversao_risco_g5-97" d="M3.110336-1.868991C3.110336-2.238605 3.110336-2.503611 2.789539-2.761644C2.503611-2.998755 2.168867-3.110336 1.75741-3.110336C1.094894-3.110336 .627646-2.859278 .627646-2.433873C.627646-2.21071 .781071-2.092154 .962391-2.092154C1.150685-2.092154 1.290162-2.231631 1.290162-2.419925C1.290162-2.538481 1.234371-2.684932 1.046077-2.740722C1.297136-2.915068 1.701619-2.915068 1.743462-2.915068C2.133998-2.915068 2.559402-2.657036 2.559402-2.071233V-1.855044C2.175841-1.841096 1.715567-1.820174 1.206476-1.63188C.578829-1.401743 .383562-1.018182 .383562-.704359C.383562-.104608 1.108842 .069738 1.603985 .069738C2.161893 .069738 2.489664-.244085 2.636115-.516065C2.66401-.230137 2.852304 .034869 3.173101 .034869C3.187049 .034869 3.863512 .034869 3.863512-.627646V-1.011208H3.626401V-.63462C3.626401-.564882 3.626401-.230137 3.368369-.230137S3.110336-.557908 3.110336-.648568V-1.868991ZM2.559402-.983313C2.559402-.313823 1.973599-.125529 1.659776-.125529C1.30411-.125529 .969365-.36264 .969365-.704359C.969365-1.08792 1.30411-1.624907 2.559402-1.673724V-.983313Z"></path>
+<path id="tz_fig_aversao_risco_g5-99" d="M2.712827-2.782565C2.587298-2.726775 2.517559-2.615193 2.517559-2.475716C2.517559-2.287422 2.650062-2.147945 2.84533-2.147945C3.033624-2.147945 3.180075-2.266501 3.180075-2.489664C3.180075-3.110336 2.21071-3.110336 2.015442-3.110336C.969365-3.110336 .320797-2.308344 .320797-1.506351C.320797-.627646 1.066999 .069738 1.980573 .069738C3.019676 .069738 3.263761-.753176 3.263761-.836862S3.173101-.920548 3.145205-.920548C3.054545-.920548 3.047572-.899626 3.012702-.801993C2.859278-.369614 2.489664-.153425 2.064259-.153425C1.583064-.153425 .955417-.509091 .955417-1.513325C.955417-2.399004 1.387796-2.887173 2.036364-2.887173C2.127024-2.887173 2.461768-2.887173 2.712827-2.782565Z"></path>
+<path id="tz_fig_aversao_risco_g5-100" d="M2.48269-4.763138V-4.51208C2.949938-4.51208 3.005729-4.463263 3.005729-4.121544V-2.677958C2.747696-2.929016 2.412951-3.075467 2.02939-3.075467C1.101868-3.075467 .320797-2.378082 .320797-1.499377C.320797-.627646 1.060025 .069738 1.945704 .069738C2.517559 .069738 2.859278-.237111 2.977833-.36264V.069738L4.051806 0V-.251059C3.584558-.251059 3.528767-.299875 3.528767-.641594V-4.839851L2.48269-4.763138ZM2.977833-.732254C2.796513-.404483 2.440847-.125529 1.987547-.125529C1.597011-.125529 1.318057-.355666 1.17858-.557908C1.039103-.767123 .955417-1.046077 .955417-1.492403C.955417-1.652802 .955417-2.175841 1.241345-2.503611C1.520299-2.817435 1.862017-2.880199 2.064259-2.880199C2.399004-2.880199 2.698879-2.726775 2.894147-2.475716C2.977833-2.364134 2.977833-2.357161 2.977833-2.224658V-.732254Z"></path>
+<path id="tz_fig_aversao_risco_g5-101" d="M3.068493-1.590037C3.214944-1.590037 3.263761-1.590037 3.263761-1.743462C3.263761-2.357161 2.922042-3.110336 1.882939-3.110336C.969365-3.110336 .27198-2.385056 .27198-1.527273C.27198-.641594 1.046077 .069738 1.973599 .069738C2.915068 .069738 3.263761-.683437 3.263761-.836862C3.263761-.864757 3.249813-.934496 3.145205-.934496C3.054545-.934496 3.040598-.892653 3.019676-.822914C2.803487-.258032 2.273474-.153425 2.022416-.153425C1.694645-.153425 1.380822-.299875 1.171606-.564882C.913574-.892653 .9066-1.318057 .9066-1.590037H3.068493ZM.913574-1.771357C.990286-2.75467 1.617933-2.915068 1.882939-2.915068C2.740722-2.915068 2.768618-1.945704 2.775592-1.771357H.913574Z"></path>
+<path id="tz_fig_aversao_risco_g5-105" d="M1.471482-4.302864C1.471482-4.505106 1.30411-4.700374 1.066999-4.700374C.857783-4.700374 .669489-4.533001 .669489-4.302864C.669489-4.051806 .871731-3.898381 1.066999-3.898381C1.290162-3.898381 1.471482-4.072727 1.471482-4.302864ZM.411457-2.998755V-2.747696C.850809-2.747696 .913574-2.705853 .913574-2.364134V-.550934C.913574-.251059 .843836-.251059 .390535-.251059V0C.404483 0 .892653-.027895 1.171606-.027895C1.415691-.027895 1.66675-.020922 1.910834 0V-.251059C1.506351-.251059 1.436613-.251059 1.436613-.54396V-3.075467L.411457-2.998755Z"></path>
+<path id="tz_fig_aversao_risco_g5-108" d="M1.436613-4.839851L.390535-4.763138V-4.51208C.857783-4.51208 .913574-4.463263 .913574-4.121544V-.550934C.913574-.251059 .843836-.251059 .390535-.251059V0C.404483 0 .892653-.027895 1.171606-.027895C1.436613-.027895 1.694645-.020922 1.959651 0V-.251059C1.506351-.251059 1.436613-.251059 1.436613-.550934V-4.839851Z"></path>
+<path id="tz_fig_aversao_risco_g5-109" d="M5.732503-2.113076C5.732503-2.719801 5.432628-3.075467 4.686426-3.075467C4.135492-3.075467 3.758904-2.775592 3.57061-2.426899C3.431133-2.922042 3.054545-3.075467 2.545455-3.075467C1.973599-3.075467 1.603985-2.761644 1.408717-2.399004H1.401743V-3.075467L.376588-2.998755V-2.747696C.843836-2.747696 .899626-2.698879 .899626-2.357161V-.550934C.899626-.251059 .829888-.251059 .376588-.251059V0C.390535 0 .878705-.027895 1.171606-.027895C1.429639-.027895 1.910834-.006974 1.973599 0V-.251059C1.520299-.251059 1.45056-.251059 1.45056-.550934V-1.806227C1.45056-2.538481 2.02939-2.880199 2.489664-2.880199C2.977833-2.880199 3.040598-2.496638 3.040598-2.140971V-.550934C3.040598-.251059 2.970859-.251059 2.517559-.251059V0C2.531507 0 3.019676-.027895 3.312578-.027895C3.57061-.027895 4.051806-.006974 4.11457 0V-.251059C3.66127-.251059 3.591532-.251059 3.591532-.550934V-1.806227C3.591532-2.538481 4.170361-2.880199 4.630635-2.880199C5.118804-2.880199 5.181569-2.496638 5.181569-2.140971V-.550934C5.181569-.251059 5.111831-.251059 4.658531-.251059V0C4.672478 0 5.160648-.027895 5.453549-.027895C5.711582-.027895 6.192777-.006974 6.255542 0V-.251059C5.802242-.251059 5.732503-.251059 5.732503-.550934V-2.113076Z"></path>
+<path id="tz_fig_aversao_risco_g5-111" d="M3.689166-1.48543C3.689166-2.357161 2.942964-3.110336 1.980573-3.110336S.27198-2.357161 .27198-1.48543C.27198-.620672 1.039103 .069738 1.980573 .069738S3.689166-.620672 3.689166-1.48543ZM1.980573-.153425C1.72254-.153425 1.345953-.237111 1.115816-.578829C.927522-.864757 .9066-1.227397 .9066-1.548194C.9066-1.84807 .913574-2.259527 1.157659-2.559402C1.332005-2.761644 1.624907-2.915068 1.980573-2.915068C2.39203-2.915068 2.684932-2.719801 2.838356-2.503611C3.033624-2.231631 3.054545-1.882939 3.054545-1.548194S3.033624-.843836 2.831382-.557908C2.643088-.292902 2.322291-.153425 1.980573-.153425Z"></path>
+<path id="tz_fig_aversao_risco_g5-112" d="M1.93873 1.101868C1.48543 1.101868 1.415691 1.101868 1.415691 .801993V-.334745C1.45056-.299875 1.778331 .069738 2.364134 .069738C3.284682 .069738 4.072727-.620672 4.072727-1.506351C4.072727-2.364134 3.361395-3.075467 2.475716-3.075467C2.078207-3.075467 1.673724-2.929016 1.387796-2.650062V-3.075467L.341719-2.998755V-2.747696C.829888-2.747696 .864757-2.712827 .864757-2.419925V.801993C.864757 1.101868 .795019 1.101868 .341719 1.101868V1.352927C.355666 1.352927 .843836 1.325031 1.136737 1.325031C1.39477 1.325031 1.875965 1.345953 1.93873 1.352927V1.101868ZM1.415691-2.322291C1.624907-2.670984 2.02939-2.852304 2.399004-2.852304C2.984807-2.852304 3.438107-2.238605 3.438107-1.506351C3.438107-.711333 2.915068-.125529 2.322291-.125529C1.708593-.125529 1.436613-.662516 1.415691-.704359V-2.322291Z"></path>
+<path id="tz_fig_aversao_risco_g5-114" d="M1.387796-1.590037C1.387796-2.175841 1.659776-2.880199 2.322291-2.880199C2.259527-2.831382 2.203736-2.740722 2.203736-2.629141C2.203736-2.399004 2.385056-2.308344 2.517559-2.308344C2.684932-2.308344 2.838356-2.419925 2.838356-2.629141C2.838356-2.866252 2.615193-3.075467 2.287422-3.075467C1.93873-3.075467 1.555168-2.859278 1.345953-2.329265H1.338979V-3.075467L.341719-2.998755V-2.747696C.808966-2.747696 .864757-2.698879 .864757-2.357161V-.550934C.864757-.251059 .795019-.251059 .341719-.251059V0C.376588 0 .850809-.027895 1.136737-.027895C1.436613-.027895 1.743462-.013948 2.043337 0V-.251059H1.903861C1.387796-.251059 1.387796-.327771 1.387796-.564882V-1.590037Z"></path>
+<path id="tz_fig_aversao_risco_g5-115" d="M2.643088-2.929016C2.643088-3.047572 2.643088-3.110336 2.545455-3.110336C2.510585-3.110336 2.496638-3.110336 2.405978-3.02665C2.39203-3.019676 2.322291-2.956912 2.280448-2.922042C2.071233-3.068493 1.806227-3.110336 1.548194-3.110336C.550934-3.110336 .313823-2.587298 .313823-2.238605C.313823-2.015442 .411457-1.834122 .578829-1.694645C.843836-1.464508 1.108842-1.415691 1.54122-1.345953C1.889913-1.283188 2.454795-1.185554 2.454795-.718306C2.454795-.446326 2.266501-.125529 1.597011-.125529S.683437-.564882 .557908-1.039103C.536986-1.129763 .530012-1.157659 .432379-1.157659C.313823-1.157659 .313823-1.108842 .313823-.969365V-.111582C.313823 .006974 .313823 .069738 .411457 .069738C.474222 .069738 .606725-.076712 .746202-.230137C1.053051 .055791 1.429639 .069738 1.597011 .069738C2.503611 .069738 2.838356-.418431 2.838356-.913574C2.838356-1.17858 2.719801-1.387796 2.538481-1.555168C2.273474-1.799253 1.952677-1.855044 1.708593-1.896887C1.150685-1.994521 .697385-2.078207 .697385-2.447821C.697385-2.670984 .885679-2.942964 1.548194-2.942964C2.357161-2.942964 2.39203-2.378082 2.405978-2.175841C2.412951-2.099128 2.496638-2.099128 2.524533-2.099128C2.643088-2.099128 2.643088-2.147945 2.643088-2.280448V-2.929016Z"></path>
+<path id="tz_fig_aversao_risco_g5-116" d="M1.401743-2.75467H2.489664V-3.005729H1.401743V-4.288917H1.164633C1.157659-3.66127 .871731-2.970859 .202242-2.949938V-2.75467H.850809V-.871731C.850809-.09066 1.436613 .069738 1.827148 .069738C2.294396 .069738 2.615193-.327771 2.615193-.878705V-1.262267H2.378082V-.885679C2.378082-.411457 2.154919-.153425 1.882939-.153425C1.401743-.153425 1.401743-.739228 1.401743-.864757V-2.75467Z"></path>
+</defs>
+<g id="tz_fig_aversao_risco_page1">
+<g stroke-miterlimit="10" transform="translate(-43.878425,113.193475)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H225.62198" fill="none"></path>
+<g transform="translate(225.62198,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(231.15492,-2.36708)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-43.878425" y="113.193475" href="#tz_fig_aversao_risco_g4-114"></use>
+<use x="-39.976374" y="113.193475" href="#tz_fig_aversao_risco_g4-105"></use>
+<use x="-37.208966" y="113.193475" href="#tz_fig_aversao_risco_g4-113"></use>
+<use x="-31.950897" y="113.193475" href="#tz_fig_aversao_risco_g4-117"></use>
+<use x="-26.41608" y="113.193475" href="#tz_fig_aversao_risco_g4-101"></use>
+<use x="-21.988229" y="113.193475" href="#tz_fig_aversao_risco_g4-122"></use>
+<use x="-17.560377" y="113.193475" href="#tz_fig_aversao_risco_g4-97"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V168.71649" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,168.71649)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-2.86229,174.24944)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-43.878425" y="113.193475" href="#tz_fig_aversao_risco_g2-117"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="0.8">
+<path d="M8.5359 30.38863L12.05603 36.1147L15.57616 41.0506L19.09627 45.45378L22.6164 49.4658L26.13652 53.17653L29.65665 56.64412L33.17677 59.91113L36.6969 63.00969L40.21701 65.96281L43.73714 68.78873L47.25726 71.5035L50.77739 74.11884L54.29752 76.64517L57.81764 79.09077L61.33777 81.46213L64.85788 83.76749L68.378 86.00989L71.89813 88.19673L75.41826 90.33015L78.93839 92.41367L82.45851 94.45245L85.97862 96.44696L89.49875 98.40196L93.01888 100.31831L96.539 102.19864L100.05913 104.04509L103.57925 105.85944L107.09938 107.64337L110.61949 109.39822L114.13962 111.12529L117.65974 112.82544L121.17987 114.50171L124.7 116.15149L128.22012 117.78044L131.74023 119.38551L135.26036 120.97061L138.78049 122.53487L142.30061 124.07828L145.82074 125.60477L149.34087 127.11172L152.861 128.60088L156.3811 130.07309L159.90123 131.52924L163.42136 132.96846L166.94148 134.39336L170.46161 135.80305L173.98174 137.19713L177.50185 138.57904L181.02197 139.9462L184.5421 141.29988L188.06223 142.64186L191.58235 143.96994L195.10248 145.28716L198.62259 146.59093L202.14272 147.8847L205.66284 149.1672L209.18297 150.43797L212.7031 151.69876L216.22322 152.94826" fill="none"></path>
+<g transform="translate(219.95619,150.94826)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-43.878425" y="113.193475" href="#tz_fig_aversao_risco_g0-117"></use>
+<use x="-38.975455" y="113.193475" href="#tz_fig_aversao_risco_g1-40"></use>
+<use x="-35.682201" y="113.193475" href="#tz_fig_aversao_risco_g1-114"></use>
+<use x="-32.382031" y="113.193475" href="#tz_fig_aversao_risco_g1-105"></use>
+<use x="-30.029707" y="113.193475" href="#tz_fig_aversao_risco_g1-113"></use>
+<use x="-25.560292" y="113.193475" href="#tz_fig_aversao_risco_g1-117"></use>
+<use x="-20.855644" y="113.193475" href="#tz_fig_aversao_risco_g1-101"></use>
+<use x="-17.091926" y="113.193475" href="#tz_fig_aversao_risco_g1-122"></use>
+<use x="-13.328208" y="113.193475" href="#tz_fig_aversao_risco_g1-97"></use>
+<use x="-9.094025" y="113.193475" href="#tz_fig_aversao_risco_g1-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M30.29137 55.48276C30.29137 56.4982 29.46819 57.32138 28.45274 57.32138C27.4373 57.32138 26.61412 56.4982 26.61412 55.48276S27.4373 53.64413 28.45274 53.64413C29.46819 53.64413 30.29137 54.46732 30.29137 55.48276ZM28.45274 55.48276" stroke="none"></path>
+</g>
+<g transform="translate(28.45274,55.48276)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M201.00783 146.81625C201.00783 147.8317 200.18465 148.65488 199.1692 148.65488C198.15376 148.65488 197.33058 147.8317 197.33058 146.81625C197.33058 145.80081 198.15376 144.97763 199.1692 144.97763C200.18465 144.97763 201.00783 145.80081 201.00783 146.81625ZM199.1692 146.81625" stroke="none"></path>
+</g>
+<g transform="translate(199.1692,146.81625)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(25.44579,-8.3163)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-43.878425" y="113.193475" href="#tz_fig_aversao_risco_g3-65"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(195.9777,-8.3163)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-43.878425" y="113.193475" href="#tz_fig_aversao_risco_g3-66"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-20.52498,53.73276)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-43.878425" y="113.193475" href="#tz_fig_aversao_risco_g3-117"></use>
+<use x="-39.16803" y="113.193475" href="#tz_fig_aversao_risco_g5-40"></use>
+<use x="-36.054687" y="113.193475" href="#tz_fig_aversao_risco_g3-65"></use>
+<use x="-30.063225" y="113.193475" href="#tz_fig_aversao_risco_g5-41"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-20.89406,145.06625)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-43.878425" y="113.193475" href="#tz_fig_aversao_risco_g3-117"></use>
+<use x="-39.16803" y="113.193475" href="#tz_fig_aversao_risco_g5-40"></use>
+<use x="-36.054687" y="113.193475" href="#tz_fig_aversao_risco_g3-66"></use>
+<use x="-29.695525" y="113.193475" href="#tz_fig_aversao_risco_g5-41"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M28.45274 0V55.48276" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M199.1692 0V146.81625" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<g fill="#6c757d" stroke="#6c757d">
+<path d="M28.45274 55.48276L199.1692 146.81625" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#000">
+<g fill="#d7433b" stroke="#d7433b">
+<path d="M115.6496 101.14929C115.6496 102.16473 114.82642 102.98792 113.81097 102.98792C112.79553 102.98792 111.97235 102.16473 111.97235 101.14929S112.79553 99.31067 113.81097 99.31067C114.82642 99.31067 115.6496 100.13385 115.6496 101.14929ZM113.81097 101.14929" stroke="none"></path>
+</g>
+</g>
+<g transform="translate(113.81097,101.14929)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M113.81097 0V101.14929" fill="none"></path>
+</g>
+</g>
+</g>
+<g transform="translate(104.86824,-8.78297)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-43.878425" y="113.193475" href="#tz_fig_aversao_risco_g3-69"></use>
+<use x="-37.646214" y="113.193475" href="#tz_fig_aversao_risco_g5-91"></use>
+<use x="-35.390768" y="113.193475" href="#tz_fig_aversao_risco_g3-88"></use>
+<use x="-28.315176" y="113.193475" href="#tz_fig_aversao_risco_g5-93"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(118.76666,94.98915)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-43.878425" y="113.193475" href="#tz_fig_aversao_risco_g3-69"></use>
+<use x="-37.646214" y="113.193475" href="#tz_fig_aversao_risco_g3-85"></use>
+<use x="-28.786779" y="113.193475" href="#tz_fig_aversao_risco_g5-40"></use>
+<use x="-25.673436" y="113.193475" href="#tz_fig_aversao_risco_g5-108"></use>
+<use x="-23.41799" y="113.193475" href="#tz_fig_aversao_risco_g5-111"></use>
+<use x="-19.44675" y="113.193475" href="#tz_fig_aversao_risco_g5-116"></use>
+<use x="-16.333407" y="113.193475" href="#tz_fig_aversao_risco_g5-101"></use>
+<use x="-12.791115" y="113.193475" href="#tz_fig_aversao_risco_g5-114"></use>
+<use x="-9.677772" y="113.193475" href="#tz_fig_aversao_risco_g5-105"></use>
+<use x="-7.422326" y="113.193475" href="#tz_fig_aversao_risco_g5-97"></use>
+<use x="-3.451086" y="113.193475" href="#tz_fig_aversao_risco_g5-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#3fb618" stroke="#3fb618">
+<g fill="#000">
+<g fill="#3fb618" stroke="#3fb618">
+<path d="M115.6496 110.96552C115.6496 111.98096 114.82642 112.80414 113.81097 112.80414C112.79553 112.80414 111.97235 111.98096 111.97235 110.96552C111.97235 109.95007 112.79553 109.12689 113.81097 109.12689C114.82642 109.12689 115.6496 109.95007 115.6496 110.96552ZM113.81097 110.96552" stroke="none"></path>
+</g>
+</g>
+<g transform="translate(113.81097,110.96552)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#3fb618" stroke="#3fb618">
+<g fill="#3fb618" stroke="#3fb618">
+</g>
+<g transform="translate(117.34395,117.67122)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none">
+<g fill="#3fb618">
+<use x="-43.878425" y="113.193475" href="#tz_fig_aversao_risco_g3-117"></use>
+<use x="-39.16803" y="113.193475" href="#tz_fig_aversao_risco_g5-40"></use>
+<use x="-36.054687" y="113.193475" href="#tz_fig_aversao_risco_g3-69"></use>
+<use x="-29.822476" y="113.193475" href="#tz_fig_aversao_risco_g5-91"></use>
+<use x="-27.56703" y="113.193475" href="#tz_fig_aversao_risco_g3-88"></use>
+<use x="-20.491438" y="113.193475" href="#tz_fig_aversao_risco_g5-93"></use>
+<use x="-18.235993" y="113.193475" href="#tz_fig_aversao_risco_g5-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M94.4633 0V101.14929" fill="none"></path>
+</g>
+</g>
+</g>
+<g transform="translate(83.3852,-8.3163)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-43.878425" y="113.193475" href="#tz_fig_aversao_risco_g3-69"></use>
+<use x="-37.646214" y="113.193475" href="#tz_fig_aversao_risco_g3-67"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<path d="M94.8633 14.22636H113.41098" fill="none"></path>
+<g transform="matrix(-1.0,0.0,0.0,-1.0,94.6633,14.22636)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.07999 2.39998C-1.69998 .95998-.85318 .28 0 0C-.85318-.28-1.69998-.95998-2.07999-2.39998" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+<g transform="translate(113.61098,14.22636)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.07999 2.39998C-1.69998 .95998-.85318 .28 0 0C-.85318-.28-1.69998-.95998-2.07999-2.39998" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g fill="#6c757d" stroke="#6c757d">
+</g>
+<g transform="translate(126.95631,12.47636)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-43.878425,113.193475)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-43.878425" y="113.193475" href="#tz_fig_aversao_risco_g5-112"></use>
+<use x="-39.478235" y="113.193475" href="#tz_fig_aversao_risco_g5-114"></use>
+<use x="-36.579374" y="113.193475" href="#tz_fig_aversao_risco_g5-94"></use>
+<use x="-36.36489" y="113.193475" href="#tz_fig_aversao_risco_g5-101"></use>
+<use x="-32.822598" y="113.193475" href="#tz_fig_aversao_risco_g5-109"></use>
+<use x="-26.277665" y="113.193475" href="#tz_fig_aversao_risco_g5-105"></use>
+<use x="-24.022219" y="113.193475" href="#tz_fig_aversao_risco_g5-111"></use>
+<use x="-17.366587" y="113.193475" href="#tz_fig_aversao_risco_g5-100"></use>
+<use x="-12.966398" y="113.193475" href="#tz_fig_aversao_risco_g5-101"></use>
+<use x="-6.739715" y="113.193475" href="#tz_fig_aversao_risco_g5-114"></use>
+<use x="-3.626372" y="113.193475" href="#tz_fig_aversao_risco_g5-105"></use>
+<use x="-1.370926" y="113.193475" href="#tz_fig_aversao_risco_g5-115"></use>
+<use x="1.785314" y="113.193475" href="#tz_fig_aversao_risco_g5-99"></use>
+<use x="5.327606" y="113.193475" href="#tz_fig_aversao_risco_g5-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<path d="M135.15053 14.22636H105.67505" fill="none"></path>
+<g transform="matrix(-1.0,0.0,0.0,-1.0,105.47505,14.22636)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.07999 2.39998C-1.69998 .95998-.85318 .28 0 0C-.85318-.28-1.69998-.95998-2.07999-2.39998" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aversao-risco-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;43.1: Aversão ao risco: com utilidade côncava, <span class="math inline">\(u(E[X]) &gt; EU\)</span>. O equivalente de certeza <span class="math inline">\(EC\)</span> é menor que <span class="math inline">\(E[X]\)</span>; a diferença é o prêmio de risco.
+</figcaption>
+</figure>
+</div>
+<section id="equivalente-de-certeza-e-prêmio-de-risco" class="level3" data-number="43.4.1">
+<h3 data-number="43.4.1" class="anchored" data-anchor-id="equivalente-de-certeza-e-prêmio-de-risco"><span class="header-section-number">43.4.1</span> Equivalente de certeza e prêmio de risco</h3>
+<p>Dois conceitos completam a figura:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Equivalente de certeza e prêmio de risco">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Equivalente de certeza e prêmio de risco
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <strong>equivalente de certeza (EC)</strong> é o valor <strong>certo</strong> que deixa o agente <strong>indiferente</strong> entre recebê-lo e enfrentar a loteria — ou seja, o valor certo cuja utilidade iguala a utilidade esperada da loteria: <span class="math inline">\(u(EC) = EU\)</span>. O <strong>prêmio de risco</strong> é a diferença <span class="math display">\[
+\text{prêmio de risco} = E[X] - EC,
+\]</span> isto é, <strong>quanto de valor esperado o agente está disposto a abrir mão</strong> para eliminar o risco. Para um avesso ao risco, <span class="math inline">\(EC &lt; E[X]\)</span> e o prêmio de risco é <strong>positivo</strong>.</p>
+</div>
+</div>
+<p>O prêmio de risco é o preço que a pessoa aceita pagar pela <strong>tranquilidade</strong> da certeza. É ele que torna possível o negócio de seguros.</p>
+</section>
+</section>
+<section id="por-que-existem-seguros-e-diversificação" class="level2" data-number="43.5">
+<h2 data-number="43.5" class="anchored" data-anchor-id="por-que-existem-seguros-e-diversificação"><span class="header-section-number">43.5</span> Por que existem seguros e diversificação</h2>
+<p><strong>Seguros.</strong> Você paga um prêmio (mensal, anual) a uma seguradora; em troca, ela assume o risco de um sinistro (roubo, acidente, incêndio). Por que isso funciona para ambos? Porque você é <strong>avesso ao risco</strong>: prefere pagar um valor <strong>certo</strong> (o prêmio) a enfrentar a pequena chance de uma perda <strong>enorme</strong>. Você aceita pagar até seu prêmio de risco acima do valor atuarialmente justo. A seguradora, por sua vez, <strong>agrupa milhares de riscos independentes</strong> e, pela <strong>lei dos grandes números</strong>, tem sinistros previsíveis no agregado — ela é praticamente <strong>neutra ao risco</strong>. O seguro transfere o risco de quem o teme (o segurado) para quem consegue diluí-lo (a seguradora), e ambos saem ganhando. É a aversão ao risco que cria o mercado.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — seguro é caro na média, e ainda assim vale a pena">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — seguro é caro na média, e ainda assim vale a pena
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Todo seguro é, na média, um “mau negócio” monetário: a seguradora precisa cobrar mais do que o valor esperado do sinistro para pagar custos e lucrar. Então por que comprá-lo? Porque a decisão não é sobre o valor <strong>esperado</strong>, e sim sobre a <strong>utilidade esperada</strong>. Para um avesso ao risco, a perda de utilidade de um sinistro catastrófico (perder o carro, a casa) é desproporcionalmente grande; pagar um prêmio certo e modesto para evitá-la <strong>aumenta</strong> a utilidade esperada, mesmo custando mais que o justo atuarial. Note também que seguro faz sentido para perdas <strong>grandes e raras</strong>, não para pequenos aborrecimentos — daí a lógica das franquias (<a href="cap05-informacao-assimetrica.html" class="quarto-xref"><span>Capítulo 41</span></a>).</p>
+</div>
+</div>
+<p><strong>Diversificação.</strong> “Não ponha todos os ovos na mesma cesta.” Um agente avesso ao risco reduz o risco distribuindo a riqueza entre vários ativos cujos retornos <strong>não sejam perfeitamente correlacionados</strong>: quando um vai mal, outro pode ir bem, e a variabilidade do conjunto cai sem sacrificar (muito) o retorno esperado. A diversificação é a aplicação mais poderosa da aversão ao risco às finanças — e será a base do estudo de risco, retorno e do CAPM no volume de economia financeira.</p>
+</section>
+<section id="quando-a-teoria-falha-a-economia-comportamental" class="level2" data-number="43.6">
+<h2 data-number="43.6" class="anchored" data-anchor-id="quando-a-teoria-falha-a-economia-comportamental"><span class="header-section-number">43.6</span> Quando a teoria falha: a economia comportamental</h2>
+<p>A teoria da utilidade esperada é elegante e poderosa, mas décadas de experimentos mostraram que as pessoas <strong>desviam sistematicamente</strong> dela. Daniel Kahneman e Amos Tversky propuseram, em 1979, a <strong>teoria do prospecto</strong> (<em>prospect theory</em>), que descreve como as pessoas <strong>de fato</strong> decidem sob risco <span class="citation" data-cites="kahneman1979">(<a href="#ref-kahneman1979" role="doc-biblioref">Kahneman; Tversky, 1979</a>)</span>.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — utilidade esperada descreve ou apenas prescreve?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — utilidade esperada descreve ou apenas prescreve?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A utilidade esperada é ótima como teoria <strong>normativa</strong> (como um agente racional <em>deveria</em> decidir), mas falha como teoria <strong>descritiva</strong> (como as pessoas realmente decidem). Os principais desvios documentados:</p>
+<ul>
+<li><strong>Aversão à perda:</strong> a dor de perder R$,100 é maior que o prazer de ganhar R$,100 (cerca de 2 vezes). As pessoas avaliam ganhos e perdas em relação a um <strong>ponto de referência</strong>, não à riqueza total — e são muito mais sensíveis a perdas.</li>
+<li><strong>Ponderação de probabilidades:</strong> as pessoas <strong>superestimam</strong> probabilidades pequenas (por isso jogam na loteria <em>e</em> compram seguro contra eventos raros) e <strong>subestimam</strong> as grandes.</li>
+<li><strong>Efeito enquadramento (<em>framing</em>):</strong> a mesma escolha, descrita como “ganho” ou como “perda”, produz decisões opostas — algo impossível na teoria clássica.</li>
+</ul>
+<p>A teoria do prospecto acomoda esses fatos com uma <strong>função de valor</strong> em forma de S (côncava para ganhos, convexa para perdas, mais íngreme nas perdas) e uma ponderação distorcida de probabilidades. Ela não invalida a utilidade esperada como ideal de racionalidade, mas a complementa como retrato do comportamento real — tema que o volume final de economia comportamental aprofundará.</p>
+</div>
+</div>
+</section>
+<section id="sec-escolha-sob-incerteza-brasil" class="level2" data-number="43.7">
+<h2 data-number="43.7" class="anchored" data-anchor-id="sec-escolha-sob-incerteza-brasil"><span class="header-section-number">43.7</span> Brasil em Foco</h2>
+<p>A escolha sob incerteza está por trás de decisões financeiras e de política pública muito brasileiras.</p>
+<p><strong>Um mercado de seguros em expansão — e a subproteção.</strong> O mercado segurador brasileiro (regulado pela <strong>SUSEP</strong>) cresceu bastante, mas a penetração do seguro ainda é baixa para vários riscos: uma minoria dos veículos tem seguro, e a cobertura de residências e de safras é limitada. A aversão ao risco explica a demanda por seguros; o baixo alcance reflete renda restrita, custo dos prêmios e, em parte, vieses comportamentais (subestimar riscos, “não vai acontecer comigo”). O <strong>seguro rural</strong> e programas públicos de garantia agrícola atacam um risco específico e enorme para o Brasil: o clima.</p>
+<p><strong>Agricultura: decisão sob incerteza climática.</strong> O produtor rural brasileiro é um tomador de decisão sob incerteza por excelência: planta sem saber a chuva, o preço futuro da commodity ou o câmbio na colheita. Instrumentos para lidar com isso incluem o <strong>seguro rural</strong> (e a subvenção federal ao prêmio), o <strong>Proagro</strong> (programa de garantia da atividade agropecuária), e o uso de <strong>mercados futuros e de opções</strong> na B3 para travar preços (<em>hedge</em>) — todos formas de <strong>transferir risco</strong> de quem o teme para quem pode assumi-lo, exatamente a lógica deste capítulo. A diversificação de culturas é outra resposta clássica à incerteza.</p>
+<p><strong>Previdência e aposentadoria: risco de longevidade e vieses.</strong> Decidir quanto poupar para a aposentadoria é uma escolha sob incerteza (quanto tempo se viverá, qual o retorno dos investimentos). A economia comportamental é especialmente relevante aqui: as pessoas tendem a poupar <strong>menos</strong> do que gostariam por miopia e viés do presente. Isso motiva desenhos institucionais que usam a <strong>inércia</strong> a favor do poupador — como planos de previdência com <strong>adesão automática</strong> (o trabalhador entra por padrão, podendo sair), um “empurrão” (<em>nudge</em>) coerente com a teoria do prospecto. O debate sobre previdência complementar e o desenho do sistema previdenciário brasileiro dialoga diretamente com esses achados.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> SUSEP (dados do mercado de seguros e penetração); Ministério da Agricultura (seguro rural, subvenção ao prêmio, Proagro); B3 (mercados futuros e de opções agrícolas); estudos de economia comportamental aplicados à previdência. Ao citar penetração de seguros, verifique o ramo (auto, residencial, rural) e o ano.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="43.8">
+<h2 data-number="43.8" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">43.8</span> Resumo do capítulo</h2>
+<ul>
+<li>O <strong>valor esperado</strong> é a média dos resultados ponderada por probabilidades, mas <strong>não</strong> descreve a escolha sob incerteza (recusa-se o cara ou coroa justo; paradoxo de São Petersburgo).</li>
+<li>A teoria da <strong>utilidade esperada</strong> (von Neumann-Morgenstern) avalia loterias pela <strong>esperança da utilidade</strong> dos resultados, <span class="math inline">\(EU = \sum p_i\,u(x_i)\)</span>, aplicando a média <strong>depois</strong> da função utilidade.</li>
+<li><strong>Aversão ao risco</strong> corresponde a uma função utilidade <strong>côncava</strong> (utilidade marginal decrescente): <span class="math inline">\(u(E[X]) &gt; EU\)</span> — a certeza vale mais que a loteria de igual valor esperado. Neutralidade = utilidade linear; propensão = convexa.</li>
+<li>O <strong>equivalente de certeza (EC)</strong> satisfaz <span class="math inline">\(u(EC)=EU\)</span>; o <strong>prêmio de risco</strong> <span class="math inline">\(= E[X]-EC\)</span> é quanto se abre mão para eliminar o risco (positivo para o avesso).</li>
+<li>A aversão ao risco explica os <strong>seguros</strong> (transferir risco a uma seguradora quase neutra, que dilui riscos pela lei dos grandes números) e a <strong>diversificação</strong> (“não pôr os ovos numa cesta só”).</li>
+<li>A <strong>teoria do prospecto</strong> (Kahneman-Tversky) descreve desvios sistemáticos: <strong>aversão à perda</strong>, ponto de referência, ponderação distorcida de probabilidades e efeito <strong>enquadramento</strong>. A utilidade esperada é boa como norma, imperfeita como descrição.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="43.9">
+<h2 data-number="43.9" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">43.9</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Resolva antes de abrir a solução. Dificuldade crescente.</p>
+</div>
+</div>
+<p><strong>1.</strong> Calcule o valor esperado da seguinte loteria: 30% de chance de ganhar R$,200, 50% de ganhar R$,100 e 20% de perder R$,50. Uma pessoa neutra ao risco pagaria quanto, no máximo, para participar?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+E[X] = 0{,}30 \times 200 + 0{,}50 \times 100 + 0{,}20 \times (-50) = 60 + 50 - 10 = R\$\,100.
+\]</span> Uma pessoa <strong>neutra ao risco</strong> decide pelo valor esperado, então pagaria <strong>no máximo R$,100</strong> para participar (acima disso, o jogo teria valor esperado líquido negativo para ela). Um <strong>avesso ao risco</strong> pagaria <strong>menos</strong> que R$,100 (o equivalente de certeza, abaixo do valor esperado); um <strong>propenso ao risco</strong>, possivelmente mais.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Explique, usando utilidade marginal decrescente, por que uma pessoa avessa ao risco recusa um cara ou coroa justo (ganhar ou perder R$,1.000 com 50% cada).</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O valor esperado do jogo é zero (<span class="math inline">\(0{,}5 \times 1000 + 0{,}5 \times (-1000) = 0\)</span>), mas a decisão se dá pela <strong>utilidade esperada</strong>, não pelo valor monetário. Como a pessoa tem <strong>utilidade marginal decrescente da riqueza</strong> (função côncava), os R$,1.000 <strong>ganhos</strong> adicionam unidades de utilidade “menos valiosas” (ela já parte de sua riqueza atual), enquanto os R$,1.000 <strong>perdidos</strong> cortam unidades de utilidade “mais valiosas” (aproximam-se de níveis de riqueza mais baixos, onde cada real importa mais). Assim, a <strong>dor</strong> da perda (em utilidade) supera o <strong>prazer</strong> do ganho de mesmo valor monetário, e a utilidade esperada do jogo é <strong>negativa</strong>: <span class="math inline">\(0{,}5\,u(W+1000) + 0{,}5\,u(W-1000) &lt; u(W)\)</span>. Como ficar parado (riqueza <span class="math inline">\(W\)</span> com certeza) dá utilidade maior que jogar, a pessoa <strong>recusa</strong> o cara ou coroa justo. É a assinatura da aversão ao risco.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Defina equivalente de certeza e prêmio de risco. Para uma pessoa avessa ao risco, o equivalente de certeza é maior ou menor que o valor esperado da loteria? E o prêmio de risco?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O <strong>equivalente de certeza (EC)</strong> é o valor <strong>certo</strong> que deixa a pessoa indiferente entre recebê-lo com certeza e enfrentar a loteria — formalmente, o valor tal que <span class="math inline">\(u(EC) = EU\)</span> (utilidade esperada da loteria). O <strong>prêmio de risco</strong> é <span class="math inline">\(E[X] - EC\)</span>: quanto de valor esperado a pessoa abre mão para eliminar o risco. Para uma pessoa <strong>avessa ao risco</strong> (utilidade côncava), o equivalente de certeza é <strong>menor</strong> que o valor esperado (<span class="math inline">\(EC &lt; E[X]\)</span>): ela aceita receber menos, desde que com certeza, do que a média incerta da loteria. Consequentemente, o <strong>prêmio de risco é positivo</strong>. (Para um neutro, <span class="math inline">\(EC = E[X]\)</span> e o prêmio é zero; para um propenso, <span class="math inline">\(EC &gt; E[X]\)</span> e o prêmio é negativo.)</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Por que os seguros funcionam? Explique o papel da aversão ao risco do segurado e da lei dos grandes números para a seguradora. Por que o seguro pode ser um “mau negócio” na média e ainda assim valer a pena?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O <strong>segurado</strong> é <strong>avesso ao risco</strong>: prefere pagar um prêmio <strong>certo</strong> e modesto a enfrentar a pequena probabilidade de uma perda <strong>grande</strong> (roubo, acidente, incêndio), cuja perda de utilidade seria desproporcional. Ele está disposto a pagar até o valor esperado do sinistro <strong>mais</strong> seu prêmio de risco. A <strong>seguradora</strong> agrupa <strong>milhares de riscos independentes</strong>; pela <strong>lei dos grandes números</strong>, a proporção de sinistros no conjunto é altamente previsível, ainda que cada caso individual seja incerto. Isso a torna, na prática, <strong>neutra ao risco</strong> em relação à carteira: ela sabe quanto pagará no agregado. Assim, o seguro <strong>transfere</strong> o risco de quem o teme (segurado, avesso) para quem consegue diluí-lo (seguradora, quase neutra), e ambos ganham. O seguro é um “mau negócio” <strong>na média monetária</strong> porque a seguradora precisa cobrar mais que o valor esperado do sinistro (para cobrir custos e lucro) — o valor esperado líquido para o segurado é negativo. Mesmo assim <strong>vale a pena</strong> porque a decisão se baseia na <strong>utilidade esperada</strong>, não no valor esperado: pagar o prêmio certo eleva a utilidade esperada de um avesso ao risco, ao remover a ameaça de uma perda catastrófica de utilidade. Racionalmente, isso vale sobretudo para perdas <strong>grandes e raras</strong>.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> O que a teoria do prospecto acrescenta à teoria da utilidade esperada? Explique a “aversão à perda” e por que ela pode fazer alguém comprar bilhete de loteria e seguro ao mesmo tempo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A <strong>teoria do prospecto</strong> (Kahneman-Tversky) é uma teoria <strong>descritiva</strong>: descreve como as pessoas <strong>realmente</strong> decidem sob risco, corrigindo desvios sistemáticos da utilidade esperada (que é sobretudo <strong>normativa</strong>). Acrescenta três ideias: (i) as pessoas avaliam resultados como <strong>ganhos e perdas</strong> em relação a um <strong>ponto de referência</strong>, não pela riqueza total; (ii) exibem <strong>aversão à perda</strong> — a dor de perder é maior (cerca do dobro) que o prazer de ganhar a mesma quantia; e (iii) <strong>distorcem probabilidades</strong>, superestimando as muito pequenas e subestimando as grandes. A <strong>aversão à perda</strong> significa que a função de valor é mais íngreme no domínio das perdas: perder R$,100 “dói” mais do que ganhar R$,100 “agrada”. O aparente paradoxo de comprar <strong>loteria e seguro</strong> ao mesmo tempo (um busca risco, o outro o evita) é explicado pela <strong>ponderação distorcida de probabilidades</strong>: as pessoas <strong>superestimam eventos raros</strong>. Um prêmio de loteria é raro mas superavaliado (por isso o bilhete atrai, apesar do valor esperado péssimo); um sinistro grave também é raro mas superavaliado (por isso o seguro atrai). Assim, a mesma pessoa pode pagar por uma pequena chance superestimada de <strong>grande ganho</strong> (loteria) e por evitar uma pequena chance superestimada de <strong>grande perda</strong> (seguro) — comportamento inconsistente com a utilidade esperada clássica, mas coerente com a teoria do prospecto.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> (Análise de caso) O produtor rural brasileiro decide o que plantar sob incerteza de clima, preço e câmbio. (a) Que instrumentos ele tem para transferir ou reduzir risco? (b) Explique como cada um se relaciona com a aversão ao risco. (c) Por que o governo subsidia o seguro rural?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>(a)</strong> Instrumentos: <strong>seguro rural</strong> (e o <strong>Proagro</strong>), que cobre perdas de safra por eventos climáticos; <strong>mercados futuros e de opções</strong> na B3, que permitem travar antecipadamente o preço da commodity (<em>hedge</em>) e proteger-se de quedas; e a <strong>diversificação</strong> de culturas (plantar mais de um produto, com riscos não perfeitamente correlacionados), além de escalonar plantios. <strong>(b)</strong> Cada um serve à <strong>aversão ao risco</strong> do produtor: o <strong>seguro</strong> transfere o risco climático (grande e potencialmente catastrófico) para uma seguradora que o dilui — o produtor troca uma perda incerta e enorme por um prêmio certo e menor, elevando sua utilidade esperada. O <strong><em>hedge</em></strong> em mercados futuros transfere o risco de preço para quem está disposto a assumi-lo (especuladores ou contrapartes com posição oposta), garantindo ao produtor um preço certo. A <strong>diversificação</strong> reduz a variabilidade do resultado total sem transferi-lo, aplicando o “não pôr os ovos numa cesta só”. Todos reduzem a exposição a resultados extremos, o que um avesso ao risco valoriza. <strong>(c)</strong> O governo subsidia o <strong>seguro rural</strong> (subvenção ao prêmio) por várias razões econômicas: o mercado de seguro agrícola sofre de <strong>falhas</strong> (riscos climáticos são <strong>correlacionados</strong> entre produtores de uma mesma região — uma seca atinge todos ao mesmo tempo —, o que dificulta a diluição pela lei dos grandes números e encarece ou inviabiliza o seguro privado; há também seleção adversa e risco moral, <a href="cap05-informacao-assimetrica.html" class="quarto-xref"><span>Capítulo 41</span></a>); a atividade agrícola gera <strong>externalidades positivas</strong> e é estratégica (segurança alimentar, exportações); e a subvenção <strong>aumenta a adesão</strong>, ajudando a superar o subseguro causado tanto pela restrição de renda quanto por vieses comportamentais (subestimar o risco). Ao baratear o prêmio, o subsídio leva a cobertura para mais perto do nível socialmente desejável.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Desafio) Muitas pessoas poupam menos do que gostariam para a aposentadoria. (a) Que conceitos da economia comportamental explicam isso? (b) Como a “adesão automática” a planos de previdência (o trabalhador entra por padrão, podendo sair) usa esses conceitos a favor do poupador? (c) Isso limita a liberdade de escolha?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>(a)</strong> Vários vieses explicam a subpoupança: o <strong>viés do presente</strong> (as pessoas valorizam demais o consumo imediato e descontam demais o futuro — preferem gastar hoje e “começam a poupar mês que vem”, indefinidamente); a <strong>miopia</strong> e a dificuldade de imaginar a própria velhice; a <strong>inércia/procrastinação</strong> (poupar exige uma ação ativa que se adia); e a <strong>complexidade</strong> das escolhas financeiras, que paralisa. Na linguagem da teoria do prospecto, contribuir hoje é sentido como uma <strong>perda</strong> presente (redução do salário líquido) em relação ao ponto de referência, e a aversão à perda desestimula a adesão voluntária. <strong>(b)</strong> A <strong>adesão automática</strong> (<em>auto-enrollment</em>) inverte o padrão (o <em>default</em>): em vez de o trabalhador precisar <strong>agir para entrar</strong>, ele já entra por padrão e precisa <strong>agir para sair</strong>. Isso usa a <strong>inércia</strong> a favor do poupador — como a maioria segue o <em>default</em> por procrastinação ou por interpretá-lo como recomendação, a adesão e a poupança sobem drasticamente, sem proibir ninguém de nada. É um <strong><em>nudge</em></strong> (empurrão) clássico: muda o <strong>enquadramento</strong> e a opção-padrão para alinhar o comportamento efetivo ao que a própria pessoa diz desejar. <strong>(c)</strong> Não elimina a liberdade de escolha — o trabalhador <strong>pode sair</strong> a qualquer momento (é “paternalismo libertário”): preserva-se a opção de escolha, apenas mudando qual é o ponto de partida. O debate ético é se o Estado ou o empregador deve <strong>escolher o <em>default</em></strong> por nós; os defensores argumentam que <strong>algum</strong> <em>default</em> sempre existe (não entrar também é um padrão), então é melhor que ele seja o que beneficia a maioria; os críticos temem a manipulação e a perda de autonomia. De todo modo, por não vedar a saída, a adesão automática restringe muito pouco a liberdade enquanto melhora substancialmente os resultados — razão de sua popularidade no desenho de previdência. O tema será aprofundado no volume de economia comportamental.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="43.10">
+<h2 data-number="43.10" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">43.10</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="neumann1944">Neumann; Morgenstern (<a href="#ref-neumann1944" role="doc-biblioref">1944</a>)</span> — a obra que axiomatizou a teoria da utilidade esperada, base de toda a análise de decisão sob risco.</li>
+<li><span class="citation" data-cites="kahneman1979">Kahneman; Tversky (<a href="#ref-kahneman1979" role="doc-biblioref">1979</a>)</span> — “Prospect Theory”, o artigo que fundou a economia comportamental da decisão sob risco; um dos mais citados da economia.</li>
+<li><span class="citation" data-cites="varian2015">Varian (<a href="#ref-varian2015" role="doc-biblioref">2015</a>)</span> — capítulo sobre incerteza, com utilidade esperada, aversão ao risco e diversificação de forma acessível.</li>
+<li><span class="citation" data-cites="pindyck2013">Pindyck; Rubinfeld (<a href="#ref-pindyck2013" role="doc-biblioref">2013</a>)</span> — trata de escolha sob incerteza, prêmio de risco e demanda por seguro com aplicações.</li>
+<li><span class="citation" data-cites="mankiw2020">Mankiw (<a href="#ref-mankiw2020" role="doc-biblioref">2020</a>)</span> — introdução à assimetria de informação e à economia comportamental, complementando este capítulo.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-kahneman1979" class="csl-entry" role="listitem">
+KAHNEMAN, Daniel; TVERSKY, Amos. Prospect Theory: An Analysis of Decision under Risk. <strong>Econometrica</strong>, v. 47, n. 2, p. 263–291, 1979.
+</div>
+<div id="ref-mankiw2020" class="csl-entry" role="listitem">
+MANKIW, N. Gregory. <strong>Introdução à Economia</strong>. 8. ed. São Paulo: Cengage Learning, 2020.
+</div>
+<div id="ref-neumann1944" class="csl-entry" role="listitem">
+NEUMANN, John von; MORGENSTERN, Oskar. <strong>Theory of Games and Economic Behavior</strong>. Princeton: Princeton University Press, 1944.
+</div>
+<div id="ref-pindyck2013" class="csl-entry" role="listitem">
+PINDYCK, Robert S.; RUBINFELD, Daniel L. <strong>Microeconomia</strong>. 8. ed. São Paulo: Pearson, 2013.
+</div>
+<div id="ref-varian2015" class="csl-entry" role="listitem">
+VARIAN, Hal R. <strong>Microeconomia: uma abordagem moderna</strong>. 9. ed. Rio de Janeiro: Elsevier, 2015.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="pagination-link" aria-label="Economia do trabalho: salários, capital humano e informalidade">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="pagination-link" aria-label="Demanda agregada: consumo, investimento e o multiplicador">
+        <span class="nav-page-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol06/cap07-escolha-sob-incerteza.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

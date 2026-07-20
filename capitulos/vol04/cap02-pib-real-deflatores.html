@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>24&nbsp; PIB nominal × real, deflatores e números-índice – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol04/cap03-inflacao.html" rel="next">
+<link href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html">Volume 4 — Macroeconomia I: Medindo a Economia</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol04/cap02-pib-real-deflatores.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">24.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#pib-nominal-e-pib-real" id="toc-pib-nominal-e-pib-real" class="nav-link" data-scroll-target="#pib-nominal-e-pib-real"><span class="header-section-number">24.2</span> PIB nominal e PIB real</a></li>
+  <li><a href="#o-deflator-implícito-do-pib" id="toc-o-deflator-implícito-do-pib" class="nav-link" data-scroll-target="#o-deflator-implícito-do-pib"><span class="header-section-number">24.3</span> O deflator implícito do PIB</a></li>
+  <li><a href="#números-índice-comprimindo-muitos-preços-num-só" id="toc-números-índice-comprimindo-muitos-preços-num-só" class="nav-link" data-scroll-target="#números-índice-comprimindo-muitos-preços-num-só"><span class="header-section-number">24.4</span> Números-índice: comprimindo muitos preços num só</a>
+  <ul class="collapse">
+  <li><a href="#encadeamento-por-que-o-ibge-abandonou-a-base-fixa" id="toc-encadeamento-por-que-o-ibge-abandonou-a-base-fixa" class="nav-link" data-scroll-target="#encadeamento-por-que-o-ibge-abandonou-a-base-fixa"><span class="header-section-number">24.4.1</span> Encadeamento: por que o IBGE abandonou a base fixa</a></li>
+  </ul></li>
+  <li><a href="#deflator-do-pib-ipca-dois-índices-dois-usos" id="toc-deflator-do-pib-ipca-dois-índices-dois-usos" class="nav-link" data-scroll-target="#deflator-do-pib-ipca-dois-índices-dois-usos"><span class="header-section-number">24.5</span> Deflator do PIB × IPCA: dois índices, dois usos</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">24.6</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">24.7</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">24.8</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">24.9</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol04/cap02-pib-real-deflatores.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html">Volume 4 — Macroeconomia I: Medindo a Economia</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol04/cap02-pib-real-deflatores.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-pib-real-deflatores" class="quarto-section-identifier"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Suponha que o noticiário anuncie: “o PIB brasileiro cresceu 10% neste ano”. Boa notícia? Depende de uma pergunta que o número sozinho não responde: o país produziu 10% <em>mais coisas</em>, ou as coisas ficaram 10% <em>mais caras</em>? Se os preços subiram 10% e a produção física ficou igual, o PIB em reais cresceu 10% sem que uma única padaria tenha assado um pão a mais. O crescimento seria pura ilusão monetária.</p>
+<p>O <a href="cap01-contas-nacionais-pib.html" class="quarto-xref"><span>Capítulo 23</span></a> nos deu o PIB como o valor de mercado da produção. Mas “valor de mercado” mistura duas coisas que precisamos separar para entender a economia: <strong>quanto</strong> se produziu (as quantidades) e a <strong>que preços</strong> (o nível de preços). Este capítulo faz essa separação. Ela dá origem à distinção entre <strong>PIB nominal</strong> e <strong>PIB real</strong>, ao <strong>deflator</strong> que os conecta, e à ideia mais geral de <strong>número-índice</strong> — a ferramenta com que economistas comprimem milhares de preços e quantidades num único termômetro. É também a ponte para o próximo capítulo, sobre inflação.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">24.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>distinguir <strong>PIB nominal</strong> (a preços correntes) de <strong>PIB real</strong> (a preços constantes) e explicar por que só o segundo mede crescimento genuíno;</li>
+<li>calcular ambos a partir de dados de preços e quantidades e obter a <strong>taxa de crescimento real</strong>;</li>
+<li>definir o <strong>deflator implícito do PIB</strong> e interpretá-lo como um índice de preços;</li>
+<li>entender o que é um <strong>número-índice</strong> e a diferença entre índices tipo <strong>Laspeyres</strong> e <strong>Paasche</strong>;</li>
+<li>comparar o <strong>deflator do PIB</strong> com o <strong>IPCA</strong> e saber quando usar cada um.</li>
+</ul>
+</section>
+<section id="pib-nominal-e-pib-real" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="pib-nominal-e-pib-real"><span class="header-section-number">24.2</span> PIB nominal e PIB real</h2>
+<p>A ideia central é simples. Para isolar as quantidades das variações de preço, medimos a produção de anos diferentes usando <strong>os mesmos preços</strong> — os de um <strong>ano-base</strong> escolhido. Assim, qualquer mudança no total reflete apenas mudança nas <em>quantidades</em>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definições — PIB nominal e PIB real">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definições — PIB nominal e PIB real
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <strong>PIB nominal</strong> é o valor da produção avaliado aos <strong>preços correntes</strong> de cada período (os preços que vigoravam naquele ano).</p>
+<p>O <strong>PIB real</strong> é o valor da produção avaliado aos <strong>preços de um ano-base fixo</strong>. Como os preços ficam congelados, variações do PIB real medem apenas variações nas <strong>quantidades</strong> produzidas.</p>
+</div>
+</div>
+<p>Considere uma economia que produz apenas dois bens, pão e livros, em dois anos (<a href="#tbl-nominal-real" class="quarto-xref">Tabela&nbsp;<span>24.1</span></a>). No ano-base (2020), o pão custa R$,2 e o livro, R$,40; em 2025, o pão sobe para R$,3 e o livro, para R$,50. As quantidades também mudam.</p>
+<div id="tbl-nominal-real" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-nominal-real-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;24.1: Preços e quantidades de uma economia de dois bens.
+</figcaption>
+<div aria-describedby="tbl-nominal-real-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Preço 2020</th>
+<th style="text-align: right;">Qtd. 2020</th>
+<th style="text-align: right;">Preço 2025</th>
+<th style="text-align: right;">Qtd. 2025</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Pão (unid.)</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">110</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Livros (unid.)</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">12</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>PIB nominal de 2020</strong> (preços de 2020 × quantidades de 2020): <span class="math display">\[
+2 \times 100 + 40 \times 10 = 200 + 400 = R\$\,600.
+\]</span></p>
+<p><strong>PIB nominal de 2025</strong> (preços de 2025 × quantidades de 2025): <span class="math display">\[
+3 \times 110 + 50 \times 12 = 330 + 600 = R\$\,930.
+\]</span></p>
+<p>Em termos nominais, o PIB cresceu de 600 para 930 — um salto de <strong>55%</strong>. Mas quanto disso é produção a mais, e quanto é só preço? Para saber, calculamos o <strong>PIB real de 2025 a preços de 2020</strong> (quantidades de 2025 × preços do ano-base): <span class="math display">\[
+2 \times 110 + 40 \times 12 = 220 + 480 = R\$\,700.
+\]</span></p>
+<p>Agora a comparação é limpa: o PIB real passou de R$,600 (em 2020, que por ser o ano-base coincide com o nominal) para R$,700 em 2025. O <strong>crescimento real</strong> foi: <span class="math display">\[
+\frac{700 - 600}{600} = 0{,}1667 = 16{,}7\%.
+\]</span></p>
+<p>Dos 55% de crescimento nominal, apenas <strong>16,7%</strong> foram produção genuinamente maior; o resto foi aumento de preços. Essa decomposição — separar “mais coisas” de “coisas mais caras” — é a razão de ser de todo o capítulo.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — no ano-base, nominal = real">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — no ano-base, nominal = real
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Por construção, no <strong>ano-base</strong> o PIB nominal e o PIB real são <strong>idênticos</strong>, porque os preços correntes <em>são</em> os preços-base. A divergência entre os dois só aparece nos demais anos, e cresce quanto mais os preços se afastam dos do ano-base. É por isso que os institutos de estatística <strong>atualizam periodicamente o ano-base</strong> — uma base muito antiga distorce as comparações.</p>
+</div>
+</div>
+</section>
+<section id="o-deflator-implícito-do-pib" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="o-deflator-implícito-do-pib"><span class="header-section-number">24.3</span> O deflator implícito do PIB</h2>
+<p>Temos agora duas medidas do mesmo PIB de 2025: R$,930 (nominal) e R$,700 (real, a preços de 2020). A razão entre elas mede <em>exatamente quanto os preços subiram</em>, em média, entre o ano-base e o ano corrente. Essa razão, multiplicada por 100, é o <strong>deflator implícito do PIB</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Deflator do PIB">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Deflator do PIB
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <strong>deflator implícito do PIB</strong> é a razão entre o PIB nominal e o PIB real, em índice: <span class="math display">\[
+\text{Deflator} = \frac{\text{PIB nominal}}{\text{PIB real}} \times 100.
+\]</span> Ele mede o nível de preços de <strong>todos os bens e serviços que compõem o PIB</strong>, relativo ao ano-base (cujo deflator é, por definição, 100).</p>
+</div>
+</div>
+<p>No nosso exemplo: <span class="math display">\[
+\text{Deflator}_{2025} = \frac{930}{700} \times 100 = 132{,}9.
+\]</span></p>
+<p>Um deflator de 132,9 significa que o conjunto de bens do PIB ficou, em média, <strong>32,9% mais caro</strong> que no ano-base. Repare na relação fundamental, que reorganiza a própria definição:</p>
+<p><span id="eq-deflacionar"><span class="math display">\[
+\text{PIB real} = \frac{\text{PIB nominal}}{\text{Deflator}} \times 100.
+\tag{24.1}\]</span></span></p>
+<p>Dividir uma série nominal por um índice de preços para obter a série real chama-se <strong>deflacionar</strong>. É a operação que transforma “reais de bolso” em “reais de poder de compra constante”, e você a repetirá em quase toda análise macroeconômica séria — de salários a arrecadação de impostos.</p>
+</section>
+<section id="números-índice-comprimindo-muitos-preços-num-só" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="números-índice-comprimindo-muitos-preços-num-só"><span class="header-section-number">24.4</span> Números-índice: comprimindo muitos preços num só</h2>
+<p>O deflator é um exemplo de <strong>número-índice</strong>: um número que resume, num só valor com base 100, como um conjunto de preços (ou quantidades) mudou em relação a um período de referência. Índices são onipresentes em Economia — IPCA, Ibovespa, índice de produção industrial — e vale entender sua lógica.</p>
+<p>Suponha que você queira resumir “o que aconteceu com os preços” quando há mil bens, cada um variando de forma diferente. É preciso uma <strong>média ponderada</strong>, e a pergunta decisiva é: ponderar pelas quantidades de <strong>qual</strong> período? Há duas respostas clássicas.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Índices de Laspeyres e de Paasche">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Índices de Laspeyres e de Paasche
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um índice de preços de <strong>Laspeyres</strong> usa como pesos as quantidades do <strong>período-base</strong> (a cesta <em>antiga</em>): <span class="math display">\[
+L = \frac{\sum p_t\, q_0}{\sum p_0\, q_0} \times 100.
+\]</span> Um índice de preços de <strong>Paasche</strong> usa como pesos as quantidades do <strong>período corrente</strong> (a cesta <em>atual</em>): <span class="math display">\[
+P = \frac{\sum p_t\, q_t}{\sum p_0\, q_t} \times 100.
+\]</span></p>
+</div>
+</div>
+<p>A diferença não é mera formalidade: os dois respondem a perguntas distintas. O <strong>Laspeyres</strong> pergunta “quanto custaria hoje a cesta que se consumia antes?”; o <strong>Paasche</strong> pergunta “quanto custava antes a cesta que se consome hoje?”. O deflator do PIB é, por construção, um índice do <strong>tipo Paasche</strong> — pondera pelas quantidades <em>correntes</em> (as do próprio ano cujo PIB se mede). Já a maioria dos índices de custo de vida, como o <strong>IPCA</strong>, é do <strong>tipo Laspeyres</strong>: fixa uma cesta de consumo e acompanha seu custo ao longo do tempo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — por que os dois tendem a discordar">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — por que os dois tendem a discordar
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quando um bem encarece, os consumidores fogem dele e compram substitutos (a lei da demanda do <a href="../vol03/cap04-elasticidades.html" class="quarto-xref"><span>Capítulo 18</span></a>). Um índice de Laspeyres, que mantém a cesta <em>antiga</em> fixa, continua dando peso cheio ao bem que encareceu e por isso tende a <strong>superestimar</strong> o aumento do custo de vida. Um índice de Paasche, com a cesta <em>atual</em>, já incorpora a fuga e tende a <strong>subestimá-lo</strong>. A “verdade” costuma estar entre os dois — motivo pelo qual índices mais sofisticados (como os <em>encadeados</em>) buscam um meio-termo.</p>
+</div>
+</div>
+<section id="encadeamento-por-que-o-ibge-abandonou-a-base-fixa" class="level3" data-number="24.4.1">
+<h3 data-number="24.4.1" class="anchored" data-anchor-id="encadeamento-por-que-o-ibge-abandonou-a-base-fixa"><span class="header-section-number">24.4.1</span> Encadeamento: por que o IBGE abandonou a base fixa</h3>
+<p>Um ano-base fixo tem um defeito que se agrava com o tempo: preços relativos mudam (a informática barateia, os serviços encarecem), e pesos antigos vão ficando irrealistas. A solução moderna, adotada pelo IBGE nas contas nacionais, é o <strong>encadeamento</strong> (<em>chain-weighting</em>): em vez de um único ano-base distante, usa-se o ano <em>imediatamente anterior</em> como base móvel, ano a ano, e encadeiam-se as variações. Isso mantém os pesos sempre atualizados e é por isso que a série oficial do PIB real brasileiro é uma <strong>série encadeada</strong> — um detalhe que explica pequenas diferenças entre o crescimento divulgado e o que um cálculo de base fixa simples produziria.</p>
+</section>
+</section>
+<section id="deflator-do-pib-ipca-dois-índices-dois-usos" class="level2" data-number="24.5">
+<h2 data-number="24.5" class="anchored" data-anchor-id="deflator-do-pib-ipca-dois-índices-dois-usos"><span class="header-section-number">24.5</span> Deflator do PIB × IPCA: dois índices, dois usos</h2>
+<p>Como o deflator do PIB e o IPCA medem “preços”, é natural confundi-los. Mas cobrem cestas diferentes e servem a propósitos diferentes (<a href="#tbl-deflator-ipca" class="quarto-xref">Tabela&nbsp;<span>24.2</span></a>).</p>
+<div id="tbl-deflator-ipca" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-deflator-ipca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;24.2: Deflator do PIB versus IPCA.
+</figcaption>
+<div aria-describedby="tbl-deflator-ipca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><strong>Deflator do PIB</strong></th>
+<th style="text-align: left;"><strong>IPCA</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">O que cobre</td>
+<td style="text-align: left;"><em>Todos</em> os bens e serviços da <strong>produção</strong> doméstica</td>
+<td style="text-align: left;">Cesta de <strong>consumo</strong> das famílias</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tipo de índice</td>
+<td style="text-align: left;">Paasche (cesta corrente)</td>
+<td style="text-align: left;">Laspeyres (cesta fixa)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bens de capital, exportações</td>
+<td style="text-align: left;"><strong>Incluídos</strong></td>
+<td style="text-align: left;">Excluídos</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Importados (ex.: petróleo)</td>
+<td style="text-align: left;"><strong>Excluídos</strong> (não são produção interna)</td>
+<td style="text-align: left;"><strong>Incluídos</strong> (as famílias consomem)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Quem calcula (Brasil)</td>
+<td style="text-align: left;">IBGE (Contas Nacionais)</td>
+<td style="text-align: left;">IBGE (SNIPC)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>A consequência prática: os dois podem divergir de modo relevante num ano. Um choque no preço do <strong>petróleo importado</strong>, por exemplo, encarece a gasolina e pressiona o <strong>IPCA</strong> (as famílias consomem combustível), mas <strong>não</strong> entra no deflator do PIB (petróleo importado não é produção interna) — pode até <em>reduzi-lo</em> pela via das importações. Por isso, para medir o custo de vida do brasileiro, usa-se o IPCA; para deflacionar o PIB e falar de crescimento, usa-se o deflator. Cada índice para a sua pergunta.</p>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="24.6">
+<h2 data-number="24.6" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">24.6</span> 🇧🇷 Brasil em Foco</h2>
+<p><strong>A série de PIB real do IBGE.</strong> O IBGE divulga o PIB em valores <strong>correntes</strong> (nominais) e a <strong>variação em volume</strong> — o crescimento real, calculado por <strong>encadeamento</strong> de índices. É essa taxa real, livre do efeito de preços, que entra para a história econômica: quando se diz que o Brasil “cresceu cerca de 4,5% ao ano no milagre (1968–73)” ou “encolheu cerca de 3,5% em 2015 e de novo em 2016”, fala-se sempre de <strong>PIB real</strong>. O <strong>deflator implícito</strong> correspondente costuma ser acompanhado como uma medida ampla de inflação da economia, ao lado do IPCA.</p>
+<p><strong>Nominal engana, real informa.</strong> Durante a <strong>hiperinflação</strong> dos anos 1980 e início dos 1990, o PIB nominal brasileiro crescia centenas ou milhares de por cento ao ano — e, no entanto, a economia mal crescia ou estava em recessão. Foi um período em que olhar o número nominal era enganoso ao extremo: quase todo o “crescimento” era inflação. Só o PIB real, deflacionado, revelava a estagnação por trás das cifras infladas. Esse é o exemplo histórico mais dramático, no Brasil, da lição central deste capítulo.</p>
+<p><strong>Crescimento real per capita e a “década perdida”.</strong> Deflacionar não basta: para o padrão de vida, é preciso ainda dividir pela população, chegando ao <strong>PIB real per capita</strong>. Aqui o Brasil tem episódios marcantes de estagnação — a <strong>década perdida</strong> dos anos 1980, quando o PIB per capita real praticamente não avançou, e a semiestagnação da produtividade nas décadas seguintes. Um PIB real que cresce no mesmo ritmo da população deixa a renda por habitante parada; separar os dois efeitos exige exatamente as ferramentas deste capítulo.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> IBGE — Contas Nacionais Trimestrais (PIB a preços correntes, variação em volume e deflator implícito); IBGE/SIDRA (séries de PIB real encadeado, referência 2010); IPEADATA (PIB real e PIB real per capita, séries longas); Banco Central/SGS. Ao comparar anos distantes, verifique em valores constantes de qual data a série está expressa.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="24.7">
+<h2 data-number="24.7" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">24.7</span> Resumo do capítulo</h2>
+<ul>
+<li>O <strong>PIB nominal</strong> avalia a produção a <strong>preços correntes</strong>; o <strong>PIB real</strong>, a <strong>preços de um ano-base fixo</strong>. Só o PIB real mede crescimento <em>genuíno</em> de produção, pois neutraliza os preços.</li>
+<li>A <strong>taxa de crescimento real</strong> compara PIB real de dois anos; ela separa “produzir mais coisas” de “coisas mais caras”.</li>
+<li>No <strong>ano-base</strong>, nominal e real coincidem; a divergência cresce com a distância ao ano-base, o que exige <strong>atualizá-lo</strong> periodicamente.</li>
+<li>O <strong>deflator do PIB</strong> é <span class="math inline">\(\dfrac{\text{PIB nominal}}{\text{PIB real}}\times 100\)</span>: um índice de preços de <em>toda</em> a produção. <strong>Deflacionar</strong> = dividir o nominal pelo índice de preços para obter o real.</li>
+<li>Um <strong>número-índice</strong> resume muitos preços/quantidades com base 100. <strong>Laspeyres</strong> usa a cesta antiga (tende a superestimar o custo de vida); <strong>Paasche</strong> usa a cesta atual (tende a subestimá-lo). O deflator é Paasche; o IPCA é Laspeyres.</li>
+<li><strong>Deflator do PIB × IPCA:</strong> o deflator cobre toda a produção interna (inclui capital e exportações, exclui importados); o IPCA cobre a cesta de consumo (inclui importados). Divergem, por exemplo, diante de choques no petróleo importado.</li>
+<li>No Brasil, o IBGE divulga o PIB real por <strong>encadeamento</strong>; a hiperinflação dos anos 1980 é o exemplo clássico de PIB nominal enganoso, e a “década perdida” mostra a importância do PIB real <strong>per capita</strong>.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="24.8">
+<h2 data-number="24.8" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">24.8</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver antes de abrir a solução. Os primeiros itens são conceituais; os do meio, numéricos; os últimos, de análise.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique, em uma frase, por que o crescimento do PIB <em>nominal</em> pode dar uma impressão enganosa do desempenho de uma economia. Que medida corrige isso?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Porque o PIB nominal mistura variações de <strong>quantidade</strong> e de <strong>preço</strong>: ele pode subir só porque os preços subiram, sem que nada a mais tenha sido produzido. A correção é o <strong>PIB real</strong>, que avalia a produção a preços constantes de um ano-base e, portanto, mede apenas as variações de quantidade.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Se o deflator do PIB de um ano é 125, o que isso diz sobre os preços em relação ao ano-base?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Um deflator de 125 significa que o conjunto de bens e serviços do PIB está, em média, <strong>25% mais caro</strong> que no ano-base (cujo deflator é 100). Equivale a dizer que, para comprar a produção corrente aos preços correntes, gasta-se 1,25 vez o que se gastaria aos preços do ano-base.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Use os dados da <a href="#tbl-nominal-real" class="quarto-xref">Tabela&nbsp;<span>24.1</span></a>. Calcule o PIB nominal de 2020, o PIB nominal de 2025, o PIB real de 2025 (a preços de 2020) e o deflator de 2025. Confirme a taxa de crescimento real.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Nominal 2020: <span class="math inline">\(2\times100 + 40\times10 = R\$\,600\)</span>.</li>
+<li>Nominal 2025: <span class="math inline">\(3\times110 + 50\times12 = 330 + 600 = R\$\,930\)</span>.</li>
+<li>Real 2025 (preços de 2020): <span class="math inline">\(2\times110 + 40\times12 = 220 + 480 = R\$\,700\)</span>.</li>
+<li>Deflator 2025: <span class="math inline">\(\frac{930}{700}\times100 = 132{,}9\)</span>.</li>
+<li>Crescimento real: <span class="math inline">\(\frac{700-600}{600} = 16{,}7\%\)</span>. (O crescimento nominal foi <span class="math inline">\(\frac{930-600}{600}=55\%\)</span>; a diferença é inflação.)</li>
+</ul>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> O PIB nominal do Brasil em certo ano foi de R$,10 trilhões; no ano seguinte, R$,11 trilhões. O deflator passou de 100 para 106. Qual foi o crescimento <strong>real</strong> do PIB?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Deflacione o PIB nominal do segundo ano para preços do primeiro (ano-base, deflator 100): <span class="math display">\[
+\text{PIB real}_2 = \frac{11}{106}\times100 = 10{,}377 \text{ trilhões.}
+\]</span> Crescimento real: <span class="math inline">\(\frac{10{,}377 - 10}{10} = 3{,}77\%\)</span>. Dos ~10% de crescimento nominal, cerca de 6 pontos foram inflação e ~3,8 pontos, produção real a mais.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Explique por que um índice de preços de <strong>Laspeyres</strong> (cesta fixa, como o IPCA) tende a <strong>superestimar</strong> o aumento do custo de vida. Como isso se relaciona com a lei da demanda?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Um índice de Laspeyres mantém fixas as quantidades da cesta <strong>antiga</strong>. Quando um bem encarece, os consumidores, pela lei da demanda, reduzem seu consumo e migram para substitutos mais baratos (<strong>efeito substituição</strong>, do <a href="../vol03/cap04-elasticidades.html" class="quarto-xref"><span>Capítulo 18</span></a>). Mas o índice, com a cesta congelada, continua dando ao bem caro o <strong>peso antigo</strong>, como se ninguém tivesse substituído nada. Ele assim atribui à cesta um custo maior do que o efetivamente incorrido, <strong>superestimando</strong> a inflação do custo de vida. É o chamado <em>viés de substituição</em>.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Em determinado ano, o preço internacional do petróleo (importado pelo Brasil) dispara. Explique, item a item, o efeito provável sobre (a) o IPCA e (b) o deflator do PIB. Por que diferem?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><strong>IPCA sobe.</strong> As famílias consomem gasolina, diesel e derivados; o IPCA cobre a cesta de consumo, que <strong>inclui importados</strong>. O choque encarece o custo de vida e pressiona o índice.</p></li>
+<li><p><strong>Deflator do PIB não sobe por esse canal — pode até cair.</strong> O deflator cobre apenas a <strong>produção interna</strong> e <strong>exclui bens importados</strong>. Petróleo importado não é produto interno; mais importações caras, aliás, reduzem <span class="math inline">\(NX\)</span> e podem baixar o deflator. A divergência vem justamente das cestas distintas: consumo (com importados) versus produção interna (sem importados).</p></li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) Um sindicato negociou reajuste salarial de 8%. No mesmo período, o IPCA acumulou 6% e o deflator do PIB, 9%. O trabalhador ganhou ou perdeu poder de compra? Qual índice é o relevante para responder, e por quê?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O índice relevante é o <strong>IPCA</strong>, porque a pergunta é sobre <strong>poder de compra do consumidor</strong> — a cesta que o trabalhador efetivamente compra. Com salário +8% e IPCA +6%, o <strong>salário real cresceu</strong> aproximadamente <span class="math inline">\(\frac{1{,}08}{1{,}06}-1 \approx 1{,}9\%\)</span>: houve ganho real de poder de compra. O deflator do PIB (9%) é <strong>irrelevante</strong> aqui, pois mede preços de toda a produção (inclusive bens de capital e exportações), não o custo de vida. Usar o índice errado inverteria a conclusão — mais um exemplo de “cada índice para a sua pergunta”.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) Durante a hiperinflação brasileira, o PIB nominal crescia milhares de por cento ao ano, enquanto o PIB real estagnava. Explique como as duas coisas convivem e por que, nesse contexto, o <strong>encadeamento</strong> e a <strong>atualização do ano-base</strong> se tornam especialmente importantes.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Convivem porque o PIB nominal incorpora a explosão de <strong>preços</strong> (o deflator crescia milhares de por cento), enquanto o PIB <strong>real</strong> — deflacionado — revelava que as <strong>quantidades</strong> produzidas mal se moviam. Quase todo o crescimento nominal era inflação, não produção.</p>
+<p>Nesse contexto, um ano-base fixo se torna obsoleto quase instantaneamente: os preços relativos e o nível de preços mudam tão rápido que pesos de poucos meses atrás já não descrevem a economia. O <strong>encadeamento</strong> (base móvel, ano a ano) mantém os pesos atualizados e evita que a comparação real seja contaminada por uma estrutura de preços defasada; a <strong>atualização frequente do ano-base</strong> cumpre papel semelhante. Sem esses cuidados, a própria medição do crescimento real ficaria distorcida — e a política econômica, cega.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="24.9">
+<h2 data-number="24.9" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">24.9</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="blanchard2017">Blanchard (<a href="#ref-blanchard2017" role="doc-biblioref">2017</a>)</span> — apresenta com clareza PIB nominal <em>versus</em> real, deflator e a lógica dos números-índice na abertura da macroeconomia.</li>
+<li><span class="citation" data-cites="mankiw2020">Mankiw (<a href="#ref-mankiw2020" role="doc-biblioref">2020</a>)</span> — o capítulo sobre a medida do custo de vida distingue muito bem deflator do PIB e índice de preços ao consumidor (o análogo do IPCA).</li>
+<li><span class="citation" data-cites="dornbusch2013">Dornbusch; Fischer; Startz (<a href="#ref-dornbusch2013" role="doc-biblioref">2013</a>)</span> — tratamento formal de índices de Laspeyres e Paasche e do viés de substituição.</li>
+<li><span class="citation" data-cites="feijo2008">Feijó et al. (<a href="#ref-feijo2008" role="doc-biblioref">2008</a>)</span> — detalha a metodologia de encadeamento adotada pelo IBGE nas contas nacionais brasileiras.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-blanchard2017" class="csl-entry" role="listitem">
+BLANCHARD, Olivier. <strong>Macroeconomia</strong>. 7. ed. São Paulo: Pearson, 2017.
+</div>
+<div id="ref-dornbusch2013" class="csl-entry" role="listitem">
+DORNBUSCH, Rudiger; FISCHER, Stanley; STARTZ, Richard. <strong>Macroeconomia</strong>. 11. ed. Porto Alegre: AMGH, 2013.
+</div>
+<div id="ref-feijo2008" class="csl-entry" role="listitem">
+FEIJÓ, Carmem Aparecida <em>et al.</em> <strong>Contabilidade Social: a nova referência das contas nacionais do Brasil</strong>. 3. ed. Rio de Janeiro: Elsevier, 2008.
+</div>
+<div id="ref-mankiw2020" class="csl-entry" role="listitem">
+MANKIW, N. Gregory. <strong>Introdução à Economia</strong>. 8. ed. São Paulo: Cengage Learning, 2020.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="pagination-link" aria-label="Contas nacionais e o PIB">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol04/cap03-inflacao.html" class="pagination-link" aria-label="Inflação: conceito, medidas (IPCA) e custos">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol04/cap02-pib-real-deflatores.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

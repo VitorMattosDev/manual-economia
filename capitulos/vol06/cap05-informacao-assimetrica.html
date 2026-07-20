@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>41&nbsp; Informação assimétrica: seleção adversa e risco moral – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol06/cap06-economia-do-trabalho.html" rel="next">
+<link href="../../capitulos/vol06/cap04-bens-publicos.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol06/cap05-informacao-assimetrica.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">41.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#o-que-é-informação-assimétrica" id="toc-o-que-é-informação-assimétrica" class="nav-link" data-scroll-target="#o-que-é-informação-assimétrica"><span class="header-section-number">41.2</span> O que é informação assimétrica</a></li>
+  <li><a href="#seleção-adversa-o-mercado-dos-abacaxis" id="toc-seleção-adversa-o-mercado-dos-abacaxis" class="nav-link" data-scroll-target="#seleção-adversa-o-mercado-dos-abacaxis"><span class="header-section-number">41.3</span> Seleção adversa: o mercado dos abacaxis</a></li>
+  <li><a href="#soluções-para-a-seleção-adversa-sinalização-e-triagem" id="toc-soluções-para-a-seleção-adversa-sinalização-e-triagem" class="nav-link" data-scroll-target="#soluções-para-a-seleção-adversa-sinalização-e-triagem"><span class="header-section-number">41.4</span> Soluções para a seleção adversa: sinalização e triagem</a></li>
+  <li><a href="#risco-moral-e-o-problema-principal-agente" id="toc-risco-moral-e-o-problema-principal-agente" class="nav-link" data-scroll-target="#risco-moral-e-o-problema-principal-agente"><span class="header-section-number">41.5</span> Risco moral e o problema principal-agente</a></li>
+  <li><a href="#sec-informacao-assimetrica-brasil" id="toc-sec-informacao-assimetrica-brasil" class="nav-link" data-scroll-target="#sec-informacao-assimetrica-brasil"><span class="header-section-number">41.6</span> Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">41.7</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">41.8</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">41.9</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol06/cap05-informacao-assimetrica.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol06/cap05-informacao-assimetrica.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-informacao-assimetrica" class="quarto-section-identifier"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Você quer vender seu carro usado, que está impecável, mas o comprador desconfia — e se for um abacaxi disfarçado? Sem como provar a qualidade, ele oferece um preço baixo, de quem espera o pior. Você, sabendo que o carro vale mais, desiste da venda. O bom carro <strong>não é vendido</strong>; sobram no mercado justamente os piores. Do outro lado do balcão, um plano de saúde não sabe quem é saudável e quem já chega doente; um banco não sabe quais tomadores vão pagar; um patrão não sabe se o funcionário se esforça quando ninguém está olhando. Em todos esses casos, <strong>uma parte sabe mais que a outra</strong> — e essa desigualdade de informação, sozinha, é capaz de fazer mercados inteiros funcionarem mal ou simplesmente <strong>desaparecerem</strong>.</p>
+<p>Este é o território da <strong>informação assimétrica</strong>, uma falha de mercado tão importante que rendeu o Nobel de 2001 a George Akerlof, Michael Spence e Joseph Stiglitz. Ao contrário das externalidades e dos bens públicos, aqui o problema não é o efeito sobre terceiros, e sim o que os próprios participantes da transação <strong>não sabem</strong> um sobre o outro. Veremos os dois grandes tipos de problema — a <strong>seleção adversa</strong> (informação oculta <em>antes</em> do negócio) e o <strong>risco moral</strong> (ação oculta <em>depois</em>) — e as engenhosas soluções que os mercados e os governos criam para lidar com eles.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="41.1">
+<h2 data-number="41.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">41.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>definir <strong>informação assimétrica</strong> e distinguir <strong>seleção adversa</strong> de <strong>risco moral</strong>;</li>
+<li>analisar o mercado de “abacaxis” de Akerlof e por que a informação oculta pode <strong>destruir</strong> um mercado;</li>
+<li>explicar as soluções de <strong>sinalização</strong> (Spence) e <strong>triagem</strong> (<em>screening</em>);</li>
+<li>entender o <strong>risco moral</strong> e a relação <strong>principal-agente</strong>, com suas soluções (franquias, incentivos, monitoramento);</li>
+<li>reconhecer esses problemas em seguros, crédito, mercado de trabalho e saúde no Brasil.</li>
+</ul>
+</section>
+<section id="o-que-é-informação-assimétrica" class="level2" data-number="41.2">
+<h2 data-number="41.2" class="anchored" data-anchor-id="o-que-é-informação-assimétrica"><span class="header-section-number">41.2</span> O que é informação assimétrica</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Informação assimétrica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Informação assimétrica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Há <strong>informação assimétrica</strong> numa transação quando uma das partes detém informação relevante que a outra <strong>não possui</strong>. Distinguem-se dois momentos: quando a informação oculta diz respeito a uma <strong>característica</strong> fixa de uma das partes, conhecida <em>antes</em> do contrato, o problema é de <strong>seleção adversa</strong> (informação oculta); quando diz respeito a uma <strong>ação</strong> que uma parte toma <em>depois</em> do contrato, sem que a outra observe, é <strong>risco moral</strong> (ação oculta).</p>
+</div>
+</div>
+<p>A distinção temporal é a chave: <strong>seleção adversa é antes</strong> (que tipo de pessoa/produto é este?), <strong>risco moral é depois</strong> (o que esta pessoa vai fazer agora que fechamos o negócio?). Guarde essa bússola — ela organiza todo o capítulo.</p>
+</section>
+<section id="seleção-adversa-o-mercado-dos-abacaxis" class="level2" data-number="41.3">
+<h2 data-number="41.3" class="anchored" data-anchor-id="seleção-adversa-o-mercado-dos-abacaxis"><span class="header-section-number">41.3</span> Seleção adversa: o mercado dos abacaxis</h2>
+<p>Em 1970, George Akerlof publicou um artigo curto que fundaria toda a área: “O mercado de <em>lemons</em>” — <em>lemon</em>, na gíria americana, é o carro usado ruim, o nosso “abacaxi” <span class="citation" data-cites="akerlof1970">(<a href="#ref-akerlof1970" role="doc-biblioref">Akerlof, 1970</a>)</span>.</p>
+<p>O argumento é devastador em sua simplicidade. Suponha que metade dos carros usados sejam bons (valem R$,40 mil para o comprador) e metade sejam abacaxis (valem R$,20 mil). Os <strong>vendedores</strong> sabem qual é qual; os <strong>compradores</strong>, não — só sabem a proporção. Quanto um comprador racional oferece? No máximo o valor <strong>médio</strong>: <span class="math inline">\(0{,}5 \times 40 + 0{,}5 \times 20 = R\$\,30\)</span> mil. Mas a esse preço, os donos dos carros <strong>bons</strong> (que valem 40) se recusam a vender — está barato demais. Saem do mercado. Restam só os abacaxis. Percebendo isso, o comprador revisa sua oferta para baixo (só há abacaxis, valem 20). O mercado dos carros bons <strong>entra em colapso</strong>: a informação assimétrica expulsou a qualidade.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="A intuição perturbadora de Akerlof">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>A intuição perturbadora de Akerlof
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A seleção adversa faz o <strong>ruim expulsar o bom</strong>. Como o comprador não distingue qualidade, ele paga o preço da média — que é baixo demais para quem tem produto bom e alto demais (justo) para quem tem produto ruim. Os bons vendedores desistem, a qualidade média cai, o preço cai mais, e o processo pode se retroalimentar até o mercado sumir. É um resultado espantoso: um mercado pode <strong>deixar de existir</strong> não por falta de compradores ou vendedores dispostos, mas por falta de <strong>informação confiável</strong>. Trocas mutuamente vantajosas (o dono do carro bom venderia por 38, o comprador pagaria 40) simplesmente não acontecem.</p>
+</div>
+</div>
+<p>O mesmo mecanismo assombra outros mercados:</p>
+<ul>
+<li><strong>Seguro-saúde:</strong> quem sabe que é doente busca mais seguro do que quem é saudável. Se a seguradora cobra um prêmio médio, os saudáveis acham caro e saem; sobram os doentes, o custo sobe, o prêmio sobe, mais gente saudável sai — a <strong>espiral da morte</strong> do seguro.</li>
+<li><strong>Crédito:</strong> a um juro alto, os tomadores prudentes desistem e sobram os arriscados (que topam qualquer juro porque talvez nem paguem). Elevar o juro pode <strong>piorar</strong> a carteira do banco — por isso bancos <strong>racionam crédito</strong> em vez de só subir a taxa.</li>
+</ul>
+</section>
+<section id="soluções-para-a-seleção-adversa-sinalização-e-triagem" class="level2" data-number="41.4">
+<h2 data-number="41.4" class="anchored" data-anchor-id="soluções-para-a-seleção-adversa-sinalização-e-triagem"><span class="header-section-number">41.4</span> Soluções para a seleção adversa: sinalização e triagem</h2>
+<p>Se a informação oculta destrói mercados, os agentes têm forte incentivo a criar formas de <strong>revelar</strong> ou <strong>descobrir</strong> a informação. Há duas estratégias simétricas.</p>
+<p><strong>Sinalização (<em>signaling</em>).</strong> A parte <strong>informada</strong> (que tem a informação) toma uma ação observável e custosa que <strong>comprova</strong> sua qualidade. Michael Spence estudou o caso do <strong>diploma</strong> no mercado de trabalho <span class="citation" data-cites="spence1973">(<a href="#ref-spence1973" role="doc-biblioref">Spence, 1973</a>)</span>: o trabalhador sabe se é produtivo; o empregador, não. Um diploma pode <strong>sinalizar</strong> produtividade — desde que seja <strong>mais fácil</strong> de obter para os mais produtivos (o custo do esforço é menor para eles). O sinal funciona justamente por ser <strong>custoso e diferencialmente custoso</strong>: se qualquer um pudesse obtê-lo com igual esforço, não separaria os tipos.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Sinal crível">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Sinal crível
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um <strong>sinal</strong> é crível (separa os tipos) quando é <strong>custoso</strong> e o custo é <strong>menor para o tipo de alta qualidade</strong> do que para o de baixa. Só assim o de alta qualidade acha vantajoso emiti-lo e o de baixa, não. Exemplos: diploma (produtividade), garantia estendida (qualidade do produto), dividendos altos (saúde financeira da empresa), o valor da franquia paga por franqueados.</p>
+</div>
+</div>
+<p><strong>Triagem (<em>screening</em>).</strong> Agora é a parte <strong>não-informada</strong> que toma a iniciativa, oferecendo um <strong>cardápio de opções</strong> desenhado para que cada tipo se <strong>autosselecione</strong>, revelando quem é pela escolha que faz. O exemplo clássico é o <strong>seguro com franquia</strong>: a seguradora oferece (a) prêmio alto sem franquia e (b) prêmio baixo com franquia elevada. Quem se sabe de <strong>baixo risco</strong> escolhe (b) — aposta que não vai sinistrar e prefere pagar menos; quem é de <strong>alto risco</strong> escolhe (a). O menu <strong>filtra</strong> os tipos sem que a seguradora precise conhecê-los de antemão. Bancos fazem o mesmo pedindo <strong>garantias</strong> (colateral): só quem confia em pagar aceita dar o bem em garantia.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — sinalização × triagem: quem move primeiro?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — sinalização × triagem: quem move primeiro?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As duas atacam o mesmo problema por lados opostos. Na <strong>sinalização</strong>, quem <strong>sabe</strong> age para se distinguir (o trabalhador tira o diploma). Na <strong>triagem</strong>, quem <strong>não sabe</strong> monta um teste para descobrir (a seguradora oferece o menu com franquias). Em ambas, a solução explora a mesma alavanca: uma ação cujo custo ou atratividade <strong>difere entre os tipos</strong>, fazendo-os se separar. Além delas, há remédios diretos: <strong>certificação e reputação</strong> (laudo do mecânico, avaliação de vendedor em plataforma), <strong>garantias</strong>, <strong>marcas</strong> e a <strong>regulação</strong> (exigência de exames, cadastros positivos de crédito).</p>
+</div>
+</div>
+</section>
+<section id="risco-moral-e-o-problema-principal-agente" class="level2" data-number="41.5">
+<h2 data-number="41.5" class="anchored" data-anchor-id="risco-moral-e-o-problema-principal-agente"><span class="header-section-number">41.5</span> Risco moral e o problema principal-agente</h2>
+<p>Passemos ao segundo tipo de assimetria — a <strong>ação</strong> oculta, que surge <strong>depois</strong> do contrato.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Risco moral">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Risco moral
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Há <strong>risco moral</strong> quando, após firmado um contrato, uma das partes pode tomar uma <strong>ação não observável</strong> pela outra que afeta o resultado, e passa a ter incentivo a agir de forma diferente da desejada porque não arca integralmente com as consequências. Exemplo canônico: quem contrata seguro contra roubo pode passar a se descuidar (deixar o carro aberto), pois o prejuízo agora é da seguradora.</p>
+</div>
+</div>
+<p>O termo vem do seguro, mas o fenômeno é geral. Ele aparece sempre que alguém age em nome de outrem sem ser plenamente monitorado — a chamada relação <strong>principal-agente</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Problema principal-agente">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Problema principal-agente
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um <strong>principal</strong> delega uma tarefa a um <strong>agente</strong>, cujos interesses <strong>não coincidem</strong> plenamente com os seus e cujas ações ele <strong>não observa</strong> perfeitamente. O desafio é desenhar um <strong>contrato de incentivos</strong> que alinhe o comportamento do agente ao interesse do principal. Exemplos: acionistas (principal) e executivos (agente); patrão e empregado; eleitor e político; paciente e médico; banco e gerente.</p>
+</div>
+</div>
+<p>As soluções para o risco moral consistem em <strong>realinhar incentivos</strong> e <strong>reduzir a assimetria</strong>:</p>
+<ol type="1">
+<li><strong>Fazer o agente “ter pele no jogo”.</strong> Franquias e coparticipação no seguro (o segurado paga uma parte do sinistro) restauram seu cuidado. Copagamentos em planos de saúde desestimulam consultas desnecessárias.</li>
+<li><strong>Remuneração por desempenho.</strong> Comissões de vendas, bônus atrelados a metas, participação nos lucros, <em>stock options</em> para executivos — atrelam o pagamento do agente ao resultado que o principal deseja.</li>
+<li><strong>Monitoramento.</strong> Auditorias, ponto eletrônico, prestação de contas, conselhos de administração e governança corporativa reduzem a invisibilidade da ação.</li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — confundir seleção adversa e risco moral">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — confundir seleção adversa e risco moral
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ambos vêm da informação assimétrica, mas o <strong>momento</strong> e a <strong>natureza</strong> diferem. <strong>Seleção adversa</strong> é sobre um <strong>tipo</strong> (característica pré-existente) oculto <strong>antes</strong> do contrato: você não sabe <em>quem</em> é a outra parte (o carro é bom? a pessoa é doente?). <strong>Risco moral</strong> é sobre uma <strong>ação</strong> oculta <strong>depois</strong> do contrato: você não sabe o que a parte <em>vai fazer</em> (vai se cuidar? vai se esforçar?). Teste rápido: se o problema existiria mesmo que ninguém mudasse de comportamento (só por haver tipos diferentes), é seleção adversa; se surge porque o contrato <em>muda o comportamento</em> de alguém, é risco moral.</p>
+</div>
+</div>
+</section>
+<section id="sec-informacao-assimetrica-brasil" class="level2" data-number="41.6">
+<h2 data-number="41.6" class="anchored" data-anchor-id="sec-informacao-assimetrica-brasil"><span class="header-section-number">41.6</span> Brasil em Foco</h2>
+<p>Informação assimétrica está no coração de vários mercados e políticas no Brasil.</p>
+<p><strong>Cadastro Positivo e crédito.</strong> O crédito brasileiro sempre sofreu de seleção adversa: sem saber quem paga, os bancos cobram juros altos de todos e racionam crédito, penalizando o bom pagador. O <strong>Cadastro Positivo</strong> (Lei 12.414/2011, ampliado pela LC 166/2019) ataca isso ao registrar o <strong>histórico de pagamentos</strong> de cada consumidor — um mecanismo de <strong>redução da assimetria</strong> que permite ao credor distinguir tipos e oferecer juros menores a quem tem bom histórico. É a informação vindo à tona para reabrir trocas que a assimetria bloqueava. O <strong>open finance</strong> (compartilhamento de dados financeiros com consentimento) aprofunda a mesma lógica.</p>
+<p><strong>Seguros e planos de saúde: seleção adversa e risco moral juntos.</strong> O mercado de saúde suplementar brasileiro convive com os dois problemas. A <strong>seleção adversa</strong> (quem já está doente busca mais o plano) é combatida por instrumentos como <strong>carências</strong>, <strong>cobertura parcial temporária</strong> para doenças preexistentes e regras da ANS — mecanismos de triagem e regulação. O <strong>risco moral</strong> (o segurado usa mais porque não paga por consulta) é atenuado por <strong>coparticipação</strong> e <strong>franquias</strong>. A regulação da ANS busca equilibrar o combate a esses problemas com a proteção do consumidor — uma tensão permanente.</p>
+<p><strong>Mercado de trabalho: diploma como sinal e o risco moral do esforço.</strong> No Brasil, como alhures, o <strong>diploma</strong> funciona em parte como <strong>sinal</strong> de produtividade num mercado em que o empregador não observa diretamente a capacidade do candidato — o que ajuda a explicar o prêmio salarial da escolaridade (que veremos em <a href="cap06-economia-do-trabalho.html" class="quarto-xref"><span>Capítulo 42</span></a>). Já o <strong>risco moral</strong> do esforço no trabalho é combatido por remuneração variável (comissões, PLR — participação nos lucros e resultados, incentivada por lei), metas e monitoramento — arranjos principal-agente onipresentes nas empresas brasileiras.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> Banco Central e Serasa (Cadastro Positivo, open finance, spread bancário — Relatório de Economia Bancária); ANS (regras de carência, coparticipação e planos de saúde); legislação: Lei 12.414/2011 e LC 166/2019 (Cadastro Positivo). Ao discutir spread de crédito, verifique a decomposição e o período no relatório do Bacen.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="41.7">
+<h2 data-number="41.7" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">41.7</span> Resumo do capítulo</h2>
+<ul>
+<li>Há <strong>informação assimétrica</strong> quando uma parte sabe mais que a outra. Dois tipos: <strong>seleção adversa</strong> (característica/tipo oculto <strong>antes</strong> do contrato) e <strong>risco moral</strong> (ação oculta <strong>depois</strong> do contrato).</li>
+<li>A <strong>seleção adversa</strong> de Akerlof (mercado de “abacaxis”): sem distinguir qualidade, o comprador paga a média; os bons vendedores saem; a qualidade e o preço despencam — o <strong>ruim expulsa o bom</strong> e o mercado pode colapsar (ex.: espiral da morte do seguro-saúde; racionamento de crédito).</li>
+<li>Soluções para a seleção adversa: <strong>sinalização</strong> (a parte informada emite um sinal <strong>custoso e diferencialmente custoso</strong> — diploma, garantia) e <strong>triagem/<em>screening</em></strong> (a parte não-informada oferece um <strong>menu</strong> que faz os tipos se autosselecionarem — seguro com franquia, garantias no crédito); além de certificação, reputação e regulação.</li>
+<li><strong>Risco moral</strong>: após o contrato, a parte age de modo oculto e contrário ao desejado porque não arca com todas as consequências (segurado que se descuida). Aparece na relação <strong>principal-agente</strong> (interesses divergentes + ação não observável).</li>
+<li>Soluções para o risco moral: <strong>“pele no jogo”</strong> (franquias, coparticipação), <strong>remuneração por desempenho</strong> (comissões, bônus, PLR) e <strong>monitoramento</strong> (auditoria, governança).</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="41.8">
+<h2 data-number="41.8" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">41.8</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Resolva antes de abrir a solução. Dificuldade crescente.</p>
+</div>
+</div>
+<p><strong>1.</strong> Classifique cada situação como seleção adversa ou risco moral: (a) uma pessoa que sabe ter uma doença grave contrata o maior plano de saúde possível; (b) depois de contratar seguro contra incêndio, um comerciante passa a guardar menos extintores; (c) um trabalhador reduz o ritmo quando o chefe viaja; (d) só donos de carros ruins aceitam vender ao preço médio de mercado.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><strong>Seleção adversa</strong> — a doença é uma <strong>característica</strong> oculta que a pessoa tem <strong>antes</strong> de contratar; o plano não conhece o tipo. (b) <strong>Risco moral</strong> — a mudança de comportamento (menos extintores) ocorre <strong>depois</strong> do contrato e é uma <strong>ação</strong> não observada. (c) <strong>Risco moral</strong> — o menor esforço é uma <strong>ação</strong> oculta que surge quando o monitoramento cessa. (d) <strong>Seleção adversa</strong> — os tipos (carro bom/ruim) preexistem e o preço médio faz os bons saírem; é o mecanismo de Akerlof.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Explique, com o exemplo dos carros usados, por que a informação assimétrica pode fazer um mercado desaparecer, mesmo havendo compradores e vendedores dispostos a negociar.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Suponha metade dos carros bons (valem 40) e metade abacaxis (valem 20), com vendedores sabendo a qualidade e compradores não. O comprador racional oferece no máximo o valor <strong>médio</strong> (30). A esse preço, os donos de carros <strong>bons</strong> (que valem 40 para eles) não vendem — é baixo demais — e saem do mercado. Restam só abacaxis. O comprador percebe e baixa a oferta para ~20. O mercado de carros bons <strong>colapsa</strong>. O ponto crucial: havia trocas mutuamente vantajosas possíveis (o dono do carro bom venderia por 38, o comprador pagaria 40), mas a <strong>falta de informação confiável</strong> sobre a qualidade impede que aconteçam. O comprador não consegue crer que o carro é bom, e o vendedor não consegue provar — então o negócio bom não se realiza. Não é falta de gente disposta; é falta de informação que sustente o preço justo.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> O que faz um “sinal” (como um diploma) ser <strong>crível</strong> na teoria de Spence? Por que um sinal que fosse igualmente fácil de obter para todos não funcionaria?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Um sinal é crível — isto é, consegue <strong>separar</strong> os tipos — quando é <strong>custoso</strong> e o custo é <strong>menor para o tipo de alta qualidade</strong> do que para o de baixa. No caso do diploma: obter a formação exige esforço, e esse esforço é <strong>menos custoso</strong> para o trabalhador mais produtivo (aprende mais rápido, tem mais facilidade). Assim, ao trabalhador produtivo compensa obter o diploma (o ganho salarial supera seu custo de esforço), e ao improdutivo <strong>não</strong> compensa (o custo supera o ganho). O empregador, vendo o diploma, infere corretamente alta produtividade. Se o sinal fosse <strong>igualmente fácil (ou barato)</strong> para todos, <strong>todos</strong> o obteriam (ou ninguém se distinguiria por ele), e ele deixaria de separar os tipos — não carregaria informação. É precisamente a <strong>diferença de custo entre os tipos</strong> que dá ao sinal seu poder informativo. (Note: nessa teoria, o diploma pode sinalizar produtividade <strong>mesmo que não a aumente</strong> — o que gera o debate sobre quanto da escolaridade é capital humano e quanto é puro sinal.)</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Explique como um seguro com franquia funciona como mecanismo de <strong>triagem</strong> (<em>screening</em>). Como ele separa segurados de alto e baixo risco?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A seguradora não conhece o risco de cada cliente (seleção adversa). Em vez de tentar descobri-lo diretamente, ela oferece um <strong>menu</strong>: por exemplo, (a) prêmio alto com <strong>franquia baixa/zero</strong> e (b) prêmio baixo com <strong>franquia alta</strong> (o segurado paga os primeiros R$ X de qualquer sinistro). Cada tipo se <strong>autosseleciona</strong>: quem se sabe de <strong>baixo risco</strong> acredita que raramente sinistrará, então prefere pagar <strong>prêmio baixo</strong> e aceitar a <strong>franquia alta</strong> (que raramente pagará) — escolhe (b). Quem é de <strong>alto risco</strong> sabe que sinistrará com frequência e não quer arcar com a franquia toda vez, preferindo <strong>prêmio alto sem franquia</strong> — escolhe (a). Assim, a <strong>escolha</strong> do cliente <strong>revela</strong> seu tipo, sem que a seguradora precise observá-lo de antemão. O menu é desenhado justamente para que cada contrato seja mais atraente para um tipo específico — é a triagem em ação, iniciativa da parte não-informada.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Descreva a relação principal-agente e dê três soluções para o risco moral que dela decorre, com um exemplo brasileiro de cada.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Na relação <strong>principal-agente</strong>, um <strong>principal</strong> delega uma tarefa a um <strong>agente</strong> cujos interesses divergem dos seus e cujas ações ele não observa perfeitamente (ex.: acionistas e executivos; patrão e empregado). Surge risco moral: o agente pode agir em benefício próprio às custas do principal. Três soluções: <strong>(1) “Pele no jogo”</strong> — fazer o agente arcar com parte das consequências. Ex.: <strong>coparticipação</strong> em planos de saúde no Brasil, em que o beneficiário paga parte de cada consulta, desestimulando uso excessivo. <strong>(2) Remuneração por desempenho</strong> — atrelar o pagamento ao resultado desejado. Ex.: a <strong>PLR (participação nos lucros e resultados)</strong>, prevista em lei e comum em empresas brasileiras, e as comissões de vendas, que alinham o esforço do empregado ao lucro da firma. <strong>(3) Monitoramento</strong> — reduzir a invisibilidade da ação. Ex.: <strong>conselhos de administração e regras de governança corporativa</strong> (Novo Mercado da B3), auditorias e ponto eletrônico, que tornam a ação do agente mais observável ao principal.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> (Análise de caso) O Cadastro Positivo registra o histórico de pagamentos dos consumidores. (a) Qual problema de informação assimétrica ele combate? (b) Como ele pode reduzir os juros para bons pagadores? (c) Que preocupação de privacidade ele levanta e como isso se relaciona com o desenho da política?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>(a)</strong> Combate a <strong>seleção adversa</strong> no mercado de crédito: sem distinguir bons de maus pagadores, os bancos tratam todos pela média, cobrando juros altos que afastam os prudentes e atraem os arriscados — o mercado piora. <strong>(b)</strong> Ao registrar o <strong>histórico de adimplência</strong>, o Cadastro Positivo <strong>reduz a assimetria</strong>: o credor passa a <strong>observar o tipo</strong> do tomador (bom ou mau pagador) e pode precificar o risco individualmente. Bons pagadores, agora <strong>identificáveis</strong>, deixam de subsidiar os maus e obtêm <strong>juros menores</strong> e mais acesso ao crédito, enquanto o risco é corretamente cobrado de quem o representa. Em termos de Akerlof, a informação confiável <strong>reabre</strong> as trocas que a assimetria bloqueava e melhora a qualidade média do mercado de crédito. <strong>(c)</strong> A preocupação é de <strong>privacidade</strong>: reunir o histórico financeiro de milhões de pessoas cria uma base sensível, passível de vazamento, uso indevido ou discriminação. Isso se reflete no <strong>desenho</strong> da política: a legislação (Lei 12.414/2011 e LC 166/2019) e a LGPD estabelecem regras sobre consentimento, finalidade, correção de dados e segurança; o <strong>open finance</strong> avança na mesma direção exigindo <strong>consentimento explícito</strong> para o compartilhamento. Há, portanto, um <em>trade-off</em> entre reduzir a assimetria de informação (que barateia o crédito) e proteger a privacidade — que o desenho institucional tenta equilibrar.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Desafio) Alguns economistas argumentam que grandes bancos operam sob risco moral porque esperam ser socorridos pelo governo em caso de crise (“grandes demais para quebrar”). (a) Explique o risco moral envolvido. (b) Quem é o principal e quem é o agente? (c) Que regulação prudencial tenta mitigar o problema? Conecte com o tema de crises bancárias.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>(a)</strong> O risco moral: se um banco grande acredita que, em caso de colapso, o <strong>governo/Banco Central</strong> o resgatará (para evitar o contágio ao sistema), ele tem incentivo a assumir <strong>riscos excessivos</strong> — porque colhe os lucros quando dá certo, mas transfere as perdas ao contribuinte quando dá errado. A garantia implícita de socorro <strong>distorce</strong> o comportamento <em>depois</em> de estabelecida (ação oculta/assumir risco), exatamente a estrutura do risco moral: o banco não arca integralmente com as consequências de suas apostas. <strong>(b)</strong> Aqui o <strong>principal</strong> é a sociedade/o Estado (e, em última instância, os contribuintes e depositantes), que arca com o custo do resgate e deseja um sistema financeiro estável; o <strong>agente</strong> é o banco (seus gestores e acionistas), que toma as decisões de risco sem ser plenamente monitorado e cujos interesses (maximizar retorno) divergem do interesse do principal (estabilidade). <strong>(c)</strong> A <strong>regulação prudencial</strong> tenta mitigar realinhando incentivos e reduzindo a assimetria: <strong>requisitos de capital</strong> (Basileia — o banco precisa ter capital próprio suficiente para absorver perdas, aumentando sua “pele no jogo”), <strong>limites de alavancagem e liquidez</strong>, <strong>supervisão e testes de estresse</strong> (monitoramento), regras de <strong>resolução ordenada</strong> que permitam quebrar bancos sem socorro geral (reduzindo a expectativa de <em>bailout</em>), e o <strong>seguro de depósito</strong> com limites (que protege o pequeno poupador sem garantir os grandes credores). Todos são versões das soluções para risco moral (capital = pele no jogo; supervisão = monitoramento; regras de resolução = remover a garantia implícita). O tema conecta-se diretamente ao estudo de <strong>crises bancárias e regulação prudencial</strong>, no volume de Economia Monetária.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="41.9">
+<h2 data-number="41.9" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">41.9</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="akerlof1970">Akerlof (<a href="#ref-akerlof1970" role="doc-biblioref">1970</a>)</span> — “The Market for Lemons”, o artigo fundador da economia da informação; curto e de leitura obrigatória.</li>
+<li><span class="citation" data-cites="spence1973">Spence (<a href="#ref-spence1973" role="doc-biblioref">1973</a>)</span> — “Job Market Signaling”, que introduziu a teoria da sinalização com o exemplo do diploma.</li>
+<li><span class="citation" data-cites="rothschild1976">Rothschild; Stiglitz (<a href="#ref-rothschild1976" role="doc-biblioref">1976</a>)</span> — modelo seminal de triagem em mercados de seguro com seleção adversa.</li>
+<li><span class="citation" data-cites="varian2015">Varian (<a href="#ref-varian2015" role="doc-biblioref">2015</a>)</span> — capítulo sobre assimetrias de informação, com seleção adversa, risco moral, sinalização e triagem de forma acessível.</li>
+<li><span class="citation" data-cites="mankiw2020">Mankiw (<a href="#ref-mankiw2020" role="doc-biblioref">2020</a>)</span> — exposição introdutória da informação assimétrica e do problema principal-agente, com exemplos.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-akerlof1970" class="csl-entry" role="listitem">
+AKERLOF, George A. The Market for <span>«Lemons»</span>: Quality Uncertainty and the Market Mechanism. <strong>The Quarterly Journal of Economics</strong>, v. 84, n. 3, p. 488–500, 1970.
+</div>
+<div id="ref-mankiw2020" class="csl-entry" role="listitem">
+MANKIW, N. Gregory. <strong>Introdução à Economia</strong>. 8. ed. São Paulo: Cengage Learning, 2020.
+</div>
+<div id="ref-rothschild1976" class="csl-entry" role="listitem">
+ROTHSCHILD, Michael; STIGLITZ, Joseph. Equilibrium in Competitive Insurance Markets. <strong>The Quarterly Journal of Economics</strong>, v. 90, n. 4, p. 629–649, 1976.
+</div>
+<div id="ref-spence1973" class="csl-entry" role="listitem">
+SPENCE, Michael. Job Market Signaling. <strong>The Quarterly Journal of Economics</strong>, v. 87, n. 3, p. 355–374, 1973.
+</div>
+<div id="ref-varian2015" class="csl-entry" role="listitem">
+VARIAN, Hal R. <strong>Microeconomia: uma abordagem moderna</strong>. 9. ed. Rio de Janeiro: Elsevier, 2015.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="pagination-link" aria-label="Bens públicos e recursos comuns">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="pagination-link" aria-label="Economia do trabalho: salários, capital humano e informalidade">
+        <span class="nav-page-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol06/cap05-informacao-assimetrica.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>53&nbsp; Bancos e a criação de moeda – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol08/cap03-banco-central.html" rel="next">
+<link href="../../capitulos/vol08/cap01-moeda.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol08/cap01-moeda.html">Volume 8 — Economia Monetária e Bancária</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">53.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#o-banco-como-intermediário-e-como-criador" id="toc-o-banco-como-intermediário-e-como-criador" class="nav-link" data-scroll-target="#o-banco-como-intermediário-e-como-criador"><span class="header-section-number">53.2</span> O banco como intermediário — e como criador</a></li>
+  <li><a href="#reservas-fracionárias-a-origem-da-criação-de-moeda" id="toc-reservas-fracionárias-a-origem-da-criação-de-moeda" class="nav-link" data-scroll-target="#reservas-fracionárias-a-origem-da-criação-de-moeda"><span class="header-section-number">53.3</span> Reservas fracionárias: a origem da criação de moeda</a></li>
+  <li><a href="#o-multiplicador-monetário" id="toc-o-multiplicador-monetário" class="nav-link" data-scroll-target="#o-multiplicador-monetário"><span class="header-section-number">53.4</span> O multiplicador monetário</a>
+  <ul class="collapse">
+  <li><a href="#um-multiplicador-mais-realista" id="toc-um-multiplicador-mais-realista" class="nav-link" data-scroll-target="#um-multiplicador-mais-realista"><span class="header-section-number">53.4.1</span> Um multiplicador mais realista</a></li>
+  </ul></li>
+  <li><a href="#o-que-limita-a-criação-de-moeda" id="toc-o-que-limita-a-criação-de-moeda" class="nav-link" data-scroll-target="#o-que-limita-a-criação-de-moeda"><span class="header-section-number">53.5</span> O que limita a criação de moeda</a></li>
+  <li><a href="#base-monetária-meios-de-pagamento-um-exemplo-numérico" id="toc-base-monetária-meios-de-pagamento-um-exemplo-numérico" class="nav-link" data-scroll-target="#base-monetária-meios-de-pagamento-um-exemplo-numérico"><span class="header-section-number">53.6</span> Base monetária × meios de pagamento: um exemplo numérico</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">53.7</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">53.8</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">53.9</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">53.10</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol08/cap02-bancos-criacao-de-moeda.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol08/cap01-moeda.html">Volume 8 — Economia Monetária e Bancária</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-bancos-criacao-de-moeda" class="quarto-section-identifier"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Aqui está um fato que costuma surpreender: quando um banco lhe concede um empréstimo, ele <strong>não</strong> entrega a você o dinheiro que outra pessoa depositou. Na imensa maioria das vezes, o banco simplesmente digita um número na sua conta — e esse número, que não existia um segundo antes, passa a valer como moeda, aceito pelo supermercado, pelo locador, pela concessionária. O banco <em>criou</em> meio de pagamento com um lançamento contábil. Repetido por milhares de bancos e milhões de operações, esse processo é a principal fonte da moeda que circula numa economia moderna. Não é a Casa da Moeda que produz a maior parte do dinheiro do país: são os bancos comerciais.</p>
+<p>Como isso é possível sem gerar caos? Onde está o limite? Se cada banco pode criar moeda emprestando, por que não criam infinitamente? Este capítulo abre a “caixa-preta” do sistema bancário e mostra, passo a passo, como os depósitos se multiplicam — e o que segura essa multiplicação. É a peça que faltava para entender, no <a href="cap03-banco-central.html" class="quarto-xref"><span>Capítulo 54</span></a>, como a autoridade monetária controla a quantidade de moeda.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="53.1">
+<h2 data-number="53.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">53.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>descrever o balanço de um banco comercial e o mecanismo das <strong>reservas fracionárias</strong>;</li>
+<li>explicar como um empréstimo bancário <strong>cria</strong> moeda escritural;</li>
+<li>derivar o <strong>multiplicador monetário</strong> e calcular a expansão dos meios de pagamento;</li>
+<li>entender o papel das <strong>reservas compulsórias</strong>, do encaixe voluntário e da retenção de papel-moeda;</li>
+<li>distinguir <strong>base monetária</strong> de <strong>meios de pagamento</strong> e relacioná-los pelo multiplicador;</li>
+<li>reconhecer os limites do modelo do multiplicador e a visão alternativa da moeda <strong>endógena</strong>.</li>
+</ul>
+</section>
+<section id="o-banco-como-intermediário-e-como-criador" class="level2" data-number="53.2">
+<h2 data-number="53.2" class="anchored" data-anchor-id="o-banco-como-intermediário-e-como-criador"><span class="header-section-number">53.2</span> O banco como intermediário — e como criador</h2>
+<p>Um <strong>banco comercial</strong> faz duas coisas ao mesmo tempo. Como <strong>intermediário financeiro</strong>, capta recursos de quem tem sobra (depositantes) e os empresta a quem precisa (tomadores), lucrando com a diferença de juros — o <em>spread</em>. Mas, ao fazê-lo dentro de um sistema de pagamentos, ele também <strong>cria moeda</strong>: os depósitos que gera contam como meio de pagamento.</p>
+<p>A chave para entender isso é o <strong>balanço patrimonial</strong> do banco, que lista de um lado o que ele possui e a receber (<strong>ativos</strong>) e de outro o que ele deve (<strong>passivos</strong>). Para um banco, os <strong>depósitos</strong> dos clientes são um <em>passivo</em> (o banco deve esse dinheiro a eles), enquanto os <strong>empréstimos</strong> concedidos e as <strong>reservas</strong> são <em>ativos</em>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Reservas bancárias">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Reservas bancárias
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Reservas</strong> são os recursos que o banco mantém disponíveis para honrar saques e transferências: dinheiro em caixa mais depósitos do próprio banco junto ao Banco Central. São a parcela dos depósitos que <strong>não</strong> foi emprestada.</p>
+</div>
+</div>
+</section>
+<section id="reservas-fracionárias-a-origem-da-criação-de-moeda" class="level2" data-number="53.3">
+<h2 data-number="53.3" class="anchored" data-anchor-id="reservas-fracionárias-a-origem-da-criação-de-moeda"><span class="header-section-number">53.3</span> Reservas fracionárias: a origem da criação de moeda</h2>
+<p>Se todos os depositantes sacassem seu dinheiro ao mesmo tempo, nenhum banco sobreviveria — porque o banco <strong>não</strong> guarda 100% dos depósitos. A experiência histórica dos ourives mostrou que, num dia normal, apenas uma fração dos clientes vem sacar; o restante fica parado. Logo, o banco pode emprestar a maior parte dos depósitos e reter só uma <strong>fração</strong> como reserva. É o sistema de <strong>reservas fracionárias</strong>, base de todo o sistema bancário moderno.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Sistema de reservas fracionárias">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Sistema de reservas fracionárias
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No <strong>sistema de reservas fracionárias</strong>, os bancos mantêm como reservas apenas uma fração dos depósitos à vista e emprestam o restante. A fração retida é a <strong>taxa de reservas</strong> (ou encaixe), <span class="math inline">\(r\)</span>. É esse sistema que permite — e limita — a criação de moeda pelos bancos.</p>
+</div>
+</div>
+<p>Veja o mecanismo num exemplo. Suponha uma taxa de reservas de <span class="math inline">\(r = 20\%\)</span> e acompanhe uma cédula nova de R$,1.000 que o Banco Central injeta na economia e que é depositada no Banco A.</p>
+<div id="fig-multiplicador" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-multiplicador-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="238.297385pt" height="204.082162pt" viewbox="-68.014948 -68.014945 238.297385 204.082162">
+<defs>
+<path id="tz_fig_multiplicador_g0-48" d="M4.886675-2.860274C4.886675-3.774844 4.859776-5.881943 2.654047-5.881943C.466252-5.881943 .412453-3.846575 .412453-2.860274C.412453-1.927771 .439352 .107597 2.645081 .107597C4.832877 .107597 4.886675-1.865006 4.886675-2.860274ZM2.654047-.251059C2.411955-.251059 1.793275-.358655 1.676712-1.183562C1.604981-1.65878 1.604981-2.47472 1.604981-2.96787C1.604981-3.532752 1.604981-4.285928 1.676712-4.707347C1.811208-5.424658 2.411955-5.523288 2.645081-5.523288C2.940971-5.523288 3.505853-5.379826 3.622416-4.680448C3.694147-4.250062 3.694147-3.478954 3.694147-2.96787C3.694147-2.268493 3.694147-1.201494 3.550685-.851806C3.353425-.412453 2.949938-.251059 2.654047-.251059Z"></path>
+<path id="tz_fig_multiplicador_g0-53" d="M1.506351-4.510087C1.811208-4.456289 1.95467-4.456289 2.142964-4.456289C2.394022-4.456289 2.96787-4.456289 3.640349-4.904608C3.837609-5.030137 4.357659-5.469489 4.357659-5.702615C4.357659-5.738481 4.357659-5.881943 4.214197-5.881943C4.196264-5.881943 4.178331-5.881943 4.079701-5.837111C3.622416-5.675716 3.129265-5.595019 2.663014-5.595019C2.107098-5.595019 1.649813-5.702615 1.264259-5.837111C1.147696-5.881943 1.129763-5.881943 1.111831-5.881943C.977335-5.881943 .977335-5.76538 .977335-5.630884V-2.985803C.977335-2.824408 .977335-2.698879 1.192528-2.698879C1.309091-2.698879 1.327024-2.707846 1.425654-2.824408C1.793275-3.245828 2.286426-3.317559 2.636115-3.317559C3.469988-3.317559 3.469988-2.537484 3.469988-1.829141C3.469988-1.183562 3.469988-.29589 2.349191-.29589C1.85604-.29589 1.425654-.529016 1.201494-.81594C1.578082-.851806 1.775342-1.111831 1.775342-1.43462C1.775342-1.873973 1.443587-2.062267 1.156663-2.062267C.878705-2.062267 .529016-1.891905 .529016-1.416687C.529016-.636613 1.255293 .107597 2.385056 .107597C3.918306 .107597 4.770112-.744209 4.770112-1.802242C4.770112-2.824408 4.043836-3.676214 2.680946-3.676214C2.268493-3.676214 1.882939-3.604483 1.506351-3.371357V-4.510087Z"></path>
+<path id="tz_fig_multiplicador_g0-82" d="M5.119801-3.039601C5.881943-3.254795 6.617186-3.730012 6.617186-4.483188C6.617186-5.424658 5.559153-6.150934 3.864508-6.150934H.376588V-5.711582H1.344956V-.439352H.376588V0C.699377-.026899 1.596015-.026899 1.963636-.026899S3.236862-.026899 3.559651 0V-.439352H2.591283V-2.896139H3.694147C4.061768-2.896139 4.303861-2.815442 4.563885-2.546451C4.814944-2.295392 4.814944-2.080199 4.814944-1.479452C4.814944-.91457 4.814944-.493151 5.352927-.179328C5.747447 .044832 6.312329 .107597 6.805479 .107597C7.764882 .107597 7.91731-.672478 7.91731-.869738S7.782814-1.084932 7.684184-1.084932C7.477958-1.084932 7.468991-.959402 7.460025-.869738C7.415193-.430386 7.137235-.251059 6.886177-.251059C6.348194-.251059 6.276463-.789041 6.168867-1.560149C6.070237-2.223661 6.007472-2.707846 5.119801-3.039601ZM3.703113-3.254795H2.591283V-5.711582H3.721046C5.182565-5.711582 5.209465-5.021171 5.209465-4.483188C5.209465-3.972105 5.191532-3.254795 3.703113-3.254795Z"></path>
+<path id="tz_fig_multiplicador_g1-2" d="M5.675716-4.070735C5.774346-4.169365 5.801245-4.214197 5.801245-4.276961C5.801245-4.393524 5.711582-4.474222 5.612951-4.474222C5.54122-4.474222 5.532254-4.456289 5.424658-4.357659L3.577584-2.519552L1.649813-4.438356C1.604981-4.474222 1.560149-4.474222 1.551183-4.474222C1.443587-4.474222 1.353923-4.384558 1.353923-4.276961C1.353923-4.20523 1.389788-4.169365 1.488418-4.070735L3.308593-2.25056L1.488418-.430386C1.362889-.304857 1.353923-.260025 1.353923-.215193C1.353923-.107597 1.443587-.017933 1.551183-.017933C1.560149-.017933 1.604981-.017933 1.649813-.044832L3.577584-1.972603L5.451557-.107597C5.505355-.053798 5.532254-.017933 5.612951-.017933C5.711582-.017933 5.801245-.09863 5.801245-.215193C5.801245-.251059 5.783313-.304857 5.756413-.32279C5.738481-.358655 4.151432-1.945704 3.846575-2.241594L5.675716-4.070735Z"></path>
+<path id="tz_fig_multiplicador_g2-58" d="M1.75741-.484184C1.75741-.744209 1.551183-.968369 1.273225-.968369S.789041-.744209 .789041-.484184S.995268 0 1.273225 0S1.75741-.224159 1.75741-.484184Z"></path>
+<path id="tz_fig_multiplicador_g2-59" d="M1.63188-.143462C1.63188 .152428 1.63188 .887671 .968369 1.524284C.91457 1.578082 .91457 1.587049 .91457 1.622914C.91457 1.685679 .977335 1.730511 1.031133 1.730511C1.129763 1.730511 1.85604 1.031133 1.85604-.017933C1.85604-.573848 1.65878-.968369 1.273225-.968369C.968369-.968369 .789041-.735243 .789041-.484184S.968369 0 1.273225 0C1.407721 0 1.542217-.044832 1.63188-.143462Z"></path>
+<path id="tz_fig_multiplicador_g3-19" d="M3.425156-5.612951C3.541719-5.702615 3.61345-5.774346 3.61345-5.908842C3.61345-6.115068 3.434122-6.258531 3.272727-6.258531C3.120299-6.258531 3.075467-6.195766 2.99477-6.097136L1.900872-4.743213L2.071233-4.554919L3.425156-5.612951Z"></path>
+<path id="tz_fig_multiplicador_g3-36" d="M2.438854-6.043337C3.030635-6.007472 3.622416-5.738481 3.783811-5.110834C3.756912-5.119801 3.703113-5.128767 3.676214-5.128767C3.469988-5.128767 3.254795-4.985305 3.254795-4.707347C3.254795-4.465255 3.434122-4.294894 3.667248-4.294894C3.855542-4.294894 4.088667-4.393524 4.088667-4.752179C4.088667-5.487422 3.61345-6.249564 2.438854-6.321295V-6.724782H2.160897V-6.312329C1.129763-6.231631 .511083-5.406725 .511083-4.599751C.511083-4.070735 .744209-3.667248 1.031133-3.38929C1.353923-3.066501 1.578082-3.012702 2.160897-2.851308V-.188294C1.63188-.215193 .995268-.457285 .806974-1.23736C.81594-1.23736 .878705-1.219427 .923537-1.219427C1.13873-1.219427 1.344956-1.362889 1.344956-1.640847C1.344956-1.882939 1.165629-2.0533 .932503-2.0533C.771108-2.0533 .511083-1.972603 .511083-1.596015C.511083-.771108 1.022167 .026899 2.160897 .09863V.502117H2.438854V.089664C3.434122 0 4.088667-.842839 4.088667-1.748443C4.088667-2.411955 3.756912-2.851308 3.61345-3.012702C3.209963-3.443088 2.860274-3.514819 2.438854-3.61345V-6.043337ZM2.160897-3.685181C1.0132-3.90934 .977335-4.707347 .977335-4.868742C.977335-5.388792 1.398755-5.953674 2.160897-6.034371V-3.685181ZM2.438854-2.788543C3.568618-2.555417 3.622416-1.667746 3.622416-1.479452C3.622416-.851806 3.147198-.260025 2.438854-.188294V-2.788543Z"></path>
+<path id="tz_fig_multiplicador_g3-48" d="M4.241096-2.86924C4.241096-3.469988 4.214197-4.241096 3.900374-4.913574C3.505853-5.756413 2.824408-5.971606 2.304359-5.971606C1.766376-5.971606 1.084932-5.756413 .690411-4.895641C.403487-4.276961 .358655-3.550685 .358655-2.86924C.358655-2.286426 .376588-1.416687 .762142-.708344C1.183562 .053798 1.882939 .19726 2.295392 .19726C2.878207 .19726 3.541719-.053798 3.918306-.878705C4.187298-1.479452 4.241096-2.15193 4.241096-2.86924ZM2.304359-.026899C2.035367-.026899 1.389788-.152428 1.219427-1.165629C1.129763-1.694645 1.129763-2.465753 1.129763-2.976837C1.129763-3.58655 1.129763-4.294894 1.23736-4.788045C1.416687-5.586052 1.990535-5.747447 2.295392-5.747447C2.636115-5.747447 3.200996-5.56812 3.371357-4.734247C3.469988-4.241096 3.469988-3.541719 3.469988-2.976837C3.469988-2.420922 3.469988-1.667746 3.380324-1.13873C3.19203-.116563 2.528518-.026899 2.304359-.026899Z"></path>
+<path id="tz_fig_multiplicador_g3-49" d="M2.725778-5.729514C2.725778-5.953674 2.716812-5.971606 2.492653-5.971606C1.936737-5.397758 1.111831-5.397758 .833873-5.397758V-5.119801C1.004234-5.119801 1.551183-5.119801 2.035367-5.352927V-.71731C2.035367-.385554 2.008468-.277958 1.174595-.277958H.887671V0C1.210461-.026899 2.008468-.026899 2.37609-.026899S3.550685-.026899 3.873474 0V-.277958H3.58655C2.752677-.277958 2.725778-.385554 2.725778-.71731V-5.729514Z"></path>
+<path id="tz_fig_multiplicador_g3-50" d="M4.142466-1.587049H3.891407C3.873474-1.470486 3.801743-.941469 3.685181-.798007C3.631382-.71731 3.012702-.71731 2.833375-.71731H1.23736L2.125031-1.560149C3.595517-2.833375 4.142466-3.308593 4.142466-4.223163C4.142466-5.254296 3.29066-5.971606 2.187796-5.971606C1.156663-5.971606 .457285-5.155666 .457285-4.339726C.457285-3.891407 .842839-3.846575 .923537-3.846575C1.120797-3.846575 1.389788-3.990037 1.389788-4.312827C1.389788-4.581818 1.201494-4.779078 .923537-4.779078C.878705-4.779078 .851806-4.779078 .81594-4.770112C1.031133-5.406725 1.604981-5.693649 2.089166-5.693649C3.003736-5.693649 3.317559-4.841843 3.317559-4.223163C3.317559-3.308593 2.627148-2.564384 2.196762-2.098132L.555915-.32279C.457285-.224159 .457285-.206227 .457285 0H3.891407L4.142466-1.587049Z"></path>
+<path id="tz_fig_multiplicador_g3-58" d="M1.75741-3.380324C1.75741-3.649315 1.542217-3.864508 1.273225-3.864508S.789041-3.649315 .789041-3.380324C.789041-3.120299 1.004234-2.896139 1.273225-2.896139S1.75741-3.120299 1.75741-3.380324ZM1.75741-.484184C1.75741-.744209 1.542217-.968369 1.273225-.968369S.789041-.744209 .789041-.484184C.789041-.215193 1.004234 0 1.273225 0S1.75741-.215193 1.75741-.484184Z"></path>
+<path id="tz_fig_multiplicador_g3-61" d="M6.348194-2.96787C6.473724-2.96787 6.644085-2.96787 6.644085-3.156164C6.644085-3.353425 6.446824-3.353425 6.312329-3.353425H.842839C.708344-3.353425 .511083-3.353425 .511083-3.156164C.511083-2.96787 .690411-2.96787 .806974-2.96787H6.348194ZM6.312329-1.13873C6.446824-1.13873 6.644085-1.13873 6.644085-1.33599C6.644085-1.524284 6.473724-1.524284 6.348194-1.524284H.806974C.690411-1.524284 .511083-1.524284 .511083-1.33599C.511083-1.13873 .708344-1.13873 .842839-1.13873H6.312329Z"></path>
+<path id="tz_fig_multiplicador_g3-84" d="M6.133001-6.070237H.511083L.331756-4.052802H.582814C.708344-5.532254 .887671-5.792279 2.232628-5.792279C2.402989-5.792279 2.663014-5.792279 2.752677-5.774346C2.914072-5.738481 2.923039-5.648817 2.923039-5.424658V-.71731C2.923039-.412453 2.923039-.277958 1.981569-.277958H1.63188V0C1.95467-.026899 2.940971-.026899 3.326526-.026899S4.698381-.026899 5.021171 0V-.277958H4.671482C3.730012-.277958 3.730012-.412453 3.730012-.71731V-5.424658C3.730012-5.657783 3.738979-5.738481 3.918306-5.774346C4.00797-5.792279 4.250062-5.792279 4.411457-5.792279C5.756413-5.792279 5.935741-5.532254 6.06127-4.052802H6.312329L6.133001-6.070237Z"></path>
+<path id="tz_fig_multiplicador_g3-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+<path id="tz_fig_multiplicador_g3-99" d="M3.263761-3.523786C3.075467-3.48792 2.896139-3.362391 2.896139-3.102366C2.896139-2.86924 3.075467-2.689913 3.308593-2.689913S3.730012-2.842341 3.730012-3.120299C3.730012-3.676214 3.102366-4.016936 2.313325-4.016936C1.165629-4.016936 .304857-3.057534 .304857-1.936737C.304857-.780075 1.23736 .09863 2.295392 .09863C3.541719 .09863 3.828643-.986301 3.828643-1.066999C3.828643-1.174595 3.730012-1.174595 3.703113-1.174595C3.604483-1.174595 3.604483-1.156663 3.550685-1.004234C3.344458-.385554 2.842341-.152428 2.385056-.152428C1.811208-.152428 1.075965-.61868 1.075965-1.945704C1.075965-3.344458 1.793275-3.765878 2.331258-3.765878C2.447821-3.765878 2.932005-3.747945 3.263761-3.523786Z"></path>
+<path id="tz_fig_multiplicador_g3-100" d="M3.48792-1.075965C3.48792-.91457 3.48792-.887671 3.353425-.699377C3.075467-.29589 2.663014-.125529 2.304359-.125529C1.918804-.125529 1.560149-.340722 1.327024-.71731C1.093898-1.102864 1.075965-1.63188 1.075965-1.918804C1.075965-2.340224 1.129763-2.815442 1.362889-3.174097C1.560149-3.461021 1.927771-3.738979 2.402989-3.738979C2.779577-3.738979 3.138232-3.550685 3.380324-3.209963C3.48792-3.066501 3.48792-3.057534 3.48792-2.887173V-1.075965ZM3.514819-3.434122C3.469988-3.48792 3.066501-3.963138 2.367123-3.963138C1.264259-3.963138 .304857-3.084433 .304857-1.927771C.304857-.806974 1.201494 .09863 2.268493 .09863C2.923039 .09863 3.326526-.286924 3.48792-.475218V.09863L4.841843 0V-.277958C4.23213-.277958 4.151432-.340722 4.151432-.780075V-6.222665L2.824408-6.124035V-5.846077C3.434122-5.846077 3.514819-5.783313 3.514819-5.34396V-3.434122Z"></path>
+<path id="tz_fig_multiplicador_g3-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+<path id="tz_fig_multiplicador_g3-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+<path id="tz_fig_multiplicador_g3-108" d="M1.649813-6.222665L.32279-6.124035V-5.846077C.932503-5.846077 1.0132-5.783313 1.0132-5.34396V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.744209-.017933 .91457-.026899 1.327024-.026899C1.748443-.026899 1.900872-.017933 2.340224 0V-.277958C1.748443-.277958 1.649813-.277958 1.649813-.690411V-6.222665Z"></path>
+<path id="tz_fig_multiplicador_g3-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_multiplicador_g3-112" d="M1.622914-3.012702C1.927771-3.532752 2.420922-3.71208 2.797509-3.71208C3.496887-3.71208 4.034869-2.905106 4.034869-1.936737C4.034869-.91457 3.425156-.125529 2.698879-.125529C2.295392-.125529 1.95467-.358655 1.739477-.672478C1.622914-.851806 1.622914-.869738 1.622914-1.0401V-3.012702ZM1.622914-.430386C1.85604-.19726 2.160897 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.066501 3.927273-3.963138 2.86924-3.963138C2.385056-3.963138 1.936737-3.765878 1.596015-3.398257V-3.963138L.268991-3.864508V-3.58655C.905604-3.58655 .959402-3.532752 .959402-3.147198V1.049066C.959402 1.461519 .860772 1.461519 .268991 1.461519V1.739477C.690411 1.721544 .860772 1.712578 1.291158 1.712578S1.838107 1.721544 2.313325 1.739477V1.461519C1.721544 1.461519 1.622914 1.461519 1.622914 1.049066V-.430386Z"></path>
+<path id="tz_fig_multiplicador_g3-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+<path id="tz_fig_multiplicador_g3-115" d="M3.084433-3.783811C3.084433-3.936239 3.084433-4.016936 2.976837-4.016936C2.932005-4.016936 2.914072-4.016936 2.797509-3.90934C2.779577-3.891407 2.698879-3.81071 2.645081-3.765878C2.367123-3.963138 2.089166-4.016936 1.784309-4.016936C.600747-4.016936 .304857-3.362391 .304857-2.905106C.304857-2.618182 .430386-2.385056 .636613-2.187796C.941469-1.909838 1.282192-1.847073 1.739477-1.766376C2.196762-1.676712 2.349191-1.649813 2.546451-1.497385C2.636115-1.425654 2.860274-1.255293 2.860274-.91457C2.860274-.125529 1.95467-.125529 1.829141-.125529C.91457-.125529 .681445-.887671 .573848-1.371856C.546949-1.461519 .537983-1.515318 .430386-1.515318C.304857-1.515318 .304857-1.443587 .304857-1.282192V-.134496C.304857 .017933 .304857 .09863 .412453 .09863C.466252 .09863 .475218 .089664 .636613-.080697C.672478-.134496 .771108-.251059 .81594-.29589C1.192528 .071731 1.604981 .09863 1.829141 .09863C2.932005 .09863 3.317559-.546949 3.317559-1.147696C3.317559-1.551183 3.138232-1.793275 2.940971-1.999502C2.636115-2.295392 2.313325-2.358157 1.649813-2.483686C1.416687-2.528518 .762142-2.645081 .762142-3.156164C.762142-3.443088 .968369-3.819676 1.784309-3.819676C2.752677-3.819676 2.815442-3.075467 2.833375-2.851308C2.842341-2.743711 2.842341-2.689913 2.958904-2.689913C3.084433-2.689913 3.084433-2.752677 3.084433-2.923039V-3.783811Z"></path>
+<path id="tz_fig_multiplicador_g3-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+<path id="tz_fig_multiplicador_g4-36" d="M1.976588-5.786301V-5.610959L1.777335-5.571108C1.187547-5.467497 .669489-4.98132 .518057-4.415442C.390535-3.921295 .541968-3.411208 .924533-3.020672C1.147696-2.789539 1.41868-2.646077 1.769365-2.558406L1.976588-2.510585V-1.338979V-.167372L1.849066-.191283C1.657783-.223163 1.43462-.294894 1.299128-.374595C1.075965-.502117 .876712-.765131 .820922-.996264C.804981-1.067995 .804981-1.075965 .868742-1.075965C.908593-1.075965 .980324-1.099875 1.036115-1.131756C1.251308-1.267248 1.283188-1.546202 1.107846-1.721544C1.028144-1.801245 .996264-1.809215 .852802-1.809215S.67746-1.801245 .589788-1.713574C.510087-1.633873 .494147-1.594022 .486177-1.44259C.478207-1.346949 .494147-1.179577 .518057-1.067995C.661519-.454296 1.083935-.063761 1.729514 .047821L1.976588 .095641V.270984V.446326H2.11208H2.247572V.270984V.087671L2.414944 .055791C2.701868 0 3.028643-.183313 3.243836-.414446C3.873474-1.075965 3.873474-2.032379 3.251806-2.693898C3.028643-2.933001 2.717808-3.108344 2.414944-3.180075L2.247572-3.211955V-4.27995V-5.339975L2.359153-5.316065C2.749689-5.252304 2.972852-5.148692 3.172105-4.933499C3.283686-4.813948 3.411208-4.598755 3.379328-4.574844C3.371357-4.566874 3.307597-4.542964 3.235866-4.519054C2.82142-4.391532 2.909091-3.809714 3.339477-3.809714C3.482939-3.809714 3.618431-3.873474 3.674222-3.985056C3.793773-4.23213 3.650311-4.805978 3.379328-5.116812C3.172105-5.347945 2.773599-5.539228 2.391034-5.595019L2.247572-5.610959V-5.786301V-5.969614H2.11208H1.976588ZM1.976588-4.319801C1.976588-3.466999 1.968618-3.299626 1.936737-3.299626C1.833126-3.299626 1.490411-3.427148 1.370859-3.506849C1.203487-3.626401 1.123786-3.722042 1.020174-3.913325C.916563-4.112578 .908593-4.471233 1.004234-4.686426C1.091905-4.869738 1.307098-5.100872 1.490411-5.188543C1.601993-5.244334 1.849066-5.324035 1.952677-5.332005C1.968618-5.332005 1.976588-4.877709 1.976588-4.319801ZM2.526526-2.367123C3.068493-2.1599 3.371357-1.578082 3.219925-1.020174C3.116314-.621669 2.781569-.302864 2.375093-.207223L2.247572-.183313V-1.307098C2.247572-2.582316 2.215691-2.478705 2.526526-2.367123Z"></path>
+<path id="tz_fig_multiplicador_g5-65" d="M4.048817-5.379826C3.961146-5.587049 3.841594-5.587049 3.674222-5.587049C3.498879-5.587049 3.379328-5.587049 3.291656-5.379826L1.211457-.589788C1.155666-.470237 1.147696-.462267 .956413-.438356C.749191-.414446 .73325-.414446 .549938-.414446H.358655V0C.765131-.02391 .996264-.02391 1.362889-.02391C1.801245-.02391 1.817186-.02391 2.446824 0V-.414446C2.231631-.414446 1.976588-.414446 1.745455-.486177L1.785305-.597758L2.191781-1.522291H4.479203L4.96538-.414446H4.224159V0C4.519054-.02391 5.308095-.02391 5.642839-.02391C5.945704-.02391 6.479701-.02391 6.981818 0V-.414446H6.200747L4.048817-5.379826ZM3.339477-4.160399L4.303861-1.936737H2.375093L3.339477-4.160399Z"></path>
+<path id="tz_fig_multiplicador_g5-66" d="M1.235367-5.053051V-.414446H.374595V0H4.26401C5.626899 0 6.37609-.67746 6.37609-1.490411C6.37609-2.15193 5.802242-2.741719 4.686426-2.86127C5.531258-3.004732 6.105106-3.474969 6.105106-4.088667C6.105106-4.837858 5.339975-5.467497 4.000996-5.467497H.374595V-5.053051H1.235367ZM2.319303-3.012702V-5.053051H3.897385C4.718306-5.053051 4.925529-4.495143 4.925529-4.088667C4.925529-3.459029 4.463263-3.012702 3.682192-3.012702H2.319303ZM2.319303-.414446V-2.677958H4.000996C4.94944-2.677958 5.148692-1.968618 5.148692-1.506351C5.148692-.852802 4.710336-.414446 3.921295-.414446H2.319303Z"></path>
+<path id="tz_fig_multiplicador_g5-67" d="M6.503611-5.332005C6.503611-5.483437 6.503611-5.579078 6.328269-5.579078C6.256538-5.579078 6.232628-5.579078 6.144956-5.499377L5.618929-5.037111C5.268244-5.284184 4.758157-5.579078 3.929265-5.579078C1.753425-5.579078 .541968-4.311831 .541968-2.733748C.541968-1.171606 1.729514 .111582 3.937235 .111582C5.507347 .111582 6.503611-.836862 6.503611-1.809215C6.503611-2.000498 6.41594-2.000498 6.280448-2.000498C6.081196-2.000498 6.065255-1.968618 6.057285-1.769365C6.001494-.940473 5.164633-.302864 4.112578-.302864C3.235866-.302864 2.646077-.621669 2.335243-.964384C1.976588-1.354919 1.817186-1.904857 1.817186-2.733748C1.817186-3.084433 1.833126-3.961146 2.319303-4.495143C2.885181-5.108842 3.722042-5.164633 4.088667-5.164633C4.901619-5.164633 5.778331-4.662516 5.977584-3.53076C6.001494-3.371357 6.057285-3.371357 6.240598-3.371357C6.471731-3.371357 6.503611-3.379328 6.503611-3.618431V-5.332005Z"></path>
+<path id="tz_fig_multiplicador_g5-97" d="M4.000996-2.359153C4.000996-3.076463 3.427148-3.626401 2.12802-3.626401C1.737484-3.626401 .597758-3.626401 .597758-2.83736C.597758-2.486675 .868742-2.295392 1.131756-2.295392C1.45056-2.295392 1.673724-2.526526 1.673724-2.82939C1.673724-3.084433 1.514321-3.227895 1.506351-3.235866C1.570112-3.251806 1.801245-3.291656 2.11208-3.291656C2.749689-3.291656 3.028643-2.940971 3.028643-2.367123V-2.13599C1.833126-2.12802 .278954-1.865006 .278954-.892653C.278954-.215193 1.044085 .055791 1.912827 .055791C2.733748 .055791 3.076463-.382565 3.180075-.541968C3.180075-.302864 3.267746 0 4.040847 0H4.463263C4.614695 0 4.734247 0 4.734247-.207223S4.606725-.414446 4.495143-.414446C4.000996-.414446 4.000996-.494147 4.000996-.67746V-2.359153ZM3.028643-1.091905C3.028643-.278954 2.072229-.278954 2.040349-.278954C1.625903-.278954 1.251308-.526027 1.251308-.908593C1.251308-1.466501 1.992528-1.809215 3.028643-1.833126V-1.091905Z"></path>
+<path id="tz_fig_multiplicador_g5-99" d="M4.056787-.916563C4.056787-1.060025 3.929265-1.060025 3.833624-1.060025C3.682192-1.060025 3.658281-1.060025 3.602491-.916563C3.379328-.390535 2.84533-.318804 2.590286-.318804C1.40274-.318804 1.40274-1.458531 1.40274-1.801245C1.40274-2.279452 1.42665-3.251806 2.494645-3.251806C2.550436-3.251806 2.996762-3.235866 2.996762-3.203985C2.996762-3.196015 2.988792-3.180075 2.964882-3.156164C2.901121-3.060523 2.86924-2.940971 2.86924-2.82939C2.86924-2.510585 3.116314-2.295392 3.403238-2.295392C3.706102-2.295392 3.945205-2.502615 3.945205-2.83736C3.945205-3.626401 2.789539-3.626401 2.462765-3.626401C.932503-3.626401 .326775-2.669988 .326775-1.769365C.326775-.781071 1.044085 .055791 2.430884 .055791C2.789539 .055791 3.188045-.00797 3.514819-.207223C3.937235-.470237 4.056787-.868742 4.056787-.916563Z"></path>
+<path id="tz_fig_multiplicador_g5-110" d="M4.654545-2.414944C4.654545-3.387298 4.048817-3.594521 3.339477-3.594521C2.375093-3.594521 1.944707-2.956912 1.849066-2.781569H1.841096V-3.594521L.446326-3.53076V-3.116314C.916563-3.116314 .972354-3.116314 .972354-2.805479V-.414446H.446326V0C.876712-.02391 1.155666-.02391 1.458531-.02391C1.769365-.02391 2.040349-.02391 2.470735 0V-.414446H1.944707V-2.016438C1.944707-2.901121 2.709838-3.259776 3.219925-3.259776C3.498879-3.259776 3.682192-3.124284 3.682192-2.502615V-.414446H3.156164V0C3.58655-.02391 3.865504-.02391 4.168369-.02391C4.479203-.02391 4.750187-.02391 5.180573 0V-.414446H4.654545V-2.414944Z"></path>
+<path id="tz_fig_multiplicador_g5-111" d="M4.606725-1.737484C4.606725-2.741719 3.897385-3.626401 2.438854-3.626401C.972354-3.626401 .270984-2.733748 .270984-1.737484C.270984-.789041 .972354 .055791 2.438854 .055791C3.921295 .055791 4.606725-.797011 4.606725-1.737484ZM2.438854-.318804C1.346949-.318804 1.346949-1.139726 1.346949-1.833126C1.346949-2.486675 1.346949-3.291656 2.438854-3.291656S3.53076-2.478705 3.53076-1.833126C3.53076-1.139726 3.53076-.318804 2.438854-.318804Z"></path>
+<path id="tz_fig_multiplicador_g6-19" d="M3.156164-4.98132C3.243836-5.045081 3.315567-5.116812 3.315567-5.244334C3.315567-5.427646 3.148194-5.563138 3.004732-5.563138C2.972852-5.563138 2.86127-5.563138 2.757659-5.435616L1.737484-4.224159L1.904857-4.040847L3.156164-4.98132Z"></path>
+<path id="tz_fig_multiplicador_g6-37" d="M5.794271-5.626899C5.866002-5.72254 5.866002-5.770361 5.866002-5.794271C5.866002-5.897883 5.786301-5.977584 5.68269-5.977584C5.595019-5.977584 5.555168-5.921793 5.507347-5.866002C5.156663-5.419676 4.646575-5.092902 3.913325-5.092902C3.610461-5.092902 2.964882-5.164633 2.335243-5.69863C2.191781-5.826152 2.016438-5.977584 1.705604-5.977584C1.060025-5.977584 .470237-5.300125 .470237-4.375592C.470237-3.427148 1.075965-2.765629 1.705604-2.765629S2.81345-3.482939 2.81345-4.367621C2.81345-4.750187 2.725778-5.045081 2.662017-5.204483C3.267746-4.869738 3.825654-4.869738 3.921295-4.869738C4.112578-4.869738 4.566874-4.901619 4.95741-5.116812L4.96538-5.108842L1.267248 .087671C1.179577 .199253 1.179577 .215193 1.179577 .263014C1.179577 .366625 1.259278 .446326 1.362889 .446326C1.43462 .446326 1.482441 .414446 1.546202 .326775L5.794271-5.626899ZM1.721544-2.988792C1.578082-2.988792 1.012204-3.060523 1.012204-4.367621C1.012204-5.68269 1.570112-5.754421 1.721544-5.754421C2.13599-5.754421 2.566376-5.196513 2.566376-4.375592C2.566376-3.53076 2.12802-2.988792 1.721544-2.988792ZM6.575342-1.155666C6.575342-2.072229 6.081196-2.765629 5.467497-2.765629C4.821918-2.765629 4.23213-2.088169 4.23213-1.163636C4.23213-.215193 4.837858 .446326 5.467497 .446326S6.575342-.270984 6.575342-1.155666ZM5.483437 .223163C5.339975 .223163 4.774097 .151432 4.774097-1.155666C4.774097-2.470735 5.332005-2.542466 5.483437-2.542466C5.897883-2.542466 6.328269-1.984558 6.328269-1.163636C6.328269-.318804 5.889913 .223163 5.483437 .223163Z"></path>
+<path id="tz_fig_multiplicador_g6-40" d="M2.654047 1.992528C2.717808 1.992528 2.81345 1.992528 2.81345 1.896887C2.81345 1.865006 2.805479 1.857036 2.701868 1.753425C1.609963 .72528 1.338979-.757161 1.338979-1.992528C1.338979-4.28792 2.287422-5.363885 2.693898-5.730511C2.805479-5.834122 2.81345-5.842092 2.81345-5.881943S2.781569-5.977584 2.701868-5.977584C2.574346-5.977584 2.175841-5.571108 2.11208-5.499377C1.044085-4.383562 .820922-2.948941 .820922-1.992528C.820922-.207223 1.570112 1.227397 2.654047 1.992528Z"></path>
+<path id="tz_fig_multiplicador_g6-41" d="M2.462765-1.992528C2.462765-2.749689 2.335243-3.658281 1.841096-4.598755C1.45056-5.332005 .72528-5.977584 .581818-5.977584C.502117-5.977584 .478207-5.921793 .478207-5.881943C.478207-5.850062 .478207-5.834122 .573848-5.738481C1.689664-4.678456 1.944707-3.219925 1.944707-1.992528C1.944707 .294894 .996264 1.378829 .589788 1.745455C.486177 1.849066 .478207 1.857036 .478207 1.896887S.502117 1.992528 .581818 1.992528C.70934 1.992528 1.107846 1.586052 1.171606 1.514321C2.239601 .398506 2.462765-1.036115 2.462765-1.992528Z"></path>
+<path id="tz_fig_multiplicador_g6-46" d="M1.617933-.438356C1.617933-.70934 1.40274-.884682 1.179577-.884682C.908593-.884682 .73325-.669489 .73325-.446326C.73325-.175342 .948443 0 1.171606 0C1.44259 0 1.617933-.215193 1.617933-.438356Z"></path>
+<path id="tz_fig_multiplicador_g6-48" d="M3.897385-2.542466C3.897385-3.395268 3.809714-3.913325 3.5467-4.423412C3.196015-5.124782 2.550436-5.300125 2.11208-5.300125C1.107846-5.300125 .74122-4.550934 .629639-4.327771C.342715-3.745953 .326775-2.956912 .326775-2.542466C.326775-2.016438 .350685-1.211457 .73325-.573848C1.099875 .01594 1.689664 .167372 2.11208 .167372C2.494645 .167372 3.180075 .047821 3.57858-.74122C3.873474-1.315068 3.897385-2.024408 3.897385-2.542466ZM2.11208-.055791C1.841096-.055791 1.291158-.183313 1.123786-1.020174C1.036115-1.474471 1.036115-2.223661 1.036115-2.638107C1.036115-3.188045 1.036115-3.745953 1.123786-4.184309C1.291158-4.99726 1.912827-5.076961 2.11208-5.076961C2.383064-5.076961 2.933001-4.941469 3.092403-4.216189C3.188045-3.777833 3.188045-3.180075 3.188045-2.638107C3.188045-2.16787 3.188045-1.45056 3.092403-1.004234C2.925031-.167372 2.375093-.055791 2.11208-.055791Z"></path>
+<path id="tz_fig_multiplicador_g6-49" d="M2.502615-5.076961C2.502615-5.292154 2.486675-5.300125 2.271482-5.300125C1.944707-4.98132 1.522291-4.790037 .765131-4.790037V-4.527024C.980324-4.527024 1.41071-4.527024 1.872976-4.742217V-.653549C1.872976-.358655 1.849066-.263014 1.091905-.263014H.812951V0C1.139726-.02391 1.825156-.02391 2.183811-.02391S3.235866-.02391 3.56264 0V-.263014H3.283686C2.526526-.263014 2.502615-.358655 2.502615-.653549V-5.076961Z"></path>
+<path id="tz_fig_multiplicador_g6-50" d="M2.247572-1.625903C2.375093-1.745455 2.709838-2.008468 2.83736-2.12005C3.331507-2.574346 3.801743-3.012702 3.801743-3.737983C3.801743-4.686426 3.004732-5.300125 2.008468-5.300125C1.052055-5.300125 .422416-4.574844 .422416-3.865504C.422416-3.474969 .73325-3.419178 .844832-3.419178C1.012204-3.419178 1.259278-3.53873 1.259278-3.841594C1.259278-4.25604 .860772-4.25604 .765131-4.25604C.996264-4.837858 1.530262-5.037111 1.920797-5.037111C2.662017-5.037111 3.044583-4.407472 3.044583-3.737983C3.044583-2.909091 2.462765-2.303362 1.522291-1.338979L.518057-.302864C.422416-.215193 .422416-.199253 .422416 0H3.57061L3.801743-1.42665H3.55467C3.53076-1.267248 3.466999-.868742 3.371357-.71731C3.323537-.653549 2.717808-.653549 2.590286-.653549H1.171606L2.247572-1.625903Z"></path>
+<path id="tz_fig_multiplicador_g6-52" d="M3.140224-5.156663C3.140224-5.316065 3.140224-5.379826 2.972852-5.379826C2.86924-5.379826 2.86127-5.371856 2.781569-5.260274L.239103-1.570112V-1.307098H2.486675V-.645579C2.486675-.350685 2.462765-.263014 1.849066-.263014H1.665753V0C2.343213-.02391 2.359153-.02391 2.81345-.02391S3.283686-.02391 3.961146 0V-.263014H3.777833C3.164134-.263014 3.140224-.350685 3.140224-.645579V-1.307098H3.985056V-1.570112H3.140224V-5.156663ZM2.542466-4.511083V-1.570112H.518057L2.542466-4.511083Z"></path>
+<path id="tz_fig_multiplicador_g6-53" d="M1.115816-4.479203C1.219427-4.447323 1.538232-4.367621 1.872976-4.367621C2.86924-4.367621 3.474969-5.068991 3.474969-5.188543C3.474969-5.276214 3.419178-5.300125 3.379328-5.300125C3.363387-5.300125 3.347447-5.300125 3.275716-5.260274C2.964882-5.140722 2.598257-5.045081 2.16787-5.045081C1.697634-5.045081 1.307098-5.164633 1.060025-5.260274C.980324-5.300125 .964384-5.300125 .956413-5.300125C.852802-5.300125 .852802-5.212453 .852802-5.068991V-2.733748C.852802-2.590286 .852802-2.494645 .980324-2.494645C1.044085-2.494645 1.067995-2.526526 1.107846-2.590286C1.203487-2.709838 1.506351-3.116314 2.183811-3.116314C2.630137-3.116314 2.84533-2.749689 2.917061-2.598257C3.052553-2.311333 3.068493-1.944707 3.068493-1.633873C3.068493-1.338979 3.060523-.908593 2.83736-.557908C2.685928-.318804 2.367123-.071731 1.944707-.071731C1.42665-.071731 .916563-.398506 .73325-.916563C.757161-.908593 .804981-.908593 .812951-.908593C1.036115-.908593 1.211457-1.052055 1.211457-1.299128C1.211457-1.594022 .980324-1.697634 .820922-1.697634C.67746-1.697634 .422416-1.617933 .422416-1.275218C.422416-.557908 1.044085 .167372 1.960648 .167372C2.956912 .167372 3.801743-.605729 3.801743-1.594022C3.801743-2.518555 3.132254-3.339477 2.191781-3.339477C1.793275-3.339477 1.41868-3.211955 1.115816-2.940971V-4.479203Z"></path>
+<path id="tz_fig_multiplicador_g6-54" d="M1.099875-2.638107C1.099875-3.299626 1.155666-3.881445 1.44259-4.367621C1.681694-4.766127 2.088169-5.092902 2.590286-5.092902C2.749689-5.092902 3.116314-5.068991 3.299626-4.790037C2.940971-4.774097 2.909091-4.503113 2.909091-4.415442C2.909091-4.176339 3.092403-4.040847 3.283686-4.040847C3.427148-4.040847 3.658281-4.128518 3.658281-4.431382C3.658281-4.909589 3.299626-5.300125 2.582316-5.300125C1.474471-5.300125 .350685-4.24807 .350685-2.526526C.350685-.366625 1.354919 .167372 2.12802 .167372C2.510585 .167372 2.925031 .063761 3.283686-.278954C3.602491-.589788 3.873474-.924533 3.873474-1.617933C3.873474-2.662017 3.084433-3.395268 2.199751-3.395268C1.625903-3.395268 1.283188-3.028643 1.099875-2.638107ZM2.12802-.071731C1.705604-.071731 1.44259-.366625 1.323039-.589788C1.139726-.948443 1.123786-1.490411 1.123786-1.793275C1.123786-2.582316 1.554172-3.172105 2.16787-3.172105C2.566376-3.172105 2.805479-2.964882 2.956912-2.685928C3.124284-2.391034 3.124284-2.032379 3.124284-1.625903S3.124284-.868742 2.964882-.581818C2.757659-.215193 2.478705-.071731 2.12802-.071731Z"></path>
+<path id="tz_fig_multiplicador_g6-56" d="M2.646077-2.87721C3.092403-3.092403 3.634371-3.490909 3.634371-4.112578C3.634371-4.869738 2.86127-5.300125 2.12005-5.300125C1.275218-5.300125 .589788-4.718306 .589788-3.969116C.589788-3.674222 .6934-3.403238 .892653-3.172105C1.028144-3.004732 1.060025-2.988792 1.554172-2.677958C.565878-2.239601 .350685-1.657783 .350685-1.211457C.350685-.334745 1.235367 .167372 2.10411 .167372C3.084433 .167372 3.873474-.494147 3.873474-1.338979C3.873474-1.841096 3.602491-2.175841 3.474969-2.311333C3.339477-2.438854 3.331507-2.446824 2.646077-2.87721ZM1.41071-3.626401C1.179577-3.761893 .988294-3.993026 .988294-4.27198C.988294-4.774097 1.538232-5.092902 2.10411-5.092902C2.725778-5.092902 3.235866-4.670486 3.235866-4.112578C3.235866-3.650311 2.87721-3.259776 2.406974-3.028643L1.41071-3.626401ZM1.801245-2.534496C1.833126-2.518555 2.741719-1.960648 2.87721-1.872976C3.004732-1.801245 3.419178-1.546202 3.419178-1.067995C3.419178-.454296 2.773599-.071731 2.12005-.071731C1.41071-.071731 .804981-.557908 .804981-1.211457C.804981-1.809215 1.251308-2.279452 1.801245-2.534496Z"></path>
+<path id="tz_fig_multiplicador_g6-58" d="M1.617933-2.988792C1.617933-3.259776 1.40274-3.435118 1.179577-3.435118C.908593-3.435118 .73325-3.219925 .73325-2.996762C.73325-2.725778 .948443-2.550436 1.171606-2.550436C1.44259-2.550436 1.617933-2.765629 1.617933-2.988792ZM1.617933-.438356C1.617933-.70934 1.40274-.884682 1.179577-.884682C.908593-.884682 .73325-.669489 .73325-.446326C.73325-.175342 .948443 0 1.171606 0C1.44259 0 1.617933-.215193 1.617933-.438356Z"></path>
+<path id="tz_fig_multiplicador_g6-68" d="M.366625-5.443587V-5.180573H.541968C1.155666-5.180573 1.171606-5.092902 1.171606-4.798007V-.645579C1.171606-.350685 1.155666-.263014 .541968-.263014H.366625V0H3.395268C4.829888 0 5.985554-1.195517 5.985554-2.669988C5.985554-4.208219 4.821918-5.443587 3.395268-5.443587H.366625ZM2.263512-.263014C1.896887-.263014 1.880946-.318804 1.880946-.589788V-4.853798C1.880946-5.124782 1.896887-5.180573 2.263512-5.180573H3.180075C3.801743-5.180573 4.319801-4.925529 4.670486-4.527024C5.180573-3.921295 5.180573-3.068493 5.180573-2.677958C5.180573-2.271482 5.180573-1.490411 4.678456-.900623C4.399502-.573848 3.889415-.263014 3.180075-.263014H2.263512Z"></path>
+<path id="tz_fig_multiplicador_g6-69" d="M5.515318-2.072229H5.268244C5.061021-.876712 4.893649-.263014 3.459029-.263014H2.271482C1.904857-.263014 1.888917-.318804 1.888917-.589788V-2.685928H2.662017C3.451059-2.685928 3.56264-2.446824 3.56264-1.753425H3.809714V-3.881445H3.56264C3.56264-3.188045 3.451059-2.948941 2.662017-2.948941H1.888917V-4.829888C1.888917-5.100872 1.904857-5.156663 2.271482-5.156663H3.403238C4.726276-5.156663 4.893649-4.678456 5.037111-3.610461H5.284184L5.053051-5.419676H.350685V-5.156663H.526027C1.139726-5.156663 1.155666-5.068991 1.155666-4.774097V-.645579C1.155666-.350685 1.139726-.263014 .526027-.263014H.350685V0H5.164633L5.515318-2.072229Z"></path>
+<path id="tz_fig_multiplicador_g6-82" d="M3.777833-2.709838C4.399502-2.86924 5.164633-3.323537 5.164633-4.008966C5.164633-4.798007 4.152428-5.443587 2.964882-5.443587H.366625V-5.180573H.541968C1.155666-5.180573 1.171606-5.092902 1.171606-4.798007V-.645579C1.171606-.350685 1.155666-.263014 .541968-.263014H.366625V0C1.044085-.02391 1.060025-.02391 1.522291-.02391C1.992528-.02391 2.008468-.02391 2.685928 0V-.263014H2.510585C1.896887-.263014 1.880946-.350685 1.880946-.645579V-2.614197H2.885181C3.474969-2.614197 3.737983-2.319303 3.793773-2.255542C4.024907-2.000498 4.024907-1.849066 4.024907-1.307098C4.024907-.804981 4.024907-.462267 4.359651-.167372C4.702366 .127522 5.148692 .167372 5.379826 .167372C6.041345 .167372 6.200747-.486177 6.200747-.72528C6.200747-.773101 6.200747-.876712 6.073225-.876712C5.961644-.876712 5.961644-.789041 5.953674-.73325C5.913823-.231133 5.634869-.055791 5.411706-.055791C4.98132-.055791 4.933499-.422416 4.790037-1.43462C4.734247-1.888917 4.654545-2.438854 3.777833-2.709838ZM2.86127-2.83736H1.880946V-4.853798C1.880946-5.061021 1.888917-5.148692 2.080199-5.172603C2.15193-5.180573 2.406974-5.180573 2.566376-5.180573C3.283686-5.180573 4.335741-5.180573 4.335741-4.008966C4.335741-3.124284 3.698132-2.83736 2.86127-2.83736Z"></path>
+<path id="tz_fig_multiplicador_g6-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_multiplicador_g6-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_multiplicador_g6-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_multiplicador_g6-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_multiplicador_g6-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+<path id="tz_fig_multiplicador_g6-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_multiplicador_g6-112" d="M2.096139 1.283188C1.586052 1.283188 1.490411 1.283188 1.490411 .924533V-.390535C1.865006 .01594 2.271482 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.717808 3.610461-3.514819 2.646077-3.514819C2.335243-3.514819 1.872976-3.435118 1.466501-3.020672V-3.514819L.278954-3.427148V-3.164134C.844832-3.164134 .884682-3.116314 .884682-2.781569V.924533C.884682 1.283188 .789041 1.283188 .278954 1.283188V1.546202C.621669 1.522291 .972354 1.522291 1.187547 1.522291C1.41868 1.522291 1.753425 1.522291 2.096139 1.546202V1.283188ZM1.490411-2.654047C1.673724-2.972852 2.072229-3.267746 2.574346-3.267746C3.188045-3.267746 3.706102-2.590286 3.706102-1.721544C3.706102-.804981 3.132254-.143462 2.486675-.143462C2.207721-.143462 1.841096-.263014 1.586052-.661519C1.490411-.797011 1.490411-.804981 1.490411-.956413V-2.654047Z"></path>
+<path id="tz_fig_multiplicador_g6-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_multiplicador_g6-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_multiplicador_g6-116" d="M1.482441-3.172105H2.669988V-3.435118H1.482441V-4.901619H1.235367C1.227397-4.176339 .900623-3.419178 .159402-3.395268V-3.172105H.876712V-.996264C.876712-.063761 1.594022 .079701 1.960648 .079701C2.494645 .079701 2.81345-.398506 2.81345-.996264V-1.44259H2.566376V-1.012204C2.566376-.462267 2.319303-.167372 2.016438-.167372C1.482441-.167372 1.482441-.852802 1.482441-.980324V-3.172105Z"></path>
+<path id="tz_fig_multiplicador_g6-118" d="M3.53076-2.614197C3.722042-3.060523 3.993026-3.164134 4.28792-3.172105V-3.435118C4.008966-3.411208 3.993026-3.411208 3.666252-3.411208C3.594521-3.411208 3.219925-3.411208 2.972852-3.435118V-3.172105C3.251806-3.156164 3.323537-2.980822 3.323537-2.84533C3.323537-2.765629 3.307597-2.725778 3.275716-2.654047L2.414944-.645579L1.474471-2.805479C1.42665-2.909091 1.42665-2.956912 1.42665-2.972852C1.42665-3.172105 1.713574-3.172105 1.849066-3.172105V-3.435118C1.506351-3.411208 1.131756-3.411208 .980324-3.411208C.812951-3.411208 .430386-3.411208 .175342-3.435118V-3.172105C.661519-3.172105 .70137-3.124284 .820922-2.8533L2.016438-.095641C2.072229 .02391 2.12005 .079701 2.231631 .079701S2.399004 .01594 2.438854-.079701L3.53076-2.614197Z"></path>
+</defs>
+<g id="tz_fig_multiplicador_page1">
+<g stroke-miterlimit="10" transform="translate(-22.366154,57.525354)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#e5f0fc">
+<g fill="#e5f0fc">
+<path d="M41.61998 125.81108H-41.61998C-43.82915 125.81108-45.61998 124.02025-45.61998 121.81108V87.6007C-45.61998 85.39153-43.82915 83.6007-41.61998 83.6007H41.61998C43.82915 83.6007 45.61998 85.39153 45.61998 87.6007V121.81108C45.61998 124.02025 43.82915 125.81108 41.61998 125.81108ZM-45.61998 83.6007"></path>
+</g>
+<g transform="translate(-42.287,88.48921)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-22.366154,57.525354)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="1.300026" y="29.131829" href="#tz_fig_multiplicador_g5-66"></use>
+<use x="8.229652" y="29.131829" href="#tz_fig_multiplicador_g5-97"></use>
+<use x="12.975785" y="29.131829" href="#tz_fig_multiplicador_g5-110"></use>
+<use x="18.399933" y="29.131829" href="#tz_fig_multiplicador_g5-99"></use>
+<use x="22.739252" y="29.131829" href="#tz_fig_multiplicador_g5-111"></use>
+<use x="30.875474" y="29.131829" href="#tz_fig_multiplicador_g5-65"></use>
+<use x="-15.070485" y="38.596337" href="#tz_fig_multiplicador_g6-68"></use>
+<use x="-8.605744" y="38.596337" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="-4.842026" y="38.596337" href="#tz_fig_multiplicador_g6-112"></use>
+<use x="-.137379" y="38.596337" href="#tz_fig_multiplicador_g6-19"></use>
+<use x="-.137379" y="38.596337" href="#tz_fig_multiplicador_g6-111"></use>
+<use x="4.096804" y="38.596337" href="#tz_fig_multiplicador_g6-115"></use>
+<use x="7.437107" y="38.596337" href="#tz_fig_multiplicador_g6-105"></use>
+<use x="9.789431" y="38.596337" href="#tz_fig_multiplicador_g6-116"></use>
+<use x="13.082684" y="38.596337" href="#tz_fig_multiplicador_g6-111"></use>
+<use x="17.316867" y="38.596337" href="#tz_fig_multiplicador_g6-58"></use>
+<use x="23.432909" y="38.596337" href="#tz_fig_multiplicador_g6-82"></use>
+<use x="29.662417" y="38.596337" href="#tz_fig_multiplicador_g4-36"></use>
+<use x="35.307188" y="38.596337" href="#tz_fig_multiplicador_g6-49"></use>
+<use x="39.541371" y="38.596337" href="#tz_fig_multiplicador_g6-46"></use>
+<use x="41.893695" y="38.596337" href="#tz_fig_multiplicador_g6-48"></use>
+<use x="46.127878" y="38.596337" href="#tz_fig_multiplicador_g6-48"></use>
+<use x="50.362061" y="38.596337" href="#tz_fig_multiplicador_g6-48"></use>
+<use x="-22.366154" y="48.060845" href="#tz_fig_multiplicador_g6-82"></use>
+<use x="-16.136646" y="48.060845" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="-12.372928" y="48.060845" href="#tz_fig_multiplicador_g6-115"></use>
+<use x="-9.032625" y="48.060845" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="-5.268907" y="48.060845" href="#tz_fig_multiplicador_g6-114"></use>
+<use x="-1.968737" y="48.060845" href="#tz_fig_multiplicador_g6-118"></use>
+<use x="2.030213" y="48.060845" href="#tz_fig_multiplicador_g6-97"></use>
+<use x="9.087185" y="48.060845" href="#tz_fig_multiplicador_g6-40"></use>
+<use x="12.380438" y="48.060845" href="#tz_fig_multiplicador_g6-50"></use>
+<use x="16.614621" y="48.060845" href="#tz_fig_multiplicador_g6-48"></use>
+<use x="20.848804" y="48.060845" href="#tz_fig_multiplicador_g6-37"></use>
+<use x="27.905775" y="48.060845" href="#tz_fig_multiplicador_g6-41"></use>
+<use x="31.199028" y="48.060845" href="#tz_fig_multiplicador_g6-58"></use>
+<use x="37.31507" y="48.060845" href="#tz_fig_multiplicador_g6-82"></use>
+<use x="43.544578" y="48.060845" href="#tz_fig_multiplicador_g4-36"></use>
+<use x="49.18935" y="48.060845" href="#tz_fig_multiplicador_g6-50"></use>
+<use x="53.423533" y="48.060845" href="#tz_fig_multiplicador_g6-48"></use>
+<use x="57.657715" y="48.060845" href="#tz_fig_multiplicador_g6-48"></use>
+<use x="-13.309708" y="57.525354" href="#tz_fig_multiplicador_g6-69"></use>
+<use x="-7.550665" y="57.525354" href="#tz_fig_multiplicador_g6-109"></use>
+<use x="-.493693" y="57.525354" href="#tz_fig_multiplicador_g6-112"></use>
+<use x="4.210955" y="57.525354" href="#tz_fig_multiplicador_g6-114"></use>
+<use x="7.511125" y="57.525354" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="11.274843" y="57.525354" href="#tz_fig_multiplicador_g6-115"></use>
+<use x="14.615146" y="57.525354" href="#tz_fig_multiplicador_g6-116"></use>
+<use x="17.908399" y="57.525354" href="#tz_fig_multiplicador_g6-97"></use>
+<use x="22.142582" y="57.525354" href="#tz_fig_multiplicador_g6-58"></use>
+<use x="28.258624" y="57.525354" href="#tz_fig_multiplicador_g6-82"></use>
+<use x="34.488132" y="57.525354" href="#tz_fig_multiplicador_g4-36"></use>
+<use x="40.132903" y="57.525354" href="#tz_fig_multiplicador_g6-56"></use>
+<use x="44.367086" y="57.525354" href="#tz_fig_multiplicador_g6-48"></use>
+<use x="48.601269" y="57.525354" href="#tz_fig_multiplicador_g6-48"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#e5f0fc">
+<g fill="#e5f0fc">
+<path d="M41.61998 60.36989H-41.61998C-43.82915 60.36989-45.61998 58.57906-45.61998 56.36989V22.1595C-45.61998 19.95033-43.82915 18.1595-41.61998 18.1595H41.61998C43.82915 18.1595 45.61998 19.95033 45.61998 22.1595V56.36989C45.61998 58.57906 43.82915 60.36989 41.61998 60.36989ZM-45.61998 18.1595"></path>
+</g>
+<g transform="translate(-42.287,23.04802)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-22.366154,57.525354)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="1.510343" y="29.131829" href="#tz_fig_multiplicador_g5-66"></use>
+<use x="8.439969" y="29.131829" href="#tz_fig_multiplicador_g5-97"></use>
+<use x="13.186102" y="29.131829" href="#tz_fig_multiplicador_g5-110"></use>
+<use x="18.61025" y="29.131829" href="#tz_fig_multiplicador_g5-99"></use>
+<use x="22.949568" y="29.131829" href="#tz_fig_multiplicador_g5-111"></use>
+<use x="31.08579" y="29.131829" href="#tz_fig_multiplicador_g5-66"></use>
+<use x="-11.777231" y="38.596337" href="#tz_fig_multiplicador_g6-68"></use>
+<use x="-5.312491" y="38.596337" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="-1.548773" y="38.596337" href="#tz_fig_multiplicador_g6-112"></use>
+<use x="3.155875" y="38.596337" href="#tz_fig_multiplicador_g6-19"></use>
+<use x="3.155875" y="38.596337" href="#tz_fig_multiplicador_g6-111"></use>
+<use x="7.390058" y="38.596337" href="#tz_fig_multiplicador_g6-115"></use>
+<use x="10.730361" y="38.596337" href="#tz_fig_multiplicador_g6-105"></use>
+<use x="13.082684" y="38.596337" href="#tz_fig_multiplicador_g6-116"></use>
+<use x="16.375938" y="38.596337" href="#tz_fig_multiplicador_g6-111"></use>
+<use x="20.61012" y="38.596337" href="#tz_fig_multiplicador_g6-58"></use>
+<use x="26.726162" y="38.596337" href="#tz_fig_multiplicador_g6-82"></use>
+<use x="32.95567" y="38.596337" href="#tz_fig_multiplicador_g4-36"></use>
+<use x="38.600442" y="38.596337" href="#tz_fig_multiplicador_g6-56"></use>
+<use x="42.834625" y="38.596337" href="#tz_fig_multiplicador_g6-48"></use>
+<use x="47.068808" y="38.596337" href="#tz_fig_multiplicador_g6-48"></use>
+<use x="-22.366154" y="48.060845" href="#tz_fig_multiplicador_g6-82"></use>
+<use x="-16.136646" y="48.060845" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="-12.372928" y="48.060845" href="#tz_fig_multiplicador_g6-115"></use>
+<use x="-9.032625" y="48.060845" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="-5.268907" y="48.060845" href="#tz_fig_multiplicador_g6-114"></use>
+<use x="-1.968737" y="48.060845" href="#tz_fig_multiplicador_g6-118"></use>
+<use x="2.030213" y="48.060845" href="#tz_fig_multiplicador_g6-97"></use>
+<use x="9.087185" y="48.060845" href="#tz_fig_multiplicador_g6-40"></use>
+<use x="12.380438" y="48.060845" href="#tz_fig_multiplicador_g6-50"></use>
+<use x="16.614621" y="48.060845" href="#tz_fig_multiplicador_g6-48"></use>
+<use x="20.848804" y="48.060845" href="#tz_fig_multiplicador_g6-37"></use>
+<use x="27.905775" y="48.060845" href="#tz_fig_multiplicador_g6-41"></use>
+<use x="31.199028" y="48.060845" href="#tz_fig_multiplicador_g6-58"></use>
+<use x="37.31507" y="48.060845" href="#tz_fig_multiplicador_g6-82"></use>
+<use x="43.544578" y="48.060845" href="#tz_fig_multiplicador_g4-36"></use>
+<use x="49.18935" y="48.060845" href="#tz_fig_multiplicador_g6-49"></use>
+<use x="53.423533" y="48.060845" href="#tz_fig_multiplicador_g6-54"></use>
+<use x="57.657715" y="48.060845" href="#tz_fig_multiplicador_g6-48"></use>
+<use x="-13.309708" y="57.525354" href="#tz_fig_multiplicador_g6-69"></use>
+<use x="-7.550665" y="57.525354" href="#tz_fig_multiplicador_g6-109"></use>
+<use x="-.493693" y="57.525354" href="#tz_fig_multiplicador_g6-112"></use>
+<use x="4.210955" y="57.525354" href="#tz_fig_multiplicador_g6-114"></use>
+<use x="7.511125" y="57.525354" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="11.274843" y="57.525354" href="#tz_fig_multiplicador_g6-115"></use>
+<use x="14.615146" y="57.525354" href="#tz_fig_multiplicador_g6-116"></use>
+<use x="17.908399" y="57.525354" href="#tz_fig_multiplicador_g6-97"></use>
+<use x="22.142582" y="57.525354" href="#tz_fig_multiplicador_g6-58"></use>
+<use x="28.258624" y="57.525354" href="#tz_fig_multiplicador_g6-82"></use>
+<use x="34.488132" y="57.525354" href="#tz_fig_multiplicador_g4-36"></use>
+<use x="40.132903" y="57.525354" href="#tz_fig_multiplicador_g6-54"></use>
+<use x="44.367086" y="57.525354" href="#tz_fig_multiplicador_g6-52"></use>
+<use x="48.601269" y="57.525354" href="#tz_fig_multiplicador_g6-48"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#e5f0fc">
+<g fill="#e5f0fc">
+<path d="M41.61998-5.07127H-41.61998C-43.82915-5.07127-45.61998-6.8621-45.61998-9.07127V-43.28166C-45.61998-45.49083-43.82915-47.28166-41.61998-47.28166H41.61998C43.82915-47.28166 45.61998-45.49083 45.61998-43.28166V-9.07127C45.61998-6.8621 43.82915-5.07127 41.61998-5.07127ZM-45.61998-47.28166"></path>
+</g>
+<g transform="translate(-42.287,-42.39314)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-22.366154,57.525354)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="1.44946" y="29.131829" href="#tz_fig_multiplicador_g5-66"></use>
+<use x="8.379086" y="29.131829" href="#tz_fig_multiplicador_g5-97"></use>
+<use x="13.125219" y="29.131829" href="#tz_fig_multiplicador_g5-110"></use>
+<use x="18.549367" y="29.131829" href="#tz_fig_multiplicador_g5-99"></use>
+<use x="22.888685" y="29.131829" href="#tz_fig_multiplicador_g5-111"></use>
+<use x="31.024907" y="29.131829" href="#tz_fig_multiplicador_g5-67"></use>
+<use x="-11.777231" y="38.596337" href="#tz_fig_multiplicador_g6-68"></use>
+<use x="-5.312491" y="38.596337" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="-1.548773" y="38.596337" href="#tz_fig_multiplicador_g6-112"></use>
+<use x="3.155875" y="38.596337" href="#tz_fig_multiplicador_g6-19"></use>
+<use x="3.155875" y="38.596337" href="#tz_fig_multiplicador_g6-111"></use>
+<use x="7.390058" y="38.596337" href="#tz_fig_multiplicador_g6-115"></use>
+<use x="10.730361" y="38.596337" href="#tz_fig_multiplicador_g6-105"></use>
+<use x="13.082684" y="38.596337" href="#tz_fig_multiplicador_g6-116"></use>
+<use x="16.375938" y="38.596337" href="#tz_fig_multiplicador_g6-111"></use>
+<use x="20.61012" y="38.596337" href="#tz_fig_multiplicador_g6-58"></use>
+<use x="26.726162" y="38.596337" href="#tz_fig_multiplicador_g6-82"></use>
+<use x="32.95567" y="38.596337" href="#tz_fig_multiplicador_g4-36"></use>
+<use x="38.600442" y="38.596337" href="#tz_fig_multiplicador_g6-54"></use>
+<use x="42.834625" y="38.596337" href="#tz_fig_multiplicador_g6-52"></use>
+<use x="47.068808" y="38.596337" href="#tz_fig_multiplicador_g6-48"></use>
+<use x="-22.366154" y="48.060845" href="#tz_fig_multiplicador_g6-82"></use>
+<use x="-16.136646" y="48.060845" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="-12.372928" y="48.060845" href="#tz_fig_multiplicador_g6-115"></use>
+<use x="-9.032625" y="48.060845" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="-5.268907" y="48.060845" href="#tz_fig_multiplicador_g6-114"></use>
+<use x="-1.968737" y="48.060845" href="#tz_fig_multiplicador_g6-118"></use>
+<use x="2.030213" y="48.060845" href="#tz_fig_multiplicador_g6-97"></use>
+<use x="9.087185" y="48.060845" href="#tz_fig_multiplicador_g6-40"></use>
+<use x="12.380438" y="48.060845" href="#tz_fig_multiplicador_g6-50"></use>
+<use x="16.614621" y="48.060845" href="#tz_fig_multiplicador_g6-48"></use>
+<use x="20.848804" y="48.060845" href="#tz_fig_multiplicador_g6-37"></use>
+<use x="27.905775" y="48.060845" href="#tz_fig_multiplicador_g6-41"></use>
+<use x="31.199028" y="48.060845" href="#tz_fig_multiplicador_g6-58"></use>
+<use x="37.31507" y="48.060845" href="#tz_fig_multiplicador_g6-82"></use>
+<use x="43.544578" y="48.060845" href="#tz_fig_multiplicador_g4-36"></use>
+<use x="49.18935" y="48.060845" href="#tz_fig_multiplicador_g6-49"></use>
+<use x="53.423533" y="48.060845" href="#tz_fig_multiplicador_g6-50"></use>
+<use x="57.657715" y="48.060845" href="#tz_fig_multiplicador_g6-56"></use>
+<use x="-13.309708" y="57.525354" href="#tz_fig_multiplicador_g6-69"></use>
+<use x="-7.550665" y="57.525354" href="#tz_fig_multiplicador_g6-109"></use>
+<use x="-.493693" y="57.525354" href="#tz_fig_multiplicador_g6-112"></use>
+<use x="4.210955" y="57.525354" href="#tz_fig_multiplicador_g6-114"></use>
+<use x="7.511125" y="57.525354" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="11.274843" y="57.525354" href="#tz_fig_multiplicador_g6-115"></use>
+<use x="14.615146" y="57.525354" href="#tz_fig_multiplicador_g6-116"></use>
+<use x="17.908399" y="57.525354" href="#tz_fig_multiplicador_g6-97"></use>
+<use x="22.142582" y="57.525354" href="#tz_fig_multiplicador_g6-58"></use>
+<use x="28.258624" y="57.525354" href="#tz_fig_multiplicador_g6-82"></use>
+<use x="34.488132" y="57.525354" href="#tz_fig_multiplicador_g4-36"></use>
+<use x="40.132903" y="57.525354" href="#tz_fig_multiplicador_g6-53"></use>
+<use x="44.367086" y="57.525354" href="#tz_fig_multiplicador_g6-49"></use>
+<use x="48.601269" y="57.525354" href="#tz_fig_multiplicador_g6-50"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-1.18057,-75.50342)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-22.366154,57.525354)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-22.366154" y="49.555241" href="#tz_fig_multiplicador_g6-46"></use>
+<use x="-22.366154" y="53.540297" href="#tz_fig_multiplicador_g6-46"></use>
+<use x="-22.366154" y="57.525354" href="#tz_fig_multiplicador_g6-46"></use>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<path d="M0 83.39726V63.76738" fill="none"></path>
+<g transform="matrix(0.0,-1.0,1.0,0.0,0.0,63.76738)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+<g transform="translate(3.93297,69.98233)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-22.366154,57.525354)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-22.366154" y="57.525354" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="-18.602436" y="57.525354" href="#tz_fig_multiplicador_g6-109"></use>
+<use x="-11.545465" y="57.525354" href="#tz_fig_multiplicador_g6-112"></use>
+<use x="-6.840817" y="57.525354" href="#tz_fig_multiplicador_g6-114"></use>
+<use x="-3.77588" y="57.525354" href="#tz_fig_multiplicador_g6-19"></use>
+<use x="-3.540647" y="57.525354" href="#tz_fig_multiplicador_g6-101"></use>
+<use x=".223071" y="57.525354" href="#tz_fig_multiplicador_g6-115"></use>
+<use x="3.563374" y="57.525354" href="#tz_fig_multiplicador_g6-116"></use>
+<use x="6.856627" y="57.525354" href="#tz_fig_multiplicador_g6-105"></use>
+<use x="9.208951" y="57.525354" href="#tz_fig_multiplicador_g6-109"></use>
+<use x="16.265922" y="57.525354" href="#tz_fig_multiplicador_g6-111"></use>
+<use x="23.322894" y="57.525354" href="#tz_fig_multiplicador_g6-118"></use>
+<use x="27.792309" y="57.525354" href="#tz_fig_multiplicador_g6-105"></use>
+<use x="30.144633" y="57.525354" href="#tz_fig_multiplicador_g6-114"></use>
+<use x="33.444803" y="57.525354" href="#tz_fig_multiplicador_g6-97"></use>
+<use x="40.501774" y="57.525354" href="#tz_fig_multiplicador_g6-100"></use>
+<use x="45.206422" y="57.525354" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="48.97014" y="57.525354" href="#tz_fig_multiplicador_g6-112"></use>
+<use x="53.674788" y="57.525354" href="#tz_fig_multiplicador_g6-19"></use>
+<use x="53.674788" y="57.525354" href="#tz_fig_multiplicador_g6-111"></use>
+<use x="57.908971" y="57.525354" href="#tz_fig_multiplicador_g6-115"></use>
+<use x="61.249273" y="57.525354" href="#tz_fig_multiplicador_g6-105"></use>
+<use x="63.601597" y="57.525354" href="#tz_fig_multiplicador_g6-116"></use>
+<use x="66.89485" y="57.525354" href="#tz_fig_multiplicador_g6-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<path d="M0 17.95876V-1.67107" fill="none"></path>
+<g transform="matrix(0.0,-1.0,1.0,0.0,0.0,-1.67107)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+<g transform="translate(3.93297,4.54385)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-22.366154,57.525354)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-22.366154" y="57.525354" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="-18.602436" y="57.525354" href="#tz_fig_multiplicador_g6-109"></use>
+<use x="-11.545465" y="57.525354" href="#tz_fig_multiplicador_g6-112"></use>
+<use x="-6.840817" y="57.525354" href="#tz_fig_multiplicador_g6-114"></use>
+<use x="-3.77588" y="57.525354" href="#tz_fig_multiplicador_g6-19"></use>
+<use x="-3.540647" y="57.525354" href="#tz_fig_multiplicador_g6-101"></use>
+<use x=".223071" y="57.525354" href="#tz_fig_multiplicador_g6-115"></use>
+<use x="3.563374" y="57.525354" href="#tz_fig_multiplicador_g6-116"></use>
+<use x="6.856627" y="57.525354" href="#tz_fig_multiplicador_g6-105"></use>
+<use x="9.208951" y="57.525354" href="#tz_fig_multiplicador_g6-109"></use>
+<use x="16.265922" y="57.525354" href="#tz_fig_multiplicador_g6-111"></use>
+<use x="23.322894" y="57.525354" href="#tz_fig_multiplicador_g6-118"></use>
+<use x="27.792309" y="57.525354" href="#tz_fig_multiplicador_g6-105"></use>
+<use x="30.144633" y="57.525354" href="#tz_fig_multiplicador_g6-114"></use>
+<use x="33.444803" y="57.525354" href="#tz_fig_multiplicador_g6-97"></use>
+<use x="40.501774" y="57.525354" href="#tz_fig_multiplicador_g6-100"></use>
+<use x="45.206422" y="57.525354" href="#tz_fig_multiplicador_g6-101"></use>
+<use x="48.97014" y="57.525354" href="#tz_fig_multiplicador_g6-112"></use>
+<use x="53.674788" y="57.525354" href="#tz_fig_multiplicador_g6-19"></use>
+<use x="53.674788" y="57.525354" href="#tz_fig_multiplicador_g6-111"></use>
+<use x="57.908971" y="57.525354" href="#tz_fig_multiplicador_g6-115"></use>
+<use x="61.249273" y="57.525354" href="#tz_fig_multiplicador_g6-105"></use>
+<use x="63.601597" y="57.525354" href="#tz_fig_multiplicador_g6-116"></use>
+<use x="66.89485" y="57.525354" href="#tz_fig_multiplicador_g6-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<path d="M0-47.47969V-53.8792" fill="none"></path>
+<g transform="matrix(0.0,-1.0,1.0,0.0,0.0,-53.8792)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(82.1971,31.88138)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-22.366154,57.525354)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-22.366154" y="41.215878" href="#tz_fig_multiplicador_g3-84"></use>
+<use x="-16.47855" y="41.215878" href="#tz_fig_multiplicador_g3-111"></use>
+<use x="-11.870859" y="41.215878" href="#tz_fig_multiplicador_g3-116"></use>
+<use x="-8.2871" y="41.215878" href="#tz_fig_multiplicador_g3-97"></use>
+<use x="-3.679409" y="41.215878" href="#tz_fig_multiplicador_g3-108"></use>
+<use x="1.952213" y="41.215878" href="#tz_fig_multiplicador_g3-100"></use>
+<use x="7.071869" y="41.215878" href="#tz_fig_multiplicador_g3-101"></use>
+<use x="14.242851" y="41.215878" href="#tz_fig_multiplicador_g3-100"></use>
+<use x="19.362507" y="41.215878" href="#tz_fig_multiplicador_g3-101"></use>
+<use x="23.461696" y="41.215878" href="#tz_fig_multiplicador_g3-112"></use>
+<use x="28.581352" y="41.215878" href="#tz_fig_multiplicador_g3-19"></use>
+<use x="28.581352" y="41.215878" href="#tz_fig_multiplicador_g3-111"></use>
+<use x="33.189042" y="41.215878" href="#tz_fig_multiplicador_g3-115"></use>
+<use x="36.824005" y="41.215878" href="#tz_fig_multiplicador_g3-105"></use>
+<use x="39.383833" y="41.215878" href="#tz_fig_multiplicador_g3-116"></use>
+<use x="42.967593" y="41.215878" href="#tz_fig_multiplicador_g3-111"></use>
+<use x="47.575283" y="41.215878" href="#tz_fig_multiplicador_g3-115"></use>
+<use x="54.28204" y="41.215878" href="#tz_fig_multiplicador_g3-99"></use>
+<use x="58.377765" y="41.215878" href="#tz_fig_multiplicador_g3-114"></use>
+<use x="61.982286" y="41.215878" href="#tz_fig_multiplicador_g3-105"></use>
+<use x="64.542114" y="41.215878" href="#tz_fig_multiplicador_g3-97"></use>
+<use x="69.149805" y="41.215878" href="#tz_fig_multiplicador_g3-100"></use>
+<use x="74.269461" y="41.215878" href="#tz_fig_multiplicador_g3-111"></use>
+<use x="78.877152" y="41.215878" href="#tz_fig_multiplicador_g3-115"></use>
+<use x="82.512115" y="41.215878" href="#tz_fig_multiplicador_g3-58"></use>
+<use x="-19.241717" y="57.525354" href="#tz_fig_multiplicador_g3-49"></use>
+<use x="-14.634026" y="57.525354" href="#tz_fig_multiplicador_g2-58"></use>
+<use x="-12.074198" y="57.525354" href="#tz_fig_multiplicador_g3-48"></use>
+<use x="-7.466507" y="57.525354" href="#tz_fig_multiplicador_g3-48"></use>
+<use x="-2.858817" y="57.525354" href="#tz_fig_multiplicador_g3-48"></use>
+<use x="3.796736" y="57.525354" href="#tz_fig_multiplicador_g1-2"></use>
+<use x="20.095236" y="51.726451" href="#tz_fig_multiplicador_g3-49"></use>
+</g>
+<rect x="14.207631" y="55.094467" height=".378585" width="16.3829" fill="#d7433b"></rect>
+<g fill="#d7433b">
+<use x="14.207631" y="63.606553" href="#tz_fig_multiplicador_g3-48"></use>
+<use x="18.815322" y="63.606553" href="#tz_fig_multiplicador_g2-59"></use>
+<use x="21.37515" y="63.606553" href="#tz_fig_multiplicador_g3-50"></use>
+<use x="25.982841" y="63.606553" href="#tz_fig_multiplicador_g3-48"></use>
+<use x="34.345873" y="57.525354" href="#tz_fig_multiplicador_g3-61"></use>
+<use x="44.07322" y="57.525354" href="#tz_fig_multiplicador_g0-82"></use>
+<use x="52.023891" y="57.525354" href="#tz_fig_multiplicador_g3-36"></use>
+<use x="58.167479" y="57.525354" href="#tz_fig_multiplicador_g0-53"></use>
+<use x="63.472521" y="57.525354" href="#tz_fig_multiplicador_g2-58"></use>
+<use x="66.032349" y="57.525354" href="#tz_fig_multiplicador_g0-48"></use>
+<use x="71.337391" y="57.525354" href="#tz_fig_multiplicador_g0-48"></use>
+<use x="76.642433" y="57.525354" href="#tz_fig_multiplicador_g0-48"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-multiplicador-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;53.1: A cascata da criação de moeda: cada empréstimo é gasto e redepositado, virando base para um novo empréstimo, sempre menor. A soma converge para um múltiplo do depósito inicial.
+</figcaption>
+</figure>
+</div>
+<p>Acompanhe a lógica da <a href="#fig-multiplicador" class="quarto-xref">Figura&nbsp;<span>53.1</span></a>:</p>
+<ol type="1">
+<li>O <strong>Banco A</strong> recebe R$,1.000 de depósito. Retém R$,200 (20%) e empresta R$,800.</li>
+<li>Quem tomou os R$,800 os gasta; o vendedor deposita esse valor no <strong>Banco B</strong>. Agora há <strong>R$,1.800</strong> em depósitos no sistema, embora só existam R$,1.000 de papel-moeda.</li>
+<li>O Banco B retém R$,160 e empresta R$,640, que viram depósito no <strong>Banco C</strong>. E assim por diante.</li>
+</ol>
+<p>Somando todos os depósitos criados ao longo da cascata:</p>
+<p><span class="math display">\[
+D = 1.000 + 800 + 640 + \dots = 1.000\,(1 + 0{,}8 + 0{,}8^2 + \dots) = 1.000 \cdot \frac{1}{1-0{,}8} = 1.000 \cdot \frac{1}{0{,}2}.
+\]</span></p>
+<p>O resultado é <strong>R$,5.000</strong> em depósitos, a partir de R$,1.000 iniciais. O sistema bancário multiplicou por cinco a moeda.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — nenhum banco 'sozinho' cria moeda do nada">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — nenhum banco ‘sozinho’ cria moeda do nada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um banco individual empresta apenas o que tem em excesso de reservas — ele não se sente criando moeda. A criação é uma propriedade do <strong>sistema como um todo</strong>: é o redepósito sucessivo dos empréstimos em <em>outros</em> bancos que multiplica os meios de pagamento. Cada banco faz algo modesto; o conjunto faz algo notável.</p>
+</div>
+</div>
+</section>
+<section id="o-multiplicador-monetário" class="level2" data-number="53.4">
+<h2 data-number="53.4" class="anchored" data-anchor-id="o-multiplicador-monetário"><span class="header-section-number">53.4</span> O multiplicador monetário</h2>
+<p>A soma da progressão geométrica acima define o <strong>multiplicador dos depósitos</strong> em sua forma mais simples. Se a taxa de reservas é <span class="math inline">\(r\)</span>, cada real de reserva sustenta <span class="math inline">\(1/r\)</span> reais de depósito:</p>
+<p><span id="eq-multiplicador-simples"><span class="math display">\[
+m_D = \frac{1}{r}.
+\tag{53.1}\]</span></span></p>
+<p>Com <span class="math inline">\(r = 20\%\)</span>, <span class="math inline">\(m_D = 1/0{,}2 = 5\)</span>. Quanto <strong>menor</strong> a taxa de reservas, <strong>maior</strong> o multiplicador — mais moeda o sistema cria por real de reserva. Se os bancos retivessem 100% (<span class="math inline">\(r=1\)</span>), o multiplicador seria 1 e não haveria criação alguma (é a proposta do <em>full-reserve banking</em>).</p>
+<section id="um-multiplicador-mais-realista" class="level3" data-number="53.4.1">
+<h3 data-number="53.4.1" class="anchored" data-anchor-id="um-multiplicador-mais-realista"><span class="header-section-number">53.4.1</span> Um multiplicador mais realista</h3>
+<p>A fórmula simples supõe que todo empréstimo volta integralmente como depósito e que os bancos só retêm o compulsório. Na realidade, há dois “vazamentos”:</p>
+<ul>
+<li>o público retém parte da moeda em <strong>espécie</strong> (não deposita tudo) — chame de <span class="math inline">\(c\)</span> a razão papel-moeda/depósitos desejada;</li>
+<li>os bancos mantêm reservas <strong>além</strong> do exigido (encaixe voluntário, por precaução).</li>
+</ul>
+<p>Definindo a <strong>base monetária</strong> <span class="math inline">\(B\)</span> (papel-moeda em poder do público mais reservas bancárias) e os <strong>meios de pagamento</strong> <span class="math inline">\(M1\)</span>, a relação entre eles é dada pelo <strong>multiplicador monetário</strong>:</p>
+<p><span id="eq-multiplicador"><span class="math display">\[
+M1 = m \cdot B, \qquad m = \frac{1 + c}{r + c},
+\tag{53.2}\]</span></span></p>
+<p>onde <span class="math inline">\(c\)</span> é a razão papel-moeda/depósitos e <span class="math inline">\(r\)</span> a razão reservas/depósitos. Como <span class="math inline">\(r &lt; 1\)</span>, temos <span class="math inline">\(m &gt; 1\)</span>: a base monetária é “alavancada” em meios de pagamento. Note que <span class="math inline">\(m\)</span> <strong>cai</strong> quando o público retém mais espécie (<span class="math inline">\(c\)</span> maior) ou quando os bancos guardam mais reservas (<span class="math inline">\(r\)</span> maior) — dois fenômenos típicos de crises de confiança, quando a criação de moeda se contrai.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Base monetária e multiplicador">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Base monetária e multiplicador
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>base monetária</strong> <span class="math inline">\(B\)</span> (ou moeda de alto poder de expansão) é o passivo monetário do Banco Central: papel-moeda em poder do público + reservas bancárias. Os <strong>meios de pagamento</strong> <span class="math inline">\(M1\)</span> resultam de multiplicá-la pelo <strong>multiplicador monetário</strong> <span class="math inline">\(m\)</span>: <span class="math inline">\(M1 = m \cdot B\)</span>. O Banco Central controla <span class="math inline">\(B\)</span> diretamente e influencia <span class="math inline">\(m\)</span> (via compulsório e juros).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — por que se chama moeda de 'alto poder de expansão'">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — por que se chama moeda de ‘alto poder de expansão’
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cada real de base monetária pode sustentar vários reais de meios de pagamento. Por isso a base é chamada de <em>high-powered money</em>: um pequeno controle sobre <span class="math inline">\(B\)</span> se propaga, amplificado por <span class="math inline">\(m\)</span>, sobre toda a oferta de moeda. É a alavanca por onde o Banco Central atua — tema do próximo capítulo.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="o-que-limita-a-criação-de-moeda" class="level2" data-number="53.5">
+<h2 data-number="53.5" class="anchored" data-anchor-id="o-que-limita-a-criação-de-moeda"><span class="header-section-number">53.5</span> O que limita a criação de moeda</h2>
+<p>Se emprestar cria moeda e gera <em>spread</em>, o que impede os bancos de emprestar sem parar? Quatro freios operam simultaneamente:</p>
+<ol type="1">
+<li><strong>Reservas compulsórias</strong> — o Banco Central exige que uma fração mínima dos depósitos fique recolhida junto a ele, sem ser emprestada. Elevar o compulsório reduz <span class="math inline">\(m\)</span> e freia a criação de moeda.</li>
+<li><strong>Encaixe voluntário e liquidez</strong> — o banco precisa honrar saques e transferências diários; emprestar demais o expõe ao risco de faltar reserva e ter de tomar recursos caros no mercado.</li>
+<li><strong>Retenção de papel-moeda pelo público</strong> — cada real que fica na carteira das pessoas, em vez de depositado, não realimenta a cascata (o termo <span class="math inline">\(c\)</span> na <a href="#eq-multiplicador" class="quarto-xref">Equação&nbsp;<span>53.2</span></a>).</li>
+<li><strong>Demanda por crédito e capital</strong> — bancos só criam moeda quando há tomadores dispostos e capazes de pagar, e quando têm <strong>capital</strong> suficiente para suportar os riscos (regras de Basileia, ver <a href="cap07-crises-bancarias-regulacao.html" class="quarto-xref"><span>Capítulo 58</span></a>).</li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — moeda exógena ou endógena?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — moeda exógena ou endógena?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O modelo do multiplicador sugere que o Banco Central fixa a base <span class="math inline">\(B\)</span> e a moeda resulta multiplicando-a — a moeda seria <strong>exógena</strong>, comandada de cima. A visão <strong>pós-keynesiana</strong> inverte a causalidade: na prática, os bancos primeiro concedem crédito conforme a demanda solvável e <em>depois</em> buscam as reservas de que precisam, que o Banco Central acaba fornecendo para manter a taxa de juros na meta. Nessa leitura, a moeda é <strong>endógena</strong> — determinada pela demanda por crédito, não por uma base fixada de antemão. Bancos centrais modernos, que operam fixando a <strong>taxa de juros</strong> (e não a quantidade de moeda), dão razão prática a boa parte dessa crítica: a quantidade de reservas se ajusta à meta de juros. O multiplicador continua útil como contabilidade, mas menos como teoria de controle.</p>
+</div>
+</div>
+</section>
+<section id="base-monetária-meios-de-pagamento-um-exemplo-numérico" class="level2" data-number="53.6">
+<h2 data-number="53.6" class="anchored" data-anchor-id="base-monetária-meios-de-pagamento-um-exemplo-numérico"><span class="header-section-number">53.6</span> Base monetária × meios de pagamento: um exemplo numérico</h2>
+<p>Suponha uma economia com base monetária <span class="math inline">\(B = 200\)</span> bilhões, razão reservas/depósitos <span class="math inline">\(r = 0{,}15\)</span> e razão papel-moeda/depósitos <span class="math inline">\(c = 0{,}25\)</span>. O multiplicador é:</p>
+<p><span class="math display">\[
+m = \frac{1 + c}{r + c} = \frac{1 + 0{,}25}{0{,}15 + 0{,}25} = \frac{1{,}25}{0{,}40} = 3{,}125.
+\]</span></p>
+<p>Logo, os meios de pagamento são <span class="math inline">\(M1 = m \cdot B = 3{,}125 \times 200 = 625\)</span> bilhões. Se o Banco Central elevar o compulsório, aumentando <span class="math inline">\(r\)</span> para <span class="math inline">\(0{,}25\)</span>, o multiplicador cai para <span class="math inline">\(m = 1{,}25/0{,}50 = 2{,}5\)</span>, e <span class="math inline">\(M1\)</span> encolhe para <span class="math inline">\(500\)</span> bilhões — sem tocar em <span class="math inline">\(B\)</span>. Eis, em miniatura, como a política de compulsório atua sobre a oferta de moeda.</p>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="53.7">
+<h2 data-number="53.7" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">53.7</span> 🇧🇷 Brasil em Foco</h2>
+<p><strong>O compulsório como instrumento — e o peso histórico no Brasil.</strong> O Brasil é conhecido por usar <strong>recolhimentos compulsórios</strong> elevados em comparação internacional. Historicamente, sobre depósitos à vista o compulsório já esteve em patamares altos (chegando à casa de 40%–45% em certos períodos), e há também recolhimentos sobre poupança e depósitos a prazo. O Banco Central utiliza esse instrumento tanto para fins de política monetária (enxugar ou liberar liquidez) quanto prudenciais. Em momentos de estresse — como no início da pandemia, em 2020 —, o BCB <strong>reduziu</strong> compulsórios para liberar centenas de bilhões de reais em liquidez ao sistema, elevando <span class="math inline">\(m\)</span> e sustentando o crédito. É a <a href="#eq-multiplicador" class="quarto-xref">Equação&nbsp;<span>53.2</span></a> operando na prática.</p>
+<p><strong>Um sistema bancário concentrado.</strong> A criação de moeda no Brasil se dá num sistema fortemente <strong>concentrado</strong>: um punhado de grandes bancos (dois deles públicos — Banco do Brasil e Caixa — e alguns privados) responde pela maior parte dos depósitos e do crédito. Essa concentração tem implicações para o <em>spread</em> bancário — a diferença entre o juro que o banco cobra do tomador e o que paga ao depositante —, historicamente <strong>um dos mais altos do mundo</strong>, tema que o <a href="cap05-taxa-de-juros-selic.html" class="quarto-xref"><span>Capítulo 56</span></a> retoma. Nos últimos anos, a entrada de <strong>bancos digitais e fintechs</strong>, impulsionada pelo Pix e pelo <em>open finance</em>, começou a acirrar a concorrência na ponta dos serviços.</p>
+<p><strong>Do “dinheiro na conta” ao Pix: moeda escritural em estado puro.</strong> Quando você recebe o salário, o valor não chega em cédulas: é um <strong>depósito</strong> criado no seu nome — moeda escritural. Ao pagar o aluguel por Pix, esse depósito é transferido para outra conta, sem que uma única nota mude de mãos. O Pix tornou visível, para o cidadão comum, aquilo que sempre foi verdade no sistema de reservas fracionárias: a maior parte da moeda em uso são <strong>saldos em contas de banco</strong>, não papel — e os bancos os movimentam liquidando posições em <strong>reservas</strong> junto ao Banco Central.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> Banco Central do Brasil — SGS (base monetária, meios de pagamento, multiplicador); normas de recolhimento compulsório no site do BCB; Relatório de Economia Bancária (spread e concentração). Compulsórios e concentração mudam com o tempo — confira a data de referência.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="53.8">
+<h2 data-number="53.8" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">53.8</span> Resumo do capítulo</h2>
+<ul>
+<li>Bancos comerciais são <strong>intermediários</strong> que captam depósitos e concedem empréstimos, mas, ao fazê-lo, <strong>criam moeda</strong> escritural: um empréstimo é um depósito novo lançado na conta do tomador.</li>
+<li>No sistema de <strong>reservas fracionárias</strong>, o banco retém só uma fração <span class="math inline">\(r\)</span> dos depósitos e empresta o resto; o redepósito sucessivo dos empréstimos em outros bancos multiplica os meios de pagamento.</li>
+<li>O <strong>multiplicador simples</strong> é <span class="math inline">\(m_D = 1/r\)</span>; o <strong>multiplicador monetário</strong> realista, <span class="math inline">\(m = (1+c)/(r+c)\)</span>, incorpora a retenção de papel-moeda (<span class="math inline">\(c\)</span>) e as reservas (<span class="math inline">\(r\)</span>). Meios de pagamento são <span class="math inline">\(M1 = m \cdot B\)</span>.</li>
+<li>A criação de moeda é limitada por <strong>reservas compulsórias</strong>, encaixe voluntário, retenção de espécie pelo público, demanda por crédito e exigências de <strong>capital</strong>.</li>
+<li>A <strong>base monetária</strong> é o passivo monetário do Banco Central (papel-moeda + reservas) — a “moeda de alto poder de expansão” sobre a qual a autoridade atua.</li>
+<li>Há debate entre a visão de moeda <strong>exógena</strong> (multiplicador) e <strong>endógena</strong> (crédito puxa reservas); bancos centrais que fixam a <strong>taxa de juros</strong> dão respaldo prático à segunda.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="53.9">
+<h2 data-number="53.9" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">53.9</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.</p>
+</div>
+</div>
+<p><strong>1.</strong> No balanço de um banco, classifique como <strong>ativo</strong> ou <strong>passivo</strong>: (a) depósitos à vista dos clientes; (b) empréstimos concedidos; (c) reservas no Banco Central. Explique.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><strong>Passivo</strong> — o banco deve esse dinheiro aos depositantes.</li>
+<li><strong>Ativo</strong> — o banco tem o direito de receber esses valores (com juros).</li>
+<li><strong>Ativo</strong> — são recursos do banco depositados no BC, que ele pode mobilizar.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Explique, em uma frase, por que um único banco “não sente” que está criando moeda, mas o sistema cria.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Cada banco apenas empresta o excesso de reservas que tem — algo modesto e limitado —, mas como esse empréstimo vira depósito em <em>outro</em> banco, que por sua vez empresta de novo, o redepósito sucessivo pelo sistema como um todo multiplica os meios de pagamento.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> A taxa de reservas é <span class="math inline">\(r = 25\%\)</span>. Calcule o multiplicador simples dos depósitos e o total de depósitos gerados por uma injeção inicial de R$,2.000.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(m_D = 1/r = 1/0{,}25 = 4\)</span>. Depósitos totais <span class="math inline">\(= 2.000 \times 4 = \mathbf{R\$\,8.000}\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Mantendo a injeção de R$,2.000, o Banco Central eleva o compulsório e <span class="math inline">\(r\)</span> passa de 25% para 40%. Qual o novo multiplicador e o novo total de depósitos? O que isso ilustra?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(m_D = 1/0{,}40 = 2{,}5\)</span>. Depósitos totais <span class="math inline">\(= 2.000 \times 2{,}5 = R\$\,5.000\)</span>. Elevar o compulsório <strong>reduz</strong> o multiplicador e, portanto, a criação de moeda — é assim que o compulsório funciona como instrumento contracionista.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Numa economia, <span class="math inline">\(B = 150\)</span> bilhões, <span class="math inline">\(r = 0{,}20\)</span> e <span class="math inline">\(c = 0{,}30\)</span>. Calcule o multiplicador monetário e os meios de pagamento <span class="math inline">\(M1\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(m = \dfrac{1 + c}{r + c} = \dfrac{1{,}30}{0{,}50} = 2{,}6\)</span>. Logo <span class="math inline">\(M1 = m \cdot B = 2{,}6 \times 150 = \mathbf{390}\)</span> bilhões.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> No exercício anterior, uma crise de confiança faz o público reter mais espécie: <span class="math inline">\(c\)</span> sobe de 0,30 para 0,50, e os bancos, cautelosos, elevam o encaixe: <span class="math inline">\(r\)</span> vai de 0,20 para 0,30. Recalcule <span class="math inline">\(m\)</span> e <span class="math inline">\(M1\)</span> (com <span class="math inline">\(B\)</span> constante). Interprete.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(m = \dfrac{1 + 0{,}50}{0{,}30 + 0{,}50} = \dfrac{1{,}50}{0{,}80} = 1{,}875\)</span>. <span class="math inline">\(M1 = 1{,}875 \times 150 = \mathbf{281{,}25}\)</span> bilhões. Mesmo com a base <span class="math inline">\(B\)</span> inalterada, os meios de pagamento <strong>encolhem</strong> de 390 para ~281 bilhões: a fuga para o papel-moeda e o entesouramento de reservas contraem a moeda. É o mecanismo que agravou a Grande Depressão — uma corrida bancária derruba <span class="math inline">\(m\)</span> e a oferta de moeda despenca sem que o BC “faça” nada.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) No início da pandemia (2020), o Banco Central do Brasil reduziu os recolhimentos compulsórios. Usando o multiplicador, explique o objetivo e o efeito esperado sobre a oferta de moeda e o crédito.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Reduzir o compulsório diminui <span class="math inline">\(r\)</span>, o que <strong>eleva</strong> o multiplicador <span class="math inline">\(m = (1+c)/(r+c)\)</span>. Com a mesma base monetária, um <span class="math inline">\(m\)</span> maior permite mais depósitos e empréstimos: o objetivo era liberar liquidez ao sistema bancário e sustentar a oferta de crédito num momento de forte incerteza, em que bancos e público tendiam a reter recursos (elevando <span class="math inline">\(r\)</span> e <span class="math inline">\(c\)</span> por precaução, o que contrairia a moeda). Foi uma medida expansionista pelo lado do multiplicador, complementando cortes de juros.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) Explique a diferença entre as visões de moeda <strong>exógena</strong> e <strong>endógena</strong> e por que o fato de os bancos centrais modernos fixarem a <em>taxa de juros</em> (e não a quantidade de moeda) favorece a segunda.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Na visão <strong>exógena</strong> (multiplicador), o BC fixa a base <span class="math inline">\(B\)</span> e a moeda é <span class="math inline">\(m \cdot B\)</span>: a causalidade vai da base para o crédito. Na visão <strong>endógena</strong> (pós-keynesiana), os bancos concedem crédito conforme a demanda solvável e depois obtêm as reservas necessárias, que o BC fornece. Como os bancos centrais modernos operam definindo uma <strong>meta de taxa de juros</strong>, eles se comprometem a ofertar ou enxugar reservas na quantidade necessária para manter essa taxa — ou seja, a quantidade de reservas (e da base) <strong>se ajusta</strong> ao crédito e à meta de juros, em vez de ser fixada de forma independente. Isso dá respaldo prático à endogeneidade: na margem, é o crédito que “puxa” as reservas, não o contrário. O multiplicador segue válido como identidade contábil, mas não como mecanismo de controle direto da moeda.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="53.10">
+<h2 data-number="53.10" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">53.10</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="mishkin2000">Mishkin (<a href="#ref-mishkin2000" role="doc-biblioref">2000</a>)</span> — capítulos sobre o processo de criação de depósitos e o multiplicador monetário, com balanços em T detalhados.</li>
+<li><span class="citation" data-cites="carvalho2015">Carvalho et al. (<a href="#ref-carvalho2015" role="doc-biblioref">2015</a>)</span> — apresenta com profundidade a controvérsia entre moeda exógena e endógena e a visão de moeda endógena aplicada ao Brasil.</li>
+<li><span class="citation" data-cites="lopes2005">Lopes; Rossetti (<a href="#ref-lopes2005" role="doc-biblioref">2005</a>)</span> — tratamento clássico do multiplicador e dos recolhimentos compulsórios no sistema brasileiro.</li>
+<li><span class="citation" data-cites="blanchard2017">Blanchard (<a href="#ref-blanchard2017" role="doc-biblioref">2017</a>)</span> — o capítulo sobre moeda e bancos integra a criação de moeda ao restante da macroeconomia.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-blanchard2017" class="csl-entry" role="listitem">
+BLANCHARD, Olivier. <strong>Macroeconomia</strong>. 7. ed. São Paulo: Pearson, 2017.
+</div>
+<div id="ref-carvalho2015" class="csl-entry" role="listitem">
+CARVALHO, Fernando J. Cardim de <em>et al.</em> <strong>Economia Monetária e Financeira: Teoria e Política</strong>. 3. ed. Rio de Janeiro: Elsevier, 2015.
+</div>
+<div id="ref-lopes2005" class="csl-entry" role="listitem">
+LOPES, João do Carmo; ROSSETTI, José Paschoal. <strong>Economia Monetária</strong>. 9. ed. São Paulo: Atlas, 2005.
+</div>
+<div id="ref-mishkin2000" class="csl-entry" role="listitem">
+MISHKIN, Frederic S. <strong>Moedas, Bancos e Mercados Financeiros</strong>. 5. ed. Rio de Janeiro: LTC, 2000.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol08/cap01-moeda.html" class="pagination-link" aria-label="Moeda: funções, história e agregados monetários">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol08/cap03-banco-central.html" class="pagination-link" aria-label="O Banco Central: funções e instrumentos">
+        <span class="nav-page-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol08/cap02-bancos-criacao-de-moeda.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

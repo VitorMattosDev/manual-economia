@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>30&nbsp; Teoria da produção: fatores, produto marginal e retornos – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol05/cap02-custos.html" rel="next">
+<link href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol05/cap01-teoria-da-producao.html">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol05/cap01-teoria-da-producao.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">30.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#a-função-de-produção" id="toc-a-função-de-produção" class="nav-link" data-scroll-target="#a-função-de-produção"><span class="header-section-number">30.2</span> A função de produção</a></li>
+  <li><a href="#curto-prazo-e-longo-prazo" id="toc-curto-prazo-e-longo-prazo" class="nav-link" data-scroll-target="#curto-prazo-e-longo-prazo"><span class="header-section-number">30.3</span> Curto prazo e longo prazo</a></li>
+  <li><a href="#produto-total-médio-e-marginal" id="toc-produto-total-médio-e-marginal" class="nav-link" data-scroll-target="#produto-total-médio-e-marginal"><span class="header-section-number">30.4</span> Produto total, médio e marginal</a>
+  <ul class="collapse">
+  <li><a href="#a-lei-dos-rendimentos-marginais-decrescentes" id="toc-a-lei-dos-rendimentos-marginais-decrescentes" class="nav-link" data-scroll-target="#a-lei-dos-rendimentos-marginais-decrescentes"><span class="header-section-number">30.4.1</span> A lei dos rendimentos marginais decrescentes</a></li>
+  </ul></li>
+  <li><a href="#produção-com-dois-fatores-variáveis-isoquantas" id="toc-produção-com-dois-fatores-variáveis-isoquantas" class="nav-link" data-scroll-target="#produção-com-dois-fatores-variáveis-isoquantas"><span class="header-section-number">30.5</span> Produção com dois fatores variáveis: isoquantas</a></li>
+  <li><a href="#retornos-de-escala" id="toc-retornos-de-escala" class="nav-link" data-scroll-target="#retornos-de-escala"><span class="header-section-number">30.6</span> Retornos de escala</a>
+  <ul class="collapse">
+  <li><a href="#a-função-cobb-douglas" id="toc-a-função-cobb-douglas" class="nav-link" data-scroll-target="#a-função-cobb-douglas"><span class="header-section-number">30.6.1</span> A função Cobb-Douglas</a></li>
+  </ul></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">30.7</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">30.8</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">30.9</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">30.10</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol05/cap01-teoria-da-producao.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol05/cap01-teoria-da-producao.html">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol05/cap01-teoria-da-producao.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-teoria-da-producao" class="quarto-section-identifier"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Toda vez que você toma um café, alguém teve de combinar coisas para produzi-lo: grãos, uma máquina, energia elétrica, o trabalho de um barista e o galpão do torrefador. Uma padaria transforma farinha, fermento, um forno e horas de trabalho em pães; uma montadora transforma aço, robôs e operários em carros; um escritório de contabilidade transforma computadores, software e horas de analistas em declarações de imposto. Em todos os casos há uma mesma estrutura: <strong>insumos entram, produto sai</strong>. A teoria da produção é o estudo sistemático dessa transformação — de como a quantidade produzida responde à quantidade de fatores empregados.</p>
+<p>Nos volumes anteriores, olhamos o mercado pelo lado do consumidor: preferências, orçamento, demanda. Agora viramos para o outro lado do balcão. Antes de entender como uma firma decide <em>quanto</em> produzir e a <em>que preço</em> vender — o tema das estruturas de mercado que dominam este volume —, precisamos entender a tecnologia com que ela produz. Este capítulo constrói a <strong>função de produção</strong>, distingue o <strong>curto</strong> do <strong>longo prazo</strong>, e apresenta as três ideias que governam quase tudo o que vem depois: o <strong>produto marginal decrescente</strong>, a <strong>taxa marginal de substituição técnica</strong> e os <strong>retornos de escala</strong>.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="30.1">
+<h2 data-number="30.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">30.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>definir a <strong>função de produção</strong> e distinguir <strong>curto</strong> de <strong>longo prazo</strong> pela fixidez dos fatores;</li>
+<li>calcular e interpretar o <strong>produto total</strong>, o <strong>produto médio</strong> e o <strong>produto marginal</strong> de um fator;</li>
+<li>enunciar e explicar a <strong>lei dos rendimentos marginais decrescentes</strong>;</li>
+<li>representar a tecnologia de dois fatores por <strong>isoquantas</strong> e medir a <strong>taxa marginal de substituição técnica (TMST)</strong>;</li>
+<li>distinguir <strong>retornos de escala</strong> crescentes, constantes e decrescentes, e reconhecê-los na função <strong>Cobb-Douglas</strong>;</li>
+<li>relacionar a produtividade dos fatores ao debate brasileiro sobre produtividade e crescimento.</li>
+</ul>
+</section>
+<section id="a-função-de-produção" class="level2" data-number="30.2">
+<h2 data-number="30.2" class="anchored" data-anchor-id="a-função-de-produção"><span class="header-section-number">30.2</span> A função de produção</h2>
+<p>Uma firma é, para a teoria econômica, um mecanismo que converte <strong>fatores de produção</strong> (insumos) em <strong>produto</strong> (bens ou serviços). A relação técnica entre a quantidade máxima de produto e as quantidades de insumos empregadas é a função de produção.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Função de produção">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Função de produção
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>função de produção</strong> indica a quantidade <strong>máxima</strong> de produto <span class="math inline">\(q\)</span> que se pode obter de cada combinação de fatores, dada a tecnologia disponível. Com dois fatores — trabalho <span class="math inline">\(L\)</span> e capital <span class="math inline">\(K\)</span> —, escrevemos <span class="math display">\[
+q = f(L, K).
+\]</span></p>
+</div>
+</div>
+<p>Dois detalhes na palavra “máxima”. Primeiro, a função de produção supõe <strong>eficiência técnica</strong>: nenhum insumo é desperdiçado. Uma firma que produz menos do que <span class="math inline">\(f(L,K)\)</span> com os mesmos fatores está sendo tecnicamente ineficiente — isso é possível na prática, mas não é o que a função descreve. Segundo, a função incorpora uma <strong>tecnologia dada</strong>: uma inovação que permita produzir mais com os mesmos insumos <em>desloca</em> a função de produção para cima. Voltaremos a isso no Brasil em Foco.</p>
+<p>Chamamos os dois fatores de <strong>trabalho</strong> (<span class="math inline">\(L\)</span>, de <em>labour</em>) e <strong>capital</strong> (<span class="math inline">\(K\)</span>), seguindo a convenção. Trabalho são as horas humanas empregadas; capital são as máquinas, equipamentos e instalações — lembrando, do <a href="../vol01/cap01-o-que-e-economia.html" class="quarto-xref"><span>Capítulo 1</span></a>, que “capital” em Economia é o conjunto de bens que produzem outros bens, não dinheiro.</p>
+</section>
+<section id="curto-prazo-e-longo-prazo" class="level2" data-number="30.3">
+<h2 data-number="30.3" class="anchored" data-anchor-id="curto-prazo-e-longo-prazo"><span class="header-section-number">30.3</span> Curto prazo e longo prazo</h2>
+<p>A distinção mais importante da teoria da produção não é uma medida de tempo no calendário, mas de <strong>flexibilidade</strong>: quantos fatores a firma consegue ajustar.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Curto e longo prazo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Curto e longo prazo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <strong>curto prazo</strong> é o período em que ao menos um fator é <strong>fixo</strong> — não pode ser alterado. O <strong>longo prazo</strong> é o período em que <strong>todos</strong> os fatores são variáveis, inclusive o tamanho da planta e o estoque de capital.</p>
+</div>
+</div>
+<p>Uma pizzaria pode contratar mais um pizzaiolo para o fim de semana (trabalho é variável já no curto prazo), mas construir um segundo forno e alugar um salão maior leva meses (capital é fixo no curto prazo). No <strong>curto prazo</strong>, portanto, a firma ajusta a produção variando o trabalho sobre uma planta de tamanho fixo. No <strong>longo prazo</strong>, ela escolhe também o tamanho da planta.</p>
+<p>Note que “longo prazo” não é uma data: para uma barraca de pastel, ampliar a estrutura leva dias; para uma usina hidrelétrica, anos. O que define o curto prazo é a existência de um fator que a firma <em>ainda</em> não consegue mexer.</p>
+<p>Analisaremos primeiro o curto prazo — trabalho variável, capital fixo em <span class="math inline">\(\bar{K}\)</span> —, porque é dele que emerge a lei mais famosa da produção.</p>
+</section>
+<section id="produto-total-médio-e-marginal" class="level2" data-number="30.4">
+<h2 data-number="30.4" class="anchored" data-anchor-id="produto-total-médio-e-marginal"><span class="header-section-number">30.4</span> Produto total, médio e marginal</h2>
+<p>Fixado o capital em <span class="math inline">\(\bar{K}\)</span>, a produção depende só do trabalho: <span class="math inline">\(q = f(L, \bar{K})\)</span>. Dessa função extraímos três medidas.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Produto total, médio e marginal">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Produto total, médio e marginal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>O <strong>produto total</strong> <span class="math inline">\(PT\)</span> é a quantidade produzida: <span class="math inline">\(PT = f(L, \bar{K})\)</span>.</li>
+<li>O <strong>produto médio do trabalho</strong> é a produção por trabalhador: <span class="math inline">\(PMe_L = \dfrac{PT}{L}\)</span>.</li>
+<li>O <strong>produto marginal do trabalho</strong> é o acréscimo de produto gerado por <strong>uma unidade a mais</strong> de trabalho: <span class="math display">\[
+PMg_L = \frac{\Delta PT}{\Delta L} = \frac{\partial f}{\partial L}.
+\]</span></li>
+</ul>
+</div>
+</div>
+<p>Um exemplo concreto fixa as ideias. A <a href="#tbl-produto" class="quarto-xref">Tabela&nbsp;<span>30.1</span></a> mostra uma marcenaria com uma quantidade fixa de máquinas (<span class="math inline">\(\bar{K}\)</span>) e um número crescente de marceneiros.</p>
+<div id="tbl-produto" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-produto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;30.1: Produto total, médio e marginal numa marcenaria com capital fixo.
+</figcaption>
+<div aria-describedby="tbl-produto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Trabalho <span class="math inline">\(L\)</span></th>
+<th style="text-align: center;">Produto total <span class="math inline">\(PT\)</span></th>
+<th style="text-align: center;">Produto médio <span class="math inline">\(PMe\)</span></th>
+<th style="text-align: center;">Produto marginal <span class="math inline">\(PMg\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">14</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">52</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">63</td>
+<td style="text-align: center;">10,5</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">63</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">7,5</td>
+<td style="text-align: center;">−3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Leia a coluna do produto marginal de cima para baixo e você verá a história de quase toda produção de curto prazo. No começo, adicionar trabalhadores <em>aumenta</em> o produto marginal: com poucos marceneiros e várias máquinas, um a mais permite divisão de tarefas e especialização — é a fase dos <strong>rendimentos marginais crescentes</strong>. A partir de certo ponto (aqui, o quarto trabalhador), o produto marginal começa a <strong>cair</strong>: as máquinas ficam disputadas, o espaço aperta, cada novo par de mãos acrescenta menos. É a fase dos <strong>rendimentos marginais decrescentes</strong>. Por fim, com trabalhadores demais para o mesmo capital, um a mais chega a <em>atrapalhar</em>, e o produto marginal fica negativo (o oitavo trabalhador).</p>
+<section id="a-lei-dos-rendimentos-marginais-decrescentes" class="level3" data-number="30.4.1">
+<h3 data-number="30.4.1" class="anchored" data-anchor-id="a-lei-dos-rendimentos-marginais-decrescentes"><span class="header-section-number">30.4.1</span> A lei dos rendimentos marginais decrescentes</h3>
+<p>Essa segunda fase é tão geral que recebe o nome de lei.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Lei dos rendimentos marginais decrescentes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Lei dos rendimentos marginais decrescentes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mantidos fixos os demais fatores, a partir de certo ponto o <strong>produto marginal</strong> de um fator variável <strong>decresce</strong> à medida que se emprega mais desse fator.</p>
+</div>
+</div>
+<p>A palavra-chave é <em>mantidos fixos os demais fatores</em>. A produtividade do trabalho cai não porque os trabalhadores fiquem piores, mas porque cada um dispõe de <strong>menos capital</strong> para trabalhar — as mesmas máquinas repartidas entre mais gente. É um fenômeno de <strong>curto prazo</strong>, indissociável da existência de um fator fixo. Se pudéssemos aumentar o capital junto (longo prazo), a lógica seria outra — a dos retornos de escala, adiante.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — decrescente não é negativo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — decrescente não é negativo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>“Rendimentos decrescentes” significa que cada unidade extra rende <strong>menos que a anterior</strong>, não que a produção caia. Enquanto o produto marginal for positivo (mesmo que decrescente), o produto <strong>total</strong> ainda cresce — só que cada vez mais devagar. A produção total só cai quando o produto marginal fica <em>negativo</em>.</p>
+</div>
+</div>
+<p>A <a href="#fig-produto" class="quarto-xref">Figura&nbsp;<span>30.1</span></a> traduz a tabela em curvas. Note a relação geométrica entre elas, que vale para qualquer produção: enquanto o produto marginal está <strong>acima</strong> do produto médio, este sobe; quando o marginal cruza o médio, ocorre exatamente o <strong>máximo do médio</strong>; depois, com o marginal abaixo, o médio cai. É a mesma relaç­ão entre “a nota da próxima prova” e “a média do semestre”: tirar acima da média puxa a média para cima.</p>
+<div id="fig-produto" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-produto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="243.446356pt" height="246.441743pt" viewbox="-68.014948 -68.014942 243.446356 246.441743">
+<defs>
+<path id="tz_fig_produto_g0-3" d="M2.779577-.842839C2.934994-.735243 2.946949-.735243 2.988792-.735243C3.090411-.735243 3.186052-.824907 3.186052-.944458S3.096389-1.099875 3.048568-1.123786C2.743711-1.249315 2.438854-1.374844 2.12802-1.488418C2.737733-1.739477 2.905106-1.799253 3.012702-1.847073C3.102366-1.888917 3.186052-1.918804 3.186052-2.038356S3.090411-2.247572 2.988792-2.247572C2.940971-2.247572 2.905106-2.223661 2.857285-2.193773L2.008468-1.655791C2.014446-1.739477 2.038356-1.948692 2.044334-2.020423C2.056289-2.139975 2.10411-2.49863 2.10411-2.600249S2.014446-2.779577 1.906849-2.779577C1.80523-2.779577 1.709589-2.701868 1.709589-2.600249C1.709589-2.588294 1.763387-2.050311 1.769365-2.026401C1.775342-1.960648 1.799253-1.733499 1.80523-1.655791L.956413-2.193773C.908593-2.223661 .872727-2.247572 .824907-2.247572C.723288-2.247572 .627646-2.157908 .627646-2.038356S.71731-1.882939 .765131-1.859029C1.069988-1.733499 1.374844-1.60797 1.685679-1.494396C1.075965-1.243337 .908593-1.183562 .800996-1.135741C.711333-1.093898 .627646-1.06401 .627646-.944458S.723288-.735243 .824907-.735243C.872727-.735243 .974346-.800996 1.046077-.848817C1.129763-.896638 1.333001-1.028144 1.41071-1.081943C1.60797-1.207472 1.679701-1.255293 1.80523-1.327024C1.799253-1.243337 1.775342-1.034122 1.769365-.962391L1.709589-.382565C1.709589-.280946 1.80523-.203238 1.906849-.203238C2.014446-.203238 2.10411-.280946 2.10411-.382565C2.10411-.388543 2.050311-.926526 2.044334-.956413C2.038356-1.022167 2.014446-1.249315 2.008468-1.327024L2.779577-.842839Z"></path>
+<path id="tz_fig_produto_g1-76" d="M3.092403-4.821918C3.164134-5.092902 3.180075-5.180573 3.913325-5.180573C4.136488-5.180573 4.216189-5.180573 4.216189-5.332005C4.216189-5.347945 4.200249-5.443587 4.080697-5.443587C3.913325-5.443587 3.674222-5.427646 3.506849-5.419676H2.933001C2.10411-5.419676 1.912827-5.443587 1.857036-5.443587C1.825156-5.443587 1.697634-5.443587 1.697634-5.292154C1.697634-5.180573 1.801245-5.180573 1.928767-5.180573C2.191781-5.180573 2.422914-5.180573 2.422914-5.053051C2.422914-5.021171 2.414944-5.0132 2.391034-4.909589L1.323039-.629639C1.251308-.326775 1.235367-.263014 .645579-.263014C.494147-.263014 .398506-.263014 .398506-.111582C.398506 0 .502117 0 .637609 0H4.487173C4.686426 0 4.694396-.00797 4.758157-.159402C4.837858-.382565 5.419676-1.880946 5.419676-1.960648C5.419676-2.032379 5.355915-2.072229 5.300125-2.072229C5.212453-2.072229 5.196513-2.016438 5.140722-1.896887C4.853798-1.155666 4.511083-.263014 3.084433-.263014H2.072229C2.000498-.278954 1.976588-.278954 1.976588-.334745C1.976588-.398506 1.992528-.462267 2.008468-.510087L3.092403-4.821918Z"></path>
+<path id="tz_fig_produto_g1-77" d="M7.738979-4.798007C7.81868-5.108842 7.83462-5.180573 8.392528-5.180573C8.575841-5.180573 8.671482-5.180573 8.671482-5.332005C8.671482-5.443587 8.56787-5.443587 8.424408-5.443587H7.396264C7.181071-5.443587 7.157161-5.443587 7.053549-5.284184L4.048817-.73325L3.339477-5.228394C3.307597-5.427646 3.299626-5.443587 3.060523-5.443587H1.984558C1.841096-5.443587 1.737484-5.443587 1.737484-5.292154C1.737484-5.180573 1.841096-5.180573 1.968618-5.180573C2.231631-5.180573 2.462765-5.180573 2.462765-5.053051C2.462765-5.021171 2.454795-5.0132 2.430884-4.909589L1.41868-.852802C1.323039-.454296 1.115816-.278954 .581818-.263014C.533998-.263014 .438356-.255044 .438356-.111582C.438356-.063761 .478207 0 .557908 0C.589788 0 .773101-.02391 1.346949-.02391C1.976588-.02391 2.096139 0 2.16787 0C2.199751 0 2.319303 0 2.319303-.151432C2.319303-.247073 2.231631-.263014 2.175841-.263014C1.888917-.270984 1.649813-.318804 1.649813-.597758C1.649813-.637609 1.673724-.749191 1.673724-.757161L2.757659-5.084932H2.765629L3.53873-.215193C3.56264-.087671 3.57061 0 3.682192 0S3.849564-.087671 3.897385-.159402L7.173101-5.148692L7.181071-5.140722L6.057285-.629639C5.985554-.326775 5.969614-.263014 5.379826-.263014C5.228394-.263014 5.132752-.263014 5.132752-.111582C5.132752-.079701 5.156663 0 5.260274 0S5.602989-.01594 5.71457-.02391H6.224658C6.965878-.02391 7.157161 0 7.212951 0C7.260772 0 7.372354 0 7.372354-.151432C7.372354-.263014 7.268742-.263014 7.13325-.263014C7.10934-.263014 6.965878-.263014 6.830386-.278954C6.663014-.294894 6.647073-.318804 6.647073-.390535C6.647073-.430386 6.663014-.478207 6.670984-.518057L7.738979-4.798007Z"></path>
+<path id="tz_fig_produto_g1-80" d="M2.510585-2.486675H3.961146C5.108842-2.486675 6.304359-3.283686 6.304359-4.224159C6.304359-4.901619 5.66675-5.443587 4.638605-5.443587H1.952677C1.809215-5.443587 1.705604-5.443587 1.705604-5.292154C1.705604-5.180573 1.809215-5.180573 1.936737-5.180573C2.199751-5.180573 2.430884-5.180573 2.430884-5.053051C2.430884-5.021171 2.422914-5.0132 2.399004-4.909589L1.331009-.629639C1.259278-.334745 1.243337-.263014 .67746-.263014C.494147-.263014 .406476-.263014 .406476-.111582C.406476-.079701 .430386 0 .533998 0C.68543 0 .876712-.01594 1.028144-.02391H1.538232C2.303362-.02391 2.510585 0 2.566376 0C2.614197 0 2.725778 0 2.725778-.151432C2.725778-.263014 2.622167-.263014 2.486675-.263014C2.462765-.263014 2.319303-.263014 2.183811-.278954C2.016438-.294894 2.000498-.318804 2.000498-.390535C2.000498-.430386 2.016438-.478207 2.024408-.518057L2.510585-2.486675ZM3.092403-4.885679C3.164134-5.156663 3.172105-5.180573 3.498879-5.180573H4.375592C5.029141-5.180573 5.531258-4.98929 5.531258-4.399502C5.531258-4.29589 5.491407-3.58655 5.045081-3.148194C4.925529-3.028643 4.542964-2.725778 3.761893-2.725778H2.550436L3.092403-4.885679Z"></path>
+<path id="tz_fig_produto_g1-84" d="M3.602491-4.821918C3.674222-5.108842 3.682192-5.124782 4.008966-5.124782H4.614695C5.443587-5.124782 5.539228-4.861768 5.539228-4.463263C5.539228-4.26401 5.491407-3.921295 5.483437-3.881445C5.467497-3.793773 5.459527-3.722042 5.459527-3.706102C5.459527-3.602491 5.531258-3.57858 5.579078-3.57858C5.66675-3.57858 5.69863-3.626401 5.72254-3.777833L5.937733-5.276214C5.937733-5.387796 5.842092-5.387796 5.69863-5.387796H1.004234C.804981-5.387796 .789041-5.387796 .73325-5.220423L.247073-3.841594C.231133-3.801743 .207223-3.737983 .207223-3.690162C.207223-3.626401 .263014-3.57858 .326775-3.57858C.414446-3.57858 .430386-3.618431 .478207-3.753923C.932503-5.029141 1.163636-5.124782 2.375093-5.124782H2.685928C2.925031-5.124782 2.933001-5.116812 2.933001-5.053051C2.933001-5.029141 2.901121-4.869738 2.893151-4.837858L1.841096-.653549C1.769365-.350685 1.745455-.263014 .916563-.263014C.661519-.263014 .581818-.263014 .581818-.111582C.581818-.103611 .581818 0 .71731 0C.932503 0 1.482441-.02391 1.697634-.02391H2.375093C2.598257-.02391 3.156164 0 3.379328 0C3.443088 0 3.56264 0 3.56264-.151432C3.56264-.263014 3.474969-.263014 3.259776-.263014C3.068493-.263014 3.004732-.263014 2.797509-.278954C2.542466-.302864 2.510585-.334745 2.510585-.438356C2.510585-.470237 2.518555-.502117 2.542466-.581818L3.602491-4.821918Z"></path>
+<path id="tz_fig_produto_g1-101" d="M1.601993-1.817186C1.777335-1.817186 2.375093-1.825156 2.797509-1.976588C3.490909-2.215691 3.514819-2.693898 3.514819-2.81345C3.514819-3.259776 3.092403-3.514819 2.574346-3.514819C1.673724-3.514819 .390535-2.805479 .390535-1.39477C.390535-.581818 .884682 .079701 1.761395 .079701C3.004732 .079701 3.674222-.71731 3.674222-.828892C3.674222-.900623 3.594521-.956413 3.5467-.956413S3.474969-.932503 3.435118-.884682C2.805479-.143462 1.912827-.143462 1.777335-.143462C1.195517-.143462 1.020174-.637609 1.020174-1.083935C1.020174-1.323039 1.091905-1.681694 1.123786-1.817186H1.601993ZM1.187547-2.040349C1.44259-3.012702 2.16787-3.291656 2.574346-3.291656C2.893151-3.291656 3.196015-3.132254 3.196015-2.81345C3.196015-2.040349 1.888917-2.040349 1.554172-2.040349H1.187547Z"></path>
+<path id="tz_fig_produto_g1-103" d="M3.953176-2.940971C3.985056-3.060523 3.985056-3.108344 3.985056-3.116314C3.985056-3.299626 3.833624-3.363387 3.730012-3.363387C3.5467-3.363387 3.403238-3.219925 3.371357-3.052553C3.307597-3.172105 3.068493-3.514819 2.590286-3.514819C1.641843-3.514819 .605729-2.454795 .605729-1.291158C.605729-.430386 1.171606 0 1.761395 0C2.12802 0 2.454795-.199253 2.717808-.430386L2.542466 .286924C2.454795 .621669 2.399004 .852802 2.088169 1.115816C1.753425 1.40274 1.45056 1.40274 1.251308 1.40274S.860772 1.39477 .669489 1.354919C.844832 1.259278 .924533 1.091905 .924533 .956413C.924533 .765131 .781071 .661519 .613699 .661519C.414446 .661519 .167372 .820922 .167372 1.139726C.167372 1.594022 .789041 1.625903 1.267248 1.625903C2.399004 1.625903 2.964882 1.020174 3.084433 .533998L3.953176-2.940971ZM2.87721-1.052055C2.82142-.828892 2.646077-.669489 2.478705-.518057C2.406974-.462267 2.10411-.223163 1.777335-.223163C1.458531-.223163 1.227397-.486177 1.227397-.964384C1.227397-1.299128 1.42665-2.16787 1.641843-2.574346C1.896887-3.028643 2.271482-3.291656 2.590286-3.291656C3.124284-3.291656 3.267746-2.701868 3.267746-2.630137L3.243836-2.518555L2.87721-1.052055Z"></path>
+<path id="tz_fig_produto_g2-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_fig_produto_g3-19" d="M3.156164-4.98132C3.243836-5.045081 3.315567-5.116812 3.315567-5.244334C3.315567-5.427646 3.148194-5.563138 3.004732-5.563138C2.972852-5.563138 2.86127-5.563138 2.757659-5.435616L1.737484-4.224159L1.904857-4.040847L3.156164-4.98132Z"></path>
+<path id="tz_fig_produto_g3-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_produto_g3-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_produto_g3-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_produto_g3-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_produto_g3-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_produto_g3-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+<path id="tz_fig_produto_g3-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_produto_g3-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_produto_g3-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_produto_g3-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+<path id="tz_fig_produto_g3-120" d="M2.454795-1.865006C2.677958-2.14396 2.909091-2.414944 3.148194-2.677958C3.411208-2.956912 3.690162-3.164134 4.192279-3.172105V-3.435118C3.881445-3.411208 3.865504-3.411208 3.506849-3.411208C3.466999-3.411208 2.996762-3.411208 2.749689-3.435118V-3.172105C2.901121-3.156164 2.933001-3.060523 2.933001-2.956912S2.893151-2.757659 2.797509-2.646077L2.295392-2.056289L1.665753-2.805479C1.570112-2.917061 1.570112-2.972852 1.570112-2.988792C1.570112-3.044583 1.617933-3.164134 1.817186-3.172105V-3.435118C1.498381-3.411208 1.052055-3.411208 .964384-3.411208C.820922-3.411208 .414446-3.411208 .175342-3.435118V-3.172105C.71731-3.172105 .72528-3.164134 1.139726-2.677958L1.960648-1.681694L1.235367-.828892C1.036115-.605729 .74122-.278954 .135492-.263014V0C.430386-.02391 .486177-.02391 .820922-.02391C.836862-.02391 1.323039-.02391 1.578082 0V-.263014C1.474471-.278954 1.3868-.334745 1.3868-.478207S1.482441-.73325 1.506351-.773101C1.705604-1.012204 1.920797-1.251308 2.12802-1.482441L2.781569-.70137C2.940971-.518057 2.940971-.502117 2.940971-.446326C2.940971-.382565 2.885181-.270984 2.693898-.263014V0C3.036613-.02391 3.395268-.02391 3.5467-.02391C3.690162-.02391 4.096638-.02391 4.335741 0V-.263014C3.841594-.263014 3.761893-.302864 3.55467-.549938L2.454795-1.865006Z"></path>
+<path id="tz_fig_produto_g3-122" d="M3.307597-3.156164C3.363387-3.227895 3.379328-3.243836 3.379328-3.307597C3.379328-3.435118 3.283686-3.435118 3.156164-3.435118H.446326L.350685-2.10411H.597758C.645579-2.933001 .820922-3.211955 1.713574-3.211955H2.622167L.310834-.294894C.255044-.223163 .239103-.207223 .239103-.135492C.239103 0 .326775 0 .462267 0H3.259776L3.403238-1.538232H3.156164C3.076463-.613699 2.925031-.247073 1.944707-.247073H.996264L3.307597-3.156164Z"></path>
+<path id="tz_fig_produto_g4-76" d="M3.726027-6.027397C3.815691-6.386052 3.845579-6.495641 4.782067-6.495641C5.080946-6.495641 5.160648-6.495641 5.160648-6.684932C5.160648-6.804483 5.051059-6.804483 5.001245-6.804483C4.672478-6.804483 3.855542-6.774595 3.526775-6.774595C3.227895-6.774595 2.500623-6.804483 2.201743-6.804483C2.132005-6.804483 2.012453-6.804483 2.012453-6.60523C2.012453-6.495641 2.102117-6.495641 2.291407-6.495641C2.311333-6.495641 2.500623-6.495641 2.669988-6.475716C2.849315-6.455791 2.938979-6.445828 2.938979-6.316314C2.938979-6.276463 2.929016-6.246575 2.899128-6.127024L1.564134-.777086C1.464508-.388543 1.444583-.308842 .657534-.308842C.488169-.308842 .388543-.308842 .388543-.109589C.388543 0 .478207 0 .657534 0H5.270237C5.50934 0 5.519303 0 5.579078-.169365L6.366127-2.321295C6.405978-2.430884 6.405978-2.450809 6.405978-2.460772C6.405978-2.500623 6.37609-2.570361 6.286426-2.570361S6.1868-2.520548 6.117061-2.361146C5.778331-1.444583 5.339975-.308842 3.616438-.308842H2.67995C2.540473-.308842 2.520548-.308842 2.460772-.318804C2.361146-.328767 2.331258-.33873 2.331258-.418431C2.331258-.448319 2.331258-.468244 2.381071-.647572L3.726027-6.027397Z"></path>
+<path id="tz_fig_produto_g4-80" d="M3.01868-3.148194H4.712329C6.127024-3.148194 7.511831-4.184309 7.511831-5.300125C7.511831-6.067248 6.854296-6.804483 5.549191-6.804483H2.321295C2.132005-6.804483 2.022416-6.804483 2.022416-6.615193C2.022416-6.495641 2.11208-6.495641 2.311333-6.495641C2.440847-6.495641 2.620174-6.485679 2.739726-6.475716C2.899128-6.455791 2.958904-6.425903 2.958904-6.316314C2.958904-6.276463 2.948941-6.246575 2.919054-6.127024L1.58406-.777086C1.484433-.388543 1.464508-.308842 .67746-.308842C.508095-.308842 .398506-.308842 .398506-.119552C.398506 0 .518057 0 .547945 0C.826899 0 1.534247-.029888 1.8132-.029888C2.022416-.029888 2.241594-.019925 2.450809-.019925C2.669988-.019925 2.889166 0 3.098381 0C3.16812 0 3.297634 0 3.297634-.199253C3.297634-.308842 3.20797-.308842 3.01868-.308842C2.650062-.308842 2.371108-.308842 2.371108-.488169C2.371108-.547945 2.391034-.597758 2.400996-.657534L3.01868-3.148194ZM3.73599-6.117061C3.825654-6.465753 3.845579-6.495641 4.273973-6.495641H5.230386C6.057285-6.495641 6.585305-6.22665 6.585305-5.539228C6.585305-5.150685 6.386052-4.293898 5.997509-3.935243C5.499377-3.486924 4.901619-3.407223 4.463263-3.407223H3.058531L3.73599-6.117061Z"></path>
+<path id="tz_fig_produto_g4-84" d="M4.254047-6.047323C4.323786-6.326276 4.363636-6.386052 4.483188-6.41594C4.572852-6.435866 4.901619-6.435866 5.110834-6.435866C6.117061-6.435866 6.56538-6.396015 6.56538-5.618929C6.56538-5.469489 6.525529-5.080946 6.485679-4.821918C6.475716-4.782067 6.455791-4.662516 6.455791-4.632628C6.455791-4.572852 6.485679-4.503113 6.575342-4.503113C6.684932-4.503113 6.704857-4.582814 6.724782-4.732254L6.993773-6.465753C7.003736-6.505604 7.013699-6.60523 7.013699-6.635118C7.013699-6.744707 6.914072-6.744707 6.744707-6.744707H1.215442C.976339-6.744707 .966376-6.734745 .896638-6.545455L.298879-4.79203C.288917-4.772105 .239103-4.632628 .239103-4.612702C.239103-4.552927 .288917-4.503113 .358655-4.503113C.458281-4.503113 .468244-4.552927 .52802-4.712329C1.066002-6.256538 1.325031-6.435866 2.799502-6.435866H3.188045C3.466999-6.435866 3.466999-6.396015 3.466999-6.316314C3.466999-6.256538 3.437111-6.136986 3.427148-6.107098L2.092154-.787049C2.002491-.418431 1.972603-.308842 .9066-.308842C.547945-.308842 .488169-.308842 .488169-.119552C.488169 0 .597758 0 .657534 0C.926526 0 1.205479-.019925 1.474471-.019925C1.753425-.019925 2.042341-.029888 2.321295-.029888S2.879203-.019925 3.148194-.019925C3.437111-.019925 3.73599 0 4.014944 0C4.11457 0 4.234122 0 4.234122-.199253C4.234122-.308842 4.154421-.308842 3.895392-.308842C3.646326-.308842 3.516812-.308842 3.257783-.328767C2.968867-.358655 2.889166-.388543 2.889166-.547945C2.889166-.557908 2.889166-.607721 2.929016-.757161L4.254047-6.047323Z"></path>
+<path id="tz_fig_produto_g5-100" d="M3.785803-.547945V.109589L5.250311 0V-.308842C4.552927-.308842 4.473225-.37858 4.473225-.86675V-6.914072L3.038605-6.804483V-6.495641C3.73599-6.495641 3.815691-6.425903 3.815691-5.937733V-3.785803C3.526775-4.144458 3.098381-4.403487 2.560399-4.403487C1.384807-4.403487 .33873-3.427148 .33873-2.141968C.33873-.876712 1.315068 .109589 2.450809 .109589C3.088418 .109589 3.536737-.229141 3.785803-.547945ZM3.785803-3.217933V-1.175592C3.785803-.996264 3.785803-.976339 3.676214-.806974C3.377335-.328767 2.929016-.109589 2.500623-.109589C2.052304-.109589 1.693649-.368618 1.454545-.747198C1.195517-1.155666 1.165629-1.723537 1.165629-2.132005C1.165629-2.500623 1.185554-3.098381 1.474471-3.5467C1.683686-3.855542 2.062267-4.184309 2.600249-4.184309C2.948941-4.184309 3.367372-4.034869 3.676214-3.58655C3.785803-3.417186 3.785803-3.39726 3.785803-3.217933Z"></path>
+<path id="tz_fig_produto_g5-111" d="M4.692403-2.132005C4.692403-3.407223 3.696139-4.463263 2.49066-4.463263C1.24533-4.463263 .278954-3.377335 .278954-2.132005C.278954-.846824 1.315068 .109589 2.480697 .109589C3.686177 .109589 4.692403-.86675 4.692403-2.132005ZM2.49066-.139477C2.062267-.139477 1.62391-.348692 1.354919-.806974C1.105853-1.24533 1.105853-1.853051 1.105853-2.211706C1.105853-2.600249 1.105853-3.138232 1.344956-3.576588C1.613948-4.034869 2.082192-4.244085 2.480697-4.244085C2.919054-4.244085 3.347447-4.024907 3.606476-3.596513S3.865504-2.590286 3.865504-2.211706C3.865504-1.853051 3.865504-1.315068 3.646326-.876712C3.427148-.428394 2.988792-.139477 2.49066-.139477Z"></path>
+<path id="tz_fig_produto_g5-112" d="M1.713574-3.745953V-4.403487L.278954-4.293898V-3.985056C.986301-3.985056 1.05604-3.92528 1.05604-3.486924V1.175592C1.05604 1.62391 .946451 1.62391 .278954 1.62391V1.932752C.617684 1.92279 1.135741 1.902864 1.39477 1.902864C1.663761 1.902864 2.171856 1.92279 2.520548 1.932752V1.62391C1.853051 1.62391 1.743462 1.62391 1.743462 1.175592V-.498132V-.587796C1.793275-.428394 2.211706 .109589 2.968867 .109589C4.154421 .109589 5.190535-.86675 5.190535-2.15193C5.190535-3.417186 4.224159-4.403487 3.108344-4.403487C2.331258-4.403487 1.912827-3.965131 1.713574-3.745953ZM1.743462-1.135741V-3.35741C2.032379-3.865504 2.520548-4.154421 3.028643-4.154421C3.755915-4.154421 4.363636-3.277709 4.363636-2.15193C4.363636-.946451 3.666252-.109589 2.929016-.109589C2.530511-.109589 2.15193-.308842 1.882939-.71731C1.743462-.926526 1.743462-.936488 1.743462-1.135741Z"></path>
+<path id="tz_fig_produto_g5-114" d="M1.663761-3.307597V-4.403487L.278954-4.293898V-3.985056C.976339-3.985056 1.05604-3.915318 1.05604-3.427148V-.757161C1.05604-.308842 .946451-.308842 .278954-.308842V0C.667497-.009963 1.135741-.029888 1.414695-.029888C1.8132-.029888 2.281445-.029888 2.67995 0V-.308842H2.470735C1.733499-.308842 1.713574-.418431 1.713574-.777086V-2.311333C1.713574-3.297634 2.132005-4.184309 2.889166-4.184309C2.958904-4.184309 2.978829-4.184309 2.998755-4.174346C2.968867-4.164384 2.769614-4.044832 2.769614-3.785803C2.769614-3.506849 2.978829-3.35741 3.198007-3.35741C3.377335-3.35741 3.626401-3.476961 3.626401-3.795766S3.317559-4.403487 2.889166-4.403487C2.161893-4.403487 1.803238-3.73599 1.663761-3.307597Z"></path>
+<path id="tz_fig_produto_g5-116" d="M1.723537-3.985056H3.148194V-4.293898H1.723537V-6.127024H1.474471C1.464508-5.310087 1.165629-4.244085 .18929-4.204234V-3.985056H1.036115V-1.235367C1.036115-.009963 1.96264 .109589 2.321295 .109589C3.028643 .109589 3.307597-.597758 3.307597-1.235367V-1.803238H3.058531V-1.255293C3.058531-.518057 2.759651-.139477 2.391034-.139477C1.723537-.139477 1.723537-1.046077 1.723537-1.215442V-3.985056Z"></path>
+<path id="tz_fig_produto_g5-117" d="M3.895392-.787049V.109589L5.330012 0V-.308842C4.632628-.308842 4.552927-.37858 4.552927-.86675V-4.403487L3.088418-4.293898V-3.985056C3.785803-3.985056 3.865504-3.915318 3.865504-3.427148V-1.653798C3.865504-.787049 3.387298-.109589 2.660025-.109589C1.823163-.109589 1.783313-.577833 1.783313-1.09589V-4.403487L.318804-4.293898V-3.985056C1.09589-3.985056 1.09589-3.955168 1.09589-3.068493V-1.574097C1.09589-.797011 1.09589 .109589 2.610212 .109589C3.16812 .109589 3.606476-.169365 3.895392-.787049Z"></path>
+</defs>
+<g id="tz_fig_produto_page1">
+<g stroke-miterlimit="10" transform="translate(-47.38429,165.033316)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 128.03653H207.97977" fill="none"></path>
+<g transform="translate(207.97977,128.03653)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(213.51271,124.61987)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.38429,165.033316)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-47.38429" y="165.033316" href="#tz_fig_produto_g4-76"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 128.03653V218.22296" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,218.22296)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-7.52084,223.7559)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.38429,165.033316)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-47.38429" y="165.033316" href="#tz_fig_produto_g4-80"></use>
+<use x="-39.604428" y="165.033316" href="#tz_fig_produto_g4-84"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="0.8">
+<path d="M0 128.03653C0 128.03653 5.39603 132.91438 7.46852 134.78258C9.541 136.65077 12.86456 139.65645 14.93706 141.50128C17.00954 143.34613 20.3331 146.2893 22.4056 148.07895C24.47807 149.86859 27.80162 152.6971 29.87411 154.39989C31.94661 156.10269 35.27017 158.76724 37.34265 160.35158C39.41515 161.93593 42.73871 164.38481 44.81119 165.81877C46.88368 167.25272 50.20724 169.43488 52.27972 170.68655C54.35222 171.93823 57.67577 173.80211 59.74825 174.84007C61.82074 175.87805 65.1443 177.37494 67.2168 178.16759C69.28928 178.96025 72.61284 180.03786 74.68533 180.55304C76.75781 181.06822 80.08138 181.67453 82.15387 181.88075C84.22635 182.08698 87.5499 182.17401 89.62239 182.0394C91.69487 181.90479 95.01843 181.41762 97.09093 180.91055C99.16342 180.4035 102.48697 179.29553 104.55946 178.38484C106.63196 177.47417 109.95552 175.69397 112.028 174.34697C114.1005 172.99997 117.42404 170.49147 119.49652 168.6766C121.56902 166.86176 124.89258 163.58086 126.96506 161.26668C129.03755 158.95251 132.36111 154.84343 134.4336 151.99763C136.50609 149.15184 139.82965 144.1636 141.90215 140.75616C143.97462 137.34872 147.29817 131.44109 149.37067 127.4391C151.44315 123.4371 154.76671 116.54202 156.8392 111.91243C158.91168 107.28284 162.23524 99.35934 164.30774 94.07217C166.38022 88.78502 169.70378 79.7835 171.77628 73.80624C173.84877 67.829 179.2448 50.99232 179.2448 50.99232" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M128.03647 128.03653V207.4193" fill="none"></path>
+</g>
+</g>
+</g>
+<g transform="translate(122.97949,118.88857)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.38429,165.033316)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-47.38429" y="165.033316" href="#tz_fig_produto_g1-76"></use>
+<use x="-41.625247" y="162.22053" href="#tz_fig_produto_g0-3"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(162.6589,194.44281)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.38429,165.033316)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-47.38429" y="165.033316" href="#tz_fig_produto_g1-80"></use>
+<use x="-40.839315" y="165.033316" href="#tz_fig_produto_g1-84"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(25.34938,209.7629)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.38429,165.033316)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-47.38429" y="165.033316" href="#tz_fig_produto_g3-109"></use>
+<use x="-40.327319" y="165.033316" href="#tz_fig_produto_g3-19"></use>
+<use x="-40.327319" y="165.033316" href="#tz_fig_produto_g3-97"></use>
+<use x="-36.093136" y="165.033316" href="#tz_fig_produto_g3-120"></use>
+<use x="-31.623721" y="165.033316" href="#tz_fig_produto_g3-105"></use>
+<use x="-29.271397" y="165.033316" href="#tz_fig_produto_g3-109"></use>
+<use x="-22.214425" y="165.033316" href="#tz_fig_produto_g3-111"></use>
+<use x="-15.157454" y="165.033316" href="#tz_fig_produto_g3-100"></use>
+<use x="-10.452806" y="165.033316" href="#tz_fig_produto_g3-111"></use>
+<use x="-3.395835" y="165.033316" href="#tz_fig_produto_g1-80"></use>
+<use x="3.14914" y="165.033316" href="#tz_fig_produto_g1-84"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H207.97977" fill="none"></path>
+<g transform="translate(207.97977,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(213.51271,-3.41666)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.38429,165.033316)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-47.38429" y="165.033316" href="#tz_fig_produto_g4-76"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V90.18643" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,90.18643)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-17.37505,97.66382)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.38429,165.033316)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-47.38429" y="165.033316" href="#tz_fig_produto_g5-112"></use>
+<use x="-41.849473" y="165.033316" href="#tz_fig_produto_g5-114"></use>
+<use x="-37.947423" y="165.033316" href="#tz_fig_produto_g5-111"></use>
+<use x="-32.689335" y="165.033316" href="#tz_fig_produto_g5-100"></use>
+<use x="-27.154518" y="165.033316" href="#tz_fig_produto_g5-117"></use>
+<use x="-21.619701" y="165.033316" href="#tz_fig_produto_g5-116"></use>
+<use x="-17.745328" y="165.033316" href="#tz_fig_produto_g5-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#3fb618" stroke="#3fb618">
+<g stroke-width="0.8">
+<path d="M7.68225 34.16948C7.68225 34.16948 12.84709 38.75406 14.83078 40.5713C16.81445 42.38855 19.99562 45.39627 21.9793 47.26697C23.96298 49.13766 27.14413 52.19464 29.12782 54.05406C31.1115 55.91348 34.29266 58.89545 36.27634 60.66844C38.26003 62.44145 41.44118 65.22575 43.42487 66.8327C45.40854 68.43964 48.5897 70.88564 50.57338 72.25024C52.55707 73.61487 55.73822 75.61385 57.7219 76.66792C59.70557 77.722 62.88673 79.1605 64.8704 79.84734C66.8541 80.53418 70.03526 81.33603 72.01894 81.61816C74.00261 81.90028 77.18378 82.01952 79.16747 81.88074C81.15114 81.74194 84.3323 81.16939 86.31598 80.61787C88.29965 80.06636 91.48082 78.83824 93.46451 77.90576C95.44818 76.9733 98.62935 75.16191 100.61302 73.89722C102.5967 72.63252 105.77786 70.32364 107.76155 68.79068C109.74522 67.25772 112.92639 64.57388 114.91006 62.84875C116.89374 61.12363 120.0749 58.19475 122.0586 56.35706C124.04227 54.51938 127.22343 51.47813 129.2071 49.60396C131.19078 47.72978 134.37195 44.6917 136.35564 42.8493C138.33931 41.00691 141.52048 38.07649 143.50415 36.32518C145.48784 34.57385 148.66899 31.84177 150.65268 30.22696C152.63635 28.61214 155.81752 26.13547 157.8012 24.6867C159.78488 23.23795 162.96603 21.05104 164.94972 19.78531C166.9334 18.51959 170.11456 16.6424 172.09824 15.5642S179.24677 12.01434 179.24677 12.01434" fill="none"></path>
+<g transform="translate(182.97974,9.28102)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.38429,165.033316)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none">
+<g fill="#3fb618">
+<use x="-47.38429" y="165.033316" href="#tz_fig_produto_g1-80"></use>
+<use x="-40.839315" y="165.033316" href="#tz_fig_produto_g1-77"></use>
+<use x="-31.857615" y="165.033316" href="#tz_fig_produto_g1-101"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M7.68225 42.38432C7.68225 42.38432 12.23026 47.90482 13.97702 50.04706C15.72379 52.18932 18.52501 55.69882 20.27177 57.82426C22.01854 59.94972 24.81976 63.35764 26.56654 65.36588C28.31331 67.37413 31.11455 70.51126 32.8613 72.29831C34.60806 74.08537 37.4093 76.77885 39.15605 78.24571C40.90282 79.71257 43.70406 81.81314 45.45082 82.87047C47.1976 83.9278 49.99883 85.284 51.74559 85.86624C53.49236 86.44849 56.29358 86.99585 58.04034 87.06697C59.78711 87.13809 62.58833 86.82474 64.33511 86.37889C66.08188 85.93304 68.8831 84.78755 70.62988 83.85356C72.37665 82.91957 75.17789 81.01021 76.92464 79.64728C78.6714 78.28436 81.47264 75.74008 83.21939 74.03046C84.96616 72.32083 87.76738 69.28404 89.51416 67.32541C91.26094 65.36679 94.06216 62.01764 95.80893 59.91393C97.55568 57.81021 100.35692 54.30923 102.10368 52.16328C103.85043 50.01735 106.65167 46.54375 108.39845 44.4474C110.14522 42.35106 112.94646 39.0286 114.6932 37.05429C116.43997 35.07999 119.24121 32.01239 120.98796 30.21797C122.73473 28.42354 125.53596 25.70062 127.28273 24.1213C129.02951 22.542 131.83072 20.18507 133.5775 18.83543C135.32426 17.48578 138.1255 15.51393 139.87227 14.39394C141.61902 13.27394 144.42026 11.66824 146.16702 10.76321C147.91377 9.85818 150.71501 8.58264 152.46178 7.87099C154.20856 7.15932 158.75655 5.63402 158.75655 5.63402" fill="none"></path>
+<g transform="translate(162.48952,10.92255)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.38429,165.033316)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-47.38429" y="165.033316" href="#tz_fig_produto_g1-80"></use>
+<use x="-40.839315" y="165.033316" href="#tz_fig_produto_g1-77"></use>
+<use x="-31.857615" y="165.033316" href="#tz_fig_produto_g1-103"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M76.82188 0V78.10231" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M78.6605 77.33412C78.6605 78.34956 77.83733 79.17274 76.82188 79.17274C75.80644 79.17274 74.98326 78.34956 74.98326 77.33412S75.80644 75.4955 76.82188 75.4955C77.83733 75.4955 78.6605 76.31868 78.6605 77.33412ZM76.82188 77.33412" stroke="none"></path>
+</g>
+<g transform="translate(76.82188,77.33412)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.38429,165.033316)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(71.84827,-8.99963)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.38429,165.033316)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-47.38429" y="165.033316" href="#tz_fig_produto_g1-76"></use>
+<use x="-41.625247" y="166.140264" href="#tz_fig_produto_g2-49"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g fill="#6c757d" stroke="#6c757d">
+</g>
+<g transform="translate(100.77177,53.97401)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-47.38429,165.033316)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-42.37173" y="155.568808" href="#tz_fig_produto_g1-80"></use>
+<use x="-35.826755" y="155.568808" href="#tz_fig_produto_g1-77"></use>
+<use x="-26.845056" y="155.568808" href="#tz_fig_produto_g1-103"></use>
+<use x="-19.706451" y="155.568808" href="#tz_fig_produto_g3-99"></use>
+<use x="-15.942732" y="155.568808" href="#tz_fig_produto_g3-114"></use>
+<use x="-12.642562" y="155.568808" href="#tz_fig_produto_g3-117"></use>
+<use x="-7.937915" y="155.568808" href="#tz_fig_produto_g3-122"></use>
+<use x="-4.174197" y="155.568808" href="#tz_fig_produto_g3-97"></use>
+<use x="2.882775" y="155.568808" href="#tz_fig_produto_g1-80"></use>
+<use x="9.42775" y="155.568808" href="#tz_fig_produto_g1-77"></use>
+<use x="18.40945" y="155.568808" href="#tz_fig_produto_g1-101"></use>
+<use x="-47.38429" y="165.033316" href="#tz_fig_produto_g3-110"></use>
+<use x="-42.679643" y="165.033316" href="#tz_fig_produto_g3-111"></use>
+<use x="-35.622671" y="165.033316" href="#tz_fig_produto_g3-109"></use>
+<use x="-28.5657" y="165.033316" href="#tz_fig_produto_g3-19"></use>
+<use x="-28.5657" y="165.033316" href="#tz_fig_produto_g3-97"></use>
+<use x="-24.331517" y="165.033316" href="#tz_fig_produto_g3-120"></use>
+<use x="-19.862102" y="165.033316" href="#tz_fig_produto_g3-105"></use>
+<use x="-17.509778" y="165.033316" href="#tz_fig_produto_g3-109"></use>
+<use x="-10.452806" y="165.033316" href="#tz_fig_produto_g3-111"></use>
+<use x="-3.395835" y="165.033316" href="#tz_fig_produto_g3-100"></use>
+<use x="1.308813" y="165.033316" href="#tz_fig_produto_g3-101"></use>
+<use x="7.895319" y="165.033316" href="#tz_fig_produto_g1-80"></use>
+<use x="14.440295" y="165.033316" href="#tz_fig_produto_g1-77"></use>
+<use x="23.421994" y="165.033316" href="#tz_fig_produto_g1-101"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-produto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;30.1: Produto total (painel de cima) e as curvas de produto médio e marginal (painel de baixo). O produto marginal corta o produto médio em seu ponto máximo, e é zero quando o produto total é máximo.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="produção-com-dois-fatores-variáveis-isoquantas" class="level2" data-number="30.5">
+<h2 data-number="30.5" class="anchored" data-anchor-id="produção-com-dois-fatores-variáveis-isoquantas"><span class="header-section-number">30.5</span> Produção com dois fatores variáveis: isoquantas</h2>
+<p>No longo prazo, tanto <span class="math inline">\(L\)</span> quanto <span class="math inline">\(K\)</span> variam. Para representar a tecnologia de dois fatores num plano, usamos as <strong>isoquantas</strong> — o análogo, do lado da produção, às curvas de indiferença do <a href="../vol03/cap06-preferencias-utilidade.html" class="quarto-xref"><span>Capítulo 20</span></a>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Isoquanta">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Isoquanta
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma <strong>isoquanta</strong> é o conjunto de todas as combinações de fatores <span class="math inline">\((L, K)\)</span> que produzem uma <strong>mesma</strong> quantidade de produto. Isoquantas mais afastadas da origem correspondem a níveis maiores de produção.</p>
+</div>
+</div>
+<p>A palavra vem de <em>iso</em> (igual) + <em>quanta</em> (quantidade): mesma quantidade produzida. Sua lógica é intuitiva — há muitas receitas para o mesmo bolo. Uma rede de fast-food pode produzir 1.000 refeições/dia com muitos funcionários e pouca máquina, ou com cozinhas automatizadas e poucos funcionários: dois pontos da <em>mesma</em> isoquanta.</p>
+<p>A inclinação de uma isoquanta mede a <strong>substituibilidade</strong> entre os fatores.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Taxa marginal de substituição técnica (TMST)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Taxa marginal de substituição técnica (TMST)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>TMST</strong> é a quantidade de capital que se pode dispensar ao acrescentar uma unidade de trabalho, mantendo a produção constante. É o módulo da inclinação da isoquanta: <span class="math display">\[
+\text{TMST} = -\frac{\Delta K}{\Delta L}\bigg|_{q\ \text{const.}} = \frac{PMg_L}{PMg_K}.
+\]</span></p>
+</div>
+</div>
+<p>A segunda igualdade merece uma derivação, feita passo a passo. Ao longo de uma isoquanta, a produção não muda: <span class="math inline">\(\Delta q = 0\)</span>. A variação total do produto é a soma dos efeitos de mexer em cada fator: <span class="math display">\[
+\Delta q = PMg_L \cdot \Delta L + PMg_K \cdot \Delta K = 0.
+\]</span> Isolando a razão entre as variações dos fatores: <span class="math display">\[
+PMg_L \cdot \Delta L = -\,PMg_K \cdot \Delta K
+\quad\Longrightarrow\quad
+-\frac{\Delta K}{\Delta L} = \frac{PMg_L}{PMg_K} = \text{TMST}.
+\]</span></p>
+<p>A TMST <strong>diminui</strong> ao longo da isoquanta, à medida que se substitui capital por trabalho: quanto menos capital resta, mais valioso ele fica (produto marginal do capital alto) e menos capital se topa abrir mão por mais trabalho. É o que dá às isoquantas seu formato convexo, mostrado na <a href="#fig-isoquantas" class="quarto-xref">Figura&nbsp;<span>30.2</span></a>.</p>
+<div id="fig-isoquantas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-isoquantas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="287.782177pt" height="289.342077pt" viewbox="-68.014948 -68.014949 287.782177 289.342077">
+<defs>
+<path id="tz_fig_isoquantas_g0-60" d="M5.7066-4.112578C5.802242-4.160399 5.873973-4.208219 5.873973-4.311831S5.794271-4.495143 5.69066-4.495143C5.66675-4.495143 5.650809-4.495143 5.547198-4.439352L.868742-2.191781C.773101-2.14396 .70137-2.096139 .70137-1.992528S.773101-1.841096 .868742-1.793275L5.547198 .454296C5.650809 .510087 5.66675 .510087 5.69066 .510087C5.794271 .510087 5.873973 .430386 5.873973 .326775S5.802242 .175342 5.7066 .127522L1.307098-1.992528L5.7066-4.112578Z"></path>
+<path id="tz_fig_isoquantas_g0-113" d="M3.793773-3.283686C3.801743-3.315567 3.809714-3.363387 3.809714-3.403238C3.809714-3.451059 3.777833-3.514819 3.706102-3.514819C3.610461-3.514819 3.283686-3.203985 3.156164-2.980822C3.068493-3.156164 2.82939-3.514819 2.335243-3.514819C1.3868-3.514819 .342715-2.406974 .342715-1.227397C.342715-.398506 .876712 .079701 1.490411 .079701C1.888917 .079701 2.215691-.151432 2.454795-.358655C2.446824-.334745 2.199751 .669489 2.16787 .804981C2.048319 1.267248 2.048319 1.275218 1.546202 1.283188C1.45056 1.283188 1.346949 1.283188 1.346949 1.43462C1.346949 1.482441 1.3868 1.546202 1.466501 1.546202C1.570112 1.546202 1.753425 1.530262 1.857036 1.522291H2.279452C2.917061 1.522291 3.060523 1.546202 3.124284 1.546202C3.156164 1.546202 3.275716 1.546202 3.275716 1.39477C3.275716 1.283188 3.164134 1.283188 3.068493 1.283188C2.685928 1.283188 2.685928 1.235367 2.685928 1.163636C2.685928 1.155666 2.685928 1.115816 2.717808 .996264L3.793773-3.283686ZM2.614197-.988294C2.582316-.868742 2.582316-.844832 2.446824-.6934C2.032379-.207223 1.681694-.143462 1.514321-.143462C1.147696-.143462 .964384-.478207 .964384-.892653C.964384-1.267248 1.179577-2.12005 1.354919-2.470735C1.586052-2.956912 1.976588-3.291656 2.343213-3.291656C2.87721-3.291656 3.012702-2.669988 3.012702-2.614197C3.012702-2.582316 2.996762-2.526526 2.988792-2.486675L2.614197-.988294Z"></path>
+<path id="tz_fig_isoquantas_g1-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_fig_isoquantas_g1-50" d="M3.21594-1.117808H2.99477C2.982814-1.034122 2.923039-.639601 2.833375-.573848C2.791532-.537983 2.307347-.537983 2.223661-.537983H1.105853L1.870984-1.159651C2.074222-1.321046 2.606227-1.703611 2.791532-1.882939C2.970859-2.062267 3.21594-2.367123 3.21594-2.791532C3.21594-3.53873 2.540473-3.975093 1.739477-3.975093C.968369-3.975093 .430386-3.466999 .430386-2.905106C.430386-2.600249 .687422-2.564384 .753176-2.564384C.902615-2.564384 1.075965-2.67198 1.075965-2.887173C1.075965-3.01868 .998257-3.209963 .735243-3.209963C.872727-3.514819 1.23736-3.741968 1.649813-3.741968C2.27746-3.741968 2.612204-3.275716 2.612204-2.791532C2.612204-2.367123 2.331258-1.93076 1.912827-1.548194L.496139-.251059C.436364-.191283 .430386-.185305 .430386 0H3.030635L3.21594-1.117808Z"></path>
+<path id="tz_fig_isoquantas_g1-51" d="M1.75741-1.984558C2.265504-1.984558 2.606227-1.643836 2.606227-1.034122C2.606227-.376588 2.211706-.089664 1.775342-.089664C1.613948-.089664 .998257-.125529 .729265-.472229C.962391-.496139 1.058032-.651557 1.058032-.812951C1.058032-1.016189 .91457-1.153674 .71731-1.153674C.555915-1.153674 .376588-1.052055 .376588-.800996C.376588-.209215 1.034122 .125529 1.793275 .125529C2.677958 .125529 3.269738-.442341 3.269738-1.034122C3.269738-1.470486 2.934994-1.93076 2.223661-2.110087C2.69589-2.265504 3.078456-2.64807 3.078456-3.138232C3.078456-3.616438 2.516563-3.975093 1.799253-3.975093C1.099875-3.975093 .56787-3.652304 .56787-3.162142C.56787-2.905106 .765131-2.833375 .884682-2.833375C1.0401-2.833375 1.201494-2.940971 1.201494-3.150187C1.201494-3.335492 1.069988-3.443088 .908593-3.466999C1.189539-3.777833 1.733499-3.777833 1.787298-3.777833C2.092154-3.777833 2.47472-3.634371 2.47472-3.138232C2.47472-2.809465 2.289415-2.235616 1.691656-2.199751C1.58406-2.193773 1.422665-2.181818 1.368867-2.181818C1.309091-2.175841 1.243337-2.169863 1.243337-2.080199C1.243337-1.984558 1.309091-1.984558 1.41071-1.984558H1.75741Z"></path>
+<path id="tz_fig_isoquantas_g2-75" d="M5.070984-4.024907C5.061021-4.054795 5.021171-4.134496 5.021171-4.164384C5.021171-4.174346 5.200498-4.313823 5.310087-4.393524L7.053549-5.738481C7.990037-6.425903 8.37858-6.465753 8.67746-6.495641C8.757161-6.505604 8.856787-6.515567 8.856787-6.694894C8.856787-6.734745 8.826899-6.804483 8.747198-6.804483C8.52802-6.804483 8.278954-6.774595 8.039851-6.774595C7.681196-6.774595 7.292653-6.804483 6.933998-6.804483C6.864259-6.804483 6.744707-6.804483 6.744707-6.60523C6.744707-6.535492 6.794521-6.505604 6.864259-6.495641C7.083437-6.475716 7.173101-6.425903 7.173101-6.286426C7.173101-6.107098 6.874222-5.877958 6.814446-5.828144L2.929016-2.839352L3.726027-6.03736C3.815691-6.396015 3.835616-6.495641 4.562889-6.495641C4.811955-6.495641 4.901619-6.495641 4.901619-6.694894C4.901619-6.784558 4.821918-6.804483 4.762142-6.804483C4.483188-6.804483 3.765878-6.774595 3.486924-6.774595C3.198007-6.774595 2.49066-6.804483 2.201743-6.804483C2.132005-6.804483 2.002491-6.804483 2.002491-6.615193C2.002491-6.495641 2.092154-6.495641 2.291407-6.495641C2.420922-6.495641 2.600249-6.485679 2.719801-6.475716C2.879203-6.455791 2.938979-6.425903 2.938979-6.316314C2.938979-6.276463 2.929016-6.246575 2.899128-6.127024L1.564134-.777086C1.464508-.388543 1.444583-.308842 .657534-.308842C.488169-.308842 .37858-.308842 .37858-.119552C.37858 0 .498132 0 .52802 0C.806974 0 1.514321-.029888 1.793275-.029888C2.002491-.029888 2.221669-.019925 2.430884-.019925C2.650062-.019925 2.86924 0 3.078456 0C3.148194 0 3.277709 0 3.277709-.199253C3.277709-.308842 3.188045-.308842 2.998755-.308842C2.630137-.308842 2.351183-.308842 2.351183-.488169C2.351183-.557908 2.410959-.777086 2.440847-.926526C2.580324-1.444583 2.709838-1.972603 2.839352-2.49066L4.323786-3.646326L5.479452-.966376C5.599004-.697385 5.599004-.67746 5.599004-.617684C5.599004-.318804 5.17061-.308842 5.080946-.308842C4.971357-.308842 4.861768-.308842 4.861768-.109589C4.861768 0 4.98132 0 5.001245 0C5.399751 0 5.818182-.029888 6.216687-.029888C6.435866-.029888 6.973848 0 7.193026 0C7.242839 0 7.372354 0 7.372354-.199253C7.372354-.308842 7.262765-.308842 7.173101-.308842C6.764633-.318804 6.635118-.408468 6.485679-.757161L5.070984-4.024907Z"></path>
+<path id="tz_fig_isoquantas_g2-76" d="M3.726027-6.027397C3.815691-6.386052 3.845579-6.495641 4.782067-6.495641C5.080946-6.495641 5.160648-6.495641 5.160648-6.684932C5.160648-6.804483 5.051059-6.804483 5.001245-6.804483C4.672478-6.804483 3.855542-6.774595 3.526775-6.774595C3.227895-6.774595 2.500623-6.804483 2.201743-6.804483C2.132005-6.804483 2.012453-6.804483 2.012453-6.60523C2.012453-6.495641 2.102117-6.495641 2.291407-6.495641C2.311333-6.495641 2.500623-6.495641 2.669988-6.475716C2.849315-6.455791 2.938979-6.445828 2.938979-6.316314C2.938979-6.276463 2.929016-6.246575 2.899128-6.127024L1.564134-.777086C1.464508-.388543 1.444583-.308842 .657534-.308842C.488169-.308842 .388543-.308842 .388543-.109589C.388543 0 .478207 0 .657534 0H5.270237C5.50934 0 5.519303 0 5.579078-.169365L6.366127-2.321295C6.405978-2.430884 6.405978-2.450809 6.405978-2.460772C6.405978-2.500623 6.37609-2.570361 6.286426-2.570361S6.1868-2.520548 6.117061-2.361146C5.778331-1.444583 5.339975-.308842 3.616438-.308842H2.67995C2.540473-.308842 2.520548-.308842 2.460772-.318804C2.361146-.328767 2.331258-.33873 2.331258-.418431C2.331258-.448319 2.331258-.468244 2.381071-.647572L3.726027-6.027397Z"></path>
+<path id="tz_fig_isoquantas_g3-40" d="M3.297634 2.391034C3.297634 2.361146 3.297634 2.34122 3.128269 2.171856C1.882939 .916563 1.564134-.966376 1.564134-2.49066C1.564134-4.224159 1.942715-5.957659 3.16812-7.202989C3.297634-7.32254 3.297634-7.342466 3.297634-7.372354C3.297634-7.442092 3.257783-7.47198 3.198007-7.47198C3.098381-7.47198 2.201743-6.794521 1.613948-5.529265C1.105853-4.433375 .986301-3.327522 .986301-2.49066C.986301-1.713574 1.09589-.508095 1.643836 .617684C2.241594 1.843088 3.098381 2.49066 3.198007 2.49066C3.257783 2.49066 3.297634 2.460772 3.297634 2.391034Z"></path>
+<path id="tz_fig_isoquantas_g3-41" d="M2.879203-2.49066C2.879203-3.267746 2.769614-4.473225 2.221669-5.599004C1.62391-6.824408 .767123-7.47198 .667497-7.47198C.607721-7.47198 .56787-7.43213 .56787-7.372354C.56787-7.342466 .56787-7.32254 .757161-7.143213C1.733499-6.156912 2.30137-4.572852 2.30137-2.49066C2.30137-.787049 1.932752 .966376 .697385 2.221669C.56787 2.34122 .56787 2.361146 .56787 2.391034C.56787 2.450809 .607721 2.49066 .667497 2.49066C.767123 2.49066 1.663761 1.8132 2.251557 .547945C2.759651-.547945 2.879203-1.653798 2.879203-2.49066Z"></path>
+<path id="tz_fig_isoquantas_g3-97" d="M3.317559-.757161C3.35741-.358655 3.626401 .059776 4.094645 .059776C4.303861 .059776 4.911582-.079701 4.911582-.886675V-1.444583H4.662516V-.886675C4.662516-.308842 4.41345-.249066 4.303861-.249066C3.975093-.249066 3.935243-.697385 3.935243-.747198V-2.739726C3.935243-3.158157 3.935243-3.5467 3.576588-3.915318C3.188045-4.303861 2.689913-4.463263 2.211706-4.463263C1.39477-4.463263 .707347-3.995019 .707347-3.337484C.707347-3.038605 .9066-2.86924 1.165629-2.86924C1.444583-2.86924 1.62391-3.068493 1.62391-3.327522C1.62391-3.447073 1.574097-3.775841 1.115816-3.785803C1.384807-4.134496 1.872976-4.244085 2.191781-4.244085C2.67995-4.244085 3.247821-3.855542 3.247821-2.968867V-2.600249C2.739726-2.570361 2.042341-2.540473 1.414695-2.241594C.667497-1.902864 .418431-1.384807 .418431-.946451C.418431-.139477 1.384807 .109589 2.012453 .109589C2.669988 .109589 3.128269-.288917 3.317559-.757161ZM3.247821-2.391034V-1.39477C3.247821-.448319 2.530511-.109589 2.082192-.109589C1.594022-.109589 1.185554-.458281 1.185554-.956413C1.185554-1.504359 1.603985-2.331258 3.247821-2.391034Z"></path>
+<path id="tz_fig_isoquantas_g3-98" d="M1.713574-3.755915V-6.914072L.278954-6.804483V-6.495641C.976339-6.495641 1.05604-6.425903 1.05604-5.937733V0H1.305106C1.315068-.009963 1.39477-.14944 1.663761-.617684C1.8132-.388543 2.231631 .109589 2.968867 .109589C4.154421 .109589 5.190535-.86675 5.190535-2.15193C5.190535-3.417186 4.214197-4.403487 3.078456-4.403487C2.30137-4.403487 1.872976-3.935243 1.713574-3.755915ZM1.743462-1.135741V-3.188045C1.743462-3.377335 1.743462-3.387298 1.853051-3.5467C2.241594-4.104608 2.789539-4.184309 3.028643-4.184309C3.476961-4.184309 3.835616-3.92528 4.07472-3.5467C4.333748-3.138232 4.363636-2.570361 4.363636-2.161893C4.363636-1.793275 4.343711-1.195517 4.054795-.747198C3.845579-.438356 3.466999-.109589 2.929016-.109589C2.480697-.109589 2.122042-.348692 1.882939-.71731C1.743462-.926526 1.743462-.956413 1.743462-1.135741Z"></path>
+<path id="tz_fig_isoquantas_g3-99" d="M1.165629-2.171856C1.165629-3.795766 1.982565-4.214197 2.510585-4.214197C2.600249-4.214197 3.227895-4.204234 3.576588-3.845579C3.16812-3.815691 3.108344-3.516812 3.108344-3.387298C3.108344-3.128269 3.287671-2.929016 3.566625-2.929016C3.825654-2.929016 4.024907-3.098381 4.024907-3.39726C4.024907-4.07472 3.267746-4.463263 2.500623-4.463263C1.255293-4.463263 .33873-3.387298 .33873-2.15193C.33873-.876712 1.325031 .109589 2.480697 .109589C3.815691 .109589 4.134496-1.085928 4.134496-1.185554S4.034869-1.285181 4.004981-1.285181C3.915318-1.285181 3.895392-1.24533 3.875467-1.185554C3.58655-.259029 2.938979-.139477 2.570361-.139477C2.042341-.139477 1.165629-.56787 1.165629-2.171856Z"></path>
+<path id="tz_fig_isoquantas_g3-104" d="M1.09589-.757161C1.09589-.308842 .986301-.308842 .318804-.308842V0C.667497-.009963 1.175592-.029888 1.444583-.029888C1.703611-.029888 2.221669-.009963 2.560399 0V-.308842C1.892902-.308842 1.783313-.308842 1.783313-.757161V-2.590286C1.783313-3.626401 2.49066-4.184309 3.128269-4.184309C3.755915-4.184309 3.865504-3.646326 3.865504-3.078456V-.757161C3.865504-.308842 3.755915-.308842 3.088418-.308842V0C3.437111-.009963 3.945205-.029888 4.214197-.029888C4.473225-.029888 4.991283-.009963 5.330012 0V-.308842C4.811955-.308842 4.562889-.308842 4.552927-.607721V-2.510585C4.552927-3.367372 4.552927-3.676214 4.244085-4.034869C4.104608-4.204234 3.775841-4.403487 3.198007-4.403487C2.361146-4.403487 1.92279-3.805729 1.753425-3.427148V-6.914072L.318804-6.804483V-6.495641C1.016189-6.495641 1.09589-6.425903 1.09589-5.937733V-.757161Z"></path>
+<path id="tz_fig_isoquantas_g3-105" d="M1.763387-4.403487L.368618-4.293898V-3.985056C1.016189-3.985056 1.105853-3.92528 1.105853-3.437111V-.757161C1.105853-.308842 .996264-.308842 .328767-.308842V0C.647572-.009963 1.185554-.029888 1.424658-.029888C1.77335-.029888 2.122042-.009963 2.460772 0V-.308842C1.803238-.308842 1.763387-.358655 1.763387-.747198V-4.403487ZM1.803238-6.136986C1.803238-6.455791 1.554172-6.665006 1.275218-6.665006C.966376-6.665006 .747198-6.396015 .747198-6.136986C.747198-5.867995 .966376-5.608966 1.275218-5.608966C1.554172-5.608966 1.803238-5.818182 1.803238-6.136986Z"></path>
+<path id="tz_fig_isoquantas_g3-108" d="M1.763387-6.914072L.328767-6.804483V-6.495641C1.026152-6.495641 1.105853-6.425903 1.105853-5.937733V-.757161C1.105853-.308842 .996264-.308842 .328767-.308842V0C.657534-.009963 1.185554-.029888 1.43462-.029888S2.171856-.009963 2.540473 0V-.308842C1.872976-.308842 1.763387-.308842 1.763387-.757161V-6.914072Z"></path>
+<path id="tz_fig_isoquantas_g3-111" d="M4.692403-2.132005C4.692403-3.407223 3.696139-4.463263 2.49066-4.463263C1.24533-4.463263 .278954-3.377335 .278954-2.132005C.278954-.846824 1.315068 .109589 2.480697 .109589C3.686177 .109589 4.692403-.86675 4.692403-2.132005ZM2.49066-.139477C2.062267-.139477 1.62391-.348692 1.354919-.806974C1.105853-1.24533 1.105853-1.853051 1.105853-2.211706C1.105853-2.600249 1.105853-3.138232 1.344956-3.576588C1.613948-4.034869 2.082192-4.244085 2.480697-4.244085C2.919054-4.244085 3.347447-4.024907 3.606476-3.596513S3.865504-2.590286 3.865504-2.211706C3.865504-1.853051 3.865504-1.315068 3.646326-.876712C3.427148-.428394 2.988792-.139477 2.49066-.139477Z"></path>
+<path id="tz_fig_isoquantas_g3-112" d="M1.713574-3.745953V-4.403487L.278954-4.293898V-3.985056C.986301-3.985056 1.05604-3.92528 1.05604-3.486924V1.175592C1.05604 1.62391 .946451 1.62391 .278954 1.62391V1.932752C.617684 1.92279 1.135741 1.902864 1.39477 1.902864C1.663761 1.902864 2.171856 1.92279 2.520548 1.932752V1.62391C1.853051 1.62391 1.743462 1.62391 1.743462 1.175592V-.498132V-.587796C1.793275-.428394 2.211706 .109589 2.968867 .109589C4.154421 .109589 5.190535-.86675 5.190535-2.15193C5.190535-3.417186 4.224159-4.403487 3.108344-4.403487C2.331258-4.403487 1.912827-3.965131 1.713574-3.745953ZM1.743462-1.135741V-3.35741C2.032379-3.865504 2.520548-4.154421 3.028643-4.154421C3.755915-4.154421 4.363636-3.277709 4.363636-2.15193C4.363636-.946451 3.666252-.109589 2.929016-.109589C2.530511-.109589 2.15193-.308842 1.882939-.71731C1.743462-.926526 1.743462-.936488 1.743462-1.135741Z"></path>
+<path id="tz_fig_isoquantas_g3-114" d="M1.663761-3.307597V-4.403487L.278954-4.293898V-3.985056C.976339-3.985056 1.05604-3.915318 1.05604-3.427148V-.757161C1.05604-.308842 .946451-.308842 .278954-.308842V0C.667497-.009963 1.135741-.029888 1.414695-.029888C1.8132-.029888 2.281445-.029888 2.67995 0V-.308842H2.470735C1.733499-.308842 1.713574-.418431 1.713574-.777086V-2.311333C1.713574-3.297634 2.132005-4.184309 2.889166-4.184309C2.958904-4.184309 2.978829-4.184309 2.998755-4.174346C2.968867-4.164384 2.769614-4.044832 2.769614-3.785803C2.769614-3.506849 2.978829-3.35741 3.198007-3.35741C3.377335-3.35741 3.626401-3.476961 3.626401-3.795766S3.317559-4.403487 2.889166-4.403487C2.161893-4.403487 1.803238-3.73599 1.663761-3.307597Z"></path>
+<path id="tz_fig_isoquantas_g3-116" d="M1.723537-3.985056H3.148194V-4.293898H1.723537V-6.127024H1.474471C1.464508-5.310087 1.165629-4.244085 .18929-4.204234V-3.985056H1.036115V-1.235367C1.036115-.009963 1.96264 .109589 2.321295 .109589C3.028643 .109589 3.307597-.597758 3.307597-1.235367V-1.803238H3.058531V-1.255293C3.058531-.518057 2.759651-.139477 2.391034-.139477C1.723537-.139477 1.723537-1.046077 1.723537-1.215442V-3.985056Z"></path>
+</defs>
+<g id="tz_fig_isoquantas_page1">
+<g stroke-miterlimit="10" transform="translate(-39.905393,213.025282)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H197.16924" fill="none"></path>
+<g transform="translate(197.16924,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(202.70218,-2.5)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-39.905393,213.025282)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-39.905393" y="213.025282" href="#tz_fig_isoquantas_g2-76"></use>
+<use x="-29.804371" y="213.025282" href="#tz_fig_isoquantas_g3-40"></use>
+<use x="-25.929998" y="213.025282" href="#tz_fig_isoquantas_g3-116"></use>
+<use x="-22.055624" y="213.025282" href="#tz_fig_isoquantas_g3-114"></use>
+<use x="-18.153573" y="213.025282" href="#tz_fig_isoquantas_g3-97"></use>
+<use x="-13.172234" y="213.025282" href="#tz_fig_isoquantas_g3-98"></use>
+<use x="-7.637417" y="213.025282" href="#tz_fig_isoquantas_g3-97"></use>
+<use x="-2.656078" y="213.025282" href="#tz_fig_isoquantas_g3-108"></use>
+<use x=".11133" y="213.025282" href="#tz_fig_isoquantas_g3-104"></use>
+<use x="5.646147" y="213.025282" href="#tz_fig_isoquantas_g3-111"></use>
+<use x="10.627486" y="213.025282" href="#tz_fig_isoquantas_g3-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V168.71649" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,168.71649)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-24.88199,176.74944)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-39.905393,213.025282)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-39.905393" y="213.025282" href="#tz_fig_isoquantas_g2-75"></use>
+<use x="-27.410579" y="213.025282" href="#tz_fig_isoquantas_g3-40"></use>
+<use x="-23.536205" y="213.025282" href="#tz_fig_isoquantas_g3-99"></use>
+<use x="-19.108354" y="213.025282" href="#tz_fig_isoquantas_g3-97"></use>
+<use x="-14.127014" y="213.025282" href="#tz_fig_isoquantas_g3-112"></use>
+<use x="-8.592198" y="213.025282" href="#tz_fig_isoquantas_g3-105"></use>
+<use x="-5.824789" y="213.025282" href="#tz_fig_isoquantas_g3-116"></use>
+<use x="-1.950415" y="213.025282" href="#tz_fig_isoquantas_g3-97"></use>
+<use x="3.030924" y="213.025282" href="#tz_fig_isoquantas_g3-108"></use>
+<use x="5.798332" y="213.025282" href="#tz_fig_isoquantas_g3-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="0.8">
+<path d="M22.76227 222.88184C22.76227 222.88184 27.2162 152.50105 28.92683 135.39409C30.63747 118.28712 33.38075 107.25658 35.09138 99.58676C36.80202 91.91695 39.54532 84.51503 41.25595 80.11537S45.70987 70.74083 47.4205 67.877S51.87444 61.49055 53.58507 59.47481C55.2957 57.45906 58.03899 54.84628 59.74962 53.34889S64.20355 49.8393 65.91418 48.6826C67.62482 47.52591 70.3681 45.93274 72.07874 45.01225C73.78937 44.09177 76.53267 42.79872 78.2433 42.04828S82.69722 40.2272 84.40785 39.60356S88.86179 38.07965 90.57242 37.55348S95.02634 36.26102 96.73697 35.81122S101.1909 34.70102 102.90154 34.31165C104.61217 33.92227 107.35545 33.34512 109.06609 33.00485C110.77672 32.66458 113.52002 32.15868 115.23065 31.85912S119.68457 31.11186 121.3952 30.8458C123.10583 30.57973 125.84914 30.17944 127.55977 29.94145S132.01369 29.34428 133.72432 29.13045C135.43495 28.91661 138.17825 28.5935 139.88889 28.4002C141.59952 28.20691 144.3428 27.91307 146.05344 27.73724C147.76407 27.56142 150.50737 27.29324 152.218 27.1329S156.67194 26.72838 158.38257 26.58153S162.83649 26.2096 164.54712 26.07443C166.25775 25.93927 170.71169 25.60728 170.71169 25.60728" fill="none"></path>
+<g transform="translate(174.44466,24.66284)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-39.905393,213.025282)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-39.905393" y="213.025282" href="#tz_fig_isoquantas_g0-113"></use>
+<use x="-36.124604" y="214.132231" href="#tz_fig_isoquantas_g1-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="0.8">
+<path d="M31.29819 275.99326C31.29819 275.99326 35.7521 204.50769 37.46274 186.03255C39.17337 167.5574 41.91667 152.35016 43.6273 142.83723C45.33794 133.32431 48.08122 123.30504 49.79185 117.47002C51.50249 111.635 54.24579 104.73651 55.95642 100.78242C57.66705 96.82834 60.41034 91.83144 62.12097 88.9717C63.8316 86.11195 66.5749 82.3379 68.28554 80.17139C69.99617 78.00487 72.73946 75.05524 74.45009 73.35689S78.90402 69.29774 80.61465 67.93083C82.32529 66.56392 85.06857 64.62964 86.7792 63.50507C88.48984 62.3805 91.23314 60.76712 92.94377 59.8256C94.6544 58.8841 97.39769 57.51906 99.10832 56.71922C100.81895 55.91939 103.56226 54.74881 105.27289 54.0609S109.7268 52.35904 111.43744 51.76118C113.14807 51.16333 115.89137 50.27641 117.602 49.75192C119.31264 49.22743 122.05592 48.44489 123.76656 47.981C125.47719 47.51712 128.22049 46.82184 129.93112 46.4085C131.64175 45.99515 134.38504 45.37234 136.09567 45.00183S140.5496 44.0719 142.26024 43.738C143.97087 43.40411 146.71416 42.89777 148.42479 42.59532C150.13542 42.29288 152.87872 41.83347 154.58936 41.55812C156.29999 41.28278 159.04327 40.86264 160.7539 40.6108C162.46454 40.35895 165.20784 39.97404 166.91847 39.74292S171.37239 39.15794 173.08302 38.94495C174.79366 38.73195 179.24759 38.20775 179.24759 38.20775" fill="none"></path>
+<g transform="translate(182.98056,37.2633)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-39.905393,213.025282)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-39.905393" y="213.025282" href="#tz_fig_isoquantas_g0-113"></use>
+<use x="-36.124604" y="214.132231" href="#tz_fig_isoquantas_g1-50"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="0.8">
+<path d="M42.67911 281.69414C42.67911 281.69414 46.96176 230.25217 48.60661 215.68877S52.88928 185.70213 54.53413 176.73123C56.17899 167.76033 58.81679 157.1277 60.46164 151.03276S64.7443 137.22018 66.38914 132.80305C68.034 128.38593 70.67181 122.54716 72.31667 119.19708C73.96152 115.847 76.59932 111.2864 78.24417 108.65799C79.88902 106.02957 82.52682 102.37146 84.17168 100.25319C85.81653 98.13492 88.45433 95.13448 90.09918 93.39095S94.38185 89.14725 96.0267 87.68703C97.67155 86.2268 100.30936 84.10793 101.95421 82.86661S106.23686 79.80818 107.88171 78.7404C109.52657 77.67262 112.16438 76.0991 113.80923 75.17079C115.45409 74.24248 118.09189 72.86424 119.73674 72.04965S124.0194 70.0204 125.66425 69.29971C127.3091 68.57903 129.94691 67.49791 131.59177 66.85542C133.23662 66.21294 135.87442 65.24483 137.51927 64.66902C139.16412 64.09322 141.80193 63.22441 143.44678 62.70535C145.09163 62.1863 147.72945 61.39844 149.3743 60.92792S153.65695 59.74239 155.3018 59.31416C156.94666 58.88594 159.58446 58.23318 161.22931 57.84152S165.51196 56.85086 167.15681 56.4913C168.80167 56.13174 171.43948 55.58112 173.08434 55.25005C174.72919 54.91898 177.36699 54.41118 179.01184 54.10518C180.6567 53.79918 184.93935 53.04454 184.93935 53.04454" fill="none"></path>
+<g transform="translate(188.67232,52.1001)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-39.905393,213.025282)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-39.905393" y="213.025282" href="#tz_fig_isoquantas_g0-113"></use>
+<use x="-36.124604" y="214.132231" href="#tz_fig_isoquantas_g1-51"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M50.20819 66.29494C50.20819 67.31038 49.38501 68.13356 48.36957 68.13356S46.53094 67.31038 46.53094 66.29494S47.35413 64.45631 48.36957 64.45631S50.20819 65.2795 50.20819 66.29494ZM48.36957 66.29494" stroke="none"></path>
+</g>
+<g transform="translate(48.36957,66.29494)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-39.905393,213.025282)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M95.73276 59.46613C95.73276 60.48157 94.90958 61.30475 93.89413 61.30475C92.8787 61.30475 92.05551 60.48157 92.05551 59.46613C92.05551 58.45068 92.8787 57.6275 93.89413 57.6275C94.90958 57.6275 95.73276 58.45068 95.73276 59.46613ZM93.89413 59.46613" stroke="none"></path>
+</g>
+<g transform="translate(93.89413,59.46613)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-39.905393,213.025282)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M56.90549 82.51277L117.37613 39.90875" fill="none"></path>
+<g transform="matrix(0.81744,-0.57593,0.57593,0.81744,117.37613,39.90875)">
+<path d="M2.59995 0L-1.55997 2.07996L0 0L-1.55997-2.07996" stroke="none"></path>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(116.1424,129.40805)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-39.905393,213.025282)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-39.905393" y="213.025282" href="#tz_fig_isoquantas_g0-113"></use>
+<use x="-36.124604" y="214.132231" href="#tz_fig_isoquantas_g1-49"></use>
+<use x="-29.621235" y="213.025282" href="#tz_fig_isoquantas_g0-60"></use>
+<use x="-20.682405" y="213.025282" href="#tz_fig_isoquantas_g0-113"></use>
+<use x="-16.901615" y="214.132231" href="#tz_fig_isoquantas_g1-50"></use>
+<use x="-10.398247" y="213.025282" href="#tz_fig_isoquantas_g0-60"></use>
+<use x="-1.459417" y="213.025282" href="#tz_fig_isoquantas_g0-113"></use>
+<use x="2.321373" y="214.132231" href="#tz_fig_isoquantas_g1-51"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-isoquantas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;30.2: Mapa de isoquantas: cada curva reúne as combinações de <span class="math inline">\(L\)</span> e <span class="math inline">\(K\)</span> que geram o mesmo produto; curvas mais altas, mais produção. A convexidade reflete a TMST decrescente.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="retornos-de-escala" class="level2" data-number="30.6">
+<h2 data-number="30.6" class="anchored" data-anchor-id="retornos-de-escala"><span class="header-section-number">30.6</span> Retornos de escala</h2>
+<p>A lei dos rendimentos decrescentes falava de aumentar <em>um</em> fator com o outro fixo. Uma pergunta diferente é: o que acontece se aumentarmos <strong>todos</strong> os fatores na mesma proporção — dobrarmos trabalho <em>e</em> capital ao mesmo tempo? Essa é uma questão de longo prazo, e a resposta define os <strong>retornos de escala</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Retornos de escala">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Retornos de escala
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Multiplicando todos os fatores por um fator <span class="math inline">\(t &gt; 1\)</span>, os retornos de escala são:</p>
+<ul>
+<li><strong>crescentes</strong>, se o produto aumenta <em>mais</em> que <span class="math inline">\(t\)</span> vezes: <span class="math inline">\(f(tL, tK) &gt; t\,f(L,K)\)</span>;</li>
+<li><strong>constantes</strong>, se o produto aumenta <em>exatamente</em> <span class="math inline">\(t\)</span> vezes: <span class="math inline">\(f(tL, tK) = t\,f(L,K)\)</span>;</li>
+<li><strong>decrescentes</strong>, se o produto aumenta <em>menos</em> que <span class="math inline">\(t\)</span> vezes: <span class="math inline">\(f(tL, tK) &lt; t\,f(L,K)\)</span>.</li>
+</ul>
+</div>
+</div>
+<p>Cada caso tem uma economia por trás. <strong>Retornos crescentes</strong> aparecem quando a escala maior permite especialização, indivisibilidades e ganhos técnicos — uma refinaria dobra de tamanho e mais que dobra a produção, pois grandes equipamentos são proporcionalmente mais eficientes. <strong>Retornos constantes</strong> são o caso de referência: replicar a fábrica inteira (dois galpões idênticos) naturalmente dobra o produto. <strong>Retornos decrescentes</strong> surgem quando a coordenação fica difícil — uma organização grande demais gasta energia crescente com burocracia e comunicação interna.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — escala não é o mesmo que curto prazo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — escala não é o mesmo que curto prazo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Não confunda <strong>retornos de escala</strong> (todos os fatores variando juntos, longo prazo) com <strong>rendimentos marginais decrescentes</strong> (um fator variando, os outros fixos, curto prazo). Uma tecnologia pode ter retornos de escala <em>constantes</em> e, ainda assim, rendimentos <em>decrescentes</em> do trabalho isolado — são perguntas diferentes sobre a mesma função de produção.</p>
+</div>
+</div>
+<section id="a-função-cobb-douglas" class="level3" data-number="30.6.1">
+<h3 data-number="30.6.1" class="anchored" data-anchor-id="a-função-cobb-douglas"><span class="header-section-number">30.6.1</span> A função Cobb-Douglas</h3>
+<p>A forma funcional mais usada na Economia para representar a produção é a <strong>Cobb-Douglas</strong>: <span id="eq-cobb-douglas"><span class="math display">\[
+q = A\, L^{\alpha} K^{\beta},
+\tag{30.1}\]</span></span> com <span class="math inline">\(A &gt; 0\)</span> (um índice de produtividade, ou tecnologia) e <span class="math inline">\(\alpha, \beta &gt; 0\)</span> (as elasticidades do produto em relação a cada fator). Ela é conveniente porque o tipo de retorno de escala se lê direto na soma dos expoentes. Multiplicando os fatores por <span class="math inline">\(t\)</span>: <span class="math display">\[
+f(tL, tK) = A\,(tL)^{\alpha}(tK)^{\beta} = t^{\alpha+\beta}\,A\,L^{\alpha}K^{\beta} = t^{\alpha+\beta}\, f(L,K).
+\]</span> Logo, os retornos de escala são <strong>crescentes</strong> se <span class="math inline">\(\alpha + \beta &gt; 1\)</span>, <strong>constantes</strong> se <span class="math inline">\(\alpha + \beta = 1\)</span> e <strong>decrescentes</strong> se <span class="math inline">\(\alpha + \beta &lt; 1\)</span>. Esse mesmo aparato reaparecerá, no <a href="#sec-teoria-da-producao" class="quarto-xref"><span>Capítulo 30</span></a> referido pela macro, quando estudarmos o crescimento econômico e a contabilidade do crescimento — a Cobb-Douglas é a ponte entre a produção da firma e a produção de um país inteiro.</p>
+</section>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="30.7">
+<h2 data-number="30.7" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">30.7</span> 🇧🇷 Brasil em Foco</h2>
+<p>A teoria da produção ilumina o que talvez seja <em>o</em> problema de longo prazo da economia brasileira: a <strong>produtividade estagnada</strong>.</p>
+<p><strong>A doença da baixa produtividade.</strong> A função de produção diz que, no longo prazo, um país só produz mais por trabalhador se aumentar o capital por trabalhador, melhorar a qualidade do trabalho (educação, saúde) ou elevar a produtividade total dos fatores — o termo <span class="math inline">\(A\)</span> da <a href="#eq-cobb-douglas" class="quarto-xref">Equação&nbsp;<span>30.1</span></a>, que capta tecnologia, organização e instituições. Segundo dados de contas nacionais do <strong>IBGE</strong> e estudos do <strong>IPEA</strong> e da FGV, a produtividade do trabalho no Brasil praticamente estagnou por décadas: cresceu muito pouco desde os anos 1980, enquanto países asiáticos multiplicaram a sua. O crescimento brasileiro recente veio mais de <em>empregar mais gente</em> (aumentar <span class="math inline">\(L\)</span>) do que de <em>produzir mais por pessoa</em> (elevar <span class="math inline">\(A\)</span> ou <span class="math inline">\(K/L\)</span>) — e há um limite claro para crescer só assim, imposto justamente pelos rendimentos decrescentes.</p>
+<p><strong>Rendimentos decrescentes na prática.</strong> O bônus demográfico — período em que a população em idade ativa cresceu mais rápido que a dependente — permitiu ao Brasil expandir o produto adicionando trabalhadores. Mas adicionar trabalho a um estoque de capital e a uma base tecnológica que crescem devagar é a receita exata da lei dos rendimentos marginais decrescentes: cada novo trabalhador acrescenta cada vez menos. Com o envelhecimento da população, essa fonte de crescimento se esgota, e resta elevar a produtividade.</p>
+<p><strong>Onde mora o <span class="math inline">\(A\)</span>.</strong> Boa parte do diagnóstico econômico brasileiro aponta que o gargalo está na <strong>produtividade total dos fatores</strong>: infraestrutura deficiente (o “custo Brasil”), baixa qualidade da educação, complexidade tributária, insegurança jurídica e baixo investimento em pesquisa e desenvolvimento. Todos são, na linguagem deste capítulo, fatores que rebaixam o <span class="math inline">\(A\)</span> ou dificultam a acumulação de capital — deslocando <em>para baixo</em> a função de produção do país inteiro.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> IBGE — Sistema de Contas Nacionais e PNAD Contínua (produto e ocupação); IPEA e FGV/IBRE — estudos e índices de produtividade total dos fatores; Observatório da Produtividade. Ao consultar, verifique a data de referência e a metodologia de cada índice de produtividade.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="30.8">
+<h2 data-number="30.8" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">30.8</span> Resumo do capítulo</h2>
+<ul>
+<li>A <strong>função de produção</strong> <span class="math inline">\(q = f(L,K)\)</span> dá o produto máximo obtenível de cada combinação de fatores, supondo eficiência técnica e tecnologia dada.</li>
+<li>No <strong>curto prazo</strong>, ao menos um fator é fixo; no <strong>longo prazo</strong>, todos variam. É flexibilidade, não calendário.</li>
+<li><strong>Produto total</strong>, <strong>médio</strong> (<span class="math inline">\(PT/L\)</span>) e <strong>marginal</strong> (<span class="math inline">\(\Delta PT/\Delta L\)</span>) descrevem a produção de curto prazo. O produto marginal cruza o médio no máximo deste.</li>
+<li>Pela <strong>lei dos rendimentos marginais decrescentes</strong>, com os demais fatores fixos, o produto marginal do fator variável acaba caindo — porque cada unidade dele dispõe de menos dos fatores fixos. Decrescente não é negativo.</li>
+<li>As <strong>isoquantas</strong> representam a tecnologia de dois fatores; sua inclinação é a <strong>TMST</strong> <span class="math inline">\(= PMg_L/PMg_K\)</span>, que decresce ao longo da curva (isoquantas convexas).</li>
+<li>Os <strong>retornos de escala</strong> (todos os fatores variando juntos) podem ser crescentes, constantes ou decrescentes. Não confundir com rendimentos marginais (um fator só).</li>
+<li>Na <strong>Cobb-Douglas</strong> <span class="math inline">\(q = A L^{\alpha}K^{\beta}\)</span>, os retornos de escala são dados por <span class="math inline">\(\alpha + \beta\)</span>; o termo <span class="math inline">\(A\)</span> é a produtividade total dos fatores.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="30.9">
+<h2 data-number="30.9" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">30.9</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Resolva cada item antes de abrir a solução. A dificuldade cresce: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique por que “curto prazo” e “longo prazo” não correspondem a durações fixas de tempo. Dê um exemplo de setor com curto prazo muito breve e outro com curto prazo muito longo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O que define o curto prazo é a existência de pelo menos um fator fixo, não uma quantidade de meses. Para uma barraca de pastéis, ampliar a estrutura (comprar mais uma chapa, alugar outro ponto) leva dias — o curto prazo é curtíssimo. Para uma usina hidrelétrica ou uma siderúrgica, construir nova capacidade leva anos — o curto prazo é longo. Em cada caso, o longo prazo começa quando <em>todos</em> os fatores, inclusive a planta, já podem ser ajustados.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Distinga, com suas palavras, a <strong>lei dos rendimentos marginais decrescentes</strong> dos <strong>retornos de escala decrescentes</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A lei dos rendimentos marginais decrescentes é um fenômeno de <strong>curto prazo</strong>: aumenta-se <strong>um</strong> fator (ex.: trabalho) mantendo os demais <strong>fixos</strong>, e o produto marginal desse fator acaba caindo porque ele dispõe de cada vez menos dos fatores fixos. Retornos de escala decrescentes são de <strong>longo prazo</strong>: aumentam-se <strong>todos</strong> os fatores na mesma proporção e o produto cresce menos que proporcionalmente, tipicamente por dificuldades de coordenação e gestão. Uma pergunta é sobre <em>um</em> fator; a outra, sobre <em>todos</em> juntos.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> A partir da <a href="#tbl-produto" class="quarto-xref">Tabela&nbsp;<span>30.1</span></a>, verifique a relação entre produto marginal e produto médio. Em que faixa de <span class="math inline">\(L\)</span> o produto médio ainda sobe? O que ocorre com o marginal nessa faixa?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O produto médio sobe de <span class="math inline">\(L=1\)</span> (10) até <span class="math inline">\(L=3\)</span> e <span class="math inline">\(L=4\)</span> (13, o máximo). Nessa faixa, o produto marginal está <strong>acima</strong> do médio (14 e 15 contra médios de 12 e 13). Assim que o marginal cai abaixo do médio (em <span class="math inline">\(L=5\)</span>, marginal 8 &lt; médio 12), o médio começa a cair. Confirma-se a regra: enquanto o marginal supera o médio, o médio sobe; quando fica abaixo, o médio desce; o cruzamento ocorre no máximo do médio.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Uma firma tem função de produção <span class="math inline">\(q = 4L^{1/2}K^{1/2}\)</span>. (a) Classifique os retornos de escala. (b) Com <span class="math inline">\(K\)</span> fixo em <span class="math inline">\(\bar{K}=9\)</span>, escreva o produto em função de <span class="math inline">\(L\)</span> e mostre que o produto marginal do trabalho é decrescente.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Os expoentes somam <span class="math inline">\(1/2 + 1/2 = 1\)</span>: <strong>retornos de escala constantes</strong>. (Verificação: <span class="math inline">\(4(tL)^{1/2}(tK)^{1/2} = t\cdot 4L^{1/2}K^{1/2}\)</span>.)</p></li>
+<li><p>Com <span class="math inline">\(\bar{K}=9\)</span>: <span class="math inline">\(q = 4L^{1/2}\cdot 9^{1/2} = 4\cdot 3\cdot L^{1/2} = 12\,L^{1/2}\)</span>. O produto marginal é <span class="math display">\[
+PMg_L = \frac{dq}{dL} = 12\cdot \tfrac{1}{2}L^{-1/2} = \frac{6}{\sqrt{L}}.
+\]</span> Como <span class="math inline">\(\sqrt{L}\)</span> cresce com <span class="math inline">\(L\)</span>, <span class="math inline">\(PMg_L = 6/\sqrt{L}\)</span> <strong>decresce</strong> à medida que <span class="math inline">\(L\)</span> aumenta — a lei dos rendimentos marginais decrescentes, mesmo numa tecnologia de retornos de escala constantes. Ilustra o Exercício 2: as duas propriedades convivem.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Para a Cobb-Douglas <span class="math inline">\(q = A L^{\alpha}K^{\beta}\)</span>, mostre que a TMST é <span class="math inline">\(\dfrac{\alpha}{\beta}\cdot\dfrac{K}{L}\)</span> e explique por que ela decresce ao substituir capital por trabalho.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Os produtos marginais são <span class="math display">\[
+PMg_L = \frac{\partial q}{\partial L} = \alpha A L^{\alpha-1}K^{\beta}, \qquad
+PMg_K = \frac{\partial q}{\partial K} = \beta A L^{\alpha}K^{\beta-1}.
+\]</span> A TMST é a razão: <span class="math display">\[
+\text{TMST} = \frac{PMg_L}{PMg_K} = \frac{\alpha A L^{\alpha-1}K^{\beta}}{\beta A L^{\alpha}K^{\beta-1}} = \frac{\alpha}{\beta}\cdot\frac{K}{L}.
+\]</span> Ao mover-se ao longo da isoquanta substituindo capital por trabalho, <span class="math inline">\(L\)</span> sobe e <span class="math inline">\(K\)</span> cai, então a razão <span class="math inline">\(K/L\)</span> <strong>diminui</strong> — e com ela a TMST. Isso confirma a convexidade da isoquanta: quanto menos capital resta, menos capital se aceita trocar por mais trabalho.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> (Análise de caso) Um restaurante mantém a cozinha (capital) fixa e vai contratando garçons e cozinheiros. O gerente observa que, do quinto ao sexto funcionário, as refeições servidas por hora quase não subiram, e do sexto ao sétimo caíram. Interprete usando os conceitos do capítulo e diga o que a teoria sugere que ele faça no longo prazo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No curto prazo, com a cozinha (capital) fixa, o restaurante está na fase de <strong>rendimentos marginais decrescentes</strong>: o produto marginal do trabalho caiu quase a zero entre o quinto e o sexto funcionário e ficou <strong>negativo</strong> entre o sexto e o sétimo (as refeições caíram — trabalhadores demais atrapalham, disputam fogões e espaço). Contratar o sétimo funcionário reduz a produção: economicamente, ele não deveria ser contratado. A teoria sugere que o gargalo é o <strong>fator fixo</strong>: no <strong>longo prazo</strong>, o gerente deve ampliar a cozinha (aumentar o capital) — mover-se para uma planta maior — para que mais trabalho volte a ser produtivo. É a diferença entre ajustar um fator e ajustar a escala.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Desafio) Uma padaria industrial tem retornos de escala crescentes até certo tamanho e decrescentes depois. Esboce em palavras como seria a “história” de produtividade dessa firma ao crescer, e relacione com o diagnóstico brasileiro de produtividade do Brasil em Foco.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Ao começar pequena e crescer, a padaria aproveita <strong>retornos crescentes</strong>: fornos e linhas maiores são proporcionalmente mais eficientes, e a escala permite especializar funcionários (um só cuida da massa, outro do forno). O produto cresce mais que proporcionalmente aos fatores. Passado o tamanho ótimo, a coordenação fica cara — muitos turnos, camadas de supervisão, comunicação lenta — e entram os <strong>retornos decrescentes</strong>: dobrar os fatores passa a render menos que o dobro. No plano do país, o Brasil em Foco mostra o problema inverso e mais grave: crescer <strong>empregando mais gente</strong> com capital e tecnologia (<span class="math inline">\(A\)</span>) quase estagnados é bater na lei dos rendimentos decrescentes agregada. Sem elevar a produtividade total dos fatores — o análogo macro do “melhorar a receita, não só dobrar os ingredientes” —, o crescimento por adição de trabalho se esgota, sobretudo com o fim do bônus demográfico.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="30.10">
+<h2 data-number="30.10" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">30.10</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="pindyck2013">Pindyck; Rubinfeld (<a href="#ref-pindyck2013" role="doc-biblioref">2013</a>)</span> — os capítulos sobre produção trazem a construção completa de isoquantas, TMST e retornos de escala, com muitos exemplos empresariais.</li>
+<li><span class="citation" data-cites="varian2015">Varian (<a href="#ref-varian2015" role="doc-biblioref">2015</a>)</span> — apresenta a tecnologia da firma de forma rigorosa e enxuta, útil para quem quer a formalização.</li>
+<li><span class="citation" data-cites="nicholson2019">Nicholson; Snyder (<a href="#ref-nicholson2019" role="doc-biblioref">2019</a>)</span> — aprofunda as formas funcionais de produção (Cobb-Douglas, CES, Leontief) e suas propriedades.</li>
+<li><span class="citation" data-cites="mankiw2020">Mankiw (<a href="#ref-mankiw2020" role="doc-biblioref">2020</a>)</span> — para a intuição inicial de produto marginal e da relação entre produção e custos, em linguagem acessível.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-mankiw2020" class="csl-entry" role="listitem">
+MANKIW, N. Gregory. <strong>Introdução à Economia</strong>. 8. ed. São Paulo: Cengage Learning, 2020.
+</div>
+<div id="ref-nicholson2019" class="csl-entry" role="listitem">
+NICHOLSON, Walter; SNYDER, Christopher. <strong>Teoria Microeconômica: Princípios Básicos e Aplicações</strong>. 11. ed. São Paulo: Cengage Learning, 2019.
+</div>
+<div id="ref-pindyck2013" class="csl-entry" role="listitem">
+PINDYCK, Robert S.; RUBINFELD, Daniel L. <strong>Microeconomia</strong>. 8. ed. São Paulo: Pearson, 2013.
+</div>
+<div id="ref-varian2015" class="csl-entry" role="listitem">
+VARIAN, Hal R. <strong>Microeconomia: uma abordagem moderna</strong>. 9. ed. Rio de Janeiro: Elsevier, 2015.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="pagination-link" aria-label="Lendo indicadores na prática: IBGE, Bacen e IPEA">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol05/cap02-custos.html" class="pagination-link" aria-label="Custos de produção: curto e longo prazo">
+        <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol05/cap01-teoria-da-producao.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

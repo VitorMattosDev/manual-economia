@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>22&nbsp; Demanda individual, efeito renda e efeito substituição – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" rel="next">
+<link href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol03/cap01-demanda.html">Volume 3 — Microeconomia I: Mercados e Consumidor</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">22.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#da-escolha-ótima-à-curva-de-demanda" id="toc-da-escolha-ótima-à-curva-de-demanda" class="nav-link" data-scroll-target="#da-escolha-ótima-à-curva-de-demanda"><span class="header-section-number">22.2</span> Da escolha ótima à curva de demanda</a></li>
+  <li><a href="#a-curva-de-engel" id="toc-a-curva-de-engel" class="nav-link" data-scroll-target="#a-curva-de-engel"><span class="header-section-number">22.3</span> A curva de Engel</a></li>
+  <li><a href="#decompondo-uma-variação-de-preço" id="toc-decompondo-uma-variação-de-preço" class="nav-link" data-scroll-target="#decompondo-uma-variação-de-preço"><span class="header-section-number">22.4</span> Decompondo uma variação de preço</a></li>
+  <li><a href="#os-sinais-dos-efeitos" id="toc-os-sinais-dos-efeitos" class="nav-link" data-scroll-target="#os-sinais-dos-efeitos"><span class="header-section-number">22.5</span> Os sinais dos efeitos</a></li>
+  <li><a href="#o-enigma-de-giffen-resolvido" id="toc-o-enigma-de-giffen-resolvido" class="nav-link" data-scroll-target="#o-enigma-de-giffen-resolvido"><span class="header-section-number">22.6</span> O enigma de Giffen, resolvido</a></li>
+  <li><a href="#de-volta-ao-mercado" id="toc-de-volta-ao-mercado" class="nav-link" data-scroll-target="#de-volta-ao-mercado"><span class="header-section-number">22.7</span> De volta ao mercado</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">22.8</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">22.9</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">22.10</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">22.11</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol03/cap08-efeitos-renda-substituicao.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol03/cap01-demanda.html">Volume 3 — Microeconomia I: Mercados e Consumidor</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-efeitos-renda-substituicao" class="quarto-section-identifier"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Chegamos ao fim de um longo arco. No <a href="cap01-demanda.html" class="quarto-xref"><span>Capítulo 15</span></a>, aceitamos como fato que a curva de demanda desce e batizamos os dois motivos — “efeito substituição” e “efeito renda” — sem abri-los. Agora temos as ferramentas para cumprir a promessa. A escolha ótima do <a href="cap07-escolha-do-consumidor.html" class="quarto-xref"><span>Capítulo 21</span></a> não é o ponto de chegada da teoria do consumidor: é o ponto de partida para <em>deduzir</em> a curva de demanda e, mais do que isso, para <strong>dissecar</strong> o que acontece na cabeça de quem escolhe quando um preço muda.</p>
+<p>Este capítulo faz duas coisas. Primeiro, mostra como a curva de demanda individual <strong>nasce</strong> de sucessivas escolhas ótimas quando variamos o preço. Segundo — e é o coração do capítulo —, decompõe a resposta a uma variação de preço em duas forças de naturezas distintas: a substituição (o bem ficou relativamente mais caro) e a renda (o bem encareceu e você ficou mais pobre em termos reais). Essa decomposição, devida a Slutsky <span class="citation" data-cites="slutsky1915">(<a href="#ref-slutsky1915" role="doc-biblioref">Slutsky, 1915</a>)</span> e Hicks, é o que finalmente explica por que a demanda quase sempre desce — e por que, em um caso raríssimo, poderia subir.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">22.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li><strong>derivar</strong> a curva de demanda individual a partir da escolha ótima, variando o preço;</li>
+<li>interpretar a <strong>curva de Engel</strong> e ligá-la a bens normais e inferiores;</li>
+<li><strong>decompor</strong> a variação da quantidade demandada em <strong>efeito substituição</strong> e <strong>efeito renda</strong>;</li>
+<li>determinar o <strong>sinal</strong> de cada efeito para bens normais, inferiores e de Giffen;</li>
+<li>explicar por que a demanda é quase sempre decrescente e em que condições, em tese, poderia não ser;</li>
+<li>reconstruir a <strong>demanda de mercado</strong> a partir das demandas individuais.</li>
+</ul>
+</section>
+<section id="da-escolha-ótima-à-curva-de-demanda" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="da-escolha-ótima-à-curva-de-demanda"><span class="header-section-number">22.2</span> Da escolha ótima à curva de demanda</h2>
+<p>A curva de demanda individual não é um postulado: é o <strong>rastro</strong> deixado pela escolha ótima quando um preço varia. O experimento é direto. Fixe a renda e o preço de <span class="math inline">\(y\)</span>; baixe <span class="math inline">\(P_x\)</span> em etapas. A cada preço, a reta orçamentária gira para fora (mais barato o <span class="math inline">\(x\)</span>), e o consumidor escolhe uma nova cesta ótima, com <strong>mais <span class="math inline">\(x\)</span></strong>. Ligando os pontos ótimos no plano dos bens, obtém-se a <strong>curva preço-consumo</strong>; transportando cada par (preço de <span class="math inline">\(x\)</span>, quantidade ótima de <span class="math inline">\(x\)</span>) para o plano preço–quantidade, obtém-se a <strong>curva de demanda individual</strong> (<a href="#fig-deriva-demanda" class="quarto-xref">Figura&nbsp;<span>22.1</span></a>).</p>
+<div id="fig-deriva-demanda" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-deriva-demanda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="189.458481pt" height="293.292105pt" viewbox="-68.014948 -68.014946 189.458481 293.292105">
+<defs>
+<path id="tz_fig_deriva_demanda_g0-120" d="M3.36538-2.349191C3.156164-2.289415 3.108344-2.116065 3.108344-2.026401C3.108344-1.835118 3.263761-1.793275 3.347447-1.793275C3.520797-1.793275 3.694147-1.936737 3.694147-2.169863C3.694147-2.492653 3.341469-2.636115 3.036613-2.636115C2.642092-2.636115 2.402989-2.331258 2.337235-2.217684C2.259527-2.367123 2.032379-2.636115 1.58406-2.636115C.896638-2.636115 .490162-1.924782 .490162-1.715567C.490162-1.685679 .514072-1.63188 .597758-1.63188S.699377-1.667746 .71731-1.721544C.86675-2.205729 1.273225-2.438854 1.566127-2.438854S1.948692-2.247572 1.948692-2.050311C1.948692-1.97858 1.948692-1.924782 1.900872-1.739477C1.763387-1.183562 1.63188-.639601 1.601993-.56787C1.512329-.340722 1.297136-.137484 1.046077-.137484C1.010212-.137484 .842839-.137484 .705355-.227148C.938481-.304857 .962391-.502117 .962391-.549938C.962391-.705355 .842839-.783064 .723288-.783064C.555915-.783064 .376588-.651557 .376588-.406476C.376588-.065753 .753176 .059776 1.034122 .059776C1.374844 .059776 1.619925-.17335 1.733499-.358655C1.853051-.107597 2.139975 .059776 2.480697 .059776C3.186052 .059776 3.580573-.663512 3.580573-.860772C3.580573-.872727 3.574595-.944458 3.466999-.944458C3.383313-.944458 3.371357-.902615 3.353425-.848817C3.180075-.328767 2.755666-.137484 2.504608-.137484C2.27746-.137484 2.116065-.268991 2.116065-.52005C2.116065-.633624 2.145953-.765131 2.199751-.974346L2.391034-1.751432C2.450809-1.984558 2.480697-2.092154 2.606227-2.235616C2.689913-2.32528 2.833375-2.438854 3.024658-2.438854C3.054545-2.438854 3.233873-2.438854 3.36538-2.349191Z"></path>
+<path id="tz_fig_deriva_demanda_g1-68" d="M1.331009-.629639C1.259278-.326775 1.243337-.263014 .653549-.263014C.502117-.263014 .406476-.263014 .406476-.111582C.406476 0 .510087 0 .645579 0H3.387298C5.068991 0 6.742715-1.609963 6.742715-3.387298C6.742715-4.606725 5.929763-5.443587 4.742217-5.443587H1.952677C1.809215-5.443587 1.705604-5.443587 1.705604-5.292154C1.705604-5.180573 1.801245-5.180573 1.936737-5.180573C2.199751-5.180573 2.430884-5.180573 2.430884-5.053051C2.430884-5.021171 2.422914-5.0132 2.399004-4.909589L1.331009-.629639ZM3.092403-4.885679C3.164134-5.156663 3.172105-5.180573 3.498879-5.180573H4.463263C5.395766-5.180573 6.025405-4.646575 6.025405-3.674222C6.025405-3.411208 5.913823-2.11208 5.220423-1.219427C4.869738-.773101 4.184309-.263014 3.243836-.263014H2.056289C1.984558-.278954 1.960648-.278954 1.960648-.334745C1.960648-.398506 1.976588-.462267 1.992528-.510087L3.092403-4.885679Z"></path>
+<path id="tz_fig_deriva_demanda_g1-80" d="M2.510585-2.486675H3.961146C5.108842-2.486675 6.304359-3.283686 6.304359-4.224159C6.304359-4.901619 5.66675-5.443587 4.638605-5.443587H1.952677C1.809215-5.443587 1.705604-5.443587 1.705604-5.292154C1.705604-5.180573 1.809215-5.180573 1.936737-5.180573C2.199751-5.180573 2.430884-5.180573 2.430884-5.053051C2.430884-5.021171 2.422914-5.0132 2.399004-4.909589L1.331009-.629639C1.259278-.334745 1.243337-.263014 .67746-.263014C.494147-.263014 .406476-.263014 .406476-.111582C.406476-.079701 .430386 0 .533998 0C.68543 0 .876712-.01594 1.028144-.02391H1.538232C2.303362-.02391 2.510585 0 2.566376 0C2.614197 0 2.725778 0 2.725778-.151432C2.725778-.263014 2.622167-.263014 2.486675-.263014C2.462765-.263014 2.319303-.263014 2.183811-.278954C2.016438-.294894 2.000498-.318804 2.000498-.390535C2.000498-.430386 2.016438-.478207 2.024408-.518057L2.510585-2.486675ZM3.092403-4.885679C3.164134-5.156663 3.172105-5.180573 3.498879-5.180573H4.375592C5.029141-5.180573 5.531258-4.98929 5.531258-4.399502C5.531258-4.29589 5.491407-3.58655 5.045081-3.148194C4.925529-3.028643 4.542964-2.725778 3.761893-2.725778H2.550436L3.092403-4.885679Z"></path>
+<path id="tz_fig_deriva_demanda_g1-120" d="M3.993026-3.180075C3.642341-3.092403 3.626401-2.781569 3.626401-2.749689C3.626401-2.574346 3.761893-2.454795 3.937235-2.454795S4.383562-2.590286 4.383562-2.933001C4.383562-3.387298 3.881445-3.514819 3.58655-3.514819C3.211955-3.514819 2.909091-3.251806 2.725778-2.940971C2.550436-3.363387 2.13599-3.514819 1.809215-3.514819C.940473-3.514819 .454296-2.518555 .454296-2.295392C.454296-2.223661 .510087-2.191781 .573848-2.191781C.669489-2.191781 .68543-2.231631 .70934-2.327273C.892653-2.909091 1.370859-3.291656 1.785305-3.291656C2.096139-3.291656 2.247572-3.068493 2.247572-2.781569C2.247572-2.622167 2.15193-2.255542 2.088169-2.000498C2.032379-1.769365 1.857036-1.060025 1.817186-.908593C1.705604-.478207 1.41868-.143462 1.060025-.143462C1.028144-.143462 .820922-.143462 .653549-.255044C1.020174-.342715 1.020174-.67746 1.020174-.68543C1.020174-.868742 .876712-.980324 .70137-.980324C.486177-.980324 .255044-.797011 .255044-.494147C.255044-.127522 .645579 .079701 1.052055 .079701C1.474471 .079701 1.769365-.239103 1.912827-.494147C2.088169-.103611 2.454795 .079701 2.83736 .079701C3.706102 .079701 4.184309-.916563 4.184309-1.139726C4.184309-1.219427 4.120548-1.243337 4.064757-1.243337C3.969116-1.243337 3.953176-1.187547 3.929265-1.107846C3.769863-.573848 3.315567-.143462 2.8533-.143462C2.590286-.143462 2.399004-.318804 2.399004-.653549C2.399004-.812951 2.446824-.996264 2.558406-1.44259C2.614197-1.681694 2.789539-2.383064 2.82939-2.534496C2.940971-2.948941 3.219925-3.291656 3.57858-3.291656C3.618431-3.291656 3.825654-3.291656 3.993026-3.180075Z"></path>
+<path id="tz_fig_deriva_demanda_g1-121" d="M4.128518-3.004732C4.160399-3.116314 4.160399-3.132254 4.160399-3.188045C4.160399-3.387298 4.000996-3.435118 3.905355-3.435118C3.865504-3.435118 3.682192-3.427148 3.57858-3.219925C3.56264-3.180075 3.490909-2.893151 3.451059-2.725778L2.972852-.812951C2.964882-.789041 2.622167-.143462 2.040349-.143462C1.649813-.143462 1.514321-.430386 1.514321-.789041C1.514321-1.251308 1.785305-1.960648 1.968618-2.422914C2.048319-2.622167 2.072229-2.693898 2.072229-2.83736C2.072229-3.275716 1.721544-3.514819 1.354919-3.514819C.565878-3.514819 .239103-2.391034 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.239601 .494147-2.319303C.70137-3.012702 1.044085-3.291656 1.331009-3.291656C1.45056-3.291656 1.522291-3.211955 1.522291-3.028643C1.522291-2.86127 1.458531-2.677958 1.40274-2.534496C1.075965-1.689664 .940473-1.283188 .940473-.908593C.940473-.127522 1.530262 .079701 2.000498 .079701C2.375093 .079701 2.646077-.087671 2.83736-.270984C2.725778 .175342 2.646077 .486177 2.343213 .868742C2.080199 1.195517 1.761395 1.40274 1.40274 1.40274C1.267248 1.40274 .964384 1.378829 .804981 1.139726C1.227397 1.107846 1.259278 .749191 1.259278 .70137C1.259278 .510087 1.115816 .406476 .948443 .406476C.773101 .406476 .494147 .541968 .494147 .932503C.494147 1.307098 .836862 1.625903 1.40274 1.625903C2.215691 1.625903 3.132254 .972354 3.371357 .00797L4.128518-3.004732Z"></path>
+<path id="tz_fig_deriva_demanda_g2-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_fig_deriva_demanda_g2-50" d="M3.21594-1.117808H2.99477C2.982814-1.034122 2.923039-.639601 2.833375-.573848C2.791532-.537983 2.307347-.537983 2.223661-.537983H1.105853L1.870984-1.159651C2.074222-1.321046 2.606227-1.703611 2.791532-1.882939C2.970859-2.062267 3.21594-2.367123 3.21594-2.791532C3.21594-3.53873 2.540473-3.975093 1.739477-3.975093C.968369-3.975093 .430386-3.466999 .430386-2.905106C.430386-2.600249 .687422-2.564384 .753176-2.564384C.902615-2.564384 1.075965-2.67198 1.075965-2.887173C1.075965-3.01868 .998257-3.209963 .735243-3.209963C.872727-3.514819 1.23736-3.741968 1.649813-3.741968C2.27746-3.741968 2.612204-3.275716 2.612204-2.791532C2.612204-2.367123 2.331258-1.93076 1.912827-1.548194L.496139-.251059C.436364-.191283 .430386-.185305 .430386 0H3.030635L3.21594-1.117808Z"></path>
+<path id="tz_fig_deriva_demanda_g2-51" d="M1.75741-1.984558C2.265504-1.984558 2.606227-1.643836 2.606227-1.034122C2.606227-.376588 2.211706-.089664 1.775342-.089664C1.613948-.089664 .998257-.125529 .729265-.472229C.962391-.496139 1.058032-.651557 1.058032-.812951C1.058032-1.016189 .91457-1.153674 .71731-1.153674C.555915-1.153674 .376588-1.052055 .376588-.800996C.376588-.209215 1.034122 .125529 1.793275 .125529C2.677958 .125529 3.269738-.442341 3.269738-1.034122C3.269738-1.470486 2.934994-1.93076 2.223661-2.110087C2.69589-2.265504 3.078456-2.64807 3.078456-3.138232C3.078456-3.616438 2.516563-3.975093 1.799253-3.975093C1.099875-3.975093 .56787-3.652304 .56787-3.162142C.56787-2.905106 .765131-2.833375 .884682-2.833375C1.0401-2.833375 1.201494-2.940971 1.201494-3.150187C1.201494-3.335492 1.069988-3.443088 .908593-3.466999C1.189539-3.777833 1.733499-3.777833 1.787298-3.777833C2.092154-3.777833 2.47472-3.634371 2.47472-3.138232C2.47472-2.809465 2.289415-2.235616 1.691656-2.199751C1.58406-2.193773 1.422665-2.181818 1.368867-2.181818C1.309091-2.175841 1.243337-2.169863 1.243337-2.080199C1.243337-1.984558 1.309091-1.984558 1.41071-1.984558H1.75741Z"></path>
+<path id="tz_fig_deriva_demanda_g3-24" d="M2.414944 .167372H1.809215V.557908C2.351183 .565878 2.518555 .797011 2.518555 .980324C2.518555 1.251308 2.207721 1.41071 1.370859 1.41071H1.099875V1.633873H1.474471C1.578082 1.633873 2.12802 1.625903 2.478705 1.546202C2.797509 1.474471 3.124284 1.338979 3.124284 .980324C3.124284 .557908 2.677958 .430386 2.414944 .382565V.167372Z"></path>
+<path id="tz_fig_deriva_demanda_g3-45" d="M2.343213-1.458531V-1.976588H.095641V-1.458531H2.343213Z"></path>
+<path id="tz_fig_deriva_demanda_g3-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_deriva_demanda_g3-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_deriva_demanda_g3-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+<path id="tz_fig_deriva_demanda_g3-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_deriva_demanda_g3-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_deriva_demanda_g3-112" d="M2.096139 1.283188C1.586052 1.283188 1.490411 1.283188 1.490411 .924533V-.390535C1.865006 .01594 2.271482 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.717808 3.610461-3.514819 2.646077-3.514819C2.335243-3.514819 1.872976-3.435118 1.466501-3.020672V-3.514819L.278954-3.427148V-3.164134C.844832-3.164134 .884682-3.116314 .884682-2.781569V.924533C.884682 1.283188 .789041 1.283188 .278954 1.283188V1.546202C.621669 1.522291 .972354 1.522291 1.187547 1.522291C1.41868 1.522291 1.753425 1.522291 2.096139 1.546202V1.283188ZM1.490411-2.654047C1.673724-2.972852 2.072229-3.267746 2.574346-3.267746C3.188045-3.267746 3.706102-2.590286 3.706102-1.721544C3.706102-.804981 3.132254-.143462 2.486675-.143462C2.207721-.143462 1.841096-.263014 1.586052-.661519C1.490411-.797011 1.490411-.804981 1.490411-.956413V-2.654047Z"></path>
+<path id="tz_fig_deriva_demanda_g3-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_deriva_demanda_g3-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_deriva_demanda_g3-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+</defs>
+<g id="tz_fig_deriva_demanda_page1">
+<g stroke-miterlimit="10" transform="translate(-59.675038,74.200052)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H168.14708" fill="none"></path>
+<g transform="translate(168.14708,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(173.68002,-1.72221)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-59.675038" y="74.200052" href="#tz_fig_deriva_demanda_g1-120"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V128.88239" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,128.88239)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-2.24423,135.97089)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-59.675038" y="74.200052" href="#tz_fig_deriva_demanda_g1-121"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<g stroke-width="1.2">
+<path d="M0 104.70589L57.58815 0" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<g stroke-width="1.2">
+<path d="M0 104.70589L104.70589 0" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<g stroke-width="1.2">
+<path d="M0 104.70589L151.8236 0" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M28.014 57.58577C28.014 58.60121 27.19083 59.4244 26.17538 59.4244C25.15994 59.4244 24.33676 58.60121 24.33676 57.58577S25.15994 55.74715 26.17538 55.74715C27.19083 55.74715 28.014 56.57033 28.014 57.58577ZM26.17538 57.58577" stroke="none"></path>
+</g>
+<g transform="translate(26.17538,57.58577)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M51.57169 49.73306C51.57169 50.7485 50.7485 51.57169 49.73306 51.57169S47.89444 50.7485 47.89444 49.73306S48.71762 47.89444 49.73306 47.89444S51.57169 48.71762 51.57169 49.73306ZM49.73306 49.73306" stroke="none"></path>
+</g>
+<g transform="translate(49.73306,49.73306)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M80.36479 49.73306C80.36479 50.7485 79.54161 51.57169 78.52617 51.57169S76.68755 50.7485 76.68755 49.73306S77.51073 47.89444 78.52617 47.89444S80.36479 48.71762 80.36479 49.73306ZM78.52617 49.73306" stroke="none"></path>
+</g>
+<g transform="translate(78.52617,49.73306)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="0.8">
+<path d="M26.17538 57.58577C39.2647 52.35294 39.2647 52.35294 78.52617 49.73306" fill="none"></path>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(82.05914,48.78862)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-59.675038" y="74.200052" href="#tz_fig_deriva_demanda_g3-112"></use>
+<use x="-54.97039" y="74.200052" href="#tz_fig_deriva_demanda_g3-114"></use>
+<use x="-51.67022" y="74.200052" href="#tz_fig_deriva_demanda_g3-101"></use>
+<use x="-47.906502" y="74.200052" href="#tz_fig_deriva_demanda_g3-24"></use>
+<use x="-47.906502" y="74.200052" href="#tz_fig_deriva_demanda_g3-99"></use>
+<use x="-44.142784" y="74.200052" href="#tz_fig_deriva_demanda_g3-111"></use>
+<use x="-39.908601" y="74.200052" href="#tz_fig_deriva_demanda_g3-45"></use>
+<use x="-37.085812" y="74.200052" href="#tz_fig_deriva_demanda_g3-99"></use>
+<use x="-33.322094" y="74.200052" href="#tz_fig_deriva_demanda_g3-111"></use>
+<use x="-29.087911" y="74.200052" href="#tz_fig_deriva_demanda_g3-110"></use>
+<use x="-24.383264" y="74.200052" href="#tz_fig_deriva_demanda_g3-115"></use>
+<use x="-21.042961" y="74.200052" href="#tz_fig_deriva_demanda_g3-117"></use>
+<use x="-16.338313" y="74.200052" href="#tz_fig_deriva_demanda_g3-109"></use>
+<use x="-9.281342" y="74.200052" href="#tz_fig_deriva_demanda_g3-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M26.17538 57.58577L26.17647-68.05898" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M49.73306 49.73306L49.73512-68.05898" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M78.52617 49.73306L78.5294-68.05898" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0-146.58846H168.14708" fill="none"></path>
+<g transform="translate(168.14708,-146.58846)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(173.68002,-148.31067)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-59.675038" y="74.200052" href="#tz_fig_deriva_demanda_g1-120"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0-146.58846V-59.5886" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,-59.5886)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-5.03821,-53.05565)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-59.675038" y="74.200052" href="#tz_fig_deriva_demanda_g1-80"></use>
+<use x="-54.306224" y="75.196316" href="#tz_fig_deriva_demanda_g0-120"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M28.014-78.53229C28.014-77.51685 27.19083-76.69366 26.17538-76.69366C25.15994-76.69366 24.33676-77.51685 24.33676-78.53229S25.15994-80.37091 26.17538-80.37091C27.19083-80.37091 28.014-79.54773 28.014-78.53229ZM26.17538-78.53229" stroke="none"></path>
+</g>
+<g transform="translate(26.17538,-78.53229)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M51.57169-104.7077C51.57169-103.69226 50.7485-102.86908 49.73306-102.86908S47.89444-103.69226 47.89444-104.7077S48.71762-106.54633 49.73306-106.54633S51.57169-105.72314 51.57169-104.7077ZM49.73306-104.7077" stroke="none"></path>
+</g>
+<g transform="translate(49.73306,-104.7077)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M80.36479-128.26578C80.36479-127.25034 79.54161-126.42715 78.52617-126.42715S76.68755-127.25034 76.68755-128.26578S77.51073-130.1044 78.52617-130.1044S80.36479-129.28122 80.36479-128.26578ZM78.52617-128.26578" stroke="none"></path>
+</g>
+<g transform="translate(78.52617,-128.26578)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<path d="M18.32344-65.44124C41.88249-96.85333 57.58815-117.79419 94.23544-136.11804" fill="none"></path>
+<g transform="translate(98.16841,-138.85136)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-59.675038" y="74.200052" href="#tz_fig_deriva_demanda_g1-68"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(13.08687,-80.71007)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-59.675038" y="74.200052" href="#tz_fig_deriva_demanda_g1-80"></use>
+<use x="-54.306224" y="75.307" href="#tz_fig_deriva_demanda_g2-49"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(36.64455,-106.88548)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-59.675038" y="74.200052" href="#tz_fig_deriva_demanda_g1-80"></use>
+<use x="-54.306224" y="75.307" href="#tz_fig_deriva_demanda_g2-50"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(65.43765,-130.44356)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-59.675038,74.200052)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-59.675038" y="74.200052" href="#tz_fig_deriva_demanda_g1-80"></use>
+<use x="-54.306224" y="75.307" href="#tz_fig_deriva_demanda_g2-51"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-deriva-demanda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;22.1: Baixando <span class="math inline">\(P_x\)</span>, cada escolha ótima (painel superior) fornece um ponto da curva de demanda (painel inferior).
+</figcaption>
+</figure>
+</div>
+<p>Fica assim demonstrado que a curva de demanda <strong>é</strong> a coleção de escolhas ótimas — não uma hipótese independente, mas uma <em>consequência</em> das preferências e do orçamento. Toda a estrutura dos capítulos 1 a 5 repousa, afinal, sobre a teoria do consumidor.</p>
+</section>
+<section id="a-curva-de-engel" class="level2" data-number="22.3">
+<h2 data-number="22.3" class="anchored" data-anchor-id="a-curva-de-engel"><span class="header-section-number">22.3</span> A curva de Engel</h2>
+<p>Um experimento gêmeo varia a <strong>renda</strong> (com preços fixos) e registra a quantidade ótima de um bem a cada nível de renda. O resultado é a <strong>curva de Engel</strong>, que relaciona renda e quantidade consumida — a tradução gráfica da elasticidade-renda do <a href="cap04-elasticidades.html" class="quarto-xref"><span>Capítulo 18</span></a>:</p>
+<ul>
+<li>para um <strong>bem normal</strong>, a curva de Engel é <strong>crescente</strong> (mais renda, mais consumo);</li>
+<li>para um <strong>bem inferior</strong>, ela passa a ser <strong>decrescente</strong> na faixa de renda relevante (mais renda, menos consumo).</li>
+</ul>
+<p>A curva de Engel é a ponte entre a escolha do consumidor e a <strong>Lei de Engel</strong> que vimos nos dados da POF: à medida que a renda sobe, a fração gasta em alimentos básicos cai. Guardamo-la aqui porque o comportamento da demanda diante da renda é justamente a peça que falta para decompor o efeito de um preço.</p>
+</section>
+<section id="decompondo-uma-variação-de-preço" class="level2" data-number="22.4">
+<h2 data-number="22.4" class="anchored" data-anchor-id="decompondo-uma-variação-de-preço"><span class="header-section-number">22.4</span> Decompondo uma variação de preço</h2>
+<p>Eis a ideia central. Quando <span class="math inline">\(P_x\)</span> <strong>cai</strong>, a quantidade demandada de <span class="math inline">\(x\)</span> tipicamente sobe — mas por <em>dois</em> motivos que convém separar, porque têm lógicas diferentes:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — efeito substituição e efeito renda">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — efeito substituição e efeito renda
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Diante de uma variação no preço de um bem:</p>
+<ul>
+<li>O <strong>efeito substituição</strong> é a mudança na quantidade demandada devida <strong>apenas</strong> à alteração do <strong>preço relativo</strong>, mantido o poder de compra (a utilidade) constante. O bem que ficou relativamente mais barato é substituído em favor do outro.</li>
+<li>O <strong>efeito renda</strong> é a mudança na quantidade demandada devida à alteração do <strong>poder de compra real</strong>: um preço menor equivale a ficar mais rico, o que altera o consumo conforme o bem seja normal ou inferior.</li>
+</ul>
+<p>O <strong>efeito total</strong> (o que se observa na demanda) é a <strong>soma</strong> dos dois.</p>
+</div>
+</div>
+<p>Como separar na prática o que, na realidade, acontece de uma vez só? Com uma reta orçamentária <strong>auxiliar</strong> (a “compensação” de Hicks): imagine que, após a queda de <span class="math inline">\(P_x\)</span>, retirássemos do consumidor exatamente a renda necessária para deixá-lo tão satisfeito quanto antes (na <strong>mesma</strong> curva de indiferença). O movimento sobre a curva de indiferença original, do ponto inicial até a tangência com a nova inclinação de preços, é o <strong>efeito substituição</strong> puro. Devolver em seguida a renda retirada — deslocando a reta paralelamente até a posição final — produz o <strong>efeito renda</strong>. A <a href="#fig-decomposicao" class="quarto-xref">Figura&nbsp;<span>22.2</span></a> mostra a construção.</p>
+<div id="fig-decomposicao" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-decomposicao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="246.663372pt" height="245.712478pt" viewbox="-68.014948 -68.014952 246.663372 245.712478">
+<defs>
+<path id="tz_fig_decomposicao_g0-65" d="M1.350934-.729265C1.123786-.382565 .920548-.263014 .585803-.239103C.502117-.233126 .430386-.227148 .430386-.089664C.430386-.029888 .478207 0 .52005 0C.687422 0 .884682-.02391 1.058032-.02391C1.201494-.02391 1.554172 0 1.697634 0C1.763387 0 1.829141-.029888 1.829141-.14944C1.829141-.233126 1.745455-.239103 1.727522-.239103C1.58406-.245081 1.452553-.280946 1.452553-.412453C1.452553-.484184 1.518306-.585803 1.536239-.621669L2.026401-1.356912H3.825654L3.981071-.394521C3.981071-.239103 3.634371-.239103 3.574595-.239103C3.496887-.239103 3.401245-.239103 3.401245-.089664C3.401245-.059776 3.431133 0 3.502864 0C3.682192 0 4.118555-.02391 4.297883-.02391C4.417435-.02391 4.531009-.017933 4.65056-.017933S4.901619 0 5.015193 0C5.051059 0 5.1467 0 5.1467-.14944C5.1467-.239103 5.068991-.239103 4.979328-.239103C4.608717-.239103 4.60274-.280946 4.578829-.430386L3.981071-4.1066C3.963138-4.214197 3.957161-4.267995 3.825654-4.267995C3.700125-4.267995 3.664259-4.220174 3.610461-4.136488L1.350934-.729265ZM2.181818-1.596015L3.472976-3.53873L3.783811-1.596015H2.181818Z"></path>
+<path id="tz_fig_decomposicao_g0-66" d="M1.255293-.496139C1.201494-.280946 1.189539-.239103 .74122-.239103C.609714-.239103 .597758-.239103 .573848-.221171C.54396-.19726 .52005-.119552 .52005-.083686C.537983 0 .591781 0 .711333 0H3.144209C4.178331 0 4.991283-.675467 4.991283-1.273225C4.991283-1.643836 4.668493-2.038356 3.921295-2.139975C4.608717-2.247572 5.290162-2.683935 5.290162-3.227895C5.290162-3.658281 4.817933-4.08269 3.975093-4.08269H1.685679C1.572105-4.08269 1.482441-4.08269 1.482441-3.93325C1.482441-3.843587 1.572105-3.843587 1.679701-3.843587S1.936737-3.843587 2.062267-3.801743C2.062267-3.741968 2.062267-3.706102 2.038356-3.610461L1.255293-.496139ZM2.235616-2.223661L2.588294-3.640349C2.636115-3.831631 2.642092-3.843587 2.893151-3.843587H3.879452C4.501121-3.843587 4.680448-3.466999 4.680448-3.21594C4.680448-2.725778 4.05878-2.223661 3.323537-2.223661H2.235616ZM1.948692-.239103C1.835118-.239103 1.823163-.239103 1.751432-.257036L2.181818-2.026401H3.484932C4.238107-2.026401 4.363636-1.542217 4.363636-1.303113C4.363636-.729265 3.730012-.239103 2.988792-.239103H1.948692Z"></path>
+<path id="tz_fig_decomposicao_g0-67" d="M5.314072-4.034869C5.326027-4.088667 5.332005-4.112578 5.332005-4.124533S5.326027-4.208219 5.242341-4.208219C5.194521-4.208219 5.188543-4.202242 5.128767-4.136488L4.680448-3.670237C4.357659-4.070735 3.921295-4.208219 3.490909-4.208219C1.972603-4.208219 .508095-2.929016 .508095-1.596015C.508095-.56787 1.344956 .125529 2.456787 .125529C3.078456 .125529 3.622416-.131507 3.975093-.406476C4.566874-.878705 4.662516-1.41071 4.662516-1.440598C4.662516-1.500374 4.608717-1.524284 4.554919-1.524284C4.483188-1.524284 4.459278-1.500374 4.441345-1.440598C4.154421-.508095 3.21594-.113574 2.552428-.113574C2.110087-.113574 1.135741-.292902 1.135741-1.428643C1.135741-1.667746 1.189539-2.492653 1.847073-3.21594C2.163885-3.568618 2.803487-3.969116 3.550685-3.969116C4.321793-3.969116 4.722291-3.419178 4.722291-2.791532C4.722291-2.689913 4.704359-2.582316 4.704359-2.570361C4.704359-2.480697 4.794022-2.480697 4.82391-2.480697C4.901619-2.480697 4.931507-2.486675 4.961395-2.612204L5.314072-4.034869Z"></path>
+<path id="tz_fig_decomposicao_g1-65" d="M1.474471-.948443C1.107846-.366625 .781071-.286924 .494147-.263014C.414446-.255044 .318804-.247073 .318804-.111582C.318804-.087671 .334745 0 .430386 0C.502117 0 .549938-.02391 1.107846-.02391C1.649813-.02391 1.833126 0 1.872976 0S2.032379 0 2.032379-.151432C2.032379-.255044 1.928767-.263014 1.888917-.263014C1.721544-.270984 1.554172-.334745 1.554172-.510087C1.554172-.629639 1.617933-.73325 1.769365-.964384L2.311333-1.841096H4.495143L4.662516-.494147C4.662516-.382565 4.519054-.263014 4.144458-.263014C4.024907-.263014 3.921295-.263014 3.921295-.111582C3.921295-.103611 3.929265 0 4.056787 0C4.136488 0 4.439352-.01594 4.511083-.02391H5.0132C5.730511-.02391 5.866002 0 5.929763 0C5.961644 0 6.089166 0 6.089166-.151432C6.089166-.263014 5.985554-.263014 5.858032-.263014C5.419676-.263014 5.411706-.334745 5.387796-.533998L4.758157-5.459527C4.734247-5.634869 4.726276-5.69066 4.590785-5.69066C4.447323-5.69066 4.399502-5.610959 4.351681-5.531258L1.474471-.948443ZM2.478705-2.10411L4.128518-4.726276L4.463263-2.10411H2.478705Z"></path>
+<path id="tz_fig_decomposicao_g1-66" d="M1.346949-.629639C1.275218-.326775 1.259278-.263014 .669489-.263014C.518057-.263014 .422416-.263014 .422416-.111582C.422416 0 .526027 0 .661519 0H3.618431C4.933499 0 5.913823-.932503 5.913823-1.705604C5.913823-2.287422 5.411706-2.757659 4.614695-2.84533C5.539228-3.020672 6.336239-3.626401 6.336239-4.327771C6.336239-4.925529 5.754421-5.443587 4.750187-5.443587H1.968618C1.825156-5.443587 1.721544-5.443587 1.721544-5.292154C1.721544-5.180573 1.817186-5.180573 1.952677-5.180573C2.215691-5.180573 2.446824-5.180573 2.446824-5.053051C2.446824-5.021171 2.438854-5.0132 2.414944-4.909589L1.346949-.629639ZM2.590286-2.940971L3.076463-4.885679C3.148194-5.156663 3.156164-5.180573 3.482939-5.180573H4.630635C5.411706-5.180573 5.587049-4.670486 5.587049-4.343711C5.587049-3.666252 4.861768-2.940971 3.841594-2.940971H2.590286ZM2.040349-.263014C1.968618-.278954 1.944707-.278954 1.944707-.334745C1.944707-.398506 1.960648-.462267 1.976588-.510087L2.534496-2.717808H4.152428C4.893649-2.717808 5.140722-2.215691 5.140722-1.769365C5.140722-.988294 4.375592-.263014 3.419178-.263014H2.040349Z"></path>
+<path id="tz_fig_decomposicao_g1-67" d="M6.344209-5.395766C6.352179-5.427646 6.36812-5.475467 6.36812-5.515318C6.36812-5.571108 6.320299-5.610959 6.264508-5.610959S6.184807-5.587049 6.121046-5.515318L5.563138-4.901619C5.491407-5.00523 5.068991-5.610959 4.136488-5.610959C2.287422-5.610959 .422416-3.897385 .422416-2.064259C.422416-.67746 1.474471 .167372 2.741719 .167372C3.785803 .167372 4.670486-.470237 5.100872-1.091905C5.363885-1.482441 5.467497-1.865006 5.467497-1.912827C5.467497-1.984558 5.419676-2.016438 5.347945-2.016438C5.252304-2.016438 5.236364-1.976588 5.212453-1.888917C4.877709-.789041 3.801743-.095641 2.84533-.095641C2.032379-.095641 1.179577-.573848 1.179577-1.793275C1.179577-2.048319 1.267248-3.379328 2.15193-4.375592C2.749689-5.045081 3.56264-5.347945 4.192279-5.347945C5.196513-5.347945 5.610959-4.542964 5.610959-3.785803C5.610959-3.674222 5.579078-3.52279 5.579078-3.427148C5.579078-3.323537 5.68269-3.323537 5.71457-3.323537C5.818182-3.323537 5.834122-3.355417 5.866002-3.498879L6.344209-5.395766Z"></path>
+<path id="tz_fig_decomposicao_g1-85" d="M5.316065-4.574844C5.411706-4.96538 5.595019-5.156663 6.160897-5.180573C6.240598-5.180573 6.304359-5.228394 6.304359-5.332005C6.304359-5.379826 6.264508-5.443587 6.184807-5.443587C6.144956-5.443587 5.969614-5.419676 5.395766-5.419676C4.758157-5.419676 4.654545-5.443587 4.582814-5.443587C4.455293-5.443587 4.431382-5.355915 4.431382-5.292154C4.431382-5.188543 4.534994-5.180573 4.606725-5.180573C5.092902-5.164633 5.092902-4.94944 5.092902-4.837858C5.092902-4.790037 5.084932-4.750187 5.076961-4.702366C5.061021-4.646575 4.399502-1.976588 4.367621-1.872976C4.080697-.72528 3.076463-.095641 2.287422-.095641C1.737484-.095641 1.243337-.422416 1.243337-1.155666C1.243337-1.291158 1.267248-1.506351 1.299128-1.633873L2.096139-4.821918C2.16787-5.108842 2.183811-5.180573 2.765629-5.180573C2.925031-5.180573 3.020672-5.180573 3.020672-5.332005C3.020672-5.339975 3.012702-5.443587 2.885181-5.443587C2.733748-5.443587 2.542466-5.427646 2.391034-5.419676H1.888917C1.123786-5.419676 .916563-5.443587 .860772-5.443587C.828892-5.443587 .70137-5.443587 .70137-5.292154C.70137-5.180573 .804981-5.180573 .932503-5.180573C1.195517-5.180573 1.42665-5.180573 1.42665-5.053051C1.42665-5.00523 1.354919-4.718306 1.307098-4.558904L1.131756-3.857534L.71731-2.16787C.605729-1.729514 .573848-1.609963 .573848-1.39477C.573848-.462267 1.307098 .167372 2.255542 .167372C3.339477 .167372 4.359651-.749191 4.614695-1.777335L5.316065-4.574844Z"></path>
+<path id="tz_fig_decomposicao_g1-120" d="M3.993026-3.180075C3.642341-3.092403 3.626401-2.781569 3.626401-2.749689C3.626401-2.574346 3.761893-2.454795 3.937235-2.454795S4.383562-2.590286 4.383562-2.933001C4.383562-3.387298 3.881445-3.514819 3.58655-3.514819C3.211955-3.514819 2.909091-3.251806 2.725778-2.940971C2.550436-3.363387 2.13599-3.514819 1.809215-3.514819C.940473-3.514819 .454296-2.518555 .454296-2.295392C.454296-2.223661 .510087-2.191781 .573848-2.191781C.669489-2.191781 .68543-2.231631 .70934-2.327273C.892653-2.909091 1.370859-3.291656 1.785305-3.291656C2.096139-3.291656 2.247572-3.068493 2.247572-2.781569C2.247572-2.622167 2.15193-2.255542 2.088169-2.000498C2.032379-1.769365 1.857036-1.060025 1.817186-.908593C1.705604-.478207 1.41868-.143462 1.060025-.143462C1.028144-.143462 .820922-.143462 .653549-.255044C1.020174-.342715 1.020174-.67746 1.020174-.68543C1.020174-.868742 .876712-.980324 .70137-.980324C.486177-.980324 .255044-.797011 .255044-.494147C.255044-.127522 .645579 .079701 1.052055 .079701C1.474471 .079701 1.769365-.239103 1.912827-.494147C2.088169-.103611 2.454795 .079701 2.83736 .079701C3.706102 .079701 4.184309-.916563 4.184309-1.139726C4.184309-1.219427 4.120548-1.243337 4.064757-1.243337C3.969116-1.243337 3.953176-1.187547 3.929265-1.107846C3.769863-.573848 3.315567-.143462 2.8533-.143462C2.590286-.143462 2.399004-.318804 2.399004-.653549C2.399004-.812951 2.446824-.996264 2.558406-1.44259C2.614197-1.681694 2.789539-2.383064 2.82939-2.534496C2.940971-2.948941 3.219925-3.291656 3.57858-3.291656C3.618431-3.291656 3.825654-3.291656 3.993026-3.180075Z"></path>
+<path id="tz_fig_decomposicao_g2-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_fig_decomposicao_g2-50" d="M3.21594-1.117808H2.99477C2.982814-1.034122 2.923039-.639601 2.833375-.573848C2.791532-.537983 2.307347-.537983 2.223661-.537983H1.105853L1.870984-1.159651C2.074222-1.321046 2.606227-1.703611 2.791532-1.882939C2.970859-2.062267 3.21594-2.367123 3.21594-2.791532C3.21594-3.53873 2.540473-3.975093 1.739477-3.975093C.968369-3.975093 .430386-3.466999 .430386-2.905106C.430386-2.600249 .687422-2.564384 .753176-2.564384C.902615-2.564384 1.075965-2.67198 1.075965-2.887173C1.075965-3.01868 .998257-3.209963 .735243-3.209963C.872727-3.514819 1.23736-3.741968 1.649813-3.741968C2.27746-3.741968 2.612204-3.275716 2.612204-2.791532C2.612204-2.367123 2.331258-1.93076 1.912827-1.548194L.496139-.251059C.436364-.191283 .430386-.185305 .430386 0H3.030635L3.21594-1.117808Z"></path>
+<path id="tz_fig_decomposicao_g3-46" d="M1.617933-.438356C1.617933-.70934 1.40274-.884682 1.179577-.884682C.908593-.884682 .73325-.669489 .73325-.446326C.73325-.175342 .948443 0 1.171606 0C1.44259 0 1.617933-.215193 1.617933-.438356Z"></path>
+<path id="tz_fig_decomposicao_g3-69" d="M5.515318-2.072229H5.268244C5.061021-.876712 4.893649-.263014 3.459029-.263014H2.271482C1.904857-.263014 1.888917-.318804 1.888917-.589788V-2.685928H2.662017C3.451059-2.685928 3.56264-2.446824 3.56264-1.753425H3.809714V-3.881445H3.56264C3.56264-3.188045 3.451059-2.948941 2.662017-2.948941H1.888917V-4.829888C1.888917-5.100872 1.904857-5.156663 2.271482-5.156663H3.403238C4.726276-5.156663 4.893649-4.678456 5.037111-3.610461H5.284184L5.053051-5.419676H.350685V-5.156663H.526027C1.139726-5.156663 1.155666-5.068991 1.155666-4.774097V-.645579C1.155666-.350685 1.139726-.263014 .526027-.263014H.350685V0H5.164633L5.515318-2.072229Z"></path>
+<path id="tz_fig_decomposicao_g3-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_decomposicao_g3-98" d="M1.466501-5.531258L.278954-5.443587V-5.180573C.820922-5.180573 .884682-5.124782 .884682-4.734247V0H1.131756L1.41868-.494147C1.609963-.223163 1.984558 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.725778 3.594521-3.514819 2.622167-3.514819C1.992528-3.514819 1.601993-3.172105 1.466501-3.028643V-5.531258ZM1.490411-2.518555C1.490411-2.669988 1.490411-2.685928 1.609963-2.82939C1.841096-3.124284 2.215691-3.291656 2.574346-3.291656C2.988792-3.291656 3.299626-3.044583 3.459029-2.805479C3.594521-2.590286 3.706102-2.311333 3.706102-1.729514C3.706102-1.546202 3.706102-.980324 3.419178-.605729C3.132254-.247073 2.757659-.143462 2.494645-.143462C2.11208-.143462 1.793275-.342715 1.586052-.653549C1.490411-.804981 1.490411-.812951 1.490411-.964384V-2.518555Z"></path>
+<path id="tz_fig_decomposicao_g3-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_decomposicao_g3-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_decomposicao_g3-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_decomposicao_g3-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_decomposicao_g3-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_decomposicao_g3-116" d="M1.482441-3.172105H2.669988V-3.435118H1.482441V-4.901619H1.235367C1.227397-4.176339 .900623-3.419178 .159402-3.395268V-3.172105H.876712V-.996264C.876712-.063761 1.594022 .079701 1.960648 .079701C2.494645 .079701 2.81345-.398506 2.81345-.996264V-1.44259H2.566376V-1.012204C2.566376-.462267 2.319303-.167372 2.016438-.167372C1.482441-.167372 1.482441-.852802 1.482441-.980324V-3.172105Z"></path>
+<path id="tz_fig_decomposicao_g3-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+<path id="tz_fig_decomposicao_g4-120" d="M3.327522-3.008717C3.387298-3.267746 3.616438-4.184309 4.313823-4.184309C4.363636-4.184309 4.60274-4.184309 4.811955-4.054795C4.533001-4.004981 4.333748-3.755915 4.333748-3.516812C4.333748-3.35741 4.443337-3.16812 4.712329-3.16812C4.931507-3.16812 5.250311-3.347447 5.250311-3.745953C5.250311-4.26401 4.662516-4.403487 4.323786-4.403487C3.745953-4.403487 3.39726-3.875467 3.277709-3.646326C3.028643-4.303861 2.49066-4.403487 2.201743-4.403487C1.165629-4.403487 .597758-3.118306 .597758-2.86924C.597758-2.769614 .697385-2.769614 .71731-2.769614C.797011-2.769614 .826899-2.789539 .846824-2.879203C1.185554-3.935243 1.843088-4.184309 2.181818-4.184309C2.371108-4.184309 2.719801-4.094645 2.719801-3.516812C2.719801-3.20797 2.550436-2.540473 2.181818-1.145704C2.022416-.52802 1.673724-.109589 1.235367-.109589C1.175592-.109589 .946451-.109589 .737235-.239103C.986301-.288917 1.205479-.498132 1.205479-.777086C1.205479-1.046077 .986301-1.125778 .836862-1.125778C.537983-1.125778 .288917-.86675 .288917-.547945C.288917-.089664 .787049 .109589 1.225405 .109589C1.882939 .109589 2.241594-.587796 2.271482-.647572C2.391034-.278954 2.749689 .109589 3.347447 .109589C4.373599 .109589 4.941469-1.175592 4.941469-1.424658C4.941469-1.524284 4.851806-1.524284 4.821918-1.524284C4.732254-1.524284 4.712329-1.484433 4.692403-1.414695C4.363636-.348692 3.686177-.109589 3.367372-.109589C2.978829-.109589 2.819427-.428394 2.819427-.767123C2.819427-.986301 2.879203-1.205479 2.988792-1.643836L3.327522-3.008717Z"></path>
+<path id="tz_fig_decomposicao_g4-121" d="M4.841843-3.795766C4.881694-3.935243 4.881694-3.955168 4.881694-4.024907C4.881694-4.204234 4.742217-4.293898 4.592777-4.293898C4.493151-4.293898 4.333748-4.234122 4.244085-4.084682C4.224159-4.034869 4.144458-3.726027 4.104608-3.5467C4.034869-3.287671 3.965131-3.01868 3.905355-2.749689L3.457036-.956413C3.417186-.806974 2.988792-.109589 2.331258-.109589C1.823163-.109589 1.713574-.547945 1.713574-.916563C1.713574-1.374844 1.882939-1.992528 2.221669-2.86924C2.381071-3.277709 2.420922-3.387298 2.420922-3.58655C2.420922-4.034869 2.102117-4.403487 1.603985-4.403487C.657534-4.403487 .288917-2.958904 .288917-2.86924C.288917-2.769614 .388543-2.769614 .408468-2.769614C.508095-2.769614 .518057-2.789539 .56787-2.948941C.836862-3.88543 1.235367-4.184309 1.574097-4.184309C1.653798-4.184309 1.823163-4.184309 1.823163-3.865504C1.823163-3.616438 1.723537-3.35741 1.653798-3.16812C1.255293-2.11208 1.075965-1.544209 1.075965-1.075965C1.075965-.18929 1.703611 .109589 2.291407 .109589C2.67995 .109589 3.01868-.059776 3.297634-.33873C3.16812 .179328 3.048568 .667497 2.650062 1.195517C2.391034 1.534247 2.012453 1.823163 1.554172 1.823163C1.414695 1.823163 .966376 1.793275 .797011 1.404732C.956413 1.404732 1.085928 1.404732 1.225405 1.285181C1.325031 1.195517 1.424658 1.066002 1.424658 .876712C1.424658 .56787 1.155666 .52802 1.05604 .52802C.826899 .52802 .498132 .687422 .498132 1.175592C.498132 1.673724 .936488 2.042341 1.554172 2.042341C2.580324 2.042341 3.606476 1.135741 3.88543 .009963L4.841843-3.795766Z"></path>
+</defs>
+<g id="tz_fig_decomposicao_page1">
+<g stroke-miterlimit="10" transform="translate(-62.073453,140.641388)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H227.0434" fill="none"></path>
+<g transform="translate(227.0434,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(232.57634,-2.15277)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-62.073453" y="140.641388" href="#tz_fig_decomposicao_g4-120"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V194.3229" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,194.3229)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-2.6308,201.80028)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-62.073453" y="140.641388" href="#tz_fig_decomposicao_g4-121"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<g stroke-width="1.2">
+<path d="M0 147.24216L104.70543 0" fill="none"></path>
+<g transform="translate(104.70543,-3.93297)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<g stroke-width="1.2">
+<path d="M0 147.24216L202.86688 0" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<g stroke-width="0.8">
+<path d="M0 104.70543L143.96991 0" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<path d="M17.99635 137.42592C45.80846 55.6247 55.6247 47.44458 140.69815 24.54034" fill="none"></path>
+<g transform="translate(144.63112,22.36256)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-62.073453" y="140.641388" href="#tz_fig_decomposicao_g1-85"></use>
+<use x="-56.344449" y="141.748336" href="#tz_fig_decomposicao_g2-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#9ec6f3" stroke="#9ec6f3">
+<path d="M42.53671 150.51439C85.07343 68.7132 94.88918 62.1687 183.23488 32.72047" fill="none"></path>
+<g transform="translate(187.16785,30.5427)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#9ec6f3">
+<g stroke="none">
+<g fill="#9ec6f2">
+<use x="-62.073453" y="140.641388" href="#tz_fig_decomposicao_g1-85"></use>
+<use x="-56.344449" y="141.748336" href="#tz_fig_decomposicao_g2-50"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M39.47281 93.26805C39.47281 94.2835 38.64963 95.10667 37.63419 95.10667C36.61874 95.10667 35.79556 94.2835 35.79556 93.26805C35.79556 92.25261 36.61874 91.42943 37.63419 91.42943C38.64963 91.42943 39.47281 92.25261 39.47281 93.26805ZM37.63419 93.26805" stroke="none"></path>
+</g>
+<g transform="translate(37.63419,93.26805)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(41.16716,96.80103)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-62.073453" y="140.641388" href="#tz_fig_decomposicao_g1-65"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M78.7439 50.72472C78.7439 51.74016 77.92072 52.56334 76.90527 52.56334C75.88983 52.56334 75.06665 51.74016 75.06665 50.72472C75.06665 49.70927 75.88983 48.8861 76.90527 48.8861C77.92072 48.8861 78.7439 49.70927 78.7439 50.72472ZM76.90527 50.72472" stroke="none"></path>
+</g>
+<g transform="translate(76.90527,50.72472)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(80.43825,54.25769)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-62.073453" y="140.641388" href="#tz_fig_decomposicao_g1-66"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M111.46947 56.288C111.46947 57.30344 110.64629 58.12662 109.63084 58.12662C108.6154 58.12662 107.79222 57.30344 107.79222 56.288C107.79222 55.27255 108.6154 54.44937 109.63084 54.44937C110.64629 54.44937 111.46947 55.27255 111.46947 56.288ZM109.63084 56.288" stroke="none"></path>
+</g>
+<g transform="translate(109.63084,56.288)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(113.16382,59.82097)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-62.073453" y="140.641388" href="#tz_fig_decomposicao_g1-67"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M37.63419 93.26805L37.62834 0" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M76.90527 50.72472L76.89333 0" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M109.63084 56.288L109.6138 0" fill="none"></path>
+</g>
+</g>
+</g>
+<g transform="translate(32.21376,-6.9774)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-62.073453" y="140.641388" href="#tz_fig_decomposicao_g1-120"></use>
+<use x="-57.306554" y="141.980817" href="#tz_fig_decomposicao_g0-65"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(71.3277,-6.9774)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-62.073453" y="140.641388" href="#tz_fig_decomposicao_g1-120"></use>
+<use x="-57.306554" y="141.980817" href="#tz_fig_decomposicao_g0-66"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(104.11269,-6.9774)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-62.073453" y="140.641388" href="#tz_fig_decomposicao_g1-120"></use>
+<use x="-57.306554" y="141.980817" href="#tz_fig_decomposicao_g0-67"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#3fb618" stroke="#3fb618">
+<path d="M37.62834-17.99635C38.22832-19.19637 39.62834-19.99635 41.62834-19.99635H53.26083C55.26083-19.99635 56.66086-20.79634 57.26083-21.99635C57.86081-20.79634 59.26083-19.99635 61.26083-19.99635H72.89333C74.89333-19.99635 76.29335-19.19637 76.89333-17.99635" fill="none"></path>
+</g>
+<g fill="#3fb618" stroke="#3fb618">
+<g fill="#3fb618" stroke="#3fb618">
+</g>
+<g transform="translate(40.86476,-33.86212)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none">
+<g fill="#3fb618">
+<use x="-62.073453" y="140.641388" href="#tz_fig_decomposicao_g3-69"></use>
+<use x="-56.31441" y="140.641388" href="#tz_fig_decomposicao_g3-46"></use>
+<use x="-51.139298" y="140.641388" href="#tz_fig_decomposicao_g3-115"></use>
+<use x="-47.798995" y="140.641388" href="#tz_fig_decomposicao_g3-117"></use>
+<use x="-43.094347" y="140.641388" href="#tz_fig_decomposicao_g3-98"></use>
+<use x="-38.3897" y="140.641388" href="#tz_fig_decomposicao_g3-115"></use>
+<use x="-35.049397" y="140.641388" href="#tz_fig_decomposicao_g3-116"></use>
+<use x="-31.756143" y="140.641388" href="#tz_fig_decomposicao_g3-46"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M76.89333-17.99635C77.4933-19.19637 78.89333-19.99635 80.89333-19.99635H89.25356C91.25356-19.99635 92.65358-20.79634 93.25356-21.99635C93.85353-20.79634 95.25356-19.99635 97.25356-19.99635H105.6138C107.6138-19.99635 109.01382-19.19637 109.6138-17.99635" fill="none"></path>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(77.37347,-33.86212)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.073453,140.641388)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-62.073453" y="140.641388" href="#tz_fig_decomposicao_g3-69"></use>
+<use x="-56.31441" y="140.641388" href="#tz_fig_decomposicao_g3-46"></use>
+<use x="-51.139298" y="140.641388" href="#tz_fig_decomposicao_g3-114"></use>
+<use x="-47.839127" y="140.641388" href="#tz_fig_decomposicao_g3-101"></use>
+<use x="-44.075409" y="140.641388" href="#tz_fig_decomposicao_g3-110"></use>
+<use x="-39.370762" y="140.641388" href="#tz_fig_decomposicao_g3-100"></use>
+<use x="-34.666114" y="140.641388" href="#tz_fig_decomposicao_g3-97"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decomposicao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;22.2: Queda de <span class="math inline">\(P_x\)</span>: de <span class="math inline">\(A\)</span> a <span class="math inline">\(B\)</span> (sobre <span class="math inline">\(U_1\)</span>, reta auxiliar) é o efeito substituição; de <span class="math inline">\(B\)</span> a <span class="math inline">\(C\)</span> é o efeito renda. O total é de <span class="math inline">\(x_A\)</span> a <span class="math inline">\(x_C\)</span>.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="os-sinais-dos-efeitos" class="level2" data-number="22.5">
+<h2 data-number="22.5" class="anchored" data-anchor-id="os-sinais-dos-efeitos"><span class="header-section-number">22.5</span> Os sinais dos efeitos</h2>
+<p>A força da decomposição está em que os <strong>sinais</strong> dos dois efeitos são conhecidos:</p>
+<ul>
+<li><strong>Efeito substituição — sempre “contra o preço”.</strong> Quando um bem fica mais barato, o efeito substituição <strong>sempre</strong> aumenta sua quantidade (e vice-versa). Não há exceção: substituímos em favor do que barateou. Graficamente, mover-se sobre uma curva de indiferença convexa em direção à nova inclinação sempre aumenta o consumo do bem que ficou relativamente mais barato.</li>
+<li><strong>Efeito renda — depende do tipo de bem.</strong> Um preço menor aumenta o poder de compra. Se o bem é <strong>normal</strong>, esse “enriquecimento” aumenta ainda mais o seu consumo (efeito renda reforça a substituição). Se é <strong>inferior</strong>, o enriquecimento <em>reduz</em> o consumo (efeito renda <strong>contraria</strong> a substituição).</li>
+</ul>
+<p>Cruzando os dois, temos toda a tipologia (<a href="#tbl-sinais" class="quarto-xref">Tabela&nbsp;<span>22.1</span></a>):</p>
+<div id="tbl-sinais" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sinais-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;22.1: Efeitos de uma <strong>queda</strong> de preço, por tipo de bem
+</figcaption>
+<div aria-describedby="tbl-sinais-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tipo de bem</th>
+<th style="text-align: center;">Efeito substituição</th>
+<th style="text-align: center;">Efeito renda</th>
+<th style="text-align: center;">Efeito total</th>
+<th style="text-align: center;">Demanda</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Normal</strong></td>
+<td style="text-align: center;">aumenta <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;">aumenta <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;">aumenta <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;">decrescente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Inferior (comum)</strong></td>
+<td style="text-align: center;">aumenta <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;">reduz <span class="math inline">\(x\)</span> (menor)</td>
+<td style="text-align: center;">aumenta <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;">decrescente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Giffen</strong></td>
+<td style="text-align: center;">aumenta <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;">reduz <span class="math inline">\(x\)</span> (maior)</td>
+<td style="text-align: center;"><strong>reduz <span class="math inline">\(x\)</span></strong></td>
+<td style="text-align: center;">crescente</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Para um bem <strong>normal</strong>, os dois efeitos empurram no mesmo sentido: a demanda desce, sem dúvida. Para um bem <strong>inferior comum</strong>, o efeito renda contraria, mas é <strong>menor</strong> que o de substituição, então a demanda ainda desce — apenas com inclinação mais suave. É só no caso extremo em que o efeito renda <strong>supera</strong> o de substituição que a demanda subiria: o <strong>bem de Giffen</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — todo Giffen é inferior, mas quase nenhum inferior é Giffen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — todo Giffen é inferior, mas quase nenhum inferior é Giffen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ser inferior é <strong>necessário</strong>, mas longe de <strong>suficiente</strong>, para ser Giffen. A imensa maioria dos bens inferiores tem demanda decrescente normal, porque o efeito substituição domina. O bem de Giffen exige uma combinação rara: ser fortemente inferior <em>e</em> pesar tanto no orçamento que o efeito renda vença. Confundir “inferior” com “Giffen” é erro frequente.</p>
+</div>
+</div>
+</section>
+<section id="o-enigma-de-giffen-resolvido" class="level2" data-number="22.6">
+<h2 data-number="22.6" class="anchored" data-anchor-id="o-enigma-de-giffen-resolvido"><span class="header-section-number">22.6</span> O enigma de Giffen, resolvido</h2>
+<p>Podemos agora fechar o mistério aberto no <a href="cap01-demanda.html" class="quarto-xref"><span>Capítulo 15</span></a>. Um <strong>bem de Giffen</strong> é um bem tão inferior e tão dominante no orçamento de famílias pobres que, quando seu preço <strong>sobe</strong>, o efeito renda negativo (a família ficou substancialmente mais pobre em termos reais) é forte o bastante para superar o efeito substituição, levando a família a comprar <strong>mais</strong> dele.</p>
+<p>O exemplo tradicional é o de um alimento básico (batata na Irlanda do século XIX; nas versões modernas, arroz ou macarrão) que consome quase toda a renda de uma família muito pobre e cujo único “substituto” para cima (carne) é caro. Se o preço do básico sobe, a família não tem mais como comprar o caro e <strong>se refugia ainda mais</strong> no básico para não passar fome — comprando mais dele apesar da alta. O efeito renda, aqui, é gigantesco justamente porque o bem pesa quase tudo no orçamento.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — o bem de Giffen existe?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — o bem de Giffen existe?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Por mais de um século, o bem de Giffen foi tido como uma curiosidade teórica sem comprovação empírica sólida. Estudos de campo mais recentes (notadamente experimentos com arroz e trigo entre famílias pobres na China, por Jensen e Miller, 2008) encontraram evidências consistentes de comportamento de Giffen em condições muito específicas de pobreza extrema. Ainda assim, é fenômeno <strong>raríssimo</strong> e restrito a contextos-limite; para todos os efeitos práticos, a <strong>lei da demanda vale</strong>. O valor do conceito é teórico: ele mostra que a inclinação descendente da demanda não é um axioma, mas um resultado que depende de os efeitos renda não serem perversos e grandes demais.</p>
+</div>
+</div>
+</section>
+<section id="de-volta-ao-mercado" class="level2" data-number="22.7">
+<h2 data-number="22.7" class="anchored" data-anchor-id="de-volta-ao-mercado"><span class="header-section-number">22.7</span> De volta ao mercado</h2>
+<p>A demanda individual deste capítulo reconecta-se ao ponto de partida do volume. Somando <strong>horizontalmente</strong> as demandas individuais — a cada preço, as quantidades que todos os consumidores desejam —, reconstrói-se a <strong>demanda de mercado</strong> do <a href="cap01-demanda.html" class="quarto-xref"><span>Capítulo 15</span></a>, agora com fundamentos completos. Cada ponto da curva de mercado carrega, por trás, milhões de tangências entre curvas de indiferença e retas orçamentárias. O que parecia, no primeiro capítulo, uma simples reta que desce, revela-se o agregado de um mecanismo de otimização profundo — e é essa fundamentação que dá à análise de oferta e demanda a sua solidez.</p>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="22.8">
+<h2 data-number="22.8" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">22.8</span> 🇧🇷 Brasil em Foco</h2>
+<p>A decomposição de efeitos não é só teoria fina: ela organiza a leitura de choques de preço reais sobre as famílias brasileiras.</p>
+<p><strong>Choques de preço de alimentos e o efeito renda dos pobres.</strong> Quando o preço do <strong>arroz</strong> disparou em 2020, ou o do <strong>óleo de soja</strong> e da <strong>carne</strong> em ciclos recentes, o impacto sobre famílias de baixa renda foi sobretudo um <strong>efeito renda</strong>: como alimentos básicos pesam muito no orçamento dos mais pobres (a POF mostra participação bem maior de alimentação no domicílio nas faixas inferiores de renda), uma alta desses preços corta o poder de compra real de forma desproporcional. É a base econômica para a preocupação com a <strong>inflação de alimentos</strong> como um fenômeno <strong>regressivo</strong> — ela empobrece mais quem menos tem.</p>
+<p><strong>Por que quase nunca vemos Giffen no Brasil.</strong> Ainda que alimentos básicos sejam inferiores para muitas famílias e pesem no orçamento, o Brasil tem <strong>substitutos abundantes</strong> (arroz, macarrão, mandioca, pão) e uma rede de proteção (Bolsa Família, restaurantes populares) que amortece o efeito renda. Por isso o efeito substituição costuma dominar, e a demanda desses itens é decrescente normal — o comportamento de Giffen exigiria um grau de pobreza e ausência de alternativas que as políticas sociais justamente procuram evitar.</p>
+<p><strong>Inflação como imposto sobre o poder de compra.</strong> A leitura de que “um preço maior é como ficar mais pobre” é literalmente o efeito renda. Uma inflação que corrói o salário real desloca a reta orçamentária das famílias <strong>para dentro</strong>, e a recomposição da cesta (mais bens inferiores, menos supérfluos) é o efeito renda em ação no agregado. Acompanhar o <strong>salário mínimo real</strong> e o <strong>rendimento médio real</strong> (IBGE) é acompanhar o deslocamento dessa reta para o conjunto dos trabalhadores.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> IBGE/POF (peso da alimentação por faixa de renda — base do efeito renda diferenciado); IPCA por grupos (choques de preço de alimentos); IBGE/PNAD Contínua (rendimento real); estudos do IPEA sobre impacto distributivo da inflação. O efeito renda de um choque de preço é sempre maior para quem gasta maior fração da renda no bem que encareceu.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="22.9">
+<h2 data-number="22.9" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">22.9</span> Resumo do capítulo</h2>
+<ul>
+<li>A <strong>curva de demanda individual</strong> é derivada variando o preço e registrando as <strong>escolhas ótimas</strong>; ela é consequência das preferências e do orçamento, não um postulado.</li>
+<li>A <strong>curva de Engel</strong> relaciona renda e quantidade: <strong>crescente</strong> para bens normais, <strong>decrescente</strong> para inferiores.</li>
+<li>Uma variação de preço decompõe-se em <strong>efeito substituição</strong> (mudança do preço relativo, utilidade constante) e <strong>efeito renda</strong> (mudança do poder de compra real); o <strong>efeito total</strong> é a soma.</li>
+<li>O <strong>efeito substituição</strong> é <strong>sempre</strong> contrário à variação do preço; o <strong>efeito renda</strong> reforça (bem <strong>normal</strong>) ou contraria (bem <strong>inferior</strong>) a substituição.</li>
+<li>Bens <strong>normais</strong> têm demanda decrescente (efeitos somam); <strong>inferiores comuns</strong> também (substituição domina); só o <strong>bem de Giffen</strong> (inferior extremo, peso enorme no orçamento) teria demanda crescente.</li>
+<li>O <strong>Giffen</strong> resolve o enigma do <a href="cap01-demanda.html" class="quarto-xref"><span>Capítulo 15</span></a>: é logicamente possível, empiricamente raríssimo; a <strong>lei da demanda</strong> vale na prática.</li>
+<li>Somando <strong>horizontalmente</strong> as demandas individuais, reconstrói-se a <strong>demanda de mercado</strong>, agora com fundamentos microeconômicos completos.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="22.10">
+<h2 data-number="22.10" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">22.10</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Resolva antes de abrir a solução. Dificuldade crescente: conceituais, numéricos e análise de caso.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique, em uma frase cada, a diferença de <em>natureza</em> entre o efeito substituição e o efeito renda de uma queda de preço.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Efeito substituição:</strong> a mudança no consumo porque o bem ficou relativamente mais barato que os outros (mudança de <strong>preços relativos</strong>), com o poder de compra mantido constante. <strong>Efeito renda:</strong> a mudança no consumo porque o preço menor aumentou o <strong>poder de compra real</strong> do consumidor, como se ele tivesse ficado mais rico. Um é sobre preços relativos; o outro, sobre poder de compra.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Para cada bem, diga o sinal do efeito renda de uma <strong>queda</strong> de preço e se a demanda é decrescente: (a) um bem normal; (b) um bem inferior comum; (c) um bem de Giffen.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><strong>Normal:</strong> efeito renda <strong>aumenta</strong> <span class="math inline">\(x\)</span> (reforça a substituição) → demanda decrescente.</li>
+<li><strong>Inferior comum:</strong> efeito renda <strong>reduz</strong> <span class="math inline">\(x\)</span> (contraria), mas é menor que a substituição → demanda ainda decrescente.</li>
+<li><strong>Giffen:</strong> efeito renda <strong>reduz</strong> <span class="math inline">\(x\)</span> e <strong>supera</strong> a substituição → o total é reduzir <span class="math inline">\(x\)</span> com a queda de preço, isto é, demanda <strong>crescente</strong>.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Por que o efeito substituição de um bem que <strong>encareceu</strong> sempre reduz sua quantidade demandada, sem exceção?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Porque o efeito substituição isola a mudança de <strong>preço relativo</strong> mantendo a utilidade (poder de compra) constante — move-se sobre a <strong>mesma curva de indiferença</strong>. Sobre uma curva de indiferença convexa, ao tornar o bem relativamente mais caro (reta mais íngreme), a tangência se desloca para um ponto com <strong>menos</strong> desse bem e mais do outro. Como a convexidade (TMS decrescente) vale sempre, esse deslocamento é sempre no sentido de reduzir o bem que encareceu. Não depende de o bem ser normal ou inferior — por isso não tem exceção.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Uma família muito pobre gasta quase toda a renda em arroz. O preço do arroz sobe. Descreva os dois efeitos e explique em que condição a família compraria <em>mais</em> arroz.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Efeito substituição:</strong> o arroz ficou relativamente mais caro → tenderia a reduzir o consumo de arroz (comprar mais de outro alimento). <strong>Efeito renda:</strong> a alta do arroz, que pesa quase todo o orçamento, empobrece muito a família em termos reais; sendo o arroz <strong>inferior</strong>, esse empobrecimento a leva a consumir <em>mais</em> arroz (e abrir mão de itens caros como carne). A família compraria <strong>mais</strong> arroz se o <strong>efeito renda (que aumenta o arroz) superar o efeito substituição (que o reduz)</strong> — a condição de um <strong>bem de Giffen</strong>. Isso requer que o arroz seja fortemente inferior e domine o orçamento, situação de pobreza extrema com poucos substitutos.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Um bem tem efeito substituição de <span class="math inline">\(+8\)</span> unidades e efeito renda de <span class="math inline">\(-3\)</span> unidades diante de uma queda de preço. (a) Qual o efeito total? (b) O bem é normal ou inferior? (c) É de Giffen?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Efeito total <span class="math inline">\(= +8 + (-3) = +5\)</span> unidades (a quantidade <strong>aumenta</strong> com a queda de preço).</li>
+<li>O efeito renda de uma <strong>queda</strong> de preço é <strong>negativo</strong> (reduz <span class="math inline">\(x\)</span>), o que caracteriza um bem <strong>inferior</strong> (para um bem normal, seria positivo).</li>
+<li><strong>Não</strong> é Giffen: apesar de inferior, o efeito substituição (<span class="math inline">\(+8\)</span>) <strong>supera</strong> o efeito renda (<span class="math inline">\(-3\)</span>), então o total é positivo e a demanda é <strong>decrescente</strong>. Seria Giffen apenas se o efeito renda fosse maior em módulo que o de substituição.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Esboce (descreva) a curva de Engel de (a) um bem normal e (b) um bem que é normal em rendas baixas mas se torna inferior em rendas altas (como certos alimentos básicos). O que a inclinação representa?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A curva de Engel tem a <strong>renda</strong> no eixo (horizontal ou vertical, conforme a convenção) e a <strong>quantidade</strong> do bem no outro. (a) Bem <strong>normal</strong>: curva <strong>sempre crescente</strong> — mais renda, mais consumo. (b) Bem normal-depois-inferior: a curva <strong>sobe</strong> em rendas baixas (o consumo cresce com a renda) e, a partir de certo ponto, <strong>verga para trás/decresce</strong> (em rendas altas, mais renda reduz o consumo, pois a família migra para itens melhores). A <strong>inclinação</strong> da curva de Engel reflete o sinal e a magnitude do <strong>efeito renda</strong> / elasticidade-renda: positiva para normal, negativa para inferior.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) Após uma forte alta da gasolina, um analista afirma: “as pessoas mal reduziram o consumo, prova de que não há efeito substituição”. Critique a afirmação usando a decomposição e o horizonte de tempo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A afirmação confunde <strong>tamanho observado do efeito total</strong> com <strong>ausência de um dos componentes</strong>. No <strong>curto prazo</strong>, a gasolina tem demanda muito inelástica (<a href="cap04-elasticidades.html" class="quarto-xref"><span>Capítulo 18</span></a>): a frota, os trajetos e os hábitos estão dados, então tanto o efeito substituição quanto a resposta total são pequenos — mas o efeito substituição <strong>existe</strong> (alguns pegam carona, usam transporte público, adiam viagens). No <strong>longo prazo</strong>, o efeito substituição cresce muito: troca-se por carro mais econômico ou etanol (substituto na frota flex), muda-se de moradia/trabalho, o que reduz o consumo de forma perceptível. Além disso, a alta gera um <strong>efeito renda</strong> (todos ficam mais pobres em termos reais), que também reduz o consumo de vários bens. Portanto, “reduziram pouco no curto prazo” não prova ausência de efeito substituição — prova apenas que, no curto prazo, há pouca margem de ajuste. É um erro clássico de ignorar o horizonte temporal e a elasticidade.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) Mostre por que, para um bem <strong>normal</strong>, a curva de demanda é <strong>necessariamente</strong> decrescente, apelando aos sinais dos dois efeitos — e explique por que essa garantia se perde para bens inferiores.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Considere uma <strong>queda</strong> em <span class="math inline">\(P_x\)</span>. O <strong>efeito substituição</strong> aumenta <span class="math inline">\(x\)</span> (sempre, para qualquer bem — move-se sobre a curva de indiferença em direção ao bem que barateou). Para um bem <strong>normal</strong>, o preço menor eleva o poder de compra real, e o <strong>efeito renda</strong> também aumenta <span class="math inline">\(x\)</span> (por definição de normal: mais poder de compra, mais consumo). Como <strong>ambos</strong> os efeitos aumentam <span class="math inline">\(x\)</span> quando o preço cai, o efeito total aumenta <span class="math inline">\(x\)</span> — ou seja, preço menor → quantidade maior: a demanda é <strong>decrescente</strong>, sem exceção possível. Para um bem <strong>inferior</strong>, o efeito substituição ainda aumenta <span class="math inline">\(x\)</span>, mas o efeito renda agora o <strong>reduz</strong> (mais poder de compra, menos consumo do inferior). Os dois efeitos <strong>brigam</strong>: o total depende de qual vence. Na regra (substituição domina), a demanda ainda desce; na exceção rara (renda domina — Giffen), ela sobe. Perde-se a <strong>garantia</strong> justamente porque os sinais deixam de concordar. Formalmente, é o que a <strong>equação de Slutsky</strong> <span class="citation" data-cites="slutsky1915">(<a href="#ref-slutsky1915" role="doc-biblioref">Slutsky, 1915</a>)</span> expressa: o efeito total é a soma de um termo de substituição (sempre do “sinal certo”) e um termo de renda cujo sinal segue o tipo do bem.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="22.11">
+<h2 data-number="22.11" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">22.11</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="varian2015">Varian (<a href="#ref-varian2015" role="doc-biblioref">2015</a>)</span> — os capítulos sobre equação de Slutsky, efeitos renda e substituição e a demanda; o tratamento de referência, com a decomposição de Hicks e de Slutsky.</li>
+<li><span class="citation" data-cites="pindyck2013">Pindyck; Rubinfeld (<a href="#ref-pindyck2013" role="doc-biblioref">2013</a>)</span> — exposição com o exemplo de Giffen e aplicações, além da derivação da demanda de mercado.</li>
+<li><span class="citation" data-cites="nicholson2019">Nicholson; Snyder (<a href="#ref-nicholson2019" role="doc-biblioref">2019</a>)</span> — a formalização matemática da equação de Slutsky.</li>
+<li><span class="citation" data-cites="slutsky1915">Slutsky (<a href="#ref-slutsky1915" role="doc-biblioref">1915</a>)</span> — o artigo original que decompôs matematicamente o efeito de uma variação de preço; historicamente decisivo.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-nicholson2019" class="csl-entry" role="listitem">
+NICHOLSON, Walter; SNYDER, Christopher. <strong>Teoria Microeconômica: Princípios Básicos e Aplicações</strong>. 11. ed. São Paulo: Cengage Learning, 2019.
+</div>
+<div id="ref-pindyck2013" class="csl-entry" role="listitem">
+PINDYCK, Robert S.; RUBINFELD, Daniel L. <strong>Microeconomia</strong>. 8. ed. São Paulo: Pearson, 2013.
+</div>
+<div id="ref-slutsky1915" class="csl-entry" role="listitem">
+SLUTSKY, Eugen. Sulla teoria del bilancio del consumatore. <strong>Giornale degli Economisti</strong>, v. 51, p. 1–26, 1915.
+</div>
+<div id="ref-varian2015" class="csl-entry" role="listitem">
+VARIAN, Hal R. <strong>Microeconomia: uma abordagem moderna</strong>. 9. ed. Rio de Janeiro: Elsevier, 2015.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="pagination-link" aria-label="Restrição orçamentária e escolha ótima do consumidor">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="pagination-link" aria-label="Contas nacionais e o PIB">
+        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol03/cap08-efeitos-renda-substituicao.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
