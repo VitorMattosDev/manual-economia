@@ -1,3 +1,194 @@
 # Regime de metas de inflação e o Copom {#sec-metas-de-inflacao-copom}
 
-*(em construção)*
+A cada 45 dias, oito pessoas se reúnem em Brasília por dois dias, examinam projeções, cenários e riscos, e decidem um único número: a taxa Selic. Essa decisão do **Copom** — o Comitê de Política Monetária do Banco Central — repercute imediatamente no custo do seu crédito, no rendimento das suas aplicações e, com alguns meses de defasagem, nos preços que você paga no supermercado. Mas o Copom não escolhe a Selic ao acaso nem para agradar governos: ele persegue um alvo público e anunciado com antecedência — uma **meta de inflação**. É esse arranjo, adotado pelo Brasil em 1999 e hoje dominante no mundo, que este capítulo destrincha.
+
+Nos capítulos anteriores, vimos *o que* é a moeda, *como* os bancos a criam e *quais* instrumentos o banco central tem. Agora juntamos as peças para responder à pergunta prática: como uma autoridade monetária decide o que fazer com os juros? A resposta moderna tem nome — **regime de metas de inflação** — e uma lógica elegante que conecta juros, expectativas e preços.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- explicar o que é o **regime de metas de inflação** e por que se difundiu;
+- descrever como funciona o **Copom** e o ciclo de decisão da Selic;
+- entender o **mecanismo de transmissão** da política monetária, dos juros aos preços;
+- interpretar uma **regra de Taylor** como descrição do comportamento do banco central;
+- compreender o papel central das **expectativas** e da **credibilidade**;
+- discutir vantagens, limites e críticas ao regime de metas.
+
+## O que é o regime de metas de inflação
+
+Antes das metas, os bancos centrais perseguiam alvos variados e opacos: uma taxa de câmbio, um agregado monetário, ou simplesmente a discrição de seus dirigentes. O problema era a falta de uma **âncora nominal** clara — algo que dissesse aos agentes o que esperar da inflação. O **regime de metas de inflação** (*inflation targeting*), pioneiro na Nova Zelândia (1990), resolveu isso com uma ideia simples: o governo anuncia publicamente uma **meta numérica** para a inflação, e o banco central se compromete a usar seus instrumentos para atingi-la.
+
+::: {.callout-note title="Definição — Regime de metas de inflação"}
+O **regime de metas de inflação** é o arranjo de política monetária em que se anuncia publicamente uma meta numérica para a inflação (geralmente com uma banda de tolerância) e o banco central ajusta a taxa de juros para que a inflação **esperada** convirja a essa meta, prestando contas de forma transparente. A inflação é a **âncora nominal** do sistema.
+:::
+
+Três elementos definem o regime:
+
+1. **Meta anunciada** — um número (por exemplo, 3%) e uma **banda de tolerância** (por exemplo, ±1,5 ponto), fixados pelo governo com antecedência.
+2. **Instrumento único e claro** — a **taxa de juros** de curto prazo (a Selic), calibrada para perseguir a meta.
+3. **Transparência e prestação de contas** — atas, relatórios de inflação e, se a meta for descumprida, uma explicação pública (no Brasil, uma carta aberta do presidente do BC).
+
+A âncora não é a inflação de hoje (que já aconteceu), mas a inflação **esperada** à frente. É por isso que a comunicação — o que o banco central diz que fará — é quase tão importante quanto o que ele efetivamente faz.
+
+## O Copom e o ciclo da Selic
+
+No Brasil, as decisões cabem ao **Copom (Comitê de Política Monetária)**, formado pelo presidente e pelos diretores do Banco Central. Ele se reúne **oito vezes por ano** (a cada 45 dias, aproximadamente), em sessões de dois dias. No primeiro dia, as áreas técnicas apresentam a conjuntura (atividade, inflação, câmbio, cenário externo, expectativas); no segundo, o comitê **decide a meta para a Selic** e divulga um comunicado. A **ata**, com o raciocínio detalhado, sai poucos dias depois.
+
+A decisão segue uma lógica de reação à inflação projetada:
+
+- se a inflação projetada está **acima** da meta (economia aquecida, pressão de demanda), o Copom **eleva** a Selic para esfriar a demanda;
+- se está **abaixo** (economia fraca, inflação cadente), o Copom **reduz** a Selic para estimular a atividade;
+- se está **na meta**, tende a manter.
+
+::: {.callout-tip title="Intuição — por que olhar a inflação projetada, e não a atual"}
+A política monetária age com **defasagem**: um corte de juros hoje só afeta plenamente a inflação daqui a 6 a 18 meses. Reagir à inflação de ontem seria como dirigir olhando pelo retrovisor. Por isso o Copom mira a inflação **projetada** para o horizonte relevante — ele precisa agir *antes* que a pressão se materialize.
+:::
+
+## Como os juros afetam os preços: o mecanismo de transmissão
+
+Por que subir a Selic reduz a inflação? A resposta está no **mecanismo de transmissão da política monetária** — os canais pelos quais uma mudança nos juros básicos se propaga até os preços. A @fig-transmissao mapeia os principais.
+
+::: {#fig-transmissao}
+
+```{.tikz}
+%%| filename: fig-transmissao
+%%| alt: Diagrama de fluxo mostrando a Selic influenciando crédito, câmbio e expectativas, que afetam a demanda agregada e, por fim, a inflação.
+\begin{tikzpicture}[font=\footnotesize]
+  \node[draw, rounded corners, fill=manualred!15, align=center] (selic) at (0,0)
+    {Selic\\$\uparrow$};
+  \node[draw, rounded corners, align=center, manualblue] (cred) at (3.4,1.8) {Crédito e\\juros de mercado $\uparrow$};
+  \node[draw, rounded corners, align=center, manualblue] (cambio) at (3.4,0) {Câmbio\\valoriza (R\$)};
+  \node[draw, rounded corners, align=center, manualblue] (exp) at (3.4,-1.8) {Expectativas\\de inflação $\downarrow$};
+  \node[draw, rounded corners, fill=manualyellow!25, align=center] (dem) at (7.4,0.6) {Demanda\\agregada $\downarrow$};
+  \node[draw, rounded corners, align=center, manualblue] (imp) at (7.4,-1.5) {Preços de\\importados $\downarrow$};
+  \node[draw, rounded corners, fill=manualgreen!18, align=center] (infl) at (10.6,0)
+    {Inflação\\$\downarrow$};
+  \draw[vetor,->,>=stealth] (selic) -- (cred);
+  \draw[vetor,->,>=stealth] (selic) -- (cambio);
+  \draw[vetor,->,>=stealth] (selic) -- (exp);
+  \draw[vetor,->,>=stealth] (cred) -- (dem);
+  \draw[vetor,->,>=stealth] (cambio) -- (imp);
+  \draw[vetor,->,>=stealth] (exp) to[bend right] (infl);
+  \draw[vetor,->,>=stealth] (dem) -- (infl);
+  \draw[vetor,->,>=stealth] (imp) to[bend right] (infl);
+\end{tikzpicture}
+```
+
+O mecanismo de transmissão: uma alta da Selic esfria a demanda (via crédito), barateia importados (via câmbio) e ancora expectativas — três caminhos que reduzem a inflação, com defasagem.
+:::
+
+Os canais principais são:
+
+- **Canal do crédito e da demanda.** Selic maior encarece empréstimos e financiamentos, desestimula consumo e investimento, esfria a demanda agregada e, com ela, a pressão sobre os preços (é o mecanismo IS-LM/AD-AS dos capítulos de macro).
+- **Canal do câmbio.** Juros mais altos atraem capital externo em busca de rendimento, valorizam a moeda nacional e **barateiam os importados**, reduzindo diretamente a inflação (efeito importante numa economia aberta).
+- **Canal das expectativas.** Talvez o mais poderoso. Se o banco central é crível, o simples anúncio de compromisso com a meta faz empresas e trabalhadores esperarem inflação baixa — e, ao reajustarem preços e salários com base nessa expectativa, a inflação de fato cede. A credibilidade "faz parte do trabalho" da política monetária.
+
+::: {.callout-important title="Armadilha comum — a política monetária não age na hora"}
+Não espere que um corte de juros anunciado hoje faça a inflação ou o crescimento mudarem amanhã. As defasagens são **longas e variáveis** (6 a 18 meses). Julgar a política monetária pelos dados do mês seguinte é um erro comum — inclusive no debate público. O efeito pleno leva trimestres a aparecer.
+:::
+
+## A regra de Taylor
+
+O comportamento de um banco central com metas pode ser resumido por uma fórmula simples e influente, proposta por John Taylor [@taylor1993]. A **regra de Taylor** diz que a taxa de juros deve responder aos desvios da inflação em relação à meta e do produto em relação ao potencial:
+
+$$
+i = i^{*} + \phi_\pi (\pi - \pi^{*}) + \phi_y (y - y^{*}), \qquad \phi_\pi, \phi_y > 0,
+$$ {#eq-taylor}
+
+onde $i$ é a taxa de juros nominal, $i^{*}$ o juro neutro, $\pi$ a inflação, $\pi^{*}$ a meta, $(y - y^{*})$ o **hiato do produto** (quanto o PIB está acima ou abaixo do potencial), e $\phi_\pi, \phi_y$ os pesos que o banco central dá a cada desvio. A regra diz: *suba os juros quando a inflação passar da meta ou a economia superaquecer; baixe-os no caso contrário.*
+
+Um detalhe crucial é o **princípio de Taylor**: para estabilizar a inflação, é preciso $\phi_\pi > 1$ — ou seja, o juro **nominal** deve subir *mais* que a inflação, para que o juro **real** ($i - \pi$) também suba e efetivamente esfrie a demanda. Se o BC subisse o juro nominal menos que a inflação, o juro real cairia e a política seria, na prática, expansionista — alimentando ainda mais a inflação.
+
+::: {.callout-note title="Definição — Princípio de Taylor"}
+O **princípio de Taylor** afirma que, para controlar a inflação, o banco central deve elevar a taxa de juros **nominal** em mais do que o aumento da inflação ($\phi_\pi > 1$), de modo que o juro **real** suba. Só assim a política monetária efetivamente contém a demanda; do contrário, ela seria acomodatícia.
+:::
+
+A regra de Taylor não é seguida mecanicamente — é uma *descrição* aproximada e um *guia*, não um piloto automático. Mas captura bem a lógica de reação de bancos centrais com metas e é onipresente nos modelos de macroeconomia moderna.
+
+## Expectativas, credibilidade e sacrifício
+
+Todo o regime de metas repousa sobre as **expectativas**. Quando o banco central é crível, ancorar as expectativas de inflação na meta é meio caminho andado: preços e salários já são reajustados como se a meta fosse cumprir-se, e ela se autorrealiza a baixo custo. Quando não é crível, cada choque contamina as expectativas, e recolocar a inflação na meta exige juros altíssimos e recessão.
+
+O custo de reduzir a inflação é medido pela **taxa de sacrifício**: quanto de produto (ou emprego) se perde para baixar a inflação em um ponto percentual. Quanto mais ancoradas as expectativas e mais crível o BC, **menor** a taxa de sacrifício. Eis por que a credibilidade é o ativo mais precioso de uma autoridade monetária — e por que ela é construída lentamente e destruída depressa. (Voltaremos às expectativas e à curva de Phillips no Volume 7, sobre oferta agregada.)
+
+## 🇧🇷 Brasil em Foco
+
+**O tripé macroeconômico e a adoção das metas em 1999.** Depois que a crise cambial de janeiro de 1999 derrubou a âncora do câmbio fixo do Plano Real, o Brasil precisava de uma nova âncora nominal. A resposta foi adotar, ainda em **1999** (Decreto nº 3.088), o **regime de metas de inflação**, medido pelo **IPCA** (IBGE). Nascia o **tripé macroeconômico**: metas de inflação + câmbio flutuante + responsabilidade fiscal (consolidada na Lei de Responsabilidade Fiscal, 2000). Esse arcabouço organiza a política macroeconômica brasileira desde então.
+
+**Como a meta é definida — do CMN à meta contínua.** A meta é fixada pelo **Conselho Monetário Nacional (CMN)**, e cabe ao **Copom** persegui-la com a Selic. Ao longo dos anos, a meta central foi sendo reduzida (esteve em patamares como 4,5% por muito tempo, com trajetória de queda mais recente para a casa de **3%**, com banda de tolerância de ±1,5 ponto). A partir de 2025, o Brasil passou a adotar uma **meta contínua** (avaliada mês a mês em janela móvel, em vez de por ano-calendário). Quando a inflação estoura a banda, o presidente do Banco Central deve divulgar uma **carta aberta** explicando as causas, as providências e o prazo de retorno à meta — mecanismo de prestação de contas já acionado diversas vezes.
+
+**Selic nas alturas: juro real elevado.** Perseguir a meta num país com histórico inflacionário, expectativas sensíveis e riscos fiscais tem custado ao Brasil um dos **juros reais mais altos do mundo**. A Selic nominal já superou 13%–14% ao ano em ciclos de aperto e, mesmo descontada a inflação, o juro real brasileiro figura recorrentemente no topo dos rankings internacionais. Esse patamar reflete tanto prêmios de risco (fiscal, institucional) quanto a necessidade de compensar expectativas ainda não plenamente ancoradas — um tema que o @sec-taxa-de-juros-selic aprofunda.
+
+> **Fontes e séries para explorar:** Banco Central do Brasil (atas do Copom, Relatório de Inflação, boletim Focus de expectativas, série da Selic no SGS); IBGE (IPCA); Decreto 3.088/1999 e normas do CMN sobre a meta. As metas e o patamar da Selic mudam com o tempo — confira a data de referência.
+
+## Resumo do capítulo
+
+- O **regime de metas de inflação** ancora a política monetária numa meta numérica anunciada para a inflação; o banco central ajusta a **taxa de juros** para que a inflação **esperada** convirja à meta, com transparência e prestação de contas.
+- No Brasil, o **Copom** decide a Selic oito vezes por ano, reagindo à inflação **projetada**: eleva a Selic se a projeção supera a meta, reduz se fica abaixo.
+- A política age por um **mecanismo de transmissão** com defasagens de 6 a 18 meses, via canais do **crédito/demanda**, do **câmbio** e das **expectativas**.
+- A **regra de Taylor** descreve a reação dos juros aos desvios de inflação e do hiato do produto; o **princípio de Taylor** ($\phi_\pi > 1$) exige que o juro nominal suba mais que a inflação para o juro real subir.
+- **Expectativas** e **credibilidade** são o centro do regime: quanto mais ancoradas, menor a **taxa de sacrifício** para controlar a inflação.
+- No Brasil, as metas foram adotadas em **1999**, medidas pelo **IPCA**, dentro do **tripé macroeconômico**; a meta é fixada pelo **CMN** e o descumprimento gera **carta aberta** do presidente do BC.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** O que é a "âncora nominal" de um regime de metas? Por que é a inflação **esperada**, e não a atual, que importa?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A âncora nominal é a variável que orienta as expectativas de preços da economia — no regime de metas, a **meta de inflação** anunciada. Importa a inflação **esperada** porque a política monetária age com defasagem: as decisões de hoje afetam preços daqui a muitos meses. Além disso, é a expectativa que guia reajustes de preços e salários agora; ancorá-la na meta faz a própria meta tender a se cumprir.
+:::
+
+**2.** Quantas vezes por ano o Copom se reúne? Descreva, em uma frase, a regra básica de decisão da Selic.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Oito vezes por ano (a cada ~45 dias). Regra básica: eleva a Selic quando a inflação projetada está acima da meta, reduz quando está abaixo e tende a manter quando está na meta.
+:::
+
+**3.** Explique o **canal do câmbio** da transmissão monetária: por que uma alta da Selic tende a reduzir a inflação por essa via?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Juros mais altos atraem capital estrangeiro em busca de melhor rendimento, aumentando a oferta de divisas e **valorizando** a moeda nacional. Uma moeda mais forte **barateia os produtos importados** (e insumos), reduzindo diretamente os preços desses itens e a inflação — efeito relevante numa economia aberta como a brasileira.
+:::
+
+**4.** Numa regra de Taylor, $i^{*}=4\%$, a meta é $\pi^{*}=3\%$, os pesos são $\phi_\pi=1{,}5$ e $\phi_y=0{,}5$. Se a inflação está em $\pi=6\%$ e o hiato do produto é $+2\%$, qual juro a regra recomenda?
+
+::: {.callout-tip collapse="true" title="Solução"}
+$i = 4 + 1{,}5\,(6-3) + 0{,}5\,(2) = 4 + 1{,}5\times 3 + 1 = 4 + 4{,}5 + 1 = \mathbf{9{,}5\%}$. A regra manda subir os juros bem acima do neutro, pois inflação e atividade estão acima do desejado.
+:::
+
+**5.** Explique o **princípio de Taylor** ($\phi_\pi > 1$) e por que violá-lo tornaria a política monetária instável.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O princípio exige que, diante de uma alta da inflação, o BC eleve o juro **nominal** em mais do que a alta da inflação, de modo que o juro **real** ($i-\pi$) também suba e esfrie a demanda. Se $\phi_\pi < 1$, um aumento da inflação faria o juro real **cair** (o nominal sobe menos que a inflação), estimulando ainda mais a demanda e a inflação — um círculo vicioso explosivo. Só com $\phi_\pi > 1$ a política é estabilizadora.
+:::
+
+**6.** O que é a **taxa de sacrifício** e como a credibilidade do banco central a afeta?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A taxa de sacrifício mede quanto produto (ou emprego) se perde para reduzir a inflação em 1 ponto percentual. Se o BC é **crível** e as expectativas estão ancoradas, os agentes já esperam inflação baixa e reajustam preços/salários de forma moderada, de modo que a desinflação exige menos aperto e menos recessão — **taxa de sacrifício baixa**. Sem credibilidade, é preciso juros muito altos e recessão profunda para convencer os agentes, elevando a taxa de sacrifício.
+:::
+
+**7.** (Análise de caso) Descreva o **tripé macroeconômico** brasileiro adotado a partir de 1999 e explique por que a crise cambial daquele ano motivou a mudança de âncora.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O tripé combina: (i) **metas de inflação** (âncora nominal via IPCA), (ii) **câmbio flutuante** e (iii) **responsabilidade fiscal** (LRF, 2000). Ele surgiu porque o Plano Real usara o **câmbio quase fixo** como âncora; quando a crise de confiança de janeiro de 1999 tornou insustentável defender a paridade (drenando reservas), o Brasil deixou o câmbio flutuar e perdeu a âncora nominal. Era preciso substituí-la rapidamente para não reancorar a inflação — daí a adoção das metas, que passaram a orientar as expectativas de preços independentemente do câmbio, agora flutuante.
+:::
+
+**8.** (Desafio) Um crítico diz: "metas de inflação sacrificam o emprego em nome da inflação". Um defensor responde. Reconstrua os dois argumentos e mostre onde a **credibilidade** entra no debate.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Crítico:** para cumprir a meta, o BC sobe juros, esfria a demanda e eleva o desemprego; o regime priorizaria a inflação sobre o emprego e o crescimento, sobretudo em choques de oferta (quando conter a inflação exige recessão). **Defensor:** inflação baixa e estável é condição para crescimento sustentável; sem âncora, a economia volta à instabilidade que corrói salários reais e desorganiza a produção — o pior dos mundos para o emprego no médio prazo. Regimes flexíveis, ademais, olham também o hiato do produto (o $\phi_y$ da regra de Taylor). **A credibilidade é o fiel da balança:** com expectativas ancoradas, a **taxa de sacrifício** é baixa — controla-se a inflação com pouco custo em emprego, esvaziando a crítica; sem credibilidade, cada aperto custa caro em atividade, dando força ao crítico. Por isso o debate empírico gira em torno de quão ancoradas estão as expectativas.
+:::
+
+## Para saber mais
+
+- @mishkin2000 — capítulos sobre estratégia de política monetária e regimes de metas de inflação, com comparações internacionais.
+- @blanchard2017 — apresenta a regra de Taylor e o mecanismo de transmissão integrados ao modelo macroeconômico.
+- @taylor1993 — o artigo original que propôs a regra de juros que leva seu nome.
+- @carvalho2015 — discute o regime de metas no Brasil e suas críticas, na perspectiva da economia monetária.
+- @giambiagi2016 — para o contexto histórico do tripé macroeconômico e da política econômica brasileira pós-1999.
