@@ -1,0 +1,269 @@
+# O modelo IS-LM {#sec-is-lm}
+
+No capítulo anterior, a Cruz Keynesiana tratou o investimento como um número fixo, caído do céu — uma decisão empresarial autônoma. Mas todo mundo sabe que investimento e **juros** andam de mãos dadas: quando a Selic sobe, financiar uma fábrica, um galpão ou um estoque fica mais caro, e muitos projetos são engavetados; quando os juros caem, o crédito destrava e os planos saem do papel. Faltava ao nosso modelo essa conexão. E faltava também a **moeda**: de onde vêm os juros, afinal?
+
+O modelo **IS-LM**, formulado por John Hicks em 1937 como uma leitura da *Teoria Geral* de Keynes [@hicks1937; @keynes1996], é a resposta clássica a essas lacunas. Ele une, num único diagrama, o **mercado de bens** (a curva **IS**) e o **mercado monetário** (a curva **LM**), e determina **simultaneamente** a renda $Y$ e a taxa de juros $i$ que equilibram os dois mercados ao mesmo tempo. É o cavalo de batalha da análise de política macroeconômica de curto prazo — e a base para entendermos, no próximo capítulo, como política fiscal e monetária de fato operam.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- explicar por que o **investimento depende da taxa de juros** e derivar a **curva IS**;
+- entender a **demanda por moeda** e derivar a **curva LM** a partir do equilíbrio monetário;
+- interpretar o significado econômico de cada ponto **fora** das curvas;
+- localizar o **equilíbrio geral** de curto prazo na interseção IS-LM;
+- reconhecer o que **desloca** cada curva (distinguindo deslocamento de movimento ao longo);
+- compreender as hipóteses e os limites do modelo.
+
+## O mercado de bens: a curva IS
+
+### Investimento sensível aos juros
+
+O ponto de partida é abandonar a hipótese de investimento autônomo. Agora o investimento planejado depende **negativamente** da taxa de juros:
+
+$$
+I = I_0 - b\,i, \qquad b > 0,
+$$ {#eq-investimento}
+
+onde $i$ é a taxa de juros (real) e $b$ mede a sensibilidade do investimento aos juros. A lógica é a do custo de oportunidade: a taxa de juros é o custo de tomar emprestado para investir — e também o retorno de simplesmente aplicar o dinheiro em vez de investir. Juros mais altos elevam esse custo e derrubam o número de projetos cujo retorno esperado ainda compensa. Juros menores fazem o inverso.
+
+### Da Cruz Keynesiana à IS
+
+Retomemos a condição de equilíbrio do mercado de bens, $Y = C + I + G$, agora com o investimento da @eq-investimento. Para cada taxa de juros $i$, existe uma renda de equilíbrio $Y$ — exatamente como na Cruz Keynesiana, só que o nível do investimento (e portanto do gasto autônomo) muda quando $i$ muda.
+
+Pense no que acontece quando os juros **caem** de $i_1$ para $i_2$:
+
+1. O investimento **aumenta** (mais projetos compensam).
+2. Isso desloca a reta de despesa agregada para **cima** na Cruz Keynesiana.
+3. Pelo **multiplicador**, a renda de equilíbrio **sobe** de $Y_1$ para $Y_2$.
+
+Ou seja: **juros menores → renda de equilíbrio maior**. Se marcarmos cada par $(Y, i)$ que equilibra o mercado de bens num gráfico com $Y$ no eixo horizontal e $i$ no vertical, obtemos uma curva **decrescente**: a curva **IS**. A @fig-is mostra a construção.
+
+::: {.callout-note title="Definição — Curva IS"}
+A **curva IS** é o conjunto de todas as combinações de renda $Y$ e taxa de juros $i$ para as quais o **mercado de bens** está em equilíbrio (a produção iguala a despesa planejada). Ela é **decrescente**: juros menores estimulam o investimento, que, via multiplicador, eleva a renda de equilíbrio. A sigla vem de *Investment = Savings* — investimento igual à poupança, a condição de equilíbrio do mercado de bens.
+:::
+
+::: {#fig-is}
+
+```{.tikz}
+%%| filename: fig-is
+%%| alt: Curva IS decrescente no plano renda-juros, mostrando que quedas na taxa de juros elevam a renda de equilíbrio do mercado de bens.
+\begin{tikzpicture}[scale=0.9]
+  \draw[eixo] (0,0) -- (8,0) node[right] {$Y$};
+  \draw[eixo] (0,0) -- (0,6.5) node[above] {$i$};
+  \draw[curva] (1,5.8) .. controls (3.5,3.2) and (5,2.3) .. (7.5,1.2) node[right, manualblue] {$IS$};
+  % pontos
+  \coordinate (A) at (2.2,4.7);
+  \coordinate (B) at (5.8,2.0);
+  \node[ponto] at (A) {}; \node[ponto] at (B) {};
+  \draw[auxiliar] (A) -- (2.2,0) node[below,font=\footnotesize] {$Y_1$};
+  \draw[auxiliar] (A) -- (0,4.7) node[left,font=\footnotesize] {$i_1$};
+  \draw[auxiliar] (B) -- (5.8,0) node[below,font=\footnotesize] {$Y_2$};
+  \draw[auxiliar] (B) -- (0,2.0) node[left,font=\footnotesize] {$i_2$};
+  \node[manualgray, font=\footnotesize, align=center] at (5.4,4.6) {$i\downarrow \Rightarrow I\uparrow \Rightarrow Y\uparrow$};
+\end{tikzpicture}
+```
+
+A curva IS: cada ponto equilibra o mercado de bens. Juros menores → mais investimento → maior renda.
+:::
+
+### O que desloca a IS
+
+Movimentos **ao longo** da IS resultam de mudanças nos juros. Mas um choque no **gasto autônomo** — mais consumo autônomo, mais investimento autônomo ($I_0$), mais gasto público $G$, ou menos impostos $T$ — desloca a **curva inteira**. Um aumento de $G$, por exemplo, eleva a renda de equilíbrio para **cada** nível de juros, empurrando a IS para a **direita**. Sua magnitude é o deslocamento horizontal $k \cdot \Delta A$, onde $k$ é o multiplicador. Guardaremos isso para o próximo capítulo.
+
+::: {.callout-important title="Armadilha comum — mudança de juros não desloca a IS"}
+Uma variação na **taxa de juros** produz um **movimento ao longo** da curva IS, não um deslocamento. A curva já incorpora a relação entre $Y$ e $i$. O que **desloca** a IS são fatores de gasto autônomo (fiscais ou de confiança): $G$, $T$, $C_0$, $I_0$. Confundir os dois é o erro número um na leitura do modelo.
+:::
+
+## O mercado monetário: a curva LM
+
+### A demanda por moeda
+
+Por que as pessoas seguram **moeda** (dinheiro em espécie e depósitos à vista), um ativo que não rende juros, em vez de aplicar tudo? Keynes apontou dois motivos que nos interessam:
+
+- **Motivo transação:** precisamos de moeda para as compras do dia a dia. Quanto **maior a renda** $Y$, maior o volume de transações e mais moeda se deseja reter. A demanda por moeda **cresce com $Y$**.
+- **Motivo especulação (ou preferência pela liquidez):** a moeda concorre com ativos que rendem juros (títulos). A taxa de juros $i$ é o **custo de oportunidade** de reter moeda: quanto **maior $i$**, mais caro é ficar líquido e mais vale a pena aplicar. A demanda por moeda **cai com $i$**.
+
+Escrevemos a **demanda real por moeda** como:
+
+$$
+\left(\frac{M}{P}\right)^{d} = L(Y, i) = kY - hi, \qquad k, h > 0,
+$$ {#eq-demanda-moeda}
+
+onde $M/P$ é a quantidade de moeda medida em poder de compra (moeda **real**). O termo $kY$ capta a demanda por transação; o $-hi$, a sensibilidade aos juros.
+
+### Equilíbrio monetário e a LM
+
+A **oferta de moeda** $M$ é controlada pelo Banco Central e, por hipótese, é **fixa** no curto prazo; com o nível de preços $P$ rígido, a oferta **real** $M/P$ também é dada. O mercado monetário se equilibra quando a demanda iguala a oferta:
+
+$$
+\frac{M}{P} = kY - hi.
+$$ {#eq-equilibrio-monetario}
+
+Aqui está o mecanismo-chave: se a renda $Y$ **aumenta**, a demanda por moeda para transações cresce. Mas a oferta de moeda é fixa. Para reequilibrar o mercado — isto é, para as pessoas se contentarem em reter a mesma quantidade de moeda apesar de quererem mais —, a taxa de juros $i$ precisa **subir** (encarecendo a liquidez até a demanda voltar à oferta disponível). Logo: **renda maior → juros de equilíbrio maiores**.
+
+Marcando cada par $(Y, i)$ que equilibra o mercado monetário, obtemos a curva **LM**, **crescente** (@fig-lm).
+
+::: {.callout-note title="Definição — Curva LM"}
+A **curva LM** é o conjunto de todas as combinações de renda $Y$ e taxa de juros $i$ para as quais o **mercado monetário** está em equilíbrio (demanda por moeda igual à oferta). Ela é **crescente**: uma renda maior eleva a demanda por moeda e, com oferta fixa, exige juros mais altos. A sigla vem de *Liquidity preference = Money supply* — demanda por liquidez igual à oferta de moeda.
+:::
+
+::: {#fig-lm}
+
+```{.tikz}
+%%| filename: fig-lm
+%%| alt: Curva LM crescente no plano renda-juros, mostrando que aumentos de renda elevam os juros de equilíbrio do mercado monetário com oferta de moeda fixa.
+\begin{tikzpicture}[scale=0.9]
+  \draw[eixo] (0,0) -- (8,0) node[right] {$Y$};
+  \draw[eixo] (0,0) -- (0,6.5) node[above] {$i$};
+  \draw[destaque, very thick] (1,1.2) .. controls (4,2.0) and (5.5,3.5) .. (7.5,5.9) node[right, manualred] {$LM$};
+  \coordinate (A) at (2.6,1.7);
+  \coordinate (B) at (6.2,4.4);
+  \node[ponto] at (A) {}; \node[ponto] at (B) {};
+  \draw[auxiliar] (A) -- (2.6,0) node[below,font=\footnotesize] {$Y_1$};
+  \draw[auxiliar] (A) -- (0,1.7) node[left,font=\footnotesize] {$i_1$};
+  \draw[auxiliar] (B) -- (6.2,0) node[below,font=\footnotesize] {$Y_2$};
+  \draw[auxiliar] (B) -- (0,4.4) node[left,font=\footnotesize] {$i_2$};
+  \node[manualgray, font=\footnotesize, align=center] at (2.7,4.8) {$Y\uparrow \Rightarrow L^d\uparrow \Rightarrow i\uparrow$};
+\end{tikzpicture}
+```
+
+A curva LM: cada ponto equilibra o mercado monetário. Renda maior → mais demanda por moeda → juros mais altos.
+:::
+
+### O que desloca a LM
+
+A LM se desloca quando muda a **oferta real de moeda** $M/P$. Se o Banco Central **expande** a oferta de moeda ($M\uparrow$), há mais moeda disponível para cada nível de renda; os juros de equilíbrio caem, e a LM se desloca para a **direita/baixo**. Uma **queda no nível de preços** $P$ tem o mesmo efeito, pois eleva $M/P$. Uma contração monetária desloca a LM para a **esquerda/cima**.
+
+::: {.callout-tip title="Intuição — as duas curvas, dois mercados"}
+Pense assim: a **IS** responde à pergunta "dado o juro, quanto se produz e gasta?" (mercado de bens). A **LM** responde "dada a renda, qual juro equilibra a oferta e a demanda por moeda?" (mercado monetário). Cada curva sozinha tem infinitas soluções possíveis; só o **cruzamento** fixa, ao mesmo tempo, um único $Y$ e um único $i$ compatíveis com os dois mercados.
+:::
+
+## O equilíbrio geral IS-LM
+
+Sobrepondo as duas curvas (@fig-islm), o **equilíbrio geral** de curto prazo é o ponto $E$ onde elas se cruzam. Só ali os mercados de bens **e** monetário estão simultaneamente equilibrados. As coordenadas $(Y^{*}, i^{*})$ são a renda e a taxa de juros que a economia efetivamente pratica no curto prazo.
+
+::: {#fig-islm}
+
+```{.tikz}
+%%| filename: fig-islm
+%%| alt: Diagrama IS-LM completo: curva IS decrescente e curva LM crescente cruzando-se no ponto de equilíbrio E, com renda Y estrela e juro i estrela.
+\begin{tikzpicture}[scale=0.95]
+  \draw[eixo] (0,0) -- (8.2,0) node[right] {$Y$};
+  \draw[eixo] (0,0) -- (0,6.8) node[above] {$i$};
+  % IS
+  \draw[curva] (1,5.9) .. controls (3.5,3.3) and (5,2.4) .. (7.6,1.3) node[right, manualblue] {$IS$};
+  % LM
+  \draw[destaque, very thick] (1,1.3) .. controls (4,2.1) and (5.5,3.6) .. (7.6,6.0) node[right, manualred] {$LM$};
+  % equilibrio
+  \coordinate (E) at (4.35,3.3);
+  \node[ponto] at (E) {};
+  \node[above right] at (E) {$E$};
+  \draw[auxiliar] (E) -- (4.35,0) node[below] {$Y^{*}$};
+  \draw[auxiliar] (E) -- (0,3.3) node[left] {$i^{*}$};
+\end{tikzpicture}
+```
+
+O equilíbrio IS-LM. Em $E$, os mercados de bens e monetário se equilibram simultaneamente, fixando $Y^{*}$ e $i^{*}$.
+:::
+
+### Como a economia converge
+
+Fora de $E$, há pressões que reconduzem a economia ao equilíbrio, e vale entender por quê — pois isso justifica que $E$ seja de fato o ponto de repouso. O **mercado monetário** ajusta-se muito **rápido** (via compra e venda de títulos, os juros se movem em segundos), então a economia tende a estar sempre **sobre a LM**. O **mercado de bens** ajusta-se mais **devagar** (produção e estoques levam tempo). Assim, a economia caminha ao longo da LM em direção à IS: se estiver à direita da IS (excesso de oferta de bens), a produção cai; se à esquerda (excesso de demanda), a produção sobe — até alcançar $E$.
+
+### Resolvendo algebricamente
+
+O equilíbrio resolve o sistema formado pelas equações da IS e da LM. Com um pouco de álgebra sobre @eq-investimento a @eq-equilibrio-monetario, obtêm-se expressões explícitas de $Y^{*}$ e $i^{*}$ em função de todos os parâmetros. Para nossos fins, o importante não é decorar a fórmula, mas dominar o **método**: escrever as duas equações e resolver o sistema. O exercício 6 faz isso passo a passo com números.
+
+::: {.callout-warning title="Controvérsia — o que o IS-LM esconde"}
+O IS-LM é poderoso, mas foi criticado por gerações de economistas — inclusive por keynesianos, que o acusam de "domesticar" Keynes. Suas limitações principais: (1) supõe **preços fixos**, logo não determina a inflação (corrigiremos isso com o AD-AS no @sec-ad-as-choques); (2) trata as **expectativas** como dadas, quando elas são centrais na *Teoria Geral* e na macro moderna (@sec-expectativas); (3) supõe o Banco Central controlando a **quantidade de moeda**, ao passo que os bancos centrais de hoje operam fixando a **taxa de juros** diretamente. Apesar disso, o IS-LM permanece a melhor porta de entrada para a análise de política de curto prazo, e sua intuição sobrevive nas versões modernas.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+**A Selic no lugar da "oferta de moeda".** O IS-LM clássico imagina o Banco Central fixando a **quantidade de moeda** e deixando o juro se formar no mercado. O Banco Central do Brasil, como quase todos os bancos centrais modernos, faz o **inverso**: define diretamente a meta para a taxa **Selic** (via **Copom**) e ajusta a liquidez para sustentá-la. Na prática, é como se a autoridade escolhesse um ponto sobre o eixo dos juros e a LM se tornasse, no horizonte relevante, aproximadamente **horizontal** naquele patamar. A lógica do modelo continua valendo — juros e renda se determinam no encontro dos dois mercados —, mas o instrumento operacional é o **preço** (a taxa), não a **quantidade** de moeda. Voltaremos a isso no Volume 8, sobre economia monetária.
+
+**Investimento sensível a juros — e o custo do crédito no Brasil.** A hipótese central da IS, $I = I_0 - bi$, é vívida no Brasil, onde as taxas de juros ao tomador estão entre as mais altas do mundo. Quando a Selic sobe, o custo do crédito para capital de giro, financiamento de máquinas (via linhas do BNDES e do mercado) e crédito imobiliário sobe junto, e a **Formação Bruta de Capital Fixo** (o investimento nas Contas Nacionais do IBGE) costuma desacelerar com defasagem de alguns trimestres. A sensibilidade $b$ é real e observável nos ciclos brasileiros: apertos monetários fortes, como os de 2015 e de 2022-2023, foram seguidos de retração ou estagnação do investimento.
+
+**Demanda por moeda e a herança inflacionária.** O motivo-transação da demanda por moeda tem uma história brasileira peculiar. Durante a alta inflação dos anos 1980 e início dos 1990, reter moeda que não rende juros era ruinoso — o dinheiro derretia de um dia para o outro —, e os brasileiros desenvolveram mecanismos sofisticados de fuga da moeda (a "moeda indexada", aplicações de curtíssimo prazo). Com o **Plano Real** e a queda da inflação, a demanda por moeda (a "remonetização") **cresceu** de forma expressiva, exatamente como prevê a teoria: com juros e inflação menores, o custo de oportunidade de reter moeda cai e as pessoas voltam a segurá-la.
+
+> **Fontes e séries para explorar:** Banco Central do Brasil — SGS (meta Selic, agregados monetários M1/M2/M4, taxas médias de crédito); IBGE — Contas Nacionais Trimestrais (Formação Bruta de Capital Fixo). Compare os ciclos de Selic com a trajetória do investimento, atentando às defasagens.
+
+## Resumo do capítulo
+
+- O modelo **IS-LM** determina **simultaneamente** a renda $Y$ e a taxa de juros $i$ de curto prazo, unindo o mercado de bens e o mercado monetário, com **preços fixos**.
+- O **investimento depende negativamente dos juros** ($I = I_0 - bi$): juros são o custo de oportunidade de investir.
+- A **curva IS** reúne os pares $(Y, i)$ que equilibram o **mercado de bens**; é **decrescente**, pois juros menores elevam o investimento e, via multiplicador, a renda. Desloca-se com mudanças no **gasto autônomo** ($G$, $T$, $C_0$, $I_0$).
+- A **demanda por moeda** cresce com a renda (transação) e cai com os juros (custo de oportunidade da liquidez). Com oferta de moeda fixa, o equilíbrio monetário define a **curva LM**, **crescente**. Desloca-se com a **oferta real de moeda** ($M/P$).
+- O **equilíbrio geral** é a interseção IS-LM, $(Y^{*}, i^{*})$ — o único par que equilibra os dois mercados ao mesmo tempo. O mercado monetário ajusta rápido; o de bens, devagar.
+- **Movimento ao longo** de uma curva vem de mudanças nos juros; **deslocamento** vem de fatores que a curva não incorpora ($G/T/M$).
+- O IS-LM supõe preços fixos e trata expectativas como dadas; bancos centrais modernos fixam a **taxa de juros**, não a quantidade de moeda — limitações a corrigir nos capítulos seguintes.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver antes de abrir a solução. Os primeiros itens são conceituais; os do meio, gráficos e numéricos; os últimos, de análise.
+:::
+
+**1.** Explique por que a curva IS é **decrescente** e a curva LM é **crescente**. Em cada caso, identifique o mecanismo econômico.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**IS decrescente:** uma queda nos juros aumenta o investimento (mais projetos compensam) e, via multiplicador, eleva a renda de equilíbrio do mercado de bens. Assim, juros menores associam-se a rendas maiores — inclinação negativa.
+**LM crescente:** uma renda maior aumenta a demanda por moeda para transações; com oferta de moeda fixa, o mercado monetário só reequilibra se os juros subirem (encarecendo a liquidez até a demanda cair de volta à oferta). Renda maior associa-se a juros maiores — inclinação positiva.
+:::
+
+**2.** Para cada evento, diga se ele **desloca** a IS, **desloca** a LM, ou provoca apenas **movimento ao longo** de uma curva: (a) o governo aumenta o gasto público; (b) o Banco Central reduz a oferta de moeda; (c) a taxa de juros cai; (d) as empresas ficam mais otimistas e elevam o investimento autônomo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Desloca a IS** para a direita (aumento do gasto autônomo).
+(b) **Desloca a LM** para a esquerda/cima (menos oferta real de moeda).
+(c) **Movimento ao longo** — mudanças de juros não deslocam curva alguma; movem-se pontos sobre IS e LM.
+(d) **Desloca a IS** para a direita (aumento do investimento autônomo $I_0$).
+:::
+
+**3.** No mercado monetário, a oferta real de moeda é fixa. Explique, passo a passo, o que acontece com a taxa de juros de equilíbrio se a renda $Y$ aumentar. Ilustre com a intuição de "custo de oportunidade da liquidez".
+
+::: {.callout-tip collapse="true" title="Solução"}
+Com $Y$ maior, cresce a demanda por moeda para transações ($kY$ sobe). Mas a oferta $M/P$ é fixa: não há moeda nova para satisfazer essa demanda extra. As pessoas, querendo mais liquidez, tentam vender títulos para obter moeda; a venda de títulos derruba seu preço e **eleva a taxa de juros**. Juros mais altos aumentam o custo de oportunidade de reter moeda, induzindo o público a economizar liquidez até que a demanda por moeda volte a igualar a oferta fixa. Resultado: renda maior → juros de equilíbrio maiores (a lógica ascendente da LM).
+:::
+
+**4.** Desenhe o diagrama IS-LM e mostre um ponto **acima e à direita** de ambas as curvas. Esse ponto representa excesso de oferta ou de demanda no mercado de bens? E no mercado monetário?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Um ponto **à direita da IS** tem renda alta demais para aquele juro: a produção supera a despesa planejada — **excesso de oferta de bens** (estoques acumulam, pressão para reduzir a produção). Um ponto **acima da LM** tem juro alto demais para aquela renda: a demanda por moeda é menor que a oferta — **excesso de oferta de moeda** (equivalente a excesso de demanda por títulos, pressão para os juros caírem). As forças de ajuste, então, empurram a renda para baixo e os juros para baixo, rumo a $E$.
+:::
+
+**5.** Explique por que o modelo IS-LM só é apropriado para o **curto prazo**. Que hipótese impede seu uso para o longo prazo?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O IS-LM supõe o **nível de preços $P$ fixo**. Essa hipótese é razoável no curto prazo (preços rígidos, capacidade ociosa), mas insustentável no longo prazo, quando preços e salários se ajustam. No longo prazo, variações de demanda afetam sobretudo os **preços**, não o produto real, que tende ao pleno emprego. Para analisar horizontes mais longos e a inflação, é preciso deixar $P$ variar — o que se faz incorporando a **oferta agregada** e passando ao modelo AD-AS. Enquanto $P$ é fixo, o IS-LM descreve bem como demanda, juros e moeda interagem no curto prazo.
+:::
+
+**6.** (Numérico) Considere: mercado de bens com $C = 100 + 0{,}8\,Y_d$, $T = 0$, $I = 200 - 500\,i$, $G = 200$; mercado monetário com $M/P = 500$ e $L = 0{,}5\,Y - 1000\,i$. (a) Deduza a equação da IS. (b) Deduza a equação da LM. (c) Encontre $Y^{*}$ e $i^{*}$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **IS:** $Y = C + I + G = 100 + 0{,}8Y + 200 - 500i + 200 = 500 + 0{,}8Y - 500i$. Então $0{,}2Y = 500 - 500i \Rightarrow Y = 2500 - 2500i$. (Curva IS.)
+(b) **LM:** $500 = 0{,}5Y - 1000i \Rightarrow 0{,}5Y = 500 + 1000i \Rightarrow Y = 1000 + 2000i$. (Curva LM.)
+(c) Igualando: $2500 - 2500i = 1000 + 2000i \Rightarrow 1500 = 4500i \Rightarrow i^{*} = \tfrac{1}{3} \approx 0{,}333$ (33,3% no exemplo estilizado). Então $Y^{*} = 1000 + 2000 \times \tfrac{1}{3} \approx 1.667$. (Confere na IS: $2500 - 2500 \times \tfrac{1}{3} \approx 1.667$.)
+:::
+
+**7.** (Análise) Um comentarista afirma: "Se o Banco Central quer estimular a economia, basta imprimir moeda; os juros caem e o investimento sobe automaticamente." Usando o IS-LM, explique o mecanismo por trás dessa frase e aponte **duas** ressalvas que o modelo (e o mundo real) impõem.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Mecanismo correto no modelo:** um aumento de $M$ desloca a LM para a direita/baixo; ao longo da IS, o juro de equilíbrio cai e a renda sobe, pois juros menores elevam o investimento. Até aí a frase acerta.
+**Ressalvas:** (1) O efeito depende das **inclinações**: se o investimento for pouco sensível aos juros (IS quase vertical) ou se a economia estiver numa "armadilha de liquidez" (LM horizontal, juros já no piso), a expansão monetária pouco estimula a renda. (2) O modelo supõe **preços fixos**; se a economia estiver perto do pleno emprego, "imprimir moeda" se traduz em **inflação**, não em mais produto real — algo que o IS-LM de preços fixos não mostra, mas o AD-AS sim. (Ressalva adicional: no regime brasileiro, o BC opera pela **Selic**, não emitindo moeda diretamente.)
+:::
+
+**8.** (Desafio) O IS-LM supõe que o Banco Central controla a **quantidade** de moeda. Bancos centrais modernos, como o do Brasil, controlam a **taxa de juros**. Explique como reinterpretar a LM nesse regime e por que a lógica essencial do modelo sobrevive.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Se o Banco Central fixa a **taxa de juros** num patamar-alvo e ajusta a oferta de moeda passivamente para sustentá-la, a LM deixa de ser a curva crescente tradicional e passa a ser, no horizonte relevante, uma **linha horizontal** na altura do juro escolhido. O equilíbrio ainda é a interseção com a IS: dado o juro fixado, a IS determina a renda. A **lógica essencial sobrevive** — juros e renda continuam ligados pelo mercado de bens, e uma IS mais à direita (estímulo fiscal) eleva a renda ao juro dado. A diferença é operacional: em vez de a autoridade escolher $M$ e deixar $i$ endógeno, ela escolhe $i$ e deixa $M$ endógeno. Essa é a ponte entre o IS-LM clássico e a prática dos regimes de metas de inflação (Volume 8).
+:::
+
+## Para saber mais
+
+- @hicks1937 — o artigo seminal onde o diagrama IS-LM (então "SI-LL") nasceu como interpretação de Keynes. Curto e historicamente fundamental.
+- @blanchard2017 — desenvolvimento moderno e didático do IS-LM, incluindo a versão com o Banco Central fixando a taxa de juros.
+- @dornbusch2013 — tratamento detalhado da derivação das curvas, das inclinações e da estática comparativa.
+- @froyen2013 — bom para comparar a leitura keynesiana e a clássica do mesmo arcabouço.
+- @mishkin2000 — para aprofundar a demanda por moeda e o mercado monetário que fundamentam a LM.

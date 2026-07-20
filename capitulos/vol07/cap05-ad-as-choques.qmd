@@ -1,0 +1,257 @@
+# O modelo AD-AS e a análise de choques {#sec-ad-as-choques}
+
+Temos, agora, as duas metades da máquina. Dos capítulos de demanda (Cruz Keynesiana e IS-LM) tiramos como os gastos, os juros e a moeda determinam a produção quando os preços estão parados. Do capítulo anterior tiramos o **lado da oferta**: como preços e produto se relacionam no curto e no longo prazo. Falta juntá-las num único diagrama que deixe os preços **e** o produto se moverem ao mesmo tempo. Esse diagrama é o modelo **AD-AS** — **demanda agregada** (do inglês *Aggregate Demand*) e **oferta agregada** (*Aggregate Supply*) —, o arcabouço-padrão da macroeconomia de curto prazo.
+
+Com o AD-AS conseguiremos, enfim, responder às perguntas que os modelos de preço fixo deixavam em aberto: uma expansão de demanda gera **mais produto ou só mais inflação**? Por que uma alta do petróleo produz o pesadelo da **estagflação**? Por que a economia, deixada a si mesma, tende a voltar ao produto potencial — e por que esse retorno pode ser lento e doloroso? É a análise de **choques** — de demanda e de oferta — e do **mecanismo de autoajuste** que fecha o núcleo teórico deste volume.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- derivar a **curva de demanda agregada (DA)** e explicar por que é decrescente;
+- montar o modelo **AD-AS** com as três curvas (DA, OACP, OALP) e localizar os equilíbrios de curto e longo prazo;
+- analisar um **choque de demanda** e seus efeitos de curto e longo prazo;
+- analisar um **choque de oferta** e explicar a **estagflação**;
+- descrever o **mecanismo de autoajuste** que reconduz a economia ao produto potencial;
+- discutir o dilema **"estabilizar rápido vs. deixar ajustar"** e o papel da política econômica.
+
+## A curva de demanda agregada
+
+A **curva de demanda agregada (DA)** relaciona o nível de preços $P$ à quantidade total de bens e serviços demandada na economia, $Y$. Cuidado: apesar do nome e do formato, ela **não** é a curva de demanda de um bem ampliada — a lógica de sua inclinação negativa é inteiramente macroeconômica.
+
+Por que a DA é **decrescente** (mais preços, menos produto demandado)? Há vários canais; o mais direto vem do próprio IS-LM:
+
+- **Efeito juros (Keynes):** um nível de preços $P$ mais alto reduz a oferta **real** de moeda $M/P$ (com $M$ fixo). Menos moeda real desloca a LM para a esquerda, **eleva os juros**, reduz o investimento e, portanto, a renda demandada. Logo, $P\uparrow \Rightarrow Y\downarrow$.
+- **Efeito riqueza (Pigou):** preços mais altos corroem o poder de compra da riqueza financeira das famílias, reduzindo o consumo.
+- **Efeito câmbio/comércio:** preços internos mais altos encarecem os produtos nacionais frente aos importados, reduzindo exportações líquidas.
+
+Todos apontam na mesma direção: preços maiores, menor quantidade agregada demandada. Daí a **DA decrescente**.
+
+::: {.callout-note title="Definição — Curva de demanda agregada"}
+A **curva de demanda agregada (DA)** mostra, para cada nível de preços $P$, a quantidade total de produto $Y$ demandada pelos agentes (famílias, empresas, governo, exterior). É **decrescente** por três canais — juros, riqueza e câmbio. Ela se desloca com tudo o que muda a demanda a um dado nível de preços: **política fiscal** ($G$, $T$), **política monetária** ($M$), confiança, e demanda externa.
+:::
+
+O que **desloca** a DA é, essencialmente, o que deslocava a IS e a LM: uma expansão fiscal ou monetária empurra a DA para a **direita** (mais demanda a cada nível de preços); uma contração, para a esquerda. É por isso que a DA é a "porta de entrada" da política de demanda no modelo.
+
+## O modelo AD-AS completo
+
+Reunimos três curvas no plano $(Y, P)$:
+
+- **DA** — decrescente (demanda agregada);
+- **OACP** — crescente (oferta agregada de curto prazo);
+- **OALP** — vertical em $Y_p$ (oferta agregada de longo prazo).
+
+O **equilíbrio de longo prazo** ocorre onde as **três** se cruzam: o produto está no potencial ($Y = Y_p$) e o nível de preços é aquele que iguala demanda e oferta (@fig-adas). Nesse ponto, não há hiato, o desemprego está na taxa natural e a inflação é estável. É o repouso do sistema.
+
+::: {#fig-adas}
+
+```{.tikz}
+%%| filename: fig-adas
+%%| alt: Modelo AD-AS em equilíbrio de longo prazo: curva de demanda agregada decrescente, oferta de curto prazo crescente e oferta de longo prazo vertical, todas cruzando-se no produto potencial.
+\begin{tikzpicture}[scale=0.95]
+  \draw[eixo] (0,0) -- (8.6,0) node[right] {$Y$};
+  \draw[eixo] (0,0) -- (0,6.8) node[above] {$P$};
+  % OALP vertical
+  \draw[very thick, manualgreen] (4.5,0.4) -- (4.5,6.4) node[above, font=\footnotesize] {$OALP$};
+  \node[below, manualgreen, font=\footnotesize] at (4.5,0) {$Y_p$};
+  % OACP crescente
+  \draw[very thick, manualred] (1.4,1.4) -- (7.6,5.4) node[right, font=\footnotesize] {$OACP$};
+  % DA decrescente
+  \draw[curva] (1.4,5.7) -- (7.6,1.3) node[right, manualblue] {$DA$};
+  \coordinate (E) at (4.5,3.5);
+  \node[ponto] at (E) {};
+  \node[above right, font=\footnotesize] at (E) {$E$};
+  \draw[auxiliar] (E) -- (0,3.5) node[left, font=\footnotesize] {$P^{*}$};
+\end{tikzpicture}
+```
+
+Equilíbrio de longo prazo do AD-AS: as três curvas se cruzam em $Y_p$. Produto no potencial, preços em $P^{*}$.
+:::
+
+## Choque de demanda
+
+Suponha uma **expansão de demanda** — o governo aumenta $G$, ou o Banco Central corta os juros, ou a confiança dispara. A curva **DA desloca-se para a direita**, de $DA_0$ para $DA_1$. O que ocorre depende do horizonte (@fig-choque-demanda):
+
+**Curto prazo (ponto $B$):** a economia se move **ao longo da OACP**. O produto sobe **acima** do potencial ($Y > Y_p$) e o nível de preços sobe. Há um "boom": produto e preços mais altos, desemprego abaixo do natural. Foi o cenário que o IS-LM sozinho enxergava só pela metade (via o produto subir, mas não via os preços).
+
+**Longo prazo (ponto $C$):** o boom não é sustentável. Com o produto acima do potencial e o mercado de trabalho apertado, os salários e os custos começam a subir. A **OACP desloca-se para cima** (os trabalhadores exigem reajustes, as expectativas de inflação sobem). Esse processo continua até o produto **voltar** ao potencial $Y_p$, agora com um nível de preços **ainda mais alto**. No novo equilíbrio de longo prazo $C$: **mesmo produto, preços mais altos**.
+
+::: {#fig-choque-demanda}
+
+```{.tikz}
+%%| filename: fig-choque-demanda
+%%| alt: Choque de demanda positivo no AD-AS: a demanda agregada desloca-se para a direita, elevando produto e preços no curto prazo; no longo prazo a oferta de curto prazo sobe e o produto retorna ao potencial com preços ainda maiores.
+\begin{tikzpicture}[scale=0.95]
+  \draw[eixo] (0,0) -- (8.8,0) node[right] {$Y$};
+  \draw[eixo] (0,0) -- (0,7.0) node[above] {$P$};
+  % OALP
+  \draw[very thick, manualgreen] (4.3,0.4) -- (4.3,6.6) node[above, font=\footnotesize] {$OALP$};
+  \node[below, manualgreen, font=\footnotesize] at (4.3,0) {$Y_p$};
+  % OACP0
+  \draw[very thick, manualred] (1.2,1.2) -- (7.4,5.0) node[right, font=\footnotesize] {$OACP_0$};
+  % OACP1 (deslocada para cima)
+  \draw[very thick, manualred!55] (1.2,2.4) -- (6.8,5.85) node[right, font=\footnotesize] {$OACP_1$};
+  % DA0
+  \draw[curva] (1.2,4.9) -- (6.5,1.3) node[right, manualblue, font=\footnotesize] {$DA_0$};
+  % DA1
+  \draw[curva, manualblue!55] (2.6,5.9) -- (8.0,2.3) node[right, font=\footnotesize] {$DA_1$};
+  \coordinate (A) at (4.3,3.0);
+  \coordinate (B) at (5.55,3.75);
+  \coordinate (C) at (4.3,4.35);
+  \node[ponto] at (A) {}; \node[below left, font=\footnotesize] at (A) {$A$};
+  \node[ponto] at (B) {}; \node[below right, font=\footnotesize] at (B) {$B$};
+  \node[ponto] at (C) {}; \node[above right, font=\footnotesize] at (C) {$C$};
+  \draw[auxiliar] (B) -- (5.55,0) node[below,font=\footnotesize] {$Y_B$};
+  \draw[vetor, manualblue] (3.2,4.6) -- (4.2,4.2);
+\end{tikzpicture}
+```
+
+Choque de demanda positivo. Curto prazo: de $A$ a $B$ (produto e preços sobem). Longo prazo: a OACP sobe e a economia vai a $C$ — de volta a $Y_p$, com preços maiores.
+:::
+
+::: {.callout-tip title="Intuição — no curto prazo, produto; no longo prazo, só preços"}
+A lição central do choque de demanda: um estímulo de demanda "compra" mais produto **apenas temporariamente**. Enquanto os preços e salários não se ajustaram, a economia produz acima do potencial. Mas, à medida que os custos alcançam a nova demanda, o ganho de produto **evapora** e sobra apenas inflação. É a versão em AD-AS da mesma mensagem da curva de Phillips: **a moeda é neutra no longo prazo** — não afeta variáveis reais como o produto, só o nível de preços.
+:::
+
+## Choque de oferta e a estagflação
+
+Agora o choque vem do **lado da oferta**. Imagine uma disparada no preço do petróleo, uma seca que encarece energia e alimentos, ou uma forte desvalorização cambial que eleva o custo dos insumos importados. Os custos de produção sobem em toda a economia: a **OACP desloca-se para cima/esquerda** (@fig-choque-oferta).
+
+O resultado de um **choque de oferta adverso** é duplamente ruim: o produto **cai** ($Y < Y_p$) e o nível de preços **sobe**. Inflação com recessão — a temida **estagflação**. É o cenário que mais aflige a política econômica, porque os dois males aparecem juntos.
+
+::: {#fig-choque-oferta}
+
+```{.tikz}
+%%| filename: fig-choque-oferta
+%%| alt: Choque de oferta adverso no AD-AS: a oferta agregada de curto prazo desloca-se para cima e para a esquerda, reduzindo o produto e elevando os preços — estagflação.
+\begin{tikzpicture}[scale=0.95]
+  \draw[eixo] (0,0) -- (8.6,0) node[right] {$Y$};
+  \draw[eixo] (0,0) -- (0,7.0) node[above] {$P$};
+  % OALP
+  \draw[very thick, manualgreen] (4.5,0.4) -- (4.5,6.6) node[above, font=\footnotesize] {$OALP$};
+  \node[below, manualgreen, font=\footnotesize] at (4.5,0) {$Y_p$};
+  % OACP0
+  \draw[very thick, manualred] (1.6,1.2) -- (7.6,5.0) node[right, font=\footnotesize] {$OACP_0$};
+  % OACP1 deslocada para cima/esquerda
+  \draw[very thick, manualred!55] (1.6,2.7) -- (6.6,5.85) node[right, font=\footnotesize] {$OACP_1$};
+  % DA
+  \draw[curva] (1.6,5.7) -- (7.6,1.3) node[right, manualblue] {$DA$};
+  \coordinate (A) at (4.5,3.5);
+  \coordinate (B) at (3.35,4.24);
+  \node[ponto] at (A) {}; \node[below right, font=\footnotesize] at (A) {$A$};
+  \node[ponto] at (B) {}; \node[above right, font=\footnotesize] at (B) {$B$};
+  \draw[auxiliar] (B) -- (3.35,0) node[below,font=\footnotesize] {$Y_B$};
+  \draw[auxiliar] (B) -- (0,4.24) node[left,font=\footnotesize] {$P_B$};
+  \draw[auxiliar] (A) -- (0,3.5) node[left,font=\footnotesize] {$P_A$};
+  \draw[vetor, manualred] (4.0,4.3) -- (3.1,4.7);
+  \node[manualgray, font=\footnotesize, align=center] at (6.6,4.3) {$Y\downarrow$ \, e \, $P\uparrow$:\\estagflação};
+\end{tikzpicture}
+```
+
+Choque de oferta adverso. A OACP sobe: o produto cai para $Y_B$ e os preços sobem para $P_B$ — estagflação.
+:::
+
+### O dilema da política diante do choque de oferta
+
+O choque de oferta expõe um dilema cruel, sem saída indolor:
+
+- Se o Banco Central **acomoda** (expande a demanda para sustentar o emprego, deslocando a DA para a direita), evita a recessão, mas **valida a inflação** — os preços sobem ainda mais e o choque pode se perpetuar em expectativas.
+- Se o Banco Central **combate** (aperta a demanda para conter a inflação), reforça a queda do produto e o desemprego, aprofundando a recessão, embora ancore a inflação.
+- Se **nada faz**, a economia terá de se reajustar sozinha: com produto abaixo do potencial e desemprego alto, salários e custos eventualmente cedem, a OACP retorna, e a economia volta a $Y_p$ — mas o processo pode ser **lento e custoso** em desemprego.
+
+Não há resposta única. A escolha depende de quão ancoradas estão as expectativas, do mandato do banco central e do julgamento sobre a persistência do choque. Foi exatamente esse dilema que definiu a política monetária mundial nos anos 1970 e voltou a assombrar bancos centrais no pós-pandemia.
+
+## O mecanismo de autoajuste
+
+Um resultado profundo do AD-AS é que a economia possui um **mecanismo de autoajuste** que a reconduz ao produto potencial, **sem** necessidade de política ativa. A lógica:
+
+- Se o produto está **acima** do potencial ($Y > Y_p$), o mercado de trabalho aperta, salários e custos **sobem**, a OACP se desloca **para cima**, e o produto **cai** de volta a $Y_p$.
+- Se o produto está **abaixo** do potencial ($Y < Y_p$), há desemprego alto, salários e custos **cedem**, a OACP se desloca **para baixo**, e o produto **sobe** de volta a $Y_p$.
+
+Em ambos os casos, a economia gravita para $Y_p$. Essa é a versão macroeconômica da "mão invisível". Mas há uma controvérsia central sobre **quão rápido** esse ajuste opera.
+
+::: {.callout-warning title="Controvérsia — o autoajuste é rápido ou lento?"}
+Este é, talvez, **o** divisor de águas da macroeconomia. Os economistas de tradição mais **clássica/novo-clássica** acreditam que preços e salários se ajustam **rápido**, de modo que a economia passa pouco tempo longe do potencial: intervenções ativas seriam desnecessárias e até prejudiciais. Os de tradição **keynesiana** apontam que salários e preços são **rígidos para baixo** — dificilmente caem —, tornando o autoajuste diante de recessões **lento e doloroso**, com anos de desemprego elevado; nesse caso, a política de demanda tem papel legítimo em acelerar a volta ao potencial. A célebre frase de Keynes resume a impaciência keynesiana: "no longo prazo, estaremos todos mortos". O próximo capítulo, sobre expectativas, aprofunda essa divisão, e o @sec-debates-macroeconomicos a sistematiza.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+**Choques de oferta são a marca da inflação brasileira.** Enquanto os manuais estrangeiros tratam o choque de oferta como episódio raro (o petróleo dos anos 1970), no Brasil ele é quase rotina. A inflação brasileira é fortemente sensível a **choques de oferta**: o **câmbio** (uma desvalorização do real encarece importados e insumos, deslocando a OACP), os **preços de alimentos** (sujeitos a clima e a preços internacionais de commodities) e os **preços administrados** (combustíveis, energia elétrica, com forte peso no IPCA do IBGE). Episódios como a crise hídrica de 2021, que disparou as bandeiras tarifárias de energia, ou as altas de combustíveis atreladas ao dólar e ao petróleo, são choques de oferta de manual — inflação subindo com atividade fraca.
+
+**2015-2016 e a estagflação brasileira.** A recessão de 2015-2016 combinou elementos de choque de demanda e de oferta e produziu algo próximo da estagflação: o PIB **caiu** por dois anos seguidos (recuo acumulado da ordem de 7%, segundo o IBGE) enquanto a **inflação superava 10%** em 2015. A desvalorização cambial e o realinhamento de preços administrados (que haviam sido represados) empurraram a OACP para cima, ao mesmo tempo em que a demanda se contraía. O Banco Central, diante do dilema deste capítulo, **apertou** a política monetária (Selic a 14,25%) para reancorar a inflação — escolha que priorizou o combate à inflação ao custo de aprofundar a recessão.
+
+**Pós-pandemia: um choque de oferta global sentido no Brasil.** A inflação de 2021-2022 ofereceu um caso didático mundial de choque de oferta: gargalos nas cadeias globais, alta de energia e alimentos, somados ao estímulo de demanda da pandemia. No Brasil, com a inflação furando o teto da meta, o Banco Central iniciou um dos ciclos de aperto mais intensos do mundo, elevando a Selic de 2% para 13,75%. É o mecanismo do capítulo em ação: diante de um choque adverso de oferta com expectativas em risco de desancorar, a autoridade optou por **combater** em vez de **acomodar**, aceitando o custo em atividade.
+
+> **Fontes e séries para explorar:** IBGE — IPCA (abertura por grupos: administrados, alimentos, serviços; núcleos de inflação) e Contas Nacionais (PIB trimestral); Banco Central do Brasil — Relatório de Inflação (decomposição de choques, hiato do produto) e SGS (câmbio, Selic). Distinga sempre inflação de **demanda** (núcleos, serviços) da de **oferta** (administrados, alimentos, câmbio).
+
+## Resumo do capítulo
+
+- A **curva de demanda agregada (DA)** liga nível de preços e produto demandado; é **decrescente** por três canais — **juros** (Keynes), **riqueza** (Pigou) e **câmbio**. Desloca-se com política fiscal, monetária e demanda externa.
+- O modelo **AD-AS** reúne DA, **OACP** (crescente) e **OALP** (vertical em $Y_p$). O **equilíbrio de longo prazo** é o cruzamento das três, com produto no potencial e inflação estável.
+- **Choque de demanda positivo:** no curto prazo, produto e preços sobem (boom, ao longo da OACP); no longo prazo, a OACP se desloca para cima e o produto **volta** a $Y_p$ com preços **mais altos**. A moeda é **neutra no longo prazo**.
+- **Choque de oferta adverso:** a OACP se desloca para cima; produto **cai** e preços **sobem** — **estagflação**. A política enfrenta um dilema sem saída indolor: **acomodar** (validar inflação) ou **combater** (aprofundar recessão).
+- A economia possui um **mecanismo de autoajuste** que a reconduz a $Y_p$ via movimentos de salários e custos (OACP). A grande controvérsia macroeconômica é **quão rápido** esse ajuste ocorre — a divisão entre visões clássica e keynesiana.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver antes de abrir a solução. Desenhe sempre as três curvas (DA, OACP, OALP) para acompanhar cada choque.
+:::
+
+**1.** Explique por que a curva de **demanda agregada** é decrescente. Cite pelo menos dois dos três canais e descreva o mecanismo de cada um.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A DA é decrescente porque um nível de preços mais alto reduz a quantidade agregada demandada, por três canais: (1) **Efeito juros (Keynes):** $P$ maior reduz a oferta real de moeda $M/P$, eleva os juros, reduz o investimento e a renda demandada. (2) **Efeito riqueza (Pigou):** $P$ maior corrói o poder de compra da riqueza financeira das famílias, reduzindo o consumo. (3) **Efeito câmbio:** $P$ interno maior encarece os produtos nacionais frente aos importados, reduzindo exportações líquidas. Qualquer dois desses bastam para justificar a inclinação negativa.
+:::
+
+**2.** Distinga os efeitos de **curto** e de **longo prazo** de uma expansão monetária no AD-AS. O que quer dizer "a moeda é neutra no longo prazo"?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Uma expansão monetária desloca a DA para a direita. **Curto prazo:** ao longo da OACP, produto e preços sobem (a economia opera acima de $Y_p$). **Longo prazo:** com produto acima do potencial, salários e custos sobem, a OACP se desloca para cima, e o produto **retorna** a $Y_p$, restando apenas um nível de preços mais alto. "**Moeda neutra no longo prazo**" significa que variações na quantidade de moeda afetam apenas variáveis **nominais** (o nível de preços), não as **reais** (produto, emprego): no longo prazo, mais moeda só gera mais inflação, não mais produção.
+:::
+
+**3.** Um choque de oferta adverso (alta do petróleo) atinge a economia. (a) O que acontece com produto e preços no curto prazo? (b) Como se chama esse cenário? (c) Se o governo nada fizer, como a economia retorna ao potencial?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) A OACP se desloca para cima/esquerda: o **produto cai** e o **nível de preços sobe**.
+(b) **Estagflação** (estagnação/recessão + inflação).
+(c) Com produto abaixo do potencial e desemprego alto, a pressão sobre salários e custos diminui; eventualmente salários e custos **cedem**, a OACP retorna para baixo, e o produto **sobe** de volta a $Y_p$ com os preços recuando. É o mecanismo de autoajuste — que pode ser lento e custoso em desemprego.
+:::
+
+**4.** Por que o choque de oferta cria um **dilema** para o Banco Central que o choque de demanda não cria?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Num choque de **demanda**, inflação e produto se movem na **mesma direção** (ambos sobem, ou ambos caem). Combater a inflação (apertar a demanda) ao mesmo tempo esfria uma economia superaquecida — os objetivos de estabilizar inflação e produto estão **alinhados**. Num choque de **oferta**, inflação e produto se movem em **direções opostas** (inflação sobe, produto cai). Aí o BC não pode atacar os dois males com o mesmo instrumento: apertar a demanda contém a inflação, mas **agrava** a recessão; afrouxar sustenta o produto, mas **agrava** a inflação. O conflito de objetivos é o que caracteriza o dilema do choque de oferta.
+:::
+
+**5.** Explique o **mecanismo de autoajuste** para uma economia que está **abaixo** do produto potencial. Por que os keynesianos duvidam de que ele funcione rápido?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Abaixo do potencial ($Y < Y_p$), há capacidade ociosa e desemprego acima do natural. Em teoria, o excesso de trabalhadores desempregados pressiona salários e custos **para baixo**; custos menores deslocam a OACP para baixo/direita, reduzindo preços e elevando o produto de volta a $Y_p$. Os **keynesianos** duvidam da rapidez porque salários e preços são **rígidos para baixo**: contratos, salário mínimo, resistência dos trabalhadores a cortes nominais e normas sociais impedem que os salários caiam livremente. Com a OACP "grudada", o autoajuste é **lento**, e a economia pode ficar anos abaixo do potencial com desemprego elevado — o que justifica, na visão keynesiana, uma política de demanda ativa para acelerar a recuperação.
+:::
+
+**6.** (Análise gráfica) Uma economia parte do equilíbrio de longo prazo. O governo faz uma forte expansão fiscal **permanente**. Descreva a trajetória (curto e longo prazo) de produto, preços e desemprego. O ganho de produto é permanente?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Curto prazo:** a DA se desloca para a direita; ao longo da OACP, o **produto sobe acima de $Y_p$**, os **preços sobem** e o **desemprego cai** abaixo do natural (boom). **Transição/longo prazo:** com o produto acima do potencial, salários e custos sobem, a OACP se desloca **para cima**; o produto **retorna a $Y_p$** e o desemprego volta à taxa natural, mas o **nível de preços fica ainda mais alto**. **O ganho de produto NÃO é permanente:** no longo prazo, o produto volta ao potencial — a expansão fiscal permanente deixa como legado preços/inflação mais altos (e, no IS-LM, juros mais altos com *crowding out* do investimento), não mais produto. Só políticas que elevem o **produto potencial** (oferta) produzem ganhos reais duradouros.
+:::
+
+**7.** (Análise) Compare a resposta de política a um choque de oferta adverso sob duas condições: (i) expectativas de inflação **bem ancoradas**; (ii) expectativas **desancoradas**. Por que a ancoragem muda a decisão?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(i) Com expectativas **bem ancoradas**, o choque de oferta tende a ser visto como **temporário**: os agentes confiam que a inflação voltará à meta, então o repique de preços não se propaga para salários e outros preços. O BC pode **"olhar através" do choque** (tolerar a alta temporária) sem apertar demais, evitando aprofundar a recessão — o custo de acomodar é baixo porque a inflação não ganha inércia. (ii) Com expectativas **desancoradas**, o mesmo choque ameaça se **propagar**: se as pessoas passam a esperar inflação alta, exigem reajustes, e a curva de Phillips inteira sobe, tornando a inflação persistente. Aí o BC é forçado a **combater** com aperto duro, aceitando mais desemprego, para reancorar as expectativas antes que a espiral se instale. A **ancoragem** é o que determina se o choque é um susto passageiro ou o início de uma inflação crônica — por isso bancos centrais valorizam tanto a credibilidade.
+:::
+
+**8.** (Desafio) "O AD-AS mostra que política de demanda nunca tem efeito real, então é inútil." Avalie criticamente essa afirmação, distinguindo curto e longo prazo e o papel da velocidade do autoajuste.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A afirmação exagera uma verdade parcial. É correto que, no **longo prazo**, a política de demanda é **neutra** quanto ao produto: a economia volta a $Y_p$, e o legado é apenas nominal (preços/inflação). Mas daí **não** segue que ela seja "inútil": (1) no **curto prazo**, a política de demanda afeta produto e emprego reais — e o curto prazo pode durar anos; (2) se o autoajuste é **lento** (rigidez de preços/salários para baixo, visão keynesiana), uma economia deixada a si mesma pode permanecer muito tempo abaixo do potencial, com desemprego elevado e custo humano real — nesse caso, a política de demanda que **acelera** a volta ao potencial gera ganho de bem-estar genuíno; (3) a política também importa para **estabilizar** flutuações e evitar que recessões se transformem em depressões. A crítica só é válida se o autoajuste for muito **rápido** (visão novo-clássica) — precisamente o ponto em disputa. Conclusão: a política de demanda não move o produto **potencial**, mas pode reduzir o **tempo e o custo** do ajuste; sua utilidade depende de quão rígida é a economia, o que é uma questão empírica, não um teorema.
+:::
+
+## Para saber mais
+
+- @blanchard2017 — apresentação moderna e completa do modelo AD-AS, dos choques e do mecanismo de médio prazo.
+- @mankiw2020 — tratamento introdutório muito claro da demanda e oferta agregadas, com abundância de exemplos de choques.
+- @dornbusch2013 — bom para a análise formal dos choques de oferta e demanda e do ajuste ao longo do tempo.
+- @froyen2013 — para situar o AD-AS na disputa entre as escolas sobre a velocidade do autoajuste.
+- @keynes1996 — a fonte do ceticismo quanto ao autoajuste rápido ("no longo prazo estaremos todos mortos").

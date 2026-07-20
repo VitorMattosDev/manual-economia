@@ -1,0 +1,198 @@
+# Ciclos econômicos {#sec-ciclos}
+
+A economia não cresce numa linha reta. Ela avança aos trancos: anos de expansão em que o emprego sobra, o crédito flui e o otimismo contamina, seguidos de freadas bruscas em que fábricas param, o desemprego dispara e o pessimismo se instala. Depois, a recuperação, um novo pico, e o ciclo recomeça. Todo brasileiro adulto guarda a memória dessas ondas: o "voo de galinha" da atividade, os anos do boom das commodities, a recessão de 2015-2016, o tombo da pandemia, a retomada. Essas flutuações recorrentes em torno da tendência de crescimento são os **ciclos econômicos** — e explicá-los é uma das grandes tarefas da macroeconomia.
+
+Este capítulo descreve a **anatomia** do ciclo, cataloga seus **fatos estilizados** (as regularidades empíricas que qualquer teoria precisa explicar) e apresenta as principais **famílias de explicação** — dos choques de demanda keynesianos aos choques de produtividade dos ciclos reais de negócios. É onde amarramos boa parte do volume: a demanda agregada, a oferta, as expectativas e a política, todas convocadas para dar conta do vaivém da economia. Ao final, discutimos o que a política econômica pode — e o que não pode — fazer diante das flutuações.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- descrever as **fases** do ciclo econômico (expansão, pico, recessão, vale) e defini-las;
+- distinguir **tendência** de **ciclo** e entender a decomposição do produto;
+- enumerar os **fatos estilizados** dos ciclos (procíclicos, contracíclicos, defasados);
+- classificar variáveis como **líderes**, **coincidentes** e **defasadas**;
+- comparar as principais **teorias do ciclo**: choques de demanda, ciclos reais de negócios e visão novo-keynesiana;
+- discutir o papel e os limites da **política anticíclica**.
+
+## Anatomia do ciclo
+
+O produto de uma economia (medido, por exemplo, pelo PIB real) pode ser decomposto em dois elementos: uma **tendência** de longo prazo — o crescimento sustentado do produto potencial, movido por acumulação de fatores e tecnologia (que estudamos no @sec-crescimento-fatos) — e um **componente cíclico**, as oscilações de curto prazo em torno dessa tendência. O ciclo econômico é justamente esse segundo componente: os desvios do produto efetivo em relação ao potencial, isto é, o **hiato do produto** que vimos no @sec-oferta-agregada-phillips.
+
+Um ciclo completo percorre quatro **fases** (@fig-ciclo):
+
+- **Expansão:** o produto cresce acima da tendência; emprego, renda, crédito e confiança sobem.
+- **Pico:** o ponto mais alto, onde a expansão se esgota; a economia opera acima do potencial, com pressões inflacionárias.
+- **Recessão (ou contração):** o produto cai; desemprego sobe, crédito encolhe, pessimismo se espalha. Uma recessão prolongada e profunda é uma **depressão**.
+- **Vale (ou fundo):** o ponto mais baixo, onde a contração se esgota e a recuperação começa.
+
+::: {#fig-ciclo}
+
+```{.tikz}
+%%| filename: fig-ciclo
+%%| alt: Curva ondulada do produto efetivo oscilando em torno de uma reta de tendência crescente, com as fases expansão, pico, recessão e vale marcadas.
+\begin{tikzpicture}[scale=0.95]
+  \draw[eixo] (0,0) -- (9.2,0) node[right] {tempo};
+  \draw[eixo] (0,0) -- (0,6.0) node[above] {$Y$ (log do produto real)};
+  % tendencia
+  \draw[destaque, very thick, manualgray] (0.3,1.3) -- (8.8,4.9) node[right, font=\footnotesize] {tendência ($Y_p$)};
+  % ciclo (senoide em torno da tendencia)
+  \draw[curva, manualblue] (0.3,1.6)
+    .. controls (1.5,3.0) and (2.2,3.1) .. (2.8,2.6)
+    .. controls (3.5,2.0) and (3.9,1.9) .. (4.5,2.6)
+    .. controls (5.3,3.5) and (5.9,3.7) .. (6.5,3.2)
+    .. controls (7.1,2.7) and (7.5,2.7) .. (8.1,3.6)
+    node[right, font=\footnotesize, manualblue] {$Y$ efetivo};
+  % rotulos das fases
+  \node[manualgray, font=\footnotesize] at (1.5,3.35) {pico};
+  \node[manualgray, font=\footnotesize] at (3.85,1.55) {vale};
+  \node[manualred, font=\footnotesize, rotate=-32] at (2.5,2.35) {recessão};
+  \node[manualgreen, font=\footnotesize, rotate=33] at (5.1,2.75) {expansão};
+\end{tikzpicture}
+```
+
+O ciclo econômico: o produto efetivo oscila em torno da tendência de longo prazo, percorrendo expansão, pico, recessão e vale.
+:::
+
+Os ciclos são **recorrentes**, mas **não periódicos**: não têm duração fixa. Uma expansão pode durar dois anos ou dez; uma recessão, dois trimestres ou vários anos. Por isso é difícil (e arriscado) prever com precisão quando o ciclo virará.
+
+::: {.callout-note title="Definição — Recessão"}
+Uma **recessão** é uma queda significativa e disseminada da atividade econômica, que se estende por vários meses. A definição prática mais conhecida — **dois trimestres consecutivos de queda do PIB real** — é uma regra de bolso; datadores oficiais de ciclo (como o NBER nos EUA e o CODACE no Brasil) usam critérios mais amplos, olhando também emprego, renda e produção industrial, além da profundidade e da difusão da queda.
+:::
+
+## Os fatos estilizados
+
+Toda teoria do ciclo precisa dar conta de um conjunto de **regularidades empíricas** — os fatos estilizados — que se repetem, com variações, em quase todas as economias. Os principais:
+
+- **Comovimento.** As variáveis macroeconômicas se movem **juntas** no ciclo. Produção, emprego, consumo, investimento e importações tendem a subir e cair mais ou menos ao mesmo tempo. Essa sincronia é a marca do ciclo — não são setores isolados oscilando ao acaso, mas a economia inteira respirando junto.
+- **Variáveis procíclicas e contracíclicas.** Uma variável é **procíclica** se sobe nas expansões e cai nas recessões (consumo, investimento, importações, inflação, lucros); é **contracíclica** se faz o oposto (desemprego, falências, estoques involuntários).
+- **Amplitudes diferentes.** O **investimento** é muito mais **volátil** que o consumo — oscila com amplitude bem maior no ciclo. Faz sentido: gastos com máquinas, construção e bens duráveis são adiáveis, então despencam nas crises e disparam nos booms, enquanto o consumo de necessidades básicas é mais estável (lembre da função consumo do @sec-demanda-agregada).
+- **Defasagens (variáveis líderes, coincidentes e defasadas).** Algumas variáveis viram **antes** do ciclo (líderes: bolsa de valores, novas encomendas, expectativas, permissões de construção), servindo de sinal antecipado; outras acompanham (coincidentes: PIB, emprego, produção industrial); outras reagem **depois** (defasadas: desemprego, que continua subindo mesmo após o fundo, e inflação).
+
+::: {.callout-tip title="Intuição — por que o desemprego é uma variável defasada"}
+Quando a recuperação começa, o desemprego costuma continuar subindo por um tempo antes de ceder — daí a expressão "recuperação sem empregos" (*jobless recovery*). A razão: empresas, incertas quanto à solidez da retomada, primeiro elevam a produção usando quem já têm (mais horas, fim das ociosidades) antes de contratar. Só quando a expansão se confirma é que abrem vagas. Por isso o desemprego é um péssimo termômetro de *virada* do ciclo — ele conta o que já passou, não o que vem.
+:::
+
+## As teorias do ciclo
+
+O que **causa** os ciclos? Aqui as escolas macroeconômicas divergem, e as respostas mobilizam tudo o que construímos neste volume. Podemos organizar as explicações em famílias.
+
+### Choques de demanda (tradição keynesiana)
+
+Na visão **keynesiana** e **novo-keynesiana**, os ciclos nascem sobretudo de **choques de demanda agregada**, amplificados pela rigidez de preços. Uma queda de confiança (os "espíritos animais" de Keynes), uma retração do crédito, um aperto fiscal ou monetário desloca a demanda agregada; como os preços são rígidos, o ajuste recai sobre as **quantidades**, e o produto cai abaixo do potencial. O **multiplicador** amplifica o choque inicial, e o **investimento volátil** o intensifica.
+
+Nessa leitura, as recessões são **falhas de coordenação** e representam desperdício — recursos ociosos que poderiam estar produzindo. Como o autoajuste é lento (preços rígidos para baixo), há espaço e justificativa para **política anticíclica**: estabilizar a demanda para encurtar recessões e conter booms.
+
+### Ciclos reais de negócios (tradição novo-clássica)
+
+Na virada dos anos 1980, Kydland e Prescott propuseram uma explicação radicalmente diferente: a **teoria dos ciclos reais de negócios** (RBC, *Real Business Cycles*) [@kydland1982]. Nela, os ciclos são causados por **choques reais de produtividade** (tecnologia, preços de insumos, choques de oferta), não por demanda. Diante de um choque tecnológico adverso, os trabalhadores e empresas — agindo **racionalmente** — reduzem trabalho e investimento; a queda do produto é a **resposta ótima** a uma piora real das condições de produção.
+
+A implicação é provocadora: se as flutuações são respostas eficientes a choques reais, então as recessões **não** são falhas a corrigir, e a política de estabilização é **desnecessária ou até prejudicial**. A economia já está fazendo o melhor possível dadas as circunstâncias. Os RBC supõem preços flexíveis, mercados em equilíbrio contínuo e expectativas racionais — a antítese da visão keynesiana.
+
+### A síntese novo-keynesiana
+
+O arcabouço hoje dominante nos bancos centrais — os modelos **novo-keynesianos** ou **DSGE** — faz uma síntese. Ele adota o **rigor metodológico** dos novos-clássicos e dos RBC (microfundamentos, expectativas racionais, choques explícitos), **mas** reintroduz as **rigidezes nominais** (preços e salários que não se ajustam instantaneamente) que dão à demanda e à política monetária um papel real. Nessa síntese, os ciclos resultam de uma **combinação** de choques (de demanda **e** de oferta/produtividade), e a política monetária tem função legítima de estabilização — precisamente por causa das rigidezes.
+
+::: {.callout-warning title="Controvérsia — os ciclos são doença ou remédio?"}
+No fundo da disputa entre as escolas está uma pergunta quase filosófica: uma recessão é um **mau funcionamento** a ser corrigido, ou uma **resposta saudável** da economia a mudanças reais? Para keynesianos, é doença — recursos desperdiçados por falha de demanda, que a política deve tratar. Para os RBC em sua forma pura, é remédio — o ajuste ótimo a choques de produtividade, que a política só atrapalharia. A síntese novo-keynesiana fica no meio: há tanto flutuações eficientes (a responder a choques reais) quanto ineficientes (a corrigir, quando rigidezes impedem o ajuste). Distinguir uma da outra em tempo real é o desafio prático — e a fonte de boa parte do desacordo entre economistas sobre *quando* intervir.
+:::
+
+## Política anticíclica: o que pode e o que não pode
+
+Se (na visão majoritária) parte das flutuações é ineficiente, a política econômica pode buscar **suavizar o ciclo** — conter os booms para evitar inflação e sustentar a atividade nas recessões para reduzir o desemprego. É a **política anticíclica**, exercida pelos instrumentos que estudamos: fiscal (gasto e impostos) e monetária (juros).
+
+Alguns mecanismos operam **automaticamente**, sem decisão discricionária — os **estabilizadores automáticos**. Na recessão, a arrecadação de impostos cai (porque a renda caiu) e gastos como o seguro-desemprego sobem, amortecendo a queda da renda disponível sem que ninguém precise legislar. Nos booms, o inverso: a arrecadação sobe e freia o excesso de demanda. Esses estabilizadores tornam o ciclo mais suave de forma tempestiva.
+
+Mas a política anticíclica enfrenta **limites** severos, que convém não subestimar:
+
+- **Defasagens.** Há atraso para **reconhecer** o choque (os dados vêm com defasagem), para **decidir** (sobretudo a política fiscal, sujeita ao processo legislativo) e para o efeito **maturar**. Uma política mal cronometrada pode chegar quando o ciclo já virou — e **acentuar** a próxima fase em vez de suavizá-la.
+- **Incerteza sobre o potencial.** Estabilizar exige saber onde está $Y_p$ — mas o produto potencial é uma estimativa incerta e revisada. Confundir uma expansão sustentável de oferta com um superaquecimento (ou vice-versa) leva a erros de política.
+- **Crítica de Lucas e expectativas.** Como vimos no @sec-expectativas, políticas antecipadas e regimes de política afetam o comportamento; uma política ativista mal desenhada pode desancorar expectativas.
+- **Restrições fiscais.** Estímulo fiscal recorrente pode comprometer a sustentabilidade da dívida, limitando o espaço para agir na próxima crise.
+
+::: {.callout-tip title="Intuição — estabilizar é dirigir olhando pelo retrovisor"}
+Milton Friedman comparava a política anticíclica a dirigir um carro cujo velocímetro e volante respondem com atraso: quando você percebe que derrapou e corrige, a curva já passou, e a correção pode jogá-lo para o outro lado. Por isso ele defendia **regras** estáveis em vez de ativismo discricionário. Os keynesianos respondem que ignorar recessões profundas — deixar o carro bater — é pior que o risco de sobrecorrigir. O equilíbrio prático moderno: **estabilizadores automáticos** robustos, **regras** monetárias críveis, e discrição reservada para choques grandes e inequívocos.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+**O CODACE e a datação dos ciclos brasileiros.** Assim como o NBER data os ciclos americanos, o Brasil tem o **CODACE** (Comitê de Datação de Ciclos Econômicos), da FGV, que identifica oficialmente os picos e vales da economia brasileira. Segundo o CODACE, o Brasil viveu recessões marcantes nas últimas décadas — entre elas a de 2014-2016, uma das mais longas e profundas de sua história (com o PIB, medido pelo IBGE, recuando por dois anos seguidos), e a recessão curta e aguda de 2020, provocada pela pandemia. A datação usa não só o PIB, mas emprego, produção industrial e outros indicadores — exatamente a abordagem ampla mencionada na definição de recessão.
+
+**O "voo de galinha" e a volatilidade do investimento.** O crescimento brasileiro é notoriamente **instável** — a imagem popular do "voo de galinha" (arrancadas seguidas de quedas) capta bem a dificuldade de sustentar expansões longas. Um traço central, coerente com os fatos estilizados deste capítulo, é a **enorme volatilidade da Formação Bruta de Capital Fixo** (o investimento, nas Contas Nacionais do IBGE): nas recessões, o investimento despenca com amplitude muito maior que o consumo, e nas retomadas demora a reagir. Essa volatilidade, somada à dependência de **preços de commodities** (que sincronizam o ciclo brasileiro ao ciclo global), ajuda a explicar por que as flutuações por aqui são mais intensas que nas economias avançadas.
+
+**Estabilizadores e política anticíclica à brasileira.** O Brasil dispõe de estabilizadores automáticos (arrecadação procíclica, seguro-desemprego, abono salarial, programas de transferência) e já usou política anticíclica ativa — com destaque para a resposta à crise de 2008-2009 (expansão do crédito público e desonerações) e à pandemia de 2020 (Auxílio Emergencial, da ordem de 4% do PIB). Esses episódios ilustram tanto a **potência** quanto os **limites** discutidos: o estímulo de 2020 amorteceu a recessão, mas contribuiu para o debate sobre a inflação e a trajetória da dívida nos anos seguintes — o trade-off entre estabilizar o ciclo e preservar a sustentabilidade fiscal, permanente na economia brasileira.
+
+> **Fontes e séries para explorar:** FGV/IBRE — CODACE (cronologia de ciclos brasileiros); IBGE — Contas Nacionais Trimestrais (PIB e FBCF, para ver a volatilidade do investimento), Pesquisa Industrial Mensal, PNAD Contínua (emprego como variável defasada); Banco Central — indicadores de atividade (IBC-Br). Compare a amplitude do investimento com a do consumo ao longo de um ciclo.
+
+## Resumo do capítulo
+
+- O produto decompõe-se em **tendência** (crescimento do potencial) e **ciclo** (oscilações de curto prazo em torno dela). O ciclo é o **hiato do produto** ao longo do tempo.
+- O ciclo tem quatro **fases**: expansão, pico, recessão (contração) e vale. É **recorrente**, mas **não periódico** — sem duração fixa.
+- **Fatos estilizados:** as variáveis se movem **juntas** (comovimento); há variáveis **procíclicas** (consumo, investimento, inflação) e **contracíclicas** (desemprego, falências); o **investimento** é muito mais volátil que o consumo; há variáveis **líderes**, **coincidentes** e **defasadas** (o desemprego é defasado).
+- **Teorias:** os **keynesianos/novo-keynesianos** atribuem os ciclos a **choques de demanda** amplificados por rigidez de preços (recessão = desperdício a corrigir); a teoria dos **ciclos reais de negócios (RBC)** os atribui a **choques de produtividade** (recessão = ajuste ótimo, política dispensável); a **síntese novo-keynesiana** combina choques reais e de demanda com **rigidezes nominais**, dando papel à política.
+- A **política anticíclica** (fiscal e monetária) e os **estabilizadores automáticos** podem suavizar o ciclo, mas enfrentam **limites**: defasagens de reconhecimento/decisão/efeito, incerteza sobre o potencial, expectativas e restrições fiscais.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver antes de abrir a solução. Os primeiros itens são conceituais; os últimos, de análise.
+:::
+
+**1.** Nomeie e descreva as quatro **fases** do ciclo econômico. Por que dizemos que os ciclos são "recorrentes, mas não periódicos"?
+
+::: {.callout-tip collapse="true" title="Solução"}
+As fases são: **expansão** (produto crescendo acima da tendência, emprego e renda subindo); **pico** (ponto mais alto, expansão se esgotando, pressões inflacionárias); **recessão/contração** (produto caindo, desemprego subindo, pessimismo); **vale/fundo** (ponto mais baixo, onde a recuperação começa). São **recorrentes** porque se repetem — a economia sempre volta a passar por expansões e recessões —, mas **não periódicos** porque não têm **duração fixa**: uma expansão pode durar 2 ou 10 anos, uma recessão 2 trimestres ou vários anos. Não há relógio marcando quando o ciclo vira.
+:::
+
+**2.** Classifique cada variável como **procíclica** ou **contracíclica**: (a) desemprego; (b) investimento das empresas; (c) lucros corporativos; (d) número de falências.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Desemprego — **contracíclico** (sobe nas recessões, cai nas expansões).
+(b) Investimento — **procíclico** (e muito volátil).
+(c) Lucros — **procíclicos**.
+(d) Falências — **contracíclicas** (aumentam nas recessões).
+:::
+
+**3.** Explique por que o **investimento** é mais volátil que o **consumo** ao longo do ciclo. Relacione com a natureza dos bens envolvidos.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O investimento é composto de gastos **adiáveis** e sensíveis a expectativas: máquinas, construção, ampliação de capacidade, bens duráveis. Quando as perspectivas pioram, esses gastos podem ser **postergados** sem consequência imediata — a empresa espera a poeira baixar —, então despencam nas recessões; quando o otimismo volta, disparam. Além disso, o investimento é sensível aos juros e ao lucro esperado, ambos muito cíclicos. Já o **consumo**, especialmente de bens essenciais (alimentação, moradia, serviços básicos), é difícil de adiar e é **suavizado** pelas famílias ao longo do tempo (elas poupam e despoupam para manter o padrão de vida). Por isso o consumo oscila com amplitude bem menor que o investimento.
+:::
+
+**4.** O que são variáveis **líderes**, **coincidentes** e **defasadas**? Dê um exemplo de cada e explique por que o **desemprego** é defasado.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Líderes** viram **antes** do ciclo e sinalizam o que vem (ex.: bolsa de valores, novas encomendas à indústria, permissões de construção, índices de expectativa). **Coincidentes** movem-se **junto** com o ciclo (ex.: PIB, produção industrial, emprego). **Defasadas** reagem **depois** (ex.: desemprego, inflação). O **desemprego é defasado** porque, no início da recuperação, as empresas — inseguras quanto à solidez da retomada — primeiro elevam a produção com quem já têm (mais horas, fim de ociosidade) antes de contratar; só quando a expansão se confirma abrem vagas. Assim, o desemprego continua alto (ou até sobe) por um tempo após o fundo do ciclo — a "recuperação sem empregos".
+:::
+
+**5.** Compare a explicação **keynesiana** e a dos **ciclos reais de negócios (RBC)** para as recessões. Qual a implicação de cada uma para a política econômica?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Keynesiana:** as recessões nascem de **choques de demanda** (queda de confiança, crédito, aperto de política) amplificados pela **rigidez de preços**; representam **desperdício** de recursos (ociosidade involuntária) e uma **falha** a corrigir. Implicação: há papel para **política anticíclica** que estabilize a demanda. **RBC:** as recessões nascem de **choques reais de produtividade** e são a **resposta ótima** de agentes racionais a uma piora genuína das condições de produção, com mercados em equilíbrio; não são falha, e sim ajuste eficiente. Implicação: a política de estabilização é **desnecessária ou prejudicial** — a economia já faz o melhor possível. A diferença de diagnóstico (falha vs. ajuste ótimo) gera prescrições opostas quanto a intervir.
+:::
+
+**6.** Explique o que são **estabilizadores automáticos** e por que eles são especialmente úteis frente ao problema das **defasagens** da política discricionária.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Estabilizadores automáticos** são mecanismos fiscais que amortecem o ciclo **sem necessidade de decisão discricionária**: na recessão, a arrecadação de impostos cai (renda menor) e gastos como o seguro-desemprego sobem, sustentando a renda disponível; no boom, a arrecadação sobe e freia o excesso de demanda. Eles são valiosos porque atuam **imediatamente e na direção certa**, contornando as três **defasagens** da política discricionária — de **reconhecimento** (esperar os dados), de **decisão** (tramitação legislativa, deliberação) e de **efeito** (tempo de maturação). Como operam automaticamente, não há risco de chegarem tarde demais (quando o ciclo já virou) nem de errarem o momento — justamente os perigos da política ativa mal cronometrada.
+:::
+
+**7.** (Análise) Um governo decide, ao primeiro sinal de desaceleração, lançar um grande pacote de obras públicas para "combater a recessão". Usando o conceito de **defasagens** e a **incerteza sobre o produto potencial**, aponte dois riscos dessa decisão.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Risco 1 — defasagens (política pró-cíclica por engano):** obras públicas têm defasagens longas de decisão (licitação, projeto, licenciamento) e de execução. O estímulo pode maturar **meses ou anos** depois, quando a economia já se recuperou por conta própria — chegando na **expansão** seguinte e **acentuando** o superaquecimento e a inflação, em vez de combater a recessão. A política mal cronometrada pode desestabilizar em vez de estabilizar. **Risco 2 — incerteza sobre $Y_p$:** o "sinal de desaceleração" pode não indicar um hiato negativo real, mas apenas uma acomodação em torno de um potencial que o governo superestimou. Estimular uma economia que já está perto do potencial gera inflação, não produto. Como $Y_p$ é uma estimativa incerta, agir "ao primeiro sinal" arrisca tratar como recessão o que é crescimento normal. (Riscos adicionais: custo fiscal e sustentabilidade da dívida; efeito sobre expectativas.)
+:::
+
+**8.** (Desafio) "Como não conseguimos prever com precisão as viradas do ciclo, o melhor que a política pode fazer é seguir regras estáveis e confiar nos estabilizadores automáticos, evitando ativismo." Avalie criticamente essa posição, apresentando o melhor argumento a favor e o melhor contra.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**A favor (visão monetarista/novo-clássica):** as defasagens e a incerteza sobre o potencial tornam o ativismo perigoso — corrige-se olhando pelo retrovisor, e a correção pode chegar na direção errada, amplificando o ciclo (a analogia de Friedman do carro que derrapa). Regras estáveis (monetária crível, arcabouço fiscal) e **estabilizadores automáticos** oferecem estabilização tempestiva sem os erros do timing discricionário, e ainda ancoram expectativas (respondendo à crítica de Lucas). **Contra (visão keynesiana):** confiar apenas em regras e estabilizadores é insuficiente diante de **choques grandes e inequívocos** — depressões profundas, crises financeiras, pandemias — em que a inação impõe custo humano enorme e o autoajuste é lento (rigidez de preços/salários). Nesses casos, a política discricionária ativa (fiscal e monetária) é justamente o que evita que uma recessão vire depressão, como mostraram 2008-2009 e 2020. **Síntese razoável:** a posição tem mérito como **regime normal** — regras e estabilizadores robustos para flutuações usuais —, mas é excessiva como dogma absoluto: a discrição deve ficar **reservada** para choques grandes, raros e claramente identificados, onde o custo de errar por omissão supera o de errar por ação. O bom desenho institucional combina regras críveis com espaço para agir no excepcional.
+:::
+
+## Para saber mais
+
+- @kydland1982 — o artigo seminal da teoria dos ciclos reais de negócios; tecnicamente exigente, mas fundador de uma escola.
+- @blanchard2017 — capítulos sobre flutuações econômicas, com os fatos estilizados e a comparação entre as teorias.
+- @mankiw2020 — introdução acessível aos ciclos, à datação de recessões e aos estabilizadores automáticos.
+- @froyen2013 — excelente para a história e a comparação sistemática das escolas de pensamento sobre o ciclo.
+- @dornbusch2013 — para os mecanismos de propagação (multiplicador-acelerador) e o papel do investimento na volatilidade.

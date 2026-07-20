@@ -106,14 +106,14 @@
 
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
-| 1 | Demanda agregada: consumo, investimento e o multiplicador | `capitulos/vol07/cap01-demanda-agregada.qmd` | ⬜ |
-| 2 | O modelo IS-LM | `capitulos/vol07/cap02-is-lm.qmd` | ⬜ |
-| 3 | Política fiscal e monetária no IS-LM | `capitulos/vol07/cap03-politicas-no-is-lm.qmd` | ⬜ |
-| 4 | Oferta agregada e a curva de Phillips | `capitulos/vol07/cap04-oferta-agregada-phillips.qmd` | ⬜ |
-| 5 | O modelo AD-AS e a análise de choques | `capitulos/vol07/cap05-ad-as-choques.qmd` | ⬜ |
-| 6 | Expectativas: adaptativas e racionais | `capitulos/vol07/cap06-expectativas.qmd` | ⬜ |
-| 7 | Ciclos econômicos | `capitulos/vol07/cap07-ciclos.qmd` | ⬜ |
-| 8 | Grandes debates: clássicos, keynesianos e o novo consenso | `capitulos/vol07/cap08-debates-macroeconomicos.qmd` | ⬜ |
+| 1 | Demanda agregada: consumo, investimento e o multiplicador | `capitulos/vol07/cap01-demanda-agregada.qmd` | ✅ |
+| 2 | O modelo IS-LM | `capitulos/vol07/cap02-is-lm.qmd` | ✅ |
+| 3 | Política fiscal e monetária no IS-LM | `capitulos/vol07/cap03-politicas-no-is-lm.qmd` | ✅ |
+| 4 | Oferta agregada e a curva de Phillips | `capitulos/vol07/cap04-oferta-agregada-phillips.qmd` | ✅ |
+| 5 | O modelo AD-AS e a análise de choques | `capitulos/vol07/cap05-ad-as-choques.qmd` | ✅ |
+| 6 | Expectativas: adaptativas e racionais | `capitulos/vol07/cap06-expectativas.qmd` | ✅ |
+| 7 | Ciclos econômicos | `capitulos/vol07/cap07-ciclos.qmd` | ✅ |
+| 8 | Grandes debates: clássicos, keynesianos e o novo consenso | `capitulos/vol07/cap08-debates-macroeconomicos.qmd` | ✅ |
 
 ### Volume 8 — Economia Monetária e Bancária
 

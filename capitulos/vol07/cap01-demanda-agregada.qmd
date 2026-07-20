@@ -1,0 +1,344 @@
+# Demanda agregada: consumo, investimento e o multiplicador {#sec-demanda-agregada}
+
+Quando o noticiário anuncia que "a economia esfriou" ou que "o país entrou em recessão", raramente falta gente boa dizendo que faltou demanda: as famílias seguraram as compras, as empresas adiaram investimentos, as lojas encalharam estoques e demitiram. Mas por que a decisão de milhões de brasileiros de gastar um pouco menos consegue derrubar a produção do país inteiro — e por que, às vezes, um empurrão relativamente pequeno no gasto (um programa de transferência, uma rodada de obras públicas) parece se multiplicar em algo bem maior?
+
+No @sec-contas-nacionais você aprendeu a *medir* a produção pelo lado da despesa: $Y = C + I + G + NX$. Aquilo era contabilidade — uma identidade que sempre vale. Neste capítulo damos o passo seguinte e decisivo: transformamos essa identidade contábil numa **teoria do que determina o nível de produção** no curto prazo. A peça central é a ideia, nascida com Keynes em 1936, de que, quando há capacidade ociosa, é a **demanda agregada** que puxa a produção — e não o contrário. Construiremos o modelo mais simples que captura essa ideia, a **Cruz Keynesiana**, e dele extrairemos o conceito que dá nervo a todo o debate de política fiscal: o **multiplicador**.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- distinguir a análise de **curto prazo** (com preços rígidos e capacidade ociosa) da de longo prazo;
+- escrever a **função consumo** e definir a **propensão marginal a consumir** (PMgC);
+- montar a **despesa agregada planejada** e localizar o **equilíbrio de renda** onde $Y = DA$;
+- explicar o mecanismo de ajuste via **estoques não planejados**;
+- deduzir o **multiplicador dos gastos** e calcular seu valor;
+- entender o **paradoxo da poupança** e por que ele não contradiz a virtude de poupar no longo prazo.
+
+## O curto prazo keynesiano: a demanda no comando
+
+Toda a análise deste capítulo repousa sobre uma hipótese de trabalho: no **curto prazo**, os preços (e os salários) são **rígidos** — não se ajustam instantaneamente. Uma padaria não reimprime a tabela de preços a cada oscilação da freguesia; um contrato de trabalho fixa o salário por um ano. Se os preços não se movem para equilibrar cada mercado, o ajuste recai sobre as **quantidades**: quando a procura cai, as empresas não baixam preços de imediato — elas produzem e vendem menos, acumulam estoques e cortam turnos.
+
+::: {.callout-note title="Definição — Curto prazo macroeconômico"}
+Em Macroeconomia, o **curto prazo** é o horizonte em que preços e salários são rígidos e a economia opera abaixo do pleno emprego dos fatores, com **capacidade ociosa**. Nesse regime, variações na demanda agregada alteram a **quantidade produzida**, não apenas os preços.
+:::
+
+Essa hipótese inverte a lógica clássica. Para os economistas anteriores a Keynes, a oferta criava a própria demanda (a chamada **Lei de Say**): tudo que fosse produzido geraria renda suficiente para ser comprado, de modo que faltas gerais de demanda seriam impossíveis. Keynes, escrevendo sob o impacto da Grande Depressão — quando fábricas paravam e trabalhadores queriam emprego mas não o encontravam —, argumentou o contrário: é a **demanda** que, no curto prazo, determina quanto se produz [@keynes1996]. Este capítulo formaliza esse argumento no modelo mais enxuto possível.
+
+Para isolar o essencial, começamos com uma **economia fechada e sem governo**: sem impostos, sem gasto público, sem exportações nem importações. A despesa agregada se resume, então, a consumo mais investimento. Depois acrescentamos governo e setor externo.
+
+## A função consumo
+
+O maior componente da demanda é o **consumo das famílias** — no Brasil, algo em torno de 60% a 65% do PIB pela ótica da despesa. Keynes propôs uma "lei psicológica fundamental": quando a renda das famílias aumenta, seu consumo aumenta também, mas **menos** que proporcionalmente — parte do acréscimo é poupada.
+
+Formalizamos isso com a **função consumo** linear:
+
+$$
+C = C_0 + c\,Y_d
+$$ {#eq-consumo}
+
+onde $Y_d$ é a **renda disponível** (a renda das famílias após impostos e transferências), e:
+
+- $C_0 > 0$ é o **consumo autônomo** — o gasto que existe mesmo com renda zero, financiado por poupança acumulada ou dívida (afinal, ninguém deixa de comer porque ficou sem renda um mês);
+- $c$ é a **propensão marginal a consumir (PMgC)**, com $0 < c < 1$.
+
+::: {.callout-note title="Definição — Propensão marginal a consumir"}
+A **propensão marginal a consumir** (PMgC), $c$, é a fração de cada real **adicional** de renda disponível que é gasta em consumo:
+$$
+c = \frac{\Delta C}{\Delta Y_d}.
+$$
+Como cada real a mais é ou consumido ou poupado, a **propensão marginal a poupar** (PMgS) é o complemento: $s = 1 - c$.
+:::
+
+Se $c = 0{,}8$, a cada R\$\,100 a mais de renda a família gasta R\$\,80 e poupa R\$\,20. A @fig-funcao-consumo mostra a função consumo: uma reta que corta o eixo vertical em $C_0$ e sobe com inclinação $c$.
+
+::: {#fig-funcao-consumo}
+
+```{.tikz}
+%%| filename: fig-funcao-consumo
+%%| alt: Reta da função consumo partindo de C0 no eixo vertical e subindo com inclinação c menor que 1, comparada à reta de 45 graus.
+\begin{tikzpicture}[scale=0.85]
+  \draw[eixo] (0,0) -- (8,0) node[right] {$Y_d$};
+  \draw[eixo] (0,0) -- (0,7) node[above] {$C$};
+  % reta de 45 graus
+  \draw[auxiliar] (0,0) -- (6.8,6.8) node[right, font=\footnotesize] {$45^{\circ}$};
+  % funcao consumo
+  \draw[curva] (0,1.6) -- (7.5,6.1) node[right, manualblue] {$C = C_0 + cY_d$};
+  \node[left, manualblue] at (0,1.6) {$C_0$};
+  \node[ponto] at (0,1.6) {};
+  % ponto onde consumo = renda (poupanca zero)
+  \coordinate (B) at (2.667,2.667);
+  \node[ponto] at (B) {};
+  \draw[auxiliar] (B) -- (2.667,0) node[below, font=\footnotesize] {$Y_b$};
+  \node[manualgray, font=\footnotesize, align=center, right] at (4.6,2.2) {abaixo de $Y_b$: despoupança\\acima: poupança positiva};
+\end{tikzpicture}
+```
+
+A função consumo. À esquerda de $Y_b$ a família consome mais que a renda (despoupança); à direita, poupa.
+:::
+
+## Despesa agregada e o equilíbrio de renda
+
+Na economia fechada e sem governo, a **despesa agregada planejada** ($DA$) é a soma do consumo desejado e do investimento planejado pelas empresas:
+
+$$
+DA = C + I = C_0 + c\,Y + I_0.
+$$ {#eq-da}
+
+Trataremos o **investimento** $I_0$ como **autônomo** por ora — uma decisão empresarial dada, que não depende da renda corrente (no @sec-is-lm o investimento passará a depender da taxa de juros). Note que agora escrevemos $Y$ no lugar de $Y_d$, pois sem impostos renda disponível e renda total coincidem.
+
+O elemento decisivo é a **condição de equilíbrio**. A economia está em equilíbrio quando a produção efetiva iguala a despesa agregada planejada — isto é, quando as empresas vendem exatamente o que planejaram e não há acúmulo nem sumiço de estoques:
+
+$$
+Y = DA.
+$$ {#eq-equilibrio-y}
+
+Graficamente, essa condição é a reta de **45°** (onde tudo que está no eixo vertical iguala o do eixo horizontal). O equilíbrio é o ponto em que a reta da despesa agregada cruza a reta de 45°. Esse é o famoso diagrama da **Cruz Keynesiana** (@fig-cruz).
+
+::: {#fig-cruz}
+
+```{.tikz}
+%%| filename: fig-cruz
+%%| alt: Cruz keynesiana: reta de 45 graus e reta da despesa agregada cruzando-se no ponto de equilíbrio E, definindo a renda de equilíbrio Y estrela.
+\begin{tikzpicture}[scale=0.9]
+  \draw[eixo] (0,0) -- (8,0) node[right] {$Y$ (renda, produto)};
+  \draw[eixo] (0,0) -- (0,7.5) node[above] {$DA$ (despesa)};
+  % 45 graus
+  \draw[auxiliar] (0,0) -- (7.2,7.2) node[above, font=\footnotesize] {$45^{\circ}$};
+  % despesa agregada
+  \draw[curva] (0,2.2) -- (7.8,6.0) node[right, manualblue] {$DA = C + I$};
+  \node[left, manualblue, font=\footnotesize] at (0,2.2) {$C_0 + I_0$};
+  % equilibrio
+  \coordinate (E) at (4.6,4.6);
+  \node[ponto] at (E) {};
+  \node[above left] at (E) {$E$};
+  \draw[auxiliar] (E) -- (4.6,0) node[below] {$Y^{*}$};
+  % excesso de demanda a esquerda
+  \node[manualgray, font=\footnotesize] at (2.1,3.9) {$DA > Y$};
+  \node[manualgray, font=\footnotesize] at (6.3,4.9) {$DA < Y$};
+\end{tikzpicture}
+```
+
+A Cruz Keynesiana. O equilíbrio $E$ ocorre onde a despesa planejada iguala a produção.
+:::
+
+Resolvendo algebricamente, substituímos @eq-da em @eq-equilibrio-y:
+
+$$
+Y = C_0 + cY + I_0 \;\Longrightarrow\; Y - cY = C_0 + I_0 \;\Longrightarrow\; Y(1-c) = C_0 + I_0,
+$$
+
+de onde:
+
+$$
+Y^{*} = \frac{C_0 + I_0}{1 - c}.
+$$ {#eq-y-equilibrio}
+
+Chamamos $A = C_0 + I_0$ de **gasto autônomo** — a parte da demanda que não depende da renda. A renda de equilíbrio é esse gasto autônomo multiplicado por $\tfrac{1}{1-c}$. Guarde esse fator: ele é o multiplicador.
+
+### O ajuste via estoques
+
+O que garante que a economia caminha para $Y^{*}$? O mecanismo é o **estoque não planejado**. Suponha que a produção esteja acima do equilíbrio, num ponto à direita de $E$ na @fig-cruz. Ali $Y > DA$: as empresas produzem mais do que o público quer comprar. O que não vende **encalha** como estoque não desejado. Vendo os depósitos lotados, as empresas cortam a produção — e $Y$ cai em direção a $Y^{*}$.
+
+Se, ao contrário, a produção estiver abaixo do equilíbrio ($DA > Y$), as vendas superam a produção, os estoques **derretem** abaixo do planejado, e as empresas ampliam a produção. Em ambos os casos, o sinal dos estoques conduz a economia ao ponto onde $Y = DA$ — exatamente como o excesso de oferta e de demanda conduziam o preço ao equilíbrio no @sec-equilibrio-de-mercado, só que aqui o que se ajusta é a **quantidade produzida**, não o preço.
+
+::: {.callout-important title="Armadilha comum — investimento planejado ≠ investimento efetivo"}
+Na contabilidade nacional, a identidade $Y = C + I$ **sempre** vale, porque o "investimento" contábil inclui a **variação de estoques**, planejada ou não. No modelo, a condição de equilíbrio $Y = DA$ usa o investimento **planejado**. Fora do equilíbrio, os dois diferem justamente pelo estoque **não planejado**: é essa diferença que sinaliza às empresas para ajustar a produção. Não confunda a identidade contábil (sempre verdadeira) com a condição de equilíbrio (só verdadeira em $E$).
+:::
+
+## O multiplicador
+
+Chegamos ao coração do capítulo. Suponha que o investimento autônomo aumente em $\Delta I_0$ — as empresas, mais otimistas, resolvem construir uma nova fábrica. De quanto aumenta a renda de equilíbrio?
+
+Da @eq-y-equilibrio, como $Y^{*} = \tfrac{A}{1-c}$, uma variação $\Delta A$ no gasto autônomo produz:
+
+$$
+\Delta Y^{*} = \frac{1}{1-c}\,\Delta A.
+$$ {#eq-multiplicador}
+
+O fator $k = \tfrac{1}{1-c}$ é o **multiplicador dos gastos**. Como $0 < c < 1$, temos $k > 1$: cada real a mais de gasto autônomo eleva a renda em **mais de um real**.
+
+::: {.callout-note title="Definição — Multiplicador dos gastos"}
+O **multiplicador** $k = \dfrac{1}{1-c} = \dfrac{1}{s}$ mede quantas vezes a renda de equilíbrio varia em resposta a uma variação unitária do gasto autônomo. Quanto **maior** a propensão marginal a consumir (menor a poupança), **maior** o multiplicador.
+:::
+
+### Por que "multiplica"? A intuição das rodadas
+
+O multiplicador não é um truque algébrico; ele descreve um processo real de rodadas sucessivas de gasto. Imagine que o governo (ou uma empresa) gaste R\$\,1 bilhão numa obra, com $c = 0{,}8$:
+
+- **Rodada 1:** os R\$\,1 bi viram renda de trabalhadores e fornecedores da obra. $\Delta Y = 1{,}0$ bi.
+- **Rodada 2:** esses trabalhadores gastam 80% do que receberam: R\$\,0{,}8 bi em consumo, que vira renda de outros (comerciantes, etc.). $\Delta Y = 0{,}8$ bi.
+- **Rodada 3:** estes gastam 80% de R\$\,0{,}8 bi = R\$\,0{,}64 bi. E assim por diante.
+
+A renda total gerada é a soma da progressão geométrica:
+
+$$
+\Delta Y = 1 + 0{,}8 + 0{,}8^2 + 0{,}8^3 + \cdots = \frac{1}{1 - 0{,}8} = 5.
+$$
+
+Um gasto inicial de R\$\,1 bi gera R\$\,5 bi de renda. O multiplicador é 5. A cada rodada, uma fração ($s = 0{,}2$) "vaza" para a poupança e o processo perde fôlego, convergindo para uma soma finita. Quanto menor o vazamento, mais longa a cadeia e maior o multiplicador.
+
+::: {.callout-tip title="Intuição — o multiplicador são gastos que viram a renda de outra pessoa"}
+O gasto de uma pessoa é a **renda** de outra. Quando alguém gasta mais, quem recebe fica mais rico e também gasta mais, e assim sucessivamente. O multiplicador contabiliza toda essa cadeia. Os "vazamentos" (poupança, impostos, importações) é que a interrompem — por isso, quanto mais aberta e mais tributada a economia, menor tende a ser o multiplicador.
+:::
+
+### Um exemplo numérico completo
+
+Seja $C = 200 + 0{,}75\,Y$ e $I_0 = 300$ (valores em R\$ bilhões). O gasto autônomo é $A = 200 + 300 = 500$, e o multiplicador é $k = \tfrac{1}{1 - 0{,}75} = 4$. Logo:
+
+$$
+Y^{*} = 4 \times 500 = 2.000.
+$$
+
+Agora o investimento sobe para $I_0 = 350$ ($\Delta I_0 = 50$). A nova renda:
+
+$$
+\Delta Y^{*} = 4 \times 50 = 200 \;\Longrightarrow\; Y^{*}_{\text{novo}} = 2.200.
+$$
+
+Um aumento de R\$\,50 bi no investimento elevou a renda em R\$\,200 bi. A @fig-multiplicador mostra o deslocamento: a reta $DA$ sobe em $\Delta I_0$, e o equilíbrio desliza pela reta de 45° por uma distância **maior** que o deslocamento vertical.
+
+::: {#fig-multiplicador}
+
+```{.tikz}
+%%| filename: fig-multiplicador
+%%| alt: Cruz keynesiana com deslocamento para cima da reta de despesa agregada, mostrando que a variação da renda de equilíbrio é maior que o deslocamento vertical inicial.
+\begin{tikzpicture}[scale=0.9]
+  \draw[eixo] (0,0) -- (8,0) node[right] {$Y$};
+  \draw[eixo] (0,0) -- (0,7.5) node[above] {$DA$};
+  \draw[auxiliar] (0,0) -- (7.2,7.2) node[above, font=\footnotesize] {$45^{\circ}$};
+  % DA inicial
+  \draw[curva] (0,1.8) -- (7.8,5.6) node[right, manualblue] {$DA_0$};
+  % DA novo (deslocado para cima)
+  \draw[curva, manualgreen] (0,2.8) -- (7.6,6.5) node[right] {$DA_1$};
+  \coordinate (E0) at (3.6,3.6);
+  \coordinate (E1) at (5.6,5.6);
+  \node[ponto] at (E0) {}; \node[above left, font=\footnotesize] at (E0) {$E_0$};
+  \node[ponto] at (E1) {}; \node[above left, font=\footnotesize] at (E1) {$E_1$};
+  \draw[auxiliar] (E0) -- (3.6,0) node[below, font=\footnotesize] {$Y^{*}_0$};
+  \draw[auxiliar] (E1) -- (5.6,0) node[below, font=\footnotesize] {$Y^{*}_1$};
+  \draw[vetor, manualgreen] (0.35,1.95) -- (0.35,2.75);
+  \node[manualgreen, font=\footnotesize, right] at (0.4,2.35) {$\Delta A$};
+  \draw[<->, manualred, thick] (3.6,-0.7) -- (5.6,-0.7);
+  \node[manualred, font=\footnotesize, below] at (4.6,-0.7) {$\Delta Y = k\,\Delta A$};
+\end{tikzpicture}
+```
+
+O efeito multiplicador: um deslocamento vertical $\Delta A$ da despesa produz uma variação horizontal maior, $\Delta Y = k\,\Delta A$.
+:::
+
+## Governo, tributos e o setor externo
+
+Reintroduzir governo e comércio exterior enriquece o modelo e mostra por que os multiplicadores reais são menores que o do exemplo. Com gasto público $G$, impostos e setor externo, a demanda agregada passa a ser $DA = C + I + G + NX$, e o consumo depende da renda **disponível** $Y_d = Y - T$.
+
+Dois resultados importam:
+
+1. **Multiplicador dos gastos com impostos.** Se os impostos são uma fração da renda, $T = tY$, então parte de cada real de renda "vaza" para o fisco antes de virar consumo. O multiplicador cai para $k = \tfrac{1}{1 - c(1-t)}$. Impostos, como a poupança, são um vazamento.
+
+2. **Importações também vazam.** Parte de cada real de renda extra é gasta em produtos importados, que geram renda no exterior, não aqui. Isso reduz ainda mais o multiplicador. Por isso, economias muito abertas têm multiplicadores fiscais menores.
+
+Há ainda um resultado elegante e contraintuitivo, o **teorema do orçamento equilibrado** (Haavelmo): um aumento de $G$ financiado por um aumento igual de $T$ ($\Delta G = \Delta T$) **não** deixa a renda inalterada — ela sobe, com multiplicador exatamente igual a 1. A razão: o gasto público entra na demanda em cheio (multiplicador $k$), mas o imposto reduz o consumo apenas na fração $c$ da renda tirada (multiplicador $-ck$). O efeito líquido é $k\Delta G - ck\Delta T = k(1-c)\Delta G = \Delta G$. Gastar e tributar o mesmo valor ainda estimula a economia.
+
+::: {.callout-warning title="Controvérsia — de quanto é o multiplicador fiscal?"}
+O tamanho empírico do multiplicador fiscal é um dos debates mais acalorados da macroeconomia aplicada. Estimativas variam de **abaixo de 1** (quando o gasto público "expulsa" gasto privado — o *crowding out* que veremos no @sec-politicas-no-is-lm) a **acima de 1** (sobretudo em recessões, com juros baixos e capacidade ociosa). O consenso possível é que o multiplicador **não é uma constante**: depende do estado da economia, da abertura comercial, da resposta da política monetária e de como o gasto é financiado. Desconfie de quem cita um número único como se fosse lei da natureza.
+:::
+
+## O paradoxo da poupança
+
+O modelo produz um resultado que choca o senso comum. Poupar é, individualmente, uma virtude. Mas se **todas** as famílias decidem poupar mais ao mesmo tempo — isto é, se a propensão a poupar $s$ aumenta —, o multiplicador $k = 1/s$ **diminui**, e a renda de equilíbrio **cai**. Com renda menor, o volume total poupado pode acabar **igual ou até menor** do que antes. A tentativa coletiva de poupar mais, ao derrubar a renda, frustra a si mesma. É o **paradoxo da poupança** (ou paradoxo da parcimônia).
+
+::: {.callout-tip title="Intuição — o que vale para um pode não valer para todos"}
+O paradoxo da poupança é o exemplo clássico da **falácia da composição**: o que é verdadeiro para um indivíduo isolado não é necessariamente verdadeiro para o conjunto. Se *você* poupa mais, sua renda não muda e você fica mais rico. Se *todos* poupam mais ao mesmo tempo, a demanda agregada cai, a renda de todos cai, e o resultado coletivo pode ser pior. Macroeconomia não é microeconomia multiplicada.
+:::
+
+O paradoxo não significa que poupar seja ruim — no longo prazo, poupança financia investimento e crescimento (vimos isso no @sec-poupanca-investimento). Ele significa que, num momento de **demanda deprimida e capacidade ociosa**, um surto generalizado de cautela pode aprofundar a recessão. É a lógica por trás da ideia de que, em crises, cabe ao governo gastar quando o setor privado se retrai.
+
+## 🇧🇷 Brasil em Foco
+
+**O consumo como motor — e a PMgC dos mais pobres.** Pela ótica da despesa, o **consumo das famílias** responde por cerca de 60% a 65% do PIB brasileiro (Sistema de Contas Nacionais, IBGE), o que faz dele o principal determinante do ciclo de curto prazo. Um traço central para a política fiscal: famílias de **baixa renda** têm propensão marginal a consumir mais alta — gastam quase tudo que recebem a mais, porque suas necessidades básicas ainda não estão saciadas. É por isso que transferências focalizadas nos mais pobres, como o **Bolsa Família / Programa Bolsa Família**, tendem a ter multiplicador maior do que desonerações que beneficiam sobretudo quem já tem alta poupança: o real transferido a quem tem PMgC alta volta rapidamente à economia como demanda.
+
+**O Auxílio Emergencial de 2020 como experimento de multiplicador.** Durante a pandemia, o **Auxílio Emergencial** injetou, em 2020, um volume da ordem de **4% do PIB** na renda das famílias, alcançando dezenas de milhões de pessoas. O episódio funcionou como um laboratório do mecanismo deste capítulo: a transferência sustentou o consumo num momento em que a renda do trabalho despencava, amortecendo a queda do PIB — que recuou bem menos do que se temia no auge da crise. Estudos do IPEA e de pesquisadores independentes estimaram multiplicadores relevantes justamente porque o público-alvo tinha PMgC elevada e capacidade ociosa abundava.
+
+**Vazamentos à brasileira.** O multiplicador efetivo no Brasil é limitado pelos mesmos vazamentos do modelo: uma **carga tributária** da ordem de um terço do PIB e uma propensão a importar não desprezível em bens de capital e insumos. Além disso, a resposta da **política monetária** importa: se um estímulo fiscal leva o Banco Central a subir a Selic para conter a inflação, parte do efeito expansionista é neutralizada — antecipando o *crowding out* que estudaremos no modelo IS-LM.
+
+> **Fontes e séries para explorar:** IBGE — Sistema de Contas Nacionais Trimestrais (composição do PIB pela ótica da despesa, série do consumo das famílias); IPEA (avaliações de impacto do Auxílio Emergencial e de multiplicadores fiscais); Ministério do Desenvolvimento Social (cobertura do Bolsa Família). Verifique sempre o período de referência dos dados.
+
+## Resumo do capítulo
+
+- No **curto prazo keynesiano**, preços e salários são rígidos e há capacidade ociosa; o ajuste se dá pelas **quantidades**, e a **demanda agregada** determina o nível de produção.
+- A **função consumo** $C = C_0 + cY_d$ tem um componente **autônomo** ($C_0$) e depende da renda pela **propensão marginal a consumir** $c$, com $0 < c < 1$. O que não se consome, poupa-se: $s = 1 - c$.
+- O **equilíbrio de renda** ocorre onde a produção iguala a despesa planejada, $Y = DA$ — o cruzamento com a reta de 45° na **Cruz Keynesiana**. O ajuste até ali se dá via **estoques não planejados**.
+- A renda de equilíbrio é $Y^{*} = \dfrac{A}{1-c}$, onde $A$ é o **gasto autônomo**.
+- O **multiplicador** $k = \dfrac{1}{1-c} = \dfrac{1}{s}$ faz cada real de gasto autônomo elevar a renda em mais de um real, por rodadas sucessivas de gasto-renda. Quanto maior a PMgC, maior o multiplicador.
+- **Impostos** e **importações** são vazamentos que reduzem o multiplicador. Pelo **teorema do orçamento equilibrado**, $\Delta G = \Delta T$ ainda eleva a renda, com multiplicador 1.
+- O **paradoxo da poupança**: um aumento generalizado da vontade de poupar reduz a renda de equilíbrio e pode não elevar a poupança total — uma falácia da composição que justifica gasto público anticíclico em recessões.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise.
+:::
+
+**1.** Explique, com suas palavras, por que a hipótese de **preços rígidos** é essencial para que a demanda agregada determine o produto no curto prazo. O que aconteceria se os preços fossem perfeitamente flexíveis?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Se os preços fossem perfeitamente flexíveis, uma queda na demanda seria absorvida por queda de preços e salários, mantendo os mercados equilibrados no pleno emprego — as quantidades produzidas não precisariam cair (lógica clássica, Lei de Say). É porque os preços são **rígidos** no curto prazo que uma queda de demanda não se traduz em preços menores, e sim em **menos vendas, estoques encalhados e cortes de produção**. Sob rigidez de preços, o ajuste recai sobre as **quantidades**, e daí a demanda comandar o produto.
+:::
+
+**2.** Uma família tem função consumo $C = 500 + 0{,}7\,Y_d$. (a) Qual é a PMgC? (b) E a PMgS? (c) Quanto ela consome com $Y_d = 2.000$? (d) Quanto poupa?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) PMgC $= c = 0{,}7$.
+(b) PMgS $= s = 1 - 0{,}7 = 0{,}3$.
+(c) $C = 500 + 0{,}7 \times 2.000 = 500 + 1.400 = 1.900$.
+(d) Poupança $= Y_d - C = 2.000 - 1.900 = 100$. (Confere com $S = -500 + 0{,}3 \times 2.000 = 100$.)
+:::
+
+**3.** Numa economia fechada e sem governo, $C = 300 + 0{,}8\,Y$ e $I_0 = 200$. (a) Calcule a renda de equilíbrio. (b) Qual o multiplicador? (c) Se $I_0$ subir para 250, qual a nova renda?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $A = 300 + 200 = 500$; $k = \tfrac{1}{1-0{,}8} = 5$; $Y^{*} = 5 \times 500 = 2.500$.
+(b) $k = 5$.
+(c) $\Delta I_0 = 50 \Rightarrow \Delta Y = 5 \times 50 = 250$; novo $Y^{*} = 2.750$.
+:::
+
+**4.** Mostre, a partir da progressão geométrica das rodadas de gasto, por que a soma $1 + c + c^2 + c^3 + \cdots$ converge para $\tfrac{1}{1-c}$. Que hipótese sobre $c$ garante a convergência?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A soma de uma progressão geométrica infinita de razão $c$ e primeiro termo 1 é $\sum_{n=0}^{\infty} c^n = \tfrac{1}{1-c}$, **desde que** $|c| < 1$. Como a PMgC satisfaz $0 < c < 1$, a razão é menor que 1 em módulo e a série converge. Economicamente, isso significa que a cada rodada uma fração $s = 1-c$ vaza para a poupança, de modo que os acréscimos de gasto encolhem geometricamente e sua soma é finita. Se fosse $c \geq 1$, cada real gasto geraria consumo igual ou maior na rodada seguinte, e a soma explodiria — o que não corresponde a nenhuma economia real.
+:::
+
+**5.** Considere $C = 400 + 0{,}75\,Y_d$, $I_0 = 300$, $G = 400$ e impostos fixos $T = 400$. (a) Escreva $Y_d$. (b) Encontre a renda de equilíbrio. (c) Compare o multiplicador dos gastos $G$ com o multiplicador dos impostos.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $Y_d = Y - T = Y - 400$.
+(b) $DA = 400 + 0{,}75(Y-400) + 300 + 400 = 400 + 0{,}75Y - 300 + 700 = 800 + 0{,}75Y$. Equilíbrio: $Y = 800 + 0{,}75Y \Rightarrow 0{,}25Y = 800 \Rightarrow Y^{*} = 3.200$.
+(c) Multiplicador dos gastos: $k_G = \tfrac{1}{1-c} = 4$. Multiplicador dos impostos: $k_T = \tfrac{-c}{1-c} = \tfrac{-0{,}75}{0{,}25} = -3$. Um real a mais de $G$ eleva a renda em 4; um real a mais de $T$ reduz a renda em 3 (menos, em módulo, porque o imposto só afeta a demanda via consumo, na fração $c$). Somados com $\Delta G = \Delta T$: $4 - 3 = 1$, o teorema do orçamento equilibrado.
+:::
+
+**6.** (Paradoxo da poupança) Na economia do exercício 3, suponha que as famílias fiquem mais cautelosas e a PMgC caia de 0,8 para 0,75, mantendo $C_0 = 300$ e $I_0 = 200$. (a) Calcule a nova renda de equilíbrio. (b) A poupança total de equilíbrio aumentou? Comente.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Novo $k = \tfrac{1}{1-0{,}75} = 4$; $Y^{*}_{\text{novo}} = 4 \times 500 = 2.000$ (caiu de 2.500 para 2.000).
+(b) No equilíbrio, a poupança planjeada iguala o investimento: $S = I_0 = 200$ em **ambos** os casos (pois em equilíbrio, sem governo, $S = I$). Ou seja, apesar de todos quererem poupar uma fração maior da renda, a poupança total **não aumentou** — a renda caiu o suficiente para manter a poupança igual ao investimento dado. Este é o paradoxo da poupança: a maior parcimônia derrubou a renda sem elevar a poupança agregada.
+:::
+
+**7.** (Análise de caso) Em recessão profunda, um governo hesita entre (i) um programa de transferência de renda focalizado nos mais pobres e (ii) uma redução de impostos concentrada em famílias de alta renda, ambos do mesmo valor fiscal. Usando o conceito de PMgC e multiplicador, qual medida deve estimular mais a demanda? Que ressalvas você faria?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A **transferência focalizada nos mais pobres** tende a estimular mais a demanda, porque famílias de baixa renda têm **PMgC mais alta** — gastam uma fração maior de cada real recebido, alimentando rodadas de gasto mais fortes. A desoneração de altas rendas, cuja PMgC é menor (poupam mais), gera mais vazamento para a poupança e multiplicador menor. **Ressalvas:** (a) o multiplicador também depende do estado da economia — em recessão com capacidade ociosa e juros baixos, ambos são maiores; (b) importações e a reação da política monetária podem reduzir o efeito; (c) há dimensões distributivas e de sustentabilidade fiscal além do efeito de curto prazo sobre a demanda; (d) o desenho e a rapidez de execução (quão logo o dinheiro chega a quem gasta) afetam o resultado.
+:::
+
+**8.** (Desafio) Explique por que o modelo da Cruz Keynesiana é adequado para analisar uma economia em recessão com fábricas ociosas, mas **inadequado** para uma economia operando a pleno emprego. O que o modelo omite?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A Cruz Keynesiana supõe preços rígidos e oferta perfeitamente elástica: qualquer aumento de demanda é atendido por mais produção, sem pressão de preços. Isso é razoável quando há **capacidade ociosa** — trabalhadores desempregados e máquinas paradas prontos para produzir mais. **A pleno emprego**, porém, não há como aumentar a produção real: um aumento de demanda encontra uma oferta que não pode crescer, e o excesso de demanda se traduz em **inflação**, não em mais produto. O modelo omite justamente o **lado da oferta** e a determinação dos preços. Corrigir essa omissão exige incorporar a **oferta agregada** (que estudaremos no @sec-oferta-agregada-phillips e no @sec-ad-as-choques) e, antes disso, endogenizar os juros e a moeda no modelo **IS-LM** do próximo capítulo.
+:::
+
+## Para saber mais
+
+- @keynes1996 — a fonte original. O Capítulo 3 ("O princípio da demanda efetiva") e o 10 ("A propensão marginal a consumir e o multiplicador") fundam tudo o que este capítulo formaliza; leitura difícil, mas histórica.
+- @blanchard2017 — os capítulos sobre o mercado de bens apresentam a Cruz Keynesiana e o multiplicador com notação moderna e didática.
+- @dornbusch2013 — tratamento claro do modelo de renda-despesa, dos multiplicadores com governo e do orçamento equilibrado.
+- @mankiw2020 — para a intuição do multiplicador e da demanda agregada em nível introdutório, com muitos exemplos.
+- @simonsen2007 — referência brasileira que trabalha o modelo keynesiano de determinação da renda com rigor.

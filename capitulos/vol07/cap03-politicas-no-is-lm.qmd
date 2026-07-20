@@ -1,0 +1,237 @@
+# Política fiscal e monetária no IS-LM {#sec-politicas-no-is-lm}
+
+Toda semana, alguém pede que "o governo gaste mais para aquecer a economia" ou que "o Banco Central corte os juros para destravar o crescimento". São as duas grandes alavancas da política macroeconômica de curto prazo: a **política fiscal** (gasto público e impostos) e a **política monetária** (juros e moeda). Mas elas não operam num vácuo — puxar uma alavanca move as duas curvas do modelo que acabamos de construir, e o resultado final quase nunca é o efeito "de primeira ordem" que a intuição sugere.
+
+Neste capítulo colocamos o IS-LM para trabalhar. Veremos exatamente **como** uma expansão fiscal desloca a IS, **como** uma expansão monetária desloca a LM, e — o ponto mais importante e mais mal compreendido do debate público — por que a política fiscal esbarra no **efeito deslocamento** (*crowding out*): o gasto público que, ao elevar os juros, "expulsa" investimento privado. Ao final, discutiremos a **combinação de políticas** (*policy mix*) e os casos-limite em que uma das alavancas simplesmente não funciona.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- analisar os efeitos de uma **expansão** e de uma **contração fiscal** sobre $Y$ e $i$;
+- analisar os efeitos de uma **expansão** e de uma **contração monetária** sobre $Y$ e $i$;
+- explicar e quantificar o **efeito deslocamento** (*crowding out*);
+- entender por que o multiplicador fiscal no IS-LM é **menor** que na Cruz Keynesiana;
+- combinar as duas políticas (*policy mix*) e prever o resultado sobre juros e renda;
+- reconhecer os casos-limite: **armadilha da liquidez** e IS/LM verticais.
+
+## Política fiscal: deslocando a IS
+
+A política fiscal age sobre o **gasto autônomo** — e, portanto, sobre a curva **IS**. Um aumento do gasto público $G$ ou uma redução de impostos $T$ elevam a demanda por bens a **cada** nível de juros, deslocando a IS para a **direita**. Uma contração fiscal (menos $G$, mais $T$) faz o oposto.
+
+Acompanhe uma **expansão fiscal** (aumento de $G$) na @fig-fiscal:
+
+1. **Choque:** o aumento de $G$ desloca a IS de $IS_0$ para $IS_1$. A distância horizontal do deslocamento é $k \cdot \Delta G$, onde $k$ é o multiplicador da Cruz Keynesiana — o efeito que *haveria* se os juros ficassem parados.
+2. **Reação monetária:** mas os juros **não** ficam parados. A renda maior eleva a demanda por moeda; com oferta fixa, os juros **sobem** (movimento ao longo da LM), de $i_0$ para $i_1$.
+3. **Efeito deslocamento:** juros mais altos **reduzem o investimento privado**, o que subtrai parte do impulso inicial. A renda sobe apenas de $Y_0$ para $Y_1$ — **menos** do que o deslocamento cheio da IS previa.
+
+::: {#fig-fiscal}
+
+```{.tikz}
+%%| filename: fig-fiscal
+%%| alt: Expansão fiscal no IS-LM: a curva IS desloca-se para a direita, elevando renda e juros; a seta mostra que o aumento de renda é menor que o deslocamento horizontal da IS por causa do crowding out.
+\begin{tikzpicture}[scale=0.95]
+  \draw[eixo] (0,0) -- (8.6,0) node[right] {$Y$};
+  \draw[eixo] (0,0) -- (0,6.8) node[above] {$i$};
+  % LM
+  \draw[destaque, very thick] (1,1.3) .. controls (4,2.1) and (5.5,3.6) .. (7.8,6.2) node[right, manualred] {$LM$};
+  % IS0
+  \draw[curva] (0.8,5.2) .. controls (3,3.2) and (4.2,2.6) .. (6.5,1.5) node[right, manualblue, font=\footnotesize] {$IS_0$};
+  % IS1 (deslocada para direita)
+  \draw[curva, manualgreen] (2.4,5.6) .. controls (4.6,3.6) and (5.8,3.0) .. (8.1,1.9) node[right, font=\footnotesize] {$IS_1$};
+  \coordinate (E0) at (3.05,3.05);
+  \coordinate (E1) at (4.55,3.85);
+  \node[ponto] at (E0) {}; \node[below left, font=\footnotesize] at (E0) {$E_0$};
+  \node[ponto] at (E1) {}; \node[above right, font=\footnotesize] at (E1) {$E_1$};
+  \draw[auxiliar] (E0) -- (3.05,0) node[below,font=\footnotesize] {$Y_0$};
+  \draw[auxiliar] (E1) -- (4.55,0) node[below,font=\footnotesize] {$Y_1$};
+  \draw[auxiliar] (E0) -- (0,3.05) node[left,font=\footnotesize] {$i_0$};
+  \draw[auxiliar] (E1) -- (0,3.85) node[left,font=\footnotesize] {$i_1$};
+  % ponto que seria sem crowding out (sobre IS1 no juro i0)
+  \coordinate (F) at (5.9,3.05);
+  \node[ponto, fill=manualgray] at (F) {};
+  \draw[auxiliar] (F) -- (5.9,0) node[below,font=\footnotesize] {$Y'$};
+  \node[manualgray, font=\footnotesize, align=center] at (6.8,4.7) {$Y_1 < Y'$:\\crowding out};
+\end{tikzpicture}
+```
+
+Expansão fiscal. A IS vai a $IS_1$; sem reação dos juros, a renda iria a $Y'$. Como os juros sobem a $i_1$, o investimento cai e a renda para em $Y_1 < Y'$: o *crowding out*.
+:::
+
+::: {.callout-note title="Definição — Efeito deslocamento (crowding out)"}
+O **efeito deslocamento**, ou *crowding out*, é a redução do investimento privado provocada pela **alta dos juros** que uma expansão fiscal desencadeia. Ao elevar a demanda por moeda, o gasto público empurra os juros para cima e "expulsa" parte do gasto privado sensível a juros. É por isso que o multiplicador fiscal no IS-LM é **menor** do que na Cruz Keynesiana, onde os juros eram fixos.
+:::
+
+### Quanto de crowding out?
+
+A intensidade do *crowding out* depende das **inclinações** das curvas:
+
+- **LM íngreme** (demanda por moeda pouco sensível aos juros): a mesma expansão fiscal exige uma alta grande de juros para reequilibrar o mercado monetário → *crowding out* **forte**, política fiscal **fraca**.
+- **LM plana** (ou Banco Central segurando o juro): os juros sobem pouco → *crowding out* **fraco**, política fiscal **potente**.
+- **IS íngreme** (investimento pouco sensível a juros): mesmo com juros subindo, o investimento cai pouco → *crowding out* **fraco**.
+
+No caso-limite de **LM vertical**, o *crowding out* é **total**: a expansão fiscal eleva os juros sem mexer na renda — todo o gasto público apenas substitui gasto privado. No outro extremo, com **LM horizontal**, não há *crowding out* algum e o multiplicador fiscal é o da Cruz Keynesiana.
+
+## Política monetária: deslocando a LM
+
+A política monetária age sobre a oferta de moeda — e, portanto, sobre a curva **LM**. Uma **expansão monetária** ($M\uparrow$) desloca a LM para a **direita/baixo**; uma contração, para a esquerda/cima.
+
+Acompanhe uma **expansão monetária** na @fig-monetaria:
+
+1. **Choque:** mais moeda desloca a LM de $LM_0$ para $LM_1$.
+2. **Queda de juros:** ao juro anterior, há agora excesso de oferta de moeda; os juros **caem** de $i_0$ para $i_1$ para reabsorvê-la.
+3. **Transmissão via investimento:** juros menores **estimulam o investimento** (movimento ao longo da IS), elevando a renda de $Y_0$ para $Y_1$.
+
+Repare no contraste com a política fiscal: a expansão monetária eleva a renda **e reduz os juros** — em vez de elevá-los. É por isso que política monetária é chamada de instrumento "amigo do investimento": ela estimula a economia justamente **barateando** o crédito, não competindo por ele.
+
+::: {#fig-monetaria}
+
+```{.tikz}
+%%| filename: fig-monetaria
+%%| alt: Expansão monetária no IS-LM: a curva LM desloca-se para a direita, reduzindo os juros e elevando a renda ao longo da curva IS.
+\begin{tikzpicture}[scale=0.95]
+  \draw[eixo] (0,0) -- (8.6,0) node[right] {$Y$};
+  \draw[eixo] (0,0) -- (0,6.8) node[above] {$i$};
+  % IS
+  \draw[curva] (1,5.7) .. controls (3.5,3.3) and (5,2.5) .. (8.0,1.4) node[right, manualblue] {$IS$};
+  % LM0
+  \draw[destaque, very thick] (1,1.9) .. controls (3.5,2.6) and (5,3.9) .. (6.8,6.2) node[above, manualred, font=\footnotesize] {$LM_0$};
+  % LM1 deslocada direita
+  \draw[very thick, manualgreen] (2.6,1.3) .. controls (5.1,2.0) and (6.6,3.3) .. (8.4,5.6) node[right, font=\footnotesize] {$LM_1$};
+  \coordinate (E0) at (3.55,3.7);
+  \coordinate (E1) at (5.15,2.55);
+  \node[ponto] at (E0) {}; \node[above right, font=\footnotesize] at (E0) {$E_0$};
+  \node[ponto] at (E1) {}; \node[above right, font=\footnotesize] at (E1) {$E_1$};
+  \draw[auxiliar] (E0) -- (3.55,0) node[below,font=\footnotesize] {$Y_0$};
+  \draw[auxiliar] (E1) -- (5.15,0) node[below,font=\footnotesize] {$Y_1$};
+  \draw[auxiliar] (E0) -- (0,3.7) node[left,font=\footnotesize] {$i_0$};
+  \draw[auxiliar] (E1) -- (0,2.55) node[left,font=\footnotesize] {$i_1$};
+\end{tikzpicture}
+```
+
+Expansão monetária. A LM vai a $LM_1$; os juros caem a $i_1$ e a renda sobe a $Y_1$. Estímulo com juros **menores**.
+:::
+
+::: {.callout-tip title="Intuição — fiscal empurra juros para cima; monetária, para baixo"}
+Guarde este contraste, que resume o capítulo: a **expansão fiscal** eleva renda **e** juros (competindo por moeda); a **expansão monetária** eleva a renda **baixando** os juros (oferecendo mais moeda). A direção em que os juros se movem é a assinatura que distingue as duas políticas — e a chave para lê-las nos dados.
+:::
+
+## O policy mix: combinando as alavancas
+
+Como as duas políticas movem os juros em direções opostas, **combiná-las** permite mirar renda e juros de forma independente. Essa é a ideia de *policy mix* — a composição de políticas fiscal e monetária. Alguns arranjos clássicos:
+
+- **Fiscal expansionista + monetária expansionista:** renda sobe com força; o efeito sobre os juros é ambíguo (a fiscal pressiona para cima, a monetária para baixo). É o "acelerador total", usado em recessões profundas.
+- **Fiscal expansionista + monetária contracionista:** a renda pode ficar quase parada, mas os **juros sobem bastante**. É o mix associado a **juros altos e câmbio valorizado**, criticado por asfixiar o investimento privado (mais gasto público, menos privado).
+- **Fiscal contracionista + monetária expansionista:** o "ajuste fiscal com juros baixos" — busca-se equilibrar as contas públicas sem afundar a atividade, compensando o aperto fiscal com juros menores que sustentam o investimento privado.
+
+::: {.callout-warning title="Controvérsia — a composição importa, não só o nível de atividade"}
+Dois *policy mixes* podem produzir o **mesmo** $Y$, mas com **composições** muito diferentes do produto. Um mix de fiscal frouxa + monetária apertada entrega aquele $Y$ com **muito gasto público e pouco investimento privado** e juros altos; um mix de fiscal apertada + monetária frouxa entrega o mesmo $Y$ com **mais investimento privado** e juros baixos. Como o investimento de hoje é a capacidade produtiva de amanhã, a **composição** do produto tem consequências de longo prazo que o nível de $Y$ sozinho esconde. Boa parte do debate macroeconômico brasileiro é, no fundo, uma disputa sobre qual mix adotar.
+:::
+
+## Casos-limite: quando uma alavanca falha
+
+### A armadilha da liquidez
+
+Suponha que a taxa de juros já esteja em (ou muito perto de) **zero**. Nesse ponto, a demanda por moeda torna-se infinitamente elástica: as pessoas estão dispostas a reter qualquer quantidade de moeda, pois títulos que rendem quase nada não são melhores que dinheiro parado. A LM fica **horizontal**. É a **armadilha da liquidez**.
+
+Nesse regime, a **política monetária perde tração**: imprimir mais moeda não faz os juros caírem (já estão no piso) nem estimula o investimento — a economia simplesmente absorve a moeda extra na entesouração. Já a **política fiscal torna-se maximamente potente**: como os juros não sobem, **não há *crowding out***, e o multiplicador fiscal é pleno. Esse foi o argumento keynesiano clássico para gasto público em depressões, e voltou ao centro do debate após a crise de 2008 e na pandemia, quando muitos países operaram com juros no piso ("*zero lower bound*").
+
+::: {.callout-note title="Definição — Armadilha da liquidez"}
+A **armadilha da liquidez** é a situação em que a taxa de juros está tão baixa (próxima de zero) que a política monetária expansionista perde eficácia: a moeda adicional é entesourada em vez de reduzir juros ou estimular gastos. Nesse regime, a política **fiscal** é o instrumento eficaz, pois não sofre *crowding out*.
+:::
+
+### IS vertical, LM vertical
+
+Dois outros extremos fecham o quadro:
+
+- **Investimento insensível aos juros (IS vertical):** a política monetária não afeta a renda (baixar juros não muda o investimento), e a fiscal é plenamente eficaz. É a visão "keynesiana extrema".
+- **Demanda por moeda insensível aos juros (LM vertical):** a política fiscal sofre *crowding out* total (não afeta a renda, só os juros), e apenas a monetária move a renda. É a visão "monetarista extrema".
+
+Esses casos-limite não são descrições realistas, mas revelam que **a eficácia relativa das políticas depende das inclinações** — e que boa parte da divergência entre escolas macroeconômicas pode ser traduzida em discordâncias sobre quão sensíveis, na prática, são o investimento e a demanda por moeda aos juros.
+
+## 🇧🇷 Brasil em Foco
+
+**O *crowding out* e o "custo fiscal dos juros" no Brasil.** O mecanismo central deste capítulo — gasto público que pressiona juros para cima — é um dos eixos permanentes do debate econômico brasileiro. Em um país com histórico de dívida pública elevada e juros reais altos, expansões fiscais tendem a ser acompanhadas de **prêmios de risco** e de reações da política monetária que elevam a Selic, apertando o crédito privado. O investimento privado (Formação Bruta de Capital Fixo, IBGE) no Brasil é historicamente **baixo** — em torno de 15% a 20% do PIB, contra 25% a 40% em economias asiáticas dinâmicas —, e uma das explicações apontadas é justamente um *policy mix* que, por longos períodos, combinou pressão fiscal com juros altos, desfavorecendo o investimento em favor do gasto corrente.
+
+**Policy mix na prática: 2015 e 2020.** Dois episódios recentes ilustram os arranjos do capítulo. Em **2015-2016**, o Brasil viveu um mix de **aperto fiscal e monetário simultâneos** (ajuste nas contas públicas com Selic elevada, na casa de 14,25%), no contexto de uma recessão profunda — combinação que muitos economistas apontaram como agravante da queda do PIB. Já em **2020**, diante da pandemia, houve **forte expansão fiscal** (Auxílio Emergencial, da ordem de 4% do PIB) combinada a **juros historicamente baixos** (Selic a 2% ao ano) — um mix duplamente expansionista, coerente com a resposta de "acelerador total" a uma recessão aguda. A inflação de 2021-2022 que se seguiu reacendeu o debate sobre os limites desse estímulo.
+
+**A ancoragem fiscal e a potência da política monetária.** Um ponto sutil, mas central: a eficácia da política monetária no Brasil depende da **credibilidade fiscal**. Quando o mercado desconfia da sustentabilidade da dívida, cortes na Selic podem ser neutralizados por altas nos juros longos e no câmbio (um "desancoramento"), enfraquecendo a transmissão. Os arcabouços fiscais — do antigo teto de gastos ao novo regime fiscal — buscam, em última instância, preservar as condições para que a política monetária funcione. A interação fiscal-monetária, que o IS-LM apresenta em sua forma mais simples, é no Brasil especialmente aguda.
+
+> **Fontes e séries para explorar:** Banco Central do Brasil — SGS (Selic, expectativas de mercado no Boletim Focus, juros de crédito); Tesouro Nacional (dívida pública, resultado primário); IBGE — Contas Nacionais (FBCF/investimento). Compare os episódios de 2015-2016 e 2020-2021 à luz dos *policy mixes* deste capítulo.
+
+## Resumo do capítulo
+
+- A **política fiscal** desloca a **IS**; a **política monetária** desloca a **LM**.
+- Uma **expansão fiscal** eleva renda **e juros**. A alta dos juros reduz o investimento privado — o **efeito deslocamento** (*crowding out*) —, tornando o multiplicador fiscal **menor** que na Cruz Keynesiana.
+- A intensidade do *crowding out* depende das **inclinações**: LM íngreme ou IS plana → *crowding out* forte; LM plana ou IS íngreme → *crowding out* fraco. Com LM vertical, é **total**; com LM horizontal, é **nulo**.
+- Uma **expansão monetária** eleva a renda **reduzindo** os juros, estimulando o investimento — instrumento "amigo do investimento".
+- O ***policy mix*** combina as alavancas: como movem os juros em direções opostas, pode-se mirar renda e juros de forma independente. Mixes com o mesmo $Y$ podem ter **composições** muito diferentes (mais gasto público vs. mais investimento privado), com efeitos de longo prazo distintos.
+- **Casos-limite:** na **armadilha da liquidez** (juros no piso), a política monetária perde tração e a fiscal é plena; com **IS vertical**, só a fiscal funciona; com **LM vertical**, só a monetária.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver antes de abrir a solução. Use sempre um desenho do IS-LM para acompanhar os deslocamentos.
+:::
+
+**1.** Para cada política, diga o que ocorre com a **renda** e com os **juros** de equilíbrio: (a) aumento do gasto público; (b) aumento da oferta de moeda; (c) elevação de impostos; (d) contração monetária.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Expansão fiscal: **renda sobe, juros sobem** (IS para a direita).
+(b) Expansão monetária: **renda sobe, juros caem** (LM para a direita).
+(c) Contração fiscal: **renda cai, juros caem** (IS para a esquerda).
+(d) Contração monetária: **renda cai, juros sobem** (LM para a esquerda).
+:::
+
+**2.** Explique, com suas palavras, o que é o *crowding out* e por que ele faz o multiplicador fiscal no IS-LM ser menor que na Cruz Keynesiana.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O *crowding out* é a queda do investimento privado causada pela alta dos juros que acompanha uma expansão fiscal. Na Cruz Keynesiana, os juros são fixos, então o aumento de $G$ eleva a renda por todo o multiplicador $k$. No IS-LM, a renda maior aumenta a demanda por moeda e, com oferta fixa, empurra os juros para cima; juros maiores reduzem o investimento, subtraindo parte do impulso inicial. Como esse "vazamento" adicional só existe no IS-LM, o efeito líquido sobre a renda é **menor** — o multiplicador fiscal é atenuado pelo *crowding out*.
+:::
+
+**3.** Uma economia está na **armadilha da liquidez** (juros ≈ 0, LM horizontal). (a) O que acontece se o Banco Central expandir a moeda? (b) E se o governo aumentar o gasto público? (c) Qual política o modelo recomenda nesse regime?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Expansão monetária é ineficaz:** os juros já estão no piso e não caem; a moeda extra é entesourada, sem estimular o investimento. A renda praticamente não muda.
+(b) **Expansão fiscal é maximamente eficaz:** como os juros não sobem (LM horizontal), **não há *crowding out***, e o gasto público eleva a renda pelo multiplicador cheio.
+(c) O modelo recomenda **política fiscal** nesse regime — o argumento keynesiano clássico para gasto público em depressões e no *zero lower bound*.
+:::
+
+**4.** Compare o efeito de uma expansão fiscal sob **LM íngreme** e sob **LM plana**. Em qual caso a política fiscal é mais potente? Por quê?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Com **LM íngreme** (demanda por moeda pouco sensível aos juros), a mesma renda extra exige uma alta grande dos juros para reequilibrar o mercado monetário; juros muito maiores derrubam bastante o investimento → *crowding out* forte → fiscal **fraca**. Com **LM plana** (juros pouco variam com a renda), a expansão fiscal quase não pressiona os juros → *crowding out* fraco → fiscal **potente**. Logo, a política fiscal é mais potente quando a **LM é plana**.
+:::
+
+**5.** Descreva um *policy mix* capaz de **aumentar o investimento privado** sem elevar o nível de renda. Que combinação de fiscal e monetária o produz e por quê?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O mix é **fiscal contracionista + monetária expansionista**. A contração fiscal (menos $G$ ou mais $T$) desloca a IS para a esquerda, tendendo a reduzir renda e juros; a expansão monetária desloca a LM para a direita, reduzindo juros e elevando a renda. Calibrando as doses, o efeito líquido sobre a renda pode ser **nulo**, mas os **juros caem** (as duas políticas empurram juros para baixo). Juros menores **estimulam o investimento privado**. Resultado: mesma renda, porém com composição deslocada de gasto público para investimento privado — o "ajuste fiscal com juros baixos".
+:::
+
+**6.** (Numérico) Retome o exercício 6 do capítulo anterior ($IS$: $Y = 2500 - 2500i$; $LM$: $Y = 1000 + 2000i$; equilíbrio $i^{*} \approx 0{,}333$, $Y^{*} \approx 1.667$). O governo aumenta $G$ em 100, deslocando a IS para $Y = 3000 - 2500i$. (a) Ache o novo equilíbrio. (b) Compare a variação da renda com o multiplicador da Cruz Keynesiana ($k = 5$, logo $k\Delta G = 500$). Quanto foi o *crowding out*?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Novo equilíbrio: $3000 - 2500i = 1000 + 2000i \Rightarrow 2000 = 4500i \Rightarrow i^{*} \approx 0{,}444$. Renda: $Y = 1000 + 2000 \times 0{,}444 \approx 1.889$.
+(b) A renda subiu de $\approx 1.667$ para $\approx 1.889$, ou seja, $\Delta Y \approx 222$. A Cruz Keynesiana previa $k\Delta G = 5 \times 100 = 500$. O *crowding out* foi $500 - 222 \approx 278$: mais da metade do impulso fiscal foi "engolida" pela alta dos juros (de 0,333 para 0,444), que reduziu o investimento. O multiplicador fiscal efetivo foi $\approx 222/100 = 2{,}2$, bem menor que 5.
+:::
+
+**7.** (Análise) Um ministro anuncia grande pacote de gasto público e, ao mesmo tempo, cobra do Banco Central que **não** suba os juros, para "não anular o estímulo". Usando o IS-LM, explique a lógica econômica do pedido e o dilema que ele cria para o Banco Central.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A lógica é correta em termos de mecanismo: se o BC mantivesse os juros fixos (acomodando a expansão via mais moeda, LM horizontal no juro-alvo), **não haveria *crowding out*** e o pacote fiscal teria efeito máximo sobre a renda. O pedido equivale a solicitar um *policy mix* duplamente expansionista. **O dilema do BC:** manter os juros baixos diante de uma economia perto do pleno emprego pode gerar **inflação** — algo que o IS-LM de preços fixos não mostra, mas que é real. Se o BC tem mandato de controlar a inflação, ele pode ser obrigado a subir os juros justamente para conter o excesso de demanda que o pacote cria, o que reintroduz o *crowding out*. O conflito é, no fundo, entre o objetivo fiscal (atividade) e o monetário (inflação) — e sua resolução depende do quão ociosa está a economia.
+:::
+
+**8.** (Desafio) "Política monetária é sempre preferível à fiscal porque não deixa dívida." Avalie criticamente essa afirmação usando os conceitos do capítulo, incluindo pelo menos um caso em que a política monetária **não** funciona.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A afirmação é parcial. **A favor:** a política monetária estimula baixando juros, favorece o investimento privado e não exige emissão de dívida pública nem eleva o gasto corrente — vantagens reais, sobretudo quando a composição do produto e a sustentabilidade fiscal importam. **Contra:** (1) na **armadilha da liquidez** (juros no piso), a política monetária perde tração e só a fiscal funciona — foi o caso de várias economias após 2008; (2) com **investimento insensível a juros** (IS íngreme), cortar juros pouco estimula; (3) a política monetária tem **defasagens** longas e efeitos distributivos próprios (afeta devedores e credores, câmbio, preços de ativos); (4) ela não substitui a fiscal quando o problema é ausência de demanda específica (infraestrutura, transferências a quem tem alta PMgC). Conclusão: nenhuma das duas é universalmente superior — a escolha depende do **estado da economia** (ociosidade, nível dos juros) e dos **objetivos** (nível vs. composição do produto, contas públicas). O bom manejo é combinar as duas conforme o diagnóstico, não elevar uma a dogma.
+:::
+
+## Para saber mais
+
+- @blanchard2017 — capítulos de política fiscal e monetária no IS-LM, com tratamento cuidadoso do *crowding out* e do *policy mix*.
+- @dornbusch2013 — análise detalhada das inclinações das curvas e da eficácia relativa das políticas, com os casos-limite.
+- @froyen2013 — bom para situar o debate entre keynesianos e monetaristas em termos das inclinações IS-LM.
+- @keynes1996 — para a origem do argumento fiscal em depressões e da armadilha da liquidez.
+- @giambiagi2016 — para conectar a análise do *crowding out* ao debate fiscal brasileiro concreto.

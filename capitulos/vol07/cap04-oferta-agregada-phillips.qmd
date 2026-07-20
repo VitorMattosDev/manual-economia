@@ -1,0 +1,240 @@
+# Oferta agregada e a curva de Phillips {#sec-oferta-agregada-phillips}
+
+Até aqui, todo o nosso modelo teve um ponto cego: os **preços**. A Cruz Keynesiana e o IS-LM supõem o nível de preços congelado, e por isso conseguem falar de produção e emprego, mas ficam mudos sobre **inflação**. E, no entanto, inflação é talvez a variável macroeconômica que mais mexe com a vida do brasileiro — quem viveu os anos 1980 sabe, e mesmo quem só conheceu o Real sente cada alta do arroz e da gasolina. Está na hora de deixar os preços se moverem.
+
+Este capítulo introduz o **lado da oferta** da economia: a **curva de oferta agregada**, que relaciona o nível de produção que as empresas desejam fornecer ao nível de preços. E introduz sua companheira histórica, uma das relações mais famosas e mais debatidas de toda a Economia: a **curva de Phillips**, que liga inflação e desemprego. Veremos por que existe uma tensão de curto prazo entre combater a inflação e sustentar o emprego, por que essa tensão **desaparece** no longo prazo, e como esse conjunto de ideias organiza a política de estabilização — sendo a base do regime de metas de inflação que o Brasil adota.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- distinguir a **oferta agregada de curto prazo** (OACP) da **de longo prazo** (OALP);
+- explicar por que a OACP é **crescente** e a OALP é **vertical** no produto potencial;
+- definir **produto potencial** e **hiato do produto**;
+- interpretar a **curva de Phillips** e a relação inflação-desemprego;
+- entender a **taxa natural de desemprego** (NAIRU) e por que a Phillips de longo prazo é **vertical**;
+- relacionar oferta agregada, curva de Phillips e a **lei de Okun**.
+
+## Oferta agregada de curto e de longo prazo
+
+A **oferta agregada** responde à pergunta: quanto as empresas do país, no conjunto, desejam produzir a cada nível de preços? A resposta depende crucialmente do **horizonte de tempo**, e é preciso separar dois casos.
+
+### A oferta agregada de longo prazo é vertical
+
+No **longo prazo**, todos os preços e salários são flexíveis e se ajustam plenamente. Nesse horizonte, a produção da economia é determinada por fatores **reais** — a quantidade de trabalho, capital, tecnologia e instituições —, e **não** pelo nível de preços. Se todos os preços e salários dobrassem ao mesmo tempo, nada de real mudaria: as empresas produziriam exatamente o mesmo. Por isso, a **oferta agregada de longo prazo (OALP)** é uma reta **vertical**, situada no **produto potencial** $Y_p$.
+
+::: {.callout-note title="Definição — Produto potencial"}
+O **produto potencial** ($Y_p$) é o nível de produção que a economia sustenta quando utiliza seus fatores em grau **normal** — com o desemprego na sua **taxa natural** e sem pressões inflacionárias de demanda. Não é o máximo fisicamente possível, mas o máximo **sustentável** sem acelerar a inflação. A OALP é vertical em $Y_p$.
+:::
+
+### A oferta agregada de curto prazo é crescente
+
+No **curto prazo**, porém, nem todos os preços se ajustam. Salários fixados em contratos, preços de catálogo, expectativas defasadas — vários fatores tornam alguns preços **rígidos** por um tempo. Nesse horizonte, um nível de preços **mais alto** (com custos, sobretudo salários, ainda em parte defasados) eleva a **margem** e o incentivo das empresas a produzir mais. Assim, a **oferta agregada de curto prazo (OACP)** é **crescente**: mais preços, mais produto ofertado.
+
+Há três explicações teóricas clássicas para essa inclinação positiva, que apenas mencionamos: (1) a rigidez de **salários** nominais; (2) a rigidez de **preços** (custos de menu); (3) as **percepções equivocadas** dos produtores, que confundem alta geral de preços com alta do seu preço relativo. Todas convergem para o mesmo formato: no curto prazo, a OA sobe com os preços; no longo prazo, quando o engano se desfaz e os contratos se renovam, ela volta a ser vertical.
+
+::: {#fig-oferta-agregada}
+
+```{.tikz}
+%%| filename: fig-oferta-agregada
+%%| alt: Oferta agregada de longo prazo vertical no produto potencial e oferta agregada de curto prazo crescente, cruzando-se no produto potencial.
+\begin{tikzpicture}[scale=0.9]
+  \draw[eixo] (0,0) -- (8.4,0) node[right] {$Y$ (produto)};
+  \draw[eixo] (0,0) -- (0,6.5) node[above] {$P$ (nível de preços)};
+  % OALP vertical
+  \draw[destaque, very thick, manualgreen] (4.6,0.4) -- (4.6,6.2) node[above, font=\footnotesize] {$OALP$};
+  \node[below, manualgreen, font=\footnotesize] at (4.6,0) {$Y_p$};
+  % OACP crescente
+  \draw[destaque, very thick, manualred] (1.2,1.2) -- (7.8,5.6) node[right, font=\footnotesize] {$OACP$};
+  \coordinate (E) at (4.6,3.47);
+  \node[ponto] at (E) {};
+  \node[above left, font=\footnotesize] at (E) {$E$};
+  \node[manualgray, font=\footnotesize, align=center] at (6.6,2.2) {curto prazo:\\$P\uparrow \Rightarrow Y\uparrow$};
+\end{tikzpicture}
+```
+
+Oferta agregada: a OALP é vertical no produto potencial $Y_p$; a OACP é crescente. Elas se cruzam em $Y_p$.
+:::
+
+### Hiato do produto
+
+A distância entre o produto efetivo $Y$ e o potencial $Y_p$ é o **hiato do produto**:
+
+$$
+\text{hiato} = \frac{Y - Y_p}{Y_p}.
+$$
+
+Um hiato **positivo** ($Y > Y_p$) significa economia "superaquecida", operando acima do sustentável, com pressão para a inflação **acelerar**. Um hiato **negativo** ($Y < Y_p$) significa capacidade ociosa e desemprego acima do natural, com pressão para a inflação **desacelerar**. O hiato zero é o repouso de longo prazo. Esse conceito será o elo entre a oferta agregada e a curva de Phillips.
+
+## A curva de Phillips
+
+Em 1958, o economista neozelandês A. W. Phillips publicou um estudo empírico sobre quase um século de dados britânicos e encontrou uma relação **negativa e estável** entre a taxa de desemprego e a taxa de variação dos salários nominais: quando o desemprego era baixo, os salários (e os preços) subiam depressa; quando era alto, subiam devagar [@phillips1958]. Logo a relação foi reformulada em termos de **inflação × desemprego**, e batizada de **curva de Phillips**.
+
+::: {.callout-note title="Definição — Curva de Phillips (versão simples)"}
+A **curva de Phillips** descreve uma relação **inversa**, de curto prazo, entre a taxa de **inflação** $\pi$ e a taxa de **desemprego** $u$: menor desemprego tende a vir acompanhado de maior inflação, e vice-versa. Intuitivamente, quando o mercado de trabalho está apertado (pouco desemprego), trabalhadores têm poder de barganha, os salários sobem e os custos empurram os preços.
+:::
+
+A curva de Phillips é, em essência, o **outro lado da oferta agregada**: onde a OA relaciona preços e produto, a Phillips relaciona inflação e desemprego. As duas dizem a mesma coisa em variáveis diferentes, ligadas pela **lei de Okun** (que veremos adiante): mais produto ↔ menos desemprego.
+
+Na leitura dos anos 1960, a curva de Phillips parecia oferecer um **cardápio de política**: o governo poderia "escolher" um ponto na curva, aceitando um pouco mais de inflação em troca de menos desemprego, ou vice-versa. Essa interpretação — de que existe um *trade-off* **permanente** e explorável — dominou a política econômica da época. E estava errada, como a década seguinte mostraria de forma dolorosa.
+
+## A crítica de Friedman-Phelps e o papel das expectativas
+
+No fim dos anos 1960, Milton Friedman e Edmund Phelps, de forma independente, atacaram a interpretação ingênua da curva de Phillips [@friedman1968; @phelps1968]. O argumento: a curva de Phillips original **esqueceu as expectativas de inflação**. Os trabalhadores não se importam com o salário **nominal**, mas com o **real** — o poder de compra. Se esperam inflação de 10%, exigirão reajustes de 10% só para não perder; qualquer aperto do mercado de trabalho se soma a *isso*.
+
+A curva de Phillips corrigida, dita **aumentada por expectativas**, é:
+
+$$
+\pi = \pi^{e} - \alpha\,(u - u_n),
+$$ {#eq-phillips-aumentada}
+
+onde:
+
+- $\pi$ é a inflação efetiva;
+- $\pi^{e}$ é a inflação **esperada**;
+- $u$ é o desemprego e $u_n$, a **taxa natural de desemprego**;
+- $\alpha > 0$ mede a sensibilidade da inflação ao desemprego.
+
+A leitura é poderosa. A inflação só fica **abaixo** da esperada quando o desemprego está **acima** do natural ($u > u_n$), e só **acima** quando o desemprego está **abaixo** do natural. No ponto $u = u_n$, a inflação efetiva iguala a esperada — a economia está em repouso.
+
+::: {.callout-note title="Definição — Taxa natural de desemprego (NAIRU)"}
+A **taxa natural de desemprego** $u_n$ é o nível de desemprego compatível com inflação **estável** (que não acelera nem desacelera). Também chamada **NAIRU** (*Non-Accelerating Inflation Rate of Unemployment*), ela corresponde ao pleno emprego dos fatores e ao produto potencial. Não é zero: inclui o desemprego **friccional** (busca por emprego) e **estrutural** (descasamento entre vagas e qualificações), estudados no @sec-desemprego.
+:::
+
+### A Phillips de longo prazo é vertical
+
+Aqui está a conclusão que reorganizou a macroeconomia. No **longo prazo**, as expectativas se ajustam à realidade: as pessoas não se deixam enganar para sempre. Se a inflação efetiva persiste em 10%, todos passam a **esperar** 10%, e $\pi^{e} = \pi$. Impondo isso na @eq-phillips-aumentada:
+
+$$
+\pi = \pi - \alpha(u - u_n) \;\Longrightarrow\; \alpha(u - u_n) = 0 \;\Longrightarrow\; u = u_n.
+$$
+
+Ou seja: no longo prazo, o desemprego volta à taxa natural **qualquer que seja a inflação**. A curva de Phillips de longo prazo é **vertical** em $u_n$ (@fig-phillips). **Não há *trade-off* permanente** entre inflação e desemprego: tentar manter o desemprego abaixo do natural não compra menos desemprego de forma duradoura — compra apenas **inflação cada vez mais alta**.
+
+::: {#fig-phillips}
+
+```{.tikz}
+%%| filename: fig-phillips
+%%| alt: Curvas de Phillips: várias curvas de curto prazo decrescentes, cada uma para uma expectativa de inflação, e a curva de longo prazo vertical na taxa natural de desemprego.
+\begin{tikzpicture}[scale=0.9]
+  \draw[eixo] (0,0) -- (8.4,0) node[right] {$u$ (desemprego, \%)};
+  \draw[eixo] (0,0) -- (0,6.5) node[above] {$\pi$ (inflação, \%)};
+  % Phillips LP vertical
+  \draw[destaque, very thick, manualgreen] (4.3,0.3) -- (4.3,6.2) node[above, font=\footnotesize] {$CP_{LP}$};
+  \node[below, manualgreen, font=\footnotesize] at (4.3,0) {$u_n$};
+  % Phillips CP baixas expectativas
+  \draw[curva] (1.5,4.2) -- (7.3,1.0) node[right, font=\footnotesize] {$CP(\pi^e_1)$};
+  % Phillips CP altas expectativas (mais alta)
+  \draw[curva, manualblue!55] (2.5,5.9) -- (8.0,2.7) node[right, font=\footnotesize] {$CP(\pi^e_2)$};
+  \coordinate (A) at (4.3,2.75);
+  \coordinate (B) at (4.3,4.55);
+  \node[ponto] at (A) {}; \node[ponto] at (B) {};
+  \node[manualgray, font=\footnotesize, right] at (4.4,2.4) {$A$};
+  \node[manualgray, font=\footnotesize, right] at (4.4,4.9) {$B$};
+  \draw[vetor, manualred] (4.6,3.0) -- (4.6,4.3);
+  \node[manualred, font=\footnotesize, right] at (4.65,3.7) {$\pi^e\uparrow$};
+\end{tikzpicture}
+```
+
+Curvas de Phillips. Cada curva de curto prazo corresponde a uma expectativa de inflação; um aumento de $\pi^{e}$ **sobe** a curva inteira. No longo prazo, o desemprego fica em $u_n$: a $CP_{LP}$ é vertical.
+:::
+
+::: {.callout-important title="Armadilha comum — o trade-off de curto prazo não é um cardápio permanente"}
+Existe, sim, um *trade-off* inflação-desemprego **no curto prazo**, ao longo de uma curva de Phillips com expectativas **dadas**. O erro é tratá-lo como um cardápio que o governo pode explorar indefinidamente. Ao tentar manter $u < u_n$, o governo eleva a inflação; as expectativas sobem; a curva de curto prazo se desloca **para cima**; e o mesmo desemprego passa a exigir inflação ainda maior. O *trade-off* de curto prazo é real; o de longo prazo é uma ilusão que se paga com inflação crescente.
+:::
+
+## A lei de Okun: o elo produto-desemprego
+
+Para conectar a oferta agregada (em produto) e a curva de Phillips (em desemprego), usamos uma regularidade empírica descoberta por Arthur Okun: quando o produto cresce **acima** do potencial, o desemprego **cai**; quando cresce abaixo, o desemprego **sobe**. A **lei de Okun** quantifica essa relação inversa entre o hiato do produto e o hiato de desemprego $(u - u_n)$.
+
+Juntando as peças, temos uma narrativa coerente do curto prazo:
+
+$$
+\underbrace{\text{demanda agregada}\uparrow}_{\text{IS-LM}} \;\to\; \underbrace{Y > Y_p \ (\text{hiato}\uparrow)}_{\text{oferta agregada}} \;\to\; \underbrace{u < u_n}_{\text{Okun}} \;\to\; \underbrace{\pi\uparrow}_{\text{Phillips}}.
+$$
+
+Uma expansão de demanda que empurra o produto acima do potencial reduz o desemprego abaixo do natural e **acelera a inflação**. É essa cadeia que a política de estabilização precisa administrar — e é ela que o modelo AD-AS do próximo capítulo colocará num único diagrama.
+
+## 🇧🇷 Brasil em Foco
+
+**A NAIRU brasileira e o "pleno emprego" que ainda tem desemprego.** A taxa natural de desemprego não é um número universal — depende das instituições do mercado de trabalho, do grau de informalidade, da qualificação da força de trabalho. Estimativas para o Brasil, produzidas por Banco Central, IPEA e pesquisadores, situam a NAIRU historicamente numa faixa elevada em comparação com economias avançadas, refletindo alta rotatividade, informalidade em torno de 40% dos ocupados e descasamentos de qualificação. Um ponto prático: quando a taxa de desemprego medida pela **PNAD Contínua** (IBGE) se aproxima de mínimos históricos, o Banco Central passa a monitorar de perto pressões salariais — sinal de que o mercado de trabalho pode estar apertado em relação à NAIRU, com risco de repique inflacionário.
+
+**A Phillips e o regime de metas.** Toda a arquitetura do **regime de metas de inflação**, adotado no Brasil desde 1999 (que estudaremos no Volume 8), repousa na lógica deste capítulo. O Banco Central atua sobre a demanda agregada via **Selic**; ao esfriar a demanda, amplia o hiato negativo do produto, eleva o desemprego em relação à NAIRU e, pela curva de Phillips, **reduz a inflação** em direção à meta. É a curva de Phillips aumentada por expectativas operando na prática — e por isso o Banco Central dedica tanta atenção às **expectativas de inflação** coletadas no **Boletim Focus**: se elas desancoram (sobem de forma persistente), a curva de Phillips inteira se desloca para cima, e conter a inflação exige um aperto muito maior.
+
+**Choques de oferta: a inflação que não vem da demanda.** O Brasil oferece exemplos vívidos de que nem toda inflação nasce de excesso de demanda. Choques cambiais (o dólar que dispara e encarece importados), climáticos (secas que elevam preços de alimentos e da energia) e de **preços administrados** (combustíveis, energia elétrica) deslocam a **oferta agregada** e produzem inflação **junto com** atividade fraca — o incômodo cenário de "inflação de custos". Nesses episódios, a curva de Phillips não some, mas o dilema do Banco Central se agrava: apertar a demanda para conter uma inflação de origem na oferta custa produto e emprego. É a diferença entre choque de demanda e choque de oferta que o próximo capítulo formaliza.
+
+> **Fontes e séries para explorar:** IBGE — PNAD Contínua (taxa de desocupação, informalidade); Banco Central do Brasil — Relatório de Inflação e Boletim Focus (expectativas), estimativas de hiato do produto; IPEA (estimativas de produto potencial e NAIRU). Atente que produto potencial e NAIRU são **estimativas**, revisadas com frequência.
+
+## Resumo do capítulo
+
+- A **oferta agregada de longo prazo (OALP)** é **vertical** no **produto potencial** $Y_p$: no longo prazo, o produto depende de fatores reais, não do nível de preços.
+- A **oferta agregada de curto prazo (OACP)** é **crescente**, por rigidez de salários e preços e por percepções equivocadas; preços maiores estimulam mais produção enquanto os custos estão defasados.
+- O **hiato do produto** $(Y - Y_p)$ mede o afastamento do potencial: positivo → superaquecimento e inflação acelerando; negativo → ociosidade e inflação desacelerando.
+- A **curva de Phillips** relaciona inversamente inflação e desemprego no curto prazo — o outro lado da oferta agregada.
+- A crítica de **Friedman-Phelps**: a Phillips depende das **expectativas de inflação**, $\pi = \pi^{e} - \alpha(u - u_n)$. No longo prazo, $\pi^{e} = \pi$ e o desemprego volta à **taxa natural** $u_n$ (NAIRU).
+- **Não há *trade-off* permanente** inflação-desemprego: a Phillips de longo prazo é **vertical** em $u_n$. Tentar manter $u < u_n$ só gera inflação crescente.
+- A **lei de Okun** liga produto e desemprego, conectando oferta agregada e curva de Phillips numa cadeia: demanda ↑ → hiato ↑ → desemprego ↓ → inflação ↑.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver antes de abrir a solução. Os primeiros itens são conceituais; os do meio, numéricos; os últimos, de análise.
+:::
+
+**1.** Explique por que a oferta agregada de **longo prazo** é vertical, enquanto a de **curto prazo** é crescente. Qual hipótese sobre preços distingue os dois horizontes?
+
+::: {.callout-tip collapse="true" title="Solução"}
+No **longo prazo**, todos os preços e salários são flexíveis e se ajustam plenamente; a produção depende apenas de fatores reais (trabalho, capital, tecnologia), não do nível de preços — se todos os preços dobrassem, nada real mudaria. Logo a OALP é **vertical** no produto potencial. No **curto prazo**, alguns preços e salários são **rígidos** (contratos, custos de menu, expectativas defasadas); um nível de preços mais alto, com custos ainda em parte defasados, eleva margens e incentiva mais produção — a OACP é **crescente**. A hipótese que distingue os horizontes é o grau de **rigidez de preços e salários**.
+:::
+
+**2.** Defina **taxa natural de desemprego**. Por que ela não é zero?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A taxa natural (NAIRU) é o desemprego compatível com inflação **estável**, correspondente ao pleno emprego dos fatores e ao produto potencial. Ela não é zero porque sempre há desemprego **friccional** (pessoas em transição entre empregos, procurando a melhor vaga) e **estrutural** (descasamento entre as qualificações dos trabalhadores e as exigências das vagas, ou entre regiões). Esses componentes existem mesmo numa economia saudável; "pleno emprego" significa desemprego na taxa natural, não desemprego nulo.
+:::
+
+**3.** Numa curva de Phillips aumentada $\pi = \pi^{e} - 0{,}5(u - u_n)$, com $\pi^{e} = 4\%$ e $u_n = 8\%$: (a) qual a inflação se $u = 8\%$? (b) e se $u = 6\%$? (c) e se $u = 12\%$? Interprete.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $u = u_n$: $\pi = 4 - 0{,}5(8-8) = 4\%$. A inflação iguala a esperada — repouso.
+(b) $u = 6\%$ ($< u_n$): $\pi = 4 - 0{,}5(6-8) = 4 - 0{,}5(-2) = 4 + 1 = 5\%$. Desemprego abaixo do natural **acelera** a inflação.
+(c) $u = 12\%$ ($> u_n$): $\pi = 4 - 0{,}5(12-8) = 4 - 2 = 2\%$. Desemprego acima do natural **desacelera** a inflação. Confirma que só se reduz a inflação com desemprego acima do natural (hiato negativo).
+:::
+
+**4.** Explique, usando a curva de Phillips aumentada por expectativas, por que um governo que tente manter o desemprego **permanentemente** abaixo da taxa natural acaba gerando **inflação crescente**.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Com $u < u_n$, a curva de Phillips aumentada dá $\pi > \pi^{e}$: a inflação efetiva supera a esperada. Mas as pessoas aprendem: no período seguinte, revisam $\pi^{e}$ para cima, aproximando-o da inflação realizada. Isso **desloca a curva de Phillips de curto prazo para cima**, de modo que manter o mesmo $u < u_n$ agora exige inflação ainda maior. Repetindo o processo, a inflação sobe indefinidamente — é a **espiral aceleracionista**. No longo prazo, $\pi^{e} = \pi$ força $u = u_n$: o desemprego volta ao natural, e tudo o que se obteve foi inflação mais alta. Não há como comprar desemprego baixo permanente com inflação.
+:::
+
+**5.** Relacione a **oferta agregada** (em produto e preços) com a **curva de Phillips** (em inflação e desemprego). Qual "ponte" empírica conecta as duas?
+
+::: {.callout-tip collapse="true" title="Solução"}
+As duas descrevem o mesmo fenômeno em variáveis diferentes. A oferta agregada crescente diz que produto acima do potencial vem com preços mais altos (pressão inflacionária). A curva de Phillips diz que desemprego abaixo do natural vem com inflação mais alta. A **ponte** é a **lei de Okun**, que relaciona inversamente o hiato do produto $(Y - Y_p)$ e o hiato de desemprego $(u - u_n)$: mais produto ↔ menos desemprego. Assim, "produto acima do potencial" (oferta agregada) equivale a "desemprego abaixo do natural" (Phillips), e ambas levam à mesma conclusão sobre a inflação.
+:::
+
+**6.** (Numérico, lei de Okun) Suponha que, pela lei de Okun, cada ponto percentual de hiato **positivo** do produto reduza o desemprego em 0,5 ponto abaixo da natural. Se o produto está 4% acima do potencial e $u_n = 8\%$, qual o desemprego previsto? Combinando com a Phillips do exercício 3, qual a inflação (com $\pi^{e} = 4\%$)?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Hiato do produto $= +4\%$. Pela lei de Okun dada, $u - u_n = -0{,}5 \times 4 = -2$ pontos, logo $u = 8 - 2 = 6\%$. Com a Phillips $\pi = 4 - 0{,}5(u - 8) = 4 - 0{,}5(6-8) = 4 + 1 = 5\%$. Ou seja, um hiato positivo de 4% baixa o desemprego para 6% e eleva a inflação para 5% — a cadeia demanda → hiato → desemprego → inflação em números.
+:::
+
+**7.** (Análise) Distinga um **choque de demanda** de um **choque de oferta** quanto aos efeitos simultâneos sobre inflação e desemprego. Por que o choque de oferta é mais incômodo para o Banco Central?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Um **choque de demanda positivo** (ex.: expansão fiscal) move a economia **ao longo** da curva de Phillips de curto prazo: inflação **sobe** e desemprego **cai** juntos (variam em direções opostas). O Banco Central que queira conter a inflação aperta a demanda, o que também esfria a atividade — objetivos alinhados, sem dilema grave. Um **choque de oferta adverso** (ex.: alta do petróleo, do câmbio ou de preços administrados) **desloca** a curva de Phillips para cima: inflação **sobe** e desemprego **também sobe** (a "estagflação"). Aí está o dilema: para conter a inflação, o BC precisa apertar a demanda, elevando ainda mais o desemprego; para sustentar o emprego, precisa afrouxar, agravando a inflação. Não há como atacar os dois males ao mesmo tempo com um único instrumento — por isso o choque de oferta é o pesadelo do banqueiro central.
+:::
+
+**8.** (Desafio) Nos anos 1970, muitos países viveram **estagflação** — inflação alta com desemprego alto, simultaneamente. Explique por que esse fenômeno **refutou** a curva de Phillips original (ingênua) e **confirmou** a versão de Friedman-Phelps.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A curva de Phillips **original** afirmava uma relação estável e negativa: inflação alta *deveria* vir com desemprego **baixo**. A estagflação dos anos 1970 — inflação alta **com** desemprego alto — é logicamente impossível nessa curva fixa, e por isso a **refutou** como relação estável e explorável. A versão de **Friedman-Phelps** explica exatamente o ocorrido: (1) anos de políticas expansionistas elevaram as **expectativas de inflação**, deslocando a curva de Phillips de curto prazo **para cima** — o que permite inflação alta em qualquer nível de desemprego; (2) os **choques de oferta** (petróleo em 1973 e 1979) deslocaram a curva ainda mais, elevando inflação e desemprego juntos. Ou seja, o que parecia uma "quebra" da relação era, na verdade, o **deslocamento** das curvas de curto prazo previsto pela teoria com expectativas — confirmando que não há *trade-off* estável de longo prazo e que as expectativas são a variável decisiva.
+:::
+
+## Para saber mais
+
+- @phillips1958 — o estudo empírico original que deu nome à curva; um marco da economia aplicada.
+- @friedman1968 — o discurso presidencial na AEA onde Friedman introduz a taxa natural e demole o *trade-off* permanente; leitura curta e decisiva.
+- @phelps1968 — a formulação paralela e independente do mesmo argumento, com microfundamentos do mercado de trabalho.
+- @blanchard2017 — desenvolvimento moderno da oferta agregada, da curva de Phillips e da lei de Okun, com dados.
+- @froyen2013 — bom para a história do debate e a passagem da Phillips ingênua à aumentada por expectativas.
