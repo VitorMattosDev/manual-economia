@@ -1,3 +1,217 @@
 # Bancos e a criação de moeda {#sec-bancos-criacao-de-moeda}
 
-*(em construção)*
+Aqui está um fato que costuma surpreender: quando um banco lhe concede um empréstimo, ele **não** entrega a você o dinheiro que outra pessoa depositou. Na imensa maioria das vezes, o banco simplesmente digita um número na sua conta — e esse número, que não existia um segundo antes, passa a valer como moeda, aceito pelo supermercado, pelo locador, pela concessionária. O banco *criou* meio de pagamento com um lançamento contábil. Repetido por milhares de bancos e milhões de operações, esse processo é a principal fonte da moeda que circula numa economia moderna. Não é a Casa da Moeda que produz a maior parte do dinheiro do país: são os bancos comerciais.
+
+Como isso é possível sem gerar caos? Onde está o limite? Se cada banco pode criar moeda emprestando, por que não criam infinitamente? Este capítulo abre a "caixa-preta" do sistema bancário e mostra, passo a passo, como os depósitos se multiplicam — e o que segura essa multiplicação. É a peça que faltava para entender, no @sec-banco-central, como a autoridade monetária controla a quantidade de moeda.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- descrever o balanço de um banco comercial e o mecanismo das **reservas fracionárias**;
+- explicar como um empréstimo bancário **cria** moeda escritural;
+- derivar o **multiplicador monetário** e calcular a expansão dos meios de pagamento;
+- entender o papel das **reservas compulsórias**, do encaixe voluntário e da retenção de papel-moeda;
+- distinguir **base monetária** de **meios de pagamento** e relacioná-los pelo multiplicador;
+- reconhecer os limites do modelo do multiplicador e a visão alternativa da moeda **endógena**.
+
+## O banco como intermediário — e como criador
+
+Um **banco comercial** faz duas coisas ao mesmo tempo. Como **intermediário financeiro**, capta recursos de quem tem sobra (depositantes) e os empresta a quem precisa (tomadores), lucrando com a diferença de juros — o *spread*. Mas, ao fazê-lo dentro de um sistema de pagamentos, ele também **cria moeda**: os depósitos que gera contam como meio de pagamento.
+
+A chave para entender isso é o **balanço patrimonial** do banco, que lista de um lado o que ele possui e a receber (**ativos**) e de outro o que ele deve (**passivos**). Para um banco, os **depósitos** dos clientes são um *passivo* (o banco deve esse dinheiro a eles), enquanto os **empréstimos** concedidos e as **reservas** são *ativos*.
+
+::: {.callout-note title="Definição — Reservas bancárias"}
+**Reservas** são os recursos que o banco mantém disponíveis para honrar saques e transferências: dinheiro em caixa mais depósitos do próprio banco junto ao Banco Central. São a parcela dos depósitos que **não** foi emprestada.
+:::
+
+## Reservas fracionárias: a origem da criação de moeda
+
+Se todos os depositantes sacassem seu dinheiro ao mesmo tempo, nenhum banco sobreviveria — porque o banco **não** guarda 100% dos depósitos. A experiência histórica dos ourives mostrou que, num dia normal, apenas uma fração dos clientes vem sacar; o restante fica parado. Logo, o banco pode emprestar a maior parte dos depósitos e reter só uma **fração** como reserva. É o sistema de **reservas fracionárias**, base de todo o sistema bancário moderno.
+
+::: {.callout-note title="Definição — Sistema de reservas fracionárias"}
+No **sistema de reservas fracionárias**, os bancos mantêm como reservas apenas uma fração dos depósitos à vista e emprestam o restante. A fração retida é a **taxa de reservas** (ou encaixe), $r$. É esse sistema que permite — e limita — a criação de moeda pelos bancos.
+:::
+
+Veja o mecanismo num exemplo. Suponha uma taxa de reservas de $r = 20\%$ e acompanhe uma cédula nova de R\$\,1.000 que o Banco Central injeta na economia e que é depositada no Banco A.
+
+::: {#fig-multiplicador}
+
+```{.tikz}
+%%| filename: fig-multiplicador
+%%| alt: Cascata de três bancos mostrando um depósito inicial de mil reais que, com 20 por cento de reservas, gera empréstimos e novos depósitos decrescentes de 800 e 640 reais.
+\begin{tikzpicture}[font=\footnotesize, scale=0.92]
+  % Banco A
+  \node[draw, rounded corners, fill=manualblue!12, align=center] (a) at (0,4)
+    {\textbf{Banco A}\\Depósito: R\$\,1.000\\Reserva (20\%): R\$\,200\\Empresta: R\$\,800};
+  \node[draw, rounded corners, fill=manualblue!12, align=center] (b) at (0,1.5)
+    {\textbf{Banco B}\\Depósito: R\$\,800\\Reserva (20\%): R\$\,160\\Empresta: R\$\,640};
+  \node[draw, rounded corners, fill=manualblue!12, align=center] (c) at (0,-1)
+    {\textbf{Banco C}\\Depósito: R\$\,640\\Reserva (20\%): R\$\,128\\Empresta: R\$\,512};
+  \node[align=center] (d) at (0,-2.6) {$\vdots$};
+  \draw[vetor, ->, >=stealth] (a) -- node[right]{empréstimo vira depósito} (b);
+  \draw[vetor, ->, >=stealth] (b) -- node[right]{empréstimo vira depósito} (c);
+  \draw[vetor, ->, >=stealth] (c) -- (d);
+  \node[manualred, align=center, font=\small] at (5.2,1.5)
+    {Total de depósitos criados:\\[2pt]$1.000\times\dfrac{1}{0{,}20}=\mathbf{R\$\,5.000}$};
+\end{tikzpicture}
+```
+
+A cascata da criação de moeda: cada empréstimo é gasto e redepositado, virando base para um novo empréstimo, sempre menor. A soma converge para um múltiplo do depósito inicial.
+:::
+
+Acompanhe a lógica da @fig-multiplicador:
+
+1. O **Banco A** recebe R\$\,1.000 de depósito. Retém R\$\,200 (20%) e empresta R\$\,800.
+2. Quem tomou os R\$\,800 os gasta; o vendedor deposita esse valor no **Banco B**. Agora há **R\$\,1.800** em depósitos no sistema, embora só existam R\$\,1.000 de papel-moeda.
+3. O Banco B retém R\$\,160 e empresta R\$\,640, que viram depósito no **Banco C**. E assim por diante.
+
+Somando todos os depósitos criados ao longo da cascata:
+
+$$
+D = 1.000 + 800 + 640 + \dots = 1.000\,(1 + 0{,}8 + 0{,}8^2 + \dots) = 1.000 \cdot \frac{1}{1-0{,}8} = 1.000 \cdot \frac{1}{0{,}2}.
+$$
+
+O resultado é **R\$\,5.000** em depósitos, a partir de R\$\,1.000 iniciais. O sistema bancário multiplicou por cinco a moeda.
+
+::: {.callout-important title="Armadilha comum — nenhum banco 'sozinho' cria moeda do nada"}
+Um banco individual empresta apenas o que tem em excesso de reservas — ele não se sente criando moeda. A criação é uma propriedade do **sistema como um todo**: é o redepósito sucessivo dos empréstimos em *outros* bancos que multiplica os meios de pagamento. Cada banco faz algo modesto; o conjunto faz algo notável.
+:::
+
+## O multiplicador monetário
+
+A soma da progressão geométrica acima define o **multiplicador dos depósitos** em sua forma mais simples. Se a taxa de reservas é $r$, cada real de reserva sustenta $1/r$ reais de depósito:
+
+$$
+m_D = \frac{1}{r}.
+$$ {#eq-multiplicador-simples}
+
+Com $r = 20\%$, $m_D = 1/0{,}2 = 5$. Quanto **menor** a taxa de reservas, **maior** o multiplicador — mais moeda o sistema cria por real de reserva. Se os bancos retivessem 100% ($r=1$), o multiplicador seria 1 e não haveria criação alguma (é a proposta do *full-reserve banking*).
+
+### Um multiplicador mais realista
+
+A fórmula simples supõe que todo empréstimo volta integralmente como depósito e que os bancos só retêm o compulsório. Na realidade, há dois "vazamentos":
+
+- o público retém parte da moeda em **espécie** (não deposita tudo) — chame de $c$ a razão papel-moeda/depósitos desejada;
+- os bancos mantêm reservas **além** do exigido (encaixe voluntário, por precaução).
+
+Definindo a **base monetária** $B$ (papel-moeda em poder do público mais reservas bancárias) e os **meios de pagamento** $M1$, a relação entre eles é dada pelo **multiplicador monetário**:
+
+$$
+M1 = m \cdot B, \qquad m = \frac{1 + c}{r + c},
+$$ {#eq-multiplicador}
+
+onde $c$ é a razão papel-moeda/depósitos e $r$ a razão reservas/depósitos. Como $r < 1$, temos $m > 1$: a base monetária é "alavancada" em meios de pagamento. Note que $m$ **cai** quando o público retém mais espécie ($c$ maior) ou quando os bancos guardam mais reservas ($r$ maior) — dois fenômenos típicos de crises de confiança, quando a criação de moeda se contrai.
+
+::: {.callout-note title="Definição — Base monetária e multiplicador"}
+A **base monetária** $B$ (ou moeda de alto poder de expansão) é o passivo monetário do Banco Central: papel-moeda em poder do público + reservas bancárias. Os **meios de pagamento** $M1$ resultam de multiplicá-la pelo **multiplicador monetário** $m$: $M1 = m \cdot B$. O Banco Central controla $B$ diretamente e influencia $m$ (via compulsório e juros).
+:::
+
+::: {.callout-tip title="Intuição — por que se chama moeda de 'alto poder de expansão'"}
+Cada real de base monetária pode sustentar vários reais de meios de pagamento. Por isso a base é chamada de *high-powered money*: um pequeno controle sobre $B$ se propaga, amplificado por $m$, sobre toda a oferta de moeda. É a alavanca por onde o Banco Central atua — tema do próximo capítulo.
+:::
+
+## O que limita a criação de moeda
+
+Se emprestar cria moeda e gera *spread*, o que impede os bancos de emprestar sem parar? Quatro freios operam simultaneamente:
+
+1. **Reservas compulsórias** — o Banco Central exige que uma fração mínima dos depósitos fique recolhida junto a ele, sem ser emprestada. Elevar o compulsório reduz $m$ e freia a criação de moeda.
+2. **Encaixe voluntário e liquidez** — o banco precisa honrar saques e transferências diários; emprestar demais o expõe ao risco de faltar reserva e ter de tomar recursos caros no mercado.
+3. **Retenção de papel-moeda pelo público** — cada real que fica na carteira das pessoas, em vez de depositado, não realimenta a cascata (o termo $c$ na @eq-multiplicador).
+4. **Demanda por crédito e capital** — bancos só criam moeda quando há tomadores dispostos e capazes de pagar, e quando têm **capital** suficiente para suportar os riscos (regras de Basileia, ver @sec-crises-bancarias-regulacao).
+
+::: {.callout-warning title="Controvérsia — moeda exógena ou endógena?"}
+O modelo do multiplicador sugere que o Banco Central fixa a base $B$ e a moeda resulta multiplicando-a — a moeda seria **exógena**, comandada de cima. A visão **pós-keynesiana** inverte a causalidade: na prática, os bancos primeiro concedem crédito conforme a demanda solvável e *depois* buscam as reservas de que precisam, que o Banco Central acaba fornecendo para manter a taxa de juros na meta. Nessa leitura, a moeda é **endógena** — determinada pela demanda por crédito, não por uma base fixada de antemão. Bancos centrais modernos, que operam fixando a **taxa de juros** (e não a quantidade de moeda), dão razão prática a boa parte dessa crítica: a quantidade de reservas se ajusta à meta de juros. O multiplicador continua útil como contabilidade, mas menos como teoria de controle.
+:::
+
+## Base monetária × meios de pagamento: um exemplo numérico
+
+Suponha uma economia com base monetária $B = 200$ bilhões, razão reservas/depósitos $r = 0{,}15$ e razão papel-moeda/depósitos $c = 0{,}25$. O multiplicador é:
+
+$$
+m = \frac{1 + c}{r + c} = \frac{1 + 0{,}25}{0{,}15 + 0{,}25} = \frac{1{,}25}{0{,}40} = 3{,}125.
+$$
+
+Logo, os meios de pagamento são $M1 = m \cdot B = 3{,}125 \times 200 = 625$ bilhões. Se o Banco Central elevar o compulsório, aumentando $r$ para $0{,}25$, o multiplicador cai para $m = 1{,}25/0{,}50 = 2{,}5$, e $M1$ encolhe para $500$ bilhões — sem tocar em $B$. Eis, em miniatura, como a política de compulsório atua sobre a oferta de moeda.
+
+## 🇧🇷 Brasil em Foco
+
+**O compulsório como instrumento — e o peso histórico no Brasil.** O Brasil é conhecido por usar **recolhimentos compulsórios** elevados em comparação internacional. Historicamente, sobre depósitos à vista o compulsório já esteve em patamares altos (chegando à casa de 40%–45% em certos períodos), e há também recolhimentos sobre poupança e depósitos a prazo. O Banco Central utiliza esse instrumento tanto para fins de política monetária (enxugar ou liberar liquidez) quanto prudenciais. Em momentos de estresse — como no início da pandemia, em 2020 —, o BCB **reduziu** compulsórios para liberar centenas de bilhões de reais em liquidez ao sistema, elevando $m$ e sustentando o crédito. É a @eq-multiplicador operando na prática.
+
+**Um sistema bancário concentrado.** A criação de moeda no Brasil se dá num sistema fortemente **concentrado**: um punhado de grandes bancos (dois deles públicos — Banco do Brasil e Caixa — e alguns privados) responde pela maior parte dos depósitos e do crédito. Essa concentração tem implicações para o *spread* bancário — a diferença entre o juro que o banco cobra do tomador e o que paga ao depositante —, historicamente **um dos mais altos do mundo**, tema que o @sec-taxa-de-juros-selic retoma. Nos últimos anos, a entrada de **bancos digitais e fintechs**, impulsionada pelo Pix e pelo *open finance*, começou a acirrar a concorrência na ponta dos serviços.
+
+**Do "dinheiro na conta" ao Pix: moeda escritural em estado puro.** Quando você recebe o salário, o valor não chega em cédulas: é um **depósito** criado no seu nome — moeda escritural. Ao pagar o aluguel por Pix, esse depósito é transferido para outra conta, sem que uma única nota mude de mãos. O Pix tornou visível, para o cidadão comum, aquilo que sempre foi verdade no sistema de reservas fracionárias: a maior parte da moeda em uso são **saldos em contas de banco**, não papel — e os bancos os movimentam liquidando posições em **reservas** junto ao Banco Central.
+
+> **Fontes e séries para explorar:** Banco Central do Brasil — SGS (base monetária, meios de pagamento, multiplicador); normas de recolhimento compulsório no site do BCB; Relatório de Economia Bancária (spread e concentração). Compulsórios e concentração mudam com o tempo — confira a data de referência.
+
+## Resumo do capítulo
+
+- Bancos comerciais são **intermediários** que captam depósitos e concedem empréstimos, mas, ao fazê-lo, **criam moeda** escritural: um empréstimo é um depósito novo lançado na conta do tomador.
+- No sistema de **reservas fracionárias**, o banco retém só uma fração $r$ dos depósitos e empresta o resto; o redepósito sucessivo dos empréstimos em outros bancos multiplica os meios de pagamento.
+- O **multiplicador simples** é $m_D = 1/r$; o **multiplicador monetário** realista, $m = (1+c)/(r+c)$, incorpora a retenção de papel-moeda ($c$) e as reservas ($r$). Meios de pagamento são $M1 = m \cdot B$.
+- A criação de moeda é limitada por **reservas compulsórias**, encaixe voluntário, retenção de espécie pelo público, demanda por crédito e exigências de **capital**.
+- A **base monetária** é o passivo monetário do Banco Central (papel-moeda + reservas) — a "moeda de alto poder de expansão" sobre a qual a autoridade atua.
+- Há debate entre a visão de moeda **exógena** (multiplicador) e **endógena** (crédito puxa reservas); bancos centrais que fixam a **taxa de juros** dão respaldo prático à segunda.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** No balanço de um banco, classifique como **ativo** ou **passivo**: (a) depósitos à vista dos clientes; (b) empréstimos concedidos; (c) reservas no Banco Central. Explique.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Passivo** — o banco deve esse dinheiro aos depositantes.
+(b) **Ativo** — o banco tem o direito de receber esses valores (com juros).
+(c) **Ativo** — são recursos do banco depositados no BC, que ele pode mobilizar.
+:::
+
+**2.** Explique, em uma frase, por que um único banco "não sente" que está criando moeda, mas o sistema cria.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Cada banco apenas empresta o excesso de reservas que tem — algo modesto e limitado —, mas como esse empréstimo vira depósito em *outro* banco, que por sua vez empresta de novo, o redepósito sucessivo pelo sistema como um todo multiplica os meios de pagamento.
+:::
+
+**3.** A taxa de reservas é $r = 25\%$. Calcule o multiplicador simples dos depósitos e o total de depósitos gerados por uma injeção inicial de R\$\,2.000.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$m_D = 1/r = 1/0{,}25 = 4$. Depósitos totais $= 2.000 \times 4 = \mathbf{R\$\,8.000}$.
+:::
+
+**4.** Mantendo a injeção de R\$\,2.000, o Banco Central eleva o compulsório e $r$ passa de 25% para 40%. Qual o novo multiplicador e o novo total de depósitos? O que isso ilustra?
+
+::: {.callout-tip collapse="true" title="Solução"}
+$m_D = 1/0{,}40 = 2{,}5$. Depósitos totais $= 2.000 \times 2{,}5 = R\$\,5.000$. Elevar o compulsório **reduz** o multiplicador e, portanto, a criação de moeda — é assim que o compulsório funciona como instrumento contracionista.
+:::
+
+**5.** Numa economia, $B = 150$ bilhões, $r = 0{,}20$ e $c = 0{,}30$. Calcule o multiplicador monetário e os meios de pagamento $M1$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$m = \dfrac{1 + c}{r + c} = \dfrac{1{,}30}{0{,}50} = 2{,}6$. Logo $M1 = m \cdot B = 2{,}6 \times 150 = \mathbf{390}$ bilhões.
+:::
+
+**6.** No exercício anterior, uma crise de confiança faz o público reter mais espécie: $c$ sobe de 0,30 para 0,50, e os bancos, cautelosos, elevam o encaixe: $r$ vai de 0,20 para 0,30. Recalcule $m$ e $M1$ (com $B$ constante). Interprete.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$m = \dfrac{1 + 0{,}50}{0{,}30 + 0{,}50} = \dfrac{1{,}50}{0{,}80} = 1{,}875$. $M1 = 1{,}875 \times 150 = \mathbf{281{,}25}$ bilhões. Mesmo com a base $B$ inalterada, os meios de pagamento **encolhem** de 390 para ~281 bilhões: a fuga para o papel-moeda e o entesouramento de reservas contraem a moeda. É o mecanismo que agravou a Grande Depressão — uma corrida bancária derruba $m$ e a oferta de moeda despenca sem que o BC "faça" nada.
+:::
+
+**7.** (Análise de caso) No início da pandemia (2020), o Banco Central do Brasil reduziu os recolhimentos compulsórios. Usando o multiplicador, explique o objetivo e o efeito esperado sobre a oferta de moeda e o crédito.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Reduzir o compulsório diminui $r$, o que **eleva** o multiplicador $m = (1+c)/(r+c)$. Com a mesma base monetária, um $m$ maior permite mais depósitos e empréstimos: o objetivo era liberar liquidez ao sistema bancário e sustentar a oferta de crédito num momento de forte incerteza, em que bancos e público tendiam a reter recursos (elevando $r$ e $c$ por precaução, o que contrairia a moeda). Foi uma medida expansionista pelo lado do multiplicador, complementando cortes de juros.
+:::
+
+**8.** (Desafio) Explique a diferença entre as visões de moeda **exógena** e **endógena** e por que o fato de os bancos centrais modernos fixarem a *taxa de juros* (e não a quantidade de moeda) favorece a segunda.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Na visão **exógena** (multiplicador), o BC fixa a base $B$ e a moeda é $m \cdot B$: a causalidade vai da base para o crédito. Na visão **endógena** (pós-keynesiana), os bancos concedem crédito conforme a demanda solvável e depois obtêm as reservas necessárias, que o BC fornece. Como os bancos centrais modernos operam definindo uma **meta de taxa de juros**, eles se comprometem a ofertar ou enxugar reservas na quantidade necessária para manter essa taxa — ou seja, a quantidade de reservas (e da base) **se ajusta** ao crédito e à meta de juros, em vez de ser fixada de forma independente. Isso dá respaldo prático à endogeneidade: na margem, é o crédito que "puxa" as reservas, não o contrário. O multiplicador segue válido como identidade contábil, mas não como mecanismo de controle direto da moeda.
+:::
+
+## Para saber mais
+
+- @mishkin2000 — capítulos sobre o processo de criação de depósitos e o multiplicador monetário, com balanços em T detalhados.
+- @carvalho2015 — apresenta com profundidade a controvérsia entre moeda exógena e endógena e a visão de moeda endógena aplicada ao Brasil.
+- @lopes2005 — tratamento clássico do multiplicador e dos recolhimentos compulsórios no sistema brasileiro.
+- @blanchard2017 — o capítulo sobre moeda e bancos integra a criação de moeda ao restante da macroeconomia.
