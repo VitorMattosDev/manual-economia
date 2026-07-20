@@ -1,3 +1,220 @@
 # O Sistema Financeiro Nacional e o Pix {#sec-sfn-pix}
 
-*(em construção)*
+Quando você faz um Pix de R\$\,50 para dividir a conta do jantar, algo notável acontece em segundos: dois bancos diferentes acertam suas posições numa infraestrutura operada pelo Banco Central, um registro é atualizado, e o dinheiro "chega" instantaneamente, a qualquer hora, sem custo. Poucos anos atrás, isso levaria um dia útil e cobraria uma tarifa. Por trás dessa mágica cotidiana está uma arquitetura complexa e invisível — o **Sistema Financeiro Nacional** — que canaliza a poupança de milhões de pessoas para quem precisa de recursos, e cujos canos foram redesenhados pela revolução dos pagamentos instantâneos.
+
+Nos capítulos anteriores, olhamos a moeda, os bancos e o banco central peça por peça. Agora montamos o quadro completo: como se organiza o sistema que intermedeia recursos numa economia, quem regula o quê, e por que o **Pix** e o **open finance** estão redefinindo o setor. É o capítulo que traduz a teoria monetária na infraestrutura concreta que você usa todo dia.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- explicar a **função econômica** de um sistema financeiro: intermediação e alocação de recursos;
+- distinguir intermediação via **mercado de crédito** (bancária) e via **mercado de capitais** (direta);
+- descrever a estrutura do **Sistema Financeiro Nacional (SFN)**: órgãos normativos, supervisores e operadores;
+- entender o funcionamento e o impacto do **Pix** como sistema de pagamentos instantâneos;
+- compreender o que é o **open finance** e como ele afeta a concorrência;
+- reconhecer o papel do sistema financeiro no desenvolvimento e os riscos que ele carrega.
+
+## Para que serve um sistema financeiro
+
+Numa economia, há quem tenha recursos sobrando (**poupadores**: famílias que guardam parte da renda) e quem precise de recursos (**tomadores**: empresas que querem investir, famílias que querem antecipar consumo, o governo). O **sistema financeiro** é o conjunto de instituições e mercados que **conecta os dois lados**, canalizando a poupança para os usos mais produtivos. Sem ele, cada projeto dependeria apenas dos recursos próprios de quem o concebe — e boas ideias sem capital morreriam na prancheta.
+
+::: {.callout-note title="Definição — Sistema financeiro"}
+O **sistema financeiro** é o conjunto de instituições, mercados e instrumentos que intermedeia recursos entre **poupadores** (agentes superavitários) e **tomadores** (agentes deficitários), viabilizando crédito, investimento e pagamentos. Suas funções centrais são **alocar** capital, **transformar** prazos e riscos, **prover liquidez** e **operar o sistema de pagamentos**.
+:::
+
+Além de simplesmente transferir recursos, o sistema financeiro desempenha funções sofisticadas: **transforma prazos** (junta muitos depósitos de curto prazo para financiar um imóvel de 30 anos), **diversifica riscos** (pulveriza o risco de um projeto entre muitos investidores), **produz informação** (avalia quem é bom pagador) e **opera os pagamentos** (liquida as trocas da economia). É, em suma, o sistema circulatório da economia.
+
+## Dois caminhos: crédito bancário e mercado de capitais
+
+Os recursos podem fluir do poupador ao tomador por dois grandes caminhos (@fig-intermediacao).
+
+::: {#fig-intermediacao}
+
+```{.tikz}
+%%| filename: fig-intermediacao
+%%| alt: Diagrama mostrando poupadores à esquerda e tomadores à direita, ligados por dois caminhos: intermediação bancária no centro e mercado de capitais direto por baixo.
+\begin{tikzpicture}[font=\footnotesize, scale=0.95]
+  \node[draw, rounded corners, fill=manualblue!12, align=center] (poup) at (0,0)
+    {\textbf{Poupadores}\\(superavitários)};
+  \node[draw, rounded corners, fill=manualblue!12, align=center] (tom) at (9,0)
+    {\textbf{Tomadores}\\(deficitários)};
+  % intermediação bancária
+  \node[draw, rounded corners, fill=manualred!15, align=center] (banco) at (4.5,1.6)
+    {\textbf{Banco}\\(intermediação)};
+  \draw[vetor,->,>=stealth] (poup) to[bend left] node[above,font=\scriptsize]{depósito} (banco);
+  \draw[vetor,->,>=stealth] (banco) to[bend left] node[above,font=\scriptsize]{empréstimo} (tom);
+  % mercado de capitais
+  \node[draw, rounded corners, fill=manualgreen!15, align=center] (merc) at (4.5,-1.6)
+    {\textbf{Mercado de capitais}\\(ações, títulos)};
+  \draw[vetor,->,>=stealth] (poup) to[bend right] node[below,font=\scriptsize]{compra títulos} (merc);
+  \draw[vetor,->,>=stealth] (merc) to[bend right] node[below,font=\scriptsize]{capta recursos} (tom);
+\end{tikzpicture}
+```
+
+Os dois caminhos da intermediação. Em cima, a **indireta** (bancária): o banco se interpõe, capta depósitos e empresta. Embaixo, a **direta** (mercado de capitais): poupador e tomador se encontram via títulos e ações.
+:::
+
+- **Intermediação indireta (mercado de crédito).** O **banco** se coloca no meio: capta depósitos dos poupadores e empresta aos tomadores, assumindo o risco de crédito e ganhando o *spread*. O poupador não sabe (nem se importa com) quem tomou seu dinheiro; sua relação é com o banco. É o canal dominante no Brasil.
+- **Intermediação direta (mercado de capitais).** Poupador e tomador se encontram **diretamente** por meio de títulos: a empresa emite **ações** ou **debêntures**, e o investidor as compra. Não há banco assumindo o risco — ele é do investidor, que em troca busca retorno maior. É o tema central do Volume 14.
+
+Economias desenvolvidas costumam ter mercados de capitais profundos; o Brasil, historicamente, é mais **bancarizado** (dependente de crédito bancário), embora o mercado de capitais venha crescendo.
+
+## A estrutura do Sistema Financeiro Nacional
+
+O **Sistema Financeiro Nacional (SFN)** é organizado em três níveis hierárquicos: quem **normatiza** (define as regras), quem **supervisiona** (fiscaliza o cumprimento) e quem **opera** (executa as atividades). A @fig-sfn resume a arquitetura, dividida pelos quatro grandes mercados: moeda/crédito, capitais, seguros e previdência complementar.
+
+::: {#fig-sfn}
+
+```{.tikz}
+%%| filename: fig-sfn
+%%| alt: Organograma do Sistema Financeiro Nacional em três níveis: órgãos normativos no topo, supervisores no meio e operadores na base.
+\begin{tikzpicture}[font=\footnotesize, scale=0.9]
+  % nível normativo
+  \node[draw, rounded corners, fill=manualred!15, align=center] (cmn) at (0,4)
+    {\textbf{CMN}\\Conselho Monetário Nacional};
+  \node[draw, rounded corners, fill=manualred!15, align=center] (cnsp) at (5.2,4)
+    {\textbf{CNSP} / \textbf{CNPC}\\seguros / previdência};
+  % nível supervisor
+  \node[draw, rounded corners, fill=manualblue!15, align=center] (bcb) at (-1.5,2)
+    {\textbf{BCB}\\Banco Central};
+  \node[draw, rounded corners, fill=manualblue!15, align=center] (cvm) at (1.6,2)
+    {\textbf{CVM}\\val.\ mobiliários};
+  \node[draw, rounded corners, fill=manualblue!15, align=center] (susep) at (5.2,2)
+    {\textbf{SUSEP}/\textbf{PREVIC}};
+  % nível operador
+  \node[draw, rounded corners, fill=manualgreen!15, align=center] (bancos) at (-1.5,0)
+    {bancos, \\cooperativas, fintechs};
+  \node[draw, rounded corners, fill=manualgreen!15, align=center] (bolsa) at (1.6,0)
+    {B3, corretoras,\\fundos};
+  \node[draw, rounded corners, fill=manualgreen!15, align=center] (seg) at (5.2,0)
+    {seguradoras,\\ EFPCs};
+  \draw[vetor,->,>=stealth] (cmn) -- (bcb);
+  \draw[vetor,->,>=stealth] (cmn) -- (cvm);
+  \draw[vetor,->,>=stealth] (cnsp) -- (susep);
+  \draw[vetor,->,>=stealth] (bcb) -- (bancos);
+  \draw[vetor,->,>=stealth] (cvm) -- (bolsa);
+  \draw[vetor,->,>=stealth] (susep) -- (seg);
+  \node[rotate=90, manualgray] at (-3.6,4) {normatizam};
+  \node[rotate=90, manualgray] at (-3.6,2) {supervisionam};
+  \node[rotate=90, manualgray] at (-3.6,0) {operam};
+\end{tikzpicture}
+```
+
+O SFN em três níveis. O **CMN** é o órgão máximo normativo; **Banco Central** e **CVM** supervisionam; bancos, a **B3** e demais instituições operam.
+:::
+
+Os principais atores:
+
+- **Conselho Monetário Nacional (CMN)** — órgão **normativo** máximo do sistema. Define as diretrizes de política monetária, cambial e creditícia, e fixa, por exemplo, a **meta de inflação**. É composto por ministros e pelo presidente do BC (não executa, apenas normatiza).
+- **Banco Central do Brasil (BCB)** — principal **supervisor**. Executa a política monetária, fiscaliza os bancos e demais instituições financeiras, e opera os sistemas de pagamento (inclusive o Pix). É o coração operacional do sistema (ver @sec-banco-central).
+- **Comissão de Valores Mobiliários (CVM)** — supervisiona o **mercado de capitais**: bolsa, ações, fundos, ofertas públicas; protege o investidor e zela pela integridade do mercado.
+- **SUSEP** e **PREVIC** — supervisionam, respectivamente, o mercado de **seguros** (e capitalização, previdência aberta) e a **previdência complementar fechada** (fundos de pensão).
+- **Operadores** — bancos comerciais, múltiplos e de investimento, cooperativas de crédito, fintechs, a bolsa (**B3**), corretoras, seguradoras, fundos de pensão etc.
+
+::: {.callout-important title="Armadilha comum — CMN não é o Banco Central"}
+O **CMN** é um conselho **normativo** (define regras e diretrizes, como a meta de inflação); o **Banco Central** é o órgão **executor e supervisor** (implementa a política e fiscaliza as instituições). O CMN decide *o quê*; o BC faz *acontecer*. Confundi-los é erro comum em provas e no noticiário.
+:::
+
+## O Pix: a revolução dos pagamentos instantâneos
+
+Lançado pelo Banco Central em novembro de **2020**, o **Pix** é o sistema de **pagamentos instantâneos** brasileiro: transfere recursos entre contas em segundos, 24 horas por dia, 7 dias por semana, de graça para pessoas físicas. Em poucos anos, tornou-se o meio de pagamento mais usado do país, superando cartões, boletos, TED e DOC.
+
+O que faz o Pix funcionar:
+
+- **Chaves Pix** — identificadores simples (CPF, e-mail, telefone, chave aleatória) que substituem os dados bancários completos, reduzindo o atrito da transação.
+- **Liquidação em tempo real** — a transferência é liquidada nas contas de reservas dos bancos junto ao Banco Central quase instantaneamente, em infraestrutura operada pelo BCB (o SPI).
+- **Interoperabilidade e obrigatoriedade** — todas as instituições relevantes são obrigadas a oferecer o Pix, garantindo que qualquer conta "converse" com qualquer outra.
+
+Economicamente, o Pix é muito mais que uma comodidade. Ao reduzir a **custos de transação** a quase zero e dispensar intermediários caros (as bandeiras de cartão), ele **inclui financeiramente** milhões de pessoas antes à margem do sistema, **formaliza** transações (com efeitos sobre arrecadação) e **acirra a concorrência** — pequenos comerciantes deixam de pagar taxas de maquininha, e bancos perdem receita de tarifas. É um caso exemplar de infraestrutura pública que remodela um mercado privado.
+
+::: {.callout-tip title="Intuição — por que um banco central operar pagamentos muda o jogo"}
+Pagamentos instantâneos existiam em outros países, mas geridos por consórcios privados, muitas vezes caros e fragmentados. Ao construir o Pix como **bem público** — gratuito, obrigatório e interoperável —, o Banco Central resolveu de uma vez o problema de coordenação e quebrou barreiras de entrada. O resultado: adoção massiva em tempo recorde e um choque de concorrência que a iniciativa privada, sozinha, dificilmente produziria.
+:::
+
+## Open finance e o futuro do sistema
+
+A próxima fronteira é o **open finance** (sistema financeiro aberto). A ideia: os **dados financeiros pertencem ao cliente**, não ao banco. Com o consentimento do cliente, as instituições devem **compartilhar** seus dados (histórico, transações) com concorrentes, permitindo que ele leve seu "histórico financeiro" para onde quiser e receba ofertas melhores.
+
+O efeito esperado é **reduzir a assimetria de informação** e a barreira de troca de banco, aumentando a concorrência e comprimindo *spreads* e tarifas. Combinado ao Pix e à entrada de **fintechs** e bancos digitais, o open finance tende a **desmontar** parte do poder de mercado dos grandes bancos incumbentes. É a aplicação prática, no varejo financeiro, dos conceitos de informação assimétrica e concorrência que vimos nos Volumes 5 e 6.
+
+## 🇧🇷 Brasil em Foco
+
+**Um sistema concentrado sob pressão competitiva.** O SFN brasileiro é historicamente **concentrado**: um pequeno número de grandes bancos (Itaú, Bradesco, Santander e os públicos Banco do Brasil e Caixa) responde pela maior parte dos ativos, depósitos e crédito. Essa concentração é apontada como uma das causas dos elevados *spreads* discutidos no @sec-taxa-de-juros-selic. A novidade da última década é a pressão competitiva vinda das **fintechs** e bancos digitais (como Nubank, entre outros), que, apoiados no Pix e no open finance, conquistaram dezenas de milhões de clientes e forçaram os incumbentes a reduzir tarifas e digitalizar serviços.
+
+**O Pix em números e efeitos.** O **Pix** superou, em poucos anos, todos os outros meios de pagamento em número de transações, com bilhões de operações por mês e centenas de milhões de chaves cadastradas. Seus efeitos econômicos incluem forte **inclusão financeira** (milhões de pessoas passaram a transacionar digitalmente), queda no uso de dinheiro em espécie e no custo de aceitar pagamentos para pequenos negócios, e ganhos de **formalização**. O Banco Central segue expandindo funcionalidades (Pix Parcelado, Pix Automático, Pix por aproximação), consolidando-o como espinha dorsal dos pagamentos no país.
+
+**Do Pix ao Drex.** O próximo passo institucional é o **Drex**, a **moeda digital de banco central** (CBDC) brasileira, em desenvolvimento pelo BCB. Diferente do Pix (que movimenta depósitos bancários existentes), o Drex é concebido como moeda do banco central em formato digital, com potencial para viabilizar "contratos inteligentes" e novos serviços financeiros tokenizados. É a fronteira que liga a infraestrutura de pagamentos deste capítulo à discussão sobre o futuro da moeda aberta no @sec-moeda.
+
+> **Fontes e séries para explorar:** Banco Central do Brasil (estatísticas do Pix, estrutura do SFN, projeto Drex, dados de open finance); CVM (mercado de capitais); Relatório de Economia Bancária (concentração e spread). Os números do Pix e da concorrência bancária mudam rápido — verifique a data de referência.
+
+## Resumo do capítulo
+
+- O **sistema financeiro** conecta poupadores e tomadores, alocando capital, transformando prazos e riscos, provendo liquidez e operando os pagamentos — o "sistema circulatório" da economia.
+- Os recursos fluem por dois caminhos: **intermediação indireta** (crédito bancário, com o banco assumindo o risco) e **intermediação direta** (mercado de capitais, com o investidor assumindo o risco). O Brasil é historicamente mais bancarizado.
+- O **SFN** tem três níveis: **normativo** (CMN e conselhos de seguros/previdência), **supervisor** (BCB, CVM, SUSEP, PREVIC) e **operador** (bancos, B3, corretoras, seguradoras, fintechs).
+- O **CMN** define regras (inclusive a meta de inflação); o **Banco Central** executa e supervisiona; a **CVM** cuida do mercado de capitais.
+- O **Pix** (2020) é o sistema de pagamentos instantâneos operado pelo BCB: gratuito, instantâneo e interoperável, reduziu custos de transação, incluiu financeiramente milhões e acirrou a concorrência.
+- O **open finance** dá ao cliente a propriedade de seus dados, reduzindo assimetrias e barreiras de troca; junto a Pix e fintechs, pressiona a concentração bancária. A fronteira seguinte é o **Drex** (CBDC).
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique, em uma frase, por que uma economia sem sistema financeiro desperdiçaria oportunidades produtivas.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Sem um sistema financeiro que canalize a poupança de quem tem recursos para quem tem bons projetos, cada empreendimento dependeria apenas do capital próprio de quem o concebe — e boas ideias sem recursos próprios não sairiam do papel, enquanto poupança ociosa não seria aproveitada.
+:::
+
+**2.** Distinga **intermediação direta** e **indireta**. Em qual delas o banco assume o risco de crédito?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Na **indireta** (mercado de crédito), o banco se interpõe: capta depósitos e empresta, assumindo o **risco de crédito** (se o tomador não paga, a perda é do banco, não do depositante). Na **direta** (mercado de capitais), poupador e tomador se ligam por títulos/ações, e o risco é do **investidor**, não de um intermediário. O banco assume o risco na intermediação **indireta**.
+:::
+
+**3.** Coloque cada instituição no nível correto do SFN (normativo, supervisor ou operador): (a) CVM; (b) CMN; (c) um banco cooperativo; (d) Banco Central.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) CVM — **supervisor** (mercado de capitais). (b) CMN — **normativo** (órgão máximo). (c) banco cooperativo — **operador**. (d) Banco Central — **supervisor** (e executor da política monetária).
+:::
+
+**4.** Por que o Pix é descrito como uma infraestrutura que reduz **custos de transação**? Cite dois efeitos econômicos dessa redução.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O Pix transfere recursos em segundos, de graça e a qualquer hora, dispensando intermediários caros (bandeiras de cartão, tarifas de TED). Isso reduz drasticamente o custo de realizar um pagamento. Efeitos: (i) **inclusão financeira** — pessoas e pequenos negócios antes excluídos passam a transacionar digitalmente; (ii) **mais concorrência e menos receita de tarifas** para os bancos, além de formalização de transações. (Também: queda no uso de dinheiro em espécie.)
+:::
+
+**5.** Explique como o **open finance** pode reduzir os *spreads* bancários, relacionando com a assimetria de informação.
+
+::: {.callout-tip collapse="true" title="Solução"}
+No open finance, o cliente é dono de seus dados e pode compartilhá-los, com consentimento, com bancos concorrentes. Isso **reduz a assimetria de informação**: um novo banco passa a conhecer o histórico e o risco do cliente, podendo oferecer crédito mais barato a bons pagadores (antes "presos" ao banco que detinha seus dados). Além de baixar a **barreira de troca** de instituição, aumenta a concorrência pela clientela — pressionando *spreads* e tarifas para baixo.
+:::
+
+**6.** O Brasil é frequentemente descrito como uma economia "bancarizada" em contraste com economias de "mercado de capitais". Explique a diferença e uma implicação para as empresas.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Numa economia **bancarizada**, o crédito bancário (intermediação indireta) é a principal fonte de financiamento; num sistema baseado em **mercado de capitais**, empresas captam diretamente emitindo ações e títulos. Implicação: no Brasil, empresas — sobretudo as menores — dependem mais de empréstimos bancários, sujeitos a *spreads* altos e a garantias exigentes, o que pode encarecer e restringir o investimento, comparado a economias onde o acesso ao mercado de capitais é mais amplo e barato.
+:::
+
+**7.** (Análise de caso) O Pix foi construído pelo Banco Central como um bem público (gratuito, obrigatório, interoperável), em vez de deixado à iniciativa privada. Apresente um argumento a favor dessa escolha e um possível risco ou crítica.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**A favor:** pagamentos instantâneos têm forte característica de **rede** e envolvem um problema de coordenação — soluções privadas fragmentadas tendem a ser caras, pouco interoperáveis e a preservar o poder de mercado dos incumbentes. Ao provê-lo como bem público, o BC garantiu adoção universal, custo quase zero e um choque de concorrência e inclusão que o mercado dificilmente entregaria sozinho. **Risco/crítica:** concentra numa infraestrutura estatal um ponto crítico do sistema de pagamentos (riscos operacionais, de segurança e de privacidade dos dados); pode desincentivar inovação privada em pagamentos; e levanta questões sobre a extensão do papel do Estado e o uso dos dados transacionais. O desenho busca mitigar isso com regras de segurança e governança.
+:::
+
+**8.** (Desafio) Relacione o Pix, o open finance e a entrada de fintechs à estrutura de mercado do setor bancário brasileiro (concentração e *spread*). Que teoria dos Volumes 5–6 ilumina esse processo?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O setor bancário brasileiro é altamente **concentrado** (oligopólio de poucos grandes bancos), o que — pela teoria de estruturas de mercado (Volume 5) — está associado a maior poder de mercado, *spreads* e tarifas elevados. Pix, open finance e fintechs atacam justamente as **barreiras à entrada** e as **assimetrias de informação** (Volume 6) que sustentavam esse poder: o Pix elimina a vantagem da rede de pagamentos dos incumbentes; o open finance derruba a barreira de troca ao dar ao cliente seus dados; as fintechs, com custos menores (sem agências físicas), entram e disputam clientes. O resultado esperado é um mercado **mais contestável**, com margens comprimidas — uma transição de oligopólio concentrado rumo a maior concorrência. É a teoria da concorrência e da informação assimétrica operando na prática do varejo financeiro.
+:::
+
+## Para saber mais
+
+- @carvalho2015 — apresenta a estrutura e as funções do sistema financeiro, com foco no caso brasileiro e no papel da intermediação.
+- @mishkin2000 — capítulos sobre a estrutura do sistema financeiro, intermediação e sistemas de pagamento.
+- @lopes2005 — para a organização institucional do Sistema Financeiro Nacional e seus mercados.
+- @pindyck2013 — para os conceitos de estrutura de mercado e poder de mercado aplicáveis ao setor bancário.
+- @giambiagi2016 — para o contexto da regulação e das reformas do sistema financeiro brasileiro.
