@@ -1,3 +1,221 @@
 # O Banco Central: funções e instrumentos {#sec-banco-central}
 
-*(em construção)*
+Toda quarta-feira à noite, a cada 45 dias, um comunicado de poucas linhas move trilhões de reais. O Comitê de Política Monetária do Banco Central anuncia a nova taxa Selic, e em segundos os juros do seu financiamento imobiliário, o rendimento da sua aplicação, o valor do dólar e as decisões de investimento de milhares de empresas começam a se ajustar. Nenhuma outra instituição da economia concentra tanto poder sobre a moeda — e, por meio dela, sobre a inflação, o crédito e o emprego. Esse poder pertence ao **Banco Central**.
+
+No capítulo anterior, vimos que os bancos comerciais criam a maior parte da moeda. Mas quem controla os bancos? Quem emite a base monetária, socorre instituições em pânico e decide o preço básico do dinheiro? Este capítulo apresenta a autoridade monetária: o que ela faz, com quais **instrumentos** atua sobre a oferta de moeda e os juros, e por que o mundo caminhou para bancos centrais **independentes**. É a ponte entre a mecânica bancária dos capítulos anteriores e a política monetária que estudaremos a seguir.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- enunciar as **funções** típicas de um banco central;
+- explicar os três **instrumentos clássicos** de política monetária: mercado aberto, redesconto e compulsório;
+- entender como o Banco Central controla a **taxa de juros** por meio das operações de mercado aberto;
+- distinguir política monetária **expansionista** de **contracionista** e seus efeitos;
+- compreender o papel de **emprestador de última instância**;
+- discutir a **independência** do banco central e seus prós e contras.
+
+## O que faz um banco central
+
+Um **banco central** é a instituição pública responsável pela moeda e pelo sistema financeiro de um país. Diferente de um banco comercial, ele não busca lucro nem atende pessoas físicas: é o "banco dos bancos" e o "banco do governo". Suas funções típicas são:
+
+- **Emissão de moeda** — detém o monopólio de emitir papel-moeda (a base monetária física).
+- **Banco dos bancos** — mantém as **reservas** dos bancos comerciais, liquida os pagamentos entre eles e lhes empresta em caso de necessidade.
+- **Execução da política monetária** — controla a oferta de moeda e a taxa de juros para perseguir seus objetivos (tipicamente, estabilidade de preços).
+- **Emprestador de última instância** — socorre bancos solventes, porém ilíquidos, evitando que uma crise de liquidez vire colapso sistêmico.
+- **Supervisão e regulação prudencial** do sistema financeiro (ver @sec-crises-bancarias-regulacao).
+- **Gestão das reservas internacionais** e, frequentemente, atuação no mercado de câmbio.
+- **Banqueiro do governo** — administra a conta única do Tesouro e opera a dívida pública no mercado.
+
+::: {.callout-note title="Definição — Banco central"}
+O **banco central** é a autoridade monetária de um país: emite a moeda de curso legal, guarda as reservas dos bancos, executa a política monetária e atua como emprestador de última instância e regulador do sistema financeiro. No Brasil, é o **Banco Central do Brasil (BCB)**, criado em 1964.
+:::
+
+## Os instrumentos de política monetária
+
+Para cumprir sua missão, o banco central dispõe de três **instrumentos clássicos**, todos operando sobre a base monetária ou o multiplicador vistos no @sec-bancos-criacao-de-moeda.
+
+### 1. Operações de mercado aberto (*open market*)
+
+O instrumento mais importante e ágil. O banco central **compra e vende títulos públicos** no mercado. Quando **compra** títulos, ele paga com reservas novas, **injetando** base monetária: a liquidez sobe e os juros tendem a cair. Quando **vende** títulos, **enxuga** reservas: a liquidez cai e os juros sobem. É por essa alavanca, exercida diariamente, que o BC mantém a taxa de juros de curtíssimo prazo colada à meta definida (a Selic, no Brasil).
+
+::: {.callout-note title="Definição — Operações de mercado aberto"}
+As **operações de mercado aberto** são as compras e vendas de títulos públicos pelo banco central para regular a liquidez do sistema. Compra de títulos = injeção de reservas (expansionista); venda de títulos = enxugamento de reservas (contracionista). São o principal instrumento de controle diário da taxa de juros.
+:::
+
+### 2. Redesconto (janela de liquidez)
+
+O banco central empresta reservas diretamente aos bancos que ficam temporariamente sem liquidez, cobrando a **taxa de redesconto**, tipicamente **acima** da taxa básica (é uma linha de socorro, não de financiamento barato). Elevar a taxa de redesconto encarece esse recurso e desestimula os bancos a se alavancarem; reduzi-la faz o oposto. Além do papel de instrumento, o redesconto é a face operacional da função de **emprestador de última instância**.
+
+### 3. Reservas compulsórias
+
+Como vimos, o banco central pode fixar a fração dos depósitos que os bancos são obrigados a recolher. **Elevar** o compulsório reduz o multiplicador e contrai a moeda; **reduzi-lo** libera liquidez e expande. É um instrumento potente, porém "grosso" (afeta todos os bancos de uma vez e de forma abrupta), por isso usado com menos frequência que o mercado aberto.
+
+A @fig-instrumentos resume a direção de cada instrumento.
+
+::: {#fig-instrumentos}
+
+```{.tikz}
+%%| filename: fig-instrumentos
+%%| alt: Quadro comparando os três instrumentos de política monetária e a direção de uso expansionista e contracionista de cada um.
+\begin{tikzpicture}[font=\footnotesize]
+  \node[draw, rounded corners, fill=manualgray!12, align=center] (bc) at (0,0)
+    {\textbf{Banco}\\\textbf{Central}};
+  % Expansionista
+  \node[manualgreen, align=left] (exp) at (5.2,2.2)
+    {\textbf{Expansionista} (mais moeda, juros $\downarrow$)};
+  \node[align=left, font=\scriptsize] at (5.6,1.1)
+    {$\bullet$ \textbf{compra} títulos (mercado aberto)\\
+     $\bullet$ \textbf{reduz} taxa de redesconto\\
+     $\bullet$ \textbf{reduz} compulsório};
+  % Contracionista
+  \node[manualred, align=left] (con) at (5.2,-0.9)
+    {\textbf{Contracionista} (menos moeda, juros $\uparrow$)};
+  \node[align=left, font=\scriptsize] at (5.6,-2.0)
+    {$\bullet$ \textbf{vende} títulos (mercado aberto)\\
+     $\bullet$ \textbf{eleva} taxa de redesconto\\
+     $\bullet$ \textbf{eleva} compulsório};
+  \draw[vetor, ->, >=stealth, manualgreen] (bc) to[bend left] (2.5,1.6);
+  \draw[vetor, ->, >=stealth, manualred] (bc) to[bend right] (2.5,-1.4);
+\end{tikzpicture}
+```
+
+Os três instrumentos e o sentido de seu uso. Em cada um, uma direção injeta liquidez (expansionista) e a oposta a enxuga (contracionista).
+:::
+
+## Da quantidade de moeda ao preço da moeda
+
+Historicamente, discutia-se se o banco central controla a **quantidade** de moeda (a oferta $M$) ou o seu **preço** (a taxa de juros $i$). A rigor, ele não controla os dois ao mesmo tempo: escolhido um, o outro se ajusta pela demanda por moeda. A @fig-oferta-moeda mostra as duas leituras no mercado monetário.
+
+::: {#fig-oferta-moeda}
+
+```{.tikz}
+%%| filename: fig-oferta-moeda
+%%| alt: Mercado monetário com demanda por moeda decrescente e oferta vertical; um deslocamento da oferta para a direita reduz a taxa de juros de equilíbrio.
+\begin{tikzpicture}[scale=0.95]
+  \draw[eixo] (0,0) -- (8,0) node[right] {$M/P$};
+  \draw[eixo] (0,0) -- (0,6) node[above] {$i$};
+  % demanda
+  \draw[curva] (1,5.2) .. controls (3,2.6) and (5,1.8) .. (7.5,1.1)
+    node[right, manualblue] {$L(Y,i)$};
+  % oferta 1
+  \draw[destaque, very thick, manualred] (3,0) -- (3,5.6) node[above] {$M_1^s$};
+  % oferta 2
+  \draw[destaque, very thick, manualred!55] (5,0) -- (5,5.6) node[above] {$M_2^s$};
+  \coordinate (E1) at (3,3.05);
+  \coordinate (E2) at (5,2.05);
+  \node[ponto] at (E1) {}; \node[ponto] at (E2) {};
+  \draw[auxiliar] (E1) -- (0,3.05) node[left,font=\footnotesize] {$i_1$};
+  \draw[auxiliar] (E2) -- (0,2.05) node[left,font=\footnotesize] {$i_2$};
+  \draw[vetor, ->, >=stealth] (3.15,4.2) -- (4.85,4.2);
+  \node[manualgray, font=\footnotesize] at (4,4.5) {$M^s\uparrow$};
+\end{tikzpicture}
+```
+
+Com a demanda por moeda dada, uma expansão da oferta ($M_1^s \to M_2^s$) reduz a taxa de juros de equilíbrio de $i_1$ para $i_2$. Fixar a oferta ou fixar o juro são duas faces da mesma escolha.
+:::
+
+Os bancos centrais modernos optaram, na prática, por **fixar a taxa de juros** e deixar a quantidade de moeda se ajustar — porque a demanda por moeda é instável e mirar um agregado monetário produziria juros erráticos. O banco central anuncia a meta de juros (a Selic-meta) e usa as operações de mercado aberto para, dia após dia, ofertar exatamente as reservas necessárias para que a taxa efetiva fique na meta. Voltaremos a isso no @sec-taxa-de-juros-selic.
+
+::: {.callout-important title="Armadilha comum — 'o BC define os juros de todos os empréstimos'"}
+O banco central controla diretamente apenas a taxa de curtíssimo prazo entre bancos (a Selic, no Brasil). Os juros que você paga no cartão, no cheque especial ou no financiamento são **muito maiores**, porque embutem risco de calote, custos administrativos, tributos e lucro (o *spread*). A Selic é o **piso** e o balizador; não é o juro final ao consumidor.
+:::
+
+## Emprestador de última instância
+
+Bancos são intrinsecamente frágeis: financiam ativos de longo prazo (empréstimos) com passivos de curtíssimo prazo (depósitos sacáveis a qualquer momento). Se muitos depositantes correm para sacar ao mesmo tempo — uma **corrida bancária** —, nem um banco saudável resiste, pois não tem como liquidar seus ativos instantaneamente. Para conter o pânico, o banco central atua como **emprestador de última instância**: fornece liquidez emergencial a bancos **solventes** (que têm ativos bons, mas ilíquidos), evitando que uma crise de confiança derrube instituições viáveis e contamine todo o sistema.
+
+A regra clássica, formulada por Walter Bagehot no século XIX, é emprestar **livremente**, contra **bom colateral** e a **juros de penalidade**. O desafio é distinguir bancos ilíquidos (que merecem socorro) de bancos insolventes (que deveriam quebrar), e evitar o **risco moral**: se todo banco espera ser salvo, todos assumem riscos excessivos — tema que o @sec-crises-bancarias-regulacao aprofunda.
+
+## A independência do banco central
+
+Quem deve mandar no banco central: o governo eleito ou técnicos com mandato próprio? O debate é central na macroeconomia moderna.
+
+O argumento pela **independência** apoia-se no problema da **inconsistência temporal** [@kydland1977]: um governo tentado por ganhos eleitorais de curto prazo pode querer estimular a economia com juros baixos às vésperas da eleição, gerando inflação depois. Sabendo disso, os agentes já embutem inflação nas expectativas, e o país acaba com mais inflação sem mais crescimento. Um banco central **independente**, insulado do ciclo político e comprometido com a estabilidade de preços, ganha **credibilidade**, ancora expectativas e consegue a mesma inflação baixa a um custo menor. A evidência internacional associa maior independência a inflação média mais baixa.
+
+Os **críticos** apontam o déficit democrático — decisões de enorme impacto tomadas por não eleitos — e argumentam que a fixação exclusiva na inflação pode subordinar o emprego e o crescimento. O desenho institucional busca equilibrar: mandato claro (estabilidade de preços, às vezes com objetivo secundário de emprego), autonomia de instrumentos, mas prestação de contas (metas definidas pelo governo, comunicação transparente, sabatina dos dirigentes).
+
+::: {.callout-warning title="Controvérsia — independência para quê?"}
+Há amplo consenso de que o banco central deve ter **autonomia de instrumentos** (decidir os juros sem ingerência política direta). O debate mais quente é sobre o **mandato**: deve mirar só a inflação, ou também emprego e atividade (mandato duplo, como o do Fed norte-americano)? E até onde a autonomia pode ir sem ferir a legitimidade democrática? Não há resposta única — a escolha reflete valores sobre o peso relativo de estabilidade de preços, emprego e controle democrático.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+**O Banco Central do Brasil e a autonomia de 2021.** O BCB foi criado em 1964, mas por décadas operou subordinado ao governo, sem mandato fixo para seus dirigentes. Um marco recente foi a **Lei Complementar nº 179, de 2021**, que concedeu **autonomia** ao Banco Central: o presidente e os diretores passaram a ter **mandatos fixos** (de quatro anos, não coincidentes com o mandato presidencial), só destituíveis em hipóteses específicas. Os objetivos legais do BCB são, primordialmente, **assegurar a estabilidade de preços** e, sem prejuízo disso, zelar pela estabilidade e eficiência do sistema financeiro e **suavizar flutuações do nível de atividade e fomentar o pleno emprego**. Foi a consolidação institucional do argumento da credibilidade discutido acima.
+
+**Os instrumentos na prática — mercado aberto e compulsório.** O BCB conduz diariamente **operações compromissadas** (compra e venda de títulos públicos com compromisso de recompra) para manter a taxa Selic efetiva junto da meta definida pelo **Copom**. O volume dessas operações — o "estoque de compromissadas" — já alcançou magnitudes expressivas, um tema de debate sobre a gestão da liquidez e da dívida. O **compulsório**, historicamente elevado no Brasil, é acionado sobretudo em momentos de estresse (como a redução na pandemia de 2020) ou para ajustes prudenciais.
+
+**Emprestador de última instância e o PROER.** Após o Plano Real, com a estabilização, muitos bancos que lucravam com a inflação entraram em dificuldade. Em 1995, o governo criou o **PROER** (Programa de Estímulo à Reestruturação do Sistema Financeiro), pelo qual o Banco Central atuou para socorrer e reorganizar bancos em crise, evitando um colapso sistêmico — um exemplo concreto (e controverso) da função de emprestador de última instância no Brasil. Voltaremos ao episódio e ao arcabouço prudencial daí resultante no @sec-crises-bancarias-regulacao.
+
+> **Fontes e séries para explorar:** Banco Central do Brasil (site institucional, atas do Copom, estatísticas de operações compromissadas e base monetária); Lei Complementar 179/2021 (autonomia do BCB); histórico do PROER. Verifique a data de referência dos dados de liquidez e compulsório.
+
+## Resumo do capítulo
+
+- O **banco central** é a autoridade monetária: emite a base monetária, é o banco dos bancos e do governo, executa a política monetária, regula o sistema e atua como emprestador de última instância.
+- Os três **instrumentos clássicos** são as **operações de mercado aberto** (o principal, para controle diário da liquidez e dos juros), o **redesconto** e as **reservas compulsórias**.
+- O banco central não controla ao mesmo tempo a quantidade e o preço da moeda; os BCs modernos optam por **fixar a taxa de juros** (a Selic, no Brasil) e deixar a quantidade se ajustar.
+- A Selic é o **piso** e balizador dos juros; os juros ao consumidor são muito maiores por incluírem risco, custos, tributos e *spread*.
+- Como **emprestador de última instância**, o BC socorre bancos solventes porém ilíquidos (regra de Bagehot: emprestar contra bom colateral a juros de penalidade), combatendo pânicos sem premiar imprudência.
+- A **independência** do banco central resolve a **inconsistência temporal** e ancora expectativas, ganhando credibilidade; os críticos alertam para o déficit democrático e o peso relativo dado ao emprego. No Brasil, a autonomia foi instituída pela **LC 179/2021**.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Liste três funções de um banco central e explique por que nenhuma delas se confunde com as de um banco comercial.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Exemplos: (i) **emissão de moeda** — só o BC emite base monetária; (ii) **banco dos bancos** — guarda reservas e liquida pagamentos entre bancos; (iii) **emprestador de última instância** — socorre o sistema em crises. Nenhuma se confunde com o banco comercial, que busca lucro, atende o público e *usa* as reservas no BC — ele é cliente do banco central, não seu par.
+:::
+
+**2.** Para cada operação, diga se é **expansionista** ou **contracionista**: (a) o BC vende títulos públicos; (b) o BC reduz o compulsório; (c) o BC compra títulos públicos; (d) o BC eleva a taxa de redesconto.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Contracionista** (enxuga reservas). (b) **Expansionista** (eleva o multiplicador). (c) **Expansionista** (injeta reservas). (d) **Contracionista** (encarece a liquidez de socorro).
+:::
+
+**3.** Explique por que a taxa de juros do seu cheque especial é muito maior que a Selic, mesmo o BC "controlando os juros".
+
+::: {.callout-tip collapse="true" title="Solução"}
+O BC controla apenas a taxa básica de curtíssimo prazo entre bancos (Selic). O juro ao consumidor soma a ela: risco de inadimplência (alto no crédito rotativo), custos administrativos e de captação, tributos e a margem de lucro do banco (o *spread*). A Selic é o piso/balizador; o juro final é várias vezes maior.
+:::
+
+**4.** Usando o mercado monetário (oferta e demanda por moeda), explique o efeito de uma **venda** de títulos pelo BC sobre a taxa de juros.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Vender títulos enxuga reservas: a oferta real de moeda $M^s$ desloca-se para a **esquerda**. Com a demanda por moeda $L(Y,i)$ dada, a redução da oferta eleva a taxa de juros de equilíbrio (o inverso do deslocamento mostrado na @fig-oferta-moeda). Menos liquidez torna a moeda "mais cara", subindo $i$.
+:::
+
+**5.** O que é a função de **emprestador de última instância**? Enuncie a regra de Bagehot e explique cada parte.
+
+::: {.callout-tip collapse="true" title="Solução"}
+É a atuação do BC para fornecer liquidez emergencial a bancos solventes em pânico, evitando colapso sistêmico. A regra de Bagehot manda emprestar: **livremente** (em quantidade suficiente para estancar o pânico), contra **bom colateral** (garantias de qualidade, para não socorrer insolventes) e a **juros de penalidade** (acima do mercado, para desestimular o uso abusivo e o risco moral). Assim, salva-se quem é viável sem premiar a imprudência.
+:::
+
+**6.** Explique o problema da **inconsistência temporal** e como a independência do banco central o resolve.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Um governo pode prometer inflação baixa, mas, chegada a hora, ter incentivo a "trair" a promessa e estimular a economia (juros baixos) por ganhos de curto prazo — sobretudo em ano eleitoral. Antevendo isso, os agentes embutem inflação nas expectativas, e o país fica com inflação alta sem crescimento extra. Um BC **independente**, comprometido de forma crível com a estabilidade de preços e insulado do calendário político, torna a promessa confiável: as expectativas se ancoram em inflação baixa, e ela se realiza a menor custo.
+:::
+
+**7.** (Análise de caso) A LC 179/2021 deu autonomia ao Banco Central do Brasil com mandatos fixos e não coincidentes com o do presidente. Apresente um argumento a favor e uma crítica a esse arranjo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**A favor:** mandatos fixos e não coincidentes insulam a política monetária do ciclo eleitoral, aumentando a credibilidade e ajudando a ancorar expectativas de inflação — o que tende a produzir inflação mais baixa e estável a menor custo em atividade. **Crítica:** decisões de enorme impacto social (juros que afetam emprego e renda) passam a ser tomadas por dirigentes não eleitos, com prestação de contas mais difusa; críticos temem também um viés que priorize a inflação em detrimento do emprego, sobretudo se o mandato não equilibrar bem os objetivos. O desenho tenta mitigar isso combinando autonomia de instrumentos com metas definidas externamente e prestação de contas ao Congresso.
+:::
+
+**8.** (Desafio) Por que os bancos centrais modernos preferem fixar a **taxa de juros** a fixar a **quantidade de moeda**? Relacione com a estabilidade da demanda por moeda.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Fixar a oferta de moeda só produziria juros estáveis se a **demanda por moeda** fosse estável e previsível. Na prática, ela oscila bastante (com inovações financeiras, sazonalidade, mudanças de confiança), então mirar um agregado monetário fixo faria a taxa de juros saltar de forma errática a cada flutuação da demanda — prejudicando investimento e consumo. Ao fixar a **taxa de juros** e ofertar as reservas necessárias para sustentá-la, o BC absorve os choques de demanda por moeda na *quantidade* (que se ajusta endogenamente), mantendo o *preço* do dinheiro estável e previsível — mais útil para as decisões dos agentes. Por isso a Selic-meta, e não um "M-meta", é o instrumento operacional.
+:::
+
+## Para saber mais
+
+- @mishkin2000 — capítulos sobre a estrutura e os instrumentos dos bancos centrais e a condução da política monetária; referência da área.
+- @carvalho2015 — trata das funções do banco central e do caso brasileiro, com atenção ao debate sobre independência.
+- @blanchard2017 — integra o papel do banco central à determinação dos juros e da atividade no curto prazo.
+- @kydland1977 — o artigo seminal sobre inconsistência temporal, fundamento teórico da independência dos bancos centrais.
+- @giambiagi2016 — para a evolução institucional do Banco Central do Brasil e da política econômica.
