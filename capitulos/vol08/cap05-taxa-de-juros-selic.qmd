@@ -1,3 +1,206 @@
 # Taxa de juros: Selic, juro real e estrutura a termo {#sec-taxa-de-juros-selic}
 
-*(em construção)*
+Existe um número no Brasil que aparece no telejornal, define se vale a pena financiar um carro, decide para onde correm bilhões de reais de investidores e mede a saúde das contas públicas: a **taxa de juros**. Mas "a taxa de juros" é uma simplificação. Há a Selic que o Copom define; a taxa que o banco cobra no seu cartão; o rendimento do Tesouro Direto de 2 anos e o de 10 anos; o juro "real" que sobra depois da inflação. Todas são "juros" — e são todas diferentes. Entender por que, e como se relacionam, é entender a espinha dorsal do sistema financeiro.
+
+No capítulo anterior, vimos o Copom definir a Selic para perseguir a meta de inflação. Agora vamos abrir esse número: o que a Selic é exatamente, por que o juro que importa é o **real** (não o nominal), e por que existe uma curva inteira de juros — a **estrutura a termo** — que revela o que o mercado espera do futuro. É o capítulo que conecta a política monetária ao mundo das aplicações, dos financiamentos e da dívida pública.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- distinguir a **taxa de juros nominal** da **real** e aplicar a equação de Fisher;
+- entender o que é a **Selic** (meta e efetiva) e o seu papel de juro básico da economia;
+- explicar a diferença entre a Selic e os juros ao consumidor (o **spread** bancário);
+- interpretar a **estrutura a termo** (curva de juros) e o que sua inclinação sinaliza;
+- relacionar preço de um título e taxa de juros (relação inversa);
+- compreender o conceito de **juro neutro** e por que o do Brasil é elevado.
+
+## Juro nominal e juro real: a equação de Fisher
+
+A distinção mais importante e mais negligenciada é entre juro **nominal** e **real**. A **taxa nominal** ($i$) é a que aparece no contrato: rende 10% ao ano. Mas se a inflação no período foi de 6%, seu poder de compra não cresceu 10% — cresceu apenas o que sobra depois de repor a inflação. Esse "quanto sobra" é a **taxa real** ($r$).
+
+::: {.callout-note title="Definição — Taxa de juros nominal e real"}
+A **taxa de juros nominal** ($i$) mede a variação em unidades monetárias; a **taxa de juros real** ($r$) mede a variação em **poder de compra**, descontada a inflação ($\pi$). A real é o que de fato importa para decisões de poupar e investir.
+:::
+
+A relação exata entre elas é:
+
+$$
+1 + r = \frac{1 + i}{1 + \pi} \quad\Longrightarrow\quad r = \frac{1 + i}{1 + \pi} - 1.
+$$ {#eq-fisher-exata}
+
+Para taxas pequenas, vale a aproximação de Fisher, muito usada no dia a dia:
+
+$$
+r \approx i - \pi.
+$$ {#eq-fisher-aprox}
+
+Assim, um juro nominal de 10% com inflação de 6% dá um juro real de aproximadamente $10\% - 6\% = 4\%$ (exatamente, $1{,}10/1{,}06 - 1 = 3{,}77\%$). É esse ~4% que mede seu ganho verdadeiro.
+
+::: {.callout-important title="Armadilha comum — comemorar o juro nominal"}
+"Minha aplicação rendeu 12%!" Se a inflação foi 12%, seu poder de compra **não mudou** — o juro real foi zero. Pior: se a inflação foi 14%, você ficou mais pobre em termos reais, apesar do número positivo na tela. Sempre desconte a inflação: o que enche o carrinho de compras é o juro **real**, não o nominal.
+:::
+
+O sentido causal também importa. A **equação de Fisher** ($i = r + \pi^e$) mostra que o juro nominal embute a inflação **esperada** $\pi^e$: credores exigem, além do ganho real desejado, uma compensação pela perda de poder de compra prevista. Por isso países com histórico inflacionário convivem com juros nominais altos — parte é só prêmio contra a inflação esperada.
+
+## A Selic: o juro básico da economia
+
+No Brasil, a taxa básica é a **Selic** — sigla de **Sistema Especial de Liquidação e de Custódia**, o sistema do Banco Central onde se registram e liquidam as operações com títulos públicos federais. É preciso distinguir duas Selic:
+
+- **Selic-meta:** o alvo definido pelo **Copom** a cada reunião. É a taxa de política monetária.
+- **Selic efetiva (ou Selic *over*):** a taxa média que efetivamente vigora nas operações de um dia (*overnight*) lastreadas em títulos públicos, entre instituições financeiras. O Banco Central a mantém junto da meta por meio das operações de mercado aberto (@sec-banco-central).
+
+A Selic é o **juro de referência** de toda a economia: é a remuneração mais baixa e mais segura disponível (equivale a emprestar ao governo por um dia, com garantia de títulos públicos). Por isso funciona como **piso** e balizador de todas as demais taxas — nenhuma aplicação de risco maior deveria render menos que a Selic, e todo juro de empréstimo parte dela e acrescenta prêmios.
+
+::: {.callout-tip title="Intuição — a Selic como 'custo do dinheiro' de referência"}
+Pense na Selic como o preço do dinheiro no atacado, para o cliente mais seguro do país (o próprio governo, no overnight). Todos os outros preços do dinheiro — cartão, crédito imobiliário, capital de giro — são esse atacado **mais** margens que refletem prazo, risco e custos. Suba o atacado e tudo o mais tende a subir junto.
+:::
+
+## Da Selic ao seu bolso: o spread bancário
+
+Se a Selic é o piso, por que o cheque especial cobra dez, vinte vezes mais? A diferença é o **spread bancário** — a distância entre o juro que o banco cobra de quem toma emprestado e o custo de captação (ligado à Selic).
+
+$$
+\underbrace{\text{juro ao tomador}}_{\text{ex.: cartão, 300\% a.a.}} = \underbrace{\text{custo de captação}}_{\approx \text{Selic}} + \underbrace{\text{spread}}_{\text{risco + custos + tributos + lucro}}.
+$$ {#eq-spread}
+
+O spread remunera vários componentes: a **inadimplência** esperada (o calote de uns é pago no juro de todos), os **custos administrativos e operacionais**, os **tributos** (o Brasil tributa pesadamente a intermediação financeira) e a **margem de lucro** do banco, influenciada pelo grau de **concorrência**. O spread brasileiro é historicamente **um dos mais altos do mundo** — tema que a seção Brasil em Foco retoma.
+
+## A estrutura a termo: a curva de juros
+
+Até aqui falamos de "a" Selic, uma taxa de um dia. Mas quem empresta ao governo por 2, 5 ou 10 anos recebe outra taxa. O conjunto das taxas de juros para diferentes **prazos**, num dado momento, forma a **estrutura a termo das taxas de juros** — a **curva de juros** (@fig-curva-juros).
+
+::: {#fig-curva-juros}
+
+```{.tikz}
+%%| filename: fig-curva-juros
+%%| alt: Três curvas de juros no plano prazo-taxa: uma ascendente (normal), uma plana e uma descendente (invertida).
+\begin{tikzpicture}[scale=0.95]
+  \draw[eixo] (0,0) -- (8,0) node[right] {prazo};
+  \draw[eixo] (0,0) -- (0,5.5) node[above] {taxa};
+  % normal (ascendente)
+  \draw[curva] (0.4,1.3) .. controls (3,2.7) and (5,3.4) .. (7.5,3.9)
+    node[right, manualblue] {normal};
+  % plana
+  \draw[destaque, very thick, manualgray] (0.4,2.55) -- (7.5,2.75)
+    node[right] {plana};
+  % invertida
+  \draw[destaque, very thick, manualred] (0.4,4.3) .. controls (3,3.0) and (5,2.2) .. (7.5,1.6)
+    node[right, manualred] {invertida};
+  \node[font=\footnotesize, align=left, manualgray] at (3.5,0.6)
+    {curto prazo $\to$ longo prazo};
+\end{tikzpicture}
+```
+
+Três formatos da curva de juros. A curva **normal** (ascendente) é o caso usual; a **invertida** (descendente), em que o curto rende mais que o longo, costuma anteceder desacelerações.
+:::
+
+A inclinação da curva carrega informação preciosa:
+
+- **Curva normal (ascendente):** juros de longo prazo maiores que os de curto. É o caso usual — investidores exigem um **prêmio de prazo** por travar recursos por mais tempo, e o mercado espera juros e/ou inflação estáveis ou crescentes.
+- **Curva invertida (descendente):** juros de curto prazo maiores que os de longo. Sinaliza que o mercado espera **quedas** futuras da taxa básica — tipicamente porque antevê desaceleração econômica. Historicamente, inversões da curva americana precederam recessões.
+- **Curva plana:** transição, incerteza sobre a direção da economia.
+
+Duas teorias explicam o formato. Pela hipótese das **expectativas**, a taxa longa é uma média das taxas curtas esperadas ao longo do período — a curva reflete o que o mercado espera da Selic no futuro. Pela teoria do **prêmio de liquidez**, soma-se a isso um prêmio crescente com o prazo (compensação por risco e iliquidez). Na prática, ambas operam: a curva mistura expectativas de juros futuros e prêmios de risco.
+
+## Preço do título e taxa de juros: a relação inversa
+
+Um ponto que confunde muita gente: o **preço** de um título de renda fixa e sua **taxa de juros** movem-se em **direções opostas**. Um título prefixado promete pagar um valor fixo no vencimento (digamos, R\$\,1.000). Quanto você paga hoje por essa promessa define seu rendimento.
+
+$$
+\text{Preço hoje} = \frac{\text{Valor no vencimento}}{(1 + i)^{n}}.
+$$ {#eq-preco-titulo}
+
+Se a taxa de juros de mercado $i$ **sobe**, o denominador cresce e o **preço cai** — o título antigo, que paga menos, só atrai comprador se ficar mais barato. Se a taxa **cai**, o preço **sobe**. Por isso quem tem títulos prefixados **perde** (na marcação a mercado) quando os juros sobem, e ganha quando caem.
+
+::: {.callout-important title="Armadilha comum — 'renda fixa não tem risco'"}
+Renda fixa não significa retorno garantido no meio do caminho. Se você precisar vender um título prefixado (ou atrelado à inflação) **antes do vencimento** e os juros tiverem subido, receberá menos do que pagou — é o risco de **marcação a mercado**. A promessa só é integralmente cumprida quem carrega até o vencimento. A relação inversa preço-juro da @eq-preco-titulo é a razão.
+:::
+
+## O juro neutro
+
+Existe um nível de juro real que não estimula nem freia a economia — que a mantém no produto potencial, com inflação estável. É o **juro neutro** (ou taxa natural, $r^{*}$). Quando o juro real está **acima** do neutro, a política é contracionista; **abaixo**, expansionista. O juro neutro é a referência implícita da regra de Taylor (o $i^{*}$ da @sec-metas-de-inflacao-copom).
+
+O juro neutro não é observável diretamente — é estimado — e varia entre países e no tempo. Ele depende de fatores estruturais: produtividade, demografia, poupança doméstica, risco fiscal e institucional. O do Brasil é notoriamente **elevado** para padrões internacionais, o que nos leva à seção seguinte.
+
+## 🇧🇷 Brasil em Foco
+
+**Por que o juro real do Brasil é tão alto?** O Brasil convive, há décadas, com um dos **juros reais mais altos do mundo**. A Selic nominal já ultrapassou 13%–14% ao ano em ciclos de aperto; descontado o IPCA, o juro real ex-ante brasileiro figura recorrentemente no topo dos rankings globais. As explicações são debatidas, mas convergem para alguns fatores: **risco fiscal** (dívida pública elevada e histórico de instabilidade exigem prêmio), **jurisdição e insegurança** (dificuldade de recuperar crédito eleva o risco), **expectativas de inflação** não plenamente ancoradas (herança do passado inflacionário) e uma **poupança doméstica baixa**. O resultado é um **juro neutro** estrutural elevado — o BC precisa de juros altos só para ficar "neutro".
+
+**O spread bancário brasileiro.** Além do juro básico alto, o Brasil tem **spreads** entre os maiores do planeta. Segundo o **Relatório de Economia Bancária** do Banco Central, o spread se decompõe em inadimplência (parcela grande), custos administrativos, tributos e margem. A elevada **concentração** bancária (poucos grandes bancos), a alta inadimplência e a tributação pesada ajudam a explicá-lo. Iniciativas como o **Cadastro Positivo**, o **Pix**, o **open finance** e a entrada de fintechs buscam, ao aumentar a concorrência e a informação, comprimir esse spread — um processo em curso.
+
+**A Selic e a conta de juros da dívida pública.** Como boa parte da dívida pública federal é indexada à Selic (as **LFTs**, ou Tesouro Selic), cada ponto percentual de alta na taxa encarece diretamente o **serviço da dívida**. A conta de juros do setor público consolidado tem oscilado, conforme o ciclo da Selic, na casa de vários pontos percentuais do PIB ao ano — recursos que deixam de financiar outras políticas (o custo de oportunidade macroeconômico visto no Volume 1). É o elo entre a política monetária e a fiscal, e uma das razões pelas quais o debate sobre a Selic é tão acalorado no Brasil.
+
+> **Fontes e séries para explorar:** Banco Central do Brasil (SGS: Selic meta e efetiva, curva de juros/estrutura a termo; Relatório de Economia Bancária para spread); Tesouro Nacional (composição da dívida, LFTs, Tesouro Direto); IBGE (IPCA para deflacionar). Todos os patamares mudam com o tempo — verifique a data de referência.
+
+## Resumo do capítulo
+
+- A **taxa nominal** mede a variação em dinheiro; a **taxa real** mede a variação em poder de compra. Pela equação de Fisher, $r \approx i - \pi$ (exatamente, $1+r = (1+i)/(1+\pi)$). O que importa é o juro **real**.
+- O juro nominal embute a **inflação esperada** ($i = r + \pi^e$); por isso países com histórico inflacionário têm juros nominais altos.
+- A **Selic** é o juro básico: a **meta** é definida pelo Copom, e a **efetiva** (overnight) é mantida junto à meta via mercado aberto. Ela é o **piso** e balizador de todas as taxas.
+- Os juros ao consumidor superam a Selic pelo **spread bancário**, que remunera inadimplência, custos, tributos e lucro; o spread brasileiro é dos mais altos do mundo.
+- A **estrutura a termo** (curva de juros) mostra as taxas por prazo; sua inclinação (normal, plana, **invertida**) sinaliza expectativas de juros e de atividade futura.
+- **Preço de título e taxa de juros** movem-se em sentidos opostos; vender renda fixa antes do vencimento com juros em alta gera perda (marcação a mercado).
+- O **juro neutro** ($r^{*}$) não estimula nem freia a economia; o do Brasil é estruturalmente elevado por risco fiscal, insegurança jurídica, expectativas e baixa poupança.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Uma aplicação rende 9% ao ano em termos nominais e a inflação do período foi 9%. Qual foi o juro real (aproximado e exato)? Interprete.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Aproximado: $r \approx 9\% - 9\% = 0\%$. Exato: $r = 1{,}09/1{,}09 - 1 = 0\%$. O poder de compra não mudou: apesar do "ganho" nominal de 9%, o investidor não ficou mais rico — a inflação consumiu todo o rendimento.
+:::
+
+**2.** Explique, com suas palavras, por que o juro nominal em países com histórico de inflação alta tende a ser elevado, mesmo que o juro real desejado seja modesto.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela equação de Fisher, $i = r + \pi^e$: o juro nominal soma o ganho real desejado à **inflação esperada**. Onde a inflação foi alta e volátil, as expectativas de inflação são altas, e credores exigem um prêmio grande para compensar a perda esperada de poder de compra. Assim, mesmo querendo, digamos, 4% reais, o juro nominal cobrado será alto porque $\pi^e$ é alta.
+:::
+
+**3.** Distinga **Selic-meta** de **Selic efetiva**. Quem define cada uma e como a segunda é mantida próxima da primeira?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A **Selic-meta** é o alvo definido pelo **Copom** a cada reunião (taxa de política). A **Selic efetiva (over)** é a taxa média que realmente vigora nas operações overnight lastreadas em títulos públicos. O Banco Central mantém a efetiva junto da meta por meio das **operações de mercado aberto** (compra/venda de títulos), injetando ou enxugando reservas conforme necessário.
+:::
+
+**4.** Um título prefixado paga R\$\,1.000 daqui a 2 anos. Se a taxa de mercado é 10% ao ano, qual o preço hoje? E se a taxa subir para 12%? O que aconteceu com o preço e por quê?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A 10%: $P = 1000/(1{,}10)^2 = 1000/1{,}21 = R\$\,826{,}45$. A 12%: $P = 1000/(1{,}12)^2 = 1000/1{,}2544 = R\$\,797{,}19$. O preço **caiu** (de ~826 para ~797) porque a taxa subiu: como o pagamento futuro é fixo, um juro de mercado maior torna a promessa menos valiosa hoje — a relação inversa da @eq-preco-titulo.
+:::
+
+**5.** A curva de juros de um país está **invertida** (juros curtos acima dos longos). O que o mercado provavelmente está esperando? Explique via hipótese das expectativas.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela hipótese das expectativas, a taxa longa é uma média das taxas curtas esperadas ao longo do período. Se a curva está invertida, o mercado espera que a taxa básica **caia** no futuro — o que costuma ocorrer quando se antecipa desaceleração econômica (que levaria o banco central a cortar juros). Por isso curvas invertidas frequentemente antecedem recessões.
+:::
+
+**6.** Decomponha conceitualmente o juro de 15% ao mês cobrado num crédito rotativo, usando a ideia de spread. Por que ele é tão maior que a Selic?
+
+::: {.callout-tip collapse="true" title="Solução"}
+$\text{juro ao tomador} = \text{custo de captação (}\approx\text{Selic)} + \text{spread}$. No rotativo, o **spread** é enorme porque: a **inadimplência** é altíssima (quem usa o rotativo costuma estar sem caixa, com alto risco de calote — e o calote de uns é embutido no juro de todos), há **custos** operacionais e **tributos**, e a **concorrência** nesse segmento é limitada. A Selic é só o piso de captação; a maior parte do juro é spread de risco.
+:::
+
+**7.** (Análise de caso) Liste e explique três fatores que ajudam a manter o **juro real** brasileiro entre os mais altos do mundo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Exemplos: (i) **Risco fiscal** — dívida pública elevada e histórico de instabilidade fazem investidores exigirem prêmio para financiar o país, elevando o juro de equilíbrio. (ii) **Expectativas de inflação não plenamente ancoradas** — a herança inflacionária mantém as expectativas sensíveis, exigindo juros reais altos para controlá-las (credibilidade em construção). (iii) **Baixa poupança doméstica** — com pouca poupança interna, o "preço" para atrair recursos (o juro) sobe. Somam-se insegurança jurídica na recuperação de crédito e fatores estruturais que elevam o **juro neutro**. O resultado é que o BC precisa de juros altos só para ficar neutro.
+:::
+
+**8.** (Desafio) Explique como uma alta da Selic afeta simultaneamente (a) o investidor em Tesouro Selic, (b) o investidor em Tesouro Prefixado que precisa vender antes do vencimento, e (c) a conta de juros da dívida pública. Por que os efeitos em (a) e (b) diferem?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) O **Tesouro Selic (LFT)** acompanha a taxa: com a Selic maior, passa a render mais — o investidor **ganha**, e não há perda de marcação relevante (é pós-fixado, colado à Selic). (b) O **Tesouro Prefixado** paga um valor fixo no vencimento; com a alta dos juros, seu **preço de mercado cai** (relação inversa preço-juro), então quem vende **antes do vencimento perde**. A diferença vem da indexação: o pós-fixado se ajusta à nova taxa, o prefixado não — ele já travou uma taxa antiga, agora menos atraente. (c) Como grande parte da dívida pública é indexada à Selic (LFTs), a alta encarece diretamente o **serviço da dívida**, elevando a conta de juros do setor público (pontos do PIB) e pressionando o fiscal. Assim, a mesma alta beneficia o poupador em LFT, penaliza o vendedor de prefixado e onera o Tesouro.
+:::
+
+## Para saber mais
+
+- @mishkin2000 — capítulos sobre a estrutura a termo, a relação preço-juro dos títulos e a teoria das taxas de juros; referência da área.
+- @blanchard2017 — trata da distinção nominal/real, da equação de Fisher e do papel dos juros na macroeconomia.
+- @carvalho2015 — discute os juros e o spread no Brasil, com foco no sistema financeiro nacional.
+- @giambiagi2016 — para o vínculo entre Selic, dívida pública e política fiscal no Brasil.
+- @pindyck2013 — para a matemática do valor presente e a precificação de fluxos futuros.
