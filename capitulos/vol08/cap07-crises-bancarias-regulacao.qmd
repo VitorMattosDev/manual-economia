@@ -1,3 +1,189 @@
 # Crises bancárias e regulação prudencial {#sec-crises-bancarias-regulacao}
 
-*(em construção)*
+Em setembro de 2008, o banco de investimentos Lehman Brothers, com 158 anos de história, quebrou. Em dias, o sistema financeiro global — a máquina que estudamos ao longo deste volume — travou. O crédito parou, bolsas despencaram, empresas sólidas não conseguiam rolar dívidas, e o mundo mergulhou na pior recessão desde 1929. Como uma economia inteira pode ser levada à beira do abismo pela quebra de instituições que, individualmente, pareciam apenas fazer negócios? A resposta está na natureza peculiar dos bancos — e explica por que nenhum setor é tão intensamente regulado.
+
+Este capítulo, que encerra o Volume 8, enfrenta o lado sombrio do sistema financeiro: por que os bancos são intrinsecamente frágeis, como o pânico se torna profecia autorrealizável, como o risco de uns contamina todos, e que arquitetura de **regulação prudencial** a humanidade construiu — a duras penas, crise após crise — para conter esses perigos. É onde a teoria monetária encontra a política de estabilidade financeira.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- explicar a **fragilidade intrínseca** dos bancos (descasamento de prazos e liquidez);
+- entender a lógica de uma **corrida bancária** como profecia autorrealizável;
+- distinguir **risco de liquidez**, **risco de crédito** e **risco sistêmico**;
+- compreender o papel do **seguro de depósitos** e do emprestador de última instância — e o **risco moral** associado;
+- descrever os pilares da **regulação prudencial** e dos Acordos de **Basileia** (capital e liquidez);
+- reconhecer o dilema do *too big to fail* e as lições das grandes crises.
+
+## Por que bancos são frágeis por natureza
+
+A fragilidade dos bancos não é um defeito de gestão — é inerente ao seu modelo de negócio. Um banco faz **transformação de maturidade**: capta recursos de **curtíssimo prazo** (depósitos que podem ser sacados a qualquer momento) e os aplica em ativos de **longo prazo e baixa liquidez** (empréstimos, financiamentos que não se recuperam da noite para o dia). Essa é a função econômica útil do banco — mas também sua vulnerabilidade fatal.
+
+::: {.callout-note title="Definição — Transformação de maturidade"}
+A **transformação de maturidade** é a atividade bancária de financiar ativos de longo prazo (empréstimos) com passivos de curto prazo (depósitos sacáveis à vista). Ela é economicamente valiosa — provê liquidez a poupadores e financiamento longo a tomadores —, mas expõe o banco ao risco de não conseguir honrar saques em massa.
+:::
+
+Em condições normais, tudo bem: só uma fração dos depositantes saca por dia, e o sistema de reservas fracionárias (@sec-bancos-criacao-de-moeda) funciona. O problema surge quando **muitos** querem sacar ao mesmo tempo. Como o banco emprestou a maior parte dos depósitos, ele **não tem** o dinheiro de todos disponível — e não consegue liquidar seus empréstimos instantaneamente. Um banco perfeitamente **solvente** (cujos ativos valem mais que seus passivos) pode quebrar por falta de **liquidez**.
+
+## A corrida bancária: quando o medo se realiza
+
+Aqui está a lógica perversa. Suponha que corra o boato de que um banco está em dificuldade. Cada depositante raciocina: *"se todos os outros correrem para sacar, o banco não terá dinheiro para mim; então é melhor eu sacar primeiro."* Mas se **todos** pensam assim, todos correm — e o banco, que talvez estivesse saudável, quebra de fato. O medo produziu o resultado temido: uma **profecia autorrealizável**.
+
+::: {.callout-note title="Definição — Corrida bancária"}
+Uma **corrida bancária** ocorre quando um grande número de depositantes tenta sacar seus recursos simultaneamente, temendo a insolvência do banco. Como o banco mantém apenas reservas fracionárias, a corrida pode **provocar** a quebra que os depositantes temiam — mesmo que o banco fosse originalmente solvente. É um equilíbrio ruim de expectativas (Diamond e Dybvig, 1983) [@diamond1983].
+:::
+
+O modelo de Diamond e Dybvig mostra que um banco com reservas fracionárias tem **dois equilíbrios**: um "bom" (ninguém corre, todos confiam, o banco opera normalmente) e um "ruim" (todos correm, o banco quebra). Qual deles prevalece depende de **expectativas** e **confiança** — e é por isso que a estabilidade bancária é, em boa parte, um fenômeno psicológico e coletivo. Pequenos boatos podem empurrar o sistema do equilíbrio bom para o ruim.
+
+## Três riscos: liquidez, crédito e sistêmico
+
+Convém distinguir os riscos que rondam um banco:
+
+- **Risco de liquidez** — o banco é solvente, mas não tem caixa para honrar saques *agora*. É o risco da corrida.
+- **Risco de crédito** — os tomadores não pagam seus empréstimos; os ativos do banco perdem valor. Se as perdas superam o capital, o banco fica **insolvente** (deve mais do que tem).
+- **Risco sistêmico** — o risco de que a quebra de uma instituição **contamine** as demais e ameace todo o sistema. É o que transforma um problema local em crise geral.
+
+O **contágio** — motor do risco sistêmico — opera por vários canais (@fig-contagio): os bancos são credores uns dos outros (a quebra de um gera perdas em cadeia); a venda forçada de ativos por um banco em apuros derruba os preços e contamina os balanços de todos (as *fire sales*); e o pânico se espalha por semelhança ("se aquele quebrou, o meu banco também pode estar mal"). Por isso a falência de um banco é tratada de forma diferente da falência de uma padaria: a externalidade sobre terceiros é imensa.
+
+::: {#fig-contagio}
+
+```{.tikz}
+%%| filename: fig-contagio
+%%| alt: Diagrama de contágio bancário: a quebra de um banco central se propaga a outros três bancos por empréstimos interbancários, venda de ativos e pânico.
+\begin{tikzpicture}[font=\footnotesize, scale=0.95]
+  \node[draw, circle, fill=manualred!25, manualred, align=center] (x) at (0,0) {Banco\\X\\quebra};
+  \node[draw, circle, fill=manualblue!12, align=center] (a) at (-2.8,1.8) {Banco A};
+  \node[draw, circle, fill=manualblue!12, align=center] (b) at (2.8,1.8) {Banco B};
+  \node[draw, circle, fill=manualblue!12, align=center] (c) at (0,-2.4) {Banco C};
+  \draw[vetor,->,>=stealth, manualred] (x) -- node[above,font=\scriptsize,align=center]{dívida\\interbancária} (a);
+  \draw[vetor,->,>=stealth, manualred] (x) -- node[above,font=\scriptsize,align=center]{\textit{fire sale}\\de ativos} (b);
+  \draw[vetor,->,>=stealth, manualred] (x) -- node[right,font=\scriptsize,align=center]{pânico\\(contágio)} (c);
+\end{tikzpicture}
+```
+
+Os canais de contágio: uma quebra se propaga por dívidas interbancárias, vendas forçadas de ativos que derrubam preços e pânico que se alastra pela semelhança entre instituições.
+:::
+
+## As redes de proteção — e o risco moral
+
+Para conter esses riscos, os países construíram uma **rede de segurança** (*safety net*) com dois pilares principais:
+
+1. **Seguro de depósitos.** Uma garantia (pública ou de fundo do setor) de que, se o banco quebrar, o depositante recupera seu dinheiro até certo limite. Isso remove o incentivo de correr para sacar — se seu depósito está garantido, por que participar da corrida? O seguro de depósitos **estabiliza as expectativas** e é o antídoto direto contra corridas.
+2. **Emprestador de última instância.** O banco central fornece liquidez emergencial a bancos solventes, evitando que a falta de caixa vire quebra (visto no @sec-banco-central; regra de Bagehot).
+
+Mas toda rede de proteção cria um problema: o **risco moral** (visto no Volume 6). Se depósitos são garantidos e bancos grandes serão socorridos, então **banqueiros e depositantes deixam de vigiar o risco**. Bancos podem assumir apostas arriscadas — se der certo, lucram; se der errado, o Estado paga (privatizam-se os ganhos, socializam-se as perdas). Depositantes deixam de escolher bancos prudentes, pois estão segurados de qualquer forma.
+
+::: {.callout-important title="Armadilha comum — a rede de proteção não é 'de graça'"}
+Seguro de depósitos e socorro estatal estabilizam o sistema, mas criam **risco moral**: incentivam a tomada excessiva de risco justamente porque protegem contra suas consequências. Por isso a rede de proteção **exige** contrapartida regulatória — supervisão e regras de capital que limitem o risco que os bancos podem assumir. Proteção sem regulação é convite ao desastre.
+:::
+
+É essa a justificativa central da **regulação prudencial**: se a sociedade oferece uma rede de proteção, precisa, em troca, **limitar o risco** que os bancos assumem sob essa proteção.
+
+## Regulação prudencial: os Acordos de Basileia
+
+A resposta regulatória internacional consolidou-se nos **Acordos de Basileia**, formulados pelo Comitê de Basileia (ligado ao BIS, o "banco central dos bancos centrais"). Sua ideia central é exigir que os bancos mantenham **capital próprio** suficiente para absorver perdas — um "colchão" que protege os depositantes e o sistema.
+
+::: {.callout-note title="Definição — Requisito de capital (Basileia)"}
+Um **requisito de capital** exige que o banco financie uma fração mínima de seus ativos com **capital próprio** (dos acionistas), não com dívida. Quanto mais capital, mais perdas o banco absorve antes de ficar insolvente. Em Basileia, o requisito é calculado sobre os **ativos ponderados pelo risco (RWA)**: ativos mais arriscados exigem mais capital.
+:::
+
+A lógica é a do **capital como colchão**. Se um banco financia seus ativos majoritariamente com dívida (depósitos) e pouco capital próprio, uma pequena perda o torna insolvente — é altíssima **alavancagem**. Exigir mais capital próprio faz o acionista ter "pele em jogo": ele perde primeiro, o que tanto protege os depositantes quanto reduz o incentivo ao risco excessivo.
+
+Os acordos evoluíram com as crises:
+
+- **Basileia I (1988)** — introduziu um capital mínimo de 8% sobre os ativos ponderados pelo risco.
+- **Basileia II (2004)** — refinou a mensuração de risco e adicionou pilares de supervisão e disciplina de mercado.
+- **Basileia III (pós-2008)** — resposta à crise financeira global: **mais e melhor capital**, colchões de conservação e **anticíclico**, limites de **alavancagem** e, pela primeira vez, requisitos de **liquidez** (para o banco resistir a estresses de caixa) e regras para instituições **sistemicamente importantes**.
+
+::: {.callout-warning title="Controvérsia — quanta regulação é demais?"}
+Reguladores e banqueiros travam um debate permanente. **Mais capital e liquidez** tornam o sistema mais seguro, mas podem **encarecer e restringir o crédito** (capital próprio é mais caro que dívida) e empurrar atividades para o **sistema bancário sombra** (*shadow banking*), menos regulado. **Menos regulação** barateia o crédito, mas eleva o risco de crises — cujo custo social, como 2008 mostrou, é devastador. Não há ponto ótimo consensual: a calibragem equilibra estabilidade contra custo e disponibilidade de crédito, e tende a apertar depois de cada crise e afrouxar nos períodos de calmaria.
+:::
+
+## O dilema do *too big to fail*
+
+Alguns bancos são tão grandes e interconectados que sua quebra ameaçaria todo o sistema — são **grandes demais para quebrar** (*too big to fail*). Governos, temendo o contágio, acabam socorrendo-os. Mas isso agrava o risco moral: sabendo que serão salvos, esses bancos assumem mais risco e crescem ainda mais, capturando um subsídio implícito (captam mais barato porque o mercado sabe que têm garantia estatal). Basileia III atacou o problema exigindo **capital adicional** dos bancos sistemicamente importantes e criando regimes de **resolução** ordenada — mecanismos para deixar um banco grande quebrar sem colapsar o sistema, impondo perdas a acionistas e credores (o *bail-in*), não ao contribuinte (o *bailout*).
+
+## 🇧🇷 Brasil em Foco
+
+**O PROER e a reestruturação pós-Real.** Com a estabilização do **Plano Real** (1994), muitos bancos que lucravam com a inflação (ganhando com o *float* — a corrosão dos depósitos não remunerados) perderam sua fonte de receita e entraram em crise. Para evitar um colapso sistêmico, o governo criou em 1995 o **PROER** (Programa de Estímulo à Reestruturação e ao Fortalecimento do Sistema Financeiro Nacional), que financiou a absorção de bancos problemáticos por instituições saudáveis, e o **PROES** (para os bancos estaduais). Foram medidas controversas — criticadas por socorrer banqueiros com recursos públicos —, mas creditadas por evitar uma crise bancária generalizada num momento delicado. Desse episódio nasceu também o **FGC (Fundo Garantidor de Créditos)**, o seguro de depósitos brasileiro.
+
+**O FGC: o seguro de depósitos brasileiro.** O **Fundo Garantidor de Créditos (FGC)** é uma entidade privada, mantida pelas próprias instituições financeiras, que garante depósitos e aplicações (poupança, CDB, conta-corrente etc.) até um **limite por CPF e por instituição** (historicamente na casa de **R\$\,250 mil**, com um teto global plurianual). É o antídoto brasileiro contra corridas bancárias: ao assegurar o pequeno poupador, remove o incentivo ao pânico. Sua existência explica por que, mesmo quando um banco pequeno quebra no Brasil, não há corrida generalizada.
+
+**Um sistema robusto — e a supervisão do Banco Central.** O sistema bancário brasileiro é considerado **bem capitalizado e supervisionado** para padrões internacionais, tendo atravessado a crise global de 2008 com relativa solidez. O **Banco Central** implementa as regras de **Basileia III** no país, exige índices de capital (o **Índice de Basileia** mínimo) e conduz **testes de estresse** regulares. Episódios de quebra de instituições menores (como bancos médios ao longo dos anos) foram absorvidos sem contágio sistêmico, graças à combinação de supervisão, exigências de capital e do FGC. O desafio contemporâneo é regular os novos entrantes — **fintechs**, arranjos de pagamento e o crédito fora do sistema bancário tradicional — sem sufocar a inovação nem abrir brechas de risco.
+
+> **Fontes e séries para explorar:** Banco Central do Brasil (Relatório de Estabilidade Financeira, normas de Basileia III no Brasil, Índice de Basileia); FGC (regras e limites de cobertura); histórico do PROER/PROES. Limites do FGC e índices de capital mudam com o tempo — verifique a data de referência.
+
+## Resumo do capítulo
+
+- Bancos são **frágeis por natureza** porque fazem **transformação de maturidade**: financiam ativos longos e ilíquidos com depósitos sacáveis à vista. Um banco solvente pode quebrar por falta de **liquidez**.
+- Uma **corrida bancária** é uma **profecia autorrealizável**: o medo da quebra leva todos a sacar, provocando a quebra temida. Há um equilíbrio "bom" (confiança) e um "ruim" (pânico), conforme Diamond e Dybvig.
+- Distinguem-se **risco de liquidez** (falta de caixa), **risco de crédito** (calote que corrói o capital) e **risco sistêmico** (contágio que ameaça todo o sistema, via dívidas interbancárias, *fire sales* e pânico).
+- A **rede de proteção** — **seguro de depósitos** e **emprestador de última instância** — estabiliza expectativas, mas gera **risco moral**, exigindo regulação como contrapartida.
+- A **regulação prudencial** (Acordos de **Basileia I, II, III**) exige **capital** próprio proporcional ao risco (RWA), limita alavancagem e, desde Basileia III, impõe requisitos de **liquidez** e regras para bancos sistêmicos.
+- O dilema **too big to fail** e o risco moral motivam capital adicional para bancos sistêmicos e regimes de **resolução** (*bail-in* em vez de *bailout*).
+- No Brasil, o **PROER** reestruturou o sistema pós-Real, o **FGC** garante depósitos e o **Banco Central** implementa Basileia III e testes de estresse, num sistema considerado sólido.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique por que um banco **solvente** pode, ainda assim, quebrar. Qual risco está em jogo?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Um banco solvente tem ativos que valem mais que seus passivos, mas esses ativos são de **longo prazo e ilíquidos** (empréstimos). Se muitos depositantes sacam ao mesmo tempo, o banco não consegue transformar seus empréstimos em caixa rápido o suficiente para honrar os saques — falta **liquidez**, não solvência. É o **risco de liquidez**, o risco da corrida bancária.
+:::
+
+**2.** Por que uma corrida bancária é chamada de **profecia autorrealizável**?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque o próprio medo da quebra a provoca: cada depositante, temendo que os outros saquem e esgotem o caixa, corre para sacar primeiro; como todos fazem o mesmo, o banco realmente fica sem recursos e quebra. A crença na quebra **causa** a quebra — a profecia se realiza por si mesma, mesmo que o banco fosse originalmente saudável.
+:::
+
+**3.** Classifique cada situação: **risco de liquidez**, **risco de crédito** ou **risco sistêmico**:
+(a) uma grande recessão faz muitos tomadores pararem de pagar;
+(b) a quebra de um banco derruba outros que eram seus credores;
+(c) um banco saudável enfrenta saques em massa por um boato.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Risco de crédito** (inadimplência corrói o capital). (b) **Risco sistêmico** (contágio entre instituições). (c) **Risco de liquidez** (falta de caixa por corrida, sem problema de solvência).
+:::
+
+**4.** Como o **seguro de depósitos** previne corridas bancárias? Que problema ele cria em troca?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O seguro garante ao depositante seu dinheiro (até um limite) mesmo se o banco quebrar. Isso **remove o incentivo de correr para sacar** — não há por que participar do pânico se o depósito está garantido —, estabilizando as expectativas e quebrando a lógica da profecia autorrealizável. Em troca, cria **risco moral**: depositantes deixam de vigiar a saúde do banco e os bancos podem assumir mais risco, pois as perdas (dos depositantes) estão cobertas. Por isso o seguro exige supervisão e regras de capital como contrapartida.
+:::
+
+**5.** Explique a lógica do **requisito de capital** de Basileia usando a ideia de "colchão" e "pele em jogo".
+
+::: {.callout-tip collapse="true" title="Solução"}
+O capital próprio (dos acionistas) funciona como **colchão**: as perdas do banco são absorvidas primeiro pelo capital, antes de atingir os depositantes. Quanto mais capital, mais perdas o banco suporta sem ficar insolvente. Além disso, exigir capital dá ao acionista **"pele em jogo"** — ele perde o próprio dinheiro se o banco fizer más apostas —, o que reduz o incentivo a assumir risco excessivo (mitiga o risco moral). Basileia calibra esse capital pelos **ativos ponderados pelo risco**: ativos mais arriscados exigem mais colchão.
+:::
+
+**6.** Por que a falência de um banco é tratada de forma diferente da falência de uma padaria? Use o conceito de **externalidade**.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A quebra de uma padaria afeta essencialmente seu dono e alguns clientes/fornecedores. A quebra de um banco gera **externalidades** enormes sobre terceiros: dispara perdas em outros bancos credores, provoca *fire sales* que derrubam o valor dos ativos de todos, corta o crédito de empresas saudáveis e pode desencadear pânico e contágio (**risco sistêmico**). Como o custo social da quebra excede em muito o custo privado, o Estado intervém (rede de proteção e regulação) — algo injustificável para a padaria, cujo fracasso não ameaça a economia.
+:::
+
+**7.** (Análise de caso) Explique por que muitos bancos brasileiros entraram em crise **após** o Plano Real e qual foi a resposta do governo (PROER/FGC). Relacione com o conceito de risco moral.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Durante a alta inflação, muitos bancos lucravam com o **float**: os depósitos não remunerados perdiam valor real rapidamente, e o banco se apropriava desse ganho. Com o **Plano Real** e a queda abrupta da inflação (1994), essa receita evaporou, revelando a ineficiência e a fragilidade de várias instituições, que entraram em crise. O governo respondeu com o **PROER** (1995), financiando a absorção dos bancos problemáticos por instituições saudáveis, e criou o **FGC** (seguro de depósitos). O **risco moral** aparece na crítica: socorrer bancos com recursos públicos pode incentivar imprudência futura ("serão salvos de novo"); a contrapartida foi o fortalecimento da supervisão e das exigências de capital para limitar o risco assumido sob a nova rede de proteção.
+:::
+
+**8.** (Desafio) O que significa *too big to fail* e por que ele agrava o risco moral? Explique como Basileia III e os regimes de resolução (*bail-in*) tentam enfrentá-lo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+*Too big to fail* descreve bancos tão grandes e interconectados que sua quebra ameaçaria o sistema inteiro, levando o governo a socorrê-los para evitar o contágio. Isso **agrava o risco moral**: sabendo que serão salvos, esses bancos assumem mais risco e captam recursos mais barato (o mercado precifica a garantia estatal implícita), um subsídio que os incentiva a crescer ainda mais — "privatizam-se ganhos, socializam-se perdas". **Basileia III** enfrenta isso exigindo **capital adicional** dos bancos sistemicamente importantes (colchão maior, e desincentivo a ficar grande demais) e maior supervisão. Os **regimes de resolução** com **bail-in** permitem deixar um grande banco quebrar de forma ordenada, impondo as perdas a **acionistas e credores** (que são "convertidos" ou zerados), e não ao contribuinte (o **bailout**) — restaurando a disciplina de mercado e reduzindo o subsídio implícito. Assim, busca-se tornar crível que nenhum banco é grande demais para falir.
+:::
+
+## Para saber mais
+
+- @mishkin2000 — capítulos sobre crises financeiras, regulação bancária, seguro de depósitos e risco moral; referência central da área.
+- @diamond1983 — o artigo seminal que modelou corridas bancárias como equilíbrios de expectativas e justificou o seguro de depósitos.
+- @bernanke1983 — clássico sobre como o colapso bancário aprofundou a Grande Depressão, base da compreensão moderna do risco sistêmico.
+- @carvalho2015 — trata da regulação prudencial, de Basileia e da estabilidade financeira, com atenção ao Brasil.
+- @giambiagi2016 — para o contexto do PROER, do FGC e da reestruturação do sistema financeiro brasileiro.

@@ -119,13 +119,13 @@
 
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
-| 1 | Moeda: funções, história e agregados monetários | `capitulos/vol08/cap01-moeda.qmd` | ⬜ |
-| 2 | Bancos e a criação de moeda | `capitulos/vol08/cap02-bancos-criacao-de-moeda.qmd` | ⬜ |
-| 3 | O Banco Central: funções e instrumentos | `capitulos/vol08/cap03-banco-central.qmd` | ⬜ |
-| 4 | Regime de metas de inflação e o Copom | `capitulos/vol08/cap04-metas-de-inflacao-copom.qmd` | ⬜ |
-| 5 | Taxa de juros: Selic, juro real e estrutura a termo | `capitulos/vol08/cap05-taxa-de-juros-selic.qmd` | ⬜ |
-| 6 | O Sistema Financeiro Nacional e o Pix | `capitulos/vol08/cap06-sfn-pix.qmd` | ⬜ |
-| 7 | Crises bancárias e regulação prudencial | `capitulos/vol08/cap07-crises-bancarias-regulacao.qmd` | ⬜ |
+| 1 | Moeda: funções, história e agregados monetários | `capitulos/vol08/cap01-moeda.qmd` | ✅ |
+| 2 | Bancos e a criação de moeda | `capitulos/vol08/cap02-bancos-criacao-de-moeda.qmd` | ✅ |
+| 3 | O Banco Central: funções e instrumentos | `capitulos/vol08/cap03-banco-central.qmd` | ✅ |
+| 4 | Regime de metas de inflação e o Copom | `capitulos/vol08/cap04-metas-de-inflacao-copom.qmd` | ✅ |
+| 5 | Taxa de juros: Selic, juro real e estrutura a termo | `capitulos/vol08/cap05-taxa-de-juros-selic.qmd` | ✅ |
+| 6 | O Sistema Financeiro Nacional e o Pix | `capitulos/vol08/cap06-sfn-pix.qmd` | ✅ |
+| 7 | Crises bancárias e regulação prudencial | `capitulos/vol08/cap07-crises-bancarias-regulacao.qmd` | ✅ |
 
 ### Volume 9 — Economia Internacional
 
