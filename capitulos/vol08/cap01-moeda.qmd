@@ -1,0 +1,263 @@
+# Moeda: funções, história e agregados monetários {#sec-moeda}
+
+Abra o aplicativo do seu banco e olhe o saldo. Aquele número na tela não é ouro guardado num cofre, nem uma pilha de cédulas com o seu nome — é apenas um registro digital, uma promessa contabilizada. Ainda assim, com um toque no celular você o transforma em pão na padaria, em passagem de ônibus, em aluguel pago. O que confere a esse número o poder de comandar bens e serviços reais? Por que o padeiro aceita, em troca de um produto concreto, um sinal eletrônico que ele nunca verá em papel? A resposta a essa pergunta aparentemente ingênua abre uma das áreas mais fascinantes da Economia: a **teoria monetária**.
+
+A moeda é uma das instituições mais engenhosas já criadas pela humanidade — e uma das mais invisíveis, justamente porque funciona bem. Este capítulo, que abre o Volume 8, parte do problema que a moeda resolve, percorre suas funções e sua história, e chega às definições precisas que o Banco Central usa para medir *quanta* moeda existe numa economia — os **agregados monetários**. É o alicerce sobre o qual se erguerão os capítulos seguintes, sobre bancos, política monetária e juros.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- explicar o problema da **dupla coincidência de desejos** e por que a moeda o resolve;
+- enunciar e distinguir as três **funções da moeda**: meio de troca, unidade de conta e reserva de valor;
+- descrever a evolução histórica da moeda, da mercadoria-moeda à moeda **fiduciária** e digital;
+- diferenciar **moeda-mercadoria**, **moeda-papel** e **moeda fiduciária**, e entender o papel da confiança;
+- definir os **agregados monetários** (M0, M1, M2, M3, M4) segundo o critério de **liquidez**;
+- relacionar a quantidade de moeda ao nível de preços por meio da **teoria quantitativa** e do conceito de **velocidade**.
+
+## O problema que a moeda resolve
+
+Imagine uma economia sem moeda, em que as trocas se dão por **escambo** (ou *permuta*) — mercadoria por mercadoria. Você é sapateiro e quer pão. Precisa encontrar um padeiro que, ao mesmo tempo, queira sapatos. Essa exigência dupla — que cada parte deseje exatamente o que a outra oferece — chama-se **dupla coincidência de desejos**, e é o grande gargalo do escambo.
+
+::: {.callout-note title="Definição — Dupla coincidência de desejos"}
+A **dupla coincidência de desejos** é a condição, necessária para uma troca direta (escambo), de que cada participante deseje precisamente o bem que o outro tem a oferecer. Quanto mais especializada a economia, mais rara essa coincidência — e mais custosa a troca.
+:::
+
+O problema se agrava com a especialização. Numa economia com muitos bens, o número de trocas relativas a memorizar explode, e o tempo gasto procurando o parceiro certo — os **custos de transação** — sufoca o comércio. A @fig-escambo ilustra o contraste entre a teia confusa do escambo e a estrela simples que a moeda desenha ao se colocar no centro de todas as trocas.
+
+::: {#fig-escambo}
+
+```{.tikz}
+%%| filename: fig-escambo
+%%| alt: À esquerda, quatro agentes ligados entre si por muitas setas de escambo; à direita, os mesmos quatro agentes ligados a um nó central de moeda, reduzindo o número de conexões.
+\begin{tikzpicture}[font=\footnotesize, scale=0.95]
+  % --- Escambo (esquerda) ---
+  \node[draw, circle, manualblue] (a1) at (0,2) {S};
+  \node[draw, circle, manualblue] (b1) at (2,2) {P};
+  \node[draw, circle, manualblue] (c1) at (0,0) {A};
+  \node[draw, circle, manualblue] (d1) at (2,0) {F};
+  \draw[manualgray] (a1)--(b1); \draw[manualgray] (a1)--(c1);
+  \draw[manualgray] (a1)--(d1); \draw[manualgray] (b1)--(c1);
+  \draw[manualgray] (b1)--(d1); \draw[manualgray] (c1)--(d1);
+  \node[align=center] at (1,-1) {\textbf{Escambo}\\6 canais de troca};
+  % --- Moeda (direita) ---
+  \node[draw, circle, manualblue] (a2) at (6,2) {S};
+  \node[draw, circle, manualblue] (b2) at (8,2) {P};
+  \node[draw, circle, manualblue] (c2) at (6,0) {A};
+  \node[draw, circle, manualblue] (d2) at (8,0) {F};
+  \node[draw, circle, fill=manualyellow!30, manualred] (m) at (7,1) {\$};
+  \draw[manualred] (a2)--(m); \draw[manualred] (b2)--(m);
+  \draw[manualred] (c2)--(m); \draw[manualred] (d2)--(m);
+  \node[align=center] at (7,-1) {\textbf{Moeda}\\4 canais de troca};
+\end{tikzpicture}
+```
+
+A moeda no centro das trocas: em vez de casar desejos dois a dois, cada agente troca seu bem por moeda e a moeda pelo que deseja. Com $n$ agentes, o escambo exige até $n(n-1)/2$ canais; a moeda, apenas $n$.
+:::
+
+A moeda quebra a troca em duas metades independentes — *vender* (trocar bem por moeda) e *comprar* (trocar moeda por bem) — que não precisam mais coincidir no tempo nem na contraparte. É essa separação que libera a divisão do trabalho e, com ela, a prosperidade.
+
+## As três funções da moeda
+
+Economistas definem a moeda não pelo que ela *é* (papel, metal, bits), mas pelo que ela *faz*. São três as funções clássicas.
+
+### Meio de troca
+
+A moeda é o **meio de troca** universalmente aceito: o intermediário que todos recebem sabendo que poderão repassá-lo adiante. É a função que resolve a dupla coincidência de desejos e a que primeiro vem à mente. Um bem só cumpre bem esse papel se for amplamente aceito, divisível, portátil e durável.
+
+### Unidade de conta
+
+A moeda é a **unidade de conta**: a régua com que medimos e comparamos o valor de tudo. Em vez de saber o preço de cada bem em termos de todos os outros, exprimimos todos os preços numa única medida — o real. Essa função é puramente informacional e reduz drasticamente a quantidade de preços que precisamos conhecer.
+
+::: {.callout-tip title="Intuição — por que a unidade de conta economiza informação"}
+Com $n$ bens e sem moeda, existem $n(n-1)/2$ preços relativos (cada bem contra cada outro). Com 1.000 bens, são quase **500 mil** taxas de troca. Adote uma unidade de conta e bastam **1.000** preços — um para cada bem. A moeda não só facilita a troca; ela organiza a informação de preços de uma economia inteira.
+:::
+
+### Reserva de valor
+
+Por fim, a moeda é uma **reserva de valor**: um modo de transportar poder de compra do presente para o futuro. Quem vende hoje e não quer comprar já pode guardar moeda e gastá-la depois. Aqui, porém, a moeda enfrenta concorrência (imóveis, títulos, ações rendem juros ou valorizam) e uma inimiga poderosa: a **inflação**, que corrói silenciosamente o poder de compra da moeda retida. É por isso que, em economias de alta inflação, a moeda perde essa função primeiro — as pessoas se desfazem dela o mais rápido possível.
+
+::: {.callout-note title="Definição — Funções da moeda"}
+A moeda desempenha três funções: **meio de troca** (intermediário aceito nas transações), **unidade de conta** (padrão de medida de valor) e **reserva de valor** (forma de guardar poder de compra ao longo do tempo). Um ativo é tanto mais "moeda" quanto melhor cumpre simultaneamente as três.
+:::
+
+## Uma breve história da moeda
+
+A moeda não foi inventada por decreto; **evoluiu**. Conhecer suas etapas ajuda a entender o que ela é hoje.
+
+**Mercadoria-moeda.** As primeiras moedas foram bens que já tinham valor de uso e passaram a ser aceitos como meio de troca: gado (daí *pecúnia*, de *pecus*, gado, em latim), sal (origem de *salário*), conchas, cacau, tabaco. A **moeda-mercadoria** tem valor intrínseco, mas costuma ser mal divisível, perecível ou difícil de transportar.
+
+**Metais e a cunhagem.** Os metais preciosos — ouro e prata — impuseram-se por serem duráveis, divisíveis, homogêneos e escassos. A cunhagem de moedas pelo Estado (a partir da Lídia, séc. VII a.C.) certificava peso e pureza, reduzindo o custo de verificar cada troca.
+
+**Moeda-papel lastreada.** Guardar ouro era arriscado. Ourives e, depois, bancos passaram a emitir **recibos** de depósito — papéis que davam ao portador o direito de resgatar o metal. Como o papel era mais prático, ele próprio começou a circular como meio de troca. Nasce a **moeda-papel**, inicialmente **lastreada**: cada nota correspondia (em princípio) a certa quantidade de metal guardada. O **padrão-ouro**, vigente em boa parte do mundo até o século XX, foi a expressão mais acabada desse arranjo.
+
+**Moeda fiduciária.** O passo final foi cortar o lastro. Hoje a cédula de real não é conversível em ouro nem em nada: seu valor repousa inteiramente na **confiança** (*fides*, em latim) de que os outros a aceitarão e de que o Estado limitará sua emissão. É a **moeda fiduciária** (ou *fiat money*), imposta por lei como **curso legal** — todo credor é obrigado a aceitá-la para quitar dívidas.
+
+::: {.callout-note title="Definição — Moeda fiduciária (fiat)"}
+A **moeda fiduciária** é aquela sem valor intrínseco e sem lastro em mercadoria, cujo poder de compra decorre da confiança dos agentes e do respaldo legal do Estado (curso forçado). Praticamente todas as moedas nacionais modernas — o real, o dólar, o euro — são fiduciárias.
+:::
+
+**Moeda escritural e digital.** Paralelamente, a maior parte da moeda deixou de ser física. A **moeda escritural** (ou bancária) são os depósitos à vista registrados nos bancos — números em contas, movimentados por transferências, cartões e, no Brasil, pelo Pix. Ela será o tema central do próximo capítulo, sobre a criação de moeda pelos bancos.
+
+::: {.callout-warning title="Controvérsia — criptomoedas são moeda?"}
+Bitcoin e outras criptomoedas testam a definição funcional. Cumprem parcialmente o papel de **reserva de valor** (especulativa e volátil) e, em nichos, de **meio de troca**, mas raramente servem de **unidade de conta** — quase ninguém precifica bens em bitcoin. Sua alta volatilidade compromete justamente as funções que definem a moeda. Por isso, a maioria dos economistas as classifica hoje como **ativos** especulativos, não como moeda plena. Já as **moedas digitais de banco central** (como o Drex, em desenvolvimento no Brasil) são moeda fiduciária estatal em nova roupagem tecnológica.
+:::
+
+## Medindo a moeda: os agregados monetários
+
+Se a moeda é definida por suas funções, surge um problema prático: *o que exatamente contar* quando queremos saber quanta moeda circula? Cédulas, com certeza. Depósitos à vista, também — pagam-se contas com eles. Mas e uma aplicação na poupança? E um título público que se resgata em um dia? Cada um desses ativos é um pouco menos "moeda" que o anterior, porque é um pouco menos **líquido**.
+
+::: {.callout-note title="Definição — Liquidez"}
+**Liquidez** é a facilidade e a rapidez com que um ativo pode ser convertido em meio de troca sem perda de valor. A moeda em espécie é o ativo perfeitamente líquido (é o próprio meio de troca); um imóvel está no extremo oposto.
+:::
+
+Para organizar essa gradação, o Banco Central classifica os ativos em **agregados monetários** — camadas concêntricas, cada uma englobando a anterior e acrescentando ativos progressivamente menos líquidos (@fig-agregados).
+
+::: {#fig-agregados}
+
+```{.tikz}
+%%| filename: fig-agregados
+%%| alt: Quatro retângulos concêntricos representando os agregados monetários, do mais líquido M1 no centro ao mais amplo M4 na borda.
+\begin{tikzpicture}[font=\footnotesize]
+  \draw[curva, fill=manualblue!25] (-3.6,-2.6) rectangle (3.6,2.6);
+  \node[manualblue] at (0,2.2) {\textbf{M4}\ =\ M3\ +\ títulos públicos};
+  \draw[curva, fill=manualblue!35] (-2.9,-2.0) rectangle (2.9,1.7);
+  \node[manualblue] at (0,1.3) {\textbf{M3}\ =\ M2\ +\ quotas de fundos};
+  \draw[curva, fill=manualblue!50] (-2.2,-1.4) rectangle (2.2,0.9);
+  \node[manualblue] at (0,0.5) {\textbf{M2}\ =\ M1\ +\ poupança e dep.\ a prazo};
+  \draw[curva, fill=manualyellow!60] (-1.5,-0.8) rectangle (1.5,0.1);
+  \node[align=center] at (0,-0.35) {\textbf{M1}\\papel-moeda\\+ dep.\ à vista};
+  \draw[vetor, ->, >=stealth] (4.0,-2.6) -- (4.0,2.6);
+  \node[rotate=90, manualred] at (4.4,0) {menos líquido $\rightarrow$};
+\end{tikzpicture}
+```
+
+Os agregados monetários como camadas de liquidez decrescente. Quanto mais externa a camada, menos o ativo se parece com "dinheiro vivo".
+:::
+
+As definições usadas pelo Banco Central do Brasil são, em resumo:
+
+- **M0 (papel-moeda em poder do público)** — o dinheiro em espécie fora dos bancos. Em sentido próximo, a **base monetária** é o papel-moeda emitido mais as reservas bancárias no Banco Central (voltaremos a ela no @sec-banco-central).
+- **M1** — o agregado mais líquido: **papel-moeda em poder do público + depósitos à vista** nos bancos. É a "moeda" no sentido de meio de troca imediato.
+- **M2** — M1 + depósitos de **poupança** + títulos emitidos por instituições depositárias (depósitos a prazo, como CDBs).
+- **M3** — M2 + quotas de **fundos de renda fixa** + operações compromissadas com títulos públicos.
+- **M4** — o mais amplo: M3 + **títulos públicos** de alta liquidez em poder do público não financeiro.
+
+$$
+\underbrace{M1}_{\text{meio de pagamento}} \subset M2 \subset M3 \subset \underbrace{M4}_{\text{poupança financeira ampla}}
+$$ {#eq-agregados}
+
+::: {.callout-important title="Armadilha comum — 'imprimir dinheiro' é só uma parte da história"}
+No senso comum, criar moeda é "ligar a impressora" de cédulas. Mas o papel-moeda é a menor fatia dos meios de pagamento: a maior parte de M1 é **moeda escritural** — depósitos criados pelos próprios bancos ao emprestar, como veremos no @sec-bancos-criacao-de-moeda. Reduzir a moeda a cédulas é perder de vista de onde ela realmente vem.
+:::
+
+## Quanta moeda uma economia precisa? A teoria quantitativa
+
+Existe uma relação, tão antiga quanto intuitiva, entre a quantidade de moeda e o nível de preços. Ela é captada pela **equação de trocas**, atribuída a Irving Fisher:
+
+$$
+M \cdot V = P \cdot Y
+$$ {#eq-trocas}
+
+onde $M$ é a quantidade de moeda, $V$ é a **velocidade de circulação** (o número médio de vezes que cada unidade monetária troca de mãos no período), $P$ é o nível de preços e $Y$ é o produto real. O lado esquerdo é o total *gasto*; o direito, o valor *nominal* do que foi produzido e vendido. Como identidade contábil, a @eq-trocas é sempre verdadeira.
+
+Ela vira **teoria** — a **teoria quantitativa da moeda** — quando se acrescentam duas hipóteses: que a velocidade $V$ é aproximadamente estável e que o produto $Y$ é determinado por fatores reais (não pela moeda) no longo prazo. Sob essas hipóteses, variações em $M$ recaem quase inteiramente sobre $P$:
+
+$$
+M \uparrow \;\Rightarrow\; P \uparrow \qquad (\text{com } V, Y \text{ dados}).
+$$
+
+Daí a célebre síntese de Milton Friedman [@friedman2014]: *"a inflação é sempre e em toda parte um fenômeno monetário"* — no sentido de que uma inflação alta e persistente não se sustenta sem expansão monetária correspondente. É uma proposição de longo prazo e objeto de debate quanto ao curto prazo (ver @sec-metas-de-inflacao-copom), mas oferece uma âncora conceitual poderosa: dinheiro em excesso, perseguindo a mesma quantidade de bens, eleva preços.
+
+::: {.callout-tip title="Intuição — velocidade e a demanda por moeda"}
+A velocidade $V$ é o inverso da fração da renda que as pessoas seguram em forma de moeda. Se todos guardam muita moeda parada (alta demanda por liquidez), $V$ cai; se ninguém quer segurar moeda — como na hiperinflação, quando reter dinheiro é perder poder de compra a cada hora —, $V$ dispara. Por isso, em hiperinflações a velocidade explode e agrava a alta de preços.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+A história monetária brasileira é um laboratório vivo dos conceitos deste capítulo.
+
+**Oito moedas em meio século — a moeda como reserva de valor corroída.** Entre 1942 e 1994, o Brasil trocou de padrão monetário nada menos que oito vezes: cruzeiro (1942), cruzeiro novo (1967), cruzeiro (1970), cruzado (1986), cruzado novo (1989), cruzeiro (1990), cruzeiro real (1993) e, enfim, o **real** (1994). Cada troca, geralmente com corte de zeros, foi uma tentativa de restaurar as funções da moeda destruídas pela inflação crônica. Na hiperinflação dos anos 1980–90, com o IPCA superando **80% ao mês** em alguns períodos, a moeda nacional falhava sobretudo como **reserva de valor** e como **unidade de conta**: os preços eram reajustados diariamente e muitos contratos passaram a ser indexados. O engenho do **Plano Real** (1994) foi justamente criar uma unidade de conta estável — a URV — antes de emitir a nova moeda, tema que o Volume 11 detalha.
+
+**Os agregados na prática: o SGS do Banco Central.** O Banco Central publica mensalmente os agregados M1, M2, M3 e M4 no **Sistema Gerenciador de Séries Temporais (SGS)**. O **M1** (papel-moeda em poder do público mais depósitos à vista) costuma representar uma fração modesta do PIB — poucos por cento —, enquanto o **M4**, que incorpora a poupança financeira e os títulos públicos, é várias vezes maior. Essa diferença revela o grau de sofisticação do sistema financeiro brasileiro: a maior parte da riqueza líquida do público não está em "dinheiro vivo", mas em ativos remunerados, reflexo direto do histórico de juros altos, que penaliza quem deixa recursos parados em M1.
+
+**Do cruzado ao Pix: a digitalização da moeda.** A moeda em espécie perde espaço aceleradamente no Brasil. Com a chegada do **Pix** (2020), operado pelo Banco Central, a moeda escritural passou a circular instantaneamente e sem custo entre pessoas e empresas, 24 horas por dia. O Pix — que em poucos anos se tornou o meio de pagamento mais usado no país — é uma demonstração concreta de que a função de **meio de troca** hoje se cumpre majoritariamente por transferências digitais de depósitos, não por cédulas. O próximo passo institucional é o **Drex**, a moeda digital do Banco Central, ainda em desenvolvimento.
+
+> **Fontes e séries para explorar:** Banco Central do Brasil — SGS (séries de meios de pagamento M1 a M4, base monetária); IBGE (IPCA histórico); estatísticas do Pix no site do BCB. Ao citar valores de agregados ou de inflação, verifique a data de referência: são revisados a cada divulgação.
+
+## Resumo do capítulo
+
+- A moeda surge para resolver o problema da **dupla coincidência de desejos** do escambo, separando a troca em *vender* e *comprar* e reduzindo os custos de transação.
+- A moeda é definida por três **funções**: **meio de troca**, **unidade de conta** e **reserva de valor**. Um bom "candidato a moeda" cumpre as três simultaneamente.
+- Historicamente, a moeda evoluiu da **mercadoria-moeda** (gado, sal, metais) à **moeda-papel lastreada** (padrão-ouro) e, por fim, à **moeda fiduciária** (*fiat*), sem lastro e baseada na confiança e no curso legal.
+- A maior parte da moeda hoje é **escritural** (depósitos bancários) e **digital**; criptomoedas cumprem só parcialmente as funções da moeda e são geralmente classificadas como ativos.
+- Os **agregados monetários** (M1 ⊂ M2 ⊂ M3 ⊂ M4) ordenam os ativos por **liquidez** decrescente; M1 (papel-moeda em poder do público + depósitos à vista) é o meio de pagamento em sentido estrito.
+- A **equação de trocas** $M V = P Y$ e a **teoria quantitativa** ligam a quantidade de moeda ao nível de preços: no longo prazo, expansão monetária excessiva se traduz em inflação.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique o problema da dupla coincidência de desejos com um exemplo próprio e mostre como a moeda o resolve.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Exemplo: um dentista que quer um corte de cabelo precisa, no escambo, achar um cabeleireiro que queira tratamento dentário *ao mesmo tempo* — coincidência dupla e improvável. Com moeda, o dentista atende qualquer paciente, recebe reais e usa esses reais para pagar qualquer cabeleireiro. A troca única (serviço por serviço) é quebrada em duas trocas independentes (serviço por moeda; moeda por serviço), eliminando a exigência de coincidência.
+:::
+
+**2.** Classifique cada situação segundo a **função da moeda** em jogo:
+(a) você compara o preço de dois celulares em reais;
+(b) você paga o almoço com o cartão de débito;
+(c) você deixa R\$\,2.000 na conta para uma emergência futura.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Unidade de conta** — a moeda serve de medida para comparar valores.
+(b) **Meio de troca** — a moeda (escritural) intermedeia a transação.
+(c) **Reserva de valor** — a moeda transporta poder de compra para o futuro.
+:::
+
+**3.** Por que a inflação alta ataca primeiro a função de **reserva de valor** da moeda? O que as pessoas tendem a fazer?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Inflação corrói o poder de compra da moeda retida: R\$\,100 guardados hoje compram menos amanhã. Reter moeda passa a significar perda garantida, então as pessoas se desfazem dela rapidamente — gastam logo, compram bens duráveis, dolarizam ou aplicam em ativos indexados. A moeda deixa de servir para guardar valor, embora ainda possa (por um tempo) servir de meio de troca. A velocidade de circulação $V$ dispara.
+:::
+
+**4.** Ordene do mais líquido ao menos líquido: (i) um imóvel; (ii) uma nota de R\$\,50; (iii) um depósito na poupança; (iv) um depósito à vista na conta-corrente. Associe cada um ao agregado em que primeiro aparece (quando aplicável).
+
+::: {.callout-tip collapse="true" title="Solução"}
+Ordem de liquidez decrescente: (ii) nota de R\$\,50 → (iv) depósito à vista → (iii) poupança → (i) imóvel.
+Agregados: a nota e o depósito à vista compõem **M1**; a poupança entra em **M2**; o imóvel não é considerado moeda em nenhum agregado (é ativo real, ilíquido).
+:::
+
+**5.** Uma economia tem quantidade de moeda $M = 500$ bilhões, produto real $Y = 4$ trilhões e nível de preços $P = 1{,}5$ (índice). Usando a equação de trocas, calcule a velocidade $V$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Da @eq-trocas, $V = \dfrac{P\,Y}{M} = \dfrac{1{,}5 \times 4{.}000}{500} = \dfrac{6{.}000}{500} = 12$. Cada unidade monetária circula, em média, **12 vezes** no período.
+:::
+
+**6.** Usando a equação de trocas, mostre o que acontece com os preços se a moeda $M$ crescer 10%, a velocidade $V$ ficar constante e o produto real $Y$ crescer 3%. Interprete.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Em taxas de variação, a @eq-trocas fica $\hat{M} + \hat{V} \approx \hat{P} + \hat{Y}$. Logo $\hat{P} \approx \hat{M} + \hat{V} - \hat{Y} = 10\% + 0\% - 3\% = 7\%$. A inflação seria de cerca de **7%**: o excesso de moeda além do crescimento real do produto se transforma em alta de preços. Se a moeda crescesse apenas 3% (igual a $Y$), a inflação seria zero.
+:::
+
+**7.** (Análise de caso) Entre 1942 e 1994 o Brasil trocou de moeda oito vezes. À luz das **três funções da moeda**, explique por que trocar o nome e cortar zeros, sozinho, nunca resolveu o problema — e o que o Plano Real fez de diferente.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Cortar zeros e rebatizar a moeda atacava só o sintoma (números grandes), não a causa (a inflação crônica que destruía as funções de **reserva de valor** e de **unidade de conta**). Enquanto a inflação persistisse, a nova moeda voltava a se deteriorar. O Plano Real foi diferente porque atacou a **unidade de conta** primeiro: criou a URV, uma unidade de conta estável que reindexou preços e contratos e "reeducou" a economia a pensar em valor estável, para só então emitir o real. Combinado a âncoras fiscal e cambial, isso estabilizou o poder de compra — restaurando as três funções de uma vez.
+:::
+
+**8.** (Desafio) Bitcoin é moeda? Avalie usando as três funções e explique por que a volatilidade é o cerne do problema.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Como **meio de troca**, o bitcoin tem aceitação limitada e custos/lentidão em muitas redes; como **reserva de valor**, é usado especulativamente, mas com oscilações enormes; como **unidade de conta**, praticamente não é usado — quase ninguém precifica bens em bitcoin. A **volatilidade** é central porque compromete simultaneamente as três funções: um meio de troca cujo valor varia 10% num dia gera risco em cada transação; uma reserva de valor tão instável é aposta, não poupança; e nenhuma economia adota como régua de preços algo cuja medida muda o tempo todo. Por isso a maioria dos economistas o classifica como **ativo** especulativo, não moeda plena — ao contrário de uma moeda digital de banco central, que é moeda fiduciária estatal.
+:::
+
+## Para saber mais
+
+- @mishkin2000 — os capítulos iniciais tratam com clareza das funções da moeda, da evolução dos sistemas de pagamento e da mensuração dos agregados monetários; referência canônica da área.
+- @carvalho2015 — abordagem em português, com forte atenção à moeda em economias com sistema financeiro desenvolvido e ao caso brasileiro.
+- @lopes2005 — manual clássico de economia monetária no Brasil, detalhado nas definições de agregados e na teoria quantitativa.
+- @friedman2014 — para a defesa clássica de que a inflação é, no longo prazo, um fenômeno monetário.
+- @mankiw2020 — capítulo sobre o sistema monetário, em nível introdutório e acessível.
