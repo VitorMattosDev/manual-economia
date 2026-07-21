@@ -1,0 +1,329 @@
+# O mercado de capitais: estrutura e a B3 {#sec-mercado-de-capitais}
+
+Você abre o aplicativo da corretora e a tela se enche de códigos: PETR4, VALE3, ITUB4, MGLU3. Cada um desses tíquetes de cinco caracteres é a porta de entrada para uma fração de uma empresa real — uma refinaria, uma mina, um banco, uma rede de lojas. Com alguns toques, um estudante em Fortaleza pode se tornar sócio da Petrobras; com outros, vender essa participação para um fundo de pensão em São Paulo, sem que os dois jamais se conheçam. Por trás dessa fluidez quase mágica há uma engrenagem institucional sofisticada: reguladores, uma bolsa de valores, câmaras de compensação, corretoras e um arcabouço de regras construído ao longo de mais de um século. Este capítulo abre o Volume 14 apresentando essa engrenagem — **o que é o mercado de capitais, para que ele serve e como está organizado no Brasil** —, deixando os instrumentos específicos (renda fixa, ações, derivativos) para os capítulos seguintes.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- explicar o papel do **sistema financeiro** na canalização da poupança para o investimento e distinguir **financiamento direto** de **indireto**;
+- situar o mercado de capitais entre os segmentos do mercado financeiro e descrever sua função econômica;
+- diferenciar **mercado primário** e **mercado secundário** e entender por que a liquidez do segundo viabiliza o primeiro;
+- identificar os agentes da arquitetura institucional brasileira — **CMN**, **CVM**, **Banco Central**, **B3** e intermediários — e o que cada um faz;
+- descrever a **B3**, sua origem, o que nela se negocia e como funcionam o pregão eletrônico e a liquidação;
+- interpretar os **segmentos de governança** (Novo Mercado e níveis diferenciados) e conceitos como *free float* e *tag along*.
+
+## Da poupança ao investimento: o problema da intermediação
+
+No @sec-poupanca-investimento vimos que, no agregado, a poupança de uns financia o investimento de outros. Mas há um obstáculo prático entre as duas pontas. De um lado estão os **agentes superavitários**: famílias e empresas que gastam menos do que ganham e acumulam recursos. De outro, os **agentes deficitários**: empresas que querem construir uma fábrica, governos que precisam financiar obras, pessoas que desejam comprar um imóvel — todos com planos de gasto maiores que sua renda corrente.
+
+::: {.callout-note title="Definição — Sistema financeiro"}
+O **sistema financeiro** é o conjunto de instituições, instrumentos e mercados que transferem recursos dos **agentes superavitários** (poupadores) para os **agentes deficitários** (tomadores), reconciliando seus prazos, montantes e apetites por risco.
+:::
+
+Sem esse sistema, cada poupador teria de encontrar pessoalmente um tomador confiável, negociar prazos, avaliar o risco de calote e monitorar o uso do dinheiro — custos de transação proibitivos. O sistema financeiro existe justamente para reduzir esses custos, e o faz por **duas rotas** distintas, ilustradas na @fig-intermediacao.
+
+::: {#fig-intermediacao}
+
+```{.tikz}
+%%| filename: fig-intermediacao
+%%| alt: Diagrama mostrando poupadores à esquerda e tomadores à direita, ligados por duas rotas — pelo topo, os bancos (financiamento indireto); pela base, o mercado de capitais (financiamento direto).
+\begin{tikzpicture}[font=\small, node distance=0pt]
+  \node[draw, rounded corners, fill=manualgreen!12, align=center, minimum height=1.6cm, text width=2.6cm]
+    (poup) at (0,0) {Agentes\\superavitários\\\footnotesize(poupadores)};
+  \node[draw, rounded corners, fill=manualred!12, align=center, minimum height=1.6cm, text width=2.6cm]
+    (tom) at (11,0) {Agentes\\deficitários\\\footnotesize(tomadores)};
+  \node[draw, rounded corners, fill=manualblue!14, align=center, text width=3.0cm]
+    (banco) at (5.5,2.4) {Intermediário\\financeiro (banco)};
+  \node[draw, rounded corners, fill=manualyellow!22, align=center, text width=3.0cm]
+    (merc) at (5.5,-2.4) {Mercado de capitais\\(bolsa e balcão)};
+  % rota indireta
+  \draw[vetor, manualblue] (poup.north) to[bend left=22] (banco.west);
+  \draw[vetor, manualblue] (banco.east) to[bend left=22] (tom.north);
+  \node[manualblue, font=\footnotesize] at (5.5,3.5) {financiamento \textbf{indireto}};
+  % rota direta
+  \draw[vetor, manualred] (poup.south) to[bend right=22] (merc.west);
+  \draw[vetor, manualred] (merc.east) to[bend right=22] (tom.south);
+  \node[manualred, font=\footnotesize] at (5.5,-3.5) {financiamento \textbf{direto}};
+\end{tikzpicture}
+```
+
+As duas rotas do sistema financeiro: pela intermediação bancária (indireta) ou pelo mercado de capitais (direta).
+:::
+
+No **financiamento indireto**, um banco se interpõe entre as pontas: capta depósitos dos poupadores e empresta aos tomadores, assumindo ele próprio o risco de crédito. O poupador tem uma relação com o banco, não com o tomador final. É o mundo do @sec-sfn-pix — o mercado de crédito.
+
+No **financiamento direto**, os recursos fluem *diretamente* do poupador ao tomador por meio da compra de **títulos** emitidos por este último. Quem compra uma ação da Vale ou uma debênture da Ambev entrega dinheiro à empresa (ou a outro investidor) e recebe em troca um papel que representa um direito — de propriedade ou de crédito. Esse é o território do **mercado de capitais**, e o risco fica com o investidor, não com um intermediário. Cabe às instituições do mercado organizar, dar transparência e garantir a segurança operacional dessas trocas.
+
+### Os segmentos do mercado financeiro
+
+O mercado financeiro costuma ser dividido em quatro segmentos, conforme o prazo e a natureza das operações:
+
+- **Mercado monetário** — operações de curtíssimo prazo que ajustam a liquidez da economia e onde se forma a taxa básica de juros (a Selic, no Brasil).
+- **Mercado de crédito** — empréstimos e financiamentos bancários, de curto e médio prazo (financiamento indireto).
+- **Mercado de câmbio** — compra e venda de moeda estrangeira (tema do Volume 9).
+- **Mercado de capitais** — captação de recursos de **médio e longo prazos**, sobretudo via emissão de ações e títulos de dívida (financiamento direto).
+
+É neste último que o Volume 14 se concentra.
+
+## O mercado de capitais e sua função econômica
+
+::: {.callout-note title="Definição — Mercado de capitais"}
+O **mercado de capitais** é o conjunto de instituições e operações voltado à captação de recursos de médio e longo prazos por empresas e governos, mediante a emissão e a negociação de **valores mobiliários** — como ações, debêntures, cotas de fundos e outros títulos.
+:::
+
+Sua função econômica é dupla e essencial:
+
+1. **Canalizar poupança para investimento produtivo.** Ao vender ações ou títulos, uma empresa obtém recursos para expandir a capacidade produtiva sem depender exclusivamente de bancos. Poupança que ficaria ociosa (ou renderia pouco) financia máquinas, pesquisa e emprego. É a ligação concreta entre a decisão de poupar de uma família e a decisão de investir de uma firma.
+2. **Precificar e alocar risco.** Ao negociar continuamente esses títulos, o mercado produz **preços** que sintetizam as expectativas de milhares de investidores sobre o futuro de cada empresa. Esses preços orientam para onde o capital deve fluir: projetos promissores atraem recursos baratos; projetos duvidosos, caros. O mercado funciona, assim, como um sistema descentralizado de alocação de capital.
+
+Há uma distinção fundamental entre os dois grandes tipos de valor mobiliário:
+
+- **Títulos de propriedade (ações):** representam uma fração do capital de uma empresa. Quem os detém é **sócio** — participa dos lucros (via dividendos) e do risco, sem prazo de vencimento nem retorno garantido.
+- **Títulos de dívida (debêntures, títulos públicos):** representam um **empréstimo**. Quem os detém é **credor** — tem direito a juros e à devolução do principal em prazo definido, com prioridade sobre os sócios em caso de dificuldade.
+
+Os capítulos seguintes deste volume detalham cada instrumento; aqui interessa a arquitetura que os torna negociáveis.
+
+## Mercado primário e mercado secundário
+
+Toda a vida de um valor mobiliário começa no **mercado primário** e prossegue no **mercado secundário**. Confundir os dois é um erro conceitual comum — e economicamente relevante, porque só um deles leva dinheiro novo à empresa.
+
+::: {.callout-note title="Definição — Mercado primário e secundário"}
+No **mercado primário**, o título é vendido pela **primeira vez** por seu emissor, e os recursos vão para o **caixa da empresa** (ou do governo) emissora. No **mercado secundário**, investidores negociam entre si títulos **já emitidos**; o dinheiro passa de um investidor a outro, sem entrar na empresa.
+:::
+
+A @fig-primario-secundario contrasta os dois momentos.
+
+::: {#fig-primario-secundario}
+
+```{.tikz}
+%%| filename: fig-primario-secundario
+%%| alt: À esquerda, o mercado primário: a empresa emite ações e recebe recursos dos investidores. À direita, o mercado secundário: dois investidores trocam ações e dinheiro entre si via B3, com a empresa fora da transação.
+\begin{tikzpicture}[font=\small]
+  % ---- Mercado primário ----
+  \node[align=center, font=\bfseries] at (2.5,3.2) {Mercado primário};
+  \node[draw, rounded corners, fill=manualyellow!22, align=center, text width=2.3cm]
+    (emp) at (0,1.6) {Empresa\\emissora};
+  \node[draw, rounded corners, fill=manualgreen!12, align=center, text width=2.3cm]
+    (inv) at (5,1.6) {Investidores};
+  \draw[vetor, manualred] (emp.south) to[bend right=28] node[below, font=\footnotesize]{ações novas} (inv.south);
+  \draw[vetor, manualgreen] (inv.north) to[bend right=28] node[above, font=\footnotesize]{R\$ (capta caixa)} (emp.north);
+  % ---- Mercado secundário ----
+  \node[align=center, font=\bfseries] at (10.5,3.2) {Mercado secundário};
+  \node[draw, rounded corners, fill=manualgreen!12, align=center, text width=2.0cm]
+    (a) at (8.3,1.6) {Investidor A};
+  \node[draw, rounded corners, fill=manualgreen!12, align=center, text width=2.0cm]
+    (b) at (12.7,1.6) {Investidor B};
+  \node[draw, rounded corners, dashed, fill=manualgray!8, align=center, text width=2.3cm]
+    (emp2) at (10.5,-0.6) {Empresa\\\footnotesize(fora da troca)};
+  \draw[vetor, manualblue] (a.north) to[bend left=28] node[above, font=\footnotesize]{ações} (b.north);
+  \draw[vetor, manualgreen] (b.south) to[bend left=28] node[below, font=\footnotesize]{R\$} (a.south);
+  \draw[auxiliar] (a) -- (emp2);
+  \draw[auxiliar] (b) -- (emp2);
+\end{tikzpicture}
+```
+
+No mercado primário, os recursos chegam à empresa; no secundário, apenas mudam de mãos entre investidores.
+:::
+
+A primeira venda pública de ações de uma empresa recebe o nome de **IPO** (*Initial Public Offering*, ou oferta pública inicial); emissões posteriores por uma empresa já listada são *follow-ons*. É só nesses momentos primários que a empresa **capta recursos**. Depois disso, quando você compra uma ação da Petrobras no pregão, o dinheiro vai para quem lhe vendeu a ação — outro investidor —, não para a Petrobras.
+
+Se o secundário não injeta dinheiro na empresa, por que ele importa tanto? Porque é ele que dá **liquidez** aos títulos — a capacidade de vendê-los rapidamente, a um preço justo, quando o investidor quiser. E é justamente a promessa de liquidez que torna os investidores dispostos a comprar no primário.
+
+::: {.callout-tip title="Intuição — a liquidez do secundário sustenta o primário"}
+Ninguém entregaria dinheiro a uma empresa comprando uma ação se essa ação fosse impossível de revender. O mercado secundário funciona como a "saída de emergência" do investidor: por existir, ele aceita entrar no primário. Um mercado secundário líquido barateia o capital que as empresas captam no primário. Os dois são inseparáveis.
+:::
+
+### Um exemplo numérico: quanto uma empresa capta num IPO
+
+Suponha que a empresa fictícia *Café Serra S.A.* faça um IPO oferecendo $8\,\text{milhões}$ de ações novas ao preço de $R\$\,25{,}00$ cada. O montante bruto captado no mercado primário é:
+
+$$
+\text{Captação} = 8{.}000{.}000 \times R\$\,25{,}00 = R\$\,200\ \text{milhões}.
+$$ {#eq-ipo-capta}
+
+Esses R\$ 200 milhões entram no caixa da empresa (descontadas as comissões dos intermediários) e financiarão, digamos, uma nova fábrica. A partir do dia seguinte, essas 8 milhões de ações passam a ser negociadas no mercado secundário. Se o preço subir para $R\$\,30{,}00$, a **capitalização de mercado** dessas ações torna-se $8\ \text{mi} \times R\$\,30 = R\$\,240\ \text{milhões}$ — mas esse ganho de R\$ 40 milhões pertence aos investidores que detêm as ações, **não** à empresa, que já havia captado seu valor no IPO.
+
+## A arquitetura institucional brasileira
+
+Para que trocas como essa ocorram com segurança e transparência, o mercado de capitais brasileiro se apoia numa hierarquia de instituições, resumida na @fig-estrutura.
+
+::: {#fig-estrutura}
+
+```{.tikz}
+%%| filename: fig-estrutura
+%%| alt: Organograma em três níveis — no topo, CMN (normatização); no meio, CVM e Banco Central (regulação e fiscalização); na base, B3 e intermediários, ligando empresas e investidores.
+\begin{tikzpicture}[font=\small,
+  cx/.style={draw, rounded corners, align=center, minimum height=0.9cm}]
+  \node[cx, fill=manualgray!14, text width=6cm] (cmn) at (0,3) {\textbf{CMN} — Conselho Monetário Nacional\\\footnotesize(normatização máxima)};
+  \node[cx, fill=manualblue!14, text width=3.4cm] (cvm) at (-2.4,1) {\textbf{CVM}\\\footnotesize regula o mercado\\de capitais};
+  \node[cx, fill=manualblue!14, text width=3.4cm] (bcb) at (2.4,1) {\textbf{Banco Central}\\\footnotesize regula moeda,\\crédito e câmbio};
+  \node[cx, fill=manualyellow!22, text width=3.4cm] (b3) at (-2.4,-1) {\textbf{B3}\\\footnotesize bolsa, balcão,\\depositária e \emph{clearing}};
+  \node[cx, fill=manualgreen!12, text width=3.4cm] (int) at (2.4,-1) {\textbf{Intermediários}\\\footnotesize corretoras e bancos\\de investimento};
+  \node[cx, fill=manualred!12, text width=3.4cm] (emp) at (-2.4,-3) {\textbf{Empresas}\\\footnotesize emissoras};
+  \node[cx, fill=manualgreen!12, text width=3.4cm] (inv) at (2.4,-3) {\textbf{Investidores}};
+  \draw[vetor, manualgray] (cmn) -- (cvm);
+  \draw[vetor, manualgray] (cmn) -- (bcb);
+  \draw[vetor, manualblue] (cvm) -- (b3);
+  \draw[vetor, manualblue] (bcb) -- (int);
+  \draw[auxiliar] (b3) -- (emp);
+  \draw[auxiliar] (int) -- (inv);
+  \draw[auxiliar] (b3) -- (int);
+\end{tikzpicture}
+```
+
+A hierarquia institucional do mercado de capitais brasileiro, do órgão normativo ao investidor final.
+:::
+
+Os papéis principais são:
+
+- **CMN (Conselho Monetário Nacional)** — órgão máximo, define as diretrizes gerais das políticas monetária, cambial e de crédito. Não opera no dia a dia; estabelece as regras do jogo.
+- **CVM (Comissão de Valores Mobiliários)** — a **reguladora e fiscalizadora do mercado de capitais**, autarquia criada em 1976. Autoriza ofertas públicas, registra empresas e fundos, edita normas de transparência e pune fraudes, uso de informação privilegiada (*insider trading*) e manipulação de preços. É o "xerife" da bolsa.
+- **Banco Central** — regula moeda, crédito, câmbio e as instituições bancárias (@sec-sfn-pix); atua de forma complementar à CVM.
+- **B3 (Brasil, Bolsa, Balcão)** — a **infraestrutura de mercado**: administra o ambiente de negociação (bolsa e balcão organizado), a **depositária central** (onde os títulos ficam custodiados de forma escritural) e a **câmara de compensação** (*clearing*) que liquida e garante as operações.
+- **Intermediários** — **corretoras** e distribuidoras dão ao investidor acesso ao pregão (é por elas que você envia ordens); **bancos de investimento** estruturam e coordenam as ofertas públicas.
+- **Investidores** — pessoas físicas, **investidores institucionais** (fundos de investimento, fundos de pensão, seguradoras) e **investidores estrangeiros**.
+
+## A B3: a bolsa brasileira
+
+A bolsa de valores é o coração do mercado secundário. No Brasil, ela é uma só: a **B3**.
+
+::: {.callout-note title="Definição — Bolsa de valores"}
+Uma **bolsa de valores** é um ambiente organizado e regulado em que compradores e vendedores de valores mobiliários se encontram — hoje, eletronicamente — para negociar sob regras públicas que garantem transparência de preços e segurança na liquidação.
+:::
+
+**Uma longa consolidação.** A negociação de títulos em São Paulo remonta ao fim do século XIX. A **Bolsa de Valores de São Paulo (Bovespa)** modernizou-se ao longo do século XX e, em 2008, fundiu-se à **BM&F** (Bolsa de Mercadorias & Futuros), formando a **BM&FBovespa**. Em 2017, esta se uniu à **Cetip** (central de registro de títulos privados e de renda fixa), dando origem à **B3 — Brasil, Bolsa, Balcão**. O resultado é uma das maiores infraestruturas de mercado do mundo, que concentra num só grupo a bolsa de ações, o mercado de derivativos, o registro de renda fixa e a câmara de liquidação.
+
+**O que se negocia na B3.** Além de **ações**, a B3 abriga **ETFs** (fundos de índice), **FIIs** (fundos imobiliários), **BDRs** (recibos de ações estrangeiras), **debêntures**, **derivativos** (futuros e opções — Volume 14, capítulo 6) e títulos públicos via Tesouro Direto. Cada ativo tem um **código de negociação** (o *ticker*).
+
+::: {.callout-tip title="Como ler um ticker de ação"}
+No padrão brasileiro, as quatro primeiras letras identificam a empresa e o número final, o tipo de papel: **3** para ações **ordinárias** (ON, com voto) e **4** para **preferenciais** (PN, sem voto, com prioridade em dividendos). Assim, `PETR3` e `PETR4` são, respectivamente, a ordinária e a preferencial da Petrobras; `VALE3`, a ordinária da Vale. *Units* (pacotes de ON+PN) terminam em **11**.
+:::
+
+**Como uma negociação acontece.** O pregão é inteiramente **eletrônico**. Você envia uma ordem pela corretora; ela chega ao sistema da B3, que a coloca num **livro de ofertas** ordenando compras e vendas por preço. Quando o melhor preço de compra encontra o melhor de venda, o negócio é fechado automaticamente. O preço assim formado é público e reflete, a cada instante, o equilíbrio entre oferta e demanda pelo papel — uma aplicação direta da lógica de oferta e demanda estudada no Volume 3.
+
+**Liquidação: o negócio não acaba no clique.** Fechada a operação, entra em cena a **câmara de compensação** (*clearing*). Ela se interpõe como **contraparte central**: garante que o vendedor receberá o dinheiro e o comprador, os títulos, mesmo que uma das partes falhe. No Brasil, a liquidação de ações ocorre em **D+2** — dois dias úteis após o negócio, quando dinheiro e títulos efetivamente trocam de mãos, com atualização na depositária. Essa garantia institucional é o que permite negociar com um estranho anônimo sem medo de calote.
+
+::: {.callout-important title="Armadilha comum — ‘comprei uma ação, tirei dinheiro da empresa’"}
+Comprar ações no pregão **não** transfere recursos para a empresa emissora — apenas para o investidor que lhe vendeu o papel (mercado secundário). A empresa só recebe dinheiro nos momentos **primários** (IPO e *follow-on*). Confundir isso leva a erros grosseiros de análise, como imaginar que a alta diária de uma ação "financia" a companhia.
+:::
+
+## Governança corporativa e segmentos de listagem
+
+Abrir o capital impõe deveres. Quem compra ações confia parte de seu patrimônio a administradores que não controla diretamente — o clássico problema de **agência** entre acionistas e gestores. Para mitigar esse risco e atrair investidores, a B3 criou, a partir de 2000, **segmentos especiais de listagem** com exigências crescentes de **governança corporativa**.
+
+::: {.callout-note title="Definição — Governança corporativa"}
+**Governança corporativa** é o conjunto de práticas e regras que disciplinam a relação entre acionistas, conselho, diretoria e demais interessados, visando transparência, prestação de contas e tratamento equitativo dos sócios.
+:::
+
+Os principais segmentos, em ordem de exigência, são o **Nível 1**, o **Nível 2** e o **Novo Mercado** — este último o mais rigoroso. O Novo Mercado exige, entre outras coisas, que a empresa emita **apenas ações ordinárias** (uma ação, um voto), mantenha um **percentual mínimo em circulação** (*free float*) e conceda **tag along** de 100% aos minoritários.
+
+Dois conceitos merecem destaque:
+
+- **Free float** — a fração das ações que está efetivamente em circulação no mercado, nas mãos do público, e não retida pelos controladores. Quanto maior o *free float*, maior tende a ser a liquidez do papel. Se uma empresa tem 100 milhões de ações e os controladores retêm 75 milhões, o *free float* é de $25/100 = 25\%$.
+- **Tag along** — o direito de o acionista minoritário vender suas ações, em caso de troca de controle, por um preço mínimo atrelado ao pago ao controlador (100% no Novo Mercado). Protege quem não manda na empresa de ficar "preso" a um novo dono indesejado.
+
+## 🇧🇷 Brasil em Foco
+
+O mercado de capitais brasileiro passou, nas últimas duas décadas, por uma transformação profunda — e permanece pequeno para o tamanho da economia.
+
+**A popularização do investidor pessoa física.** Talvez a mudança mais visível seja o ingresso maciço de pessoas físicas na bolsa. Segundo dados divulgados pela **B3**, o número de CPFs com conta em renda variável saltou de algo em torno de **600 mil no fim de 2018** para a casa dos **milhões** no início desta década — um crescimento de várias vezes em poucos anos, impulsionado pela queda da taxa **Selic** a mínimas históricas (que reduziu o apelo da renda fixa), pela digitalização das corretoras e pela isenção de taxas de corretagem. O **Tesouro Direto**, programa do Tesouro Nacional em parceria com a B3 para venda de títulos públicos ao varejo, seguiu trajetória semelhante, ultrapassando a marca de milhões de investidores cadastrados. *(Números da ordem de grandeza; confira a divulgação mais recente da B3 e do Tesouro para os valores atualizados.)*
+
+**Um mercado ainda raso.** Apesar do crescimento, a bolsa brasileira é pequena em comparação internacional. O número de companhias listadas na B3 gira em torno de **poucas centenas** (na casa das 350 a 450 empresas nas últimas contagens) — número modesto para uma economia do porte da brasileira e muito inferior ao de mercados como o dos Estados Unidos, com milhares de empresas listadas. A **capitalização de mercado** das companhias abertas como proporção do PIB costuma situar-se na faixa de **40% a 70% do PIB**, oscilando com o ciclo e o câmbio, contra patamares bem acima de 100% em economias desenvolvidas. Isso significa que muitas empresas brasileiras ainda dependem fortemente do **crédito bancário** (financiamento indireto) e do BNDES, em vez do mercado de capitais.
+
+**Ondas de aberturas de capital.** O número de **IPOs** no Brasil é fortemente pró-cíclico: houve uma onda expressiva em **2007**, um longo hiato após a crise de 2008, e um novo boom em **2020–2021**, quando os juros baixos e a liquidez global levaram dezenas de empresas à bolsa — seguido de forte retração quando a Selic voltou a subir. Esse padrão ilustra como o custo de oportunidade do investidor (a taxa de juros) governa o apetite por ações e, portanto, a janela para as empresas captarem no mercado primário.
+
+**A CVM como reguladora.** Ao longo desse período, a **Comissão de Valores Mobiliários** modernizou suas regras de oferta pública (culminando na Resolução CVM 160, que reformou o regime de ofertas), ampliou a fiscalização de *insider trading* e incorporou temas como investimento coletivo (*crowdfunding*) e criptoativos ao debate regulatório. A qualidade dessa regulação é peça central para aprofundar o mercado: sem confiança na proteção ao minoritário, a poupança não migra para a renda variável.
+
+> **Fontes e séries para explorar:** B3 (relatórios de mercado, número de investidores e empresas listadas, *market cap*); Tesouro Nacional (estatísticas do Tesouro Direto); CVM (normas e relatórios anuais); Banco Central — SGS (Selic). Ao consultar, verifique sempre a data de referência: o número de investidores e de empresas listadas muda a cada divulgação.
+
+## Resumo do capítulo
+
+- O **sistema financeiro** transfere recursos de agentes **superavitários** para **deficitários** por duas rotas: o **financiamento indireto** (bancos, que se interpõem e assumem o risco) e o **financiamento direto** (mercado de capitais, em que o investidor compra títulos do próprio tomador).
+- O **mercado de capitais** capta recursos de médio e longo prazos via emissão de **valores mobiliários**; sua função é canalizar poupança para investimento produtivo e **precificar risco**, orientando a alocação de capital.
+- **Ações** são títulos de **propriedade** (o detentor é sócio); **debêntures e títulos públicos** são títulos de **dívida** (o detentor é credor, com prazo e juros).
+- No **mercado primário**, os recursos vão para a empresa emissora (IPO, *follow-on*); no **secundário**, investidores negociam entre si e o dinheiro não entra na empresa. A **liquidez** do secundário é o que viabiliza o primário.
+- A arquitetura brasileira reúne o **CMN** (normatiza), a **CVM** (regula e fiscaliza o mercado de capitais), o **Banco Central**, a **B3** (bolsa, depositária e *clearing*) e os **intermediários** (corretoras e bancos de investimento).
+- A **B3** resultou da fusão Bovespa + BM&F (2008) e da união com a Cetip (2017); nela se negociam ações, ETFs, FIIs, BDRs, derivativos e títulos públicos, com pregão **eletrônico** e liquidação em **D+2** garantida pela câmara de compensação.
+- Os **segmentos de governança** (Nível 1, Nível 2 e **Novo Mercado**) impõem exigências crescentes; conceitos-chave incluem **free float** (fração em circulação) e **tag along** (proteção ao minoritário na troca de controle).
+- O mercado brasileiro **cresceu** muito em número de investidores pessoa física, mas permanece **raso** em empresas listadas e capitalização/PIB frente a economias desenvolvidas.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise de caso.
+:::
+
+**1.** Explique a diferença entre **financiamento direto** e **financiamento indireto**, dando um exemplo de cada.
+
+::: {.callout-tip collapse="true" title="Solução"}
+No **financiamento indireto**, um intermediário (banco) se interpõe: capta do poupador e empresta ao tomador, assumindo o risco de crédito — por exemplo, você deposita na poupança e o banco empresta esse dinheiro a uma empresa. No **financiamento direto**, os recursos fluem diretamente do poupador ao tomador pela compra de um título emitido por este — por exemplo, você compra uma debênture ou uma ação da empresa, e o risco fica com você. O mercado de capitais é o território do financiamento direto.
+:::
+
+**2.** Classifique cada operação como pertencente ao **mercado primário** ou ao **secundário**, indicando se a empresa emissora recebe recursos:
+(a) A empresa X realiza seu IPO.
+(b) Você compra ações da Vale pelo aplicativo da corretora.
+(c) A empresa Y, já listada, faz um *follow-on*.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Primário** — a empresa **recebe** os recursos captados.
+(b) **Secundário** — você compra de outro investidor; a Vale **não** recebe nada.
+(c) **Primário** — nova emissão de uma empresa já listada; a empresa **recebe** os recursos.
+:::
+
+**3.** Por que o mercado secundário é importante para o mercado primário, se o secundário não leva dinheiro à empresa?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O secundário fornece **liquidez**: a capacidade de revender o título rapidamente e a um preço justo. Sem essa "saída de emergência", os investidores relutariam em comprar no primário, pois ficariam presos ao papel. Como a liquidez reduz o risco percebido, ela **barateia o capital** que as empresas captam no primário. Os dois mercados são, portanto, inseparáveis.
+:::
+
+**4.** A empresa *Vale do Sol S.A.* faz um IPO emitindo 5 milhões de ações a R\$ 18,00 cada. (a) Quanto capta no mercado primário? (b) Se, uma semana depois, o preço sobe para R\$ 22,00, qual a capitalização de mercado dessas ações e quanto desse ganho vai para a empresa?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Captação $= 5{.}000{.}000 \times R\$\,18{,}00 = R\$\,90\ \text{milhões}$ (bruto, antes de comissões), que entram no caixa da empresa.
+
+(b) Capitalização $= 5{.}000{.}000 \times R\$\,22{,}00 = R\$\,110\ \text{milhões}$. O ganho de R\$ 20 milhões ocorre no **mercado secundário** e pertence aos **investidores** que detêm as ações; a empresa **não** recebe nada dessa valorização, pois já captou seu valor no IPO.
+:::
+
+**5.** Uma empresa tem 200 milhões de ações emitidas, das quais os controladores retêm 150 milhões. (a) Qual é o *free float*? (b) Explique por que um *free float* maior tende a aumentar a liquidez do papel.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) *Free float* $= (200 - 150)/200 = 50/200 = 25\%$ — a fração em circulação no mercado.
+
+(b) Quanto mais ações estão efetivamente disponíveis para negociação (fora das mãos dos controladores), mais compradores e vendedores potenciais existem a cada instante, o que estreita a diferença entre preços de compra e venda e permite negociar volumes maiores sem mover muito o preço. Um *free float* muito baixo concentra o papel e o torna ilíquido e volátil — por isso o Novo Mercado exige um percentual mínimo.
+:::
+
+**6.** Relacione cada instituição à sua função: **CMN**, **CVM**, **B3**.
+
+::: {.callout-tip collapse="true" title="Solução"}
+- **CMN (Conselho Monetário Nacional):** órgão normativo máximo; define as diretrizes gerais das políticas monetária, cambial e de crédito.
+- **CVM (Comissão de Valores Mobiliários):** regula e fiscaliza o mercado de capitais — autoriza ofertas, registra empresas e fundos, e pune fraudes e *insider trading*.
+- **B3:** infraestrutura de mercado — administra o ambiente de negociação (bolsa e balcão), a depositária central e a câmara de compensação (*clearing*) que liquida e garante as operações.
+:::
+
+**7.** (Análise de caso) Um comentarista afirma: "A ação da empresa subiu 10% hoje; isso é ótimo, porque significa que a empresa arrecadou muito dinheiro no mercado." Avalie a afirmação.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A afirmação **confunde mercado primário e secundário**. A alta de 10% ocorre no **secundário**, na negociação entre investidores: o dinheiro passa de compradores a vendedores das ações, e a empresa **não arrecada nada** com isso. A empresa só capta recursos nos momentos **primários** (IPO e *follow-on*). A valorização pode, no máximo, ter efeitos indiretos — facilitar uma futura emissão a preço melhor ou remunerar acionistas —, mas não constitui "arrecadação" da companhia. O comentário está economicamente incorreto.
+:::
+
+**8.** (Análise de caso) O mercado de capitais brasileiro é raso: poucas empresas listadas e capitalização/PIB baixa frente a economias desenvolvidas. Cite dois fatores que podem explicar isso e uma consequência para as empresas brasileiras.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Fatores possíveis** (bastam dois): (i) histórico de **juros reais altos**, que tornam a renda fixa muito atraente e desestimulam tanto investidores quanto empresas a migrarem para a renda variável; (ii) **custo e exigências** de abrir capital (governança, transparência, comissões), que afastam empresas menores; (iii) forte oferta de **crédito direcionado** (BNDES) e bancário, que oferece financiamento indireto como alternativa; (iv) instabilidade macroeconômica e insegurança jurídica, que elevam o risco percebido.
+
+**Consequência:** muitas empresas brasileiras dependem mais do **crédito bancário** (financiamento indireto), tipicamente mais caro e de prazo mais curto, o que pode limitar o investimento de longo prazo. Um mercado de capitais mais profundo diversificaria as fontes de recursos e reduziria o custo de capital das empresas.
+:::
+
+**9.** (Desafio) Explique por que a existência de uma **câmara de compensação** (*clearing*) que atua como contraparte central reduz o risco e amplia o volume negociado numa bolsa.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Sem uma contraparte central, cada investidor teria de confiar que a pessoa específica do outro lado da operação honrará o negócio (entregará os títulos ou o dinheiro) — um **risco de contraparte** que exigiria conhecer e avaliar cada parceiro, algo inviável num mercado anônimo e de alto volume. A *clearing* se interpõe entre comprador e vendedor: garante a liquidação a ambos mesmo que uma das partes falhe, gerindo o risco por meio de garantias e mecanismos de mutualização. Ao eliminar a necessidade de confiança bilateral, ela permite que estranhos anônimos negociem em larga escala e com segurança, aumentando a liquidez e o volume do mercado. É um exemplo de instituição que reduz **custos de transação** e viabiliza trocas que, de outro modo, não ocorreriam.
+:::
+
+## Para saber mais
+
+- @pinheiro2019 — manual brasileiro abrangente sobre a estrutura, os agentes e os produtos do mercado de capitais; referência acessível para aprofundar cada instituição vista aqui.
+- @assafneto2021 — texto clássico de mercado financeiro no Brasil, com detalhamento do SFN, dos segmentos de mercado e do papel da CVM e da B3.
+- @bodie2014 — referência internacional sobre investimentos; os capítulos iniciais tratam da função econômica dos mercados e da distinção entre mercado primário e secundário.
+- @mishkin2000 — para conectar o mercado de capitais ao restante do sistema financeiro e à intermediação, complementando o @sec-sfn-pix.
