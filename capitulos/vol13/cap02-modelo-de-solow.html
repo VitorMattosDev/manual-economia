@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>90&nbsp; Modelos de crescimento: Solow e além – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol13/cap03-instituicoes.html" rel="next">
+<link href="../../capitulos/vol13/cap01-crescimento-desenvolvimento.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol13/cap01-crescimento-desenvolvimento.html">Volume 13 — Desenvolvimento Econômico</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol13/cap02-modelo-de-solow.html"><span class="chapter-number">90</span>&nbsp; <span class="chapter-title">Modelos de crescimento: Solow e além</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 10 — Estatística e Econometria Básica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap01-estatistica-descritiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">Estatística descritiva para a Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap02-probabilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Probabilidade e distribuições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap03-inferencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">Inferência: estimação e testes de hipótese</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap04-correlacao-causalidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">Correlação não é causalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap05-regressao-simples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Regressão linear simples</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap06-regressao-multipla.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Regressão múltipla e viés de variável omitida</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap07-series-temporais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Séries temporais: noções essenciais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap08-avaliacao-de-politicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">Avaliação de políticas públicas: métodos quase-experimentais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 11 — Economia Brasileira</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol11/cap01-cafe-industrializacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">Do café à industrialização (1889–1930)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol11/cap02-vargas-psi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">Era Vargas e a substituição de importações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol11/cap03-milagre-crise-divida.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">Do milagre econômico à crise da dívida</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol11/cap04-hiperinflacao-planos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">Hiperinflação e os planos heterodoxos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol11/cap05-plano-real.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">O Plano Real</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol11/cap06-anos-2000.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">Anos 2000: boom de commodities e inclusão social</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol11/cap07-crises-recentes-reformas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">80</span>&nbsp; <span class="chapter-title">Crises recentes e agenda de reformas (2014–hoje)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol11/cap08-estrutura-produtiva-atual.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">81</span>&nbsp; <span class="chapter-title">A estrutura produtiva do Brasil hoje</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 12 — Finanças Públicas e Tributação</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol12/cap01-papel-do-estado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">82</span>&nbsp; <span class="chapter-title">O papel econômico do Estado</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol12/cap02-tributacao-principios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">83</span>&nbsp; <span class="chapter-title">Tributação: princípios, incidência e eficiência</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol12/cap03-sistema-tributario-reforma.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">84</span>&nbsp; <span class="chapter-title">O sistema tributário brasileiro e a reforma tributária</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol12/cap04-orcamento-publico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">85</span>&nbsp; <span class="chapter-title">Gastos públicos e o orçamento: PPA, LDO e LOA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol12/cap05-divida-sustentabilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">86</span>&nbsp; <span class="chapter-title">Déficit, dívida pública e sustentabilidade fiscal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol12/cap06-federalismo-fiscal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">87</span>&nbsp; <span class="chapter-title">Federalismo fiscal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol12/cap07-previdencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">88</span>&nbsp; <span class="chapter-title">Previdência social: economia e reforma</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 13 — Desenvolvimento Econômico</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol13/cap01-crescimento-desenvolvimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">89</span>&nbsp; <span class="chapter-title">Crescimento × desenvolvimento: medidas e o IDH</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol13/cap02-modelo-de-solow.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">90</span>&nbsp; <span class="chapter-title">Modelos de crescimento: Solow e além</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol13/cap03-instituicoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">91</span>&nbsp; <span class="chapter-title">Instituições e desenvolvimento</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol13/cap04-pobreza-desigualdade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">92</span>&nbsp; <span class="chapter-title">Pobreza e desigualdade: medidas e políticas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol13/cap05-educacao-saude.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">93</span>&nbsp; <span class="chapter-title">Economia da educação e da saúde</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol13/cap06-economia-do-clima.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">94</span>&nbsp; <span class="chapter-title">Sustentabilidade, meio ambiente e economia do clima</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 14 — Economia Financeira e Mercado de Capitais</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol14/cap01-mercado-de-capitais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">95</span>&nbsp; <span class="chapter-title">O mercado de capitais: estrutura e a B3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol14/cap02-valor-do-dinheiro-no-tempo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">96</span>&nbsp; <span class="chapter-title">Valor do dinheiro no tempo: juros compostos, VP e VF</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol14/cap03-renda-fixa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">97</span>&nbsp; <span class="chapter-title">Renda fixa: títulos públicos (Tesouro Direto) e privados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol14/cap04-acoes-valuation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">98</span>&nbsp; <span class="chapter-title">Ações e avaliação de empresas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol14/cap05-risco-retorno-capm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">99</span>&nbsp; <span class="chapter-title">Risco, retorno e diversificação: do portfólio ao CAPM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol14/cap06-derivativos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">100</span>&nbsp; <span class="chapter-title">Derivativos: noções de futuros, opções e hedge</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol14/cap07-financas-pessoais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">101</span>&nbsp; <span class="chapter-title">Finanças pessoais aplicadas</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">90.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#a-função-de-produção-agregada" id="toc-a-função-de-produção-agregada" class="nav-link" data-scroll-target="#a-função-de-produção-agregada"><span class="header-section-number">90.2</span> A função de produção agregada</a></li>
+  <li><a href="#a-equação-fundamental-de-solow" id="toc-a-equação-fundamental-de-solow" class="nav-link" data-scroll-target="#a-equação-fundamental-de-solow"><span class="header-section-number">90.3</span> A equação fundamental de Solow</a></li>
+  <li><a href="#a-grande-lição-a-poupança-eleva-o-nível-não-a-taxa" id="toc-a-grande-lição-a-poupança-eleva-o-nível-não-a-taxa" class="nav-link" data-scroll-target="#a-grande-lição-a-poupança-eleva-o-nível-não-a-taxa"><span class="header-section-number">90.4</span> A grande lição: a poupança eleva o nível, não a taxa</a></li>
+  <li><a href="#o-motor-verdadeiro-o-progresso-tecnológico" id="toc-o-motor-verdadeiro-o-progresso-tecnológico" class="nav-link" data-scroll-target="#o-motor-verdadeiro-o-progresso-tecnológico"><span class="header-section-number">90.5</span> O motor verdadeiro: o progresso tecnológico</a></li>
+  <li><a href="#convergência-os-pobres-alcançam-os-ricos" id="toc-convergência-os-pobres-alcançam-os-ricos" class="nav-link" data-scroll-target="#convergência-os-pobres-alcançam-os-ricos"><span class="header-section-number">90.6</span> Convergência: os pobres alcançam os ricos?</a></li>
+  <li><a href="#além-de-solow-o-crescimento-endógeno" id="toc-além-de-solow-o-crescimento-endógeno" class="nav-link" data-scroll-target="#além-de-solow-o-crescimento-endógeno"><span class="header-section-number">90.7</span> Além de Solow: o crescimento endógeno</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">90.8</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">90.9</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">90.10</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">90.11</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol13/cap02-modelo-de-solow.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol13/cap01-crescimento-desenvolvimento.html">Volume 13 — Desenvolvimento Econômico</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol13/cap02-modelo-de-solow.html"><span class="chapter-number">90</span>&nbsp; <span class="chapter-title">Modelos de crescimento: Solow e além</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-modelo-de-solow" class="quarto-section-identifier"><span class="chapter-number">90</span>&nbsp; <span class="chapter-title">Modelos de crescimento: Solow e além</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Por que a Coreia do Sul, tão pobre quanto Gana em 1960, tornou-se uma potência industrial em duas gerações, enquanto Gana permaneceu pobre? Por que a China cresceu a taxas espantosas por três décadas e depois começou a desacelerar? Por que, no longuíssimo prazo, os países ricos parecem crescer todos a taxas parecidas, sem que os mais ricos disparem indefinidamente à frente? Estas são as perguntas do capítulo mais teórico do volume — e a ferramenta clássica para respondê-las é o <strong>modelo de Solow</strong>, formulado por Robert Solow em 1956, trabalho que lhe rendeu o Nobel <span class="citation" data-cites="solow1956">(<a href="#ref-solow1956" role="doc-biblioref">Solow, 1956</a>)</span>.</p>
+<p>O modelo de Solow é o cavalo de batalha da teoria do crescimento. Com uma estrutura simples — uma função de produção, poupança e depreciação — ele gera previsões surpreendentes e testáveis: por que o capital sozinho não sustenta o crescimento, por que países pobres <em>tendem</em> a crescer mais rápido que ricos (a <strong>convergência</strong>), e por que, no fim das contas, é o <strong>progresso tecnológico</strong> que explica a prosperidade duradoura. Depois, veremos como a teoria foi “além” de Solow, endogeneizando aquilo que ele deixou de fora.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="90.1">
+<h2 data-number="90.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">90.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>escrever uma <strong>função de produção agregada</strong> e entender os <strong>retornos decrescentes</strong> do capital;</li>
+<li>montar a <strong>equação fundamental de Solow</strong> e encontrar o <strong>estado estacionário</strong>;</li>
+<li>explicar por que a poupança eleva o <strong>nível</strong> de renda, mas não a <strong>taxa de crescimento</strong> de longo prazo;</li>
+<li>entender por que o <strong>progresso tecnológico</strong> é o único motor do crescimento sustentado da renda per capita;</li>
+<li>discutir a hipótese de <strong>convergência</strong> e por que ela só vale “condicionalmente”;</li>
+<li>situar os modelos de <strong>crescimento endógeno</strong> e sua crítica a Solow.</li>
+</ul>
+</section>
+<section id="a-função-de-produção-agregada" class="level2" data-number="90.2">
+<h2 data-number="90.2" class="anchored" data-anchor-id="a-função-de-produção-agregada"><span class="header-section-number">90.2</span> A função de produção agregada</h2>
+<p>O ponto de partida é uma <strong>função de produção</strong> que relaciona o produto agregado <span class="math inline">\(Y\)</span> aos fatores <strong>capital</strong> <span class="math inline">\(K\)</span> e <strong>trabalho</strong> <span class="math inline">\(L\)</span> (<a href="../vol05/cap01-teoria-da-producao.html" class="quarto-xref"><span>Capítulo 30</span></a>), dado um nível de tecnologia <span class="math inline">\(A\)</span>:</p>
+<p><span id="eq-fp-agregada"><span class="math display">\[
+Y = A\,F(K, L).
+\tag{90.1}\]</span></span></p>
+<p>Uma forma muito usada é a <strong>Cobb-Douglas</strong>: <span class="math inline">\(Y = A K^{\alpha} L^{1-\alpha}\)</span>, com <span class="math inline">\(0 &lt; \alpha &lt; 1\)</span>. Ela tem duas propriedades cruciais:</p>
+<ul>
+<li><strong>Retornos constantes de escala:</strong> dobrar <span class="math inline">\(K\)</span> e <span class="math inline">\(L\)</span> ao mesmo tempo dobra <span class="math inline">\(Y\)</span>. Isso permite trabalhar em termos <strong>per capita</strong> (por trabalhador).</li>
+<li><strong>Retornos marginais decrescentes de cada fator:</strong> mantendo <span class="math inline">\(L\)</span> fixo e acrescentando capital, cada máquina adicional produz um pouco menos que a anterior. Esta é a peça central de todo o modelo.</li>
+</ul>
+<p>Dividindo tudo por <span class="math inline">\(L\)</span>, escrevemos em termos <strong>por trabalhador</strong> (letras minúsculas): <span class="math inline">\(y = Y/L\)</span> é o produto per capita e <span class="math inline">\(k = K/L\)</span> é o capital por trabalhador. A função vira:</p>
+<p><span id="eq-fp-percapita"><span class="math display">\[
+y = A\,f(k) = A\,k^{\alpha}.
+\tag{90.2}\]</span></span></p>
+<p>A <a href="#fig-fprod-solow" class="quarto-xref">Figura&nbsp;<span>90.1</span></a> mostra o formato de <span class="math inline">\(y = f(k)\)</span>: crescente, porém <strong>côncava</strong> — reflexo dos retornos decrescentes do capital. É essa concavidade que fará toda a diferença.</p>
+<div id="fig-fprod-solow" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fprod-solow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="255.942585pt" height="156.551861pt" viewbox="-68.014948 -68.014947 255.942585 156.551861">
+<defs>
+<path id="tz_fig_fprod_solow_g0-107" d="M2.327273-5.292154C2.335243-5.308095 2.359153-5.411706 2.359153-5.419676C2.359153-5.459527 2.327273-5.531258 2.231631-5.531258C2.199751-5.531258 1.952677-5.507347 1.769365-5.491407L1.323039-5.459527C1.147696-5.443587 1.067995-5.435616 1.067995-5.292154C1.067995-5.180573 1.179577-5.180573 1.275218-5.180573C1.657783-5.180573 1.657783-5.132752 1.657783-5.061021C1.657783-5.037111 1.657783-5.021171 1.617933-4.877709L.486177-.342715C.454296-.223163 .454296-.175342 .454296-.167372C.454296-.03188 .565878 .079701 .71731 .079701C.988294 .079701 1.052055-.175342 1.083935-.286924C1.163636-.621669 1.370859-1.466501 1.458531-1.801245C1.896887-1.753425 2.430884-1.601993 2.430884-1.147696C2.430884-1.107846 2.430884-1.067995 2.414944-.988294C2.391034-.884682 2.375093-.773101 2.375093-.73325C2.375093-.263014 2.725778 .079701 3.188045 .079701C3.52279 .079701 3.730012-.167372 3.833624-.318804C4.024907-.613699 4.152428-1.091905 4.152428-1.139726C4.152428-1.219427 4.088667-1.243337 4.032877-1.243337C3.937235-1.243337 3.921295-1.195517 3.889415-1.052055C3.785803-.67746 3.57858-.143462 3.203985-.143462C2.996762-.143462 2.948941-.318804 2.948941-.533998C2.948941-.637609 2.956912-.73325 2.996762-.916563C3.004732-.948443 3.036613-1.075965 3.036613-1.163636C3.036613-1.817186 2.215691-1.960648 1.809215-2.016438C2.10411-2.191781 2.375093-2.462765 2.470735-2.566376C2.909091-2.996762 3.267746-3.291656 3.650311-3.291656C3.753923-3.291656 3.849564-3.267746 3.913325-3.188045C3.482939-3.132254 3.482939-2.757659 3.482939-2.749689C3.482939-2.574346 3.618431-2.454795 3.793773-2.454795C4.008966-2.454795 4.24807-2.630137 4.24807-2.956912C4.24807-3.227895 4.056787-3.514819 3.658281-3.514819C3.196015-3.514819 2.781569-3.164134 2.327273-2.709838C1.865006-2.255542 1.665753-2.16787 1.538232-2.11208L2.327273-5.292154Z"></path>
+<path id="tz_fig_fprod_solow_g0-121" d="M4.128518-3.004732C4.160399-3.116314 4.160399-3.132254 4.160399-3.188045C4.160399-3.387298 4.000996-3.435118 3.905355-3.435118C3.865504-3.435118 3.682192-3.427148 3.57858-3.219925C3.56264-3.180075 3.490909-2.893151 3.451059-2.725778L2.972852-.812951C2.964882-.789041 2.622167-.143462 2.040349-.143462C1.649813-.143462 1.514321-.430386 1.514321-.789041C1.514321-1.251308 1.785305-1.960648 1.968618-2.422914C2.048319-2.622167 2.072229-2.693898 2.072229-2.83736C2.072229-3.275716 1.721544-3.514819 1.354919-3.514819C.565878-3.514819 .239103-2.391034 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.239601 .494147-2.319303C.70137-3.012702 1.044085-3.291656 1.331009-3.291656C1.45056-3.291656 1.522291-3.211955 1.522291-3.028643C1.522291-2.86127 1.458531-2.677958 1.40274-2.534496C1.075965-1.689664 .940473-1.283188 .940473-.908593C.940473-.127522 1.530262 .079701 2.000498 .079701C2.375093 .079701 2.646077-.087671 2.83736-.270984C2.725778 .175342 2.646077 .486177 2.343213 .868742C2.080199 1.195517 1.761395 1.40274 1.40274 1.40274C1.267248 1.40274 .964384 1.378829 .804981 1.139726C1.227397 1.107846 1.259278 .749191 1.259278 .70137C1.259278 .510087 1.115816 .406476 .948443 .406476C.773101 .406476 .494147 .541968 .494147 .932503C.494147 1.307098 .836862 1.625903 1.40274 1.625903C2.215691 1.625903 3.132254 .972354 3.371357 .00797L4.128518-3.004732Z"></path>
+<path id="tz_fig_fprod_solow_g1-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_fprod_solow_g1-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_fprod_solow_g1-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_fprod_solow_g1-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_fprod_solow_g1-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_fprod_solow_g1-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+<path id="tz_fig_fprod_solow_g1-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_fprod_solow_g1-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_fprod_solow_g1-112" d="M2.096139 1.283188C1.586052 1.283188 1.490411 1.283188 1.490411 .924533V-.390535C1.865006 .01594 2.271482 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.717808 3.610461-3.514819 2.646077-3.514819C2.335243-3.514819 1.872976-3.435118 1.466501-3.020672V-3.514819L.278954-3.427148V-3.164134C.844832-3.164134 .884682-3.116314 .884682-2.781569V.924533C.884682 1.283188 .789041 1.283188 .278954 1.283188V1.546202C.621669 1.522291 .972354 1.522291 1.187547 1.522291C1.41868 1.522291 1.753425 1.522291 2.096139 1.546202V1.283188ZM1.490411-2.654047C1.673724-2.972852 2.072229-3.267746 2.574346-3.267746C3.188045-3.267746 3.706102-2.590286 3.706102-1.721544C3.706102-.804981 3.132254-.143462 2.486675-.143462C2.207721-.143462 1.841096-.263014 1.586052-.661519C1.490411-.797011 1.490411-.804981 1.490411-.956413V-2.654047Z"></path>
+<path id="tz_fig_fprod_solow_g1-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_fprod_solow_g1-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_fprod_solow_g1-116" d="M1.482441-3.172105H2.669988V-3.435118H1.482441V-4.901619H1.235367C1.227397-4.176339 .900623-3.419178 .159402-3.395268V-3.172105H.876712V-.996264C.876712-.063761 1.594022 .079701 1.960648 .079701C2.494645 .079701 2.81345-.398506 2.81345-.996264V-1.44259H2.566376V-1.012204C2.566376-.462267 2.319303-.167372 2.016438-.167372C1.482441-.167372 1.482441-.852802 1.482441-.980324V-3.172105Z"></path>
+<path id="tz_fig_fprod_solow_g1-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+<path id="tz_fig_fprod_solow_g1-118" d="M3.53076-2.614197C3.722042-3.060523 3.993026-3.164134 4.28792-3.172105V-3.435118C4.008966-3.411208 3.993026-3.411208 3.666252-3.411208C3.594521-3.411208 3.219925-3.411208 2.972852-3.435118V-3.172105C3.251806-3.156164 3.323537-2.980822 3.323537-2.84533C3.323537-2.765629 3.307597-2.725778 3.275716-2.654047L2.414944-.645579L1.474471-2.805479C1.42665-2.909091 1.42665-2.956912 1.42665-2.972852C1.42665-3.172105 1.713574-3.172105 1.849066-3.172105V-3.435118C1.506351-3.411208 1.131756-3.411208 .980324-3.411208C.812951-3.411208 .430386-3.411208 .175342-3.435118V-3.172105C.661519-3.172105 .70137-3.124284 .820922-2.8533L2.016438-.095641C2.072229 .02391 2.12005 .079701 2.231631 .079701S2.399004 .01594 2.438854-.079701L3.53076-2.614197Z"></path>
+<path id="tz_fig_fprod_solow_g1-120" d="M2.454795-1.865006C2.677958-2.14396 2.909091-2.414944 3.148194-2.677958C3.411208-2.956912 3.690162-3.164134 4.192279-3.172105V-3.435118C3.881445-3.411208 3.865504-3.411208 3.506849-3.411208C3.466999-3.411208 2.996762-3.411208 2.749689-3.435118V-3.172105C2.901121-3.156164 2.933001-3.060523 2.933001-2.956912S2.893151-2.757659 2.797509-2.646077L2.295392-2.056289L1.665753-2.805479C1.570112-2.917061 1.570112-2.972852 1.570112-2.988792C1.570112-3.044583 1.617933-3.164134 1.817186-3.172105V-3.435118C1.498381-3.411208 1.052055-3.411208 .964384-3.411208C.820922-3.411208 .414446-3.411208 .175342-3.435118V-3.172105C.71731-3.172105 .72528-3.164134 1.139726-2.677958L1.960648-1.681694L1.235367-.828892C1.036115-.605729 .74122-.278954 .135492-.263014V0C.430386-.02391 .486177-.02391 .820922-.02391C.836862-.02391 1.323039-.02391 1.578082 0V-.263014C1.474471-.278954 1.3868-.334745 1.3868-.478207S1.482441-.73325 1.506351-.773101C1.705604-1.012204 1.920797-1.251308 2.12802-1.482441L2.781569-.70137C2.940971-.518057 2.940971-.502117 2.940971-.446326C2.940971-.382565 2.885181-.270984 2.693898-.263014V0C3.036613-.02391 3.395268-.02391 3.5467-.02391C3.690162-.02391 4.096638-.02391 4.335741 0V-.263014C3.841594-.263014 3.761893-.302864 3.55467-.549938L2.454795-1.865006Z"></path>
+<path id="tz_fig_fprod_solow_g1-122" d="M3.307597-3.156164C3.363387-3.227895 3.379328-3.243836 3.379328-3.307597C3.379328-3.435118 3.283686-3.435118 3.156164-3.435118H.446326L.350685-2.10411H.597758C.645579-2.933001 .820922-3.211955 1.713574-3.211955H2.622167L.310834-.294894C.255044-.223163 .239103-.207223 .239103-.135492C.239103 0 .326775 0 .462267 0H3.259776L3.403238-1.538232H3.156164C3.076463-.613699 2.925031-.247073 1.944707-.247073H.996264L3.307597-3.156164Z"></path>
+<path id="tz_fig_fprod_solow_g2-102" d="M3.353425-3.58655H4.160399C4.339726-3.58655 4.42939-3.58655 4.42939-3.747945C4.42939-3.864508 4.339726-3.864508 4.169365-3.864508H3.407223C3.505853-4.402491 3.631382-5.137733 3.747945-5.621918C3.828643-5.971606 4.043836-6.097136 4.223163-6.097136C4.276961-6.097136 4.483188-6.079203 4.635616-5.971606C4.456289-5.935741 4.196264-5.774346 4.196264-5.478456C4.196264-5.254296 4.366625-5.155666 4.536986-5.155666C4.779078-5.155666 5.030137-5.352927 5.030137-5.693649C5.030137-6.097136 4.635616-6.321295 4.214197-6.321295C3.81071-6.321295 3.407223-6.034371 3.218929-5.66675C3.021669-5.281196 2.958904-4.931507 2.77061-3.864508H2.125031C1.95467-3.864508 1.847073-3.864508 1.847073-3.703113C1.847073-3.58655 1.945704-3.58655 2.107098-3.58655H2.716812C2.465753-2.286426 2.15193-.493151 1.95467 .439352C1.847073 .932503 1.703611 1.613948 1.273225 1.613948C1.13873 1.613948 .959402 1.560149 .869738 1.488418C1.093898 1.452553 1.318057 1.264259 1.318057 .995268C1.318057 .771108 1.147696 .672478 .977335 .672478C.735243 .672478 .484184 .869738 .484184 1.210461C.484184 1.622914 .896638 1.838107 1.273225 1.838107C2.187796 1.838107 2.609215 .349689 2.752677-.42142L3.353425-3.58655Z"></path>
+<path id="tz_fig_fprod_solow_g2-107" d="M2.57335-5.917808C2.609215-6.043337 2.609215-6.06127 2.609215-6.097136C2.609215-6.177833 2.555417-6.222665 2.47472-6.222665C2.349191-6.222665 1.560149-6.150934 1.380822-6.133001C1.291158-6.124035 1.192528-6.115068 1.192528-5.96264C1.192528-5.846077 1.291158-5.846077 1.43462-5.846077C1.85604-5.846077 1.85604-5.783313 1.85604-5.702615C1.85604-5.66675 1.85604-5.648817 1.811208-5.487422L.529016-.331756C.493151-.206227 .493151-.188294 .493151-.161395C.493151-.017933 .609714 .09863 .771108 .09863C1.066999 .09863 1.129763-.161395 1.174595-.340722L1.596015-2.035367C2.205729-1.981569 2.663014-1.739477 2.663014-1.291158C2.663014-1.23736 2.663014-1.201494 2.636115-1.066999C2.627148-1.031133 2.600249-.905604 2.600249-.806974C2.600249-.277958 2.96787 .09863 3.461021 .09863C3.801743 .09863 4.016936-.107597 4.178331-.367621C4.402491-.708344 4.52802-1.246326 4.52802-1.282192C4.52802-1.327024 4.501121-1.389788 4.411457-1.389788C4.312827-1.389788 4.294894-1.344956 4.250062-1.183562C4.133499-.726276 3.90934-.125529 3.48792-.125529C3.227895-.125529 3.200996-.358655 3.200996-.555915C3.200996-.780075 3.254795-1.0132 3.263761-1.031133C3.281694-1.084932 3.299626-1.192528 3.299626-1.300125C3.299626-1.927771 2.645081-2.169863 1.95467-2.25056C2.223661-2.420922 2.420922-2.609215 2.707846-2.896139C3.165131-3.353425 3.541719-3.738979 4.016936-3.738979C4.124533-3.738979 4.241096-3.71208 4.312827-3.631382C3.90934-3.595517 3.81071-3.263761 3.81071-3.138232C3.81071-2.96787 3.936239-2.815442 4.160399-2.815442C4.366625-2.815442 4.653549-2.976837 4.653549-3.371357C4.653549-3.667248 4.438356-3.963138 4.016936-3.963138C3.469988-3.963138 3.030635-3.523786 2.654047-3.138232C2.223661-2.716812 2.008468-2.501619 1.676712-2.358157L2.57335-5.917808Z"></path>
+<path id="tz_fig_fprod_solow_g2-121" d="M4.501121-3.452055C4.510087-3.496887 4.52802-3.550685 4.52802-3.604483C4.52802-3.721046 4.447323-3.864508 4.250062-3.864508C4.133499-3.864508 3.972105-3.792777 3.900374-3.622416C3.891407-3.58655 3.801743-3.218929 3.747945-3.021669L3.299626-1.228394C3.227895-.968369 3.227895-.950436 3.209963-.869738C3.200996-.833873 2.824408-.125529 2.178829-.125529C1.622914-.125529 1.622914-.690411 1.622914-.860772C1.622914-1.264259 1.739477-1.703611 2.125031-2.707846C2.196762-2.914072 2.25056-3.039601 2.25056-3.209963C2.25056-3.649315 1.918804-3.963138 1.479452-3.963138C.61868-3.963138 .260025-2.689913 .260025-2.582316C.260025-2.501619 .32279-2.47472 .385554-2.47472C.484184-2.47472 .493151-2.528518 .529016-2.645081C.71731-3.308593 1.075965-3.738979 1.452553-3.738979C1.667746-3.738979 1.667746-3.568618 1.667746-3.443088C1.667746-3.29066 1.63188-3.129265 1.551183-2.914072C1.129763-1.802242 1.0132-1.425654 1.0132-.995268C1.0132 0 1.820174 .09863 2.15193 .09863C2.591283 .09863 2.905106-.134496 3.066501-.29589C2.949938 .161395 2.851308 .564882 2.501619 1.0132C2.232628 1.371856 1.873973 1.613948 1.479452 1.613948C1.228394 1.613948 .932503 1.524284 .806974 1.273225C1.282192 1.273225 1.344956 .878705 1.344956 .789041C1.344956 .591781 1.201494 .466252 1.004234 .466252C.789041 .466252 .502117 .636613 .502117 1.049066C.502117 1.515318 .91457 1.838107 1.479452 1.838107C2.394022 1.838107 3.371357 1.058032 3.631382 .008966L4.501121-3.452055Z"></path>
+<path id="tz_fig_fprod_solow_g3-40" d="M3.057534 2.133998C3.057534 2.089166 3.030635 2.062267 2.976837 1.999502C1.820174 .941469 1.470486-.672478 1.470486-2.241594C1.470486-3.631382 1.739477-5.317061 3.003736-6.518555C3.039601-6.554421 3.057534-6.58132 3.057534-6.626152C3.057534-6.688917 3.012702-6.724782 2.949938-6.724782C2.842341-6.724782 2.035367-6.079203 1.551183-5.101868C1.120797-4.241096 .905604-3.317559 .905604-2.25056C.905604-1.604981 .986301-.582814 1.479452 .475218C2.008468 1.578082 2.842341 2.232628 2.949938 2.232628C3.012702 2.232628 3.057534 2.196762 3.057534 2.133998Z"></path>
+<path id="tz_fig_fprod_solow_g3-41" d="M2.67198-2.25056C2.67198-2.985803 2.564384-3.972105 2.098132-4.967372C1.569116-6.070237 .735243-6.724782 .627646-6.724782C.537983-6.724782 .52005-6.653051 .52005-6.626152C.52005-6.58132 .537983-6.554421 .600747-6.491656C1.120797-6.025405 2.107098-4.805978 2.107098-2.25056C2.107098-.968369 1.873973 .81594 .573848 2.026401C.555915 2.0533 .52005 2.089166 .52005 2.133998C.52005 2.160897 .537983 2.232628 .627646 2.232628C.735243 2.232628 1.542217 1.587049 2.026401 .609714C2.456787-.251059 2.67198-1.174595 2.67198-2.25056Z"></path>
+<path id="tz_fig_fprod_solow_g3-61" d="M6.348194-2.96787C6.473724-2.96787 6.644085-2.96787 6.644085-3.156164C6.644085-3.353425 6.446824-3.353425 6.312329-3.353425H.842839C.708344-3.353425 .511083-3.353425 .511083-3.156164C.511083-2.96787 .690411-2.96787 .806974-2.96787H6.348194ZM6.312329-1.13873C6.446824-1.13873 6.644085-1.13873 6.644085-1.33599C6.644085-1.524284 6.473724-1.524284 6.348194-1.524284H.806974C.690411-1.524284 .511083-1.524284 .511083-1.33599C.511083-1.13873 .708344-1.13873 .842839-1.13873H6.312329Z"></path>
+<path id="tz_fig_fprod_solow_g3-67" d="M5.424658-5.54122C5.137733-5.819178 4.62665-6.321295 3.721046-6.321295C1.981569-6.321295 .511083-4.877709 .511083-3.066501C.511083-1.219427 1.999502 .19726 3.721046 .19726C5.209465 .19726 6.133001-1.031133 6.133001-2.080199C6.133001-2.169863 6.133001-2.25056 6.007472-2.25056C5.890909-2.25056 5.890909-2.187796 5.881943-2.107098C5.810212-.744209 4.734247-.080697 3.81071-.080697C3.048568-.080697 1.425654-.555915 1.425654-3.066501C1.425654-5.56812 3.057534-6.043337 3.801743-6.043337C4.689415-6.043337 5.630884-5.370859 5.846077-3.918306C5.86401-3.801743 5.872976-3.756912 5.989539-3.756912C6.133001-3.756912 6.133001-3.801743 6.133001-3.990037V-6.088169C6.133001-6.240598 6.133001-6.321295 6.025405-6.321295C5.96264-6.321295 5.935741-6.294396 5.881943-6.213699L5.424658-5.54122Z"></path>
+<path id="tz_fig_fprod_solow_g3-80" d="M3.577584-2.815442C4.832877-2.815442 5.747447-3.595517 5.747447-4.456289C5.747447-5.34396 4.82391-6.124035 3.577584-6.124035H.358655V-5.846077H.564882C1.255293-5.846077 1.273225-5.747447 1.273225-5.415691V-.708344C1.273225-.376588 1.255293-.277958 .564882-.277958H.358655V0C.762142-.026899 1.264259-.026899 1.676712-.026899S2.591283-.026899 2.99477 0V-.277958H2.788543C2.098132-.277958 2.080199-.376588 2.080199-.708344V-2.815442H3.577584ZM2.0533-5.478456C2.0533-5.783313 2.071233-5.846077 2.492653-5.846077H3.353425C4.832877-5.846077 4.832877-4.859776 4.832877-4.456289S4.832877-3.066501 3.344458-3.066501H2.0533V-5.478456Z"></path>
+<path id="tz_fig_fprod_solow_g3-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+<path id="tz_fig_fprod_solow_g3-98" d="M1.622914-2.860274C1.622914-3.030635 1.622914-3.039601 1.721544-3.183064C2.026401-3.595517 2.465753-3.738979 2.806476-3.738979C3.19203-3.738979 3.550685-3.523786 3.783811-3.147198C4.016936-2.761644 4.034869-2.232628 4.034869-1.945704C4.034869-1.524284 3.981071-1.049066 3.747945-.690411C3.550685-.403487 3.183064-.125529 2.707846-.125529C2.304359-.125529 1.963636-.340722 1.748443-.672478C1.622914-.860772 1.622914-.869738 1.622914-1.0401V-2.860274ZM1.542217-.546949C1.820174-.152428 2.268493 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.057534 3.918306-3.963138 2.842341-3.963138C2.232628-3.963138 1.811208-3.649315 1.596015-3.407223V-6.222665L.268991-6.124035V-5.846077C.878705-5.846077 .959402-5.783313 .959402-5.34396V0H1.210461L1.542217-.546949Z"></path>
+<path id="tz_fig_fprod_solow_g3-100" d="M3.48792-1.075965C3.48792-.91457 3.48792-.887671 3.353425-.699377C3.075467-.29589 2.663014-.125529 2.304359-.125529C1.918804-.125529 1.560149-.340722 1.327024-.71731C1.093898-1.102864 1.075965-1.63188 1.075965-1.918804C1.075965-2.340224 1.129763-2.815442 1.362889-3.174097C1.560149-3.461021 1.927771-3.738979 2.402989-3.738979C2.779577-3.738979 3.138232-3.550685 3.380324-3.209963C3.48792-3.066501 3.48792-3.057534 3.48792-2.887173V-1.075965ZM3.514819-3.434122C3.469988-3.48792 3.066501-3.963138 2.367123-3.963138C1.264259-3.963138 .304857-3.084433 .304857-1.927771C.304857-.806974 1.201494 .09863 2.268493 .09863C2.923039 .09863 3.326526-.286924 3.48792-.475218V.09863L4.841843 0V-.277958C4.23213-.277958 4.151432-.340722 4.151432-.780075V-6.222665L2.824408-6.124035V-5.846077C3.434122-5.846077 3.514819-5.783313 3.514819-5.34396V-3.434122Z"></path>
+<path id="tz_fig_fprod_solow_g3-104" d="M1.640847-6.222665L.313823-6.124035V-5.846077C.923537-5.846077 1.004234-5.783313 1.004234-5.34396V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.367123-3.963138 1.927771-3.649315 1.649813-3.147198H1.640847V-6.222665Z"></path>
+<path id="tz_fig_fprod_solow_g3-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+<path id="tz_fig_fprod_solow_g3-108" d="M1.649813-6.222665L.32279-6.124035V-5.846077C.932503-5.846077 1.0132-5.783313 1.0132-5.34396V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.744209-.017933 .91457-.026899 1.327024-.026899C1.748443-.026899 1.900872-.017933 2.340224 0V-.277958C1.748443-.277958 1.649813-.277958 1.649813-.690411V-6.222665Z"></path>
+<path id="tz_fig_fprod_solow_g3-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_fprod_solow_g3-112" d="M1.622914-3.012702C1.927771-3.532752 2.420922-3.71208 2.797509-3.71208C3.496887-3.71208 4.034869-2.905106 4.034869-1.936737C4.034869-.91457 3.425156-.125529 2.698879-.125529C2.295392-.125529 1.95467-.358655 1.739477-.672478C1.622914-.851806 1.622914-.869738 1.622914-1.0401V-3.012702ZM1.622914-.430386C1.85604-.19726 2.160897 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.066501 3.927273-3.963138 2.86924-3.963138C2.385056-3.963138 1.936737-3.765878 1.596015-3.398257V-3.963138L.268991-3.864508V-3.58655C.905604-3.58655 .959402-3.532752 .959402-3.147198V1.049066C.959402 1.461519 .860772 1.461519 .268991 1.461519V1.739477C.690411 1.721544 .860772 1.712578 1.291158 1.712578S1.838107 1.721544 2.313325 1.739477V1.461519C1.721544 1.461519 1.622914 1.461519 1.622914 1.049066V-.430386Z"></path>
+<path id="tz_fig_fprod_solow_g3-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+<path id="tz_fig_fprod_solow_g3-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+<path id="tz_fig_fprod_solow_g3-117" d="M3.550685-1.497385C3.550685-.699377 3.102366-.125529 2.456787-.125529C1.712578-.125529 1.667746-.511083 1.667746-.995268V-3.963138L.313823-3.864508V-3.58655C1.004234-3.58655 1.004234-3.559651 1.004234-2.761644V-1.416687C1.004234-.833873 1.004234-.457285 1.416687-.143462C1.676712 .035866 2.044334 .09863 2.402989 .09863C2.86924 .09863 3.308593-.107597 3.568618-.645579H3.577584V.09863L4.904608 0V-.277958C4.294894-.277958 4.214197-.340722 4.214197-.780075V-3.963138L2.860274-3.864508V-3.58655C3.469988-3.58655 3.550685-3.523786 3.550685-3.084433V-1.497385Z"></path>
+</defs>
+<g id="tz_fig_fprod_solow_page1">
+<g stroke-miterlimit="10" transform="translate(-51.078642,71.600608)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-51.078642,71.600608)scale(-1,-1)"></g>
+<g transform="translate(-16.99982,-16.99982)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-51.078642,71.600608)scale(-1,-1)">
+<g stroke="#000" stroke-miterlimit="10" transform="translate(-34.142337,54.664302)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="" fill="none"></path>
+</g>
+</g>
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="" fill="none"></path>
+</g>
+</g>
+<path d="M0 0H237.5264" fill="none"></path>
+<g transform="translate(237.5264,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<path d="M0 0V137.93915" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,137.93915)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="0.8">
+<path d="M0 0L2.41919 12.70667L4.83844 17.96994L7.25764 22.0086L9.67688 25.41335L12.09608 28.41298L14.51529 31.12486L16.93452 33.6187L19.35373 35.9399L21.77296 38.12001L24.19217 40.18143L26.61137 42.14262L29.03061 44.01656L31.44981 45.81386L33.86905 47.54327L36.28825 49.21198L38.70746 50.82588L41.12671 52.39015L43.5459 53.90903L45.96515 55.38622L48.38435 56.8251L50.80356 58.22838L53.2228 59.59871L55.642 60.93816L58.06123 62.2488L60.48044 63.5324L62.89964 64.7906L65.31888 66.0248L67.73808 67.23634L70.15732 68.4265L72.57652 69.59631L74.99573 70.74669L77.41496 71.87872L79.83417 72.9932L82.25342 74.09088L84.6726 75.17256L87.09181 76.2389L89.51106 77.29053L91.93027 78.32803L94.3495 79.35194L96.7687 80.36287L99.18791 81.36119L101.60715 82.34741L104.02635 83.32195L106.44559 84.28528L108.86479 85.2377L111.284 86.17953L113.70323 87.1113L116.12244 88.0331L118.54167 88.94537L120.96088 89.84842L123.38008 90.74243L125.79932 91.62773L128.21852 92.50462L130.63777 93.37317L133.05698 94.2338L135.47617 95.08662L137.89542 95.93185L140.31462 96.76965L142.73386 97.60033L145.15306 98.42398L147.57227 99.24081L149.9915 100.05095L152.4107 100.85455L154.82994 101.65189L157.24915 102.4429L159.66835 103.22797L162.08759 104.00706L164.50679 104.78033L166.92604 105.54799L169.34523 106.31006L171.76443 107.06677L174.18369 107.81808L176.60287 108.56427L179.02213 109.30528L181.44133 110.04135L183.86053 110.77252L186.27977 111.49893L188.69897 112.22066L191.11821 112.93765L193.53741 113.65027L195.95662 114.35832L198.37585 115.06213L200.79506 115.7616L203.2143 116.45685L205.6335 117.148L208.0527 117.83508L210.47194 118.51819L212.89114 119.19742L215.3104 119.87271L217.7296 120.54431L220.14879 121.21214L222.56804 121.8763L224.98724 122.53688L227.40648 123.19395L229.82568 123.84747L232.24489 124.49759L234.66412 125.14435L237.08333 125.78778L239.50256 126.42792" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(188.51537,123.6952)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-34.142337,54.664302)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-34.142337" y="54.664302" href="#tz_fig_fprod_solow_g2-121"></use>
+<use x="-26.722304" y="54.664302" href="#tz_fig_fprod_solow_g3-61"></use>
+<use x="-16.994957" y="54.664302" href="#tz_fig_fprod_solow_g2-102"></use>
+<use x="-11.546653" y="54.664302" href="#tz_fig_fprod_solow_g3-40"></use>
+<use x="-7.962894" y="54.664302" href="#tz_fig_fprod_solow_g2-107"></use>
+<use x="-2.902035" y="54.664302" href="#tz_fig_fprod_solow_g3-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M47.90527 0V56.5354" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M191.6211 0V113.0708" fill="none"></path>
+</g>
+</g>
+</g>
+<g transform="translate(77.77481,29.23434)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-34.142337,54.664302)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-32.311905" y="45.199794" href="#tz_fig_fprod_solow_g1-99"></use>
+<use x="-28.548187" y="45.199794" href="#tz_fig_fprod_solow_g1-97"></use>
+<use x="-24.314004" y="45.199794" href="#tz_fig_fprod_solow_g1-100"></use>
+<use x="-19.609357" y="45.199794" href="#tz_fig_fprod_solow_g1-97"></use>
+<use x="-12.552385" y="45.199794" href="#tz_fig_fprod_solow_g1-117"></use>
+<use x="-7.847738" y="45.199794" href="#tz_fig_fprod_solow_g1-110"></use>
+<use x="-3.14309" y="45.199794" href="#tz_fig_fprod_solow_g1-105"></use>
+<use x="-.790766" y="45.199794" href="#tz_fig_fprod_solow_g1-100"></use>
+<use x="3.913881" y="45.199794" href="#tz_fig_fprod_solow_g1-97"></use>
+<use x="8.148064" y="45.199794" href="#tz_fig_fprod_solow_g1-100"></use>
+<use x="12.852712" y="45.199794" href="#tz_fig_fprod_solow_g1-101"></use>
+<use x="19.439218" y="45.199794" href="#tz_fig_fprod_solow_g1-101"></use>
+<use x="23.202936" y="45.199794" href="#tz_fig_fprod_solow_g1-120"></use>
+<use x="27.672352" y="45.199794" href="#tz_fig_fprod_solow_g1-116"></use>
+<use x="30.965605" y="45.199794" href="#tz_fig_fprod_solow_g1-114"></use>
+<use x="34.265775" y="45.199794" href="#tz_fig_fprod_solow_g1-97"></use>
+<use x="41.322747" y="45.199794" href="#tz_fig_fprod_solow_g1-100"></use>
+<use x="46.027394" y="45.199794" href="#tz_fig_fprod_solow_g1-101"></use>
+<use x="52.613901" y="45.199794" href="#tz_fig_fprod_solow_g0-107"></use>
+<use x="-34.142337" y="54.664302" href="#tz_fig_fprod_solow_g1-112"></use>
+<use x="-29.437689" y="54.664302" href="#tz_fig_fprod_solow_g1-114"></use>
+<use x="-26.137519" y="54.664302" href="#tz_fig_fprod_solow_g1-111"></use>
+<use x="-21.668104" y="54.664302" href="#tz_fig_fprod_solow_g1-100"></use>
+<use x="-16.963456" y="54.664302" href="#tz_fig_fprod_solow_g1-117"></use>
+<use x="-12.258809" y="54.664302" href="#tz_fig_fprod_solow_g1-122"></use>
+<use x="-5.672302" y="54.664302" href="#tz_fig_fprod_solow_g1-99"></use>
+<use x="-1.908584" y="54.664302" href="#tz_fig_fprod_solow_g1-97"></use>
+<use x="2.325599" y="54.664302" href="#tz_fig_fprod_solow_g1-100"></use>
+<use x="7.030247" y="54.664302" href="#tz_fig_fprod_solow_g1-97"></use>
+<use x="14.087218" y="54.664302" href="#tz_fig_fprod_solow_g1-118"></use>
+<use x="18.321401" y="54.664302" href="#tz_fig_fprod_solow_g1-101"></use>
+<use x="22.085119" y="54.664302" href="#tz_fig_fprod_solow_g1-122"></use>
+<use x="28.671626" y="54.664302" href="#tz_fig_fprod_solow_g1-109"></use>
+<use x="35.728597" y="54.664302" href="#tz_fig_fprod_solow_g1-101"></use>
+<use x="39.492315" y="54.664302" href="#tz_fig_fprod_solow_g1-110"></use>
+<use x="44.196963" y="54.664302" href="#tz_fig_fprod_solow_g1-111"></use>
+<use x="48.431146" y="54.664302" href="#tz_fig_fprod_solow_g1-115"></use>
+<use x="54.594237" y="54.664302" href="#tz_fig_fprod_solow_g0-121"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(67.21666,-11.91684)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-34.142337,54.664302)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-34.142337" y="54.664302" href="#tz_fig_fprod_solow_g3-67"></use>
+<use x="-27.486784" y="54.664302" href="#tz_fig_fprod_solow_g3-97"></use>
+<use x="-22.879093" y="54.664302" href="#tz_fig_fprod_solow_g3-112"></use>
+<use x="-17.759437" y="54.664302" href="#tz_fig_fprod_solow_g3-105"></use>
+<use x="-15.199609" y="54.664302" href="#tz_fig_fprod_solow_g3-116"></use>
+<use x="-11.615849" y="54.664302" href="#tz_fig_fprod_solow_g3-97"></use>
+<use x="-7.008158" y="54.664302" href="#tz_fig_fprod_solow_g3-108"></use>
+<use x="-1.376537" y="54.664302" href="#tz_fig_fprod_solow_g3-112"></use>
+<use x="3.999102" y="54.664302" href="#tz_fig_fprod_solow_g3-111"></use>
+<use x="8.606793" y="54.664302" href="#tz_fig_fprod_solow_g3-114"></use>
+<use x="15.283108" y="54.664302" href="#tz_fig_fprod_solow_g3-116"></use>
+<use x="18.866868" y="54.664302" href="#tz_fig_fprod_solow_g3-114"></use>
+<use x="22.471389" y="54.664302" href="#tz_fig_fprod_solow_g3-97"></use>
+<use x="27.079079" y="54.664302" href="#tz_fig_fprod_solow_g3-98"></use>
+<use x="32.198736" y="54.664302" href="#tz_fig_fprod_solow_g3-97"></use>
+<use x="36.806426" y="54.664302" href="#tz_fig_fprod_solow_g3-108"></use>
+<use x="39.366254" y="54.664302" href="#tz_fig_fprod_solow_g3-104"></use>
+<use x="44.485911" y="54.664302" href="#tz_fig_fprod_solow_g3-97"></use>
+<use x="49.093601" y="54.664302" href="#tz_fig_fprod_solow_g3-100"></use>
+<use x="54.213258" y="54.664302" href="#tz_fig_fprod_solow_g3-111"></use>
+<use x="58.820948" y="54.664302" href="#tz_fig_fprod_solow_g3-114"></use>
+<use x="65.497263" y="54.664302" href="#tz_fig_fprod_solow_g2-107"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(0.0,1.0,-1.0,0.0,-7.41684,15.77933)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-34.142337,54.664302)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-34.142337" y="54.664302" href="#tz_fig_fprod_solow_g3-80"></use>
+<use x="-27.87145" y="54.664302" href="#tz_fig_fprod_solow_g3-114"></use>
+<use x="-24.266929" y="54.664302" href="#tz_fig_fprod_solow_g3-111"></use>
+<use x="-19.403256" y="54.664302" href="#tz_fig_fprod_solow_g3-100"></use>
+<use x="-14.283599" y="54.664302" href="#tz_fig_fprod_solow_g3-117"></use>
+<use x="-9.163943" y="54.664302" href="#tz_fig_fprod_solow_g3-116"></use>
+<use x="-5.580184" y="54.664302" href="#tz_fig_fprod_solow_g3-111"></use>
+<use x="2.099301" y="54.664302" href="#tz_fig_fprod_solow_g3-112"></use>
+<use x="7.47494" y="54.664302" href="#tz_fig_fprod_solow_g3-111"></use>
+<use x="12.08263" y="54.664302" href="#tz_fig_fprod_solow_g3-114"></use>
+<use x="18.758945" y="54.664302" href="#tz_fig_fprod_solow_g3-116"></use>
+<use x="22.342705" y="54.664302" href="#tz_fig_fprod_solow_g3-114"></use>
+<use x="25.947226" y="54.664302" href="#tz_fig_fprod_solow_g3-97"></use>
+<use x="30.554917" y="54.664302" href="#tz_fig_fprod_solow_g3-98"></use>
+<use x="35.674573" y="54.664302" href="#tz_fig_fprod_solow_g3-97"></use>
+<use x="40.282263" y="54.664302" href="#tz_fig_fprod_solow_g3-108"></use>
+<use x="42.842092" y="54.664302" href="#tz_fig_fprod_solow_g3-104"></use>
+<use x="47.961748" y="54.664302" href="#tz_fig_fprod_solow_g3-97"></use>
+<use x="52.569439" y="54.664302" href="#tz_fig_fprod_solow_g3-100"></use>
+<use x="57.689095" y="54.664302" href="#tz_fig_fprod_solow_g3-111"></use>
+<use x="62.296785" y="54.664302" href="#tz_fig_fprod_solow_g3-114"></use>
+<use x="68.9731" y="54.664302" href="#tz_fig_fprod_solow_g2-121"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fprod-solow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;90.1: A função de produção por trabalhador é côncava: os retornos marginais do capital são decrescentes.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="a-equação-fundamental-de-solow" class="level2" data-number="90.3">
+<h2 data-number="90.3" class="anchored" data-anchor-id="a-equação-fundamental-de-solow"><span class="header-section-number">90.3</span> A equação fundamental de Solow</h2>
+<p>Agora damos vida ao modelo. A cada período, a economia <strong>poupa</strong> uma fração constante <span class="math inline">\(s\)</span> da renda e investe essa poupança em novo capital (<a href="../vol04/cap06-poupanca-investimento.html" class="quarto-xref"><span>Capítulo 28</span></a>). Ao mesmo tempo, o capital existente se <strong>deprecia</strong> a uma taxa <span class="math inline">\(\delta\)</span> (máquinas se desgastam). Para simplificar, suponha população constante. A variação do capital por trabalhador é:</p>
+<p><span id="eq-fundamental-solow"><span class="math display">\[
+\Delta k = \underbrace{s\,f(k)}_{\text{investimento}} - \underbrace{\delta\,k}_{\text{depreciação}}.
+\tag{90.3}\]</span></span></p>
+<p>Esta é a <strong>equação fundamental de Solow</strong>. Ela diz que o estoque de capital por trabalhador cresce quando o investimento (<span class="math inline">\(s\,f(k)\)</span>) supera a depreciação (<span class="math inline">\(\delta k\)</span>), e encolhe no caso contrário. As duas forças têm formatos diferentes:</p>
+<ul>
+<li>O <strong>investimento</strong> <span class="math inline">\(s\,f(k)\)</span> herda a concavidade de <span class="math inline">\(f\)</span>: cresce com <span class="math inline">\(k\)</span>, mas cada vez mais devagar (retornos decrescentes).</li>
+<li>A <strong>depreciação</strong> <span class="math inline">\(\delta k\)</span> é uma <strong>reta</strong>: cresce em proporção fixa ao capital.</li>
+</ul>
+<p>Como uma curva côncava e uma reta que partem da origem se cruzam uma única vez (além da origem), existe um valor de capital em que investimento e depreciação <strong>se igualam</strong>. Nesse ponto, <span class="math inline">\(\Delta k = 0\)</span>: o capital por trabalhador para de mudar. É o <strong>estado estacionário</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Estado estacionário">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Estado estacionário
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <strong>estado estacionário</strong> (<em>steady state</em>) é o nível de capital por trabalhador <span class="math inline">\(k^{*}\)</span> em que o investimento apenas repõe a depreciação, de modo que <span class="math inline">\(k\)</span> permanece constante: <span id="eq-steady-state"><span class="math display">\[
+s\,f(k^{*}) = \delta\,k^{*}.
+\tag{90.4}\]</span></span> Nele, o produto por trabalhador <span class="math inline">\(y^{*} = f(k^{*})\)</span> também é constante. A economia converge para esse ponto e nele permanece, na ausência de choques.</p>
+</div>
+</div>
+<p>A <a href="#fig-solow-diagrama" class="quarto-xref">Figura&nbsp;<span>90.2</span></a> é o diagrama de Solow, talvez o gráfico mais importante da teoria do crescimento.</p>
+<div id="fig-solow-diagrama" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-solow-diagrama-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="267.775263pt" height="198.753405pt" viewbox="-68.014948 -68.014945 267.775263 198.753405">
+<defs>
+<path id="tz_fig_solow_diagrama_g0-60" d="M5.7066-4.112578C5.802242-4.160399 5.873973-4.208219 5.873973-4.311831S5.794271-4.495143 5.69066-4.495143C5.66675-4.495143 5.650809-4.495143 5.547198-4.439352L.868742-2.191781C.773101-2.14396 .70137-2.096139 .70137-1.992528S.773101-1.841096 .868742-1.793275L5.547198 .454296C5.650809 .510087 5.66675 .510087 5.69066 .510087C5.794271 .510087 5.873973 .430386 5.873973 .326775S5.802242 .175342 5.7066 .127522L1.307098-1.992528L5.7066-4.112578Z"></path>
+<path id="tz_fig_solow_diagrama_g0-62" d="M5.7066-1.793275C5.802242-1.841096 5.873973-1.888917 5.873973-1.992528S5.802242-2.14396 5.7066-2.191781L1.028144-4.439352C.924533-4.495143 .908593-4.495143 .884682-4.495143C.781071-4.495143 .70137-4.415442 .70137-4.311831S.773101-4.160399 .868742-4.112578L5.268244-1.992528L.868742 .127522C.773101 .175342 .70137 .223163 .70137 .326775S.781071 .510087 .884682 .510087C.908593 .510087 .924533 .510087 1.028144 .454296L5.7066-1.793275Z"></path>
+<path id="tz_fig_solow_diagrama_g0-107" d="M2.327273-5.292154C2.335243-5.308095 2.359153-5.411706 2.359153-5.419676C2.359153-5.459527 2.327273-5.531258 2.231631-5.531258C2.199751-5.531258 1.952677-5.507347 1.769365-5.491407L1.323039-5.459527C1.147696-5.443587 1.067995-5.435616 1.067995-5.292154C1.067995-5.180573 1.179577-5.180573 1.275218-5.180573C1.657783-5.180573 1.657783-5.132752 1.657783-5.061021C1.657783-5.037111 1.657783-5.021171 1.617933-4.877709L.486177-.342715C.454296-.223163 .454296-.175342 .454296-.167372C.454296-.03188 .565878 .079701 .71731 .079701C.988294 .079701 1.052055-.175342 1.083935-.286924C1.163636-.621669 1.370859-1.466501 1.458531-1.801245C1.896887-1.753425 2.430884-1.601993 2.430884-1.147696C2.430884-1.107846 2.430884-1.067995 2.414944-.988294C2.391034-.884682 2.375093-.773101 2.375093-.73325C2.375093-.263014 2.725778 .079701 3.188045 .079701C3.52279 .079701 3.730012-.167372 3.833624-.318804C4.024907-.613699 4.152428-1.091905 4.152428-1.139726C4.152428-1.219427 4.088667-1.243337 4.032877-1.243337C3.937235-1.243337 3.921295-1.195517 3.889415-1.052055C3.785803-.67746 3.57858-.143462 3.203985-.143462C2.996762-.143462 2.948941-.318804 2.948941-.533998C2.948941-.637609 2.956912-.73325 2.996762-.916563C3.004732-.948443 3.036613-1.075965 3.036613-1.163636C3.036613-1.817186 2.215691-1.960648 1.809215-2.016438C2.10411-2.191781 2.375093-2.462765 2.470735-2.566376C2.909091-2.996762 3.267746-3.291656 3.650311-3.291656C3.753923-3.291656 3.849564-3.267746 3.913325-3.188045C3.482939-3.132254 3.482939-2.757659 3.482939-2.749689C3.482939-2.574346 3.618431-2.454795 3.793773-2.454795C4.008966-2.454795 4.24807-2.630137 4.24807-2.956912C4.24807-3.227895 4.056787-3.514819 3.658281-3.514819C3.196015-3.514819 2.781569-3.164134 2.327273-2.709838C1.865006-2.255542 1.665753-2.16787 1.538232-2.11208L2.327273-5.292154Z"></path>
+<path id="tz_fig_solow_diagrama_g1-1" d="M3.761893-5.531258C3.674222-5.69066 3.57858-5.69066 3.52279-5.69066S3.371357-5.69066 3.283686-5.531258L.462267-.199253C.406476-.111582 .406476-.095641 .406476-.079701C.406476 0 .470237 0 .597758 0H6.447821C6.583313 0 6.639103 0 6.639103-.079701C6.639103-.095641 6.639103-.111582 6.583313-.199253L3.761893-5.531258ZM3.259776-4.909589L5.531258-.629639H.988294L3.259776-4.909589Z"></path>
+<path id="tz_fig_solow_diagrama_g1-48" d="M3.897385-2.542466C3.897385-3.395268 3.809714-3.913325 3.5467-4.423412C3.196015-5.124782 2.550436-5.300125 2.11208-5.300125C1.107846-5.300125 .74122-4.550934 .629639-4.327771C.342715-3.745953 .326775-2.956912 .326775-2.542466C.326775-2.016438 .350685-1.211457 .73325-.573848C1.099875 .01594 1.689664 .167372 2.11208 .167372C2.494645 .167372 3.180075 .047821 3.57858-.74122C3.873474-1.315068 3.897385-2.024408 3.897385-2.542466ZM2.11208-.055791C1.841096-.055791 1.291158-.183313 1.123786-1.020174C1.036115-1.474471 1.036115-2.223661 1.036115-2.638107C1.036115-3.188045 1.036115-3.745953 1.123786-4.184309C1.291158-4.99726 1.912827-5.076961 2.11208-5.076961C2.383064-5.076961 2.933001-4.941469 3.092403-4.216189C3.188045-3.777833 3.188045-3.180075 3.188045-2.638107C3.188045-2.16787 3.188045-1.45056 3.092403-1.004234C2.925031-.167372 2.375093-.055791 2.11208-.055791Z"></path>
+<path id="tz_fig_solow_diagrama_g2-3" d="M2.779577-.842839C2.934994-.735243 2.946949-.735243 2.988792-.735243C3.090411-.735243 3.186052-.824907 3.186052-.944458S3.096389-1.099875 3.048568-1.123786C2.743711-1.249315 2.438854-1.374844 2.12802-1.488418C2.737733-1.739477 2.905106-1.799253 3.012702-1.847073C3.102366-1.888917 3.186052-1.918804 3.186052-2.038356S3.090411-2.247572 2.988792-2.247572C2.940971-2.247572 2.905106-2.223661 2.857285-2.193773L2.008468-1.655791C2.014446-1.739477 2.038356-1.948692 2.044334-2.020423C2.056289-2.139975 2.10411-2.49863 2.10411-2.600249S2.014446-2.779577 1.906849-2.779577C1.80523-2.779577 1.709589-2.701868 1.709589-2.600249C1.709589-2.588294 1.763387-2.050311 1.769365-2.026401C1.775342-1.960648 1.799253-1.733499 1.80523-1.655791L.956413-2.193773C.908593-2.223661 .872727-2.247572 .824907-2.247572C.723288-2.247572 .627646-2.157908 .627646-2.038356S.71731-1.882939 .765131-1.859029C1.069988-1.733499 1.374844-1.60797 1.685679-1.494396C1.075965-1.243337 .908593-1.183562 .800996-1.135741C.711333-1.093898 .627646-1.06401 .627646-.944458S.723288-.735243 .824907-.735243C.872727-.735243 .974346-.800996 1.046077-.848817C1.129763-.896638 1.333001-1.028144 1.41071-1.081943C1.60797-1.207472 1.679701-1.255293 1.80523-1.327024C1.799253-1.243337 1.775342-1.034122 1.769365-.962391L1.709589-.382565C1.709589-.280946 1.80523-.203238 1.906849-.203238C2.014446-.203238 2.10411-.280946 2.10411-.382565C2.10411-.388543 2.050311-.926526 2.044334-.956413C2.038356-1.022167 2.014446-1.249315 2.008468-1.327024L2.779577-.842839Z"></path>
+<path id="tz_fig_solow_diagrama_g3-14" d="M2.402989-3.90934C1.380822-3.685181 .385554-2.609215 .385554-1.425654C.385554-.430386 1.084932 .107597 1.865006 .107597C2.905106 .107597 3.685181-1.255293 3.685181-2.528518C3.685181-3.353425 3.29066-3.837609 3.012702-4.178331C2.698879-4.563885 2.116065-5.272229 2.116065-5.675716C2.116065-5.828144 2.232628-6.070237 2.609215-6.070237C2.887173-6.070237 3.066501-5.96264 3.254795-5.837111C3.380324-5.76538 3.640349-5.603985 3.774844-5.603985C3.963138-5.603985 4.133499-5.774346 4.133499-5.971606S4.016936-6.195766 3.595517-6.28543C3.156164-6.38406 2.99477-6.38406 2.86924-6.38406C1.972603-6.38406 1.838107-5.747447 1.838107-5.460523C1.838107-5.012204 2.125031-4.402491 2.402989-3.90934ZM2.528518-3.694147C3.003736-2.860274 3.021669-2.456787 3.021669-2.160897C3.021669-1.479452 2.654047-.116563 1.85604-.116563C1.470486-.116563 .977335-.367621 .977335-1.174595C.977335-1.748443 1.291158-3.353425 2.528518-3.694147Z"></path>
+<path id="tz_fig_solow_diagrama_g3-102" d="M3.353425-3.58655H4.160399C4.339726-3.58655 4.42939-3.58655 4.42939-3.747945C4.42939-3.864508 4.339726-3.864508 4.169365-3.864508H3.407223C3.505853-4.402491 3.631382-5.137733 3.747945-5.621918C3.828643-5.971606 4.043836-6.097136 4.223163-6.097136C4.276961-6.097136 4.483188-6.079203 4.635616-5.971606C4.456289-5.935741 4.196264-5.774346 4.196264-5.478456C4.196264-5.254296 4.366625-5.155666 4.536986-5.155666C4.779078-5.155666 5.030137-5.352927 5.030137-5.693649C5.030137-6.097136 4.635616-6.321295 4.214197-6.321295C3.81071-6.321295 3.407223-6.034371 3.218929-5.66675C3.021669-5.281196 2.958904-4.931507 2.77061-3.864508H2.125031C1.95467-3.864508 1.847073-3.864508 1.847073-3.703113C1.847073-3.58655 1.945704-3.58655 2.107098-3.58655H2.716812C2.465753-2.286426 2.15193-.493151 1.95467 .439352C1.847073 .932503 1.703611 1.613948 1.273225 1.613948C1.13873 1.613948 .959402 1.560149 .869738 1.488418C1.093898 1.452553 1.318057 1.264259 1.318057 .995268C1.318057 .771108 1.147696 .672478 .977335 .672478C.735243 .672478 .484184 .869738 .484184 1.210461C.484184 1.622914 .896638 1.838107 1.273225 1.838107C2.187796 1.838107 2.609215 .349689 2.752677-.42142L3.353425-3.58655Z"></path>
+<path id="tz_fig_solow_diagrama_g3-107" d="M2.57335-5.917808C2.609215-6.043337 2.609215-6.06127 2.609215-6.097136C2.609215-6.177833 2.555417-6.222665 2.47472-6.222665C2.349191-6.222665 1.560149-6.150934 1.380822-6.133001C1.291158-6.124035 1.192528-6.115068 1.192528-5.96264C1.192528-5.846077 1.291158-5.846077 1.43462-5.846077C1.85604-5.846077 1.85604-5.783313 1.85604-5.702615C1.85604-5.66675 1.85604-5.648817 1.811208-5.487422L.529016-.331756C.493151-.206227 .493151-.188294 .493151-.161395C.493151-.017933 .609714 .09863 .771108 .09863C1.066999 .09863 1.129763-.161395 1.174595-.340722L1.596015-2.035367C2.205729-1.981569 2.663014-1.739477 2.663014-1.291158C2.663014-1.23736 2.663014-1.201494 2.636115-1.066999C2.627148-1.031133 2.600249-.905604 2.600249-.806974C2.600249-.277958 2.96787 .09863 3.461021 .09863C3.801743 .09863 4.016936-.107597 4.178331-.367621C4.402491-.708344 4.52802-1.246326 4.52802-1.282192C4.52802-1.327024 4.501121-1.389788 4.411457-1.389788C4.312827-1.389788 4.294894-1.344956 4.250062-1.183562C4.133499-.726276 3.90934-.125529 3.48792-.125529C3.227895-.125529 3.200996-.358655 3.200996-.555915C3.200996-.780075 3.254795-1.0132 3.263761-1.031133C3.281694-1.084932 3.299626-1.192528 3.299626-1.300125C3.299626-1.927771 2.645081-2.169863 1.95467-2.25056C2.223661-2.420922 2.420922-2.609215 2.707846-2.896139C3.165131-3.353425 3.541719-3.738979 4.016936-3.738979C4.124533-3.738979 4.241096-3.71208 4.312827-3.631382C3.90934-3.595517 3.81071-3.263761 3.81071-3.138232C3.81071-2.96787 3.936239-2.815442 4.160399-2.815442C4.366625-2.815442 4.653549-2.976837 4.653549-3.371357C4.653549-3.667248 4.438356-3.963138 4.016936-3.963138C3.469988-3.963138 3.030635-3.523786 2.654047-3.138232C2.223661-2.716812 2.008468-2.501619 1.676712-2.358157L2.57335-5.917808Z"></path>
+<path id="tz_fig_solow_diagrama_g3-115" d="M3.559651-3.353425C3.174097-3.317559 3.138232-3.012702 3.138232-2.949938C3.138232-2.797509 3.254795-2.680946 3.425156-2.680946C3.676214-2.680946 3.846575-2.887173 3.846575-3.183064C3.846575-3.631382 3.407223-3.963138 2.743711-3.963138C1.542217-3.963138 1.201494-3.066501 1.201494-2.654047C1.201494-2.313325 1.371856-2.133998 1.488418-2.026401C1.667746-1.85604 1.909838-1.802242 2.232628-1.739477C2.636115-1.65878 2.725778-1.640847 2.887173-1.524284C3.030635-1.416687 3.111333-1.273225 3.111333-1.084932C3.111333-.851806 2.896139-.125529 1.811208-.125529C1.604981-.125529 .977335-.152428 .780075-.564882C1.228394-.564882 1.318057-.923537 1.318057-1.049066C1.318057-1.318057 1.075965-1.371856 .977335-1.371856C.81594-1.371856 .475218-1.246326 .475218-.780075C.475218-.224159 1.0401 .09863 1.802242 .09863C3.308593 .09863 3.640349-1.004234 3.640349-1.389788C3.640349-1.730511 3.452055-1.945704 3.344458-2.0533C3.111333-2.295392 2.824408-2.349191 2.510585-2.411955C2.402989-2.438854 2.205729-2.47472 2.178829-2.483686C1.882939-2.546451 1.721544-2.725778 1.721544-2.949938C1.721544-3.048568 1.784309-3.335492 2.035367-3.532752S2.627148-3.738979 2.743711-3.738979C3.057534-3.738979 3.425156-3.640349 3.559651-3.353425Z"></path>
+<path id="tz_fig_solow_diagrama_g4-40" d="M3.057534 2.133998C3.057534 2.089166 3.030635 2.062267 2.976837 1.999502C1.820174 .941469 1.470486-.672478 1.470486-2.241594C1.470486-3.631382 1.739477-5.317061 3.003736-6.518555C3.039601-6.554421 3.057534-6.58132 3.057534-6.626152C3.057534-6.688917 3.012702-6.724782 2.949938-6.724782C2.842341-6.724782 2.035367-6.079203 1.551183-5.101868C1.120797-4.241096 .905604-3.317559 .905604-2.25056C.905604-1.604981 .986301-.582814 1.479452 .475218C2.008468 1.578082 2.842341 2.232628 2.949938 2.232628C3.012702 2.232628 3.057534 2.196762 3.057534 2.133998Z"></path>
+<path id="tz_fig_solow_diagrama_g4-41" d="M2.67198-2.25056C2.67198-2.985803 2.564384-3.972105 2.098132-4.967372C1.569116-6.070237 .735243-6.724782 .627646-6.724782C.537983-6.724782 .52005-6.653051 .52005-6.626152C.52005-6.58132 .537983-6.554421 .600747-6.491656C1.120797-6.025405 2.107098-4.805978 2.107098-2.25056C2.107098-.968369 1.873973 .81594 .573848 2.026401C.555915 2.0533 .52005 2.089166 .52005 2.133998C.52005 2.160897 .537983 2.232628 .627646 2.232628C.735243 2.232628 1.542217 1.587049 2.026401 .609714C2.456787-.251059 2.67198-1.174595 2.67198-2.25056Z"></path>
+<path id="tz_fig_solow_diagrama_g4-67" d="M5.424658-5.54122C5.137733-5.819178 4.62665-6.321295 3.721046-6.321295C1.981569-6.321295 .511083-4.877709 .511083-3.066501C.511083-1.219427 1.999502 .19726 3.721046 .19726C5.209465 .19726 6.133001-1.031133 6.133001-2.080199C6.133001-2.169863 6.133001-2.25056 6.007472-2.25056C5.890909-2.25056 5.890909-2.187796 5.881943-2.107098C5.810212-.744209 4.734247-.080697 3.81071-.080697C3.048568-.080697 1.425654-.555915 1.425654-3.066501C1.425654-5.56812 3.057534-6.043337 3.801743-6.043337C4.689415-6.043337 5.630884-5.370859 5.846077-3.918306C5.86401-3.801743 5.872976-3.756912 5.989539-3.756912C6.133001-3.756912 6.133001-3.801743 6.133001-3.990037V-6.088169C6.133001-6.240598 6.133001-6.321295 6.025405-6.321295C5.96264-6.321295 5.935741-6.294396 5.881943-6.213699L5.424658-5.54122Z"></path>
+<path id="tz_fig_solow_diagrama_g4-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+<path id="tz_fig_solow_diagrama_g4-98" d="M1.622914-2.860274C1.622914-3.030635 1.622914-3.039601 1.721544-3.183064C2.026401-3.595517 2.465753-3.738979 2.806476-3.738979C3.19203-3.738979 3.550685-3.523786 3.783811-3.147198C4.016936-2.761644 4.034869-2.232628 4.034869-1.945704C4.034869-1.524284 3.981071-1.049066 3.747945-.690411C3.550685-.403487 3.183064-.125529 2.707846-.125529C2.304359-.125529 1.963636-.340722 1.748443-.672478C1.622914-.860772 1.622914-.869738 1.622914-1.0401V-2.860274ZM1.542217-.546949C1.820174-.152428 2.268493 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.057534 3.918306-3.963138 2.842341-3.963138C2.232628-3.963138 1.811208-3.649315 1.596015-3.407223V-6.222665L.268991-6.124035V-5.846077C.878705-5.846077 .959402-5.783313 .959402-5.34396V0H1.210461L1.542217-.546949Z"></path>
+<path id="tz_fig_solow_diagrama_g4-100" d="M3.48792-1.075965C3.48792-.91457 3.48792-.887671 3.353425-.699377C3.075467-.29589 2.663014-.125529 2.304359-.125529C1.918804-.125529 1.560149-.340722 1.327024-.71731C1.093898-1.102864 1.075965-1.63188 1.075965-1.918804C1.075965-2.340224 1.129763-2.815442 1.362889-3.174097C1.560149-3.461021 1.927771-3.738979 2.402989-3.738979C2.779577-3.738979 3.138232-3.550685 3.380324-3.209963C3.48792-3.066501 3.48792-3.057534 3.48792-2.887173V-1.075965ZM3.514819-3.434122C3.469988-3.48792 3.066501-3.963138 2.367123-3.963138C1.264259-3.963138 .304857-3.084433 .304857-1.927771C.304857-.806974 1.201494 .09863 2.268493 .09863C2.923039 .09863 3.326526-.286924 3.48792-.475218V.09863L4.841843 0V-.277958C4.23213-.277958 4.151432-.340722 4.151432-.780075V-6.222665L2.824408-6.124035V-5.846077C3.434122-5.846077 3.514819-5.783313 3.514819-5.34396V-3.434122Z"></path>
+<path id="tz_fig_solow_diagrama_g4-104" d="M1.640847-6.222665L.313823-6.124035V-5.846077C.923537-5.846077 1.004234-5.783313 1.004234-5.34396V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.367123-3.963138 1.927771-3.649315 1.649813-3.147198H1.640847V-6.222665Z"></path>
+<path id="tz_fig_solow_diagrama_g4-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+<path id="tz_fig_solow_diagrama_g4-108" d="M1.649813-6.222665L.32279-6.124035V-5.846077C.932503-5.846077 1.0132-5.783313 1.0132-5.34396V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.744209-.017933 .91457-.026899 1.327024-.026899C1.748443-.026899 1.900872-.017933 2.340224 0V-.277958C1.748443-.277958 1.649813-.277958 1.649813-.690411V-6.222665Z"></path>
+<path id="tz_fig_solow_diagrama_g4-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_solow_diagrama_g4-112" d="M1.622914-3.012702C1.927771-3.532752 2.420922-3.71208 2.797509-3.71208C3.496887-3.71208 4.034869-2.905106 4.034869-1.936737C4.034869-.91457 3.425156-.125529 2.698879-.125529C2.295392-.125529 1.95467-.358655 1.739477-.672478C1.622914-.851806 1.622914-.869738 1.622914-1.0401V-3.012702ZM1.622914-.430386C1.85604-.19726 2.160897 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.066501 3.927273-3.963138 2.86924-3.963138C2.385056-3.963138 1.936737-3.765878 1.596015-3.398257V-3.963138L.268991-3.864508V-3.58655C.905604-3.58655 .959402-3.532752 .959402-3.147198V1.049066C.959402 1.461519 .860772 1.461519 .268991 1.461519V1.739477C.690411 1.721544 .860772 1.712578 1.291158 1.712578S1.838107 1.721544 2.313325 1.739477V1.461519C1.721544 1.461519 1.622914 1.461519 1.622914 1.049066V-.430386Z"></path>
+<path id="tz_fig_solow_diagrama_g4-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+<path id="tz_fig_solow_diagrama_g4-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+</defs>
+<g id="tz_fig_solow_diagrama_page1">
+<g stroke-miterlimit="10" transform="translate(-67.616449,100.371608)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.616449,100.371608)scale(-1,-1)"></g>
+<g transform="translate(-0.4,-30.48073)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.616449,100.371608)scale(-1,-1)">
+<g stroke="#000" stroke-miterlimit="10" transform="translate(-67.217949,70.004755)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="M107.19177-2.13376V2.13376" fill="none"></path>
+</g>
+</g>
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="" fill="none"></path>
+</g>
+</g>
+<path d="M0 0H265.97946" fill="none"></path>
+<g transform="translate(265.97946,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<path d="M0 0V152.16507" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,152.16507)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(102.4852,-12.2817)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.217949,70.004755)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-67.217949" y="70.004755" href="#tz_fig_solow_diagrama_g3-107"></use>
+<use x="-62.157091" y="66.195751" href="#tz_fig_solow_diagrama_g2-3"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M0 0L267.97943 168.61801" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(228.38121,153.44887)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.217949,70.004755)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-67.217949" y="70.004755" href="#tz_fig_solow_diagrama_g3-14"></use>
+<use x="-62.792561" y="70.004755" href="#tz_fig_solow_diagrama_g3-107"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#3fb618" stroke="#3fb618">
+<g stroke-width="0.8">
+<path d="M0 0L2.70657 10.71753L5.4132 15.15688L8.11977 18.5633L10.82639 21.43506L13.53296 23.96512L16.23953 26.25247L18.94615 28.35591L21.65274 30.31374L24.35936 32.15259L27.06593 33.8913L29.7725 35.54547L32.47913 37.12605L35.1857 38.64201L37.89232 40.1007L40.5989 41.50818L43.30548 42.86946L46.0121 44.18884L48.71867 45.46994L51.4253 46.7159L54.13187 47.92953L56.83846 49.11313L59.54506 50.26892L62.25165 51.3987L64.95827 52.50417L67.66484 53.58685L70.37141 54.64807L73.07803 55.68907L75.7846 56.71097L78.49123 57.71481L81.19781 58.70148L83.90439 59.67177L86.61101 60.62657L89.31758 61.56662L92.0242 62.49245L94.73077 63.4048L97.43736 64.30423L100.14398 65.19122L102.85056 66.06631L105.55717 66.92995L108.26375 67.78261L110.97032 68.62466L113.67694 69.45648L116.38351 70.27847L119.09013 71.091L121.79672 71.89432L124.5033 72.68872L127.20992 73.4746L129.91649 74.25212L132.62311 75.02158L135.32968 75.78326L138.03627 76.53732L140.74289 77.28404L143.44946 78.02365L146.15608 78.75626L148.86266 79.48212L151.56923 80.20146L154.27585 80.91435L156.98244 81.62103L159.68904 82.32169L162.39563 83.01637L165.1022 83.70534L167.80882 84.38866L170.5154 85.06647L173.22202 85.73897L175.92859 86.40617L178.63518 87.06834L181.3418 87.72546L184.04837 88.37769L186.75499 89.02519L189.46156 89.66795L192.16814 90.30618L194.87476 90.9399L197.58134 91.56927L200.28796 92.19429L202.99454 92.81512L205.70111 93.43185L208.40773 94.04451L211.1143 94.65326L213.82092 95.25806L216.5275 95.85909L219.23409 96.45631L221.9407 97.04993L224.64728 97.6399L227.3539 98.22632L230.06047 98.80928L232.76704 99.38881L235.47366 99.96498L238.18025 100.53786L240.88687 101.10745L243.59344 101.6739L246.30002 102.23721L249.00664 102.7974L251.71321 103.35458L254.41983 103.90878L257.12642 104.46L259.833 105.00835L262.53961 105.55385L265.24619 106.09657L267.9528 106.63647" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+<g fill="#3fb618" stroke="#3fb618">
+<g fill="#3fb618" stroke="#3fb618">
+</g>
+<g transform="translate(234.74426,106.1473)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.217949,70.004755)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none">
+<g fill="#3fb618">
+<use x="-67.217949" y="70.004755" href="#tz_fig_solow_diagrama_g3-115"></use>
+<use x="-61.389133" y="70.004755" href="#tz_fig_solow_diagrama_g3-102"></use>
+<use x="-55.940829" y="70.004755" href="#tz_fig_solow_diagrama_g4-40"></use>
+<use x="-52.35707" y="70.004755" href="#tz_fig_solow_diagrama_g3-107"></use>
+<use x="-47.296211" y="70.004755" href="#tz_fig_solow_diagrama_g4-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M109.0304 67.4472C109.0304 68.46265 108.20721 69.28583 107.19177 69.28583S105.35315 68.46265 105.35315 67.4472C105.35315 66.43176 106.17633 65.60858 107.19177 65.60858S109.0304 66.43176 109.0304 67.4472ZM107.19177 67.4472" stroke="none"></path>
+</g>
+<g transform="translate(107.19177,67.4472)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.217949,70.004755)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M107.19177 0V67.4472" fill="none"></path>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#6c757d" stroke="#6c757d">
+<path d="M40.19691 12.04414H82.55342" fill="none"></path>
+<g transform="translate(82.55342,12.04414)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#6c757d" stroke="#6c757d">
+<path d="M200.98457 12.04414H137.18971" fill="none"></path>
+<g transform="matrix(-1.0,0.0,0.0,-1.0,137.18971,12.04414)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+<g transform="translate(45.3025,23.97185)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.217949,70.004755)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-67.217949" y="70.004755" href="#tz_fig_solow_diagrama_g1-1"></use>
+<use x="-60.160978" y="70.004755" href="#tz_fig_solow_diagrama_g0-107"></use>
+<use x="-53.187038" y="70.004755" href="#tz_fig_solow_diagrama_g0-62"></use>
+<use x="-44.248208" y="70.004755" href="#tz_fig_solow_diagrama_g1-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(163.21346,23.97185)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.217949,70.004755)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-67.217949" y="70.004755" href="#tz_fig_solow_diagrama_g1-1"></use>
+<use x="-60.160978" y="70.004755" href="#tz_fig_solow_diagrama_g0-107"></use>
+<use x="-53.187038" y="70.004755" href="#tz_fig_solow_diagrama_g0-60"></use>
+<use x="-44.248208" y="70.004755" href="#tz_fig_solow_diagrama_g1-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(81.44319,-25.39775)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.217949,70.004755)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-67.217949" y="70.004755" href="#tz_fig_solow_diagrama_g4-67"></use>
+<use x="-60.562396" y="70.004755" href="#tz_fig_solow_diagrama_g4-97"></use>
+<use x="-55.954705" y="70.004755" href="#tz_fig_solow_diagrama_g4-112"></use>
+<use x="-50.835049" y="70.004755" href="#tz_fig_solow_diagrama_g4-105"></use>
+<use x="-48.275221" y="70.004755" href="#tz_fig_solow_diagrama_g4-116"></use>
+<use x="-44.691462" y="70.004755" href="#tz_fig_solow_diagrama_g4-97"></use>
+<use x="-40.083771" y="70.004755" href="#tz_fig_solow_diagrama_g4-108"></use>
+<use x="-34.452149" y="70.004755" href="#tz_fig_solow_diagrama_g4-112"></use>
+<use x="-29.07651" y="70.004755" href="#tz_fig_solow_diagrama_g4-111"></use>
+<use x="-24.468819" y="70.004755" href="#tz_fig_solow_diagrama_g4-114"></use>
+<use x="-17.792504" y="70.004755" href="#tz_fig_solow_diagrama_g4-116"></use>
+<use x="-14.208745" y="70.004755" href="#tz_fig_solow_diagrama_g4-114"></use>
+<use x="-10.604224" y="70.004755" href="#tz_fig_solow_diagrama_g4-97"></use>
+<use x="-5.996533" y="70.004755" href="#tz_fig_solow_diagrama_g4-98"></use>
+<use x="-.876877" y="70.004755" href="#tz_fig_solow_diagrama_g4-97"></use>
+<use x="3.730814" y="70.004755" href="#tz_fig_solow_diagrama_g4-108"></use>
+<use x="6.290642" y="70.004755" href="#tz_fig_solow_diagrama_g4-104"></use>
+<use x="11.410298" y="70.004755" href="#tz_fig_solow_diagrama_g4-97"></use>
+<use x="16.017989" y="70.004755" href="#tz_fig_solow_diagrama_g4-100"></use>
+<use x="21.137645" y="70.004755" href="#tz_fig_solow_diagrama_g4-111"></use>
+<use x="25.745336" y="70.004755" href="#tz_fig_solow_diagrama_g4-114"></use>
+<use x="32.421651" y="70.004755" href="#tz_fig_solow_diagrama_g3-107"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-solow-diagrama-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;90.2: Diagrama de Solow: onde o investimento <span class="math inline">\(s\,f(k)\)</span> cruza a depreciação <span class="math inline">\(\delta k\)</span> está o estado estacionário <span class="math inline">\(k^{*}\)</span>. À esquerda dele o capital cresce; à direita, encolhe — a economia converge para <span class="math inline">\(k^{*}\)</span>.
+</figcaption>
+</figure>
+</div>
+<p><strong>Por que há convergência ao estado estacionário?</strong> À esquerda de <span class="math inline">\(k^{*}\)</span>, o investimento supera a depreciação, o capital cresce e a economia caminha para a direita. À direita de <span class="math inline">\(k^{*}\)</span>, a depreciação supera o investimento, o capital encolhe e a economia recua para a esquerda. Em ambos os casos, o sistema é <strong>puxado de volta</strong> para <span class="math inline">\(k^{*}\)</span> — um equilíbrio estável.</p>
+</section>
+<section id="a-grande-lição-a-poupança-eleva-o-nível-não-a-taxa" class="level2" data-number="90.4">
+<h2 data-number="90.4" class="anchored" data-anchor-id="a-grande-lição-a-poupança-eleva-o-nível-não-a-taxa"><span class="header-section-number">90.4</span> A grande lição: a poupança eleva o nível, não a taxa</h2>
+<p>Aqui está o resultado mais famoso — e mais contraintuitivo — do modelo. O que acontece se um país passa a poupar mais (maior <span class="math inline">\(s\)</span>)?</p>
+<p>Um aumento de <span class="math inline">\(s\)</span> desloca a curva de investimento <span class="math inline">\(s\,f(k)\)</span> <strong>para cima</strong>. O novo cruzamento com a reta de depreciação ocorre num <span class="math inline">\(k^{*}\)</span> <strong>maior</strong>, e portanto num <span class="math inline">\(y^{*}\)</span> maior. Ou seja: <strong>poupar mais eleva o nível de renda per capita de longo prazo</strong>. Durante a transição para o novo estado estacionário, a economia de fato <strong>cresce mais rápido</strong>.</p>
+<p>Mas — e este é o ponto — esse crescimento extra é <strong>transitório</strong>. Uma vez atingido o novo estado estacionário, mais alto, o crescimento da renda per capita <strong>volta a zero</strong>. Por quê? Pelos <strong>retornos decrescentes do capital</strong>: à medida que <span class="math inline">\(k\)</span> aumenta, cada unidade nova de capital produz menos, até que o investimento adicional apenas repõe a depreciação de um estoque maior. A poupança não consegue vencer indefinidamente os retornos decrescentes.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — acumular capital não sustenta o crescimento">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — acumular capital não sustenta o crescimento
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A intuição ingênua diz: “para crescer para sempre, basta investir cada vez mais”. O modelo de Solow mostra por que isso <strong>falha</strong>. Por causa dos retornos decrescentes, a acumulação de capital gera crescimento apenas <strong>durante a transição</strong> para um novo estado estacionário mais alto — não um crescimento <strong>permanente</strong> da renda per capita. Foi assim que Solow previu (corretamente) que o espetacular crescimento soviético baseado em acumulação bruta de capital, sem ganhos de produtividade, iria <strong>desacelerar</strong> — como de fato ocorreu.</p>
+</div>
+</div>
+</section>
+<section id="o-motor-verdadeiro-o-progresso-tecnológico" class="level2" data-number="90.5">
+<h2 data-number="90.5" class="anchored" data-anchor-id="o-motor-verdadeiro-o-progresso-tecnológico"><span class="header-section-number">90.5</span> O motor verdadeiro: o progresso tecnológico</h2>
+<p>Se acumular capital não basta, o que sustenta o crescimento da renda per capita no longo prazo? A resposta de Solow: o <strong>progresso tecnológico</strong> — o crescimento do fator <span class="math inline">\(A\)</span> na <a href="#eq-fp-agregada" class="quarto-xref">Equação&nbsp;<span>90.1</span></a>. Melhorias tecnológicas deslocam a <strong>própria função de produção</strong> para cima: com o mesmo capital e o mesmo trabalho, produz-se mais. Isso desloca a curva de investimento continuamente, empurrando o estado estacionário para cima sem parar.</p>
+<p>No modelo de Solow, contudo, o progresso tecnológico é <strong>exógeno</strong> — cai do céu, como um maná que a teoria não explica. Solow chegou a estimar, para os EUA, que a maior parte do crescimento da renda per capita no século XX <strong>não</strong> se devia à acumulação de capital ou de trabalho, mas a esse “resíduo” tecnológico — batizado de <strong>resíduo de Solow</strong> ou <strong>Produtividade Total dos Fatores (PTF)</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Produtividade Total dos Fatores (PTF)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Produtividade Total dos Fatores (PTF)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>PTF</strong> é a parcela do crescimento do produto que <strong>não</strong> é explicada pelo aumento das quantidades de capital e trabalho. Mede a <strong>eficiência</strong> com que os fatores são combinados — tecnologia, organização, qualidade das instituições, capital humano. É a fonte última do crescimento sustentado da renda per capita.</p>
+</div>
+</div>
+<p>Essa é a mensagem que atravessa todo o resto do volume: no longo prazo, <strong>prosperidade é produtividade</strong>. E a produtividade depende de tecnologia, educação (<a href="cap05-educacao-saude.html" class="quarto-xref"><span>Capítulo 93</span></a>) e instituições (<a href="cap03-instituicoes.html" class="quarto-xref"><span>Capítulo 91</span></a>) — não de simplesmente empilhar máquinas.</p>
+</section>
+<section id="convergência-os-pobres-alcançam-os-ricos" class="level2" data-number="90.6">
+<h2 data-number="90.6" class="anchored" data-anchor-id="convergência-os-pobres-alcançam-os-ricos"><span class="header-section-number">90.6</span> Convergência: os pobres alcançam os ricos?</h2>
+<p>O modelo de Solow faz uma previsão testável e provocadora. Como os retornos do capital são <strong>decrescentes</strong>, um país <strong>pobre</strong> (baixo <span class="math inline">\(k\)</span>) tem capital muito <strong>produtivo na margem</strong>: cada máquina nova rende muito. Um país <strong>rico</strong> (alto <span class="math inline">\(k\)</span>), próximo de seu estado estacionário, tem retornos marginais baixos. Logo, mantidas iguais as demais características, o país pobre deveria <strong>crescer mais rápido</strong> e ir <strong>alcançando</strong> o rico. É a hipótese da <strong>convergência</strong>.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — convergência absoluta × condicional">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — convergência absoluta × condicional
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Convergência absoluta</strong> — todos os países caminhando para o <em>mesmo</em> nível de renda — <strong>não</strong> se observa nos dados: há países ricos há séculos e pobres que não os alcançam. <strong>Mas</strong> o modelo prevê apenas <strong>convergência condicional</strong>: cada país converge para o <em>seu próprio</em> estado estacionário, que depende de sua taxa de poupança, crescimento populacional, tecnologia e instituições. Controlando por esses fatores, países mais distantes de seu estado estacionário de fato crescem mais rápido — e a convergência condicional <strong>é</strong> encontrada nos dados. A não convergência absoluta indica que os países têm <strong>estados estacionários diferentes</strong>: a pergunta do desenvolvimento vira <em>por que</em> eles diferem — o que remete a instituições e políticas.</p>
+</div>
+</div>
+</section>
+<section id="além-de-solow-o-crescimento-endógeno" class="level2" data-number="90.7">
+<h2 data-number="90.7" class="anchored" data-anchor-id="além-de-solow-o-crescimento-endógeno"><span class="header-section-number">90.7</span> Além de Solow: o crescimento endógeno</h2>
+<p>O grande incômodo deixado por Solow foi ter posto o motor do crescimento — a tecnologia — <strong>fora</strong> do modelo, como algo inexplicado. A partir dos anos 1980, a <strong>teoria do crescimento endógeno</strong> (ou “nova teoria do crescimento”), com Paul Romer e Robert Lucas, buscou <strong>endogeneizar</strong> o progresso tecnológico: explicá-lo como resultado de decisões econômicas <span class="citation" data-cites="romer1990">(<a href="#ref-romer1990" role="doc-biblioref">Romer, 1990</a>)</span>.</p>
+<p>As ideias centrais:</p>
+<ul>
+<li><strong>Conhecimento e ideias</strong> são um fator peculiar: ao contrário de máquinas, são <strong>não rivais</strong> (podem ser usados por muitos ao mesmo tempo) e geram <strong>transbordamentos</strong> (<em>spillovers</em>). Isso pode contrabalançar os retornos decrescentes e sustentar o crescimento.</li>
+<li><strong>Pesquisa e desenvolvimento (P&amp;D)</strong> é uma atividade intencional: firmas investem em inovação buscando lucros (protegidos por patentes), e é esse investimento que gera <span class="math inline">\(A\)</span> crescente.</li>
+<li><strong>Capital humano</strong> (educação, <a href="cap05-educacao-saude.html" class="quarto-xref"><span>Capítulo 93</span></a>) entra como fator que, acumulado, pode não sofrer retornos tão decrescentes.</li>
+</ul>
+<p>Nesses modelos, <strong>políticas importam para a taxa de crescimento de longo prazo</strong>, e não só para o nível: subsídios a P&amp;D, educação e proteção à inovação podem elevar <span class="math inline">\(g\)</span> permanentemente — algo impossível no Solow básico. O debate entre as duas visões segue vivo, mas ambas convergem numa lição prática: o que faz um país prosperar de forma duradoura é a <strong>capacidade de gerar e absorver ideias e produtividade</strong>.</p>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="90.8">
+<h2 data-number="90.8" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">90.8</span> 🇧🇷 Brasil em Foco</h2>
+<p><strong>O Brasil e a estagnação da produtividade.</strong> O modelo de Solow ilumina o principal enigma da economia brasileira: por que o país cresceu pouco nas últimas décadas. Estudos do Ipea, da FGV e do Banco Mundial mostram que a <strong>Produtividade Total dos Fatores (PTF)</strong> do Brasil praticamente <strong>estagnou</strong> desde os anos 1980 — em alguns períodos até recuou. O crescimento que houve veio majoritariamente do <strong>aumento dos fatores</strong> (mais trabalhadores, com o bônus demográfico, e alguma acumulação de capital), não de ganhos de eficiência. Traduzindo em Solow: o Brasil tentou crescer empurrando <span class="math inline">\(k\)</span> e <span class="math inline">\(L\)</span>, sem fazer <span class="math inline">\(A\)</span> crescer — e bateu nos retornos decrescentes.</p>
+<p><strong>O “voo de galinha” e a armadilha da renda média.</strong> A economia brasileira alterna surtos de crescimento com quedas — o chamado “voo de galinha” — e há décadas oscila em torno de um patamar de renda média, sem convergir para o nível dos países ricos. Na linguagem do capítulo, o Brasil parece preso a um <strong>estado estacionário</strong> relativamente baixo, determinado por baixa produtividade, educação deficiente (<a href="cap05-educacao-saude.html" class="quarto-xref"><span>Capítulo 93</span></a>) e instituições que não incentivam suficientemente investimento e inovação (<a href="cap03-instituicoes.html" class="quarto-xref"><span>Capítulo 91</span></a>) — a chamada <strong>armadilha da renda média</strong>.</p>
+<p><strong>A agenda de produtividade.</strong> Coerente com a lição de Solow (“prosperidade é produtividade”), o debate econômico brasileiro convergiu para uma <strong>agenda de produtividade</strong>: melhorar a educação, elevar o investimento em P&amp;D (ainda baixo como proporção do PIB, segundo o MCTI), abrir a economia ao comércio (<a href="../vol09/cap06-globalizacao-brasil.html" class="quarto-xref"><span>Capítulo 64</span></a>), simplificar tributos (<a href="../vol12/cap03-sistema-tributario-reforma.html" class="quarto-xref"><span>Capítulo 84</span></a>) e melhorar o ambiente de negócios. Todas essas frentes buscam, no fundo, a mesma coisa: fazer o <span class="math inline">\(A\)</span> brasileiro voltar a crescer.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> Ipea e FGV/IBRE (estimativas de PTF e contas de crescimento para o Brasil); IBGE (PIB e formação bruta de capital fixo); MCTI (dispêndios em P&amp;D como % do PIB); Banco Mundial e Penn World Table (comparações internacionais de renda per capita em PPC e decomposição do crescimento). Verifique a metodologia: estimativas de PTF variam conforme as hipóteses sobre capital e horas trabalhadas.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="90.9">
+<h2 data-number="90.9" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">90.9</span> Resumo do capítulo</h2>
+<ul>
+<li>O modelo de <strong>Solow</strong> parte de uma função de produção agregada (<a href="#eq-fp-agregada" class="quarto-xref">Equação&nbsp;<span>90.1</span></a>) com <strong>retornos decrescentes do capital</strong> — a fonte de suas principais conclusões.</li>
+<li>A <strong>equação fundamental</strong> (<a href="#eq-fundamental-solow" class="quarto-xref">Equação&nbsp;<span>90.3</span></a>), <span class="math inline">\(\Delta k = s\,f(k) - \delta k\)</span>, gera um <strong>estado estacionário</strong> <span class="math inline">\(k^{*}\)</span> onde o investimento apenas repõe a depreciação (<a href="#eq-steady-state" class="quarto-xref">Equação&nbsp;<span>90.4</span></a>). A economia <strong>converge</strong> para esse ponto.</li>
+<li><strong>Poupar mais eleva o nível</strong> de renda per capita de longo prazo (e acelera o crescimento <em>durante a transição</em>), mas <strong>não a taxa</strong> de crescimento permanente — por causa dos retornos decrescentes. Acumular capital não sustenta o crescimento.</li>
+<li>O único motor do crescimento <strong>sustentado</strong> da renda per capita é o <strong>progresso tecnológico</strong> (<span class="math inline">\(A\)</span>), captado pelo <strong>resíduo de Solow / PTF</strong>. No longo prazo, <strong>prosperidade é produtividade</strong>.</li>
+<li>O modelo prevê <strong>convergência condicional</strong> (cada país converge para o <em>seu</em> estado estacionário), consistente com os dados — e não convergência absoluta. Estados estacionários diferentes remetem a poupança, demografia, tecnologia e <strong>instituições</strong>.</li>
+<li>Os modelos de <strong>crescimento endógeno</strong> (Romer, Lucas) endogeneízam a tecnologia via <strong>ideias não rivais</strong>, <strong>P&amp;D</strong> e <strong>capital humano</strong>, permitindo que <strong>políticas</strong> afetem a taxa de crescimento de longo prazo.</li>
+<li>O <strong>Brasil</strong> ilustra o modelo às avessas: <strong>PTF estagnada</strong> desde os anos 1980, crescimento baseado em fatores, “voo de galinha” e <strong>armadilha da renda média</strong> — daí a centralidade da <strong>agenda de produtividade</strong>.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="90.10">
+<h2 data-number="90.10" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">90.10</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique, em suas palavras, o que são <strong>retornos decrescentes do capital</strong> e por que essa propriedade é o “coração” do modelo de Solow.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retornos decrescentes do capital significam que, mantendo o trabalho fixo, cada unidade <strong>adicional</strong> de capital produz um acréscimo de produto <strong>menor</strong> que a anterior — a função de produção por trabalhador é crescente, porém côncava. É o coração do modelo porque garante que a curva de investimento <span class="math inline">\(s\,f(k)\)</span> cruze a reta de depreciação <span class="math inline">\(\delta k\)</span> <strong>uma única vez</strong> (estado estacionário) e porque explica o resultado central: acumular capital gera crescimento apenas transitório, já que o retorno de cada nova máquina cai até só repor a depreciação. Sem retornos decrescentes, não haveria estado estacionário nem a distinção entre efeito-nível e efeito-taxa.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Escreva a equação fundamental de Solow e explique o significado econômico de cada termo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\Delta k = s\,f(k) - \delta k.
+\]</span> - <span class="math inline">\(s\,f(k)\)</span> — <strong>investimento por trabalhador</strong>: a fração <span class="math inline">\(s\)</span> da renda <span class="math inline">\(f(k)\)</span> que é poupada e transformada em novo capital. Herda a concavidade de <span class="math inline">\(f\)</span>. - <span class="math inline">\(\delta k\)</span> — <strong>depreciação por trabalhador</strong>: a parcela <span class="math inline">\(\delta\)</span> do capital existente que se desgasta a cada período. É linear em <span class="math inline">\(k\)</span>. - <span class="math inline">\(\Delta k\)</span> — a <strong>variação do capital por trabalhador</strong>: positiva quando o investimento supera a depreciação, negativa no caso contrário, e <strong>nula</strong> no estado estacionário.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Uma economia tem <span class="math inline">\(y = f(k) = \sqrt{k}\)</span>, taxa de poupança <span class="math inline">\(s = 0{,}3\)</span> e depreciação <span class="math inline">\(\delta = 0{,}05\)</span>. Encontre o capital por trabalhador de estado estacionário <span class="math inline">\(k^{*}\)</span> e o produto <span class="math inline">\(y^{*}\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No estado estacionário (<a href="#eq-steady-state" class="quarto-xref">Equação&nbsp;<span>90.4</span></a>), <span class="math inline">\(s\,f(k^{*}) = \delta k^{*}\)</span>: <span class="math display">\[
+0{,}3\sqrt{k^{*}} = 0{,}05\,k^{*} \;\Rightarrow\; \frac{0{,}3}{0{,}05} = \frac{k^{*}}{\sqrt{k^{*}}} = \sqrt{k^{*}} \;\Rightarrow\; \sqrt{k^{*}} = 6.
+\]</span> Logo <span class="math inline">\(k^{*} = 36\)</span> e <span class="math inline">\(y^{*} = \sqrt{36} = 6\)</span>. A economia estabiliza com <strong>36</strong> unidades de capital e <strong>6</strong> de produto por trabalhador.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> No exercício anterior, a taxa de poupança sobe de <span class="math inline">\(0{,}3\)</span> para <span class="math inline">\(0{,}4\)</span>. Recalcule <span class="math inline">\(k^{*}\)</span> e <span class="math inline">\(y^{*}\)</span> e explique o que acontece com o <strong>crescimento</strong> durante e depois da transição.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Agora <span class="math inline">\(0{,}4\sqrt{k^{*}} = 0{,}05\,k^{*} \Rightarrow \sqrt{k^{*}} = 0{,}4/0{,}05 = 8 \Rightarrow k^{*} = 64\)</span> e <span class="math inline">\(y^{*} = 8\)</span>. O nível de renda per capita de longo prazo <strong>sobe</strong> (de 6 para 8). <strong>Durante</strong> a transição do antigo para o novo estado estacionário, a economia cresce (o capital está abaixo do novo <span class="math inline">\(k^{*}\)</span>, então <span class="math inline">\(\Delta k &gt; 0\)</span>). <strong>Depois</strong> de atingir <span class="math inline">\(k^{*}=64\)</span>, porém, o crescimento da renda per capita volta a <strong>zero</strong>: a maior poupança elevou o <strong>nível</strong>, não a <strong>taxa</strong> permanente de crescimento. É a lição central de Solow.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Explique por que, no modelo de Solow, apenas o <strong>progresso tecnológico</strong> sustenta o crescimento da renda per capita no longo prazo. O que é a PTF?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Porque a acumulação de capital esbarra nos <strong>retornos decrescentes</strong>: eleva a renda apenas até um novo estado estacionário, depois do qual o crescimento cessa. O <strong>progresso tecnológico</strong> (<span class="math inline">\(A\)</span>), ao contrário, desloca a <strong>própria função de produção</strong> para cima continuamente — com o mesmo <span class="math inline">\(k\)</span> e <span class="math inline">\(L\)</span> produz-se mais —, empurrando o estado estacionário para cima sem parar e sustentando o crescimento. A <strong>PTF (Produtividade Total dos Fatores)</strong> é a parcela do crescimento do produto <strong>não</strong> explicada pelo aumento das quantidades de capital e trabalho; mede a eficiência com que os fatores são combinados (tecnologia, organização, capital humano, instituições) e é a fonte última do crescimento per capita duradouro.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> O que é a hipótese de <strong>convergência</strong>? Por que a convergência <strong>absoluta</strong> não aparece nos dados, mas a <strong>condicional</strong> sim?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A convergência decorre dos retornos decrescentes: países <strong>pobres</strong> (baixo <span class="math inline">\(k\)</span>) têm capital muito produtivo na margem e deveriam crescer mais rápido, aproximando-se dos ricos. A <strong>convergência absoluta</strong> — todos os países rumo ao <em>mesmo</em> nível de renda — <strong>não</strong> se observa: há ricos que permanecem à frente e pobres que não os alcançam. Mas o modelo prevê só a <strong>convergência condicional</strong>: cada país converge para o <em>seu próprio</em> estado estacionário, que depende de sua poupança, demografia, tecnologia e instituições. Controlando por esses fatores, os países mais distantes de seu estado estacionário de fato crescem mais rápido — e isso <strong>é</strong> encontrado nos dados. A ausência de convergência absoluta apenas revela que os estados estacionários <strong>diferem</strong> entre países.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) A PTF do Brasil está estagnada há décadas, embora o país tenha acumulado capital e trabalho. Use o modelo de Solow para explicar por que isso limita o crescimento e por que a “agenda de produtividade” faz sentido teórico.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No modelo de Solow, crescer via aumento de <span class="math inline">\(k\)</span> e <span class="math inline">\(L\)</span> tem limite: os <strong>retornos decrescentes</strong> fazem a economia convergir para um estado estacionário e o crescimento per capita cessar. Se a <strong>PTF (<span class="math inline">\(A\)</span>) não cresce</strong>, a função de produção não se desloca para cima, e o país fica preso nesse patamar — exatamente o quadro brasileiro de “voo de galinha” em torno de uma renda média. Como só o progresso tecnológico/produtividade sustenta o crescimento per capita de longo prazo, faz <strong>sentido teórico</strong> que a saída passe por elevar <span class="math inline">\(A\)</span>: educação e capital humano (<a href="cap05-educacao-saude.html" class="quarto-xref"><span>Capítulo 93</span></a>), P&amp;D e inovação, abertura comercial (que traz tecnologia e concorrência), melhor ambiente de negócios e instituições (<a href="cap03-instituicoes.html" class="quarto-xref"><span>Capítulo 91</span></a>). Todas são formas de fazer o <span class="math inline">\(A\)</span> brasileiro voltar a crescer, o único caminho para escapar da armadilha da renda média.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) Os modelos de crescimento endógeno afirmam que <strong>políticas públicas</strong> podem afetar a <strong>taxa</strong> de crescimento de longo prazo, algo impossível no Solow básico. Explique de onde vem essa diferença e dê um exemplo de política que teria efeitos distintos nos dois modelos.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No <strong>Solow básico</strong>, a tecnologia é <strong>exógena</strong> e o capital tem retornos <strong>estritamente decrescentes</strong>; por isso qualquer política (mais poupança, subsídio ao investimento) afeta apenas o <strong>nível</strong> de renda de longo prazo, não a <strong>taxa</strong> — que, no fim, é ditada pelo progresso tecnológico exógeno. No <strong>crescimento endógeno</strong>, o motor (ideias, conhecimento, capital humano) é produzido por decisões econômicas e tem propriedades especiais — <strong>não rivalidade</strong> e <strong>transbordamentos</strong> — que podem contrabalançar os retornos decrescentes. Assim, políticas que estimulam esse motor elevam <span class="math inline">\(g\)</span> <strong>permanentemente</strong>. <strong>Exemplo:</strong> um subsídio permanente a <strong>P&amp;D</strong>. No Solow, ele elevaria o investimento e o nível de renda, mas o crescimento voltaria à taxa exógena; no crescimento endógeno, ao aumentar continuamente a produção de ideias não rivais, ele poderia elevar a <strong>taxa</strong> de crescimento de longo prazo. (O mesmo valeria para investimento sustentado em educação/capital humano.) É por isso que a nova teoria dá peso muito maior à política de inovação e educação.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="90.11">
+<h2 data-number="90.11" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">90.11</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="solow1956">Solow (<a href="#ref-solow1956" role="doc-biblioref">1956</a>)</span> — o artigo seminal que fundou a teoria moderna do crescimento; curto e de leitura recompensadora.</li>
+<li><span class="citation" data-cites="jones2000">Jones (<a href="#ref-jones2000" role="doc-biblioref">2000</a>)</span> — a melhor porta de entrada didática ao modelo de Solow e ao crescimento endógeno, com aplicações empíricas.</li>
+<li><span class="citation" data-cites="romer1990">Romer (<a href="#ref-romer1990" role="doc-biblioref">1990</a>)</span> — o artigo que endogeneizou o progresso tecnológico via ideias não rivais e P&amp;D; base da nova teoria do crescimento.</li>
+<li><span class="citation" data-cites="blanchard2017">Blanchard (<a href="#ref-blanchard2017" role="doc-biblioref">2017</a>)</span> — capítulos de crescimento de longo prazo, com o tratamento macroeconômico do modelo de Solow e da PTF.</li>
+<li><span class="citation" data-cites="mankiw2020">Mankiw (<a href="#ref-mankiw2020" role="doc-biblioref">2020</a>)</span> — apresentação introdutória e intuitiva do modelo de Solow e do papel da produtividade.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-blanchard2017" class="csl-entry" role="listitem">
+BLANCHARD, Olivier. <strong>Macroeconomia</strong>. 7. ed. São Paulo: Pearson, 2017.
+</div>
+<div id="ref-jones2000" class="csl-entry" role="listitem">
+JONES, Charles I. <strong>Introdução à Teoria do Crescimento Econômico</strong>. Rio de Janeiro: Elsevier, 2000.
+</div>
+<div id="ref-mankiw2020" class="csl-entry" role="listitem">
+MANKIW, N. Gregory. <strong>Introdução à Economia</strong>. 8. ed. São Paulo: Cengage Learning, 2020.
+</div>
+<div id="ref-romer1990" class="csl-entry" role="listitem">
+ROMER, Paul M. Endogenous Technological Change. <strong>Journal of Political Economy</strong>, v. 98, n. 5, p. S71–S102, 1990.
+</div>
+<div id="ref-solow1956" class="csl-entry" role="listitem">
+SOLOW, Robert M. A Contribution to the Theory of Economic Growth. <strong>The Quarterly Journal of Economics</strong>, v. 70, n. 1, p. 65–94, 1956.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol13/cap01-crescimento-desenvolvimento.html" class="pagination-link" aria-label="Crescimento × desenvolvimento: medidas e o IDH">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">89</span>&nbsp; <span class="chapter-title">Crescimento × desenvolvimento: medidas e o IDH</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol13/cap03-instituicoes.html" class="pagination-link" aria-label="Instituições e desenvolvimento">
+        <span class="nav-page-text"><span class="chapter-number">91</span>&nbsp; <span class="chapter-title">Instituições e desenvolvimento</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol13/cap02-modelo-de-solow.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
