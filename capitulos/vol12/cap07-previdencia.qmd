@@ -1,0 +1,188 @@
+# Previdência social: economia e reforma {#sec-previdencia}
+
+Todo mês, um pedaço do seu contracheque some antes de você tocá-lo: o desconto do INSS. Esse dinheiro não vai para uma conta com o seu nome esperando você se aposentar — vai, quase imediatamente, para o pagamento das aposentadorias de quem *já* está aposentado hoje. Quando for a sua vez, serão os trabalhadores do futuro que financiarão o seu benefício. Essa corrente de solidariedade entre gerações é a maior operação financeira do país: a **previdência** é, disparada, a maior despesa do orçamento federal (@sec-orcamento-publico), maior que saúde, educação e investimento somados. E é também a mais explosiva, porque depende de um dado que está mudando sob nossos pés: a **demografia**.
+
+Este capítulo fecha o volume juntando quase tudo o que você estudou: escolha intertemporal, poupança (@sec-poupanca-investimento), sustentabilidade fiscal (@sec-divida-sustentabilidade), rigidez orçamentária (@sec-orcamento-publico) e o papel distributivo do Estado (@sec-papel-do-estado). A previdência é onde as finanças públicas encontram a vida de cada brasileiro — e onde as reformas mais difíceis são decididas.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- explicar por que existe previdência **pública** (as falhas de mercado que a justificam);
+- distinguir os regimes de **repartição** (*pay-as-you-go*) e de **capitalização**;
+- entender a **transição demográfica** e por que ela pressiona os sistemas de repartição;
+- interpretar a **razão de dependência** e a equação de equilíbrio da previdência;
+- analisar, com pluralismo, as **reformas previdenciárias** brasileiras (idade mínima, regras de cálculo) e os principais debates.
+
+## Por que previdência pública?
+
+Por que o Estado obriga todos a contribuir para a aposentadoria, em vez de deixar cada um poupar por conta própria? A resposta está em várias **falhas de mercado** e de comportamento (@sec-papel-do-estado) atuando juntas:
+
+- **Miopia e inconsistência temporal.** As pessoas tendem a subvalorizar o futuro distante (um viés estudado pela economia comportamental, tema do Volume 15) e poupam menos do que precisariam para a velhice. A previdência **obrigatória** corrige essa miopia — é um mecanismo de **poupança forçada**.
+- **Seleção adversa nos seguros de longevidade.** Um mercado privado de "renda vitalícia" (que paga até a morte) sofre de **seleção adversa** (@sec-informacao-assimetrica): quem sabe que viverá muito é quem mais compra, encarecendo o produto e afastando os demais. A obrigatoriedade universal resolve o problema agrupando todos.
+- **Risco moral e o "amparo garantido".** Sem previdência, uma sociedade decente socorreria idosos na miséria de qualquer forma (assistência) — o que, previsto, reduziria ainda mais o incentivo a poupar. Tornar a contribuição obrigatória alinha o incentivo.
+- **Redistribuição.** A previdência pública cumpre função **distributiva** (@sec-papel-do-estado): garante um piso na velhice a quem teve baixa renda ao longo da vida, reduzindo a pobreza entre idosos.
+
+Esses argumentos justificam a **obrigatoriedade** e um **pilar público**. Não determinam, porém, *como* financiá-lo — e é aí que entram os dois grandes regimes.
+
+## Repartição × capitalização
+
+Há duas formas fundamentalmente diferentes de organizar a previdência.
+
+::: {.callout-note title="Definição — Repartição e capitalização"}
+- **Repartição simples (*pay-as-you-go*, PAYG):** as contribuições dos trabalhadores **ativos** de hoje pagam, no mesmo momento, os benefícios dos **inativos** de hoje. É um **pacto entre gerações**: não há "poupança" acumulada; o sistema é um fluxo contínuo.
+- **Capitalização:** cada trabalhador acumula suas contribuições numa **conta individual** (ou fundo), que rende juros ao longo do tempo, e se aposenta com o **montante que ele mesmo poupou**. É poupança individual de fato.
+:::
+
+::: {#fig-repartição-capitalização}
+
+```{.tikz}
+%%| filename: fig-reparticao-capitalizacao
+%%| alt: Dois esquemas: na repartição, ativos pagam diretamente aos inativos no mesmo período; na capitalização, o trabalhador poupa numa conta que rende e financia sua própria aposentadoria futura.
+\begin{tikzpicture}[font=\footnotesize, node distance=6mm]
+  % Repartição
+  \node[align=center, manualblue] at (-0.2,1.5) {\textbf{Repartição}};
+  \node[draw, rounded corners, fill=manualblue!12] (at) at (2.4,1.5) {Ativos (hoje)\\contribuem};
+  \node[draw, rounded corners, fill=manualblue!12] (in) at (7,1.5) {Inativos (hoje)\\recebem};
+  \draw[vetor, manualblue, ->, >=stealth] (at) -- (in) node[midway, above] {no mesmo período};
+  % Capitalização
+  \node[align=center, manualgreen] at (-0.2,-1.5) {\textbf{Capitalização}};
+  \node[draw, rounded corners, fill=manualgreen!12] (tr) at (2.4,-1.5) {Trabalhador\\poupa (hoje)};
+  \node[draw, rounded corners, fill=manualgreen!12] (fu) at (7,-1.5) {Ele mesmo\\recebe (futuro)};
+  \draw[vetor, manualgreen, ->, >=stealth] (tr) -- (fu) node[midway, above] {conta rende juros};
+\end{tikzpicture}
+```
+
+Na repartição, os ativos de hoje pagam os inativos de hoje; na capitalização, cada um financia a própria aposentadoria futura.
+:::
+
+Cada regime tem forças e fraquezas:
+
+| Dimensão | Repartição (PAYG) | Capitalização |
+|----------|-------------------|---------------|
+| Solidariedade / redistribuição | **Alta** (pacto entre gerações) | Baixa (cada um por si) |
+| Sensibilidade à **demografia** | **Alta** (depende da razão ativos/inativos) | Baixa |
+| Sensibilidade ao **mercado financeiro** | Baixa | **Alta** (risco de retornos) |
+| Efeito sobre poupança nacional | Tende a **reduzir** | Tende a **aumentar** |
+| Vulnerabilidade à inflação/crises | Menor (indexado a salários) | Maior (erosão de fundos) |
+
+O ponto crucial: o regime de **repartição** — adotado pela maioria dos países e pelo Brasil (RGPS) — é **exposto à demografia**. E a demografia mundial está passando por uma transformação sem precedentes.
+
+## A transição demográfica: a pressão de fundo
+
+Ao longo do desenvolvimento, os países passam pela **transição demográfica**: as taxas de mortalidade e depois de **natalidade** caem, a **expectativa de vida** sobe, e a população **envelhece**. Menos jovens nascem, mais idosos vivem — e por mais tempo.
+
+Para a previdência de repartição, isso é dinamite. O sistema depende da **razão de dependência**:
+
+::: {.callout-note title="Definição — Razão de dependência dos idosos"}
+A **razão de dependência dos idosos** é o número de pessoas em idade de aposentadoria (inativos) por pessoa em idade ativa (que contribui):
+$$
+\text{razão de dependência} = \frac{\text{inativos}}{\text{ativos (contribuintes)}}.
+$$
+Quanto **maior** essa razão, **menos** trabalhadores sustentam cada aposentado — e mais pressionado fica o sistema PAYG.
+:::
+
+A condição de equilíbrio de um sistema de repartição pode ser escrita de forma simples. Se cada ativo contribui com uma alíquota $\tau$ sobre um salário médio $w$, e cada inativo recebe um benefício médio $b$, o equilíbrio (contribuições = benefícios) exige:
+
+$$
+\tau \, w \, L_a = b \, L_i \quad\Longrightarrow\quad \frac{b}{w} = \tau \, \frac{L_a}{L_i},
+$$ {#eq-equilibrio-previdencia}
+
+onde $L_a$ é o número de ativos e $L_i$ o de inativos. A razão $b/w$ (**taxa de reposição** — quanto o benefício representa do salário) só pode ser alta se a razão ativos/inativos $L_a/L_i$ for alta ou se a alíquota $\tau$ for alta. Quando o envelhecimento **reduz** $L_a/L_i$, algo tem de ceder: ou **sobe** a alíquota $\tau$ (mais imposto sobre quem trabalha), ou **cai** a taxa de reposição $b/w$ (benefícios menores), ou o sistema gera **déficit** (coberto pelo Tesouro, virando dívida — @sec-divida-sustentabilidade). Não há mágica: a @eq-equilibrio-previdencia é uma restrição contábil inescapável.
+
+::: {.callout-tip title="Intuição — por que toda reforma mexe nas mesmas três variáveis"}
+A @eq-equilibrio-previdencia revela por que **todas** as reformas previdenciárias do mundo mexem nas mesmas alavancas: (i) **elevar a idade mínima** ou o tempo de contribuição — o que **aumenta** $L_a$ (mais anos contribuindo) e **reduz** $L_i$ (menos anos recebendo), melhorando a razão; (ii) **reduzir o valor** ou a taxa de reposição dos benefícios ($b/w$); ou (iii) **aumentar a alíquota** de contribuição ($\tau$). Não existe reforma "sem dor": ela sempre distribui o custo do envelhecimento entre trabalhadores (mais contribuição ou mais anos de trabalho) e aposentados (benefícios menores). O debate é sobre **quem** arca e **quanto** — uma questão distributiva e, portanto, normativa.
+:::
+
+## As reformas: o que se faz e por quê
+
+Diante da pressão demográfica, praticamente todos os países reformaram (ou reformarão) seus sistemas. As medidas típicas, todas derivadas da @eq-equilibrio-previdencia, são:
+
+- **Idade mínima de aposentadoria.** Talvez a medida mais eficaz: casar a idade de aposentadoria com o aumento da **expectativa de vida**. Se as pessoas vivem mais, aposentar-se na mesma idade significa passar mais anos recebendo — insustentável.
+- **Tempo mínimo de contribuição** e regras de **cálculo** do benefício menos generosas.
+- **Fórmulas que ligam o benefício à expectativa de vida** (como o "fator previdenciário").
+- **Convergência de regimes**, acabando com privilégios de categorias específicas (equidade horizontal — @sec-tributacao-principios).
+- **Introdução de pilares de capitalização** complementares, para diversificar o risco entre demografia e mercado.
+
+::: {.callout-warning title="Controvérsia — quão longe deve ir a reforma?"}
+As reformas previdenciárias estão entre as políticas mais **impopulares** e **divisivas**. **Defensores do ajuste** argumentam que, sem reforma, o crescimento automático da despesa previdenciária **espreme** saúde, educação e investimento (@sec-orcamento-publico) e leva a dívida a uma trajetória explosiva (@sec-divida-sustentabilidade) — reformar é proteger o próprio sistema e as gerações futuras. **Críticos** respondem que reformas podem ser **socialmente regressivas** se elevarem a idade mínima de forma uniforme, ignorando que trabalhadores braçais e de baixa renda têm **expectativa de vida menor** e começam a trabalhar mais cedo — pagariam a conta desproporcionalmente. Também alertam contra migrar para capitalização pura, que **transfere o risco** (financeiro e de longevidade) para o indivíduo e pode desproteger os mais vulneráveis. O consenso possível: alguma forma de ajuste é **inevitável** diante da demografia, mas seu **desenho** — quem é poupado, como se protege os mais pobres e os trabalhos penosos — é decisivo e profundamente **normativo**.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+**A maior despesa do país.** O **Regime Geral de Previdência Social (RGPS)**, operado pelo **INSS**, é um sistema de **repartição** e responde pela **maior rubrica** do orçamento federal — os benefícios previdenciários e assistenciais somam algo em torno de **8% a 9% do PIB** só no RGPS, mais os regimes próprios de servidores (RPPS). É o principal motor do gasto obrigatório que pressiona o orçamento (@sec-orcamento-publico) e a dívida (@sec-divida-sustentabilidade).
+
+**O Brasil envelhece rápido — e "antes de enriquecer".** A **transição demográfica** brasileira é uma das mais **velozes** do mundo: a taxa de fecundidade despencou de cerca de 6 filhos por mulher nos anos 1960 para **abaixo do nível de reposição** (menos de 2,1) hoje, e a expectativa de vida subiu muito (dados **IBGE** — Censo e projeções populacionais). A "**janela demográfica**" (bônus de muitos ativos por inativo) está se **fechando**, e o Brasil envelhecerá com renda per capita ainda média — o desafio de "**envelhecer antes de enriquecer**", que torna o ajuste previdenciário ainda mais urgente que em países ricos.
+
+**As reformas de 1998, 2003 e 2019.** O Brasil reformou a previdência em ondas: as **EC 20/1998** e **EC 41/2003** ajustaram regras e atacaram privilégios do regime dos servidores; a mais profunda foi a **EC 103/2019** (@sec-crises-recentes-reformas), que instituiu **idade mínima** (65 anos para homens, 62 para mulheres, com regras de transição), elevou o tempo de contribuição e endureceu o cálculo — reduzindo a trajetória de crescimento da despesa. Ainda assim, dada a demografia, o tema **não está encerrado**: novas revisões (idade, regras estaduais e municipais, desindexação) seguem no debate. O **BPC** (assistencial, para idosos e deficientes pobres, de 1 salário mínimo) é distinto da previdência contributiva, mas também pressiona o gasto e entra na discussão fiscal.
+
+> **Fontes e séries para explorar:** IBGE (projeções populacionais; taxa de fecundidade; expectativa de vida — a base demográfica); Ministério da Previdência/INSS (Anuário Estatístico da Previdência Social — AEPS; resultado do RGPS); Tesouro Nacional (necessidade de financiamento da previdência); textos das **EC 20/1998, 41/2003 e 103/2019**. Verifique o ano: a demografia e as regras evoluem.
+
+## Resumo do capítulo
+
+- A previdência **pública e obrigatória** justifica-se por falhas de mercado e comportamento: **miopia** (poupança forçada), **seleção adversa** nos seguros de longevidade, **risco moral** e função **distributiva** (piso na velhice).
+- Há dois regimes: **repartição (PAYG)** — ativos de hoje pagam inativos de hoje, um pacto entre gerações, redistributivo mas **sensível à demografia**; e **capitalização** — cada um poupa para si, sensível ao **mercado financeiro** mas não à demografia.
+- A **transição demográfica** (queda da natalidade + aumento da longevidade → envelhecimento) eleva a **razão de dependência** e pressiona os sistemas de repartição.
+- A equação de equilíbrio (@eq-equilibrio-previdencia), $b/w = \tau\,(L_a/L_i)$, mostra a restrição inescapável: se a razão ativos/inativos cai, ou **sobe a alíquota** $\tau$, ou **cai a taxa de reposição** $b/w$, ou surge **déficit**.
+- Por isso **toda** reforma mexe nas mesmas alavancas: **idade mínima**/tempo de contribuição, **valor** do benefício e **alíquota** — não há reforma "sem dor"; ela distribui o custo do envelhecimento (questão **normativa**).
+- No Brasil, o **RGPS** (repartição, INSS) é a **maior despesa** federal; o país **envelhece rápido** ("antes de enriquecer"); as reformas de **1998, 2003 e 2019** (idade mínima) reduziram a trajetória do gasto, mas o tema segue aberto.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Cite duas **falhas de mercado ou de comportamento** que justificam a existência de uma previdência pública obrigatória.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Entre outras: (i) **miopia/inconsistência temporal** — as pessoas subvalorizam o futuro e poupam menos do que precisariam, e a contribuição obrigatória funciona como **poupança forçada**; (ii) **seleção adversa** nos seguros de longevidade — quem espera viver muito é quem mais compraria renda vitalícia privada, encarecendo-a e minando o mercado; a obrigatoriedade universal resolve agrupando todos. (Também valem: **risco moral** do amparo garantido e a função **distributiva** de garantir piso na velhice.)
+:::
+
+**2.** Explique a diferença entre **repartição** e **capitalização**. Qual é mais sensível à demografia e qual ao mercado financeiro?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Na **repartição (PAYG)**, as contribuições dos **ativos de hoje** pagam os benefícios dos **inativos de hoje** — um pacto entre gerações, sem poupança acumulada. Na **capitalização**, cada trabalhador **acumula** suas contribuições numa conta que rende juros e se aposenta com o que poupou. A **repartição** é mais sensível à **demografia** (depende da razão ativos/inativos); a **capitalização** é mais sensível ao **mercado financeiro** (depende dos retornos dos fundos e do risco de crises).
+:::
+
+**3.** Defina **razão de dependência dos idosos** e explique por que seu aumento pressiona um sistema de repartição.
+
+::: {.callout-tip collapse="true" title="Solução"}
+É o número de **inativos** (em idade de aposentadoria) por **ativo** (contribuinte): $\text{inativos}/\text{ativos}$. Seu **aumento** significa que **menos** trabalhadores sustentam **cada** aposentado. Como, na repartição, os ativos pagam os inativos no mesmo período, uma razão de dependência maior obriga a arrecadar mais de cada ativo (alíquota maior), pagar menos a cada inativo (benefício menor) ou gerar déficit — pela restrição da @eq-equilibrio-previdencia. O envelhecimento populacional eleva justamente essa razão, daí a pressão.
+:::
+
+**4.** Um sistema de repartição tem alíquota $\tau = 20\%$ e razão ativos/inativos $L_a/L_i = 4$. Qual a taxa de reposição $b/w$ de equilíbrio? Se o envelhecimento reduzir $L_a/L_i$ para 2, o que precisa acontecer para manter a mesma taxa de reposição?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela @eq-equilibrio-previdencia, $b/w = \tau\,(L_a/L_i) = 0{,}20 \times 4 = 0{,}80$ — o benefício equivale a **80%** do salário. Se $L_a/L_i$ cai para 2, mantendo $\tau=20\%$: $b/w = 0{,}20 \times 2 = 0{,}40$ — a taxa de reposição **cairia para 40%**. Para **manter** $b/w = 0{,}80$ com $L_a/L_i = 2$, seria preciso **dobrar a alíquota**: $\tau = (b/w)/(L_a/L_i) = 0{,}80/2 = 0{,}40$, ou seja, **40%** de contribuição. Alternativamente, aceitar o déficit (financiado pelo Tesouro). O exemplo mostra o custo do envelhecimento: manter benefícios generosos com menos ativos exige alíquotas muito maiores.
+:::
+
+**5.** Por que se diz que "**não existe reforma previdenciária sem dor**"? Quais são as três alavancas que qualquer reforma necessariamente aciona?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque a @eq-equilibrio-previdencia é uma **restrição contábil**: dado o envelhecimento (queda de $L_a/L_i$), o equilíbrio só se mantém mexendo em uma das três alavancas — (i) **elevar a alíquota** $\tau$ (mais custo para quem trabalha), (ii) **reduzir a taxa de reposição** $b/w$ (benefícios menores) ou (iii) **aumentar a idade mínima/tempo de contribuição** (que eleva $L_a$ e reduz $L_i$, mas faz as pessoas trabalharem mais). Qualquer combinação impõe **custo** a alguém — trabalhadores ou aposentados. Não há como fazer as contas fecharem sem que algum grupo pague; por isso a reforma é sempre **impopular** e o debate é sobre **quem** arca — uma decisão distributiva/normativa.
+:::
+
+**6.** (Análise de caso) Uma reforma eleva a idade mínima de aposentadoria de forma **uniforme** para todos. Aponte por que críticos a consideram potencialmente **regressiva** e o que poderia mitigar esse efeito.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Ela pode ser **regressiva** porque a **expectativa de vida** e as condições de trabalho variam com a renda. Trabalhadores de **baixa renda** e de ocupações **braçais/penosas** tendem a: (i) começar a trabalhar **mais cedo** (logo, contribuem por mais tempo); (ii) ter **expectativa de vida menor** (desfrutam menos anos de aposentadoria); e (iii) ter mais dificuldade física de trabalhar até idades avançadas. Uma idade mínima **uniforme** ignora essas diferenças e faz os mais pobres pagarem, proporcionalmente, um custo **maior** — enquanto trabalhadores de alta renda, que vivem mais e têm trabalho menos desgastante, são menos afetados. **Mitigações:** regras diferenciadas para atividades **penosas/insalubres**; considerar o **tempo de contribuição** (que favorece quem começou cedo) além da idade; transições mais suaves para os de baixa renda; e proteção via **piso** (salário mínimo) e **BPC** para os mais vulneráveis. O objetivo é conciliar a sustentabilidade (inevitável) com a **equidade vertical** (@sec-tributacao-principios).
+:::
+
+**7.** (Desafio) O Brasil enfrenta o desafio de "**envelhecer antes de enriquecer**". Explique o que isso significa e por que torna o ajuste previdenciário mais urgente aqui do que em países ricos. Conecte com a sustentabilidade fiscal.
+
+::: {.callout-tip collapse="true" title="Solução"}
+"**Envelhecer antes de enriquecer**" significa que o Brasil está passando pela **transição demográfica** (queda acelerada da fecundidade + aumento da longevidade) **muito rápido** — mais rápido do que os países hoje ricos passaram — mas com uma **renda per capita ainda média**. Países como os europeus enriqueceram **antes** de envelhecer, acumulando patrimônio e capacidade fiscal para sustentar sistemas previdenciários maduros; o Brasil está envelhecendo **enquanto** ainda é relativamente pobre e com produtividade estagnada.
+
+**Por que isso torna o ajuste mais urgente:** (i) a **janela demográfica** (bônus de muitos ativos por inativo, que baratearia a repartição) está se **fechando** antes de o país acumular riqueza; (ii) a base de contribuintes crescerá menos e a de beneficiários, mais — a razão de dependência sobe (@eq-equilibrio-previdencia), pressionando alíquotas ou benefícios; (iii) com renda média, há **menos folga** para financiar déficits previdenciários sem sacrificar outras prioridades.
+
+**Conexão com a sustentabilidade fiscal:** a previdência é a **maior despesa obrigatória** e sua expansão automática (@sec-orcamento-publico) empurra o gasto acima da receita, alimentando o déficit primário. Pela dinâmica da dívida (@sec-divida-sustentabilidade), déficits primários crescentes num país de **juros altos e crescimento baixo** ($i > g$) tornam a razão dívida/PIB explosiva. Assim, conter o crescimento da despesa previdenciária é condição para a **sustentabilidade fiscal** — e, indiretamente, para preservar espaço orçamentário para saúde, educação e o investimento de que o país precisa justamente para **enriquecer** e crescer ($g$), quebrando o círculo. Previdência, orçamento e dívida são, no fim, um só problema.
+:::
+
+## Para saber mais
+
+- @giambiagi2016 — capítulo dedicado à previdência social brasileira, com a economia da repartição, a demografia e as contas do RGPS.
+- @gremaud2017 — para a evolução institucional e as sucessivas reformas previdenciárias no contexto das finanças públicas brasileiras.
+- @stiglitz2000 — para a teoria econômica da previdência social, as falhas de mercado que a justificam e o debate repartição × capitalização.
+- @blanchard2017 — para a conexão entre previdência, poupança nacional e sustentabilidade fiscal de longo prazo.
+- Textos das **EC 20/1998, 41/2003 e 103/2019** — as fontes primárias das reformas previdenciárias brasileiras.

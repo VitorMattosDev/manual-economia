@@ -1,0 +1,190 @@
+# O sistema tributário brasileiro e a reforma tributária {#sec-sistema-tributario-reforma}
+
+Imagine uma fábrica de biscoitos em Minas Gerais que compra farinha de São Paulo, embala com plástico do Paraná e vende para todo o país. A cada etapa, um emaranhado de tributos diferentes incide, com regras próprias, alíquotas que mudam a cada estado e créditos que nem sempre se aproveitam. Para calcular quanto deve, a empresa mantém um departamento inteiro de contadores e advogados — um custo que nada produz e acaba no preço do biscoito. Multiplique esse cenário por milhões de empresas e você terá o retrato do **"manicômio tributário"** brasileiro, expressão que economistas e juristas repetem há décadas.
+
+Depois de estudar os *princípios* da boa tributação (@sec-tributacao-principios), este capítulo desce ao *sistema real* do Brasil: quais são os principais tributos, por que ele é considerado disfuncional, e o que muda com a **reforma tributária do consumo** aprovada em 2023 (Emenda Constitucional 132) — a maior transformação tributária do país em mais de meio século, em plena implementação ao longo desta década.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- mapear os principais **tributos brasileiros** por base (renda, consumo, patrimônio, folha) e por ente federativo;
+- explicar o que é um **IVA** (imposto sobre valor agregado) e por que ele evita a **cumulatividade** ("efeito cascata");
+- diagnosticar os principais **problemas** do sistema antigo: complexidade, cumulatividade, guerra fiscal e regressividade;
+- descrever a arquitetura da **reforma (EC 132/2023)**: o **IVA dual** (CBS + IBS), o Imposto Seletivo, a tributação no **destino** e o *cashback*;
+- avaliar, com pluralismo, os ganhos esperados e as controvérsias da transição.
+
+## O mapa dos tributos brasileiros
+
+Tributo é o gênero; suas espécies principais são **impostos** (sem contrapartida específica), **taxas** (contrapartida de um serviço público, princípio do benefício) e **contribuições** (vinculadas a uma finalidade, como a seguridade social). O sistema brasileiro reparte a competência de cobrar entre os três níveis de governo — União, estados e municípios (@sec-federalismo-fiscal). Organizados por **base econômica**, os principais são:
+
+| Base | Tributo (sistema antigo) | Ente |
+|------|--------------------------|------|
+| **Renda** | IRPF, IRPJ, CSLL | União |
+| **Folha de pagamento** | Contribuição previdenciária (INSS), FGTS | União |
+| **Consumo** | ICMS | Estados |
+| **Consumo** | ISS | Municípios |
+| **Consumo** | IPI, PIS, Cofins | União |
+| **Patrimônio** | ITR | União |
+| **Patrimônio** | IPVA, ITCMD | Estados |
+| **Patrimônio** | IPTU, ITBI | Municípios |
+| **Comércio exterior** | Imposto de Importação/Exportação | União |
+
+O problema saltava aos olhos justamente na base **consumo**: cinco tributos principais (ICMS, ISS, IPI, PIS, Cofins), três níveis de governo, cada estado com sua própria legislação de ICMS. É esse pedaço do sistema — e só ele — que a reforma de 2023 reconstrói.
+
+## O IVA e o problema da cumulatividade
+
+Para entender a reforma, é preciso entender o conceito de **imposto sobre valor agregado (IVA)** — o padrão mundial de tributação do consumo, adotado por mais de 170 países, e que o Brasil, curiosamente, nunca tivera em forma plena.
+
+::: {.callout-note title="Definição — IVA e cumulatividade"}
+Um **imposto sobre valor agregado (IVA)** incide, em cada etapa da cadeia produtiva, apenas sobre o **valor adicionado** naquela etapa — na prática, cada empresa recolhe o imposto sobre suas vendas mas **credita-se** do imposto pago em suas compras. Um imposto **cumulativo** ("em cascata"), ao contrário, incide sobre o **valor cheio** em cada etapa, sem crédito — de modo que o imposto de uma etapa vira base do imposto da seguinte, tributando imposto sobre imposto.
+:::
+
+Por que a cumulatividade é ruim? Porque ela **penaliza cadeias longas** e incentiva a **verticalização artificial**: uma empresa que faz tudo internamente paga menos imposto do que várias empresas especializadas que negociam entre si, ainda que estas sejam mais produtivas. Distorce a organização da produção por motivo puramente tributário — uma violação do princípio da **neutralidade**. Além disso, a cumulatividade **esconde** a carga total (ninguém sabe quanto imposto há embutido no preço final) e **prejudica as exportações**, que carregam resíduos tributários difíceis de devolver.
+
+::: {#fig-cascata-iva}
+
+```{.tikz}
+%%| filename: fig-cascata-iva
+%%| alt: Comparação de duas cadeias de três etapas: acima, imposto cumulativo que incide sobre o valor cheio a cada etapa; abaixo, IVA que incide só sobre o valor adicionado, com crédito.
+\begin{tikzpicture}[font=\footnotesize, node distance=6mm]
+  % Cumulativo
+  \node[align=center, manualred] at (-1.6,1.2) {\textbf{Cumulativo}\\(cascata)};
+  \node[draw, rounded corners, fill=manualred!12] (c1) at (2,1.2) {Etapa 1\\imposto sobre 100};
+  \node[draw, rounded corners, fill=manualred!12] (c2) at (5.2,1.2) {Etapa 2\\imposto sobre 180};
+  \node[draw, rounded corners, fill=manualred!12] (c3) at (8.4,1.2) {Etapa 3\\imposto sobre 260};
+  \draw[vetor, manualgray] (c1) -- (c2);
+  \draw[vetor, manualgray] (c2) -- (c3);
+  % IVA
+  \node[align=center, manualgreen] at (-1.6,-1.2) {\textbf{IVA}\\(valor agregado)};
+  \node[draw, rounded corners, fill=manualgreen!12] (i1) at (2,-1.2) {Etapa 1\\imposto sobre 100};
+  \node[draw, rounded corners, fill=manualgreen!12] (i2) at (5.2,-1.2) {Etapa 2\\imposto sobre 80};
+  \node[draw, rounded corners, fill=manualgreen!12] (i3) at (8.4,-1.2) {Etapa 3\\imposto sobre 80};
+  \draw[vetor, manualgray] (i1) -- (i2);
+  \draw[vetor, manualgray] (i2) -- (i3);
+\end{tikzpicture}
+```
+
+No cumulativo, o imposto incide sobre o valor cheio a cada etapa (e sobre o imposto anterior); no IVA, só sobre o valor adicionado em cada etapa.
+:::
+
+No sistema antigo, PIS e Cofins tinham regimes parcialmente cumulativos, o ISS era integralmente cumulativo, e o ICMS, embora fosse um IVA "na intenção", tinha tantas exceções, isenções e regras estaduais divergentes que funcionava mal e alimentava litígios sobre créditos.
+
+## Os quatro males do sistema antigo
+
+O diagnóstico técnico, consensual entre economistas de orientações diversas, apontava quatro grandes falhas:
+
+1. **Complexidade.** Cinco tributos sobre consumo, 27 legislações estaduais de ICMS, milhares de alíquotas e regimes especiais — o já mencionado recorde mundial de horas gastas em conformidade. Custo puro, sem contrapartida.
+2. **Cumulatividade.** Resíduos de imposto em cascata distorcendo a produção e onerando investimento e exportação.
+3. **Guerra fiscal.** Como o ICMS era cobrado majoritariamente na **origem** (no estado produtor), os estados **competiam** oferecendo reduções de ICMS para atrair fábricas — a **guerra fiscal** (@sec-federalismo-fiscal). O resultado: renúncia de receita, insegurança jurídica e alocação de investimentos por motivo tributário, não econômico.
+4. **Regressividade e opacidade.** Peso alto sobre consumo (regressivo) e carga total invisível no preço, dificultando o controle democrático sobre quanto se paga.
+
+::: {.callout-important title="Armadilha comum — reforma tributária não é (necessariamente) aumento de imposto"}
+Confunde-se com frequência **reforma** com **aumento** da carga. A reforma de 2023 foi desenhada para ser, na carga total, **neutra** — não pretende arrecadar mais nem menos, mas arrecadar o **mesmo de forma melhor**: mais simples, sem cascata, sem guerra fiscal. Os ganhos esperados vêm de **eficiência** (menos distorção, mais produtividade), não de mais tributos. Debater "sou contra a reforma porque não quero pagar mais imposto" é errar o alvo: mudam a *forma* e a *distribuição* do ônus, com a carga global calibrada para ser equivalente.
+:::
+
+## A reforma de 2023: o IVA dual
+
+A EC 132/2023 substitui os **cinco** tributos sobre consumo por um modelo de **IVA dual**, mais um imposto seletivo. A arquitetura:
+
+::: {.callout-note title="Definição — A nova arquitetura (EC 132/2023)"}
+- **CBS — Contribuição sobre Bens e Serviços** (federal): unifica PIS, Cofins e IPI. É a "metade federal" do IVA.
+- **IBS — Imposto sobre Bens e Serviços** (subnacional): unifica ICMS (estadual) e ISS (municipal), gerido conjuntamente por um **Comitê Gestor** de estados e municípios. É a "metade dos entes subnacionais".
+- **IS — Imposto Seletivo** ("imposto do pecado"): incide sobre bens prejudiciais à saúde e ao meio ambiente (cigarros, bebidas alcoólicas, etc.), corrigindo **externalidades** (@sec-externalidades).
+- Juntos, CBS + IBS formam um **IVA dual** de base ampla, não cumulativo e cobrado no **destino**.
+:::
+
+Três princípios de desenho merecem destaque, porque traduzem diretamente a teoria dos capítulos anteriores:
+
+**Não cumulatividade plena.** Crédito amplo e imediato em toda a cadeia: acabou a cascata. Investimento e exportação são **desonerados** (exportação com alíquota zero e crédito integral), o que tende a elevar a competitividade.
+
+**Tributação no destino.** O IBS passa a ser cobrado onde o bem é **consumido**, não onde é produzido. Isso **extingue a racionalidade da guerra fiscal**: não adianta um estado renunciar a receita para atrair uma fábrica, pois o imposto será do estado consumidor. É uma mudança profunda no federalismo fiscal (@sec-federalismo-fiscal).
+
+**Cashback (devolução).** Para combater a **regressividade**, a reforma prevê **devolução de imposto** a famílias de baixa renda — em vez de isentar produtos (que beneficia a todos, inclusive ricos), devolve-se o tributo diretamente a quem precisa. É a solução teoricamente elegante para o dilema eficiência × equidade do capítulo anterior: mantém a base ampla e uniforme (eficiente) e corrige a distribuição por fora (equitativo).
+
+::: {.callout-warning title="Controvérsia — alíquota-padrão e exceções"}
+Um IVA é tão mais **eficiente e simples** quanto **mais uniforme** sua alíquota e **menos** as exceções. A reforma brasileira, porém, criou vários **regimes diferenciados** (alíquota reduzida para saúde, educação, transporte, alimentos da cesta básica; regimes específicos para combustíveis, serviços financeiros etc.). **Defensores** dizem que as exceções protegem setores sensíveis e a progressividade; **críticos** alertam que cada exceção **eleva a alíquota-padrão** que incide sobre todo o resto (para manter a arrecadação) e **reintroduz complexidade**. Estimativas colocam a alíquota-padrão do IVA brasileiro entre as **mais altas do mundo** (em torno de 26–28%), justamente por causa das muitas exceções. O *trade-off* entre **proteção setorial/distributiva** e **simplicidade/eficiência** é o debate central da implementação — e ilustra na prática o conflito de princípios do @sec-tributacao-principios.
+:::
+
+## A transição
+
+A reforma **não** entra em vigor de uma vez. A EC 132/2023 prevê uma **transição longa**, que se estende ao longo da década (aproximadamente 2026 a 2033): os tributos novos entram gradualmente enquanto os antigos são reduzidos, e há um período de convivência dos dois sistemas. Para a partilha de receitas entre estados e municípios, a transição da **origem para o destino** é ainda mais longa (várias décadas), para não quebrar orçamentos subnacionais de repente. Um **Fundo de Desenvolvimento Regional** foi criado para compensar estados que perdiam com o fim da guerra fiscal. Essa gradualidade é economicamente sensata — reduz choques —, mas mantém, por anos, a **complexidade** de operar dois sistemas ao mesmo tempo.
+
+Importante: a reforma de 2023 tratou da **tributação sobre o consumo**. A **tributação sobre a renda** (IRPF/IRPJ) — onde estão os maiores problemas de **progressividade** e de tratamento desigual entre tipos de rendimento (trabalho *versus* capital, isenção de lucros e dividendos) — ficou para uma **segunda etapa**, em discussão. O debate sobre tributar mais renda e patrimônio e menos consumo, para reduzir a regressividade, permanece aberto.
+
+## 🇧🇷 Brasil em Foco
+
+**Por que a reforma demorou décadas.** Propostas de unificar os tributos sobre consumo circulavam desde os anos 1990. O obstáculo nunca foi técnico — o diagnóstico era consensual — mas **político-federativo**: cada mudança cria **ganhadores e perdedores** entre União, 26 estados, o Distrito Federal e mais de 5.500 municípios, além de setores econômicos. O que destravou 2023 foi justamente o desenho de **mecanismos de compensação** (Comitê Gestor, Fundo de Desenvolvimento Regional, transição longa) que reduziram as perdas de curto prazo dos entes. É um caso de manual de **economia política** das reformas: a viabilidade dependeu de distribuir os custos da transição no tempo.
+
+**O que se espera em números.** Estudos do Ministério da Fazenda, do IPEA e de instituições como o Banco Mundial projetam ganhos de **produtividade e PIB no longo prazo** com a simplificação e o fim da cumulatividade — estimativas variam bastante (de poucos pontos a mais de 10% de PIB potencial em horizontes longos), e devem ser lidas com cautela, pois dependem de premissas. O ganho mais consensual é a **redução do custo de conformidade** e o fim das distorções da guerra fiscal.
+
+**O IVA dual no mundo.** A maioria dos países tem um IVA **único** nacional. O Brasil adotou um modelo **dual** (CBS federal + IBS subnacional) por causa de sua **federação**: estados e municípios têm autonomia tributária constitucional, e não abririam mão de um imposto próprio. É uma adaptação da melhor prática internacional à realidade federativa brasileira — semelhante, em espírito, ao modelo canadense (GST federal + impostos provinciais).
+
+> **Fontes e séries para explorar:** texto da **EC 132/2023** e das leis complementares de regulamentação; Ministério da Fazenda (estudos de impacto da reforma; calibragem da alíquota); Receita Federal (Carga Tributária); IPEA e CCiF (Centro de Cidadania Fiscal, que ajudou a desenhar a proposta) para análises técnicas. Como a implementação está em curso, acompanhe as leis complementares e a definição da alíquota-padrão, que ainda podem mudar.
+
+## Resumo do capítulo
+
+- O sistema tributário brasileiro reparte competências entre **União, estados e municípios**, com tributos sobre **renda, folha, consumo, patrimônio e comércio exterior**. O problema concentrava-se no **consumo**: cinco tributos (ICMS, ISS, IPI, PIS, Cofins) e 27 legislações estaduais.
+- Um **IVA** tributa apenas o **valor adicionado** em cada etapa (com crédito), evitando a **cumulatividade** ("cascata"), que penaliza cadeias longas, distorce a produção e onera investimento e exportação.
+- O sistema antigo padecia de quatro males: **complexidade**, **cumulatividade**, **guerra fiscal** (ICMS na origem) e **regressividade/opacidade**.
+- A **EC 132/2023** cria um **IVA dual** — **CBS** (federal, unifica PIS/Cofins/IPI) + **IBS** (subnacional, unifica ICMS/ISS) —, mais o **Imposto Seletivo** (externalidades). É não cumulativo, cobrado no **destino** (fim da guerra fiscal) e com **cashback** para corrigir a regressividade.
+- A reforma foi desenhada para ser **neutra na carga** — arrecadar o mesmo de forma melhor —, não um aumento de impostos. Muitas **exceções** (alíquotas reduzidas) elevam a **alíquota-padrão**, no *trade-off* entre proteção setorial e simplicidade.
+- A **transição** é longa (anos, e décadas para a partilha origem→destino). A reforma da tributação da **renda** (progressividade, dividendos) ficou para uma **segunda etapa**, ainda em aberto.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique a diferença entre um imposto **cumulativo** e um **IVA**, e por que a cumulatividade incentiva a verticalização artificial das empresas.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Um imposto **cumulativo** incide sobre o **valor cheio** a cada etapa da cadeia, sem crédito, de modo que o imposto de uma etapa entra na base da seguinte (imposto sobre imposto). Um **IVA** incide só sobre o **valor adicionado** em cada etapa: a empresa recolhe sobre as vendas e se **credita** do imposto das compras. A cumulatividade incentiva a **verticalização** porque, quanto mais etapas independentes a cadeia tiver, mais vezes o imposto incide em cascata; fazer tudo dentro de uma só empresa reduz o número de transações tributadas e, portanto, o imposto — mesmo que a produção fragmentada fosse mais eficiente. É uma distorção da organização produtiva por motivo tributário.
+:::
+
+**2.** Liste os **quatro males** do sistema tributário antigo sobre consumo e diga qual mecanismo da reforma ataca cada um.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(1) **Complexidade** → unificação de cinco tributos em CBS + IBS. (2) **Cumulatividade** → não cumulatividade plena, com crédito amplo. (3) **Guerra fiscal** → tributação no **destino** (o imposto é do estado consumidor, some o incentivo a atrair fábricas com renúncia). (4) **Regressividade/opacidade** → **cashback** (devolução a famílias pobres) e maior transparência da carga (imposto "por fora", visível).
+:::
+
+**3.** O que compõe a **CBS** e o que compõe o **IBS**? Por que o Brasil adotou um IVA **dual** em vez de um único?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A **CBS** (federal) unifica **PIS, Cofins e IPI**. O **IBS** (subnacional) unifica **ICMS (estadual) e ISS (municipal)**. O Brasil adotou um IVA **dual** por causa de sua **federação**: a Constituição garante autonomia tributária a estados e municípios, que não abririam mão de um imposto próprio sobre consumo. O modelo dual preserva essa autonomia (o IBS é gerido por um Comitê Gestor de estados e municípios) enquanto captura os ganhos de um IVA moderno — inspirado, em espírito, no modelo canadense.
+:::
+
+**4.** Por que a tributação **no destino** elimina a guerra fiscal do ICMS?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Na guerra fiscal, os estados renunciavam a receita de ICMS (cobrado majoritariamente na **origem**, no estado produtor) para atrair fábricas, capturando a arrecadação e os empregos. Com a cobrança **no destino**, o imposto pertence ao estado onde o bem é **consumido**, não onde é produzido. Assim, atrair uma fábrica com renúncia fiscal deixa de gerar receita adicional — some o incentivo econômico à guerra fiscal. A localização das empresas passa a depender de fatores **econômicos reais** (logística, mão de obra, mercado), não de benefícios tributários.
+:::
+
+**5.** Explique por que o **cashback** é considerado, na teoria, uma forma mais eficiente de proteger os pobres do que isentar produtos da cesta básica.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Isentar um produto (ex.: alimentos) beneficia **todos** que o consomem, inclusive os ricos — que, em valores absolutos, muitas vezes gastam mais com ele. Além disso, cada isenção **reduz a base**, obrigando a elevar a alíquota-padrão sobre o resto, e **reintroduz complexidade** (definir o que entra na cesta). O **cashback** mantém a base **ampla e uniforme** (eficiente, simples) e **devolve** o imposto diretamente às famílias de **baixa renda** identificadas (ex.: por cadastro social). Assim, foca o benefício em quem precisa, preservando eficiência — a solução do dilema eficiência × equidade (@sec-tributacao-principios). A ressalva prática é depender de bom cadastro e execução.
+:::
+
+**6.** (Análise de caso) Um setor pressiona por **alíquota reduzida** no novo IVA, alegando ser essencial. Analise o *trade-off* envolvido, considerando o efeito sobre a **alíquota-padrão** e sobre a **simplicidade**.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Conceder alíquota reduzida a um setor **retira** arrecadação; para manter a carga total (reforma neutra), a **alíquota-padrão** sobre todos os demais bens precisa **subir**. Ou seja, o benefício ao setor é pago por **todo o resto da economia** via alíquota maior — inclusive por outros bens essenciais. Além disso, cada regime diferenciado **reintroduz complexidade** (classificar o que se enquadra, litígios de fronteira) e abre precedente para novos pleitos, num efeito dominó. **A favor** da redução: proteger acesso a bens sensíveis (saúde, educação, alimentos) e a progressividade. **Contra:** eleva a alíquota-padrão (já alta), fere a neutralidade e a simplicidade, e o objetivo distributivo seria melhor atingido pelo **cashback**, mais focalizado. A decisão é normativa, mas a teoria recomenda **poucas exceções** e correção distributiva por devolução.
+:::
+
+**7.** (Desafio) A reforma de 2023 tratou do **consumo**, deixando a **renda** para depois. Argumente por que uma segunda etapa focada em renda e patrimônio seria importante para a **equidade** do sistema, e quais resistências ela enfrentaria.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Importância para a equidade:** o sistema brasileiro é **regressivo** porque tributa muito o **consumo** (regressivo) e pouco a **renda e o patrimônio** (bases naturalmente mais progressivas). Mesmo com o *cashback*, o IVA reformado continua sendo um imposto sobre consumo. Reduzir a regressividade exige mexer na **renda**: rever faixas e a defasagem da tabela do IRPF, tributar **lucros e dividendos** (hoje isentos na pessoa física), e reduzir o tratamento privilegiado da renda do **capital** frente à do **trabalho** — corrigindo violações de **equidade horizontal** (rendas iguais tributadas de forma diferente conforme a fonte) e **vertical** (o topo da distribuição, que vive de capital, é subtributado).
+
+**Resistências:** (i) os **mais ricos e organizados** (que se beneficiam da isenção de dividendos) têm forte capacidade de *lobby* — um problema de **economia política** e captura (@sec-papel-do-estado); (ii) o temor de que tributar capital **afugente investimento** (argumento de eficiência, cuja magnitude é debatida); (iii) a complexidade de coordenar a nova tributação da renda com a do consumo já em transição. Por isso a segunda etapa é politicamente mais difícil que a primeira — mexe diretamente com quem tem mais poder de veto.
+:::
+
+## Para saber mais
+
+- @giambiagi2016 — descrição do sistema tributário brasileiro, seus problemas e as propostas de reforma, com o instrumental de finanças públicas.
+- @rezende2001 — análise clássica da estrutura tributária brasileira e do federalismo fiscal que a condiciona.
+- @gremaud2017 — capítulo sobre o setor público brasileiro, tributos e a evolução institucional do sistema.
+- @stiglitz2000 — para a teoria do IVA, da tributação ótima do consumo e do desenho de sistemas tributários.
+- Texto da **EC 132/2023** e das leis complementares de regulamentação — a fonte primária da reforma, indispensável para acompanhar a implementação.

@@ -173,13 +173,13 @@
 
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
-| 1 | O papel econômico do Estado | `capitulos/vol12/cap01-papel-do-estado.qmd` | ⬜ |
-| 2 | Tributação: princípios, incidência e eficiência | `capitulos/vol12/cap02-tributacao-principios.qmd` | ⬜ |
-| 3 | O sistema tributário brasileiro e a reforma tributária | `capitulos/vol12/cap03-sistema-tributario-reforma.qmd` | ⬜ |
-| 4 | Gastos públicos e o orçamento: PPA, LDO e LOA | `capitulos/vol12/cap04-orcamento-publico.qmd` | ⬜ |
-| 5 | Déficit, dívida pública e sustentabilidade fiscal | `capitulos/vol12/cap05-divida-sustentabilidade.qmd` | ⬜ |
-| 6 | Federalismo fiscal | `capitulos/vol12/cap06-federalismo-fiscal.qmd` | ⬜ |
-| 7 | Previdência social: economia e reforma | `capitulos/vol12/cap07-previdencia.qmd` | ⬜ |
+| 1 | O papel econômico do Estado | `capitulos/vol12/cap01-papel-do-estado.qmd` | ✅ |
+| 2 | Tributação: princípios, incidência e eficiência | `capitulos/vol12/cap02-tributacao-principios.qmd` | ✅ |
+| 3 | O sistema tributário brasileiro e a reforma tributária | `capitulos/vol12/cap03-sistema-tributario-reforma.qmd` | ✅ |
+| 4 | Gastos públicos e o orçamento: PPA, LDO e LOA | `capitulos/vol12/cap04-orcamento-publico.qmd` | ✅ |
+| 5 | Déficit, dívida pública e sustentabilidade fiscal | `capitulos/vol12/cap05-divida-sustentabilidade.qmd` | ✅ |
+| 6 | Federalismo fiscal | `capitulos/vol12/cap06-federalismo-fiscal.qmd` | ✅ |
+| 7 | Previdência social: economia e reforma | `capitulos/vol12/cap07-previdencia.qmd` | ✅ |
 
 ### Volume 13 — Desenvolvimento Econômico
 

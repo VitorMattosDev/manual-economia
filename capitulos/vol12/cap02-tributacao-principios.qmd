@@ -1,0 +1,256 @@
+# Tributação: princípios, incidência e eficiência {#sec-tributacao-principios}
+
+Olhe a nota fiscal do seu último almoço num restaurante ou o cupom do supermercado. Numa boa parte deles, no rodapé, há uma linha discreta: "Valor aproximado dos tributos: R\$…". Muitas vezes esse valor supera **um quarto** do que você pagou. Você pagou o imposto — mas será que foi você quem o *suportou*? O restaurante repassou tudo ao preço, ou absorveu parte da conta para não perder clientes? E aquele imposto encareceu tanto a refeição que algumas pessoas deixaram de sair para comer fora, produzindo uma perda que ninguém arrecada?
+
+Essas três perguntas — **quem paga**, **quem realmente arca** e **quanto se perde no caminho** — são o coração da teoria da tributação. Depois de justificar, no capítulo anterior, *por que* o Estado arrecada, este capítulo estuda *como* arrecadar bem. Você reencontrará ferramentas de microeconomia — elasticidades (@sec-elasticidades), excedentes e o peso morto dos impostos (@sec-aplicacoes-intervencoes) — agora organizadas em torno dos grandes princípios que uma boa tributação deve respeitar.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- enunciar os **princípios de um bom sistema tributário**: equidade, eficiência, simplicidade e neutralidade;
+- distinguir os princípios do **benefício** e da **capacidade de pagamento**, e as noções de **equidade horizontal** e **vertical**;
+- classificar tributos em **progressivos, regressivos e proporcionais** e relacioná-los à base (renda, consumo, patrimônio);
+- analisar a **incidência tributária** e mostrar que quem paga legalmente nem sempre é quem suporta o ônus, usando **elasticidades**;
+- medir a **perda de peso morto** de um imposto e entender por que ela cresce com o quadrado da alíquota.
+
+## O que faz um bom tributo? Os princípios clássicos
+
+Desde Adam Smith, que enunciou suas "máximas" sobre impostos em *A Riqueza das Nações* [@smith1996], a teoria consolidou quatro princípios que servem de régua para avaliar qualquer tributo:
+
+::: {.callout-note title="Definição — Princípios de um bom sistema tributário"}
+1. **Equidade (justiça):** o ônus deve ser distribuído de forma justa entre os contribuintes.
+2. **Eficiência (neutralidade):** o tributo deve interferir o mínimo possível nas decisões econômicas, minimizando a perda de bem-estar além da arrecadação.
+3. **Simplicidade:** as regras devem ser claras e o custo de arrecadar e de cumprir (a **conformidade**) deve ser baixo.
+4. **Transparência:** o contribuinte deve saber quanto paga e a quem.
+:::
+
+Esses princípios frequentemente **conflitam** entre si — e administrar esse conflito é a arte da política tributária. Um imposto muito progressivo (bom para a equidade) pode ser complexo e distorcivo (ruim para simplicidade e eficiência). Um imposto uniforme sobre o consumo (simples e eficiente) tende a ser regressivo (ruim para a equidade). Não existe o tributo perfeito; existe o **conjunto** de tributos que melhor equilibra os princípios dada a sociedade que se quer.
+
+## Dois critérios de justiça: benefício e capacidade de pagamento
+
+Como distribuir o ônus de forma **justa**? Há duas grandes doutrinas.
+
+- **Princípio do benefício.** Cada um deve contribuir na proporção do benefício que recebe do gasto público. É a lógica de uma **taxa** (você paga pela emissão de um passaporte que usa) ou da **CIDE-Combustíveis** (quem usa mais estradas, abastecendo mais, paga mais para conservá-las). Elegante, mas de aplicação limitada: para bens públicos puros (@sec-bens-publicos), ninguém revela quanto valoriza, e para a função **distributiva** o critério é inútil (os pobres, que mais se beneficiam de transferências, não podem pagá-las).
+- **Princípio da capacidade de pagamento.** Cada um deve contribuir conforme sua **capacidade econômica**, medida por renda, consumo ou patrimônio. É o critério dominante nos sistemas modernos, e se desdobra em duas exigências de equidade:
+
+::: {.callout-note title="Definição — Equidade horizontal e vertical"}
+- **Equidade horizontal:** contribuintes em situação econômica **igual** devem pagar impostos **iguais**. (Duas pessoas com a mesma renda não devem ser tributadas de forma diferente por motivos arbitrários.)
+- **Equidade vertical:** contribuintes em situação **desigual** devem pagar de forma **desigual** — quem tem maior capacidade deve pagar mais. (Fundamenta a **progressividade**.)
+:::
+
+A equidade vertical justifica-se muitas vezes pelo princípio da **utilidade marginal decrescente da renda** (@sec-preferencias-utilidade): R\$\,100 a mais valem menos para um rico do que para um pobre; logo, tirar R\$\,100 do rico "dói" menos, e a tributação progressiva minimizaria o sacrifício total. É um argumento poderoso, mas repousa em comparar utilidades entre pessoas — algo que a teoria econômica faz com cautela.
+
+## Progressivo, regressivo, proporcional
+
+A relação entre o imposto pago e a capacidade de pagamento define três tipos de tributo. Seja $T$ o imposto e $Y$ a renda; a **alíquota média** é $T/Y$.
+
+::: {.callout-note title="Definição — Progressividade"}
+- **Progressivo:** a alíquota média **cresce** com a renda ($T/Y$ aumenta quando $Y$ aumenta). Ex.: Imposto de Renda com faixas.
+- **Proporcional (*flat*):** a alíquota média é **constante**. Ex.: um imposto de 10% sobre toda renda.
+- **Regressivo:** a alíquota média **cai** com a renda (os mais pobres pagam proporção maior de sua renda). Ex.: impostos sobre o consumo tendem a ser regressivos, porque os pobres consomem quase toda a renda, enquanto os ricos poupam parte.
+:::
+
+Repare que a base tributária importa: impostos sobre **renda** e **patrimônio** são naturalmente mais adequados à progressividade; impostos sobre **consumo** tendem à regressividade, a menos que corrigidos (com isenções para itens básicos ou devolução de imposto a famílias pobres — o *cashback*, discutido em @sec-sistema-tributario-reforma).
+
+::: {#fig-progressividade}
+
+```{.tikz}
+%%| filename: fig-progressividade
+%%| alt: Gráfico da alíquota média em função da renda para três tributos — progressivo (crescente), proporcional (horizontal) e regressivo (decrescente).
+\begin{tikzpicture}[font=\small]
+  \begin{axis}[
+      width=10cm, height=6.5cm,
+      xlabel={Renda $Y$}, ylabel={Alíquota média $T/Y$},
+      xtick=\empty, ytick=\empty,
+      axis lines=left, xmin=0, xmax=10, ymin=0, ymax=10,
+      legend pos=north east, legend cell align=left,
+      clip=false]
+    \addplot[curva, manualblue, very thick, domain=1:9, samples=50] {2+0.75*x};
+    \addplot[curva, manualgray, very thick, domain=1:9] {5};
+    \addplot[curva, manualred, very thick, domain=1:9, samples=50] {9-4.2*ln(x)};
+    \legend{Progressivo, Proporcional, Regressivo}
+  \end{axis}
+\end{tikzpicture}
+```
+
+A alíquota média em função da renda distingue tributos progressivos, proporcionais e regressivos.
+:::
+
+## Incidência: quem paga *versus* quem arca
+
+Aqui está o resultado mais contraintuitivo da tributação. A lei diz **quem recolhe** o imposto (a incidência **legal**). Mas o mercado decide **quem efetivamente suporta** o ônus (a incidência **econômica**) — e os dois raramente coincidem.
+
+::: {.callout-note title="Definição — Incidência legal e econômica"}
+A **incidência legal** (ou formal) indica quem tem a obrigação jurídica de recolher o tributo. A **incidência econômica** indica sobre quem recai, de fato, o ônus — quanto cada lado do mercado perde de excedente. A diferença surge porque o imposto é **transferido** (repassado) via ajuste de preços.
+:::
+
+Você já viu no capítulo de intervenções (@sec-aplicacoes-intervencoes) que um imposto sobre um bem cria uma cunha entre o preço pago pelo comprador e o recebido pelo vendedor. A pergunta agora é: **como essa cunha se reparte** entre os dois lados? A resposta depende das **elasticidades** (@sec-elasticidades).
+
+### A regra da elasticidade
+
+O princípio central: **o lado mais inelástico do mercado suporta a maior parte do imposto.** A intuição é direta — quem tem menos alternativas (menor elasticidade) tem menos poder de fugir do tributo.
+
+Formalmente, a parcela do imposto suportada pelos **consumidores** é
+
+$$
+\text{parcela dos consumidores} = \frac{\varepsilon_o}{\varepsilon_o + |\varepsilon_d|},
+$$ {#eq-incidencia}
+
+onde $\varepsilon_o$ é a elasticidade-preço da oferta e $|\varepsilon_d|$ o módulo da elasticidade-preço da demanda. Se a demanda é muito inelástica ($|\varepsilon_d|\to 0$), a parcela dos consumidores tende a 1 — eles arcam com quase tudo. Se a oferta é muito inelástica ($\varepsilon_o \to 0$), a parcela dos consumidores tende a 0 — os produtores arcam com quase tudo.
+
+::: {.callout-important title="Armadilha comum — \"o imposto sobre a empresa é pago pela empresa\""}
+Dizer que "vamos taxar as empresas, não as pessoas" é economicamente ingênuo. Empresas são *arranjos* de pessoas; o ônus de um imposto recolhido por elas acaba distribuído entre **consumidores** (preços maiores), **trabalhadores** (salários menores) e **acionistas** (lucros menores), na proporção que as elasticidades determinarem — não na que a lei declara. A incidência econômica é uma questão empírica, não jurídica.
+:::
+
+### Um exemplo numérico
+
+Suponha um imposto específico de $t = R\$\,2{,}00$ por unidade num mercado onde a demanda tem elasticidade $|\varepsilon_d| = 0{,}5$ (inelástica — bem essencial) e a oferta tem $\varepsilon_o = 1{,}5$. Pela @eq-incidencia:
+
+$$
+\text{parcela dos consumidores} = \frac{1{,}5}{1{,}5 + 0{,}5} = \frac{1{,}5}{2} = 0{,}75.
+$$
+
+Os consumidores arcam com **75%** do imposto (R\$\,1,50 por unidade, via preço maior) e os produtores com **25%** (R\$\,0,50, via preço líquido menor). Como a demanda é a mais inelástica, é sobre ela que recai o maior peso — exatamente o que a regra prevê.
+
+## Eficiência: o peso morto da tributação
+
+Todo imposto sobre uma transação (exceto casos especiais) reduz a quantidade negociada abaixo do equilíbrio eficiente, destruindo trocas que teriam gerado excedente. Essa perda de bem-estar que **não** se converte em arrecadação para ninguém é o **peso morto** (ou perda de eficiência) do imposto — o **excesso de gravame** (*excess burden*).
+
+::: {.callout-note title="Definição — Peso morto (excesso de gravame)"}
+O **peso morto** de um imposto é a redução do excedente total (consumidor + produtor) que **excede** a receita arrecadada pelo governo. Corresponde ao valor das trocas mutuamente vantajosas que deixaram de ocorrer por causa do tributo. Um imposto é tão mais **eficiente** quanto menor for seu peso morto por real arrecadado.
+:::
+
+::: {#fig-peso-morto}
+
+```{.tikz}
+%%| filename: fig-peso-morto
+%%| alt: Curvas de oferta e demanda com um imposto que abre uma cunha; a área do triângulo entre as quantidades com e sem imposto é o peso morto, destacada.
+\begin{tikzpicture}[font=\small]
+  \begin{axis}[
+      width=10cm, height=7.5cm,
+      xlabel={Quantidade}, ylabel={Preço},
+      xtick=\empty, ytick=\empty,
+      axis lines=left, xmin=0, xmax=10, ymin=0, ymax=10, clip=false]
+    % demanda e oferta
+    \addplot[curva, manualblue, very thick, domain=0.5:9.5] {9-0.8*x};
+    \addplot[curva, manualred, very thick, domain=0.5:9.5] {1.5+0.8*x};
+    % equilíbrio sem imposto em x=4.6875 aprox; usar x=4.7
+    \coordinate (E) at (axis cs:4.6875,5.25);
+    % com imposto: qtd menor, digamos x=3.5
+    \coordinate (Pc) at (axis cs:3.5,6.2);   % preço comprador
+    \coordinate (Pv) at (axis cs:3.5,4.3);   % preço vendedor
+    % peso morto triangulo entre Pc, Pv, E
+    \fill[manualyellow!45, opacity=0.7] (Pc) -- (E) -- (Pv) -- cycle;
+    \node[ponto] at (E) {};
+    \node[anchor=south west, font=\footnotesize] at (E) {$E$ (sem imposto)};
+    \draw[auxiliar] (Pc) -- (axis cs:0,6.2) node[anchor=east, font=\footnotesize] {$P_c$};
+    \draw[auxiliar] (Pv) -- (axis cs:0,4.3) node[anchor=east, font=\footnotesize] {$P_v$};
+    \draw[auxiliar] (axis cs:3.5,0) -- (Pc);
+    \node[manualred, font=\footnotesize, anchor=west] at (axis cs:5.6,2.2) {Peso morto};
+    \draw[destaque, ->, >=stealth] (axis cs:5.5,2.4) to[bend left] (axis cs:4.0,5.1);
+    \node[anchor=south, font=\footnotesize, manualblue] at (axis cs:8.8,2.5) {Demanda};
+    \node[anchor=north, font=\footnotesize, manualred] at (axis cs:8.8,8.5) {Oferta};
+  \end{axis}
+\end{tikzpicture}
+```
+
+O imposto abre uma cunha entre o preço do comprador $P_c$ e o do vendedor $P_v$, reduz a quantidade e gera peso morto (triângulo destacado).
+:::
+
+Dois fatos centrais sobre o peso morto:
+
+1. **Cresce com a elasticidade.** Quanto mais elásticas a oferta e a demanda, mais a quantidade recua diante do imposto e maior o peso morto. Tributar bens de demanda **inelástica** (cigarro, combustível, sal) distorce pouco a quantidade — daí a "regra de Ramsey": para minimizar a distorção, tribute mais o que é mais inelástico. (Atenção: essa regra de **eficiência** frequentemente colide com a **equidade**, pois bens inelásticos costumam ser essenciais e pesar mais no orçamento dos pobres.)
+2. **Cresce com o *quadrado* da alíquota.** Dobrar a alíquota **quadruplica** o peso morto. A área do triângulo de perda é aproximadamente
+
+$$
+\text{peso morto} \approx \frac{1}{2}\,\varepsilon\,\frac{t^2}{P}\,Q,
+$$ {#eq-peso-morto}
+
+proporcional a $t^2$. Essa é a base econômica do princípio de que é melhor **muitos impostos com alíquotas baixas** sobre bases amplas do que **poucos impostos com alíquotas altas** — e da célebre ideia da **curva de Laffer**: acima de certo ponto, elevar a alíquota reduz a arrecadação, porque a base encolhe mais rápido do que a alíquota sobe.
+
+::: {.callout-warning title="Controvérsia — a curva de Laffer"}
+A **curva de Laffer** afirma que a arrecadação é zero com alíquota 0% (nada se cobra) e zero com 100% (ninguém trabalha ou declara), atingindo um máximo em algum ponto intermediário. A lógica é impecável; a **controvérsia** é empírica: *onde* fica esse ponto máximo? Populariza-se a ideia de que cortar impostos "se paga sozinho", mas a evidência mostra que a maioria dos países opera à **esquerda** do pico — ou seja, cortar alíquotas em geral **reduz** a arrecadação, não a aumenta. A curva é um alerta válido contra alíquotas confiscatórias, não uma promessa de almoço grátis fiscal.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+**Um sistema que tributa pouco a renda e muito o consumo.** A grande peculiaridade — e o principal problema de equidade — do sistema tributário brasileiro é sua **composição**: cerca de **metade** da arrecadação vem de tributos sobre **bens e serviços** (consumo), enquanto a tributação sobre **renda** e **patrimônio** pesa proporcionalmente menos do que na média dos países da OCDE. Como impostos sobre consumo são **regressivos**, o resultado é um sistema em que os 10% mais pobres comprometem, em proporção da renda, **mais** de sua renda com tributos do que os 10% mais ricos — o oposto da progressividade. Estudos do IPEA e da Receita Federal documentam essa regressividade da carga total.
+
+**Incidência e a "carne fraca" da desoneração.** A teoria da incidência tem consequências práticas diretas no Brasil. Quando o governo desonera a cesta básica ou reduz o ICMS de um produto de demanda inelástica, a pergunta empírica é: **quem captura** o benefício — o consumidor (preço menor) ou a cadeia produtiva (margem maior)? A resposta depende das elasticidades e da concorrência no setor; por isso, desonerações são frequentemente avaliadas para verificar se o preço final realmente caiu.
+
+**A complexidade como custo.** O Brasil é reiteradamente apontado, em estudos como o *Doing Business* (Banco Mundial, quando existia) e da FGV, como um dos países onde se gasta **mais horas por ano** para cumprir obrigações tributárias. Essa **complexidade** — múltiplos tributos sobre consumo (ICMS, ISS, IPI, PIS, Cofins), 27 legislações estaduais de ICMS, regimes especiais — viola frontalmente os princípios de **simplicidade** e **transparência**, e foi a principal motivação da reforma tributária de 2023 (@sec-sistema-tributario-reforma).
+
+> **Fontes e séries para explorar:** Receita Federal (Carga Tributária no Brasil; estudos de progressividade); IPEA (estudos sobre incidência distributiva dos tributos); OCDE (*Revenue Statistics* — para comparar a composição por base: renda, consumo, patrimônio); FGV/IBRE (custo de conformidade). Verifique a data: a composição muda com reformas e com o ciclo.
+
+## Resumo do capítulo
+
+- Um bom sistema tributário equilibra quatro princípios frequentemente conflitantes: **equidade**, **eficiência (neutralidade)**, **simplicidade** e **transparência**. Não existe tributo perfeito, mas combinações melhores e piores.
+- A justiça tributária apoia-se em dois critérios: o do **benefício** (paga quem usa) e o da **capacidade de pagamento** (paga quem pode), este dominante, exigindo **equidade horizontal** (iguais pagam igual) e **vertical** (desiguais pagam desigual → **progressividade**).
+- Tributos são **progressivos**, **proporcionais** ou **regressivos** conforme a alíquota média suba, fique constante ou caia com a renda. Consumo tende à regressividade; renda e patrimônio, à progressividade.
+- A **incidência legal** (quem recolhe) difere da **incidência econômica** (quem arca): o ônus vai para o lado **mais inelástico** do mercado, na proporção dada pelas **elasticidades** (@eq-incidencia). "Taxar a empresa" não define quem paga.
+- Todo imposto gera **peso morto** — trocas eficientes destruídas. Ele **cresce com a elasticidade** e com o **quadrado da alíquota** (@eq-peso-morto), o que favorece **bases amplas e alíquotas baixas** e fundamenta a **curva de Laffer**.
+- No Brasil, o sistema tributa **muito o consumo e pouco a renda/patrimônio**, sendo **regressivo** e **complexo** — o diagnóstico que motivou a reforma tributária.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Defina **equidade horizontal** e **equidade vertical** e dê um exemplo de violação de cada uma no sistema tributário.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Horizontal:** iguais devem pagar igual. Violação: dois profissionais com a mesma renda pagam impostos muito diferentes só porque um é assalariado (tributado na fonte) e o outro se organiza como pessoa jurídica com regime favorecido. **Vertical:** desiguais devem pagar desigual, com quem pode mais pagando mais. Violação: um sistema em que os pobres comprometem proporção **maior** da renda em tributos do que os ricos (regressividade), como ocorre quando a tributação recai sobretudo sobre o consumo.
+:::
+
+**2.** Classifique como **progressivo**, **proporcional** ou **regressivo**:
+(a) um imposto de 15% igual sobre toda a renda;
+(b) o IPVA proporcional ao valor do carro, sabendo que carros são bem de luxo;
+(c) um imposto uniforme sobre alimentos, sabendo que pobres gastam proporção maior da renda com comida.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Proporcional** — alíquota média constante (15%) em qualquer renda. (b) Tende a **progressivo** — como o gasto com automóveis cresce mais que proporcionalmente à renda, o imposto sobre eles pesa mais sobre os ricos (em proporção da renda). (c) **Regressivo** — como os pobres gastam proporção maior da renda em alimentos, um imposto uniforme sobre comida consome fatia maior da renda deles.
+:::
+
+**3.** Um imposto específico de R\$\,3,00 por unidade incide num mercado com elasticidade da demanda $|\varepsilon_d| = 1{,}0$ e da oferta $\varepsilon_o = 3{,}0$. Que parcela do imposto recai sobre os consumidores? E sobre os produtores? Interprete.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela @eq-incidencia:
+$$
+\text{parcela dos consumidores} = \frac{\varepsilon_o}{\varepsilon_o + |\varepsilon_d|} = \frac{3}{3+1} = 0{,}75.
+$$
+Os **consumidores** arcam com 75% (R\$\,2,25 por unidade) e os **produtores** com 25% (R\$\,0,75). Como a demanda é **menos elástica** (mais inelástica) que a oferta, os consumidores — que têm menos alternativas para fugir do imposto — suportam a maior parte.
+:::
+
+**4.** Explique por que dizer "vamos aumentar impostos das empresas, não das pessoas" é economicamente problemático.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque a **incidência econômica** não obedece à incidência **legal**. Empresas são arranjos de pessoas; o ônus de um imposto que elas recolhem se distribui entre **consumidores** (preços maiores), **trabalhadores** (salários menores) e **acionistas/proprietários** (lucros menores), conforme as elasticidades relevantes. Não há como garantir, pela lei, que "as pessoas" não paguem — em geral, boa parte do imposto corporativo é repassada a consumidores e trabalhadores. Quem realmente arca é uma questão empírica.
+:::
+
+**5.** Um imposto de alíquota $t$ gera peso morto $D$. O governo dobra a alíquota para $2t$. Aproximadamente, o que acontece com o peso morto? E com a arrecadação (supondo que a base ainda não colapsou)? Que princípio isso ilustra?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela @eq-peso-morto, o peso morto é proporcional a $t^2$; dobrar a alíquota para $2t$ **quadruplica** o peso morto (passa a $\approx 4D$). A arrecadação, num primeiro momento, cresce menos que proporcionalmente (aproximadamente dobra se a base pouco reagir, mas tende a crescer menos porque a quantidade cai). Isso ilustra que a **perda de eficiência cresce muito mais rápido que a arrecadação** quando se elevam alíquotas — daí o princípio de preferir **bases amplas com alíquotas baixas** a alíquotas altas sobre bases estreitas.
+:::
+
+**6.** (Análise de caso) O governo quer arrecadar de forma eficiente e cogita tributar pesadamente cigarros e combustíveis (demanda inelástica). Aponte o ganho de **eficiência** e o problema de **equidade** dessa escolha, e como conciliá-los.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Ganho de eficiência:** como a demanda é **inelástica**, a quantidade cai pouco com o imposto, gerando **pequeno peso morto** por real arrecadado (regra de Ramsey). No caso do cigarro, há ganho adicional: corrige uma **externalidade negativa** (saúde). **Problema de equidade:** bens inelásticos como combustível e cigarro pesam **proporcionalmente mais** no orçamento dos pobres, tornando o imposto **regressivo**. **Conciliação:** usar a receita arrecadada de forma **redistributiva** (transferências ou serviços que beneficiem os mais pobres) ou introduzir mecanismos de **devolução** (*cashback*) a famílias de baixa renda, preservando a eficiência do imposto e corrigindo sua regressividade por outra via.
+:::
+
+**7.** (Desafio) Explique a lógica da **curva de Laffer** e por que a afirmação "cortar impostos aumenta a arrecadação" é, em geral, empiricamente incorreta, embora a curva esteja teoricamente correta.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A **curva de Laffer** parte de dois extremos: com alíquota 0%, a arrecadação é zero; com 100%, também é zero (ninguém tem incentivo a produzir ou declarar). Entre eles, a arrecadação sobe, atinge um **máximo** e depois **cai** — porque, a partir de certo ponto, a **base tributável encolhe** (menos atividade, mais sonegação/elisão) mais rápido do que a alíquota sobe. A teoria é correta. O erro empírico está em supor que os países operam **à direita** do pico (região decrescente), onde cortar alíquotas aumentaria a receita. A evidência mostra que a **maioria** opera **à esquerda** do máximo: ali, cortar alíquotas **reduz** a arrecadação. A curva é um alerta contra alíquotas confiscatórias, não uma promessa de que reduzir impostos "se paga sozinho".
+:::
+
+## Para saber mais
+
+- @smith1996 — as "máximas" sobre tributação no Livro V de *A Riqueza das Nações* fundaram os princípios de igualdade, certeza, conveniência e economia na arrecadação.
+- @giambiagi2016 — tratamento brasileiro dos princípios, da incidência e da eficiência tributária, com aplicação ao sistema nacional.
+- @stiglitz2000 — capítulos sobre incidência e eficiência da tributação, com o instrumental de excesso de gravame.
+- @musgrave1980 — a análise clássica dos princípios do benefício e da capacidade de pagamento.
+- @varian2015 — para a microeconomia da incidência tributária e do peso morto, com o instrumental de elasticidades e excedentes.
