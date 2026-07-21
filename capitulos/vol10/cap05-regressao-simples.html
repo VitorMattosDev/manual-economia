@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>70&nbsp; Regressão linear simples – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol10/cap06-regressao-multipla.html" rel="next">
+<link href="../../capitulos/vol10/cap04-correlacao-causalidade.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap01-estatistica-descritiva.html">Volume 10 — Estatística e Econometria Básica</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap05-regressao-simples.html"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Regressão linear simples</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 10 — Estatística e Econometria Básica</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap01-estatistica-descritiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">Estatística descritiva para a Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap02-probabilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Probabilidade e distribuições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap03-inferencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">Inferência: estimação e testes de hipótese</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap04-correlacao-causalidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">Correlação não é causalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap05-regressao-simples.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Regressão linear simples</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap06-regressao-multipla.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Regressão múltipla e viés de variável omitida</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap07-series-temporais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Séries temporais: noções essenciais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap08-avaliacao-de-politicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">Avaliação de políticas públicas: métodos quase-experimentais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">70.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#o-modelo-de-regressão-linear-simples" id="toc-o-modelo-de-regressão-linear-simples" class="nav-link" data-scroll-target="#o-modelo-de-regressão-linear-simples"><span class="header-section-number">70.2</span> O modelo de regressão linear simples</a></li>
+  <li><a href="#o-método-dos-mínimos-quadrados" id="toc-o-método-dos-mínimos-quadrados" class="nav-link" data-scroll-target="#o-método-dos-mínimos-quadrados"><span class="header-section-number">70.3</span> O método dos mínimos quadrados</a></li>
+  <li><a href="#interpretando-os-coeficientes" id="toc-interpretando-os-coeficientes" class="nav-link" data-scroll-target="#interpretando-os-coeficientes"><span class="header-section-number">70.4</span> Interpretando os coeficientes</a></li>
+  <li><a href="#qualidade-do-ajuste-o-r2" id="toc-qualidade-do-ajuste-o-r2" class="nav-link" data-scroll-target="#qualidade-do-ajuste-o-r2"><span class="header-section-number">70.5</span> Qualidade do ajuste: o <span class="math inline">\(R^2\)</span></a></li>
+  <li><a href="#inferência-na-regressão-o-coeficiente-é-significativo" id="toc-inferência-na-regressão-o-coeficiente-é-significativo" class="nav-link" data-scroll-target="#inferência-na-regressão-o-coeficiente-é-significativo"><span class="header-section-number">70.6</span> Inferência na regressão: o coeficiente é significativo?</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">70.7</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">70.8</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">70.9</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">70.10</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol10/cap05-regressao-simples.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap01-estatistica-descritiva.html">Volume 10 — Estatística e Econometria Básica</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap05-regressao-simples.html"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Regressão linear simples</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-regressao-simples" class="quarto-section-identifier"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Regressão linear simples</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Quanto a mais uma pessoa ganha, em média, por cada ano adicional de estudo? Em quanto a quantidade vendida de um produto cai quando seu preço sobe 1%? De quanto o consumo das famílias aumenta quando a renda cresce R$,1.000? Todas essas perguntas — e a maior parte das que a Economia aplicada faz — pedem que se meça a <strong>relação quantitativa</strong> entre duas variáveis a partir de dados. A ferramenta que faz isso, o cavalo de batalha de toda a econometria, é a <strong>regressão linear</strong>.</p>
+<p>Chegamos ao coração do Volume 10. Os capítulos anteriores nos deram a estatística descritiva, a probabilidade, a inferência e — crucialmente — o ceticismo causal. Agora vamos <strong>ajustar uma reta</strong> a uma nuvem de pontos: estimar a relação entre uma variável explicativa e uma variável dependente pelo <strong>método dos mínimos quadrados</strong>. Veremos como interpretar os coeficientes, medir a qualidade do ajuste com o <span class="math inline">\(R^2\)</span>, testar a significância da relação e — sempre — lembrar que uma reta bem ajustada mede <strong>associação</strong>, e só vira <strong>causa</strong> sob hipóteses fortes (<a href="cap04-correlacao-causalidade.html" class="quarto-xref"><span>Capítulo 69</span></a>). É a base sobre a qual o <a href="cap06-regressao-multipla.html" class="quarto-xref"><span>Capítulo 71</span></a> e o <a href="cap08-avaliacao-de-politicas.html" class="quarto-xref"><span>Capítulo 73</span></a> se erguem.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="70.1">
+<h2 data-number="70.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">70.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>especificar o <strong>modelo de regressão linear simples</strong> e interpretar seus componentes;</li>
+<li>estimar os coeficientes pelo <strong>método dos mínimos quadrados ordinários (MQO)</strong>;</li>
+<li>interpretar o <strong>intercepto</strong> e a <strong>inclinação</strong> em termos econômicos, com atenção às unidades;</li>
+<li>calcular e interpretar o <strong>coeficiente de determinação</strong> <span class="math inline">\(R^2\)</span>;</li>
+<li>testar a <strong>significância</strong> da inclinação e reconhecer o papel do erro-padrão;</li>
+<li>distinguir a leitura <strong>preditiva</strong> da leitura <strong>causal</strong> de uma regressão.</li>
+</ul>
+</section>
+<section id="o-modelo-de-regressão-linear-simples" class="level2" data-number="70.2">
+<h2 data-number="70.2" class="anchored" data-anchor-id="o-modelo-de-regressão-linear-simples"><span class="header-section-number">70.2</span> O modelo de regressão linear simples</h2>
+<p>Queremos explicar uma variável <strong>dependente</strong> <span class="math inline">\(Y\)</span> (a que se quer entender: consumo, salário, quantidade) por uma variável <strong>explicativa</strong> ou <strong>independente</strong> <span class="math inline">\(X\)</span> (renda, escolaridade, preço). O modelo populacional postula uma relação linear, sujeita a um termo de erro:</p>
+<p><span id="eq-modelo-simples"><span class="math display">\[
+Y_i = \beta_0 + \beta_1 X_i + u_i.
+\tag{70.1}\]</span></span></p>
+<p>Cada componente tem nome e significado:</p>
+<ul>
+<li><span class="math inline">\(\beta_0\)</span> — o <strong>intercepto</strong>: o valor esperado de <span class="math inline">\(Y\)</span> quando <span class="math inline">\(X = 0\)</span>.</li>
+<li><span class="math inline">\(\beta_1\)</span> — a <strong>inclinação</strong> (o coeficiente de interesse): a variação <strong>esperada</strong> em <span class="math inline">\(Y\)</span> associada a um aumento de <strong>uma unidade</strong> em <span class="math inline">\(X\)</span>. É a resposta à pergunta “quanto <span class="math inline">\(Y\)</span> muda quando <span class="math inline">\(X\)</span> sobe 1?”.</li>
+<li><span class="math inline">\(u_i\)</span> — o <strong>termo de erro</strong> (ou perturbação): tudo o que afeta <span class="math inline">\(Y\)</span> e <strong>não</strong> está em <span class="math inline">\(X\)</span> — outras variáveis, aleatoriedade, erro de medição. É a alma da econometria e a fonte de quase todos os seus problemas.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — a função de regressão">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — a função de regressão
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>função de regressão populacional</strong> é <span class="math inline">\(E(Y \mid X) = \beta_0 + \beta_1 X\)</span>: a média de <span class="math inline">\(Y\)</span> <strong>condicional</strong> a cada valor de <span class="math inline">\(X\)</span>. A regressão não prevê <span class="math inline">\(Y\)</span> exatamente; ela traça como a <strong>média</strong> de <span class="math inline">\(Y\)</span> se move com <span class="math inline">\(X\)</span>. Os pontos reais dispersam-se em torno dessa reta, e essa dispersão é o erro <span class="math inline">\(u\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="o-método-dos-mínimos-quadrados" class="level2" data-number="70.3">
+<h2 data-number="70.3" class="anchored" data-anchor-id="o-método-dos-mínimos-quadrados"><span class="header-section-number">70.3</span> O método dos mínimos quadrados</h2>
+<p>Como não observamos a reta populacional, precisamos <strong>estimá-la</strong> a partir da amostra, obtendo a reta ajustada <span class="math inline">\(\hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i\)</span>. Para cada observação, o <strong>resíduo</strong> é a distância vertical entre o ponto e a reta: <span class="math inline">\(\hat{u}_i = Y_i - \hat{Y}_i\)</span>. A <a href="#fig-regressao" class="quarto-xref">Figura&nbsp;<span>70.1</span></a> mostra a ideia.</p>
+<div id="fig-regressao" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regressao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="300.814785pt" height="183.70129pt" viewbox="-68.014948 -68.014951 300.814785 183.70129">
+<defs>
+<path id="tz_fig_regressao_g0-36" d="M2.15193-6.527522V-6.339228L1.918804-6.28543C1.111831-6.115068 .502117-5.388792 .502117-4.599751C.502117-4.070735 .806974-3.505853 1.264259-3.200996C1.479452-3.057534 1.596015-3.003736 1.900872-2.923039L2.142964-2.851308L2.15193-1.515318V-.170361L2.017435-.188294C1.497385-.268991 1.120797-.529016 .923537-.932503C.806974-1.183562 .806974-1.228394 .932503-1.228394C1.255293-1.228394 1.452553-1.596015 1.273225-1.85604C1.093898-2.125031 .735243-2.125031 .564882-1.847073C.457285-1.667746 .511083-1.183562 .681445-.81594C.789041-.600747 1.0401-.313823 1.264259-.170361C1.425654-.071731 1.75741 .035866 1.999502 .071731L2.15193 .089664V.29589V.502117H2.286426H2.429888V.29589V.089664L2.537484 .071731C2.914072 .008966 3.263761-.170361 3.541719-.448319C4.23213-1.147696 4.250062-2.286426 3.58655-3.012702C3.308593-3.317559 3.039601-3.469988 2.555417-3.595517L2.429888-3.631382V-4.841843C2.429888-5.550187 2.438854-6.052304 2.456787-6.052304C2.564384-6.052304 2.949938-5.953674 3.0934-5.899875C3.380324-5.76538 3.640349-5.478456 3.730012-5.191532C3.747945-5.128767 3.738979-5.128767 3.631382-5.128767C3.326526-5.128767 3.129265-4.770112 3.29066-4.501121C3.461021-4.23213 3.828643-4.223163 4.00797-4.492154C4.178331-4.743213 4.016936-5.406725 3.703113-5.774346C3.469988-6.043337 3.030635-6.258531 2.600249-6.312329L2.429888-6.330262V-6.518555V-6.715816H2.286426H2.15193ZM2.15193-4.868742V-3.685181L1.945704-3.747945C1.578082-3.846575 1.327024-4.016936 1.156663-4.259029C.654545-5.003238 1.156663-5.908842 2.133998-6.052304C2.142964-6.052304 2.15193-5.523288 2.15193-4.868742ZM2.77061-2.689913C3.532752-2.411955 3.855542-1.506351 3.434122-.806974C3.245828-.493151 2.940971-.286924 2.510585-.188294L2.429888-.170361V-1.479452V-2.788543L2.519552-2.77061C2.57335-2.761644 2.689913-2.725778 2.77061-2.689913Z"></path>
+<path id="tz_fig_regressao_g1-88" d="M4.554919-3.434122C4.779078-3.649315 5.299128-4.223163 5.514321-4.447323C5.603985-4.536986 5.828144-4.770112 5.917808-4.868742C6.473724-5.433624 6.832379-5.792279 7.585554-5.846077C7.693151-5.855044 7.791781-5.86401 7.791781-6.007472C7.791781-6.043337 7.764882-6.124035 7.666252-6.124035C7.612453-6.124035 7.307597-6.106102 7.253798-6.106102C7.173101-6.097136 6.966874-6.097136 6.823412-6.097136C6.662017-6.097136 6.491656-6.106102 6.330262-6.106102S5.989539-6.124035 5.837111-6.124035C5.783313-6.124035 5.66675-6.124035 5.66675-5.96264C5.66675-5.855044 5.774346-5.846077 5.792279-5.846077C5.86401-5.837111 6.133001-5.819178 6.133001-5.586052C6.133001-5.433624 5.926775-5.218431 5.917808-5.209465L4.447323-3.676214L3.649315-5.469489C3.604483-5.559153 3.604483-5.577086 3.604483-5.586052C3.604483-5.630884 3.747945-5.819178 4.133499-5.846077C4.178331-5.846077 4.285928-5.855044 4.285928-6.007472C4.285928-6.088169 4.223163-6.124035 4.151432-6.124035C3.972105-6.124035 3.765878-6.106102 3.58655-6.106102S3.227895-6.097136 3.039601-6.097136C2.743711-6.097136 2.725778-6.097136 2.510585-6.106102L2.017435-6.124035C1.981569-6.124035 1.847073-6.124035 1.847073-5.96264C1.847073-5.846077 1.95467-5.846077 2.062267-5.846077C2.591283-5.846077 2.636115-5.747447 2.716812-5.56812L3.783811-3.174097C3.783811-3.165131 3.837609-3.066501 3.837609-3.057534C3.837609-3.030635 2.680946-1.829141 2.546451-1.694645C2.447821-1.596015 2.214695-1.33599 2.116065-1.23736C1.569116-.690411 1.219427-.331756 .466252-.277958C.358655-.268991 .260025-.260025 .260025-.116563C.260025-.062765 .29589 0 .385554 0C.439352 0 .744209-.017933 .798007-.017933C.878705-.026899 1.084932-.026899 1.228394-.026899C1.389788-.026899 1.560149-.017933 1.721544-.017933S2.0533 0 2.205729 0C2.25056 0 2.385056 0 2.385056-.161395C2.385056-.268991 2.27746-.277958 2.259527-.277958C2.187796-.286924 1.918804-.304857 1.918804-.537983C1.918804-.681445 2.026401-.798007 2.304359-1.093898L2.99477-1.802242L3.478954-2.304359C3.640349-2.47472 3.873474-2.716812 3.945205-2.806476L4.913574-.654545C4.958406-.564882 4.958406-.546949 4.958406-.537983C4.958406-.493151 4.814944-.304857 4.42939-.277958C4.384558-.277958 4.276961-.268991 4.276961-.116563C4.276961-.035866 4.339726 0 4.411457 0C4.590785 0 4.797011-.017933 4.976339-.017933S5.334994-.026899 5.523288-.026899C5.819178-.026899 5.837111-.026899 6.052304-.017933L6.545455 0C6.58132 0 6.715816 0 6.715816-.161395C6.715816-.277958 6.608219-.277958 6.500623-.277958C5.971606-.277958 5.926775-.376588 5.846077-.555915L4.554919-3.434122Z"></path>
+<path id="tz_fig_regressao_g1-89" d="M5.514321-5.066002C6.1599-5.792279 6.527522-5.819178 6.90411-5.846077C6.975841-5.855044 7.011706-5.935741 7.011706-6.007472S6.957908-6.124035 6.895143-6.124035C6.87721-6.124035 6.608219-6.097136 6.1599-6.097136C5.872976-6.097136 5.559153-6.124035 5.281196-6.124035C5.236364-6.124035 5.119801-6.124035 5.119801-5.96264C5.119801-5.855044 5.218431-5.846077 5.272229-5.846077C5.460523-5.828144 5.559153-5.76538 5.559153-5.648817C5.559153-5.487422 5.308095-5.218431 5.299128-5.200498L3.165131-2.815442L2.116065-5.478456C2.062267-5.603985 2.062267-5.621918 2.062267-5.639851C2.062267-5.846077 2.492653-5.846077 2.57335-5.846077C2.689913-5.846077 2.797509-5.846077 2.797509-6.007472C2.797509-6.097136 2.716812-6.124035 2.654047-6.124035C2.47472-6.124035 2.268493-6.106102 2.089166-6.106102C1.900872-6.106102 1.542217-6.097136 1.53325-6.097136C1.23736-6.097136 1.219427-6.097136 1.004234-6.106102C.860772-6.115068 .654545-6.124035 .511083-6.124035C.466252-6.124035 .340722-6.124035 .340722-5.96264C.340722-5.846077 .439352-5.846077 .546949-5.846077C1.075965-5.846077 1.111831-5.756413 1.192528-5.550187L2.358157-2.582316C2.402989-2.465753 2.402989-2.447821 2.402989-2.438854C2.402989-2.402989 2.044334-.968369 1.999502-.806974C1.882939-.32279 1.873973-.286924 1.165629-.277958C1.022167-.277958 .923537-.277958 .923537-.116563C.923537-.035866 .986301 0 1.058032 0C1.201494 0 1.470486-.008966 1.622914-.017933C1.811208-.026899 1.829141-.026899 2.178829-.026899C2.465753-.026899 2.483686-.026899 2.752677-.017933C2.932005-.008966 3.156164 0 3.326526 0C3.38929 0 3.505853 0 3.505853-.161395C3.505853-.277958 3.416189-.277958 3.227895-.277958C3.19203-.277958 3.030635-.277958 2.887173-.29589C2.689913-.32279 2.680946-.358655 2.680946-.439352C2.680946-.502117 2.752677-.789041 2.797509-.959402L2.949938-1.596015C3.075467-2.0533 3.075467-2.071233 3.165131-2.456787C3.19203-2.483686 3.209963-2.492653 3.263761-2.555417L5.514321-5.066002Z"></path>
+<path id="tz_fig_regressao_g2-19" d="M3.425156-5.612951C3.541719-5.702615 3.61345-5.774346 3.61345-5.908842C3.61345-6.115068 3.434122-6.258531 3.272727-6.258531C3.120299-6.258531 3.075467-6.195766 2.99477-6.097136L1.900872-4.743213L2.071233-4.554919L3.425156-5.612951Z"></path>
+<path id="tz_fig_regressao_g2-40" d="M3.057534 2.133998C3.057534 2.089166 3.030635 2.062267 2.976837 1.999502C1.820174 .941469 1.470486-.672478 1.470486-2.241594C1.470486-3.631382 1.739477-5.317061 3.003736-6.518555C3.039601-6.554421 3.057534-6.58132 3.057534-6.626152C3.057534-6.688917 3.012702-6.724782 2.949938-6.724782C2.842341-6.724782 2.035367-6.079203 1.551183-5.101868C1.120797-4.241096 .905604-3.317559 .905604-2.25056C.905604-1.604981 .986301-.582814 1.479452 .475218C2.008468 1.578082 2.842341 2.232628 2.949938 2.232628C3.012702 2.232628 3.057534 2.196762 3.057534 2.133998Z"></path>
+<path id="tz_fig_regressao_g2-41" d="M2.67198-2.25056C2.67198-2.985803 2.564384-3.972105 2.098132-4.967372C1.569116-6.070237 .735243-6.724782 .627646-6.724782C.537983-6.724782 .52005-6.653051 .52005-6.626152C.52005-6.58132 .537983-6.554421 .600747-6.491656C1.120797-6.025405 2.107098-4.805978 2.107098-2.25056C2.107098-.968369 1.873973 .81594 .573848 2.026401C.555915 2.0533 .52005 2.089166 .52005 2.133998C.52005 2.160897 .537983 2.232628 .627646 2.232628C.735243 2.232628 1.542217 1.587049 2.026401 .609714C2.456787-.251059 2.67198-1.174595 2.67198-2.25056Z"></path>
+<path id="tz_fig_regressao_g2-44" d="M1.63188-.143462C1.63188 .152428 1.63188 .887671 .950436 1.53325C.91457 1.578082 .91457 1.613948 .91457 1.622914C.91457 1.667746 .968369 1.730511 1.031133 1.730511C1.129763 1.730511 1.85604 1.0401 1.85604-.017933C1.85604-.636613 1.622914-.968369 1.273225-.968369C.959402-.968369 .789041-.726276 .789041-.484184S.959402 0 1.273225 0C1.497385 0 1.63188-.134496 1.63188-.143462Z"></path>
+<path id="tz_fig_regressao_g2-82" d="M2.0533-3.174097V-5.478456C2.0533-5.711582 2.071233-5.792279 2.241594-5.828144C2.322291-5.846077 2.609215-5.846077 2.797509-5.846077C3.568618-5.846077 4.707347-5.846077 4.707347-4.510087C4.707347-3.738979 4.312827-3.174097 3.0934-3.174097H2.0533ZM4.070735-3.039601C4.92254-3.281694 5.621918-3.81071 5.621918-4.510087C5.621918-5.397758 4.536986-6.124035 3.218929-6.124035H.358655V-5.846077H.564882C1.255293-5.846077 1.273225-5.747447 1.273225-5.415691V-.708344C1.273225-.376588 1.255293-.277958 .564882-.277958H.358655V0C.780075-.026899 1.228394-.026899 1.65878-.026899S2.537484-.026899 2.96787 0V-.277958H2.761644C2.071233-.277958 2.0533-.376588 2.0533-.708344V-2.949938H3.129265C3.774844-2.949938 4.061768-2.609215 4.097634-2.57335C4.366625-2.241594 4.366625-2.107098 4.366625-1.470486C4.366625-.869738 4.366625-.475218 4.797011-.134496C5.218431 .19726 5.756413 .19726 5.855044 .19726C6.608219 .19726 6.742715-.582814 6.742715-.798007C6.742715-.851806 6.742715-.959402 6.617186-.959402C6.500623-.959402 6.500623-.878705 6.491656-.806974C6.446824-.242092 6.168867-.026899 5.890909-.026899C5.603985-.026899 5.505355-.206227 5.433624-.358655C5.352927-.555915 5.272229-1.165629 5.218431-1.569116C5.1467-2.125031 5.066002-2.725778 4.070735-3.039601Z"></path>
+<path id="tz_fig_regressao_g2-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+<path id="tz_fig_regressao_g2-100" d="M3.48792-1.075965C3.48792-.91457 3.48792-.887671 3.353425-.699377C3.075467-.29589 2.663014-.125529 2.304359-.125529C1.918804-.125529 1.560149-.340722 1.327024-.71731C1.093898-1.102864 1.075965-1.63188 1.075965-1.918804C1.075965-2.340224 1.129763-2.815442 1.362889-3.174097C1.560149-3.461021 1.927771-3.738979 2.402989-3.738979C2.779577-3.738979 3.138232-3.550685 3.380324-3.209963C3.48792-3.066501 3.48792-3.057534 3.48792-2.887173V-1.075965ZM3.514819-3.434122C3.469988-3.48792 3.066501-3.963138 2.367123-3.963138C1.264259-3.963138 .304857-3.084433 .304857-1.927771C.304857-.806974 1.201494 .09863 2.268493 .09863C2.923039 .09863 3.326526-.286924 3.48792-.475218V.09863L4.841843 0V-.277958C4.23213-.277958 4.151432-.340722 4.151432-.780075V-6.222665L2.824408-6.124035V-5.846077C3.434122-5.846077 3.514819-5.783313 3.514819-5.34396V-3.434122Z"></path>
+<path id="tz_fig_regressao_g2-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+<path id="tz_fig_regressao_g2-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+<path id="tz_fig_regressao_g2-108" d="M1.649813-6.222665L.32279-6.124035V-5.846077C.932503-5.846077 1.0132-5.783313 1.0132-5.34396V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.744209-.017933 .91457-.026899 1.327024-.026899C1.748443-.026899 1.900872-.017933 2.340224 0V-.277958C1.748443-.277958 1.649813-.277958 1.649813-.690411V-6.222665Z"></path>
+<path id="tz_fig_regressao_g2-109" d="M1.667746-2.322291C1.667746-3.29066 2.367123-3.738979 2.905106-3.738979C3.398257-3.738979 3.559651-3.38929 3.559651-2.761644V-.690411C3.559651-.277958 3.461021-.277958 2.86924-.277958V0C3.29066-.017933 3.461021-.026899 3.891407-.026899S4.438356-.017933 4.913574 0V-.277958C4.321793-.277958 4.223163-.277958 4.223163-.690411V-2.322291C4.223163-3.29066 4.92254-3.738979 5.460523-3.738979C5.953674-3.738979 6.115068-3.38929 6.115068-2.761644V-.690411C6.115068-.277958 6.016438-.277958 5.424658-.277958V0C5.846077-.017933 6.016438-.026899 6.446824-.026899S6.993773-.017933 7.468991 0V-.277958C7.011706-.277958 6.787547-.277958 6.77858-.555915V-2.27746C6.77858-3.057534 6.77858-3.308593 6.48269-3.640349C6.294396-3.855542 5.935741-3.963138 5.523288-3.963138C4.877709-3.963138 4.438356-3.58655 4.187298-3.111333C4.079701-3.640349 3.721046-3.963138 2.96787-3.963138C2.25056-3.963138 1.811208-3.496887 1.622914-3.084433H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_regressao_g2-110" d="M1.667746-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.133998-3.963138 1.748443-3.344458 1.622914-3.0934H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_regressao_g2-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_regressao_g2-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+<path id="tz_fig_regressao_g2-115" d="M3.084433-3.783811C3.084433-3.936239 3.084433-4.016936 2.976837-4.016936C2.932005-4.016936 2.914072-4.016936 2.797509-3.90934C2.779577-3.891407 2.698879-3.81071 2.645081-3.765878C2.367123-3.963138 2.089166-4.016936 1.784309-4.016936C.600747-4.016936 .304857-3.362391 .304857-2.905106C.304857-2.618182 .430386-2.385056 .636613-2.187796C.941469-1.909838 1.282192-1.847073 1.739477-1.766376C2.196762-1.676712 2.349191-1.649813 2.546451-1.497385C2.636115-1.425654 2.860274-1.255293 2.860274-.91457C2.860274-.125529 1.95467-.125529 1.829141-.125529C.91457-.125529 .681445-.887671 .573848-1.371856C.546949-1.461519 .537983-1.515318 .430386-1.515318C.304857-1.515318 .304857-1.443587 .304857-1.282192V-.134496C.304857 .017933 .304857 .09863 .412453 .09863C.466252 .09863 .475218 .089664 .636613-.080697C.672478-.134496 .771108-.251059 .81594-.29589C1.192528 .071731 1.604981 .09863 1.829141 .09863C2.932005 .09863 3.317559-.546949 3.317559-1.147696C3.317559-1.551183 3.138232-1.793275 2.940971-1.999502C2.636115-2.295392 2.313325-2.358157 1.649813-2.483686C1.416687-2.528518 .762142-2.645081 .762142-3.156164C.762142-3.443088 .968369-3.819676 1.784309-3.819676C2.752677-3.819676 2.815442-3.075467 2.833375-2.851308C2.842341-2.743711 2.842341-2.689913 2.958904-2.689913C3.084433-2.689913 3.084433-2.752677 3.084433-2.923039V-3.783811Z"></path>
+<path id="tz_fig_regressao_g2-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+<path id="tz_fig_regressao_g2-117" d="M3.550685-1.497385C3.550685-.699377 3.102366-.125529 2.456787-.125529C1.712578-.125529 1.667746-.511083 1.667746-.995268V-3.963138L.313823-3.864508V-3.58655C1.004234-3.58655 1.004234-3.559651 1.004234-2.761644V-1.416687C1.004234-.833873 1.004234-.457285 1.416687-.143462C1.676712 .035866 2.044334 .09863 2.402989 .09863C2.86924 .09863 3.308593-.107597 3.568618-.645579H3.577584V.09863L4.904608 0V-.277958C4.294894-.277958 4.214197-.340722 4.214197-.780075V-3.963138L2.860274-3.864508V-3.58655C3.469988-3.58655 3.550685-3.523786 3.550685-3.084433V-1.497385Z"></path>
+<path id="tz_fig_regressao_g3-12" d="M4.782067-4.534994C4.782067-5.260274 4.192279-5.618929 3.53076-5.618929C2.502615-5.618929 1.737484-4.455293 1.514321-3.57858L.255044 1.45056C.239103 1.506351 .302864 1.546202 .350685 1.546202C.414446 1.546202 .478207 1.546202 .494147 1.490411L1.036115-.645579C1.219427-.215193 1.594022 .071731 2.16787 .071731C3.267746 .071731 4.471233-.70934 4.471233-1.976588C4.471233-2.502615 4.27198-2.8533 3.873474-3.180075C3.921295-3.188045 4.064757-3.291656 4.104608-3.323537C4.503113-3.594521 4.782067-4.048817 4.782067-4.534994ZM3.211955-3.180075C3.068493-3.156164 2.925031-3.140224 2.773599-3.140224C2.685928-3.140224 2.598257-3.140224 2.510585-3.172105C2.662017-3.211955 2.82142-3.211955 2.972852-3.211955C3.052553-3.211955 3.132254-3.203985 3.211955-3.180075ZM4.27995-4.686426C4.27995-4.28792 4.104608-3.817684 3.825654-3.53873C3.785803-3.498879 3.618431-3.347447 3.57061-3.339477C3.347447-3.379328 3.172105-3.435118 2.940971-3.435118C2.733748-3.435118 2.231631-3.451059 2.231631-3.140224C2.231631-2.901121 2.685928-2.917061 2.84533-2.917061C3.092403-2.917061 3.323537-2.940971 3.55467-3.028643C3.793773-2.83736 3.913325-2.582316 3.913325-2.183811C3.913325-1.713574 3.753923-1.187547 3.52279-.868742C3.227895-.446326 2.733748-.151432 2.13599-.151432C1.609963-.151432 1.195517-.557908 1.195517-1.115816C1.195517-1.219427 1.203487-1.323039 1.227397-1.40274L1.753425-3.52279C1.928767-4.224159 2.606227-5.395766 3.498879-5.395766C3.905355-5.395766 4.27995-5.196513 4.27995-4.686426Z"></path>
+<path id="tz_fig_regressao_g3-88" d="M4.160399-3.044583C4.542964-3.435118 5.67472-4.598755 5.866002-4.750187C6.200747-5.00523 6.4-5.148692 6.973848-5.180573C7.021669-5.188543 7.08543-5.228394 7.08543-5.332005C7.08543-5.403736 7.013699-5.443587 6.973848-5.443587C6.894147-5.443587 6.846326-5.419676 6.224658-5.419676C5.626899-5.419676 5.411706-5.443587 5.371856-5.443587C5.339975-5.443587 5.212453-5.443587 5.212453-5.292154C5.212453-5.284184 5.212453-5.188543 5.332005-5.180573C5.387796-5.172603 5.602989-5.156663 5.602989-4.97335C5.602989-4.917559 5.571108-4.829888 5.507347-4.766127L5.483437-4.726276C5.459527-4.702366 5.459527-4.686426 5.379826-4.614695L4.048817-3.267746L3.235866-4.95741C3.347447-5.148692 3.58655-5.172603 3.682192-5.180573C3.722042-5.180573 3.833624-5.188543 3.833624-5.324035C3.833624-5.395766 3.777833-5.443587 3.706102-5.443587C3.626401-5.443587 3.323537-5.427646 3.243836-5.427646C3.196015-5.419676 2.901121-5.419676 2.733748-5.419676C1.992528-5.419676 1.896887-5.443587 1.825156-5.443587C1.793275-5.443587 1.665753-5.443587 1.665753-5.292154C1.665753-5.180573 1.769365-5.180573 1.896887-5.180573C2.295392-5.180573 2.367123-5.100872 2.438854-4.94944L3.498879-2.717808L1.865006-1.052055C1.3868-.573848 1.012204-.294894 .446326-.263014C.350685-.255044 .255044-.255044 .255044-.111582C.255044-.063761 .294894 0 .374595 0C.430386 0 .518057-.02391 1.123786-.02391C1.697634-.02391 1.944707 0 1.976588 0C2.016438 0 2.13599 0 2.13599-.151432C2.13599-.167372 2.12802-.255044 2.008468-.263014C1.857036-.270984 1.745455-.326775 1.745455-.470237C1.745455-.597758 1.841096-.70137 1.960648-.820922C2.096139-.972354 2.510585-1.3868 2.797509-1.665753C2.980822-1.849066 3.427148-2.311333 3.610461-2.486675L4.527024-.581818C4.566874-.502117 4.566874-.494147 4.566874-.486177C4.566874-.414446 4.399502-.278954 4.136488-.263014C4.080697-.263014 3.977086-.255044 3.977086-.111582C3.977086-.103611 3.985056 0 4.112578 0C4.192279 0 4.487173-.01594 4.566874-.02391H5.076961C5.810212-.02391 5.921793 0 5.993524 0C6.025405 0 6.144956 0 6.144956-.151432C6.144956-.263014 6.041345-.263014 5.921793-.263014C5.491407-.263014 5.443587-.358655 5.387796-.478207L4.160399-3.044583Z"></path>
+<path id="tz_fig_regressao_g3-89" d="M5.061021-4.487173C5.116812-4.550934 5.188543-4.614695 5.252304-4.678456C5.547198-4.94944 5.810212-5.148692 6.256538-5.180573C6.328269-5.188543 6.42391-5.196513 6.42391-5.332005C6.42391-5.387796 6.36812-5.443587 6.312329-5.443587C6.216687-5.443587 6.232628-5.419676 5.650809-5.419676C5.124782-5.419676 4.941469-5.443587 4.893649-5.443587C4.861768-5.443587 4.742217-5.443587 4.742217-5.292154C4.742217-5.220423 4.798007-5.188543 4.869738-5.180573C5.108842-5.164633 5.116812-5.076961 5.116812-5.029141C5.116812-4.877709 4.869738-4.622665 4.869738-4.614695L2.925031-2.518555L1.920797-4.877709C1.904857-4.909589 1.872976-4.98929 1.872976-5.021171C1.872976-5.180573 2.247572-5.180573 2.319303-5.180573C2.399004-5.180573 2.510585-5.180573 2.510585-5.332005C2.510585-5.371856 2.478705-5.443587 2.383064-5.443587C2.271482-5.443587 2.008468-5.427646 1.888917-5.419676H1.39477C.661519-5.419676 .549938-5.443587 .478207-5.443587C.350685-5.443587 .326775-5.355915 .326775-5.292154C.326775-5.180573 .430386-5.180573 .541968-5.180573C.972354-5.180573 1.012204-5.092902 1.075965-4.941469L2.247572-2.183811L1.888917-.72528C1.777335-.294894 1.769365-.270984 1.155666-.263014C1.028144-.263014 .932503-.263014 .932503-.111582C.932503-.079701 .956413 0 1.060025 0C1.211457 0 1.39477-.01594 1.554172-.02391H2.566376C2.685928-.01594 2.956912 0 3.060523 0C3.108344 0 3.227895 0 3.227895-.151432C3.227895-.263014 3.124284-.263014 2.988792-.263014C2.980822-.263014 2.81345-.263014 2.685928-.278954C2.510585-.302864 2.502615-.318804 2.502615-.398506C2.502615-.462267 2.598257-.852802 2.654047-1.083935C2.749689-1.466501 2.82142-1.729514 2.901121-2.064259C2.925031-2.16787 2.933001-2.183811 3.004732-2.263512L5.061021-4.487173Z"></path>
+<path id="tz_fig_regressao_g4-48" d="M3.287671-1.906849C3.287671-2.343213 3.287671-3.975093 1.823163-3.975093S.358655-2.343213 .358655-1.906849C.358655-1.476463 .358655 .125529 1.823163 .125529S3.287671-1.476463 3.287671-1.906849ZM1.823163-.065753C1.572105-.065753 1.165629-.185305 1.022167-.681445C.926526-1.028144 .926526-1.613948 .926526-1.984558C.926526-2.385056 .926526-2.84533 1.010212-3.16812C1.159651-3.706102 1.613948-3.783811 1.823163-3.783811C2.098132-3.783811 2.492653-3.652304 2.624159-3.198007C2.713823-2.881196 2.719801-2.444832 2.719801-1.984558C2.719801-1.601993 2.719801-.998257 2.618182-.663512C2.450809-.143462 2.020423-.065753 1.823163-.065753Z"></path>
+<path id="tz_fig_regressao_g4-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_fig_regressao_g5-43" d="M3.474969-1.809215H5.818182C5.929763-1.809215 6.105106-1.809215 6.105106-1.992528S5.929763-2.175841 5.818182-2.175841H3.474969V-4.527024C3.474969-4.638605 3.474969-4.813948 3.291656-4.813948S3.108344-4.638605 3.108344-4.527024V-2.175841H.757161C.645579-2.175841 .470237-2.175841 .470237-1.992528S.645579-1.809215 .757161-1.809215H3.108344V.541968C3.108344 .653549 3.108344 .828892 3.291656 .828892S3.474969 .653549 3.474969 .541968V-1.809215Z"></path>
+<path id="tz_fig_regressao_g5-48" d="M3.897385-2.542466C3.897385-3.395268 3.809714-3.913325 3.5467-4.423412C3.196015-5.124782 2.550436-5.300125 2.11208-5.300125C1.107846-5.300125 .74122-4.550934 .629639-4.327771C.342715-3.745953 .326775-2.956912 .326775-2.542466C.326775-2.016438 .350685-1.211457 .73325-.573848C1.099875 .01594 1.689664 .167372 2.11208 .167372C2.494645 .167372 3.180075 .047821 3.57858-.74122C3.873474-1.315068 3.897385-2.024408 3.897385-2.542466ZM2.11208-.055791C1.841096-.055791 1.291158-.183313 1.123786-1.020174C1.036115-1.474471 1.036115-2.223661 1.036115-2.638107C1.036115-3.188045 1.036115-3.745953 1.123786-4.184309C1.291158-4.99726 1.912827-5.076961 2.11208-5.076961C2.383064-5.076961 2.933001-4.941469 3.092403-4.216189C3.188045-3.777833 3.188045-3.180075 3.188045-2.638107C3.188045-2.16787 3.188045-1.45056 3.092403-1.004234C2.925031-.167372 2.375093-.055791 2.11208-.055791Z"></path>
+<path id="tz_fig_regressao_g5-49" d="M2.502615-5.076961C2.502615-5.292154 2.486675-5.300125 2.271482-5.300125C1.944707-4.98132 1.522291-4.790037 .765131-4.790037V-4.527024C.980324-4.527024 1.41071-4.527024 1.872976-4.742217V-.653549C1.872976-.358655 1.849066-.263014 1.091905-.263014H.812951V0C1.139726-.02391 1.825156-.02391 2.183811-.02391S3.235866-.02391 3.56264 0V-.263014H3.283686C2.526526-.263014 2.502615-.358655 2.502615-.653549V-5.076961Z"></path>
+<path id="tz_fig_regressao_g5-50" d="M2.247572-1.625903C2.375093-1.745455 2.709838-2.008468 2.83736-2.12005C3.331507-2.574346 3.801743-3.012702 3.801743-3.737983C3.801743-4.686426 3.004732-5.300125 2.008468-5.300125C1.052055-5.300125 .422416-4.574844 .422416-3.865504C.422416-3.474969 .73325-3.419178 .844832-3.419178C1.012204-3.419178 1.259278-3.53873 1.259278-3.841594C1.259278-4.25604 .860772-4.25604 .765131-4.25604C.996264-4.837858 1.530262-5.037111 1.920797-5.037111C2.662017-5.037111 3.044583-4.407472 3.044583-3.737983C3.044583-2.909091 2.462765-2.303362 1.522291-1.338979L.518057-.302864C.422416-.215193 .422416-.199253 .422416 0H3.57061L3.801743-1.42665H3.55467C3.53076-1.267248 3.466999-.868742 3.371357-.71731C3.323537-.653549 2.717808-.653549 2.590286-.653549H1.171606L2.247572-1.625903Z"></path>
+<path id="tz_fig_regressao_g5-52" d="M3.140224-5.156663C3.140224-5.316065 3.140224-5.379826 2.972852-5.379826C2.86924-5.379826 2.86127-5.371856 2.781569-5.260274L.239103-1.570112V-1.307098H2.486675V-.645579C2.486675-.350685 2.462765-.263014 1.849066-.263014H1.665753V0C2.343213-.02391 2.359153-.02391 2.81345-.02391S3.283686-.02391 3.961146 0V-.263014H3.777833C3.164134-.263014 3.140224-.350685 3.140224-.645579V-1.307098H3.985056V-1.570112H3.140224V-5.156663ZM2.542466-4.511083V-1.570112H.518057L2.542466-4.511083Z"></path>
+<path id="tz_fig_regressao_g5-54" d="M1.099875-2.638107C1.099875-3.299626 1.155666-3.881445 1.44259-4.367621C1.681694-4.766127 2.088169-5.092902 2.590286-5.092902C2.749689-5.092902 3.116314-5.068991 3.299626-4.790037C2.940971-4.774097 2.909091-4.503113 2.909091-4.415442C2.909091-4.176339 3.092403-4.040847 3.283686-4.040847C3.427148-4.040847 3.658281-4.128518 3.658281-4.431382C3.658281-4.909589 3.299626-5.300125 2.582316-5.300125C1.474471-5.300125 .350685-4.24807 .350685-2.526526C.350685-.366625 1.354919 .167372 2.12802 .167372C2.510585 .167372 2.925031 .063761 3.283686-.278954C3.602491-.589788 3.873474-.924533 3.873474-1.617933C3.873474-2.662017 3.084433-3.395268 2.199751-3.395268C1.625903-3.395268 1.283188-3.028643 1.099875-2.638107ZM2.12802-.071731C1.705604-.071731 1.44259-.366625 1.323039-.589788C1.139726-.948443 1.123786-1.490411 1.123786-1.793275C1.123786-2.582316 1.554172-3.172105 2.16787-3.172105C2.566376-3.172105 2.805479-2.964882 2.956912-2.685928C3.124284-2.391034 3.124284-2.032379 3.124284-1.625903S3.124284-.868742 2.964882-.581818C2.757659-.215193 2.478705-.071731 2.12802-.071731Z"></path>
+<path id="tz_fig_regressao_g5-56" d="M2.646077-2.87721C3.092403-3.092403 3.634371-3.490909 3.634371-4.112578C3.634371-4.869738 2.86127-5.300125 2.12005-5.300125C1.275218-5.300125 .589788-4.718306 .589788-3.969116C.589788-3.674222 .6934-3.403238 .892653-3.172105C1.028144-3.004732 1.060025-2.988792 1.554172-2.677958C.565878-2.239601 .350685-1.657783 .350685-1.211457C.350685-.334745 1.235367 .167372 2.10411 .167372C3.084433 .167372 3.873474-.494147 3.873474-1.338979C3.873474-1.841096 3.602491-2.175841 3.474969-2.311333C3.339477-2.438854 3.331507-2.446824 2.646077-2.87721ZM1.41071-3.626401C1.179577-3.761893 .988294-3.993026 .988294-4.27198C.988294-4.774097 1.538232-5.092902 2.10411-5.092902C2.725778-5.092902 3.235866-4.670486 3.235866-4.112578C3.235866-3.650311 2.87721-3.259776 2.406974-3.028643L1.41071-3.626401ZM1.801245-2.534496C1.833126-2.518555 2.741719-1.960648 2.87721-1.872976C3.004732-1.801245 3.419178-1.546202 3.419178-1.067995C3.419178-.454296 2.773599-.071731 2.12005-.071731C1.41071-.071731 .804981-.557908 .804981-1.211457C.804981-1.809215 1.251308-2.279452 1.801245-2.534496Z"></path>
+<path id="tz_fig_regressao_g5-61" d="M5.826152-2.654047C5.945704-2.654047 6.105106-2.654047 6.105106-2.83736S5.913823-3.020672 5.794271-3.020672H.781071C.661519-3.020672 .470237-3.020672 .470237-2.83736S.629639-2.654047 .749191-2.654047H5.826152ZM5.794271-.964384C5.913823-.964384 6.105106-.964384 6.105106-1.147696S5.945704-1.331009 5.826152-1.331009H.749191C.629639-1.331009 .470237-1.331009 .470237-1.147696S.661519-.964384 .781071-.964384H5.794271Z"></path>
+<path id="tz_fig_regressao_g5-94" d="M2.11208-5.531258L.980324-4.463263L1.139726-4.27198L2.11208-5.061021L3.084433-4.27198L3.243836-4.455293L2.11208-5.531258Z"></path>
+</defs>
+<g id="tz_fig_regressao_page1">
+<g stroke-miterlimit="10" transform="translate(-34.773712,85.777182)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-34.773712,85.777182)scale(-1,-1)"></g>
+<g transform="translate(-33.36589,-30.02132)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-34.773712,85.777182)scale(-1,-1)">
+<g stroke="#000" stroke-miterlimit="10" transform="translate(-1.532476,55.868025)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="M0-2.13435V2.13435M48.72345-2.13435V2.13435M97.4469-2.13435V2.13435M146.17035-2.13435V2.13435M194.8938-2.13435V2.13435M243.61725-2.13435V2.13435" fill="none"></path>
+</g>
+</g>
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="M-2.13391 0H2.13391M-2.13391 28.0307H2.13391M-2.13391 56.0614H2.13391M-2.13391 84.0921H2.13391M-2.13391 112.1228H2.13391M-2.13391 140.1535H2.13391" fill="none"></path>
+</g>
+</g>
+<path d="M0 0H265.979" fill="none"></path>
+<g transform="translate(265.979,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<path d="M0 0V152.16888" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,152.16888)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-2.12503,-10.82288)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g5-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(46.59842,-10.82288)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g5-50"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(95.32187,-10.82288)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g5-52"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(144.04532,-10.82288)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g5-54"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(192.76877,-10.82288)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g5-56"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(239.36719,-10.82288)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g5-49"></use>
+<use x="2.701706" y="55.868025" href="#tz_fig_regressao_g5-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-9.91695,-2.57777)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g5-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-9.91695,25.45293)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g5-50"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-9.91695,53.48363)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g5-52"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-9.91695,81.51433)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g5-54"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-9.91695,109.54503)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g5-56"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-14.167,137.57573)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g5-49"></use>
+<use x="2.701706" y="55.868025" href="#tz_fig_regressao_g5-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="1.2">
+<path d="M0 21.02303L11.1657 25.51958L22.3314 30.01613L33.4971 34.51268L44.66281 39.00925L55.82855 43.50581L66.99425 48.00238L78.15996 52.49893L89.32565 56.99548L100.49136 61.49205L111.65707 65.9886L122.82277 70.48515L133.98848 74.9817L145.15417 79.47827L156.31989 83.97481L167.48563 88.4714L178.65132 92.96796L189.81703 97.46451L200.98274 101.96107L212.14844 106.45763L223.31415 110.95418L234.47984 115.45073L245.64555 119.94724L256.81125 124.44392L267.97696 128.94046" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M121.80862 75.68289V70.07675" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M158.35121 92.50131V84.79286" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M97.4469 64.47061V60.266" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(199.55128,125.88567)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-.254599" y="53.853363" href="#tz_fig_regressao_g5-94"></use>
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g3-89"></use>
+<use x="7.609769" y="55.868025" href="#tz_fig_regressao_g5-61"></use>
+<use x="17.717829" y="53.764797" href="#tz_fig_regressao_g5-94"></use>
+<use x="16.548599" y="55.868025" href="#tz_fig_regressao_g3-12"></use>
+<use x="21.300281" y="56.974973" href="#tz_fig_regressao_g4-48"></use>
+<use x="27.333185" y="55.868025" href="#tz_fig_regressao_g5-43"></use>
+<use x="36.97078" y="53.764797" href="#tz_fig_regressao_g5-94"></use>
+<use x="35.80155" y="55.868025" href="#tz_fig_regressao_g3-12"></use>
+<use x="40.553232" y="56.974973" href="#tz_fig_regressao_g4-49"></use>
+<use x="44.704277" y="55.868025" href="#tz_fig_regressao_g3-88"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M25.96173 30.83377C25.96173 31.71744 25.24539 32.43378 24.36172 32.43378C23.47806 32.43378 22.76172 31.71744 22.76172 30.83377S23.47806 29.23376 24.36172 29.23376C25.24539 29.23376 25.96173 29.9501 25.96173 30.83377ZM24.36172 30.83377"></path>
+<path d="M50.32346 36.43991C50.32346 37.32358 49.60712 38.03992 48.72345 38.03992S47.12344 37.32358 47.12344 36.43991S47.83978 34.8399 48.72345 34.8399S50.32346 35.55624 50.32346 36.43991ZM48.72345 36.43991"></path>
+<path d="M62.50432 50.45526C62.50432 51.33893 61.78798 52.05527 60.90431 52.05527C60.02065 52.05527 59.3043 51.33893 59.3043 50.45526C59.3043 49.5716 60.02065 48.85526 60.90431 48.85526C61.78798 48.85526 62.50432 49.5716 62.50432 50.45526ZM60.90431 50.45526"></path>
+<path d="M74.68518 44.84912C74.68518 45.73279 73.96884 46.44913 73.08517 46.44913S71.48517 45.73279 71.48517 44.84912S72.2015 43.24911 73.08517 43.24911S74.68518 43.96545 74.68518 44.84912ZM73.08517 44.84912"></path>
+<path d="M99.0469 64.47061C99.0469 65.35428 98.33057 66.07062 97.4469 66.07062S95.8469 65.35428 95.8469 64.47061S96.56323 62.8706 97.4469 62.8706S99.0469 63.58694 99.0469 64.47061ZM97.4469 64.47061"></path>
+<path d="M111.22777 54.65987C111.22777 55.54353 110.51143 56.25987 109.62776 56.25987C108.7441 56.25987 108.02776 55.54353 108.02776 54.65987C108.02776 53.7762 108.7441 53.05986 109.62776 53.05986C110.51143 53.05986 111.22777 53.7762 111.22777 54.65987ZM109.62776 54.65987"></path>
+<path d="M123.40863 75.68289C123.40863 76.56656 122.69229 77.2829 121.80862 77.2829C120.92496 77.2829 120.20862 76.56656 120.20862 75.68289S120.92496 74.08289 121.80862 74.08289C122.69229 74.08289 123.40863 74.79922 123.40863 75.68289ZM121.80862 75.68289"></path>
+<path d="M147.77036 72.87982C147.77036 73.76349 147.05402 74.47983 146.17035 74.47983S144.57034 73.76349 144.57034 72.87982S145.28668 71.27982 146.17035 71.27982S147.77036 71.99615 147.77036 72.87982ZM146.17035 72.87982"></path>
+<path d="M159.95122 92.50131C159.95122 93.38498 159.23488 94.10132 158.35121 94.10132S156.7512 93.38498 156.7512 92.50131C156.7512 91.61765 157.46754 90.9013 158.35121 90.9013S159.95122 91.61765 159.95122 92.50131ZM158.35121 92.50131"></path>
+<path d="M172.13208 85.49364C172.13208 86.3773 171.41574 87.09364 170.53207 87.09364S168.93207 86.3773 168.93207 85.49364C168.93207 84.60997 169.6484 83.89363 170.53207 83.89363S172.13208 84.60997 172.13208 85.49364ZM170.53207 85.49364"></path>
+<path d="M196.4938 103.7136C196.4938 104.59726 195.77747 105.3136 194.8938 105.3136S193.2938 104.59726 193.2938 103.7136C193.2938 102.82993 194.01013 102.11359 194.8938 102.11359S196.4938 102.82993 196.4938 103.7136ZM194.8938 103.7136"></path>
+<path d="M208.67467 96.70592C208.67467 97.58958 207.95833 98.30592 207.07466 98.30592C206.191 98.30592 205.47466 97.58958 205.47466 96.70592C205.47466 95.82225 206.191 95.10591 207.07466 95.10591C207.95833 95.10591 208.67467 95.82225 208.67467 96.70592ZM207.07466 96.70592"></path>
+<path d="M220.85553 116.32741C220.85553 117.21107 220.13919 117.92741 219.25552 117.92741C218.37186 117.92741 217.65552 117.21107 217.65552 116.32741C217.65552 115.44374 218.37186 114.7274 219.25552 114.7274C220.13919 114.7274 220.85553 115.44374 220.85553 116.32741ZM219.25552 116.32741"></path>
+<path d="M245.21725 113.52434C245.21725 114.408 244.50092 115.12434 243.61725 115.12434S242.01724 114.408 242.01724 113.52434C242.01724 112.64067 242.73358 111.92433 243.61725 111.92433S245.21725 112.64067 245.21725 113.52434ZM243.61725 113.52434"></path>
+<path d="" fill="none"></path>
+</g>
+</g>
+<g transform="translate(94.81787,-24.43834)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g1-88"></use>
+<use x="9.853233" y="55.868025" href="#tz_fig_regressao_g2-40"></use>
+<use x="13.436992" y="55.868025" href="#tz_fig_regressao_g2-97"></use>
+<use x="18.044683" y="55.868025" href="#tz_fig_regressao_g2-110"></use>
+<use x="23.164339" y="55.868025" href="#tz_fig_regressao_g2-111"></use>
+<use x="27.77203" y="55.868025" href="#tz_fig_regressao_g2-115"></use>
+<use x="34.478786" y="55.868025" href="#tz_fig_regressao_g2-100"></use>
+<use x="39.598443" y="55.868025" href="#tz_fig_regressao_g2-101"></use>
+<use x="46.769425" y="55.868025" href="#tz_fig_regressao_g2-101"></use>
+<use x="50.868613" y="55.868025" href="#tz_fig_regressao_g2-115"></use>
+<use x="54.503576" y="55.868025" href="#tz_fig_regressao_g2-116"></use>
+<use x="58.087335" y="55.868025" href="#tz_fig_regressao_g2-117"></use>
+<use x="63.206991" y="55.868025" href="#tz_fig_regressao_g2-100"></use>
+<use x="68.326647" y="55.868025" href="#tz_fig_regressao_g2-111"></use>
+<use x="72.934338" y="55.868025" href="#tz_fig_regressao_g2-41"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(0.0,1.0,-1.0,0.0,-23.28291,38.5856)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-1.532476,55.868025)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-1.532476" y="55.868025" href="#tz_fig_regressao_g1-89"></use>
+<use x="8.935832" y="55.868025" href="#tz_fig_regressao_g2-40"></use>
+<use x="12.519591" y="55.868025" href="#tz_fig_regressao_g2-115"></use>
+<use x="16.154554" y="55.868025" href="#tz_fig_regressao_g2-97"></use>
+<use x="20.762245" y="55.868025" href="#tz_fig_regressao_g2-108"></use>
+<use x="23.322073" y="55.868025" href="#tz_fig_regressao_g2-19"></use>
+<use x="23.322073" y="55.868025" href="#tz_fig_regressao_g2-97"></use>
+<use x="27.929764" y="55.868025" href="#tz_fig_regressao_g2-114"></use>
+<use x="31.534285" y="55.868025" href="#tz_fig_regressao_g2-105"></use>
+<use x="34.094113" y="55.868025" href="#tz_fig_regressao_g2-111"></use>
+<use x="38.701804" y="55.868025" href="#tz_fig_regressao_g2-44"></use>
+<use x="44.333425" y="55.868025" href="#tz_fig_regressao_g2-109"></use>
+<use x="52.01291" y="55.868025" href="#tz_fig_regressao_g2-105"></use>
+<use x="54.572738" y="55.868025" href="#tz_fig_regressao_g2-108"></use>
+<use x="60.20436" y="55.868025" href="#tz_fig_regressao_g2-82"></use>
+<use x="66.987212" y="55.868025" href="#tz_fig_regressao_g0-36"></use>
+<use x="71.593808" y="55.868025" href="#tz_fig_regressao_g2-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regressao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;70.1: A reta de MQO é a que <strong>minimiza a soma dos quadrados</strong> das distâncias verticais (resíduos, tracejados) dos pontos à reta.
+</figcaption>
+</figure>
+</div>
+<p>O <strong>método dos mínimos quadrados ordinários (MQO)</strong> escolhe a reta que torna os resíduos, no conjunto, os menores possíveis — mais precisamente, a que <strong>minimiza a soma dos quadrados dos resíduos</strong> (elevam-se ao quadrado para que positivos e negativos não se cancelem e para penalizar erros grandes):</p>
+<p><span id="eq-mqo"><span class="math display">\[
+\min_{\hat{\beta}_0,\, \hat{\beta}_1}\; \sum_{i=1}^{n} \hat{u}_i^2 = \sum_{i=1}^{n}\bigl(Y_i - \hat{\beta}_0 - \hat{\beta}_1 X_i\bigr)^2.
+\tag{70.2}\]</span></span></p>
+<p>Resolvendo esse problema de otimização (derivando e igualando a zero — a análise marginal do <a href="../vol02/cap05-otimizacao-livre.html" class="quarto-xref"><span>Capítulo 11</span></a>), obtêm-se as <strong>fórmulas de MQO</strong>:</p>
+<p><span id="eq-formulas-mqo"><span class="math display">\[
+\hat{\beta}_1 = \frac{\operatorname{Cov}(X, Y)}{\operatorname{Var}(X)} = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sum (X_i - \bar{X})^2}, \qquad
+\hat{\beta}_0 = \bar{Y} - \hat{\beta}_1 \bar{X}.
+\tag{70.3}\]</span></span></p>
+<p>Duas coisas valem notar. Primeiro: a inclinação é a covariância entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> dividida pela variância de <span class="math inline">\(X\)</span> — parente próxima do coeficiente de correlação (<a href="cap04-correlacao-causalidade.html" class="quarto-xref"><span>Capítulo 69</span></a>). Segundo: a fórmula do intercepto garante que a reta <strong>sempre passa pelo ponto médio</strong> <span class="math inline">\((\bar{X}, \bar{Y})\)</span>.</p>
+</section>
+<section id="interpretando-os-coeficientes" class="level2" data-number="70.4">
+<h2 data-number="70.4" class="anchored" data-anchor-id="interpretando-os-coeficientes"><span class="header-section-number">70.4</span> Interpretando os coeficientes</h2>
+<p>Estimar é fácil; <strong>interpretar</strong> com cuidado é o que separa o economista do operador de software.</p>
+<p>Suponha que uma regressão de salário mensal (em R$) contra anos de estudo produza:</p>
+<p><span class="math display">\[
+\widehat{\text{salário}} = 800 + 350 \cdot \text{estudo}.
+\]</span></p>
+<ul>
+<li>A <strong>inclinação</strong> <span class="math inline">\(\hat{\beta}_1 = 350\)</span>: cada ano adicional de estudo está associado a um salário <strong>R$,350 maior</strong>, em média. Note o “associado a” e o “em média” — não afirmamos ainda que estudar <strong>causa</strong> esse aumento.</li>
+<li>O <strong>intercepto</strong> <span class="math inline">\(\hat{\beta}_0 = 800\)</span>: o salário previsto para alguém com <strong>zero</strong> ano de estudo. Muitas vezes o intercepto <strong>não</strong> tem sentido econômico direto (extrapola para fora da faixa dos dados) e serve apenas para posicionar a reta.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — unidades e a leitura da inclinação">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — unidades e a leitura da inclinação
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A inclinação depende inteiramente das <strong>unidades</strong>. Se <span class="math inline">\(Y\)</span> está em reais e <span class="math inline">\(X\)</span> em anos, <span class="math inline">\(\hat{\beta}_1\)</span> é “reais por ano de estudo”. Trocar <span class="math inline">\(Y\)</span> para milhares de reais divide <span class="math inline">\(\hat{\beta}_1\)</span> por mil. Em modelos <strong>log-lineares</strong> (<span class="math inline">\(\ln Y\)</span> contra <span class="math inline">\(X\)</span>), a inclinação vira aproximadamente a <strong>variação percentual</strong> de <span class="math inline">\(Y\)</span> por unidade de <span class="math inline">\(X\)</span> (muito usada para retornos da educação: “cada ano de estudo eleva o salário em ~8%”). Sempre declare as unidades antes de interpretar um coeficiente.</p>
+</div>
+</div>
+</section>
+<section id="qualidade-do-ajuste-o-r2" class="level2" data-number="70.5">
+<h2 data-number="70.5" class="anchored" data-anchor-id="qualidade-do-ajuste-o-r2"><span class="header-section-number">70.5</span> Qualidade do ajuste: o <span class="math inline">\(R^2\)</span></h2>
+<p>Quão bem a reta descreve os dados? A resposta é o <strong>coeficiente de determinação</strong>, <span class="math inline">\(R^2\)</span>. A ideia: a variação total de <span class="math inline">\(Y\)</span> (a <strong>soma dos quadrados total</strong>, SQT) decompõe-se na parte <strong>explicada</strong> pela regressão (SQE) e na parte que sobra nos resíduos (<strong>soma dos quadrados dos resíduos</strong>, SQR):</p>
+<p><span class="math display">\[
+\underbrace{\sum (Y_i - \bar{Y})^2}_{\text{SQT}} = \underbrace{\sum (\hat{Y}_i - \bar{Y})^2}_{\text{SQE}} + \underbrace{\sum \hat{u}_i^2}_{\text{SQR}}.
+\]</span></p>
+<p>O <span class="math inline">\(R^2\)</span> é a <strong>fração da variação de <span class="math inline">\(Y\)</span> explicada pela regressão</strong>:</p>
+<p><span id="eq-r2"><span class="math display">\[
+R^2 = \frac{\text{SQE}}{\text{SQT}} = 1 - \frac{\text{SQR}}{\text{SQT}}, \qquad 0 \le R^2 \le 1.
+\tag{70.4}\]</span></span></p>
+<p>Um <span class="math inline">\(R^2 = 0{,}40\)</span> significa que <span class="math inline">\(X\)</span> explica 40% da variação de <span class="math inline">\(Y\)</span>; os 60% restantes ficam no erro. Na regressão simples, o <span class="math inline">\(R^2\)</span> é exatamente o <strong>quadrado do coeficiente de correlação</strong> (<span class="math inline">\(R^2 = r^2\)</span>).</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — $R^2$ alto não é sinônimo de bom modelo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — <span class="math inline">\(R^2\)</span> alto não é sinônimo de bom modelo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um <span class="math inline">\(R^2\)</span> elevado impressiona, mas diz pouco sobre o que mais importa. Um modelo pode ter <span class="math inline">\(R^2\)</span> baixo e, ainda assim, uma inclinação <strong>corretamente estimada e útil</strong> (muitos fenômenos sociais têm muito ruído irredutível). Pior: um <span class="math inline">\(R^2\)</span> altíssimo pode vir de uma relação <strong>espúria</strong> ou de <strong>causalidade reversa</strong>. E <span class="math inline">\(R^2\)</span> <strong>nada</strong> diz sobre causalidade ou sobre viés dos coeficientes. Em economia, o coeficiente <span class="math inline">\(\hat{\beta}_1\)</span> e sua interpretação costumam importar muito mais que o <span class="math inline">\(R^2\)</span>. Perseguir <span class="math inline">\(R^2\)</span> alto é um erro de iniciante.</p>
+</div>
+</div>
+</section>
+<section id="inferência-na-regressão-o-coeficiente-é-significativo" class="level2" data-number="70.6">
+<h2 data-number="70.6" class="anchored" data-anchor-id="inferência-na-regressão-o-coeficiente-é-significativo"><span class="header-section-number">70.6</span> Inferência na regressão: o coeficiente é significativo?</h2>
+<p>O coeficiente estimado <span class="math inline">\(\hat{\beta}_1\)</span> é uma <strong>estatística amostral</strong> — muda de amostra para amostra e tem seu próprio <strong>erro-padrão</strong>, <span class="math inline">\(EP(\hat{\beta}_1)\)</span>. Isso reconecta a regressão à inferência do <a href="cap03-inferencia.html" class="quarto-xref"><span>Capítulo 68</span></a>. A pergunta natural é: a relação é <strong>real</strong> ou poderia ser fruto do acaso amostral? Testamos:</p>
+<p><span class="math display">\[
+H_0: \beta_1 = 0 \quad (\text{$X$ não afeta $Y$}) \qquad\text{contra}\qquad H_1: \beta_1 \neq 0,
+\]</span></p>
+<p>com a estatística <span class="math inline">\(t = \hat{\beta}_1 / EP(\hat{\beta}_1)\)</span>. Um <span class="math inline">\(|t|\)</span> grande (grosso modo, acima de ~2) leva a rejeitar <span class="math inline">\(H_0\)</span>: a inclinação é <strong>estatisticamente significativa</strong>. Softwares reportam automaticamente <span class="math inline">\(\hat{\beta}_1\)</span>, seu erro-padrão, o <span class="math inline">\(t\)</span> e o valor-<span class="math inline">\(p\)</span>. E vale a lição do <a href="cap03-inferencia.html" class="quarto-xref"><span>Capítulo 68</span></a>: significância estatística <strong>não</strong> é o mesmo que magnitude econômica relevante — reporte sempre o <strong>tamanho</strong> do coeficiente e seu intervalo de confiança.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — o que dá precisão a um coeficiente">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — o que dá precisão a um coeficiente
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O erro-padrão da inclinação é menor (estimativa mais precisa) quando: (i) a amostra é <strong>maior</strong>; (ii) o erro <span class="math inline">\(u\)</span> é <strong>pequeno</strong> (pontos pouco dispersos em torno da reta); e (iii) <span class="math inline">\(X\)</span> <strong>varia bastante</strong> (uma nuvem espalhada no eixo horizontal fixa a reta melhor que pontos amontoados). Se <span class="math inline">\(X\)</span> quase não varia na amostra, é difícil estimar como <span class="math inline">\(Y\)</span> responde a <span class="math inline">\(X\)</span> — não há alavanca. Por isso variação em <span class="math inline">\(X\)</span> é preciosa.</p>
+</div>
+</div>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="70.7">
+<h2 data-number="70.7" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">70.7</span> 🇧🇷 Brasil em Foco</h2>
+<p>A regressão linear é, sem exagero, a ferramenta empírica mais usada na Economia brasileira aplicada — do mercado de trabalho às finanças.</p>
+<p><strong>O retorno da educação: a equação de Mincer.</strong> A aplicação mais clássica no Brasil é a <strong>equação de rendimentos de Mincer</strong>: uma regressão do <strong>log do salário</strong> contra anos de estudo e experiência. Estimada repetidamente com dados da <strong>PNAD Contínua</strong> e do Censo, ela indica que cada ano adicional de estudo esteve historicamente associado a um aumento salarial da ordem de <strong>8% a 15%</strong> — um dos “retornos da educação” mais altos do mundo, reflexo da escassez relativa de trabalhadores qualificados. Mas os próprios pesquisadores alertam: esse coeficiente mistura o efeito <strong>causal</strong> da educação com o de <strong>habilidade não observada</strong> (<a href="cap04-correlacao-causalidade.html" class="quarto-xref"><span>Capítulo 69</span></a>) — quem estuda mais também tende a ter atributos que elevam o salário. A regressão simples mede a <strong>associação</strong>; isolar a causa exige os métodos dos próximos capítulos.</p>
+<p><strong>Curva de Phillips e beta de mercado.</strong> Muitas relações macro e financeiras brasileiras são estimadas por regressão: a <strong>curva de Phillips</strong> (inflação contra hiato do produto, Volume 7) que orienta o Banco Central, a <strong>função consumo</strong> keynesiana (consumo contra renda, Volume 7), e o <strong>beta</strong> de uma ação (retorno da ação contra retorno do Ibovespa, Volume 14) — este último, a inclinação de uma regressão que mede o risco sistemático de um ativo. Em todos, o coeficiente estimado carrega significado econômico direto: a sensibilidade da inflação ao aquecimento, a propensão marginal a consumir, o risco de mercado.</p>
+<p><strong>O cuidado brasileiro com os dados.</strong> Estimar regressões com dados brasileiros exige atenção redobrada a peculiaridades: a <strong>informalidade</strong> (parte da renda não é observada), a <strong>heterogeneidade regional</strong> (o retorno da educação difere entre Sudeste e Nordeste) e mudanças metodológicas nas pesquisas ao longo do tempo. Um bom econometrista brasileiro conhece não só as fórmulas de MQO, mas as <strong>fontes</strong> — suas virtudes e limites —, tema que já apareceu no Volume 4 (<span class="quarto-unresolved-ref">?sec-indicadores-na-pratica</span>).</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> IBGE (PNAD Contínua e Censo — microdados para equações de rendimento); Bacen/SGS (séries para curva de Phillips e função consumo); B3 e Bacen (retornos de ações e Ibovespa para estimar betas). Softwares abertos como R e Python (com dados públicos) permitem replicar essas regressões. Verifique o período e a metodologia.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="70.8">
+<h2 data-number="70.8" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">70.8</span> Resumo do capítulo</h2>
+<ul>
+<li>O modelo de <strong>regressão linear simples</strong> é <span class="math inline">\(Y_i = \beta_0 + \beta_1 X_i + u_i\)</span>: <span class="math inline">\(\beta_0\)</span> é o intercepto, <span class="math inline">\(\beta_1\)</span> a inclinação (efeito de +1 em <span class="math inline">\(X\)</span> sobre a média de <span class="math inline">\(Y\)</span>) e <span class="math inline">\(u_i\)</span> o erro (tudo o mais que afeta <span class="math inline">\(Y\)</span>).</li>
+<li>O <strong>MQO</strong> estima a reta minimizando a soma dos quadrados dos resíduos; suas fórmulas dão <span class="math inline">\(\hat{\beta}_1 = \operatorname{Cov}(X,Y)/\operatorname{Var}(X)\)</span> e <span class="math inline">\(\hat{\beta}_0 = \bar{Y} - \hat{\beta}_1\bar{X}\)</span>; a reta passa por <span class="math inline">\((\bar{X}, \bar{Y})\)</span>.</li>
+<li>A <strong>inclinação</strong> é lida “por unidade de <span class="math inline">\(X\)</span>”, e depende das <strong>unidades</strong>; em modelos log-lineares, aproxima uma variação <strong>percentual</strong>. O <strong>intercepto</strong> nem sempre tem sentido econômico.</li>
+<li>O <strong><span class="math inline">\(R^2\)</span></strong> é a fração da variação de <span class="math inline">\(Y\)</span> explicada pela regressão (<span class="math inline">\(0\)</span> a <span class="math inline">\(1\)</span>; <span class="math inline">\(= r^2\)</span> na regressão simples); <span class="math inline">\(R^2\)</span> alto <strong>não</strong> garante bom modelo, causalidade nem ausência de viés.</li>
+<li>O coeficiente tem <strong>erro-padrão</strong>; testa-se <span class="math inline">\(H_0: \beta_1 = 0\)</span> com <span class="math inline">\(t = \hat{\beta}_1/EP(\hat{\beta}_1)\)</span>. Precisão cresce com amostra maior, erro menor e maior variação de <span class="math inline">\(X\)</span>.</li>
+<li>Uma regressão mede <strong>associação</strong>; só é <strong>causal</strong> sob hipóteses fortes (exogeneidade de <span class="math inline">\(X\)</span>) — daí a equação de Mincer estimar retornos que ainda misturam educação e habilidade não observada.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="70.9">
+<h2 data-number="70.9" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">70.9</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.</p>
+</div>
+</div>
+<p><strong>1.</strong> No modelo <span class="math inline">\(Y_i = \beta_0 + \beta_1 X_i + u_i\)</span>, explique o significado de cada um dos três termos do lado direito.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\beta_0\)</span> (<strong>intercepto</strong>) é o valor esperado de <span class="math inline">\(Y\)</span> quando <span class="math inline">\(X = 0\)</span>; posiciona a reta na vertical. <span class="math inline">\(\beta_1\)</span> (<strong>inclinação</strong>) é a variação esperada em <span class="math inline">\(Y\)</span> quando <span class="math inline">\(X\)</span> aumenta uma unidade — o coeficiente de interesse. <span class="math inline">\(u_i\)</span> (<strong>erro</strong>) representa todos os demais fatores que influenciam <span class="math inline">\(Y_i\)</span> e não estão em <span class="math inline">\(X\)</span> (outras variáveis, aleatoriedade, erro de medição). A reta descreve a <strong>média</strong> de <span class="math inline">\(Y\)</span> dado <span class="math inline">\(X\)</span>; os pontos reais desviam-se dela pelo erro.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Por que o MQO minimiza a soma dos resíduos <strong>ao quadrado</strong>, e não a soma simples dos resíduos?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A soma <strong>simples</strong> dos resíduos pode ser zero para infinitas retas ruins, pois resíduos positivos e negativos se <strong>cancelam</strong> — não serve como critério. Elevar ao quadrado (i) elimina os sinais, impedindo o cancelamento, e (ii) <strong>penaliza mais</strong> os erros grandes, forçando a reta a evitar desvios grandes. O resultado é um critério único e bem definido, com solução fechada (as fórmulas de MQO) obtida por otimização.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Uma regressão dá <span class="math inline">\(\widehat{\text{consumo}} = 500 + 0{,}8\cdot\text{renda}\)</span> (em R$). Interprete os dois coeficientes. Quanto o consumo previsto sobe se a renda aumenta R$,1.000?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Intercepto (500):</strong> consumo previsto quando a renda é zero — o “consumo autônomo” (as pessoas gastam mesmo sem renda, poupança negativa/dívida). <strong>Inclinação (0,8):</strong> cada R$,1 a mais de renda está associado a R$,0,80 a mais de consumo — a <strong>propensão marginal a consumir</strong>. Se a renda sobe R$,1.000, o consumo previsto sobe <span class="math inline">\(0{,}8 \times 1.000 = R\$\,800\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Uma regressão tem <span class="math inline">\(R^2 = 0{,}25\)</span>. Interprete. Isso significa que o modelo é ruim?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(R^2 = 0{,}25\)</span> significa que a variável explicativa dá conta de <strong>25%</strong> da variação da dependente; 75% ficam no erro (outros fatores e ruído). Isso <strong>não</strong> significa necessariamente que o modelo é ruim: em dados sociais e econômicos, muito da variação individual é irredutível, e <span class="math inline">\(R^2\)</span> baixos são comuns mesmo em modelos úteis. O que importa é se o <strong>coeficiente</strong> de interesse está bem estimado, é significativo e tem magnitude relevante — o <span class="math inline">\(R^2\)</span> mede poder preditivo, não correção causal nem utilidade do coeficiente.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Explique por que a estimativa da inclinação é mais <strong>precisa</strong> (menor erro-padrão) quando <span class="math inline">\(X\)</span> varia bastante na amostra.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A inclinação mede como <span class="math inline">\(Y\)</span> responde a mudanças em <span class="math inline">\(X\)</span>. Se <span class="math inline">\(X\)</span> <strong>varia pouco</strong> (pontos amontoados numa faixa estreita do eixo horizontal), há pouca “alavanca” para identificar a resposta de <span class="math inline">\(Y\)</span> — pequenas perturbações nos dados fazem a reta girar bastante, gerando erro-padrão grande. Se <span class="math inline">\(X\)</span> <strong>varia muito</strong> (nuvem espalhada horizontalmente), a reta fica bem “presa” pelos extremos e a inclinação é estimada com precisão. Formalmente, <span class="math inline">\(EP(\hat{\beta}_1)\)</span> é inversamente proporcional à raiz da variação de <span class="math inline">\(X\)</span> (<span class="math inline">\(\sum(X_i-\bar{X})^2\)</span>): mais variação em <span class="math inline">\(X\)</span>, menor o erro-padrão.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Dados: <span class="math inline">\(\operatorname{Cov}(X,Y) = 12\)</span>, <span class="math inline">\(\operatorname{Var}(X) = 8\)</span>, <span class="math inline">\(\bar{X} = 5\)</span>, <span class="math inline">\(\bar{Y} = 20\)</span>. Encontre a reta de MQO.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Inclinação: <span class="math inline">\(\hat{\beta}_1 = \operatorname{Cov}(X,Y)/\operatorname{Var}(X) = 12/8 = 1{,}5\)</span>. Intercepto: <span class="math inline">\(\hat{\beta}_0 = \bar{Y} - \hat{\beta}_1\bar{X} = 20 - 1{,}5 \times 5 = 20 - 7{,}5 = 12{,}5\)</span>. Reta ajustada: <span class="math inline">\(\hat{Y} = 12{,}5 + 1{,}5\,X\)</span>. (Confira: em <span class="math inline">\(X = \bar{X} = 5\)</span>, <span class="math inline">\(\hat{Y} = 12{,}5 + 7{,}5 = 20 = \bar{Y}\)</span> — a reta passa pelo ponto médio.)</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) Um estudante estima a equação de Mincer e encontra que cada ano de estudo “aumenta” o salário em 10%. Explique por que ele deve dizer “está associado a”, e não “aumenta”, e o que ameaça a interpretação causal.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A regressão de MQO mede <strong>associação</strong> entre estudo e salário, não necessariamente o <strong>efeito causal</strong> da educação. A interpretação causal exige que <span class="math inline">\(X\)</span> (estudo) seja <strong>não correlacionado</strong> com o erro <span class="math inline">\(u\)</span> — hipótese de <strong>exogeneidade</strong>. Aqui ela é implausível: <span class="math inline">\(u\)</span> contém a <strong>habilidade não observada</strong> (talento, disciplina, rede familiar), que afeta <strong>tanto</strong> os anos de estudo <strong>quanto</strong> o salário. Quem estuda mais tende a ter mais desses atributos, então parte dos “10%” reflete a habilidade, não a escolaridade — um <strong>viés de variável omitida</strong> (<a href="cap06-regressao-multipla.html" class="quarto-xref"><span>Capítulo 71</span></a>). Por isso o correto é “cada ano de estudo está <strong>associado a</strong> um salário ~10% maior”; afirmar que “aumenta” pressupõe uma causalidade que a regressão simples não estabelece. Isolar a causa pediria variação exógena de escolaridade (experimentos naturais, variáveis instrumentais).</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) Dois analistas ajustam retas aos mesmos dados de vendas × preço. Um obtém <span class="math inline">\(R^2 = 0{,}9\)</span>; o outro, ao adicionar um ponto extremo (um <em>outlier</em>), obtém <span class="math inline">\(R^2 = 0{,}95\)</span> mas uma inclinação bem diferente. Discuta o que isso revela sobre confiar no <span class="math inline">\(R^2\)</span> e sobre a sensibilidade do MQO a <em>outliers</em>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O episódio revela dois pontos. (i) <strong><span class="math inline">\(R^2\)</span> não é medida de correção:</strong> um <span class="math inline">\(R^2\)</span> <strong>maior</strong> (0,95) acompanhou uma inclinação <strong>distorcida</strong> — um ajuste “melhor” pelo critério de variância explicada pode corresponder a um coeficiente <strong>pior</strong> (viesado pelo <em>outlier</em>). Perseguir <span class="math inline">\(R^2\)</span> alto engana. (ii) <strong>Sensibilidade do MQO a <em>outliers</em>:</strong> como o método minimiza os resíduos <strong>ao quadrado</strong>, um ponto extremo gera resíduo enorme e “puxa” a reta desproporcionalmente para si, alterando muito a inclinação. Um único <em>outlier</em> pode dominar a estimativa. Boas práticas: <strong>examinar o gráfico de dispersão</strong> (nunca confiar só nos números), investigar pontos influentes (erro de medição? caso legítimo?), e usar diagnósticos de influência ou métodos robustos quando apropriado. A lição do <a href="cap04-correlacao-causalidade.html" class="quarto-xref"><span>Capítulo 69</span></a> se repete: sempre olhe os dados, não só as estatísticas-resumo.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="70.10">
+<h2 data-number="70.10" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">70.10</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="wooldridge2016">Wooldridge (<a href="#ref-wooldridge2016" role="doc-biblioref">2016</a>)</span> — o tratamento moderno e didático da regressão simples, MQO, interpretação de coeficientes e hipóteses de identificação; referência-padrão em cursos brasileiros.</li>
+<li><span class="citation" data-cites="stock2020">Stock; Watson (<a href="#ref-stock2020" role="doc-biblioref">2020</a>)</span> — apresentação da regressão com ênfase em causalidade e erro-padrão, e muitos exemplos aplicados.</li>
+<li><span class="citation" data-cites="gujarati2011">Gujarati; Porter (<a href="#ref-gujarati2011" role="doc-biblioref">2011</a>)</span> — dedução detalhada das fórmulas de MQO e do <span class="math inline">\(R^2\)</span>, acessível e em português.</li>
+<li><span class="citation" data-cites="hoffmann2006">Hoffmann (<a href="#ref-hoffmann2006" role="doc-biblioref">2006</a>)</span> — regressão voltada a economistas, com aplicações a dados brasileiros.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-gujarati2011" class="csl-entry" role="listitem">
+GUJARATI, Damodar N.; PORTER, Dawn C. <strong>Econometria Básica</strong>. 5. ed. Porto Alegre: AMGH, 2011.
+</div>
+<div id="ref-hoffmann2006" class="csl-entry" role="listitem">
+HOFFMANN, Rodolfo. <strong>Estatística para Economistas</strong>. 4. ed. São Paulo: Pioneira Thomson Learning, 2006.
+</div>
+<div id="ref-stock2020" class="csl-entry" role="listitem">
+STOCK, James H.; WATSON, Mark W. <strong>Introduction to Econometrics</strong>. 4. ed. Harlow: Pearson, 2020.
+</div>
+<div id="ref-wooldridge2016" class="csl-entry" role="listitem">
+WOOLDRIDGE, Jeffrey M. <strong>Introdução à Econometria: Uma Abordagem Moderna</strong>. 6. ed. São Paulo: Cengage Learning, 2016.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol10/cap04-correlacao-causalidade.html" class="pagination-link" aria-label="Correlação não é causalidade">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">Correlação não é causalidade</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol10/cap06-regressao-multipla.html" class="pagination-link" aria-label="Regressão múltipla e viés de variável omitida">
+        <span class="nav-page-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Regressão múltipla e viés de variável omitida</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol10/cap05-regressao-simples.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

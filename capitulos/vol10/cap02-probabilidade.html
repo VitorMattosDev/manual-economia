@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>67&nbsp; Probabilidade e distribuições – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol10/cap03-inferencia.html" rel="next">
+<link href="../../capitulos/vol10/cap01-estatistica-descritiva.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap01-estatistica-descritiva.html">Volume 10 — Estatística e Econometria Básica</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap02-probabilidade.html"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Probabilidade e distribuições</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 10 — Estatística e Econometria Básica</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap01-estatistica-descritiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">Estatística descritiva para a Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap02-probabilidade.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Probabilidade e distribuições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap03-inferencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">Inferência: estimação e testes de hipótese</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap04-correlacao-causalidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">Correlação não é causalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap05-regressao-simples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Regressão linear simples</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap06-regressao-multipla.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Regressão múltipla e viés de variável omitida</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap07-series-temporais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Séries temporais: noções essenciais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap08-avaliacao-de-politicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">Avaliação de políticas públicas: métodos quase-experimentais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">67.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#o-que-é-probabilidade" id="toc-o-que-é-probabilidade" class="nav-link" data-scroll-target="#o-que-é-probabilidade"><span class="header-section-number">67.2</span> O que é probabilidade</a></li>
+  <li><a href="#probabilidade-condicional-independência-e-bayes" id="toc-probabilidade-condicional-independência-e-bayes" class="nav-link" data-scroll-target="#probabilidade-condicional-independência-e-bayes"><span class="header-section-number">67.3</span> Probabilidade condicional, independência e Bayes</a></li>
+  <li><a href="#variáveis-aleatórias-e-distribuições" id="toc-variáveis-aleatórias-e-distribuições" class="nav-link" data-scroll-target="#variáveis-aleatórias-e-distribuições"><span class="header-section-number">67.4</span> Variáveis aleatórias e distribuições</a></li>
+  <li><a href="#esperança-e-variância" id="toc-esperança-e-variância" class="nav-link" data-scroll-target="#esperança-e-variância"><span class="header-section-number">67.5</span> Esperança e variância</a></li>
+  <li><a href="#a-distribuição-binomial" id="toc-a-distribuição-binomial" class="nav-link" data-scroll-target="#a-distribuição-binomial"><span class="header-section-number">67.6</span> A distribuição binomial</a></li>
+  <li><a href="#a-distribuição-normal" id="toc-a-distribuição-normal" class="nav-link" data-scroll-target="#a-distribuição-normal"><span class="header-section-number">67.7</span> A distribuição normal</a></li>
+  <li><a href="#o-teorema-central-do-limite" id="toc-o-teorema-central-do-limite" class="nav-link" data-scroll-target="#o-teorema-central-do-limite"><span class="header-section-number">67.8</span> O teorema central do limite</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">67.9</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">67.10</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">67.11</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">67.12</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol10/cap02-probabilidade.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap01-estatistica-descritiva.html">Volume 10 — Estatística e Econometria Básica</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap02-probabilidade.html"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Probabilidade e distribuições</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-probabilidade" class="quarto-section-identifier"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Probabilidade e distribuições</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Um investidor decide entre uma aplicação de renda fixa e uma ação. Uma seguradora precisa fixar o preço de uma apólice contra um evento que talvez nunca ocorra. O Banco Central projeta a inflação do ano que vem sabendo que mil coisas podem sair do previsto. O que essas decisões têm em comum? Todas lidam com o <strong>incerto</strong> — e a linguagem matemática da incerteza é a <strong>probabilidade</strong>.</p>
+<p>No capítulo anterior, aprendemos a descrever dados que já temos em mãos. Mas a Economia empírica quer ir além: quer <strong>inferir</strong> características de uma população a partir de uma amostra (<a href="cap03-inferencia.html" class="quarto-xref"><span>Capítulo 68</span></a>), e para isso precisa de um modelo do acaso que gera os dados. Este capítulo constrói esse modelo. Veremos os fundamentos da probabilidade, o conceito de <strong>variável aleatória</strong> e suas distribuições, as duas medidas que resumem uma distribuição (<strong>esperança</strong> e <strong>variância</strong>), e a rainha de todas as distribuições — a <strong>normal</strong> —, culminando no resultado mais espantoso da estatística: o <strong>teorema central do limite</strong>, que explica por que a curva em forma de sino aparece em toda parte.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="67.1">
+<h2 data-number="67.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">67.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>definir <strong>probabilidade</strong> e aplicar suas regras básicas (soma, produto e complementar);</li>
+<li>entender <strong>probabilidade condicional</strong>, independência e o <strong>teorema de Bayes</strong>;</li>
+<li>distinguir variáveis aleatórias <strong>discretas</strong> e <strong>contínuas</strong> e suas distribuições;</li>
+<li>calcular a <strong>esperança</strong> (valor esperado) e a <strong>variância</strong> de uma variável aleatória;</li>
+<li>reconhecer as distribuições <strong>binomial</strong> e <strong>normal</strong> e usar a regra empírica;</li>
+<li>enunciar o <strong>teorema central do limite</strong> e explicar por que ele fundamenta toda a inferência.</li>
+</ul>
+</section>
+<section id="o-que-é-probabilidade" class="level2" data-number="67.2">
+<h2 data-number="67.2" class="anchored" data-anchor-id="o-que-é-probabilidade"><span class="header-section-number">67.2</span> O que é probabilidade</h2>
+<p>Comece por um <strong>experimento aleatório</strong>: um procedimento cujo resultado não pode ser previsto com certeza (lançar um dado, sortear um domicílio, observar se um cliente dará calote). O conjunto de todos os resultados possíveis é o <strong>espaço amostral</strong> (<span class="math inline">\(\Omega\)</span>); um <strong>evento</strong> é um subconjunto de <span class="math inline">\(\Omega\)</span> (por exemplo, “sair um número par”).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — probabilidade">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — probabilidade
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>probabilidade</strong> de um evento <span class="math inline">\(A\)</span>, denotada <span class="math inline">\(P(A)\)</span>, é um número entre 0 e 1 que mede a chance de <span class="math inline">\(A\)</span> ocorrer. Ela satisfaz três axiomas (Kolmogorov): (i) <span class="math inline">\(0 \le P(A) \le 1\)</span>; (ii) <span class="math inline">\(P(\Omega) = 1\)</span> (algum resultado ocorre); (iii) para eventos <strong>mutuamente exclusivos</strong>, a probabilidade da união é a soma das probabilidades.</p>
+</div>
+</div>
+<p>Há duas interpretações complementares. Na visão <strong>frequentista</strong>, <span class="math inline">\(P(A)\)</span> é a frequência relativa com que <span class="math inline">\(A\)</span> ocorreria numa longuíssima repetição do experimento (a probabilidade de “cara” é 0,5 porque, em milhões de lançamentos, metade dá cara). Na visão <strong>bayesiana</strong>, <span class="math inline">\(P(A)\)</span> é um <strong>grau de crença</strong> sobre a ocorrência de <span class="math inline">\(A\)</span>, revisável à luz de nova informação. As duas convivem na prática econômica.</p>
+<p>Três regras bastam para a maior parte dos cálculos:</p>
+<ul>
+<li><strong>Complementar:</strong> <span class="math inline">\(P(\text{não } A) = 1 - P(A)\)</span>.</li>
+<li><strong>Soma:</strong> <span class="math inline">\(P(A \text{ ou } B) = P(A) + P(B) - P(A \text{ e } B)\)</span> (subtrai-se a interseção para não contá-la duas vezes).</li>
+<li><strong>Produto:</strong> <span class="math inline">\(P(A \text{ e } B) = P(A)\,P(B \mid A)\)</span>, onde <span class="math inline">\(P(B \mid A)\)</span> é a probabilidade <strong>condicional</strong> de <span class="math inline">\(B\)</span> dado que <span class="math inline">\(A\)</span> ocorreu.</li>
+</ul>
+</section>
+<section id="probabilidade-condicional-independência-e-bayes" class="level2" data-number="67.3">
+<h2 data-number="67.3" class="anchored" data-anchor-id="probabilidade-condicional-independência-e-bayes"><span class="header-section-number">67.3</span> Probabilidade condicional, independência e Bayes</h2>
+<p>A <strong>probabilidade condicional</strong> é a chave do raciocínio econômico sob incerteza: qual a chance de recessão <strong>dado que</strong> os juros subiram? Formalmente:</p>
+<p><span id="eq-condicional"><span class="math display">\[
+P(B \mid A) = \frac{P(A \text{ e } B)}{P(A)}, \qquad P(A) &gt; 0.
+\tag{67.1}\]</span></span></p>
+<p>Dois eventos são <strong>independentes</strong> quando a ocorrência de um não altera a probabilidade do outro: <span class="math inline">\(P(B \mid A) = P(B)\)</span>, o que equivale a <span class="math inline">\(P(A \text{ e } B) = P(A)\,P(B)\)</span>. Independência é uma hipótese poderosa — e frequentemente falsa: retornos de ações do mesmo setor, ou o calote de dois tomadores na mesma crise, tendem a ser <strong>correlacionados</strong>, não independentes (subestimar isso esteve na raiz da crise de 2008).</p>
+<p>Invertendo a condicional, chega-se ao <strong>teorema de Bayes</strong>, que ensina a <strong>atualizar</strong> uma probabilidade diante de nova evidência:</p>
+<p><span id="eq-bayes"><span class="math display">\[
+P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}.
+\tag{67.2}\]</span></span></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — Bayes e o perigo dos falsos positivos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — Bayes e o perigo dos falsos positivos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suponha um teste para uma fraude que atinge 1% das transações. O teste acerta 99% das fraudes e dá 5% de falsos positivos nas transações legítimas. Se uma transação é sinalizada, qual a chance de ser realmente fraude? A intuição diz “99%”, mas Bayes revela algo muito menor: como as transações legítimas são <strong>99%</strong> do total, os 5% de falsos positivos entre elas geram muito mais alarmes que as fraudes verdadeiras. O resultado fica em torno de <strong>17%</strong>. Ignorar a probabilidade <strong>de base</strong> (<em>base rate</em>) é um dos erros mais comuns de raciocínio — e Bayes é o antídoto.</p>
+</div>
+</div>
+</section>
+<section id="variáveis-aleatórias-e-distribuições" class="level2" data-number="67.4">
+<h2 data-number="67.4" class="anchored" data-anchor-id="variáveis-aleatórias-e-distribuições"><span class="header-section-number">67.4</span> Variáveis aleatórias e distribuições</h2>
+<p>Muitas vezes não nos interessa o resultado bruto do experimento, mas um <strong>número</strong> associado a ele: o lucro de uma carteira, o número de clientes que dão calote, a variação do câmbio. Esse número é uma <strong>variável aleatória</strong> (v.a.).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — variável aleatória">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — variável aleatória
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma <strong>variável aleatória</strong> é uma função que associa um número real a cada resultado do experimento aleatório. É <strong>discreta</strong> se assume valores isolados (contagens: 0, 1, 2, …) e <strong>contínua</strong> se pode assumir qualquer valor num intervalo (renda, preço, tempo).</p>
+</div>
+</div>
+<p>A <strong>distribuição de probabilidade</strong> descreve como a probabilidade se reparte entre os valores da v.a.:</p>
+<ul>
+<li>Para uma v.a. <strong>discreta</strong>, a <strong>função de probabilidade</strong> <span class="math inline">\(p(x) = P(X = x)\)</span> dá a probabilidade de cada valor; a soma de todas é 1.</li>
+<li>Para uma v.a. <strong>contínua</strong>, a probabilidade de qualquer valor exato é zero; o que existe é a <strong>função densidade</strong> <span class="math inline">\(f(x)\)</span>, cuja <strong>área</strong> sob a curva entre dois pontos dá a probabilidade de <span class="math inline">\(X\)</span> cair naquele intervalo (uma integral — <a href="../vol02/cap07-integrais-excedentes.html" class="quarto-xref"><span>Capítulo 13</span></a>). A área total sob a densidade é 1.</li>
+</ul>
+</section>
+<section id="esperança-e-variância" class="level2" data-number="67.5">
+<h2 data-number="67.5" class="anchored" data-anchor-id="esperança-e-variância"><span class="header-section-number">67.5</span> Esperança e variância</h2>
+<p>Assim como resumíamos dados por média e desvio-padrão, resumimos uma distribuição por dois números análogos.</p>
+<p>A <strong>esperança</strong> (ou <strong>valor esperado</strong>, ou <strong>média</strong>) de <span class="math inline">\(X\)</span> é a média dos valores possíveis <strong>ponderada pelas probabilidades</strong> — o valor que se obteria, em média, repetindo o experimento infinitas vezes:</p>
+<p><span id="eq-esperanca"><span class="math display">\[
+E(X) = \mu = \sum_x x\,p(x) \quad\text{(discreta)}, \qquad E(X) = \int x\,f(x)\,dx \quad\text{(contínua)}.
+\tag{67.3}\]</span></span></p>
+<p>A esperança é <strong>linear</strong>: <span class="math inline">\(E(aX + b) = a\,E(X) + b\)</span>, e <span class="math inline">\(E(X + Y) = E(X) + E(Y)\)</span> <strong>sempre</strong> (mesmo que <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> não sejam independentes). Essa propriedade é a base do cálculo de retornos esperados de carteiras.</p>
+<p>A <strong>variância</strong> mede a dispersão da v.a. em torno da esperança:</p>
+<p><span id="eq-variancia-va"><span class="math display">\[
+\operatorname{Var}(X) = \sigma^2 = E\!\left[(X - \mu)^2\right] = E(X^2) - [E(X)]^2,
+\tag{67.4}\]</span></span></p>
+<p>e o <strong>desvio-padrão</strong> é <span class="math inline">\(\sigma = \sqrt{\operatorname{Var}(X)}\)</span>. Ao contrário da esperança, a variância <strong>não</strong> é linear: <span class="math inline">\(\operatorname{Var}(aX + b) = a^2\operatorname{Var}(X)\)</span> (a constante <span class="math inline">\(b\)</span> não afeta a dispersão), e a variância de uma soma só é a soma das variâncias quando as variáveis são <strong>independentes</strong> — resultado central da teoria de diversificação de carteiras (Volume 14).</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — o valor esperado de uma aposta">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — o valor esperado de uma aposta
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Você paga R$,10 para jogar: com probabilidade 0,5 ganha R$,30, e com 0,5 não ganha nada. O valor esperado do prêmio é <span class="math inline">\(0{,}5 \times 30 + 0{,}5 \times 0 = R\$\,15\)</span>, contra um custo de R$,10 — o jogo é favorável, com ganho esperado de R$,5 por rodada. Mas atenção: o valor esperado descreve a <strong>média de longo prazo</strong>, não o que acontece numa jogada. Uma pessoa <strong>avessa ao risco</strong> (<a href="../vol06/cap07-escolha-sob-incerteza.html" class="quarto-xref"><span>Capítulo 43</span></a>) pode recusar apostas de valor esperado positivo se a variância for alta demais. Esperança e variância, juntas, descrevem a aposta.</p>
+</div>
+</div>
+</section>
+<section id="a-distribuição-binomial" class="level2" data-number="67.6">
+<h2 data-number="67.6" class="anchored" data-anchor-id="a-distribuição-binomial"><span class="header-section-number">67.6</span> A distribuição binomial</h2>
+<p>A distribuição discreta mais útil descreve <strong>contagens de sucessos</strong>. Considere <span class="math inline">\(n\)</span> tentativas independentes, cada uma com dois resultados (sucesso/fracasso) e probabilidade <span class="math inline">\(p\)</span> de sucesso — os <strong>ensaios de Bernoulli</strong> (um cliente paga ou dá calote; um eleitor aprova ou não). O número total de sucessos <span class="math inline">\(X\)</span> segue a <strong>distribuição binomial</strong>:</p>
+<p><span id="eq-binomial"><span class="math display">\[
+P(X = k) = \binom{n}{k}\,p^k\,(1-p)^{\,n-k}, \qquad k = 0, 1, \dots, n,
+\tag{67.5}\]</span></span></p>
+<p>com esperança <span class="math inline">\(E(X) = np\)</span> e variância <span class="math inline">\(\operatorname{Var}(X) = np(1-p)\)</span>. Se, entre 100 empréstimos com 3% de chance de calote cada, quisermos a probabilidade de exatamente 5 calotes, é a binomial que responde — e seu valor esperado, <span class="math inline">\(np = 3\)</span>, é o número médio de calotes.</p>
+</section>
+<section id="a-distribuição-normal" class="level2" data-number="67.7">
+<h2 data-number="67.7" class="anchored" data-anchor-id="a-distribuição-normal"><span class="header-section-number">67.7</span> A distribuição normal</h2>
+<p>Chegamos à distribuição mais importante de toda a estatística: a <strong>normal</strong> (ou <strong>gaussiana</strong>), a célebre curva em forma de <strong>sino</strong>. Uma v.a. contínua <span class="math inline">\(X\)</span> tem distribuição normal com média <span class="math inline">\(\mu\)</span> e variância <span class="math inline">\(\sigma^2\)</span>, escrita <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>, quando sua densidade é a curva simétrica da <a href="#fig-normal" class="quarto-xref">Figura&nbsp;<span>67.1</span></a>.</p>
+<div id="fig-normal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="295.714401pt" height="155.267049pt" viewbox="-68.014948 -68.014944 295.714401 155.267049">
+<defs>
+<path id="tz_fig_normal_g0-0" d="M5.571108-1.809215C5.69863-1.809215 5.873973-1.809215 5.873973-1.992528S5.69863-2.175841 5.571108-2.175841H1.004234C.876712-2.175841 .70137-2.175841 .70137-1.992528S.876712-1.809215 1.004234-1.809215H5.571108Z"></path>
+<path id="tz_fig_normal_g0-25" d="M6.105106-3.737983C6.105106-3.985056 6.017435-4.016936 5.977584-4.016936C5.905853-4.016936 5.858032-3.913325 5.850062-3.809714C5.842092-3.642341 5.818182-3.387298 5.499377-3.124284C5.268244-2.940971 4.97335-2.8533 4.694396-2.8533C4.192279-2.8533 3.753923-3.140224 3.339477-3.419178C2.8533-3.745953 2.414944-4.024907 1.880946-4.024907C1.060025-4.024907 .470237-3.387298 .470237-2.630137C.470237-2.383064 .557908-2.351183 .597758-2.351183C.70934-2.351183 .72528-2.558406 .72528-2.606227C.757161-3.116314 1.291158-3.514819 1.880946-3.514819C2.383064-3.514819 2.82142-3.227895 3.235866-2.948941C3.722042-2.622167 4.160399-2.343213 4.694396-2.343213C5.515318-2.343213 6.105106-2.980822 6.105106-3.737983ZM6.105106-1.713574C6.105106-1.952677 6.017435-1.992528 5.977584-1.992528C5.905853-1.992528 5.858032-1.888917 5.850062-1.785305C5.842092-1.617933 5.818182-1.362889 5.499377-1.099875C5.268244-.916563 4.97335-.828892 4.694396-.828892C4.192279-.828892 3.753923-1.115816 3.339477-1.39477C2.8533-1.721544 2.414944-2.000498 1.880946-2.000498C1.060025-2.000498 .470237-1.362889 .470237-.605729C.470237-.358655 .557908-.326775 .597758-.326775C.70934-.326775 .72528-.533998 .72528-.581818C.757161-1.091905 1.291158-1.490411 1.880946-1.490411C2.383064-1.490411 2.82142-1.203487 3.235866-.924533C3.722042-.597758 4.160399-.318804 4.694396-.318804C5.515318-.318804 6.105106-.956413 6.105106-1.713574Z"></path>
+<path id="tz_fig_normal_g1-22" d="M1.928767-2.81345C1.968618-2.964882 2.032379-3.227895 2.032379-3.267746C2.032379-3.435118 1.904857-3.514819 1.769365-3.514819C1.498381-3.514819 1.43462-3.251806 1.40274-3.140224L.294894 1.283188C.263014 1.41071 .263014 1.45056 .263014 1.466501C.263014 1.665753 .422416 1.713574 .518057 1.713574C.557908 1.713574 .74122 1.705604 .844832 1.498381C.868742 1.43462 1.099875 .486177 1.259278-.151432C1.39477-.047821 1.665753 .079701 2.072229 .079701C2.725778 .079701 3.156164-.454296 3.180075-.486177C3.323537 .063761 3.865504 .079701 3.961146 .079701C4.327771 .079701 4.511083-.223163 4.574844-.358655C4.734247-.645579 4.845828-1.107846 4.845828-1.139726C4.845828-1.187547 4.813948-1.243337 4.718306-1.243337S4.606725-1.195517 4.558904-.996264C4.447323-.557908 4.29589-.143462 3.985056-.143462C3.801743-.143462 3.730012-.294894 3.730012-.518057C3.730012-.653549 3.817684-.996264 3.873474-1.227397L4.080697-2.040349C4.128518-2.247572 4.168369-2.414944 4.23213-2.654047C4.27198-2.82939 4.351681-3.140224 4.351681-3.188045C4.351681-3.387298 4.192279-3.435118 4.096638-3.435118C3.817684-3.435118 3.769863-3.235866 3.682192-2.87721L3.514819-2.215691L3.267746-1.219427L3.188045-.900623C3.172105-.852802 2.956912-.549938 2.773599-.398506C2.638107-.294894 2.406974-.143462 2.11208-.143462C1.737484-.143462 1.482441-.342715 1.482441-.836862C1.482441-1.044085 1.546202-1.283188 1.594022-1.474471L1.928767-2.81345Z"></path>
+<path id="tz_fig_normal_g1-27" d="M4.375592-2.909091C4.519054-2.909091 4.574844-2.909091 4.670486-2.972852C4.758157-3.044583 4.790037-3.156164 4.790037-3.211955C4.790037-3.435118 4.590785-3.435118 4.455293-3.435118H2.494645C1.267248-3.435118 .326775-2.175841 .326775-1.211457C.326775-.430386 .884682 .079701 1.625903 .079701C2.630137 .079701 3.722042-.884682 3.722042-2.072229C3.722042-2.502615 3.57061-2.757659 3.482939-2.909091H4.375592ZM1.633873-.143462C1.235367-.143462 .884682-.406476 .884682-.988294C.884682-1.323039 1.083935-2.909091 2.367123-2.909091C3.140224-2.909091 3.140224-2.319303 3.140224-2.15193C3.140224-1.331009 2.574346-.143462 1.633873-.143462Z"></path>
+<path id="tz_fig_normal_g2-37" d="M5.794271-5.626899C5.866002-5.72254 5.866002-5.770361 5.866002-5.794271C5.866002-5.897883 5.786301-5.977584 5.68269-5.977584C5.595019-5.977584 5.555168-5.921793 5.507347-5.866002C5.156663-5.419676 4.646575-5.092902 3.913325-5.092902C3.610461-5.092902 2.964882-5.164633 2.335243-5.69863C2.191781-5.826152 2.016438-5.977584 1.705604-5.977584C1.060025-5.977584 .470237-5.300125 .470237-4.375592C.470237-3.427148 1.075965-2.765629 1.705604-2.765629S2.81345-3.482939 2.81345-4.367621C2.81345-4.750187 2.725778-5.045081 2.662017-5.204483C3.267746-4.869738 3.825654-4.869738 3.921295-4.869738C4.112578-4.869738 4.566874-4.901619 4.95741-5.116812L4.96538-5.108842L1.267248 .087671C1.179577 .199253 1.179577 .215193 1.179577 .263014C1.179577 .366625 1.259278 .446326 1.362889 .446326C1.43462 .446326 1.482441 .414446 1.546202 .326775L5.794271-5.626899ZM1.721544-2.988792C1.578082-2.988792 1.012204-3.060523 1.012204-4.367621C1.012204-5.68269 1.570112-5.754421 1.721544-5.754421C2.13599-5.754421 2.566376-5.196513 2.566376-4.375592C2.566376-3.53076 2.12802-2.988792 1.721544-2.988792ZM6.575342-1.155666C6.575342-2.072229 6.081196-2.765629 5.467497-2.765629C4.821918-2.765629 4.23213-2.088169 4.23213-1.163636C4.23213-.215193 4.837858 .446326 5.467497 .446326S6.575342-.270984 6.575342-1.155666ZM5.483437 .223163C5.339975 .223163 4.774097 .151432 4.774097-1.155666C4.774097-2.470735 5.332005-2.542466 5.483437-2.542466C5.897883-2.542466 6.328269-1.984558 6.328269-1.163636C6.328269-.318804 5.889913 .223163 5.483437 .223163Z"></path>
+<path id="tz_fig_normal_g2-43" d="M3.474969-1.809215H5.818182C5.929763-1.809215 6.105106-1.809215 6.105106-1.992528S5.929763-2.175841 5.818182-2.175841H3.474969V-4.527024C3.474969-4.638605 3.474969-4.813948 3.291656-4.813948S3.108344-4.638605 3.108344-4.527024V-2.175841H.757161C.645579-2.175841 .470237-2.175841 .470237-1.992528S.645579-1.809215 .757161-1.809215H3.108344V.541968C3.108344 .653549 3.108344 .828892 3.291656 .828892S3.474969 .653549 3.474969 .541968V-1.809215Z"></path>
+<path id="tz_fig_normal_g2-50" d="M2.247572-1.625903C2.375093-1.745455 2.709838-2.008468 2.83736-2.12005C3.331507-2.574346 3.801743-3.012702 3.801743-3.737983C3.801743-4.686426 3.004732-5.300125 2.008468-5.300125C1.052055-5.300125 .422416-4.574844 .422416-3.865504C.422416-3.474969 .73325-3.419178 .844832-3.419178C1.012204-3.419178 1.259278-3.53873 1.259278-3.841594C1.259278-4.25604 .860772-4.25604 .765131-4.25604C.996264-4.837858 1.530262-5.037111 1.920797-5.037111C2.662017-5.037111 3.044583-4.407472 3.044583-3.737983C3.044583-2.909091 2.462765-2.303362 1.522291-1.338979L.518057-.302864C.422416-.215193 .422416-.199253 .422416 0H3.57061L3.801743-1.42665H3.55467C3.53076-1.267248 3.466999-.868742 3.371357-.71731C3.323537-.653549 2.717808-.653549 2.590286-.653549H1.171606L2.247572-1.625903Z"></path>
+<path id="tz_fig_normal_g2-51" d="M2.016438-2.662017C2.646077-2.662017 3.044583-2.199751 3.044583-1.362889C3.044583-.366625 2.478705-.071731 2.056289-.071731C1.617933-.071731 1.020174-.231133 .74122-.653549C1.028144-.653549 1.227397-.836862 1.227397-1.099875C1.227397-1.354919 1.044085-1.538232 .789041-1.538232C.573848-1.538232 .350685-1.40274 .350685-1.083935C.350685-.326775 1.163636 .167372 2.072229 .167372C3.132254 .167372 3.873474-.565878 3.873474-1.362889C3.873474-2.024408 3.347447-2.630137 2.534496-2.805479C3.164134-3.028643 3.634371-3.57061 3.634371-4.208219S2.917061-5.300125 2.088169-5.300125C1.235367-5.300125 .589788-4.837858 .589788-4.23213C.589788-3.937235 .789041-3.809714 .996264-3.809714C1.243337-3.809714 1.40274-3.985056 1.40274-4.216189C1.40274-4.511083 1.147696-4.622665 .972354-4.630635C1.307098-5.068991 1.920797-5.092902 2.064259-5.092902C2.271482-5.092902 2.87721-5.029141 2.87721-4.208219C2.87721-3.650311 2.646077-3.315567 2.534496-3.188045C2.295392-2.940971 2.11208-2.925031 1.625903-2.893151C1.474471-2.885181 1.41071-2.87721 1.41071-2.773599C1.41071-2.662017 1.482441-2.662017 1.617933-2.662017H2.016438Z"></path>
+<path id="tz_fig_normal_g2-53" d="M1.115816-4.479203C1.219427-4.447323 1.538232-4.367621 1.872976-4.367621C2.86924-4.367621 3.474969-5.068991 3.474969-5.188543C3.474969-5.276214 3.419178-5.300125 3.379328-5.300125C3.363387-5.300125 3.347447-5.300125 3.275716-5.260274C2.964882-5.140722 2.598257-5.045081 2.16787-5.045081C1.697634-5.045081 1.307098-5.164633 1.060025-5.260274C.980324-5.300125 .964384-5.300125 .956413-5.300125C.852802-5.300125 .852802-5.212453 .852802-5.068991V-2.733748C.852802-2.590286 .852802-2.494645 .980324-2.494645C1.044085-2.494645 1.067995-2.526526 1.107846-2.590286C1.203487-2.709838 1.506351-3.116314 2.183811-3.116314C2.630137-3.116314 2.84533-2.749689 2.917061-2.598257C3.052553-2.311333 3.068493-1.944707 3.068493-1.633873C3.068493-1.338979 3.060523-.908593 2.83736-.557908C2.685928-.318804 2.367123-.071731 1.944707-.071731C1.42665-.071731 .916563-.398506 .73325-.916563C.757161-.908593 .804981-.908593 .812951-.908593C1.036115-.908593 1.211457-1.052055 1.211457-1.299128C1.211457-1.594022 .980324-1.697634 .820922-1.697634C.67746-1.697634 .422416-1.617933 .422416-1.275218C.422416-.557908 1.044085 .167372 1.960648 .167372C2.956912 .167372 3.801743-.605729 3.801743-1.594022C3.801743-2.518555 3.132254-3.339477 2.191781-3.339477C1.793275-3.339477 1.41868-3.211955 1.115816-2.940971V-4.479203Z"></path>
+<path id="tz_fig_normal_g2-54" d="M1.099875-2.638107C1.099875-3.299626 1.155666-3.881445 1.44259-4.367621C1.681694-4.766127 2.088169-5.092902 2.590286-5.092902C2.749689-5.092902 3.116314-5.068991 3.299626-4.790037C2.940971-4.774097 2.909091-4.503113 2.909091-4.415442C2.909091-4.176339 3.092403-4.040847 3.283686-4.040847C3.427148-4.040847 3.658281-4.128518 3.658281-4.431382C3.658281-4.909589 3.299626-5.300125 2.582316-5.300125C1.474471-5.300125 .350685-4.24807 .350685-2.526526C.350685-.366625 1.354919 .167372 2.12802 .167372C2.510585 .167372 2.925031 .063761 3.283686-.278954C3.602491-.589788 3.873474-.924533 3.873474-1.617933C3.873474-2.662017 3.084433-3.395268 2.199751-3.395268C1.625903-3.395268 1.283188-3.028643 1.099875-2.638107ZM2.12802-.071731C1.705604-.071731 1.44259-.366625 1.323039-.589788C1.139726-.948443 1.123786-1.490411 1.123786-1.793275C1.123786-2.582316 1.554172-3.172105 2.16787-3.172105C2.566376-3.172105 2.805479-2.964882 2.956912-2.685928C3.124284-2.391034 3.124284-2.032379 3.124284-1.625903S3.124284-.868742 2.964882-.581818C2.757659-.215193 2.478705-.071731 2.12802-.071731Z"></path>
+<path id="tz_fig_normal_g2-56" d="M2.646077-2.87721C3.092403-3.092403 3.634371-3.490909 3.634371-4.112578C3.634371-4.869738 2.86127-5.300125 2.12005-5.300125C1.275218-5.300125 .589788-4.718306 .589788-3.969116C.589788-3.674222 .6934-3.403238 .892653-3.172105C1.028144-3.004732 1.060025-2.988792 1.554172-2.677958C.565878-2.239601 .350685-1.657783 .350685-1.211457C.350685-.334745 1.235367 .167372 2.10411 .167372C3.084433 .167372 3.873474-.494147 3.873474-1.338979C3.873474-1.841096 3.602491-2.175841 3.474969-2.311333C3.339477-2.438854 3.331507-2.446824 2.646077-2.87721ZM1.41071-3.626401C1.179577-3.761893 .988294-3.993026 .988294-4.27198C.988294-4.774097 1.538232-5.092902 2.10411-5.092902C2.725778-5.092902 3.235866-4.670486 3.235866-4.112578C3.235866-3.650311 2.87721-3.259776 2.406974-3.028643L1.41071-3.626401ZM1.801245-2.534496C1.833126-2.518555 2.741719-1.960648 2.87721-1.872976C3.004732-1.801245 3.419178-1.546202 3.419178-1.067995C3.419178-.454296 2.773599-.071731 2.12005-.071731C1.41071-.071731 .804981-.557908 .804981-1.211457C.804981-1.809215 1.251308-2.279452 1.801245-2.534496Z"></path>
+<path id="tz_fig_normal_g2-57" d="M3.124284-2.351183C3.124284-.406476 2.199751-.071731 1.737484-.071731C1.570112-.071731 1.155666-.095641 .940473-.342715C1.291158-.374595 1.315068-.637609 1.315068-.71731C1.315068-.956413 1.131756-1.091905 .940473-1.091905C.797011-1.091905 .565878-1.004234 .565878-.70137C.565878-.159402 1.012204 .167372 1.745455 .167372C2.83736 .167372 3.873474-.916563 3.873474-2.622167C3.873474-4.694396 2.956912-5.300125 2.13599-5.300125C1.195517-5.300125 .350685-4.566874 .350685-3.52279C.350685-2.494645 1.123786-1.745455 2.024408-1.745455C2.590286-1.745455 2.933001-2.10411 3.124284-2.510585V-2.351183ZM2.056289-1.968618C1.689664-1.968618 1.458531-2.13599 1.283188-2.430884C1.099875-2.725778 1.099875-3.108344 1.099875-3.514819C1.099875-3.985056 1.099875-4.319801 1.315068-4.646575C1.514321-4.933499 1.769365-5.092902 2.14396-5.092902C2.677958-5.092902 2.909091-4.566874 2.933001-4.527024C3.100374-4.136488 3.108344-3.514819 3.108344-3.355417C3.108344-2.725778 2.765629-1.968618 2.056289-1.968618Z"></path>
+</defs>
+<g id="tz_fig_normal_page1">
+<g stroke-miterlimit="10" transform="translate(-67.815698,71.599848)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.815698,71.599848)scale(-1,-1)"></g>
+<g transform="translate(-0.2,-15.71095)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.815698,71.599848)scale(-1,-1)">
+<g stroke="#000" stroke-miterlimit="10" transform="translate(-67.616449,55.947591)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="M37.05292-2.13388V2.13388M74.10583-2.13388V2.13388M111.15875-2.13388V2.13388M148.21167-2.13388V2.13388M185.26459-2.13388V2.13388M222.3175-2.13388V2.13388M259.37042-2.13388V2.13388" fill="none"></path>
+</g>
+</g>
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="" fill="none"></path>
+</g>
+</g>
+<path d="M0 0H294.42337" fill="none"></path>
+<g transform="translate(294.42337,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<path d="M0 0V137.93839" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,137.93839)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(26.02106,-10.82242)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.616449,55.947591)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-67.616449" y="55.947591" href="#tz_fig_normal_g1-22"></use>
+<use x="-62.051608" y="55.947591" href="#tz_fig_normal_g0-0"></use>
+<use x="-54.994637" y="55.947591" href="#tz_fig_normal_g2-51"></use>
+<use x="-50.760454" y="55.947591" href="#tz_fig_normal_g1-27"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(63.07397,-10.82242)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.616449,55.947591)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-67.616449" y="55.947591" href="#tz_fig_normal_g1-22"></use>
+<use x="-62.051608" y="55.947591" href="#tz_fig_normal_g0-0"></use>
+<use x="-54.994637" y="55.947591" href="#tz_fig_normal_g2-50"></use>
+<use x="-50.760454" y="55.947591" href="#tz_fig_normal_g1-27"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(102.25192,-10.50023)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.616449,55.947591)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-67.616449" y="55.947591" href="#tz_fig_normal_g1-22"></use>
+<use x="-62.051608" y="55.947591" href="#tz_fig_normal_g0-0"></use>
+<use x="-54.994637" y="55.947591" href="#tz_fig_normal_g1-27"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(145.65494,-9.1113)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.616449,55.947591)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-67.616449" y="55.947591" href="#tz_fig_normal_g1-22"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(176.35776,-10.50023)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.616449,55.947591)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-67.616449" y="55.947591" href="#tz_fig_normal_g1-22"></use>
+<use x="-62.051608" y="55.947591" href="#tz_fig_normal_g2-43"></use>
+<use x="-54.994637" y="55.947591" href="#tz_fig_normal_g1-27"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(211.28564,-10.82242)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.616449,55.947591)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-67.616449" y="55.947591" href="#tz_fig_normal_g1-22"></use>
+<use x="-62.051608" y="55.947591" href="#tz_fig_normal_g2-43"></use>
+<use x="-54.994637" y="55.947591" href="#tz_fig_normal_g2-50"></use>
+<use x="-50.760454" y="55.947591" href="#tz_fig_normal_g1-27"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(248.33856,-10.82242)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.616449,55.947591)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-67.616449" y="55.947591" href="#tz_fig_normal_g1-22"></use>
+<use x="-62.051608" y="55.947591" href="#tz_fig_normal_g2-43"></use>
+<use x="-54.994637" y="55.947591" href="#tz_fig_normal_g2-51"></use>
+<use x="-50.760454" y="55.947591" href="#tz_fig_normal_g1-27"></use>
+</g>
+</g>
+</g>
+</g>
+<clippath id="tz_fig_normal_pgfcp1">
+<path d="M0 0H296.42334V139.93835H0Z"></path> </clippath>
+<g clip-path="url(#tz_fig_normal_pgfcp1)">
+<g fill="#9ec6f3">
+<path d="M111.15875 75.26352L111.53113 76.02156L111.9035 76.77715L112.2759 77.53394L112.64827 78.29074L113.02065 79.04878L113.39304 79.79195L113.76541 80.54999L114.1378 81.3068L114.51018 82.05118L114.88257 82.80798L115.25494 83.55362L115.62732 84.29803L115.99971 85.04243L116.37209 85.78807L116.74448 86.5188L117.11685 87.26445L117.48923 87.9952L117.86162 88.7272L118.234 89.46042L118.60638 90.18001L118.97876 90.89958L119.35115 91.61794L119.72353 92.34L120.0959 93.04593L120.46829 93.75435L120.84067 94.46153L121.21306 95.15631L121.58543 95.85107L121.95782 96.54584L122.3302 97.22821L122.70258 97.91057L123.07497 98.58177L123.44734 99.25172L123.81973 99.92169L124.19211 100.57799L124.5645 101.2244L124.93687 101.86952L125.30925 102.51591L125.68164 103.14742L126.05402 103.76898L126.4264 104.38931L126.79878 105.00964L127.17117 105.61757L127.54355 106.21309L127.91592 106.8086L128.28831 107.39171L128.66069 107.96365L129.03308 108.53313L129.40546 109.09142L129.77785 109.64972L130.15022 110.1832L130.5226 110.7291L130.89499 111.25142L131.26736 111.77249L131.63976 112.28117L132.01213 112.77744L132.3845 113.27368L132.7569 113.74515L133.12927 114.23026L133.50166 114.6893L133.87404 115.13593L134.24643 115.5838L134.6188 116.01678L134.99118 116.43863L135.36357 116.84805L135.73595 117.2587L136.10832 117.64331L136.48071 118.02667L136.8531 118.40012L137.22548 118.75992L137.59785 119.10605L137.97025 119.44102L138.34262 119.76485L138.715 120.07501L139.08739 120.38393L139.45978 120.68292L139.83215 120.95587L140.20453 121.22882L140.57692 121.48936L140.9493 121.72385L141.32167 121.9608L141.69406 122.18413L142.06645 122.39505L142.43883 122.59355L142.8112 122.7809L143.1836 122.95334L143.55597 123.11586L143.92834 123.2635L144.30074 123.39998L144.67313 123.52528L145.0455 123.63696L145.41788 123.73495L145.79027 123.8218L146.16264 123.89749L146.53502 123.95827L146.90741 124.00914L147.27979 124.04512L147.65218 124.08363H148.02455H148.39694H148.76933L149.1417 124.04512L149.5141 124.00914L149.88644 123.95827L150.25885 123.89749L150.63126 123.8218L151.0036 123.73495L151.376 123.63696L151.74835 123.52528L152.12076 123.39998L152.49316 123.2635L152.86551 123.11586L153.23792 122.95334L153.61026 122.7809L153.98267 122.59355L154.35507 122.39505L154.72742 122.18413L155.09982 121.9608L155.47217 121.72385L155.84457 121.48936L156.21698 121.22882L156.58932 120.95587L156.96173 120.68292L157.33408 120.38393L157.70648 120.08742L158.07889 119.76485L158.45123 119.44102L158.82364 119.10605L159.19598 118.75992L159.56839 118.40012L159.9408 118.02667L160.31314 117.64331L160.68555 117.2587L161.05789 116.84805L161.4303 116.43863L161.8027 116.01678L162.17505 115.5838L162.54745 115.14833L162.91982 114.6893L163.29222 114.23026L163.66461 113.75879L164.03697 113.27368L164.40938 112.77744L164.78172 112.28117L165.15413 111.77249L165.52654 111.25142L165.89888 110.7291L166.27129 110.19685L166.64363 109.64972L167.01604 109.09142L167.38844 108.53313L167.76079 107.97482L168.1332 107.39171L168.50554 106.8086L168.87794 106.21309L169.25035 105.61757L169.6227 105.00964L169.9951 104.40048L170.36745 103.78139L170.73985 103.14742L171.11226 102.51591L171.4846 101.88316L171.85701 101.2244L172.22935 100.57799L172.60176 99.92169L172.97417 99.25172L173.34651 98.59294L173.71892 97.91057L174.09126 97.22821L174.46367 96.54584L174.83607 95.85107L175.20842 95.15631L175.58083 94.46153L175.95317 93.75435L176.32558 93.04593L176.69798 92.34L177.07033 91.61794L177.44273 90.91199L177.8151 90.18001L178.1875 89.46042L178.55989 88.7272L178.93224 87.9952L179.30466 87.26445L179.67699 86.5188L180.0494 85.78807L180.4218 85.04243L180.79414 84.29803L181.16655 83.55362L181.53891 82.80798L181.91132 82.05118L182.2837 81.3068L182.65607 80.54999L183.02847 79.80559L183.40082 79.04878L183.77322 78.29074L184.14563 77.53394L184.51797 76.77715L184.89038 76.02156L185.26273 75.26352V0H111.15875Z" stroke="none"></path>
+</g>
+<g fill="#d0e3f9">
+<path d="M74.10583 16.78989L74.292 16.96233L74.4782 17.12485L74.66438 17.2973L74.85057 17.471L75.03676 17.64594L75.22295 17.81963L75.40913 18.00572L75.59532 18.17941L75.78151 18.36551L75.9677 18.5392L76.15388 18.72406L76.34007 18.91266L76.52626 19.09752L76.71245 19.2836L76.89864 19.47095L77.08482 19.6558L77.27101 19.8419L77.4572 20.0404L77.64339 20.22527L77.82957 20.42502L78.01575 20.62352L78.20195 20.82204L78.38814 21.02052L78.57431 21.22029L78.7605 21.4188L78.94669 21.6173L79.13287 21.82697L79.31906 22.0267L79.50525 22.23639L79.69144 22.43488L79.87762 22.64703L80.06381 22.85672L80.25 23.06886L80.43619 23.29219L80.62238 23.5031L80.80856 23.71277L80.99475 23.93608L81.18094 24.14824L81.36713 24.37157L81.55331 24.5949L81.7395 24.81819L81.92569 25.04152L82.11188 25.26483L82.29807 25.50056L82.48425 25.72388L82.67044 25.95961L82.85663 26.18294L83.0428 26.41866L83.22899 26.65437L83.41519 26.89134L83.60138 27.12582L83.78755 27.3628L83.97374 27.61093L84.15993 27.84541L84.34612 28.09355L84.5323 28.33052L84.71849 28.57864L84.90468 28.82678L85.09087 29.07367L85.27705 29.32181L85.46324 29.56993L85.64943 29.83171L85.83562 30.07985L86.0218 30.3404L86.208 30.58852L86.39418 30.8503L86.58037 31.10959L86.76656 31.37015L86.95274 31.63191L87.13893 31.89122L87.32512 32.16539L87.5113 32.4247L87.6975 32.69763L87.88368 32.95943L88.06987 33.23114L88.25604 33.50407L88.44223 33.77826L88.62843 34.05121L88.8146 34.33655L89.0008 34.6095L89.18698 34.88245L89.37317 35.1678L89.55936 35.45439L89.74554 35.7261L89.93173 36.01268L90.11792 36.2968L90.30411 36.58215L90.4903 36.87991L90.67648 37.16527L90.86267 37.45062L91.04886 37.74838L91.23505 38.03374L91.42123 38.33148L91.60742 38.63048L91.79361 38.92825L91.9798 39.22476L92.16599 39.52376L92.35217 39.82153L92.53836 40.1317L92.72455 40.42946L92.91074 40.73962L93.09691 41.04979L93.28311 41.34753L93.46928 41.6577L93.65547 41.96786L93.84167 42.27803L94.02785 42.58945L94.21405 42.91078L94.4002 43.22095L94.58641 43.54477L94.77261 43.85616L94.95879 44.17749L95.14499 44.49883L95.33115 44.81023L95.51735 45.13281L95.70355 45.45538L95.88972 45.79036L96.07591 46.11418L96.26208 46.43549L96.44829 46.75807L96.63448 47.09305L96.82065 47.42802L97.00685 47.75185L97.19302 48.08682L97.37923 48.42181L97.56541 48.75677L97.75159 49.09175L97.93779 49.42674L98.12396 49.76295L98.31017 50.10785L98.49635 50.44408L98.68253 50.77905L98.86873 51.12769L99.0549 51.47383L99.24109 51.8088L99.42729 52.15742L99.61346 52.50357L99.79965 52.85222L99.98584 53.1996L100.17203 53.54698L100.35823 53.89436L100.5444 54.24174L100.73059 54.58913L100.91676 54.94891L101.10297 55.29631L101.28917 55.6561L101.47534 56.0035L101.66153 56.36327L101.8477 56.72307L102.0339 57.07045L102.22011 57.43024L102.40627 57.79004L102.59247 58.14983L102.77864 58.50963L102.96483 58.86942L103.15103 59.22922L103.3372 59.60265L103.5234 59.9612L103.70958 60.32098L103.89577 60.69443L104.08197 61.05421L104.26814 61.41402L104.45435 61.78746L104.6405 62.15718L104.8267 62.51944L105.01291 62.8904L105.19908 63.26384L105.38528 63.62363L105.57144 63.99583L105.75764 64.36679L105.94385 64.74023L106.13 65.11368L106.31621 65.48462L106.50238 65.85683L106.68858 66.23026L106.87477 66.60123L107.06094 66.97467L107.24715 67.34561L107.43332 67.71782L107.61952 68.09125L107.80571 68.47585L107.99188 68.84805L108.17809 69.21902L108.36426 69.60611L108.55046 69.97707L108.73665 70.34926L108.92282 70.72021L109.10902 71.1073L109.2952 71.47827L109.48138 71.8641L109.66759 72.23508L109.85376 72.6085L110.03995 72.99187L110.22612 73.36531L110.41232 73.74992L110.59853 74.12212L110.7847 74.50673L110.97089 74.88016L111.15706 75.26352V0H74.10583Z" stroke="none"></path>
+</g>
+<g fill="#d0e3f9">
+<path d="M185.26459 75.26352L185.45076 74.89133L185.63695 74.50673L185.82314 74.13329L186.00932 73.74992L186.19551 73.37648L186.3817 72.99187L186.56789 72.61967L186.75407 72.23508L186.94026 71.8641L187.12645 71.47827L187.31264 71.1073L187.49883 70.73387L187.68501 70.34926L187.8712 69.97707L188.05739 69.60611L188.24358 69.21902L188.42976 68.84805L188.61595 68.47585L188.80214 68.10242L188.98833 67.71782L189.1745 67.34561L189.3607 66.97467L189.54689 66.60123L189.73306 66.23026L189.91925 65.85683L190.10544 65.48462L190.29163 65.11368L190.47781 64.74023L190.664 64.36679L190.85019 63.99583L191.03638 63.63605L191.22256 63.26384L191.40875 62.8904L191.59494 62.51944L191.78113 62.15718L191.96732 61.78746L192.1535 61.42766L192.33969 61.05421L192.52588 60.69443L192.71207 60.32098L192.89825 59.9612L193.08444 59.60265L193.27063 59.24286L193.45682 58.88306L193.643 58.50963L193.8292 58.14983L194.01538 57.79004L194.20155 57.44266L194.38774 57.08286L194.57394 56.72307L194.76013 56.36327L194.9463 56.01588L195.13249 55.6561L195.31868 55.29631L195.50487 54.94891L195.69106 54.60153L195.87724 54.24174L196.06343 53.89436L196.24962 53.54698L196.4358 53.1996L196.622 52.85222L196.80818 52.50357L196.99437 52.15742L197.18056 51.8088L197.36674 51.47383L197.55293 51.12769L197.73912 50.79271L197.92531 50.44408L198.1115 50.10785L198.29768 49.76295L198.48387 49.42674L198.67006 49.09175L198.85625 48.75677L199.04243 48.42181L199.22862 48.08682L199.4148 47.76302L199.60098 47.42802L199.78719 47.09305L199.97336 46.77048L200.15955 46.43549L200.34573 46.11418L200.53192 45.79036L200.71811 45.46902L200.9043 45.14522L201.09048 44.82265L201.27667 44.49883L201.46286 44.17749L201.64905 43.85616L201.83524 43.54477L202.02142 43.22095L202.20761 42.91078L202.3938 42.60062L202.57999 42.27803L202.76617 41.96786L202.95236 41.67136L203.13855 41.35995L203.32474 41.04979L203.51093 40.73962L203.69711 40.44186L203.8833 40.1317L204.06949 39.83517L204.25566 39.52376L204.44186 39.22476L204.62804 38.92825L204.81422 38.63048L205.00043 38.33148L205.1866 38.0474L205.3728 37.74838L205.55896 37.45062L205.74516 37.16527L205.93137 36.87991L206.11754 36.5958L206.30374 36.2968L206.4899 36.01268L206.6761 35.73851L206.8623 35.45439L207.04848 35.1678L207.23466 34.8961L207.42084 34.6095L207.60704 34.33655L207.79323 34.05121L207.9794 33.77826L208.1656 33.50407L208.35178 33.23114L208.53798 32.97183L208.72417 32.69763L208.91034 32.4247L209.09654 32.16539L209.28271 31.90486L209.46892 31.63191L209.6551 31.37015L209.84128 31.10959L210.02748 30.8503L210.21365 30.60217L210.39984 30.3404L210.58604 30.07985L210.77222 29.83171L210.9584 29.56993L211.14459 29.32181L211.33078 29.07367L211.51698 28.82678L211.70316 28.57864L211.88934 28.33052L212.07552 28.09355L212.26172 27.84541L212.44792 27.61093L212.6341 27.3628L212.82028 27.12582L213.00645 26.89134L213.19266 26.65437L213.37886 26.41866L213.56502 26.19533L213.75122 25.95961L213.9374 25.72388L214.12358 25.50056L214.30978 25.27724L214.49596 25.04152L214.68216 24.81819L214.86833 24.5949L215.05452 24.37157L215.24072 24.15941L215.4269 23.93608L215.6131 23.71277L215.79926 23.5031L215.98546 23.29219L216.17166 23.08128L216.35783 22.85672L216.54404 22.64703L216.7302 22.44853L216.9164 22.23639L217.1026 22.0267L217.28876 21.82697L217.47496 21.6173L217.66113 21.4188L217.84734 21.22029L218.03352 21.02052L218.2197 20.82204L218.4059 20.62352L218.59207 20.42502L218.77827 20.22527L218.96446 20.0404L219.15063 19.8419L219.33684 19.6558L219.52301 19.47095L219.70921 19.2836L219.8954 19.09752L220.08157 18.91266L220.26778 18.72406L220.45395 18.5392L220.64014 18.36551L220.82634 18.17941L221.01251 18.00572L221.1987 17.81963L221.38487 17.64594L221.57108 17.471L221.75728 17.2973L221.94345 17.12485L222.12964 16.96233L222.31581 16.78989V0H185.26459Z" stroke="none"></path>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="1.2">
+<path d="M0 .04161L1.48955 .04883L2.97911 .05722L4.46867 .06694L5.95825 .07816L7.44781 .09114L8.93738 .1061L10.42694 .12329L11.9165 .14308L13.40607 .16573L14.89563 .1917L16.3852 .22131L17.87476 .25514L19.36432 .29369L20.8539 .33748L22.34346 .38716L23.83302 .44342L25.32259 .50716L26.81215 .57895L28.30171 .65993L29.79128 .75102L31.28084 .85327L32.7704 .9679L34.25996 1.09616L35.74954 1.23943L37.2391 1.39912L38.72867 1.57683L40.21823 1.77429L41.7078 1.99326L43.19736 2.23564L44.68692 2.5034L46.17648 2.79872L47.66606 3.12381L49.15562 3.48105L50.64519 3.87288L52.13475 4.30191L53.62431 4.77065L55.11388 5.282L56.60344 5.8387L58.093 6.44357L59.58257 7.09969L61.07213 7.81004L62.5617 8.57747L64.05127 9.40518L65.54083 10.29623L67.0304 11.25325L68.51996 12.27943L70.00952 13.37682L71.49908 14.54303L72.98865 15.7961L74.47821 17.12485L75.96777 18.5392L77.45735 20.0404L78.94691 21.6173L80.43648 23.29219L81.92604 25.04152L83.4156 26.89134L84.90517 28.82678L86.39473 30.8503L87.8843 32.97183L89.37386 35.1678L90.86342 37.45062L92.353 39.83517L93.84256 42.27803L95.33212 44.82265L96.82169 47.42802L98.31125 50.10785L99.80081 52.85222L101.29037 55.6561L102.77994 58.50963L104.2695 61.42766L105.75906 64.36679L107.24864 67.34561L108.7382 70.34926L110.22777 73.37648L111.71733 76.40494L113.2069 79.42099L114.69646 82.42339L116.18602 85.41461L117.67558 88.355L119.16515 91.25938L120.65471 94.11415L122.14429 96.88081L123.63385 99.5867L125.12341 102.19086L126.61298 104.69948L128.10254 107.09396L129.5921 109.37679L131.08167 111.51073L132.57123 113.51067L134.06079 115.35924L135.55035 117.0602L137.03993 118.57257L138.5295 119.92612L140.01906 121.09235L141.50862 122.07248L142.99818 122.8665L144.48775 123.46202L145.97731 123.86026L147.46687 124.06999H148.95644L150.44609 123.86026L151.93552 123.46202L153.42517 122.8665L154.91461 122.07248L156.40427 121.09235L157.89392 119.92612L159.38335 118.57257L160.873 117.0602L162.36243 115.35924L163.85208 113.51067L165.34174 111.51073L166.83116 109.37679L168.32082 107.09396L169.81026 104.69948L171.29991 102.19086L172.78957 99.5867L174.27899 96.88081L175.76865 94.11415L177.25807 91.25938L178.74773 88.355L180.23738 85.41461L181.7268 82.42339L183.21646 79.42099L184.7059 76.40494L186.19556 73.37648L187.6852 70.34926L189.17464 67.34561L190.66429 64.36679L192.15372 61.42766L193.64337 58.50963L195.13303 55.6561L196.62245 52.85222L198.1121 50.10785L199.60155 47.42802L201.0912 44.82265L202.58084 42.27803L204.07028 39.83517L205.55994 37.45062L207.04936 35.1678L208.53902 32.97183L210.02867 30.8503L211.5181 28.82678L213.00775 26.89134L214.4972 25.04152L215.98685 23.29219L217.47649 21.6173L218.96593 20.0404L220.45558 18.5392L221.945 17.12485L223.43466 15.7961L224.92432 14.54303L226.41374 13.37682L227.9034 12.27943L229.39284 11.25325L230.88249 10.29623L232.37213 9.40518L233.86157 8.57747L235.35123 7.81004L236.84065 7.09984L238.3303 6.44357L239.81996 5.83862L241.30939 5.282L242.79904 4.77065L244.28848 4.30191L245.77812 3.87294L247.26778 3.48105L248.75722 3.12381L250.24687 2.79869L251.7363 2.5034L253.22595 2.23564L254.7156 1.99324L256.20503 1.77429L257.69469 1.57683L259.18413 1.39912L260.67377 1.23943L262.16342 1.09615L263.65286 .96791L265.14252 .85327L266.63194 .75102L268.1216 .65993L269.61125 .57895L271.10068 .50716L272.59033 .44342L274.07977 .38716L275.56941 .33748L277.05907 .29369L278.54851 .25514L280.03816 .22131L281.52759 .1917L283.01724 .16573L284.5069 .14305L285.99632 .12329L287.48598 .1061L288.97542 .09114L290.46506 .07816L291.95471 .06693L293.44415 .05722L294.9338 .04883L296.42323 .04161" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(140.41989,50.08781)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.616449,55.947591)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-67.616449" y="55.947591" href="#tz_fig_normal_g2-54"></use>
+<use x="-63.382266" y="55.947591" href="#tz_fig_normal_g2-56"></use>
+<use x="-59.148083" y="55.947591" href="#tz_fig_normal_g2-37"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(195.99927,12.77092)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.616449,55.947591)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-67.616449" y="55.947591" href="#tz_fig_normal_g2-57"></use>
+<use x="-63.382266" y="55.947591" href="#tz_fig_normal_g2-53"></use>
+<use x="-59.148083" y="55.947591" href="#tz_fig_normal_g2-37"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<path d="M74.50583 130.60913H221.91751" fill="none"></path>
+<g transform="matrix(-1.0,0.0,0.0,-1.0,74.30583,130.60913)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.07999 2.39998C-1.69998 .95998-.85318 .28 0 0C-.85318-.28-1.69998-.95998-2.07999-2.39998" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+<g transform="translate(222.11751,130.60913)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.07999 2.39998C-1.69998 .95998-.85318 .28 0 0C-.85318-.28-1.69998-.95998-2.07999-2.39998" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g fill="#6c757d" stroke="#6c757d">
+</g>
+<g transform="translate(135.6976,134.05083)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-67.616449,55.947591)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-67.616449" y="55.947591" href="#tz_fig_normal_g0-25"></use>
+<use x="-58.207153" y="55.947591" href="#tz_fig_normal_g2-57"></use>
+<use x="-53.972971" y="55.947591" href="#tz_fig_normal_g2-53"></use>
+<use x="-49.738788" y="55.947591" href="#tz_fig_normal_g2-37"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;67.1: A distribuição normal: simétrica em torno da média <span class="math inline">\(\mu\)</span>, com a dispersão governada por <span class="math inline">\(\sigma\)</span>. As faixas ilustram a regra empírica 68–95–99,7.
+</figcaption>
+</figure>
+</div>
+<p>A normal tem propriedades notáveis: é <strong>simétrica</strong> em torno de <span class="math inline">\(\mu\)</span> (média = mediana = moda), tem forma de sino, e fica <strong>inteiramente determinada</strong> por dois parâmetros — a média <span class="math inline">\(\mu\)</span> (que localiza o centro) e o desvio-padrão <span class="math inline">\(\sigma\)</span> (que controla a largura). Dela decorre a <strong>regra empírica</strong>:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Regra empírica 68–95–99,7">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Regra empírica 68–95–99,7
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Em uma distribuição normal, aproximadamente <strong>68%</strong> das observações caem no intervalo <span class="math inline">\(\mu \pm \sigma\)</span>; <strong>95%</strong> em <span class="math inline">\(\mu \pm 2\sigma\)</span>; e <strong>99,7%</strong> em <span class="math inline">\(\mu \pm 3\sigma\)</span>. Uma observação além de <span class="math inline">\(3\sigma\)</span> é rara (menos de 0,3%) — um “evento de três desvios” é notícia.</p>
+</div>
+</div>
+<p>Qualquer normal pode ser convertida na <strong>normal padrão</strong> <span class="math inline">\(Z \sim N(0,1)\)</span> pela <strong>padronização</strong>, que mede quantos desvios-padrão um valor está da média:</p>
+<p><span id="eq-padronizacao"><span class="math display">\[
+Z = \frac{X - \mu}{\sigma}.
+\tag{67.6}\]</span></span></p>
+<p>O <strong>escore-<span class="math inline">\(z\)</span></strong> permite comparar observações de distribuições diferentes (“esse retorno está a quantos desvios da média?”) e é a base das tabelas usadas na inferência.</p>
+</section>
+<section id="o-teorema-central-do-limite" class="level2" data-number="67.8">
+<h2 data-number="67.8" class="anchored" data-anchor-id="o-teorema-central-do-limite"><span class="header-section-number">67.8</span> O teorema central do limite</h2>
+<p>Por que a curva normal aparece em tantos fenômenos — alturas, erros de medição, médias amostrais? A resposta é um dos resultados mais profundos da matemática: o <strong>teorema central do limite</strong> (TCL).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Teorema central do limite">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Teorema central do limite
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Seja uma amostra de <span class="math inline">\(n\)</span> observações <strong>independentes</strong> de uma população com média <span class="math inline">\(\mu\)</span> e variância finita <span class="math inline">\(\sigma^2\)</span>, <strong>qualquer que seja</strong> a forma da distribuição dessa população. Então, à medida que <span class="math inline">\(n\)</span> cresce, a distribuição da <strong>média amostral</strong> <span class="math inline">\(\bar{X}\)</span> aproxima-se de uma normal: <span class="math display">\[
+\bar{X} \;\approx\; N\!\left(\mu,\; \frac{\sigma^2}{n}\right).
+\]</span></p>
+</div>
+</div>
+<p>Duas consequências merecem destaque. Primeira: a média amostral tende à normal <strong>mesmo que a população não seja normal</strong> — some muitas influências aleatórias independentes e o resultado agregado é aproximadamente normal. É por isso que o sino aparece em toda parte. Segunda: a variância da média amostral é <span class="math inline">\(\sigma^2/n\)</span>, que <strong>encolhe</strong> com o tamanho da amostra. O erro-padrão da média, <span class="math inline">\(\sigma/\sqrt{n}\)</span>, diminui com <span class="math inline">\(\sqrt{n}\)</span> — quadruplicar a amostra reduz o erro pela metade. Este é o alicerce de <strong>toda</strong> a inferência estatística do próximo capítulo: é o TCL que nos permite fazer afirmações probabilísticas sobre uma população a partir de uma única amostra.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — o TCL não normaliza os dados brutos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — o TCL não normaliza os dados brutos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O TCL afirma que a distribuição da <strong>média amostral</strong> tende à normal, <strong>não</strong> que os dados individuais viram normais. A renda continua assimétrica à direita por mais que se colete; o que se aproxima da normal é a distribuição das <strong>médias</strong> de muitas amostras de renda. Confundir os dois leva a supor normalidade onde ela não existe — erro grave, por exemplo, em finanças, onde retornos têm <strong>caudas mais pesadas</strong> que a normal, e eventos extremos são mais frequentes do que o sino prevê.</p>
+</div>
+</div>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="67.9">
+<h2 data-number="67.9" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">67.9</span> 🇧🇷 Brasil em Foco</h2>
+<p>A probabilidade não é abstração no Brasil: ela precifica riscos, orienta política pública e sustenta a estatística oficial.</p>
+<p><strong>Amostragem probabilística: como o IBGE conhece o Brasil.</strong> A <strong>PNAD Contínua</strong> não entrevista os mais de 70 milhões de domicílios do país — entrevista uma <strong>amostra</strong> de algumas dezenas de milhares, selecionada por <strong>amostragem probabilística</strong> (cada domicílio tem uma probabilidade conhecida de ser sorteado). É o TCL e a teoria da amostragem que autorizam o IBGE a divulgar a taxa de desemprego nacional com uma <strong>margem de erro</strong> calculável a partir de uma fração ínfima da população. Sem probabilidade, não haveria estatística oficial — apenas censos decenais caríssimos.</p>
+<p><strong>Risco de crédito e seguros: probabilidade que vira preço.</strong> Bancos e o próprio arcabouço de Basileia (Volume 8) modelam a <strong>probabilidade de inadimplência</strong> (<em>probability of default</em>) de cada tomador para precificar o <em>spread</em> bancário e dimensionar o capital de reserva. Seguradoras fazem o mesmo com tábuas atuariais: a probabilidade de um sinistro determina o preço da apólice. A crise de 2008 foi, em boa medida, uma falha de probabilidade — modelos supuseram <strong>independência</strong> entre calotes de hipotecas que, na crise, se revelaram fortemente <strong>correlacionados</strong>, subestimando grosseiramente o risco da carteira.</p>
+<p><strong>A normal e suas caudas pesadas nos mercados.</strong> O câmbio real/dólar, o Ibovespa e os juros futuros são frequentemente modelados como aproximadamente normais no dia a dia — mas o Brasil, com seu histórico de choques, é um lembrete vivo de que os mercados têm <strong>caudas pesadas</strong>: dias de desvalorização de 5% ou 10% ocorrem com frequência muito maior do que o sino previria. Gestores de risco usam medidas como o <strong>VaR</strong> (<em>Value at Risk</em>), baseadas em quantis de distribuições de retorno, justamente para dimensionar perdas prováveis — cientes de que subestimar as caudas foi a causa de mais de uma quebra.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> IBGE (notas metodológicas da PNAD Contínua e do Censo — desenho amostral e margens de erro); Banco Central (relatórios de estabilidade financeira, dados de inadimplência do SFN); B3 e Bacen (séries de câmbio e Ibovespa para estudar distribuições de retorno). Verifique sempre a metodologia e o período.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="67.10">
+<h2 data-number="67.10" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">67.10</span> Resumo do capítulo</h2>
+<ul>
+<li>A <strong>probabilidade</strong> mede a chance de eventos, entre 0 e 1, seguindo os axiomas de Kolmogorov; interpreta-se como frequência de longo prazo (frequentista) ou grau de crença (bayesiana).</li>
+<li>As regras do <strong>complementar</strong>, da <strong>soma</strong> e do <strong>produto</strong> resolvem a maioria dos cálculos; a <strong>probabilidade condicional</strong> <span class="math inline">\(P(B\mid A)\)</span> e a <strong>independência</strong> (<span class="math inline">\(P(B\mid A)=P(B)\)</span>) são conceitos centrais.</li>
+<li>O <strong>teorema de Bayes</strong> atualiza probabilidades diante de evidência; ignorar a probabilidade de base gera erros como superestimar falsos positivos.</li>
+<li>Uma <strong>variável aleatória</strong> associa números a resultados; é <strong>discreta</strong> (função de probabilidade) ou <strong>contínua</strong> (função densidade, probabilidade = área).</li>
+<li>A <strong>esperança</strong> <span class="math inline">\(E(X)\)</span> é a média ponderada pelas probabilidades (linear); a <strong>variância</strong> mede a dispersão (<span class="math inline">\(\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)\)</span>; soma de variâncias exige independência).</li>
+<li>A <strong>binomial</strong> conta sucessos em <span class="math inline">\(n\)</span> ensaios independentes (<span class="math inline">\(E(X)=np\)</span>); a <strong>normal</strong> <span class="math inline">\(N(\mu,\sigma^2)\)</span> é simétrica, definida por <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma\)</span>, com a regra <strong>68–95–99,7</strong> e padronização <span class="math inline">\(Z=(X-\mu)/\sigma\)</span>.</li>
+<li>O <strong>teorema central do limite</strong> garante que a média amostral <span class="math inline">\(\bar{X}\)</span> tende à normal <span class="math inline">\(N(\mu, \sigma^2/n)\)</span> para <span class="math inline">\(n\)</span> grande, seja qual for a população — o fundamento de toda a inferência. Atenção: normaliza médias, não dados brutos.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="67.11">
+<h2 data-number="67.11" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">67.11</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.</p>
+</div>
+</div>
+<p><strong>1.</strong> A probabilidade de um dia ser chuvoso é 0,3. Qual a probabilidade de <strong>não</strong> chover? E de chover em dois dias <strong>independentes</strong> seguidos?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Complementar: <span class="math inline">\(P(\text{não chover}) = 1 - 0{,}3 = 0{,}7\)</span>. Como os dias são independentes, pela regra do produto <span class="math inline">\(P(\text{chover nos dois}) = 0{,}3 \times 0{,}3 = 0{,}09\)</span> (9%).</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Explique a diferença entre eventos <strong>mutuamente exclusivos</strong> e eventos <strong>independentes</strong>. Podem ser as duas coisas ao mesmo tempo?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Mutuamente exclusivos:</strong> não podem ocorrer juntos (<span class="math inline">\(P(A \text{ e } B)=0\)</span>) — sair “par” e “ímpar” no mesmo lançamento. <strong>Independentes:</strong> a ocorrência de um não altera a probabilidade do outro (<span class="math inline">\(P(A \text{ e } B)=P(A)P(B)\)</span>). Não podem ser as duas coisas (se ambos têm probabilidade positiva): se são mutuamente exclusivos, saber que <span class="math inline">\(A\)</span> ocorreu torna <span class="math inline">\(B\)</span> <strong>impossível</strong> — máxima dependência, o oposto de independência.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Uma v.a. discreta assume os valores 0, 10 e 100 com probabilidades 0,5, 0,4 e 0,1. Calcule a esperança.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+E(X) = 0 \times 0{,}5 + 10 \times 0{,}4 + 100 \times 0{,}1 = 0 + 4 + 10 = 14.
+\]</span> O valor esperado é 14 — repare que <strong>nenhum</strong> dos resultados possíveis é 14; a esperança é uma média ponderada, não necessariamente um valor observável.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Você paga R$,5 por um bilhete que dá R$,50 com probabilidade 0,08 e nada com probabilidade 0,92. O jogo é favorável? Qual o ganho (ou perda) esperado por bilhete?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Prêmio esperado: <span class="math inline">\(50 \times 0{,}08 + 0 \times 0{,}92 = R\$\,4{,}00\)</span>. Como o bilhete custa R$,5, o resultado líquido esperado é <span class="math inline">\(4 - 5 = -R\$\,1{,}00\)</span> por bilhete: o jogo é <strong>desfavorável</strong> ao apostador (perde-se, em média, R$,1 por bilhete). É assim que loterias e cassinos operam — valor esperado negativo para o jogador.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Os retornos anuais de um fundo seguem, aproximadamente, uma normal com média 10% e desvio-padrão 4%. Usando a regra empírica, entre que valores está cerca de 95% dos retornos? E qual a chance aproximada de um retorno negativo?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>95% dos retornos ficam em <span class="math inline">\(\mu \pm 2\sigma = 10\% \pm 8\% = [2\%,\ 18\%]\)</span>. Um retorno <strong>negativo</strong> (abaixo de 0%) está a <span class="math inline">\(z = (0 - 10)/4 = -2{,}5\)</span> desvios da média. Além de <span class="math inline">\(-2\sigma\)</span> (isto é, abaixo de 2%) fica cerca de 2,5% da distribuição; abaixo de <span class="math inline">\(-2{,}5\sigma\)</span>, aproximadamente <strong>0,6%</strong> — retorno negativo é raro nesse fundo (supondo normalidade, que subestima caudas).</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Entre 20 empréstimos independentes, cada um com 10% de probabilidade de calote, qual o número <strong>esperado</strong> de calotes e a variância? (Não precisa calcular probabilidades individuais.)</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>É uma binomial com <span class="math inline">\(n=20\)</span>, <span class="math inline">\(p=0{,}10\)</span>. Esperança: <span class="math inline">\(E(X) = np = 20 \times 0{,}10 = 2\)</span> calotes. Variância: <span class="math inline">\(\operatorname{Var}(X) = np(1-p) = 20 \times 0{,}10 \times 0{,}90 = 1{,}8\)</span>, com desvio-padrão <span class="math inline">\(\sqrt{1{,}8} \approx 1{,}34\)</span>. Espera-se cerca de 2 calotes, com variabilidade de pouco mais de um calote em torno disso.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) Um teste rápido detecta uma doença que atinge 2% da população. O teste acerta 95% dos doentes (verdadeiro positivo) e tem 10% de falso positivo. Se alguém testa positivo, use o raciocínio de Bayes (qualitativamente) para explicar por que a probabilidade de estar de fato doente é bem menor que 95%.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A doença é <strong>rara</strong> (2%), então a maioria (98%) é sadia. Entre os 98% sadios, 10% dão falso positivo — muitos alarmes. Entre os 2% doentes, 95% dão positivo — poucos alarmes, pois a base é pequena. Quantitativamente, em 1.000 pessoas: <span class="math inline">\(\approx 20\)</span> doentes, dos quais 19 positivam; <span class="math inline">\(\approx 980\)</span> sadios, dos quais 98 positivam. Total de positivos <span class="math inline">\(\approx 117\)</span>, dos quais só 19 são doentes: <span class="math inline">\(P(\text{doente}\mid\text{positivo}) \approx 19/117 \approx 16\%\)</span>. A <strong>baixa probabilidade de base</strong> faz os falsos positivos dominarem — por isso testes de rastreamento em massa geram muitos alarmes falsos, e um positivo pede confirmação.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) Explique, para um colega que nunca estudou estatística, por que a distribuição normal aparece com tanta frequência na natureza e na economia, e por que isso permite ao IBGE estimar o desemprego do país inteiro entrevistando poucos domicílios.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A frequência da normal vem do <strong>teorema central do limite</strong>: quando um resultado é a <strong>soma de muitas influências aleatórias pequenas e independentes</strong> (mil fatores afetando a altura, o erro de medição, a média de uma amostra), o agregado tende à forma de sino, <strong>qualquer que seja</strong> a distribuição de cada influência. Sobre a amostragem: o IBGE não precisa entrevistar todos porque o TCL garante que a <strong>média (ou proporção) amostral</strong> se distribui aproximadamente como uma normal em torno do valor populacional verdadeiro, com dispersão <span class="math inline">\(\sigma/\sqrt{n}\)</span> que <strong>diminui</strong> conforme a amostra cresce. Isso permite cercar o valor verdadeiro com uma <strong>margem de erro</strong> calculável — a taxa de desemprego é reportada como uma estimativa com intervalo de confiança (próximo capítulo), não como adivinhação. Poucos milhares de domicílios bem sorteados bastam para estimar um país inteiro com precisão conhecida.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="67.12">
+<h2 data-number="67.12" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">67.12</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="bussab2017">Bussab; Morettin (<a href="#ref-bussab2017" role="doc-biblioref">2017</a>)</span> — introdução clara a probabilidade, variáveis aleatórias e às distribuições binomial e normal, com exemplos.</li>
+<li><span class="citation" data-cites="wooldridge2016">Wooldridge (<a href="#ref-wooldridge2016" role="doc-biblioref">2016</a>)</span> — os apêndices de probabilidade e estatística conectam esses fundamentos diretamente à econometria dos capítulos seguintes.</li>
+<li><span class="citation" data-cites="stock2020">Stock; Watson (<a href="#ref-stock2020" role="doc-biblioref">2020</a>)</span> — capítulos iniciais com tratamento moderno de v.a., esperança, variância e o teorema central do limite.</li>
+<li><span class="citation" data-cites="kahneman1979">Kahneman; Tversky (<a href="#ref-kahneman1979" role="doc-biblioref">1979</a>)</span> — para a psicologia das probabilidades e por que humanos erram sistematicamente ao julgar o acaso (ligação com o Volume 15).</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-bussab2017" class="csl-entry" role="listitem">
+BUSSAB, Wilton O.; MORETTIN, Pedro A. <strong>Estatística Básica</strong>. 9. ed. São Paulo: Saraiva, 2017.
+</div>
+<div id="ref-kahneman1979" class="csl-entry" role="listitem">
+KAHNEMAN, Daniel; TVERSKY, Amos. Prospect Theory: An Analysis of Decision under Risk. <strong>Econometrica</strong>, v. 47, n. 2, p. 263–291, 1979.
+</div>
+<div id="ref-stock2020" class="csl-entry" role="listitem">
+STOCK, James H.; WATSON, Mark W. <strong>Introduction to Econometrics</strong>. 4. ed. Harlow: Pearson, 2020.
+</div>
+<div id="ref-wooldridge2016" class="csl-entry" role="listitem">
+WOOLDRIDGE, Jeffrey M. <strong>Introdução à Econometria: Uma Abordagem Moderna</strong>. 6. ed. São Paulo: Cengage Learning, 2016.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol10/cap01-estatistica-descritiva.html" class="pagination-link" aria-label="Estatística descritiva para a Economia">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">Estatística descritiva para a Economia</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol10/cap03-inferencia.html" class="pagination-link" aria-label="Inferência: estimação e testes de hipótese">
+        <span class="nav-page-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">Inferência: estimação e testes de hipótese</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol10/cap02-probabilidade.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>72&nbsp; Séries temporais: noções essenciais – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol10/cap08-avaliacao-de-politicas.html" rel="next">
+<link href="../../capitulos/vol10/cap06-regressao-multipla.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap01-estatistica-descritiva.html">Volume 10 — Estatística e Econometria Básica</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap07-series-temporais.html"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Séries temporais: noções essenciais</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 10 — Estatística e Econometria Básica</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap01-estatistica-descritiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">Estatística descritiva para a Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap02-probabilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Probabilidade e distribuições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap03-inferencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">Inferência: estimação e testes de hipótese</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap04-correlacao-causalidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">Correlação não é causalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap05-regressao-simples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Regressão linear simples</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap06-regressao-multipla.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Regressão múltipla e viés de variável omitida</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap07-series-temporais.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Séries temporais: noções essenciais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap08-avaliacao-de-politicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">Avaliação de políticas públicas: métodos quase-experimentais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">72.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#tipos-de-dados-e-a-natureza-da-série-temporal" id="toc-tipos-de-dados-e-a-natureza-da-série-temporal" class="nav-link" data-scroll-target="#tipos-de-dados-e-a-natureza-da-série-temporal"><span class="header-section-number">72.2</span> Tipos de dados e a natureza da série temporal</a></li>
+  <li><a href="#os-componentes-de-uma-série" id="toc-os-componentes-de-uma-série" class="nav-link" data-scroll-target="#os-componentes-de-uma-série"><span class="header-section-number">72.3</span> Os componentes de uma série</a></li>
+  <li><a href="#estacionariedade" id="toc-estacionariedade" class="nav-link" data-scroll-target="#estacionariedade"><span class="header-section-number">72.4</span> Estacionariedade</a></li>
+  <li><a href="#autocorrelação-e-o-passeio-aleatório" id="toc-autocorrelação-e-o-passeio-aleatório" class="nav-link" data-scroll-target="#autocorrelação-e-o-passeio-aleatório"><span class="header-section-number">72.5</span> Autocorrelação e o passeio aleatório</a></li>
+  <li><a href="#a-armadilha-da-regressão-espúria" id="toc-a-armadilha-da-regressão-espúria" class="nav-link" data-scroll-target="#a-armadilha-da-regressão-espúria"><span class="header-section-number">72.6</span> A armadilha da regressão espúria</a></li>
+  <li><a href="#sazonalidade-e-o-ajuste-sazonal" id="toc-sazonalidade-e-o-ajuste-sazonal" class="nav-link" data-scroll-target="#sazonalidade-e-o-ajuste-sazonal"><span class="header-section-number">72.7</span> Sazonalidade e o ajuste sazonal</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">72.8</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">72.9</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">72.10</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">72.11</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol10/cap07-series-temporais.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap01-estatistica-descritiva.html">Volume 10 — Estatística e Econometria Básica</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap07-series-temporais.html"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Séries temporais: noções essenciais</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-series-temporais" class="quarto-section-identifier"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Séries temporais: noções essenciais</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Até aqui, quase todos os nossos dados eram um retrato de um instante: uma amostra de pessoas, empresas ou domicílios observados num mesmo momento — dados de <strong>corte transversal</strong>. Mas boa parte da Economia vive no <strong>tempo</strong>. O IPCA é divulgado mês a mês; o PIB, trimestre a trimestre; o câmbio e a Selic movem-se todo dia. Uma sequência de observações de uma variável <strong>ao longo do tempo</strong> — o IPCA de janeiro, fevereiro, março… — é uma <strong>série temporal</strong>, e ela exige ferramentas próprias, porque suas observações <strong>não</strong> são independentes: o desemprego de hoje é parente próximo do de ontem.</p>
+<p>Este capítulo apresenta as noções essenciais para entender e não se enganar com séries temporais econômicas — o pão de cada dia de quem acompanha a conjuntura. Veremos os <strong>componentes</strong> de uma série (tendência, sazonalidade, ciclo), o conceito central de <strong>estacionariedade</strong>, a <strong>autocorrelação</strong>, os modelos descritivos básicos e — talvez o alerta mais valioso — a armadilha da <strong>regressão espúria</strong>, que faz duas séries com tendência parecerem relacionadas quando não são. É a estatística por trás de cada número de conjuntura que o Brasil divulga.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="72.1">
+<h2 data-number="72.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">72.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>distinguir dados de <strong>corte transversal</strong>, <strong>série temporal</strong> e <strong>painel</strong>;</li>
+<li>decompor uma série em <strong>tendência</strong>, <strong>sazonalidade</strong> e <strong>componente irregular</strong>;</li>
+<li>entender <strong>estacionariedade</strong>, <strong>autocorrelação</strong> e por que elas importam;</li>
+<li>reconhecer um <strong>passeio aleatório</strong> e o conceito de <strong>raiz unitária</strong>;</li>
+<li>identificar a armadilha da <strong>regressão espúria</strong> entre séries com tendência;</li>
+<li>interpretar séries <strong>dessazonalizadas</strong>, variações <strong>interanuais</strong> e por que a diferenciação estabiliza séries.</li>
+</ul>
+</section>
+<section id="tipos-de-dados-e-a-natureza-da-série-temporal" class="level2" data-number="72.2">
+<h2 data-number="72.2" class="anchored" data-anchor-id="tipos-de-dados-e-a-natureza-da-série-temporal"><span class="header-section-number">72.2</span> Tipos de dados e a natureza da série temporal</h2>
+<p>Vale fixar três estruturas de dados:</p>
+<ul>
+<li><strong>Corte transversal (<em>cross-section</em>):</strong> muitas unidades num <strong>mesmo</strong> momento (os domicílios da PNAD de um trimestre). Foi o cenário dos capítulos de regressão.</li>
+<li><strong>Série temporal:</strong> <strong>uma</strong> unidade (o país, uma empresa) observada em <strong>muitos</strong> momentos (o IPCA mensal ao longo de 20 anos).</li>
+<li><strong>Painel (dados longitudinais):</strong> muitas unidades ao longo de muitos momentos (o PIB de vários estados, ano a ano) — combina as duas dimensões.</li>
+</ul>
+<p>A peculiaridade da série temporal é a <strong>dependência temporal</strong>: as observações vêm <strong>ordenadas</strong> e são <strong>correlacionadas</strong> entre si. Isso viola a hipótese de independência que sustentava boa parte da inferência anterior, e é a razão de a série temporal ter teoria própria.</p>
+</section>
+<section id="os-componentes-de-uma-série" class="level2" data-number="72.3">
+<h2 data-number="72.3" class="anchored" data-anchor-id="os-componentes-de-uma-série"><span class="header-section-number">72.3</span> Os componentes de uma série</h2>
+<p>Uma série econômica pode ser pensada como a soma (ou o produto) de componentes distintos, ilustrados na <a href="#fig-serie" class="quarto-xref">Figura&nbsp;<span>72.1</span></a>:</p>
+<ul>
+<li><strong>Tendência (<span class="math inline">\(T\)</span>):</strong> o movimento de <strong>longo prazo</strong>, a direção geral (o PIB brasileiro cresce, em tendência, ao longo de décadas).</li>
+<li><strong>Sazonalidade (<span class="math inline">\(S\)</span>):</strong> flutuações <strong>regulares</strong> que se repetem dentro do ano (as vendas do varejo disparam todo dezembro; a produção agrícola tem seu calendário; o emprego formal sobe no fim do ano).</li>
+<li><strong>Ciclo (<span class="math inline">\(C\)</span>):</strong> oscilações de médio prazo ligadas às expansões e recessões (os ciclos econômicos do Volume 7), menos regulares que a sazonalidade.</li>
+<li><strong>Componente irregular (<span class="math inline">\(I\)</span>):</strong> o resíduo aleatório, imprevisível — choques, ruído.</li>
+</ul>
+<div id="fig-serie" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-serie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="310.717121pt" height="155.355288pt" viewbox="-68.014948 -68.014952 310.717121 155.355288">
+<defs>
+<path id="tz_fig_serie_g0-16" d="M.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138L.358655-3.864508Z"></path>
+<path id="tz_fig_serie_g0-19" d="M3.425156-5.612951C3.541719-5.702615 3.61345-5.774346 3.61345-5.908842C3.61345-6.115068 3.434122-6.258531 3.272727-6.258531C3.120299-6.258531 3.075467-6.195766 2.99477-6.097136L1.900872-4.743213L2.071233-4.554919L3.425156-5.612951Z"></path>
+<path id="tz_fig_serie_g0-40" d="M3.057534 2.133998C3.057534 2.089166 3.030635 2.062267 2.976837 1.999502C1.820174 .941469 1.470486-.672478 1.470486-2.241594C1.470486-3.631382 1.739477-5.317061 3.003736-6.518555C3.039601-6.554421 3.057534-6.58132 3.057534-6.626152C3.057534-6.688917 3.012702-6.724782 2.949938-6.724782C2.842341-6.724782 2.035367-6.079203 1.551183-5.101868C1.120797-4.241096 .905604-3.317559 .905604-2.25056C.905604-1.604981 .986301-.582814 1.479452 .475218C2.008468 1.578082 2.842341 2.232628 2.949938 2.232628C3.012702 2.232628 3.057534 2.196762 3.057534 2.133998Z"></path>
+<path id="tz_fig_serie_g0-41" d="M2.67198-2.25056C2.67198-2.985803 2.564384-3.972105 2.098132-4.967372C1.569116-6.070237 .735243-6.724782 .627646-6.724782C.537983-6.724782 .52005-6.653051 .52005-6.626152C.52005-6.58132 .537983-6.554421 .600747-6.491656C1.120797-6.025405 2.107098-4.805978 2.107098-2.25056C2.107098-.968369 1.873973 .81594 .573848 2.026401C.555915 2.0533 .52005 2.089166 .52005 2.133998C.52005 2.160897 .537983 2.232628 .627646 2.232628C.735243 2.232628 1.542217 1.587049 2.026401 .609714C2.456787-.251059 2.67198-1.174595 2.67198-2.25056Z"></path>
+<path id="tz_fig_serie_g0-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+<path id="tz_fig_serie_g0-100" d="M3.48792-1.075965C3.48792-.91457 3.48792-.887671 3.353425-.699377C3.075467-.29589 2.663014-.125529 2.304359-.125529C1.918804-.125529 1.560149-.340722 1.327024-.71731C1.093898-1.102864 1.075965-1.63188 1.075965-1.918804C1.075965-2.340224 1.129763-2.815442 1.362889-3.174097C1.560149-3.461021 1.927771-3.738979 2.402989-3.738979C2.779577-3.738979 3.138232-3.550685 3.380324-3.209963C3.48792-3.066501 3.48792-3.057534 3.48792-2.887173V-1.075965ZM3.514819-3.434122C3.469988-3.48792 3.066501-3.963138 2.367123-3.963138C1.264259-3.963138 .304857-3.084433 .304857-1.927771C.304857-.806974 1.201494 .09863 2.268493 .09863C2.923039 .09863 3.326526-.286924 3.48792-.475218V.09863L4.841843 0V-.277958C4.23213-.277958 4.151432-.340722 4.151432-.780075V-6.222665L2.824408-6.124035V-5.846077C3.434122-5.846077 3.514819-5.783313 3.514819-5.34396V-3.434122Z"></path>
+<path id="tz_fig_serie_g0-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+<path id="tz_fig_serie_g0-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+<path id="tz_fig_serie_g0-108" d="M1.649813-6.222665L.32279-6.124035V-5.846077C.932503-5.846077 1.0132-5.783313 1.0132-5.34396V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.744209-.017933 .91457-.026899 1.327024-.026899C1.748443-.026899 1.900872-.017933 2.340224 0V-.277958C1.748443-.277958 1.649813-.277958 1.649813-.690411V-6.222665Z"></path>
+<path id="tz_fig_serie_g0-109" d="M1.667746-2.322291C1.667746-3.29066 2.367123-3.738979 2.905106-3.738979C3.398257-3.738979 3.559651-3.38929 3.559651-2.761644V-.690411C3.559651-.277958 3.461021-.277958 2.86924-.277958V0C3.29066-.017933 3.461021-.026899 3.891407-.026899S4.438356-.017933 4.913574 0V-.277958C4.321793-.277958 4.223163-.277958 4.223163-.690411V-2.322291C4.223163-3.29066 4.92254-3.738979 5.460523-3.738979C5.953674-3.738979 6.115068-3.38929 6.115068-2.761644V-.690411C6.115068-.277958 6.016438-.277958 5.424658-.277958V0C5.846077-.017933 6.016438-.026899 6.446824-.026899S6.993773-.017933 7.468991 0V-.277958C7.011706-.277958 6.787547-.277958 6.77858-.555915V-2.27746C6.77858-3.057534 6.77858-3.308593 6.48269-3.640349C6.294396-3.855542 5.935741-3.963138 5.523288-3.963138C4.877709-3.963138 4.438356-3.58655 4.187298-3.111333C4.079701-3.640349 3.721046-3.963138 2.96787-3.963138C2.25056-3.963138 1.811208-3.496887 1.622914-3.084433H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_serie_g0-110" d="M1.667746-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.133998-3.963138 1.748443-3.344458 1.622914-3.0934H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_serie_g0-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_serie_g0-112" d="M1.622914-3.012702C1.927771-3.532752 2.420922-3.71208 2.797509-3.71208C3.496887-3.71208 4.034869-2.905106 4.034869-1.936737C4.034869-.91457 3.425156-.125529 2.698879-.125529C2.295392-.125529 1.95467-.358655 1.739477-.672478C1.622914-.851806 1.622914-.869738 1.622914-1.0401V-3.012702ZM1.622914-.430386C1.85604-.19726 2.160897 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.066501 3.927273-3.963138 2.86924-3.963138C2.385056-3.963138 1.936737-3.765878 1.596015-3.398257V-3.963138L.268991-3.864508V-3.58655C.905604-3.58655 .959402-3.532752 .959402-3.147198V1.049066C.959402 1.461519 .860772 1.461519 .268991 1.461519V1.739477C.690411 1.721544 .860772 1.712578 1.291158 1.712578S1.838107 1.721544 2.313325 1.739477V1.461519C1.721544 1.461519 1.622914 1.461519 1.622914 1.049066V-.430386Z"></path>
+<path id="tz_fig_serie_g0-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+<path id="tz_fig_serie_g0-115" d="M3.084433-3.783811C3.084433-3.936239 3.084433-4.016936 2.976837-4.016936C2.932005-4.016936 2.914072-4.016936 2.797509-3.90934C2.779577-3.891407 2.698879-3.81071 2.645081-3.765878C2.367123-3.963138 2.089166-4.016936 1.784309-4.016936C.600747-4.016936 .304857-3.362391 .304857-2.905106C.304857-2.618182 .430386-2.385056 .636613-2.187796C.941469-1.909838 1.282192-1.847073 1.739477-1.766376C2.196762-1.676712 2.349191-1.649813 2.546451-1.497385C2.636115-1.425654 2.860274-1.255293 2.860274-.91457C2.860274-.125529 1.95467-.125529 1.829141-.125529C.91457-.125529 .681445-.887671 .573848-1.371856C.546949-1.461519 .537983-1.515318 .430386-1.515318C.304857-1.515318 .304857-1.443587 .304857-1.282192V-.134496C.304857 .017933 .304857 .09863 .412453 .09863C.466252 .09863 .475218 .089664 .636613-.080697C.672478-.134496 .771108-.251059 .81594-.29589C1.192528 .071731 1.604981 .09863 1.829141 .09863C2.932005 .09863 3.317559-.546949 3.317559-1.147696C3.317559-1.551183 3.138232-1.793275 2.940971-1.999502C2.636115-2.295392 2.313325-2.358157 1.649813-2.483686C1.416687-2.528518 .762142-2.645081 .762142-3.156164C.762142-3.443088 .968369-3.819676 1.784309-3.819676C2.752677-3.819676 2.815442-3.075467 2.833375-2.851308C2.842341-2.743711 2.842341-2.689913 2.958904-2.689913C3.084433-2.689913 3.084433-2.752677 3.084433-2.923039V-3.783811Z"></path>
+<path id="tz_fig_serie_g0-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+<path id="tz_fig_serie_g0-118" d="M1.613948-3.183064C1.587049-3.236862 1.569116-3.29066 1.569116-3.353425C1.569116-3.58655 1.891905-3.58655 2.062267-3.58655V-3.864508C1.676712-3.846575 1.470486-3.837609 1.075965-3.837609C.762142-3.837609 .502117-3.837609 .179328-3.864508V-3.58655C.600747-3.58655 .771108-3.58655 .905604-3.254795L2.214695-.071731C2.268493 .071731 2.340224 .09863 2.420922 .09863S2.57335 .080697 2.636115-.071731L3.855542-3.012702C4.043836-3.469988 4.357659-3.577584 4.671482-3.58655V-3.864508C4.402491-3.837609 3.999004-3.837609 3.981071-3.837609C3.730012-3.837609 3.452055-3.846575 3.200996-3.864508V-3.58655C3.461021-3.568618 3.61345-3.434122 3.61345-3.200996C3.61345-3.111333 3.604483-3.0934 3.568618-2.99477L2.636115-.735243L1.613948-3.183064Z"></path>
+<path id="tz_fig_serie_g1-84" d="M3.602491-4.821918C3.674222-5.108842 3.682192-5.124782 4.008966-5.124782H4.614695C5.443587-5.124782 5.539228-4.861768 5.539228-4.463263C5.539228-4.26401 5.491407-3.921295 5.483437-3.881445C5.467497-3.793773 5.459527-3.722042 5.459527-3.706102C5.459527-3.602491 5.531258-3.57858 5.579078-3.57858C5.66675-3.57858 5.69863-3.626401 5.72254-3.777833L5.937733-5.276214C5.937733-5.387796 5.842092-5.387796 5.69863-5.387796H1.004234C.804981-5.387796 .789041-5.387796 .73325-5.220423L.247073-3.841594C.231133-3.801743 .207223-3.737983 .207223-3.690162C.207223-3.626401 .263014-3.57858 .326775-3.57858C.414446-3.57858 .430386-3.618431 .478207-3.753923C.932503-5.029141 1.163636-5.124782 2.375093-5.124782H2.685928C2.925031-5.124782 2.933001-5.116812 2.933001-5.053051C2.933001-5.029141 2.901121-4.869738 2.893151-4.837858L1.841096-.653549C1.769365-.350685 1.745455-.263014 .916563-.263014C.661519-.263014 .581818-.263014 .581818-.111582C.581818-.103611 .581818 0 .71731 0C.932503 0 1.482441-.02391 1.697634-.02391H2.375093C2.598257-.02391 3.156164 0 3.379328 0C3.443088 0 3.56264 0 3.56264-.151432C3.56264-.263014 3.474969-.263014 3.259776-.263014C3.068493-.263014 3.004732-.263014 2.797509-.278954C2.542466-.302864 2.510585-.334745 2.510585-.438356C2.510585-.470237 2.518555-.502117 2.542466-.581818L3.602491-4.821918Z"></path>
+<path id="tz_fig_serie_g2-19" d="M3.156164-4.98132C3.243836-5.045081 3.315567-5.116812 3.315567-5.244334C3.315567-5.427646 3.148194-5.563138 3.004732-5.563138C2.972852-5.563138 2.86127-5.563138 2.757659-5.435616L1.737484-4.224159L1.904857-4.040847L3.156164-4.98132Z"></path>
+<path id="tz_fig_serie_g2-48" d="M3.897385-2.542466C3.897385-3.395268 3.809714-3.913325 3.5467-4.423412C3.196015-5.124782 2.550436-5.300125 2.11208-5.300125C1.107846-5.300125 .74122-4.550934 .629639-4.327771C.342715-3.745953 .326775-2.956912 .326775-2.542466C.326775-2.016438 .350685-1.211457 .73325-.573848C1.099875 .01594 1.689664 .167372 2.11208 .167372C2.494645 .167372 3.180075 .047821 3.57858-.74122C3.873474-1.315068 3.897385-2.024408 3.897385-2.542466ZM2.11208-.055791C1.841096-.055791 1.291158-.183313 1.123786-1.020174C1.036115-1.474471 1.036115-2.223661 1.036115-2.638107C1.036115-3.188045 1.036115-3.745953 1.123786-4.184309C1.291158-4.99726 1.912827-5.076961 2.11208-5.076961C2.383064-5.076961 2.933001-4.941469 3.092403-4.216189C3.188045-3.777833 3.188045-3.180075 3.188045-2.638107C3.188045-2.16787 3.188045-1.45056 3.092403-1.004234C2.925031-.167372 2.375093-.055791 2.11208-.055791Z"></path>
+<path id="tz_fig_serie_g2-49" d="M2.502615-5.076961C2.502615-5.292154 2.486675-5.300125 2.271482-5.300125C1.944707-4.98132 1.522291-4.790037 .765131-4.790037V-4.527024C.980324-4.527024 1.41071-4.527024 1.872976-4.742217V-.653549C1.872976-.358655 1.849066-.263014 1.091905-.263014H.812951V0C1.139726-.02391 1.825156-.02391 2.183811-.02391S3.235866-.02391 3.56264 0V-.263014H3.283686C2.526526-.263014 2.502615-.358655 2.502615-.653549V-5.076961Z"></path>
+<path id="tz_fig_serie_g2-50" d="M2.247572-1.625903C2.375093-1.745455 2.709838-2.008468 2.83736-2.12005C3.331507-2.574346 3.801743-3.012702 3.801743-3.737983C3.801743-4.686426 3.004732-5.300125 2.008468-5.300125C1.052055-5.300125 .422416-4.574844 .422416-3.865504C.422416-3.474969 .73325-3.419178 .844832-3.419178C1.012204-3.419178 1.259278-3.53873 1.259278-3.841594C1.259278-4.25604 .860772-4.25604 .765131-4.25604C.996264-4.837858 1.530262-5.037111 1.920797-5.037111C2.662017-5.037111 3.044583-4.407472 3.044583-3.737983C3.044583-2.909091 2.462765-2.303362 1.522291-1.338979L.518057-.302864C.422416-.215193 .422416-.199253 .422416 0H3.57061L3.801743-1.42665H3.55467C3.53076-1.267248 3.466999-.868742 3.371357-.71731C3.323537-.653549 2.717808-.653549 2.590286-.653549H1.171606L2.247572-1.625903Z"></path>
+<path id="tz_fig_serie_g2-52" d="M3.140224-5.156663C3.140224-5.316065 3.140224-5.379826 2.972852-5.379826C2.86924-5.379826 2.86127-5.371856 2.781569-5.260274L.239103-1.570112V-1.307098H2.486675V-.645579C2.486675-.350685 2.462765-.263014 1.849066-.263014H1.665753V0C2.343213-.02391 2.359153-.02391 2.81345-.02391S3.283686-.02391 3.961146 0V-.263014H3.777833C3.164134-.263014 3.140224-.350685 3.140224-.645579V-1.307098H3.985056V-1.570112H3.140224V-5.156663ZM2.542466-4.511083V-1.570112H.518057L2.542466-4.511083Z"></path>
+<path id="tz_fig_serie_g2-54" d="M1.099875-2.638107C1.099875-3.299626 1.155666-3.881445 1.44259-4.367621C1.681694-4.766127 2.088169-5.092902 2.590286-5.092902C2.749689-5.092902 3.116314-5.068991 3.299626-4.790037C2.940971-4.774097 2.909091-4.503113 2.909091-4.415442C2.909091-4.176339 3.092403-4.040847 3.283686-4.040847C3.427148-4.040847 3.658281-4.128518 3.658281-4.431382C3.658281-4.909589 3.299626-5.300125 2.582316-5.300125C1.474471-5.300125 .350685-4.24807 .350685-2.526526C.350685-.366625 1.354919 .167372 2.12802 .167372C2.510585 .167372 2.925031 .063761 3.283686-.278954C3.602491-.589788 3.873474-.924533 3.873474-1.617933C3.873474-2.662017 3.084433-3.395268 2.199751-3.395268C1.625903-3.395268 1.283188-3.028643 1.099875-2.638107ZM2.12802-.071731C1.705604-.071731 1.44259-.366625 1.323039-.589788C1.139726-.948443 1.123786-1.490411 1.123786-1.793275C1.123786-2.582316 1.554172-3.172105 2.16787-3.172105C2.566376-3.172105 2.805479-2.964882 2.956912-2.685928C3.124284-2.391034 3.124284-2.032379 3.124284-1.625903S3.124284-.868742 2.964882-.581818C2.757659-.215193 2.478705-.071731 2.12802-.071731Z"></path>
+<path id="tz_fig_serie_g2-56" d="M2.646077-2.87721C3.092403-3.092403 3.634371-3.490909 3.634371-4.112578C3.634371-4.869738 2.86127-5.300125 2.12005-5.300125C1.275218-5.300125 .589788-4.718306 .589788-3.969116C.589788-3.674222 .6934-3.403238 .892653-3.172105C1.028144-3.004732 1.060025-2.988792 1.554172-2.677958C.565878-2.239601 .350685-1.657783 .350685-1.211457C.350685-.334745 1.235367 .167372 2.10411 .167372C3.084433 .167372 3.873474-.494147 3.873474-1.338979C3.873474-1.841096 3.602491-2.175841 3.474969-2.311333C3.339477-2.438854 3.331507-2.446824 2.646077-2.87721ZM1.41071-3.626401C1.179577-3.761893 .988294-3.993026 .988294-4.27198C.988294-4.774097 1.538232-5.092902 2.10411-5.092902C2.725778-5.092902 3.235866-4.670486 3.235866-4.112578C3.235866-3.650311 2.87721-3.259776 2.406974-3.028643L1.41071-3.626401ZM1.801245-2.534496C1.833126-2.518555 2.741719-1.960648 2.87721-1.872976C3.004732-1.801245 3.419178-1.546202 3.419178-1.067995C3.419178-.454296 2.773599-.071731 2.12005-.071731C1.41071-.071731 .804981-.557908 .804981-1.211457C.804981-1.809215 1.251308-2.279452 1.801245-2.534496Z"></path>
+<path id="tz_fig_serie_g2-94" d="M2.11208-5.531258L.980324-4.463263L1.139726-4.27198L2.11208-5.061021L3.084433-4.27198L3.243836-4.455293L2.11208-5.531258Z"></path>
+<path id="tz_fig_serie_g2-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_serie_g2-98" d="M1.466501-5.531258L.278954-5.443587V-5.180573C.820922-5.180573 .884682-5.124782 .884682-4.734247V0H1.131756L1.41868-.494147C1.609963-.223163 1.984558 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.725778 3.594521-3.514819 2.622167-3.514819C1.992528-3.514819 1.601993-3.172105 1.466501-3.028643V-5.531258ZM1.490411-2.518555C1.490411-2.669988 1.490411-2.685928 1.609963-2.82939C1.841096-3.124284 2.215691-3.291656 2.574346-3.291656C2.988792-3.291656 3.299626-3.044583 3.459029-2.805479C3.594521-2.590286 3.706102-2.311333 3.706102-1.729514C3.706102-1.546202 3.706102-.980324 3.419178-.605729C3.132254-.247073 2.757659-.143462 2.494645-.143462C2.11208-.143462 1.793275-.342715 1.586052-.653549C1.490411-.804981 1.490411-.812951 1.490411-.964384V-2.518555Z"></path>
+<path id="tz_fig_serie_g2-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_serie_g2-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_serie_g2-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_serie_g2-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_serie_g2-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_serie_g2-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_serie_g2-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_serie_g2-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_serie_g2-116" d="M1.482441-3.172105H2.669988V-3.435118H1.482441V-4.901619H1.235367C1.227397-4.176339 .900623-3.419178 .159402-3.395268V-3.172105H.876712V-.996264C.876712-.063761 1.594022 .079701 1.960648 .079701C2.494645 .079701 2.81345-.398506 2.81345-.996264V-1.44259H2.566376V-1.012204C2.566376-.462267 2.319303-.167372 2.016438-.167372C1.482441-.167372 1.482441-.852802 1.482441-.980324V-3.172105Z"></path>
+<path id="tz_fig_serie_g2-118" d="M3.53076-2.614197C3.722042-3.060523 3.993026-3.164134 4.28792-3.172105V-3.435118C4.008966-3.411208 3.993026-3.411208 3.666252-3.411208C3.594521-3.411208 3.219925-3.411208 2.972852-3.435118V-3.172105C3.251806-3.156164 3.323537-2.980822 3.323537-2.84533C3.323537-2.765629 3.307597-2.725778 3.275716-2.654047L2.414944-.645579L1.474471-2.805479C1.42665-2.909091 1.42665-2.956912 1.42665-2.972852C1.42665-3.172105 1.713574-3.172105 1.849066-3.172105V-3.435118C1.506351-3.411208 1.131756-3.411208 .980324-3.411208C.812951-3.411208 .430386-3.411208 .175342-3.435118V-3.172105C.661519-3.172105 .70137-3.124284 .820922-2.8533L2.016438-.095641C2.072229 .02391 2.12005 .079701 2.231631 .079701S2.399004 .01594 2.438854-.079701L3.53076-2.614197Z"></path>
+</defs>
+<g id="tz_fig_serie_page1">
+<g stroke-miterlimit="10" transform="translate(-52.822104,57.431178)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-52.822104,57.431178)scale(-1,-1)"></g>
+<g transform="translate(-15.24982,-30.02132)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-52.822104,57.431178)scale(-1,-1)">
+<g stroke="#000" stroke-miterlimit="10" transform="translate(-37.629261,27.522021)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="M0-2.1343V2.1343M47.4292-2.1343V2.1343M94.8584-2.1343V2.1343M142.2876-2.1343V2.1343M189.7168-2.1343V2.1343M237.146-2.1343V2.1343M284.5752-2.1343V2.1343" fill="none"></path>
+</g>
+</g>
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="" fill="none"></path>
+</g>
+</g>
+<path d="M0 0H294.43253" fill="none"></path>
+<g transform="translate(294.43253,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<path d="M0 0V123.71658" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,123.71658)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-2.12503,-10.82281)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,27.522021)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-37.629261" y="27.522021" href="#tz_fig_serie_g2-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(45.30417,-10.82281)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,27.522021)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-37.629261" y="27.522021" href="#tz_fig_serie_g2-50"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(92.73337,-10.82281)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,27.522021)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-37.629261" y="27.522021" href="#tz_fig_serie_g2-52"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(140.16257,-10.82281)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,27.522021)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-37.629261" y="27.522021" href="#tz_fig_serie_g2-54"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(187.59177,-10.82281)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,27.522021)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-37.629261" y="27.522021" href="#tz_fig_serie_g2-56"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(232.89594,-10.82281)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,27.522021)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-37.629261" y="27.522021" href="#tz_fig_serie_g2-49"></use>
+<use x="-33.395078" y="27.522021" href="#tz_fig_serie_g2-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(280.32513,-10.82281)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,27.522021)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-37.629261" y="27.522021" href="#tz_fig_serie_g2-49"></use>
+<use x="-33.395078" y="27.522021" href="#tz_fig_serie_g2-50"></use>
+</g>
+</g>
+</g>
+</g>
+<clippath id="tz_fig_serie_pgfcp1">
+<path d="M0 0H296.4325V125.71655H0Z"></path> </clippath>
+<g clip-path="url(#tz_fig_serie_pgfcp1)">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="1.2">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M0 20.95276L1.43001 21.33179L2.86003 21.71085L4.29005 22.08987L5.72003 22.46892L7.15005 22.84796L8.58006 23.227L10.01009 23.60603L11.44011 23.98508L12.87013 24.36414L14.30014 24.74316L15.73013 25.12221L17.16014 25.50125L18.59016 25.8803L20.02019 26.25932L21.45021 26.63838L22.88022 27.01741L24.31024 27.39647L25.74022 27.7755L27.17024 28.15454L28.60027 28.53358L30.03029 28.91263L31.4603 29.29167L32.89032 29.6707L34.32034 30.04976L35.75032 30.42879L37.18034 30.80783L38.61037 31.18687L40.04037 31.56592L41.4704 31.94496L42.90042 32.324L44.33044 32.70305L45.76045 33.08208L47.19044 33.46112L48.62045 33.84016L50.05048 34.21921L51.4805 34.59825L52.91052 34.9773L54.34053 35.35634L55.77055 35.73538L57.20053 36.11441L58.63055 36.49345L60.06058 36.8725L61.49059 37.25156L62.92061 37.63058L64.35063 38.00963L65.78065 38.38867L67.21063 38.76772L68.64066 39.14674L70.07066 39.52579L71.50069 39.90483L72.93071 40.28387L74.36073 40.66293L75.79074 41.04196L77.22073 41.421L78.65074 41.80003L80.08076 42.1791L81.51079 42.55812L82.94081 42.93716L84.37082 43.31621L85.80084 43.69525L87.23082 44.0743L88.66084 44.45332L90.09087 44.83238L91.52089 45.21141L92.9509 45.59047L94.38092 45.9695L95.81094 46.34854L97.24092 46.72757L98.67094 47.10663L100.10097 47.48567L101.53098 47.8647L102.961 48.24376L104.39102 48.62279L105.82104 49.00185L107.25105 49.38087L108.68105 49.75992L110.11105 50.13895L111.54108 50.518L112.9711 50.89705L114.40112 51.27608L115.83113 51.65514L117.26115 52.03416L118.69113 52.41321L120.12115 52.79224L121.55118 53.1713L122.98119 53.55032L124.41121 53.92938L125.84123 54.30843L127.27126 54.68745L128.70123 55.0665L130.13126 55.44554L131.56126 55.82458L132.99129 56.20361L134.42131 56.58267L135.85133 56.96172L137.28134 57.34076L138.71133 57.71979L140.14134 58.09883L141.57137 58.47787L143.00139 58.85692L144.43147 59.23598L145.86136 59.61497L147.29147 59.99405L148.72136 60.37305L150.15144 60.75212L151.58154 61.1312L153.01144 61.5102L154.44154 61.88927L155.87141 62.26826L157.30154 62.64734L158.73163 63.02641L160.16151 63.40541L161.5916 63.78447L163.02151 64.16348L164.4516 64.54254L165.8817 64.9216L167.31157 65.30061L168.7417 65.67967L170.17157 66.05869L171.60165 66.43774L173.03175 66.8168L174.46165 67.19583L175.89175 67.57489L177.32162 67.9539L178.75175 68.33296L180.18184 68.71202L181.61172 69.09102L183.04181 69.4701L184.47168 69.84909L185.90181 70.22816L187.33191 70.60724L188.76178 70.98624L190.19186 71.3653L191.62178 71.74431L193.05186 72.12338L194.48196 72.50243L195.91188 72.88145L197.34196 73.26051L198.77184 73.63951L200.20193 74.01859L201.63206 74.39764L203.06194 74.77666L204.49202 75.15572L205.9219 75.53473L207.35202 75.91379L208.78212 76.29286L210.21199 76.67188L211.64209 77.05092L213.07199 77.42995L214.50209 77.80899L215.93217 78.18806L217.36209 78.56708L218.79218 78.94614L220.22205 79.32513L221.65215 79.70421L223.08228 80.08328L224.51215 80.46228L225.94223 80.84135L227.37212 81.22035L228.80225 81.59943L230.23233 81.97847L231.6622 82.35748L233.0923 82.73656L234.5222 83.11557L235.9523 83.49463L237.38239 83.87366L238.81226 84.25272L240.24239 84.63176L241.67227 85.01073L243.10236 85.38988L244.53246 85.76892L245.96236 86.14787L247.39246 86.52693L248.82233 86.90599L250.25241 87.28503L251.68254 87.6641L253.11241 88.04314L254.54251 88.4222L255.97241 88.80115L257.40251 89.1802L258.8326 89.55936L260.26248 89.93831L261.6926 90.31737L263.12248 90.69641L264.55257 91.07547L265.98267 91.45451L267.41257 91.83357L268.84267 92.21263L270.27254 92.59158L271.70262 92.97063L273.13275 93.34969L274.56264 93.72874L275.99272 94.10779L277.42259 94.48685L278.85272 94.86589L280.28282 95.24495L281.71269 95.6239L283.14278 96.00305L284.5727 96.382" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<path d="M0 20.95276L1.43001 22.91519L2.86003 24.85223L4.29005 26.73938L5.72003 28.55296L7.15005 30.269L8.58006 31.86674L10.01009 33.32732L11.44011 34.63327L12.87013 35.76913L14.30014 36.7232L15.73013 37.48668L17.16014 38.0533L18.59016 38.41989L20.02019 38.58647L21.45021 38.55705L22.88022 38.33757L24.31024 37.93805L25.74022 37.37018L27.17024 36.6497L28.60027 35.79385L30.03029 34.82231L31.4603 33.75687L32.89032 32.62001L34.32034 31.43628L35.75032 30.23077L37.18034 29.0282L38.61037 27.85425L40.04037 26.73274L41.4704 25.68843L42.90042 24.74391L44.33044 23.92024L45.76045 23.23647L47.19044 22.70934L48.62045 22.35332L50.05048 22.18085L51.4805 22.19958L52.91052 22.41595L54.34053 22.8322L55.77055 23.4486L57.20053 24.26035L58.63055 25.26094L60.06058 26.44016L61.49059 27.78583L62.92061 29.28264L64.35063 30.91193L65.78065 32.65437L67.21063 34.48819L68.64066 36.39041L70.07066 38.33626L71.50069 40.30084L72.93071 42.2595L74.36073 44.18639L75.79074 46.05756L77.22073 47.84787L78.65074 49.53651L80.08076 51.10194L81.51079 52.52457L82.94081 53.79002L84.37082 54.88188L85.80084 55.78894L87.23082 56.50401L88.66084 57.0207L90.09087 57.3379L91.52089 57.4552L92.9509 57.37752L94.38092 57.11226L95.81094 56.66962L97.24092 56.06152L98.67094 55.30536L100.10097 54.41968L101.53098 53.42276L102.961 52.3362L104.39102 51.1864L105.82104 49.99475L107.25105 48.7875L108.68105 47.59068L110.11105 46.42616L111.54108 45.32202L112.9711 44.30144L114.40112 43.38385L115.83113 42.59335L117.26115 41.94768L118.69113 41.46204L120.12115 41.15013L121.55118 41.02455L122.98119 41.09245L124.41121 41.35872L125.84123 41.82477L127.27126 42.48982L128.70123 43.34984L130.13126 44.39543L131.56126 45.61841L132.99129 47.00293L134.42131 48.53455L135.85133 50.19325L137.28134 51.96172L138.71133 53.81479L140.14134 55.72858L141.57137 57.68196L143.00139 59.64854L144.43147 61.60071L145.86136 63.51723L147.29147 65.37045L148.72136 67.13712L150.15144 68.79698L151.58154 70.329L153.01144 71.7131L154.44154 72.93648L155.87141 73.98315L157.30154 74.8436L158.73163 75.5093L160.16151 75.97606L161.5916 76.24274L163.02151 76.3116L164.4516 76.18578L165.8817 75.87479L167.31157 75.39024L168.7417 74.74448L170.17157 73.95319L171.60165 73.03798L173.03175 72.01695L174.46165 70.9115L175.89175 69.75066L177.32162 68.55142L178.75175 67.34433L180.18184 66.1527L181.61172 65.00146L183.04181 63.91592L184.47168 62.91985L185.90181 62.0317L187.33191 61.27528L188.76178 60.66843L190.19186 60.22505L191.62178 59.95865L193.05186 59.88084L194.48196 59.99753L195.91188 60.31381L197.34196 60.83041L198.77184 61.5442L200.20193 62.45114L201.63206 63.54329L203.06194 64.8067L204.49202 66.22984L205.9219 67.7946L207.35202 69.48213L208.78212 71.27438L210.21199 73.14526L211.64209 75.07127L213.07199 77.02953L214.50209 78.99564L215.93217 80.94025L217.36209 82.8427L218.79218 84.67793L220.22205 86.41959L221.65215 88.04927L223.08228 89.54622L224.51215 90.89198L225.94223 92.07211L227.37212 93.07327L228.80225 93.8857L230.23233 94.50224L231.6622 94.91884L233.0923 95.13559L234.5222 95.15544L235.9523 94.98286L237.38239 94.6272L238.81226 94.10123L240.24239 93.41747L241.67227 92.5952L243.10236 91.6498L244.53246 90.60548L245.96236 89.48338L247.39246 88.31035L248.82233 87.10776L250.25241 85.90227L251.68254 84.71956L253.11241 83.58122L254.54251 82.5154L255.97241 81.54454L257.40251 80.68831L258.8326 79.96655L260.26248 79.39912L261.6926 78.9991L263.12248 78.77925L264.55257 78.74895L265.98267 78.91504L267.41257 79.28152L268.84267 79.84752L270.27254 80.61043L271.70262 81.56413L273.13275 82.70036L274.56264 84.00519L275.99272 85.46516L277.42259 87.06303L278.85272 88.7777L280.28282 90.5923L281.71269 92.47923L283.14278 94.41527L284.5727 96.37775" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(226.8134,107.22421)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,27.522021)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-37.629261" y="27.522021" href="#tz_fig_serie_g2-116"></use>
+<use x="-34.336007" y="27.522021" href="#tz_fig_serie_g2-101"></use>
+<use x="-30.572289" y="27.522021" href="#tz_fig_serie_g2-110"></use>
+<use x="-25.867642" y="27.522021" href="#tz_fig_serie_g2-100"></use>
+<use x="-21.398226" y="27.522021" href="#tz_fig_serie_g2-94"></use>
+<use x="-21.162994" y="27.522021" href="#tz_fig_serie_g2-101"></use>
+<use x="-17.399276" y="27.522021" href="#tz_fig_serie_g2-110"></use>
+<use x="-12.694628" y="27.522021" href="#tz_fig_serie_g2-99"></use>
+<use x="-8.93091" y="27.522021" href="#tz_fig_serie_g2-105"></use>
+<use x="-6.578587" y="27.522021" href="#tz_fig_serie_g2-97"></use>
+<use x=".478385" y="27.522021" href="#tz_fig_serie_g1-84"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(52.5959,66.36633)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,27.522021)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-37.629261" y="27.522021" href="#tz_fig_serie_g2-115"></use>
+<use x="-34.52419" y="27.522021" href="#tz_fig_serie_g2-19"></use>
+<use x="-34.288958" y="27.522021" href="#tz_fig_serie_g2-101"></use>
+<use x="-30.52524" y="27.522021" href="#tz_fig_serie_g2-114"></use>
+<use x="-27.22507" y="27.522021" href="#tz_fig_serie_g2-105"></use>
+<use x="-24.872746" y="27.522021" href="#tz_fig_serie_g2-101"></use>
+<use x="-18.286239" y="27.522021" href="#tz_fig_serie_g2-111"></use>
+<use x="-14.052056" y="27.522021" href="#tz_fig_serie_g2-98"></use>
+<use x="-9.347409" y="27.522021" href="#tz_fig_serie_g2-115"></use>
+<use x="-6.007106" y="27.522021" href="#tz_fig_serie_g2-101"></use>
+<use x="-2.243388" y="27.522021" href="#tz_fig_serie_g2-114"></use>
+<use x="1.056782" y="27.522021" href="#tz_fig_serie_g2-118"></use>
+<use x="5.055733" y="27.522021" href="#tz_fig_serie_g2-97"></use>
+<use x="9.289916" y="27.522021" href="#tz_fig_serie_g2-100"></use>
+<use x="13.994563" y="27.522021" href="#tz_fig_serie_g2-97"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(110.23978,-24.43834)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,27.522021)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-37.629261" y="27.522021" href="#tz_fig_serie_g0-116"></use>
+<use x="-34.045501" y="27.522021" href="#tz_fig_serie_g0-101"></use>
+<use x="-29.946313" y="27.522021" href="#tz_fig_serie_g0-109"></use>
+<use x="-22.266829" y="27.522021" href="#tz_fig_serie_g0-112"></use>
+<use x="-16.89119" y="27.522021" href="#tz_fig_serie_g0-111"></use>
+<use x="-9.211705" y="27.522021" href="#tz_fig_serie_g0-40"></use>
+<use x="-5.627946" y="27.522021" href="#tz_fig_serie_g0-116"></use>
+<use x="-2.044187" y="27.522021" href="#tz_fig_serie_g0-114"></use>
+<use x="1.560335" y="27.522021" href="#tz_fig_serie_g0-105"></use>
+<use x="4.120163" y="27.522021" href="#tz_fig_serie_g0-109"></use>
+<use x="11.799647" y="27.522021" href="#tz_fig_serie_g0-101"></use>
+<use x="15.898835" y="27.522021" href="#tz_fig_serie_g0-115"></use>
+<use x="19.533798" y="27.522021" href="#tz_fig_serie_g0-116"></use>
+<use x="23.117558" y="27.522021" href="#tz_fig_serie_g0-114"></use>
+<use x="26.722079" y="27.522021" href="#tz_fig_serie_g0-101"></use>
+<use x="30.821267" y="27.522021" href="#tz_fig_serie_g0-115"></use>
+<use x="34.45623" y="27.522021" href="#tz_fig_serie_g0-41"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(0.0,1.0,-1.0,0.0,-5.66684,36.35187)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,27.522021)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-37.629261" y="27.522021" href="#tz_fig_serie_g0-110"></use>
+<use x="-33.533536" y="27.522021" href="#tz_fig_serie_g0-19"></use>
+<use x="-32.509604" y="27.522021" href="#tz_fig_serie_g0-16"></use>
+<use x="-29.949776" y="27.522021" href="#tz_fig_serie_g0-118"></use>
+<use x="-25.342086" y="27.522021" href="#tz_fig_serie_g0-101"></use>
+<use x="-21.242898" y="27.522021" href="#tz_fig_serie_g0-108"></use>
+<use x="-15.611276" y="27.522021" href="#tz_fig_serie_g0-100"></use>
+<use x="-10.491619" y="27.522021" href="#tz_fig_serie_g0-97"></use>
+<use x="-2.812135" y="27.522021" href="#tz_fig_serie_g0-115"></use>
+<use x=".568563" y="27.522021" href="#tz_fig_serie_g0-19"></use>
+<use x=".822828" y="27.522021" href="#tz_fig_serie_g0-101"></use>
+<use x="4.922016" y="27.522021" href="#tz_fig_serie_g0-114"></use>
+<use x="8.526537" y="27.522021" href="#tz_fig_serie_g0-105"></use>
+<use x="11.086365" y="27.522021" href="#tz_fig_serie_g0-101"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-serie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;72.1: Uma série (azul) como soma de uma <strong>tendência</strong> de longo prazo (vermelho tracejado) e uma <strong>sazonalidade</strong> regular que oscila em torno dela.
+</figcaption>
+</figure>
+</div>
+<p>Separar esses componentes — a <strong>decomposição</strong> da série — é o que permite responder à pergunta prática mais comum na conjuntura: a variação deste mês é <strong>tendência</strong> (sinal) ou apenas <strong>sazonalidade</strong> (padrão de calendário)?</p>
+</section>
+<section id="estacionariedade" class="level2" data-number="72.4">
+<h2 data-number="72.4" class="anchored" data-anchor-id="estacionariedade"><span class="header-section-number">72.4</span> Estacionariedade</h2>
+<p>O conceito mais importante da análise de séries temporais é a <strong>estacionariedade</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — série estacionária">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — série estacionária
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma série é <strong>estacionária</strong> (em sentido fraco) quando suas propriedades estatísticas <strong>não mudam ao longo do tempo</strong>: a <strong>média</strong> é constante, a <strong>variância</strong> é constante, e a covariância entre dois pontos depende apenas da <strong>distância</strong> entre eles, não de sua localização no tempo. Uma série <strong>não estacionária</strong> tem média e/ou variância que mudam com o tempo — tipicamente, exibe <strong>tendência</strong>.</p>
+</div>
+</div>
+<p>Por que isso importa tanto? Porque quase toda a teoria estatística de inferência <strong>pressupõe</strong> estacionariedade. Uma série com tendência (o PIB nominal, o nível de preços) é <strong>não estacionária</strong>: sua média cresce sem parar, e aplicar a ela as ferramentas usuais produz resultados enganosos — o mais famoso deles, a regressão espúria, adiante.</p>
+<p>A boa notícia é que séries não estacionárias muitas vezes podem ser <strong>transformadas</strong> em estacionárias. A transformação mais comum é a <strong>diferenciação</strong>: em vez do nível da série, trabalha-se com sua <strong>variação</strong> de um período a outro, <span class="math inline">\(\Delta Y_t = Y_t - Y_{t-1}\)</span>. O PIB (com tendência, não estacionário) vira o <strong>crescimento</strong> do PIB (sem tendência, estacionário); o nível de preços vira a <strong>inflação</strong>. Muitas variáveis econômicas são não estacionárias em nível, mas estacionárias em <strong>primeira diferença</strong>.</p>
+</section>
+<section id="autocorrelação-e-o-passeio-aleatório" class="level2" data-number="72.5">
+<h2 data-number="72.5" class="anchored" data-anchor-id="autocorrelação-e-o-passeio-aleatório"><span class="header-section-number">72.5</span> Autocorrelação e o passeio aleatório</h2>
+<p>Como as observações de uma série são correlacionadas no tempo, definimos a <strong>autocorrelação</strong>: a correlação de uma série com suas próprias defasagens (<em>lags</em>). A autocorrelação de ordem 1 mede o quanto <span class="math inline">\(Y_t\)</span> se relaciona com <span class="math inline">\(Y_{t-1}\)</span>; a de ordem 12 (em dados mensais), com o mesmo mês do ano anterior — reveladora de sazonalidade. O gráfico dessas correlações, o <strong>correlograma</strong>, é a primeira ferramenta de diagnóstico de uma série.</p>
+<p>Um caso especial e fundamental é o <strong>passeio aleatório</strong> (<em>random walk</em>):</p>
+<p><span id="eq-random-walk"><span class="math display">\[
+Y_t = Y_{t-1} + u_t,
+\tag{72.1}\]</span></span></p>
+<p>em que o valor de hoje é o de ontem mais um choque <strong>imprevisível</strong> <span class="math inline">\(u_t\)</span>. O passeio aleatório é <strong>não estacionário</strong> (sua variância cresce com o tempo) e diz-se que tem uma <strong>raiz unitária</strong>. Sua propriedade marcante: choques têm efeito <strong>permanente</strong> — um empurrão hoje desloca a série para sempre, sem tendência a retornar a um nível médio. A melhor previsão para amanhã é simplesmente o valor de hoje.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — por que preços de ativos parecem passeios aleatórios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — por que preços de ativos parecem passeios aleatórios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Segundo a hipótese de mercados eficientes, o preço de uma ação já incorpora toda a informação disponível; logo, sua variação futura só pode vir de <strong>notícias novas</strong>, que são por definição imprevisíveis. O preço comporta-se, então, aproximadamente como um <strong>passeio aleatório</strong>: a melhor previsão do preço de amanhã é o preço de hoje. É por isso que “prever” a bolsa é tão difícil — se o movimento fosse previsível, os investidores já o teriam explorado, eliminando-o. Testar se uma série tem raiz unitária é testar essa imprevisibilidade.</p>
+</div>
+</div>
+</section>
+<section id="a-armadilha-da-regressão-espúria" class="level2" data-number="72.6">
+<h2 data-number="72.6" class="anchored" data-anchor-id="a-armadilha-da-regressão-espúria"><span class="header-section-number">72.6</span> A armadilha da regressão espúria</h2>
+<p>Aqui está o alerta mais valioso do capítulo — e um erro que já rendeu conclusões econômicas inteiramente falsas.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — regressão espúria">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — regressão espúria
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se você regredir <strong>duas séries não estacionárias</strong> com tendência, uma contra a outra, é quase certo obter um coeficiente <strong>altamente significativo</strong> e um <strong><span class="math inline">\(R^2\)</span> altíssimo</strong> — <strong>mesmo que as séries não tenham nenhuma relação real</strong>. A razão: ambas apenas <strong>crescem no tempo</strong>, e o MQO confunde esse crescimento comum com uma associação genuína. É a <strong>regressão espúria</strong> (Granger e Newbold, 1974). Exemplos caricatos abundam: o número de afogamentos e o PIB, o consumo de energia e a expectativa de vida — tudo “explica” tudo, porque tudo tem tendência de alta. <strong>Nunca</strong> interprete uma regressão entre séries com tendência sem antes torná-las estacionárias (diferenciando) ou verificar <strong>cointegração</strong>.</p>
+</div>
+</div>
+<p>A regressão espúria é a versão temporal da lição do <a href="cap04-correlacao-causalidade.html" class="quarto-xref"><span>Capítulo 69</span></a>: correlação não é causalidade, e no tempo o problema é ainda mais traiçoeiro, porque a “correlação” é fabricada pela tendência comum, sem qualquer confundidor específico. A defesa é testar a estacionariedade (testes de <strong>raiz unitária</strong>, como o de Dickey-Fuller), diferenciar as séries antes de regredir, ou — quando as séries compartilham uma tendência estocástica <strong>genuína</strong> de longo prazo — usar o arcabouço de <strong>cointegração</strong>, que distingue relações de longo prazo reais das espúrias.</p>
+</section>
+<section id="sazonalidade-e-o-ajuste-sazonal" class="level2" data-number="72.7">
+<h2 data-number="72.7" class="anchored" data-anchor-id="sazonalidade-e-o-ajuste-sazonal"><span class="header-section-number">72.7</span> Sazonalidade e o ajuste sazonal</h2>
+<p>Um último tema de enorme importância prática. Como a sazonalidade contamina a leitura de curto prazo (o desemprego <strong>sempre</strong> cai em dezembro; as vendas <strong>sempre</strong> sobem no Natal), os institutos divulgam séries <strong>dessazonalizadas</strong> (com ajuste sazonal), das quais o padrão de calendário foi removido. Duas formas de contornar a sazonalidade:</p>
+<ul>
+<li><strong>Série dessazonalizada:</strong> compara-se um mês com o <strong>anterior</strong> já sem o efeito sazonal — capta a tendência <strong>recente</strong>. Ideal para saber “para onde a economia está indo <strong>agora</strong>”.</li>
+<li><strong>Variação interanual (contra o mesmo mês do ano anterior):</strong> compara dezembro com dezembro, eliminando a sazonalidade por construção — mas responde com <strong>defasagem</strong>, pois carrega 12 meses de história.</li>
+</ul>
+<p>Confundir os dois gera erros graves de interpretação de conjuntura: celebrar uma “queda do desemprego” que é só sazonalidade, ou uma “alta das vendas” que é apenas o Natal chegando.</p>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="72.8">
+<h2 data-number="72.8" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">72.8</span> 🇧🇷 Brasil em Foco</h2>
+<p>Nenhum país oferece um laboratório de séries temporais mais rico — e mais escrutinado — que o Brasil, com sua profusão de indicadores de conjuntura acompanhados mês a mês.</p>
+<p><strong>IPCA e a inflação: nível, variação e ajuste.</strong> O <strong>IPCA</strong> (IBGE) é o exemplo perfeito da distinção nível × diferença. O <strong>índice de preços</strong> em nível é não estacionário (só sobe, tendência de alta permanente); a <strong>inflação</strong> — sua variação mensal — é a série estacionária que o Banco Central efetivamente persegue nas metas (Volume 8). O IBGE divulga o IPCA cheio, os núcleos (que filtram itens voláteis), e analistas acompanham a inflação <strong>acumulada em 12 meses</strong> (variação interanual) e a <strong>mensal dessazonalizada anualizada</strong> — cada uma respondendo a uma pergunta diferente sobre a dinâmica de preços.</p>
+<p><strong>PIB e desemprego: a guerra da sazonalidade.</strong> O <strong>PIB trimestral</strong> e a taxa de desocupação da <strong>PNAD Contínua</strong> são divulgados tanto na série original quanto <strong>dessazonalizada</strong> justamente por causa de seus fortíssimos padrões sazonais — a atividade cai no primeiro trimestre, o emprego formal (Caged) sobe no fim do ano. A leitura correta da conjuntura brasileira depende de saber <strong>qual</strong> série se está olhando: a variação do PIB “contra o trimestre anterior com ajuste sazonal” (a margem) conta uma história; a “contra o mesmo trimestre do ano anterior” (interanual), outra. Erros de interpretação aqui produzem manchetes contraditórias sobre a <strong>mesma</strong> divulgação.</p>
+<p><strong>O tesouro das séries: o SGS do Banco Central.</strong> O <strong>Sistema Gerenciador de Séries Temporais (SGS)</strong> do Banco Central e o <strong>Ipeadata</strong> reúnem milhares de séries temporais brasileiras — câmbio, Selic, crédito, expectativas do boletim Focus, agregados monetários. É a matéria-prima da análise de conjuntura no Brasil. E é também um campo minado de <strong>regressões espúrias</strong>: como a maioria dessas séries em nível tem tendência (economia que cresce, preços que sobem), qualquer par delas “se correlaciona”. O analista competente diferencia, testa raiz unitária e desconfia de <span class="math inline">\(R^2\)</span> suspeito — aplicando, na prática, o alerta central deste capítulo.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> IBGE (IPCA, PIB trimestral, PNAD Contínua — séries originais e dessazonalizadas); Banco Central (SGS — câmbio, Selic, crédito; boletim Focus); Ipeadata (séries históricas consolidadas). Ao comparar períodos, verifique sempre se a série é original, dessazonalizada ou interanual — e se está em nível ou em variação.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="72.9">
+<h2 data-number="72.9" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">72.9</span> Resumo do capítulo</h2>
+<ul>
+<li>Dados podem ser de <strong>corte transversal</strong> (unidades num instante), <strong>série temporal</strong> (uma unidade no tempo) ou <strong>painel</strong> (ambas as dimensões); séries temporais têm <strong>dependência temporal</strong> — observações correlacionadas.</li>
+<li>Uma série decompõe-se em <strong>tendência</strong> (longo prazo), <strong>sazonalidade</strong> (padrão regular intra-anual), <strong>ciclo</strong> (médio prazo) e <strong>componente irregular</strong> (ruído).</li>
+<li>Uma série é <strong>estacionária</strong> se média, variância e autocovariância não mudam no tempo; a inferência usual pressupõe estacionariedade. Séries com tendência são <strong>não estacionárias</strong>.</li>
+<li>A <strong>diferenciação</strong> (<span class="math inline">\(\Delta Y_t = Y_t - Y_{t-1}\)</span>) costuma tornar séries estacionárias: nível de preços → inflação; PIB → crescimento.</li>
+<li>A <strong>autocorrelação</strong> mede a relação da série com suas defasagens; o <strong>passeio aleatório</strong> (<span class="math inline">\(Y_t = Y_{t-1} + u_t\)</span>) é não estacionário, tem <strong>raiz unitária</strong> e choques <strong>permanentes</strong> — modelo de preços de ativos eficientes.</li>
+<li>A <strong>regressão espúria</strong> faz duas séries com tendência parecerem relacionadas (<span class="math inline">\(R^2\)</span> alto, <span class="math inline">\(t\)</span> significativo) sem relação real; defende-se diferenciando, testando raiz unitária ou usando <strong>cointegração</strong>.</li>
+<li>Para ler conjuntura, distinga série <strong>original</strong>, <strong>dessazonalizada</strong> (tendência recente) e <strong>variação interanual</strong> (defasada), e <strong>nível</strong> de <strong>variação</strong>.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="72.10">
+<h2 data-number="72.10" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">72.10</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.</p>
+</div>
+</div>
+<p><strong>1.</strong> Classifique cada conjunto como corte transversal, série temporal ou painel: (a) o IPCA mensal de 2000 a 2024; (b) a renda de 50 mil domicílios num trimestre; (c) o PIB anual de 27 unidades da federação ao longo de 10 anos.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><strong>Série temporal</strong> — uma variável (IPCA) ao longo de muitos períodos. (b) <strong>Corte transversal</strong> — muitas unidades (domicílios) num único momento. (c) <strong>Painel</strong> — muitas unidades (27 UFs) observadas em muitos períodos (10 anos), combinando as duas dimensões.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Explique a diferença entre <strong>sazonalidade</strong> e <strong>ciclo</strong>. Dê um exemplo brasileiro de cada.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A <strong>sazonalidade</strong> é uma flutuação <strong>regular</strong> que se repete dentro do ano, ligada ao calendário — por exemplo, as vendas do varejo que <strong>sempre</strong> disparam em dezembro (Natal), ou o emprego formal que sobe no fim do ano. O <strong>ciclo</strong> é uma oscilação de <strong>médio prazo</strong>, <strong>menos regular</strong>, ligada às expansões e recessões da economia — por exemplo, a recessão brasileira de 2015–2016 e a recuperação seguinte. A sazonalidade é previsível e periódica; o ciclo é irregular em duração e intensidade.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Por que o nível de preços (índice) é não estacionário, mas a inflação (sua variação) pode ser estacionária?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O <strong>nível de preços</strong> tem tendência de alta permanente — sua média cresce continuamente ao longo do tempo —, logo é <strong>não estacionário</strong>. A <strong>inflação</strong> é a <strong>variação</strong> (primeira diferença, em termos percentuais) desse nível; ela oscila em torno de um patamar mais ou menos estável (em torno da meta, sob regime de metas), sem tendência sistemática de alta — média e variância aproximadamente constantes. Assim, uma série não estacionária <strong>em nível</strong> torna-se estacionária <strong>em diferença</strong> — caso típico de variáveis econômicas.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> O que caracteriza um <strong>passeio aleatório</strong>? Por que sua melhor previsão para o próximo período é o valor atual?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Um <strong>passeio aleatório</strong> é <span class="math inline">\(Y_t = Y_{t-1} + u_t\)</span>: o valor de hoje é o de ontem mais um choque <strong>imprevisível</strong> de média zero. Como o choque <span class="math inline">\(u_t\)</span> é imprevisível (esperança zero), o <strong>valor esperado</strong> de <span class="math inline">\(Y_t\)</span> dado tudo o que se sabe até <span class="math inline">\(t-1\)</span> é exatamente <span class="math inline">\(Y_{t-1}\)</span> — não há componente previsível a acrescentar. Logo, a melhor previsão para o próximo período é o <strong>último valor observado</strong>. A série não retorna a nenhuma média (não estacionária, raiz unitária) e os choques têm efeito <strong>permanente</strong>.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Um analista regride o PIB nominal do Brasil contra o número de assinaturas de streaming ao longo de 2010–2024, obtém <span class="math inline">\(R^2 = 0{,}97\)</span> e conclui que streaming impulsiona o PIB. Diagnostique o erro.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>É uma <strong>regressão espúria</strong>. Ambas as séries são <strong>não estacionárias</strong> com forte <strong>tendência de alta</strong> no período (o PIB nominal cresce com inflação e crescimento real; as assinaturas de streaming explodiram de quase zero a milhões). O MQO confunde essas duas tendências ascendentes com uma associação real, produzindo <span class="math inline">\(R^2\)</span> altíssimo e coeficiente “significativo” <strong>sem qualquer relação causal</strong>. O streaming não impulsiona o PIB — as duas apenas crescem no tempo. A correção: diferenciar as séries (trabalhar com <strong>variações</strong>) e/ou testar raiz unitária antes de qualquer regressão; provavelmente a relação desaparece nas diferenças.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Explique a diferença entre comparar o desemprego “com o mês anterior, dessazonalizado” e “com o mesmo mês do ano anterior”. Quando cada um é mais útil?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A comparação <strong>com o mês anterior dessazonalizado</strong> remove o padrão de calendário e mede a tendência <strong>mais recente</strong> — útil para captar <strong>viradas</strong> de curto prazo (“a economia está piorando <strong>agora</strong>?”). A comparação <strong>interanual</strong> (mesmo mês do ano anterior) elimina a sazonalidade por construção (dezembro contra dezembro), mas responde com <strong>defasagem</strong>, pois embute 12 meses de história — útil para uma leitura <strong>suavizada</strong> de médio prazo, menos sujeita a ruído mensal, mas lenta para detectar mudanças recentes. Em viradas de ciclo, a interanual demora a “perceber” a mudança que a dessazonalizada já mostra.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) Em dezembro, o varejo brasileiro registra forte alta nas vendas. Uma manchete anuncia “consumo aquece e economia decola”. Usando o conceito de sazonalidade, critique a manchete.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A alta do varejo em dezembro é, em grande parte, <strong>sazonalidade</strong> pura: o Natal e o 13º salário fazem as vendas subirem <strong>todo</strong> dezembro, independentemente do estado do ciclo econômico. Comparar dezembro com novembro (sem ajuste) e concluir que “a economia decola” confunde <strong>padrão de calendário</strong> com <strong>tendência</strong> genuína. A leitura correta usa a série <strong>dessazonalizada</strong> (a alta de dezembro sobrou depois de removido o efeito Natal?) ou a <strong>variação interanual</strong> (as vendas deste dezembro superaram as do dezembro anterior?). Só se o crescimento <strong>persistir após o ajuste sazonal</strong> é que se pode falar em aquecimento real. A manchete comete o erro clássico de tomar sazonalidade por sinal.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) Preços de ações costumam se comportar como passeios aleatórios. Explique por que isso decorre da eficiência de mercado e por que implica que estratégias baseadas em “prever o gráfico” tendem a fracassar.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Sob a <strong>hipótese de mercados eficientes</strong>, o preço de uma ação já reflete <strong>toda</strong> a informação publicamente disponível. Se existisse um padrão <strong>previsível</strong> nos preços (por exemplo, “sempre sobe depois de cair três dias”), os investidores o explorariam comprando/vendendo até que a oportunidade de lucro <strong>desaparecesse</strong> — eliminando o próprio padrão. Sobra, então, apenas a variação causada por <strong>notícias novas</strong>, que são por definição <strong>imprevisíveis</strong> (se fossem previsíveis, já estariam no preço). Isso faz o preço se comportar como um <strong>passeio aleatório</strong>: <span class="math inline">\(P_t = P_{t-1} + u_t\)</span>, com a melhor previsão de amanhã sendo o preço de hoje, e os choques imprevisíveis. Consequência: estratégias de <strong>análise gráfica</strong> que buscam padrões repetíveis nos preços passados não têm, em média, como gerar retornos anormais consistentes — o passado do gráfico não carrega informação explorável sobre o futuro. (Na prática, há desvios e anomalias, mas o resultado é uma boa primeira aproximação e explica por que “bater o mercado” consistentemente é raríssimo — tema do Volume 14.)</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="72.11">
+<h2 data-number="72.11" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">72.11</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="morettin2018">Morettin; Toloi (<a href="#ref-morettin2018" role="doc-biblioref">2018</a>)</span> — referência brasileira de análise de séries temporais: estacionariedade, autocorrelação, modelos ARIMA e raiz unitária, com rigor e exemplos.</li>
+<li><span class="citation" data-cites="stock2020">Stock; Watson (<a href="#ref-stock2020" role="doc-biblioref">2020</a>)</span> — capítulos de séries temporais com ênfase em previsão, raiz unitária e regressão espúria, em linguagem acessível.</li>
+<li><span class="citation" data-cites="wooldridge2016">Wooldridge (<a href="#ref-wooldridge2016" role="doc-biblioref">2016</a>)</span> — tratamento de regressão com séries temporais, tendências, sazonalidade e os cuidados com séries não estacionárias.</li>
+<li><span class="citation" data-cites="gujarati2011">Gujarati; Porter (<a href="#ref-gujarati2011" role="doc-biblioref">2011</a>)</span> — introdução à econometria de séries temporais, cointegração e testes de raiz unitária, em português.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-gujarati2011" class="csl-entry" role="listitem">
+GUJARATI, Damodar N.; PORTER, Dawn C. <strong>Econometria Básica</strong>. 5. ed. Porto Alegre: AMGH, 2011.
+</div>
+<div id="ref-morettin2018" class="csl-entry" role="listitem">
+MORETTIN, Pedro A.; TOLOI, Clélia M. C. <strong>Análise de Séries Temporais: Modelos Lineares Univariados</strong>. 3. ed. São Paulo: Blucher, 2018.
+</div>
+<div id="ref-stock2020" class="csl-entry" role="listitem">
+STOCK, James H.; WATSON, Mark W. <strong>Introduction to Econometrics</strong>. 4. ed. Harlow: Pearson, 2020.
+</div>
+<div id="ref-wooldridge2016" class="csl-entry" role="listitem">
+WOOLDRIDGE, Jeffrey M. <strong>Introdução à Econometria: Uma Abordagem Moderna</strong>. 6. ed. São Paulo: Cengage Learning, 2016.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol10/cap06-regressao-multipla.html" class="pagination-link" aria-label="Regressão múltipla e viés de variável omitida">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Regressão múltipla e viés de variável omitida</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol10/cap08-avaliacao-de-politicas.html" class="pagination-link" aria-label="Avaliação de políticas públicas: métodos quase-experimentais">
+        <span class="nav-page-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">Avaliação de políticas públicas: métodos quase-experimentais</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol10/cap07-series-temporais.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

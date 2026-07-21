@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>71&nbsp; Regressão múltipla e viés de variável omitida – Manual de Economia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../capitulos/vol10/cap07-series-temporais.html" rel="next">
+<link href="../../capitulos/vol10/cap05-regressao-simples.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d45b21d8d994a1484d02820b6512ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap01-estatistica-descritiva.html">Volume 10 — Estatística e Econometria Básica</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap06-regressao-multipla.html"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Regressão múltipla e viés de variável omitida</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Economia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-economia" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 1 — Introdução à Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap01-o-que-e-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que é Economia: escassez, escolha e custo de oportunidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap02-metodo-da-economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O método da Economia: modelos, <em>ceteris paribus</em> e a FPP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap03-sistemas-economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sistemas econômicos: mercado, Estado e economias mistas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap04-vantagem-comparativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vantagem comparativa, especialização e trocas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap05-fluxo-circular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O fluxo circular da renda e os agentes econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol01/cap06-micro-e-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Microeconomia e Macroeconomia: os dois olhares</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 2 — Matemática para Economistas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap01-funcoes-e-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funções e gráficos na Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap02-equacoes-e-equilibrio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Equações, sistemas lineares e a noção de equilíbrio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap03-limites-e-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Limites, continuidade e comportamento de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap04-derivadas-analise-marginal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derivadas e a análise marginal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap05-otimizacao-livre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otimização sem restrições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap06-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Otimização com restrições: multiplicadores de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap07-integrais-excedentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Integrais e o cálculo de excedentes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol02/cap08-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Matrizes e álgebra linear básica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 3 — Microeconomia I: Mercados e Consumidor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap01-demanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A demanda: determinantes e a curva de demanda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap02-oferta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A oferta: determinantes e a curva de oferta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap03-equilibrio-de-mercado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Equilíbrio de mercado e dinâmica de ajuste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap04-elasticidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Elasticidades: preço, renda e cruzada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap05-aplicacoes-intervencoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aplicações: impostos, tabelamentos e subsídios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap06-preferencias-utilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Preferências e utilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap07-escolha-do-consumidor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Restrição orçamentária e escolha ótima do consumidor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol03/cap08-efeitos-renda-substituicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Demanda individual, efeito renda e efeito substituição</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 4 — Macroeconomia I: Medindo a Economia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap01-contas-nacionais-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Contas nacionais e o PIB</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap02-pib-real-deflatores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PIB nominal × real, deflatores e números-índice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap03-inflacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Inflação: conceito, medidas (IPCA) e custos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap04-desemprego.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Desemprego e o mercado de trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap05-crescimento-fatos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Crescimento econômico: fatos estilizados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap06-poupanca-investimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poupança, investimento e o sistema financeiro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol04/cap07-indicadores-na-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lendo indicadores na prática: IBGE, Bacen e IPEA</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 5 — Microeconomia II: Firmas e Estruturas de Mercado</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap01-teoria-da-producao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Teoria da produção: fatores, produto marginal e retornos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap02-custos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Custos de produção: curto e longo prazo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap03-concorrencia-perfeita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Concorrência perfeita</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap04-monopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Monopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap05-concorrencia-monopolistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Concorrência monopolística</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap06-oligopolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Oligopólio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol05/cap07-regulacao-cade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Regulação e defesa da concorrência: o CADE</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 6 — Microeconomia III: Jogos, Falhas de Mercado e Incerteza</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap01-teoria-dos-jogos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Introdução à teoria dos jogos: dominância e equilíbrio de Nash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap02-jogos-repetidos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Jogos sequenciais, repetidos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap03-externalidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Externalidades e o teorema de Coase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap04-bens-publicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Bens públicos e recursos comuns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap05-informacao-assimetrica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Informação assimétrica: seleção adversa e risco moral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap06-economia-do-trabalho.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Economia do trabalho: salários, capital humano e informalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol06/cap07-escolha-sob-incerteza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Escolha sob incerteza: utilidade esperada e aversão ao risco</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 7 — Macroeconomia II: Modelos e Política Econômica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap01-demanda-agregada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Demanda agregada: consumo, investimento e o multiplicador</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap02-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O modelo IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap03-politicas-no-is-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Política fiscal e monetária no IS-LM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap04-oferta-agregada-phillips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Oferta agregada e a curva de Phillips</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap05-ad-as-choques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">O modelo AD-AS e a análise de choques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap06-expectativas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Expectativas: adaptativas e racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap07-ciclos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Ciclos econômicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol07/cap08-debates-macroeconomicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Grandes debates: clássicos, keynesianos e o novo consenso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 8 — Economia Monetária e Bancária</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap01-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Moeda: funções, história e agregados monetários</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap02-bancos-criacao-de-moeda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Bancos e a criação de moeda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap03-banco-central.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">O Banco Central: funções e instrumentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap04-metas-de-inflacao-copom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Regime de metas de inflação e o Copom</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap05-taxa-de-juros-selic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Taxa de juros: Selic, juro real e estrutura a termo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap06-sfn-pix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">O Sistema Financeiro Nacional e o Pix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol08/cap07-crises-bancarias-regulacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Crises bancárias e regulação prudencial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume 9 — Economia Internacional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap01-teorias-do-comercio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Teorias do comércio internacional</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap02-politica-comercial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Política comercial: tarifas, quotas e acordos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap03-balanco-de-pagamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">O balanço de pagamentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap04-cambio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Taxa de câmbio: determinação e regimes cambiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap05-mundell-fleming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Macroeconomia aberta: o modelo Mundell-Fleming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap06-globalizacao-brasil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Globalização, cadeias globais de valor e o Brasil</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol09/cap07-crises-cambiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Crises cambiais e fluxos de capitais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume 10 — Estatística e Econometria Básica</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap01-estatistica-descritiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">Estatística descritiva para a Economia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap02-probabilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Probabilidade e distribuições</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap03-inferencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">Inferência: estimação e testes de hipótese</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap04-correlacao-causalidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">Correlação não é causalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap05-regressao-simples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Regressão linear simples</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap06-regressao-multipla.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Regressão múltipla e viés de variável omitida</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap07-series-temporais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Séries temporais: noções essenciais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../capitulos/vol10/cap08-avaliacao-de-politicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">Avaliação de políticas públicas: métodos quase-experimentais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">71.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#o-modelo-de-regressão-múltipla" id="toc-o-modelo-de-regressão-múltipla" class="nav-link" data-scroll-target="#o-modelo-de-regressão-múltipla"><span class="header-section-number">71.2</span> O modelo de regressão múltipla</a></li>
+  <li><a href="#o-viés-de-variável-omitida" id="toc-o-viés-de-variável-omitida" class="nav-link" data-scroll-target="#o-viés-de-variável-omitida"><span class="header-section-number">71.3</span> O viés de variável omitida</a></li>
+  <li><a href="#variáveis-binárias-dummies-e-interações" id="toc-variáveis-binárias-dummies-e-interações" class="nav-link" data-scroll-target="#variáveis-binárias-dummies-e-interações"><span class="header-section-number">71.4</span> Variáveis binárias (<em>dummies</em>) e interações</a></li>
+  <li><a href="#multicolinearidade-e-maus-controles" id="toc-multicolinearidade-e-maus-controles" class="nav-link" data-scroll-target="#multicolinearidade-e-maus-controles"><span class="header-section-number">71.5</span> Multicolinearidade e maus controles</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">71.6</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">71.7</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">71.8</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">71.9</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol10/cap06-regressao-multipla.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap01-estatistica-descritiva.html">Volume 10 — Estatística e Econometria Básica</a></li><li class="breadcrumb-item"><a href="../../capitulos/vol10/cap06-regressao-multipla.html"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Regressão múltipla e viés de variável omitida</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-regressao-multipla" class="quarto-section-identifier"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Regressão múltipla e viés de variável omitida</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>No capítulo anterior, uma regressão simples do salário contra anos de estudo entregou um número tentador — cada ano de escola “vale” tantos por cento a mais. Mas terminamos com uma ressalva incômoda: quem estuda mais também tende a ter mais <strong>habilidade</strong>, mais <strong>experiência</strong>, vir de famílias mais <strong>ricas</strong> — e todos esses fatores, escondidos no termo de erro, também elevam o salário. A regressão simples, ao ignorá-los, atribui à educação um crédito que em parte é de outros. Como resolver? A resposta é a ferramenta mais poderosa da econometria clássica: a <strong>regressão múltipla</strong>, que permite <strong>segurar constantes</strong> as outras variáveis e isolar o efeito de cada uma.</p>
+<p>Este capítulo dá o salto de uma para várias variáveis explicativas — e, com ele, o econometrista ganha a capacidade de aproximar em dados observacionais o <em>ceteris paribus</em> que os experimentos garantem por sorteio (<a href="cap04-correlacao-causalidade.html" class="quarto-xref"><span>Capítulo 69</span></a>). Veremos como interpretar os coeficientes “mantendo as demais constantes”, entenderemos o problema mais importante da econometria aplicada — o <strong>viés de variável omitida</strong> —, e conheceremos suas variantes (variáveis <em>dummy</em>, interações) e armadilhas (multicolinearidade, <em>bad controls</em>). É a ponte final rumo à avaliação de políticas (<a href="cap08-avaliacao-de-politicas.html" class="quarto-xref"><span>Capítulo 73</span></a>).</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="71.1">
+<h2 data-number="71.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">71.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>especificar e interpretar o modelo de <strong>regressão múltipla</strong>, com a cláusula <em>ceteris paribus</em>;</li>
+<li>entender como incluir controles ajuda a isolar o efeito de interesse;</li>
+<li>diagnosticar o <strong>viés de variável omitida</strong> e prever seu <strong>sinal</strong>;</li>
+<li>usar <strong>variáveis binárias (<em>dummies</em>)</strong> e <strong>termos de interação</strong>;</li>
+<li>reconhecer a <strong>multicolinearidade</strong> e o problema dos <strong>maus controles</strong> (<em>bad controls</em>);</li>
+<li>distinguir quando incluir e quando <strong>não</strong> incluir uma variável no modelo.</li>
+</ul>
+</section>
+<section id="o-modelo-de-regressão-múltipla" class="level2" data-number="71.2">
+<h2 data-number="71.2" class="anchored" data-anchor-id="o-modelo-de-regressão-múltipla"><span class="header-section-number">71.2</span> O modelo de regressão múltipla</h2>
+<p>A generalização é natural: em vez de uma, várias variáveis explicativas entram no modelo:</p>
+<p><span id="eq-modelo-multiplo"><span class="math display">\[
+Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_k X_{ki} + u_i.
+\tag{71.1}\]</span></span></p>
+<p>O estimador continua sendo o <strong>MQO</strong> — minimiza-se a soma dos quadrados dos resíduos, agora ajustando um <strong>plano</strong> (ou hiperplano) em vez de uma reta. O que muda, e muda tudo, é a <strong>interpretação</strong> dos coeficientes.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — coeficiente parcial (*ceteris paribus*)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — coeficiente parcial (<em>ceteris paribus</em>)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Na regressão múltipla, cada coeficiente <span class="math inline">\(\beta_j\)</span> mede o efeito de aumentar <span class="math inline">\(X_j\)</span> em uma unidade sobre <span class="math inline">\(Y\)</span>, <strong>mantendo todas as demais variáveis explicativas constantes</strong>. É um efeito <strong>parcial</strong>, <em>ceteris paribus</em> — a regressão “segura” as outras variáveis e mostra a contribuição isolada de <span class="math inline">\(X_j\)</span>. Essa é a grande virtude da regressão múltipla.</p>
+</div>
+</div>
+<p>Voltando ao salário: se estimarmos</p>
+<p><span class="math display">\[
+\widehat{\ln(\text{salário})} = \beta_0 + \beta_1\,\text{estudo} + \beta_2\,\text{experiência} + u,
+\]</span></p>
+<p>o coeficiente <span class="math inline">\(\beta_1\)</span> passa a medir o retorno de um ano de estudo <strong>entre pessoas com a mesma experiência</strong> — comparamos maçãs com maçãs. Ao incluir a experiência como <strong>controle</strong>, tiramos do coeficiente da educação a parte que, antes, se confundia com o fato de os mais velhos e experientes também ganharem mais.</p>
+</section>
+<section id="o-viés-de-variável-omitida" class="level2" data-number="71.3">
+<h2 data-number="71.3" class="anchored" data-anchor-id="o-viés-de-variável-omitida"><span class="header-section-number">71.3</span> O viés de variável omitida</h2>
+<p>Chegamos ao conceito mais importante deste volume para a prática empírica. Quando uma variável <strong>relevante</strong> é deixada de fora do modelo — omitida —, o coeficiente das variáveis incluídas fica <strong>viesado</strong>, porque absorve o efeito da variável ausente. A <a href="#fig-vvo" class="quarto-xref">Figura&nbsp;<span>71.1</span></a> mostra a estrutura causal do problema.</p>
+<div id="fig-vvo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vvo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="217.943532pt" height="143.146262pt" viewbox="-68.014948 -68.014949 217.943532 143.146262">
+<defs>
+<path id="tz_fig_vvo_g0-12" d="M4.782067-4.534994C4.782067-5.260274 4.192279-5.618929 3.53076-5.618929C2.502615-5.618929 1.737484-4.455293 1.514321-3.57858L.255044 1.45056C.239103 1.506351 .302864 1.546202 .350685 1.546202C.414446 1.546202 .478207 1.546202 .494147 1.490411L1.036115-.645579C1.219427-.215193 1.594022 .071731 2.16787 .071731C3.267746 .071731 4.471233-.70934 4.471233-1.976588C4.471233-2.502615 4.27198-2.8533 3.873474-3.180075C3.921295-3.188045 4.064757-3.291656 4.104608-3.323537C4.503113-3.594521 4.782067-4.048817 4.782067-4.534994ZM3.211955-3.180075C3.068493-3.156164 2.925031-3.140224 2.773599-3.140224C2.685928-3.140224 2.598257-3.140224 2.510585-3.172105C2.662017-3.211955 2.82142-3.211955 2.972852-3.211955C3.052553-3.211955 3.132254-3.203985 3.211955-3.180075ZM4.27995-4.686426C4.27995-4.28792 4.104608-3.817684 3.825654-3.53873C3.785803-3.498879 3.618431-3.347447 3.57061-3.339477C3.347447-3.379328 3.172105-3.435118 2.940971-3.435118C2.733748-3.435118 2.231631-3.451059 2.231631-3.140224C2.231631-2.901121 2.685928-2.917061 2.84533-2.917061C3.092403-2.917061 3.323537-2.940971 3.55467-3.028643C3.793773-2.83736 3.913325-2.582316 3.913325-2.183811C3.913325-1.713574 3.753923-1.187547 3.52279-.868742C3.227895-.446326 2.733748-.151432 2.13599-.151432C1.609963-.151432 1.195517-.557908 1.195517-1.115816C1.195517-1.219427 1.203487-1.323039 1.227397-1.40274L1.753425-3.52279C1.928767-4.224159 2.606227-5.395766 3.498879-5.395766C3.905355-5.395766 4.27995-5.196513 4.27995-4.686426Z"></path>
+<path id="tz_fig_vvo_g0-13" d="M3.267746-1.283188C3.172105-2.263512 2.773599-2.909091 2.765629-2.917061C2.590286-3.188045 2.295392-3.514819 1.769365-3.514819C.73325-3.514819 .143462-2.359153 .143462-2.080199C.143462-2.008468 .207223-1.984558 .263014-1.984558C.342715-1.984558 .366625-2.008468 .390535-2.072229C.629639-2.789539 1.41868-2.893151 1.657783-2.893151C2.940971-2.893151 3.036613-1.506351 3.036613-.836862C3.036613-.398506 3.012702-.326775 2.956912-.143462C2.781569 .422416 2.542466 1.307098 2.542466 1.538232C2.542466 1.554172 2.550436 1.713574 2.677958 1.713574C2.765629 1.713574 2.83736 1.594022 2.901121 1.39477C3.132254 .653549 3.203985 .127522 3.251806-.231133C3.275716-.398506 3.722042-1.729514 4.463263-3.124284C4.558904-3.299626 4.558904-3.315567 4.558904-3.339477C4.558904-3.347447 4.558904-3.435118 4.439352-3.435118C4.407472-3.435118 4.375592-3.427148 4.351681-3.403238C4.319801-3.379328 3.690162-2.207721 3.291656-1.107846L3.267746-1.283188Z"></path>
+<path id="tz_fig_vvo_g0-14" d="M2.16787-3.466999C.964384-3.148194 .350685-2.096139 .350685-1.283188C.350685-.390535 1.020174 .095641 1.713574 .095641C2.654047 .095641 3.371357-1.052055 3.371357-2.215691C3.371357-2.980822 3.012702-3.403238 2.741719-3.714072C2.478705-4.024907 1.920797-4.678456 1.920797-5.037111C1.920797-5.212453 2.088169-5.387796 2.351183-5.387796S2.789539-5.276214 3.004732-5.148692C3.196015-5.029141 3.339477-4.96538 3.435118-4.96538C3.634371-4.96538 3.761893-5.156663 3.761893-5.292154C3.761893-5.483437 3.666252-5.507347 3.259776-5.595019C2.805479-5.69066 2.574346-5.69066 2.566376-5.69066C2.223661-5.69066 1.657783-5.523288 1.657783-4.845828C1.657783-4.431382 1.880946-3.977086 2.16787-3.466999ZM2.295392-3.251806C2.574346-2.781569 2.757659-2.383064 2.757659-1.888917C2.757659-1.267248 2.399004-.127522 1.721544-.127522C1.40274-.127522 .908593-.334745 .908593-1.067995C.908593-1.482441 1.147696-2.948941 2.295392-3.251806Z"></path>
+<path id="tz_fig_vvo_g0-88" d="M4.160399-3.044583C4.542964-3.435118 5.67472-4.598755 5.866002-4.750187C6.200747-5.00523 6.4-5.148692 6.973848-5.180573C7.021669-5.188543 7.08543-5.228394 7.08543-5.332005C7.08543-5.403736 7.013699-5.443587 6.973848-5.443587C6.894147-5.443587 6.846326-5.419676 6.224658-5.419676C5.626899-5.419676 5.411706-5.443587 5.371856-5.443587C5.339975-5.443587 5.212453-5.443587 5.212453-5.292154C5.212453-5.284184 5.212453-5.188543 5.332005-5.180573C5.387796-5.172603 5.602989-5.156663 5.602989-4.97335C5.602989-4.917559 5.571108-4.829888 5.507347-4.766127L5.483437-4.726276C5.459527-4.702366 5.459527-4.686426 5.379826-4.614695L4.048817-3.267746L3.235866-4.95741C3.347447-5.148692 3.58655-5.172603 3.682192-5.180573C3.722042-5.180573 3.833624-5.188543 3.833624-5.324035C3.833624-5.395766 3.777833-5.443587 3.706102-5.443587C3.626401-5.443587 3.323537-5.427646 3.243836-5.427646C3.196015-5.419676 2.901121-5.419676 2.733748-5.419676C1.992528-5.419676 1.896887-5.443587 1.825156-5.443587C1.793275-5.443587 1.665753-5.443587 1.665753-5.292154C1.665753-5.180573 1.769365-5.180573 1.896887-5.180573C2.295392-5.180573 2.367123-5.100872 2.438854-4.94944L3.498879-2.717808L1.865006-1.052055C1.3868-.573848 1.012204-.294894 .446326-.263014C.350685-.255044 .255044-.255044 .255044-.111582C.255044-.063761 .294894 0 .374595 0C.430386 0 .518057-.02391 1.123786-.02391C1.697634-.02391 1.944707 0 1.976588 0C2.016438 0 2.13599 0 2.13599-.151432C2.13599-.167372 2.12802-.255044 2.008468-.263014C1.857036-.270984 1.745455-.326775 1.745455-.470237C1.745455-.597758 1.841096-.70137 1.960648-.820922C2.096139-.972354 2.510585-1.3868 2.797509-1.665753C2.980822-1.849066 3.427148-2.311333 3.610461-2.486675L4.527024-.581818C4.566874-.502117 4.566874-.494147 4.566874-.486177C4.566874-.414446 4.399502-.278954 4.136488-.263014C4.080697-.263014 3.977086-.255044 3.977086-.111582C3.977086-.103611 3.985056 0 4.112578 0C4.192279 0 4.487173-.01594 4.566874-.02391H5.076961C5.810212-.02391 5.921793 0 5.993524 0C6.025405 0 6.144956 0 6.144956-.151432C6.144956-.263014 6.041345-.263014 5.921793-.263014C5.491407-.263014 5.443587-.358655 5.387796-.478207L4.160399-3.044583Z"></path>
+<path id="tz_fig_vvo_g0-89" d="M5.061021-4.487173C5.116812-4.550934 5.188543-4.614695 5.252304-4.678456C5.547198-4.94944 5.810212-5.148692 6.256538-5.180573C6.328269-5.188543 6.42391-5.196513 6.42391-5.332005C6.42391-5.387796 6.36812-5.443587 6.312329-5.443587C6.216687-5.443587 6.232628-5.419676 5.650809-5.419676C5.124782-5.419676 4.941469-5.443587 4.893649-5.443587C4.861768-5.443587 4.742217-5.443587 4.742217-5.292154C4.742217-5.220423 4.798007-5.188543 4.869738-5.180573C5.108842-5.164633 5.116812-5.076961 5.116812-5.029141C5.116812-4.877709 4.869738-4.622665 4.869738-4.614695L2.925031-2.518555L1.920797-4.877709C1.904857-4.909589 1.872976-4.98929 1.872976-5.021171C1.872976-5.180573 2.247572-5.180573 2.319303-5.180573C2.399004-5.180573 2.510585-5.180573 2.510585-5.332005C2.510585-5.371856 2.478705-5.443587 2.383064-5.443587C2.271482-5.443587 2.008468-5.427646 1.888917-5.419676H1.39477C.661519-5.419676 .549938-5.443587 .478207-5.443587C.350685-5.443587 .326775-5.355915 .326775-5.292154C.326775-5.180573 .430386-5.180573 .541968-5.180573C.972354-5.180573 1.012204-5.092902 1.075965-4.941469L2.247572-2.183811L1.888917-.72528C1.777335-.294894 1.769365-.270984 1.155666-.263014C1.028144-.263014 .932503-.263014 .932503-.111582C.932503-.079701 .956413 0 1.060025 0C1.211457 0 1.39477-.01594 1.554172-.02391H2.566376C2.685928-.01594 2.956912 0 3.060523 0C3.108344 0 3.227895 0 3.227895-.151432C3.227895-.263014 3.124284-.263014 2.988792-.263014C2.980822-.263014 2.81345-.263014 2.685928-.278954C2.510585-.302864 2.502615-.318804 2.502615-.398506C2.502615-.462267 2.598257-.852802 2.654047-1.083935C2.749689-1.466501 2.82142-1.729514 2.901121-2.064259C2.925031-2.16787 2.933001-2.183811 3.004732-2.263512L5.061021-4.487173Z"></path>
+<path id="tz_fig_vvo_g1-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_fig_vvo_g2-40" d="M2.654047 1.992528C2.717808 1.992528 2.81345 1.992528 2.81345 1.896887C2.81345 1.865006 2.805479 1.857036 2.701868 1.753425C1.609963 .72528 1.338979-.757161 1.338979-1.992528C1.338979-4.28792 2.287422-5.363885 2.693898-5.730511C2.805479-5.834122 2.81345-5.842092 2.81345-5.881943S2.781569-5.977584 2.701868-5.977584C2.574346-5.977584 2.175841-5.571108 2.11208-5.499377C1.044085-4.383562 .820922-2.948941 .820922-1.992528C.820922-.207223 1.570112 1.227397 2.654047 1.992528Z"></path>
+<path id="tz_fig_vvo_g2-41" d="M2.462765-1.992528C2.462765-2.749689 2.335243-3.658281 1.841096-4.598755C1.45056-5.332005 .72528-5.977584 .581818-5.977584C.502117-5.977584 .478207-5.921793 .478207-5.881943C.478207-5.850062 .478207-5.834122 .573848-5.738481C1.689664-4.678456 1.944707-3.219925 1.944707-1.992528C1.944707 .294894 .996264 1.378829 .589788 1.745455C.486177 1.849066 .478207 1.857036 .478207 1.896887S.502117 1.992528 .581818 1.992528C.70934 1.992528 1.107846 1.586052 1.171606 1.514321C2.239601 .398506 2.462765-1.036115 2.462765-1.992528Z"></path>
+<path id="tz_fig_vvo_g2-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_vvo_g2-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_vvo_g2-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_vvo_g2-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_vvo_g2-102" d="M1.522291-3.172105H2.478705V-3.435118H1.498381V-4.335741C1.498381-5.029141 1.888917-5.387796 2.239601-5.387796C2.367123-5.387796 2.438854-5.355915 2.470735-5.347945C2.327273-5.276214 2.287422-5.140722 2.287422-5.037111C2.287422-4.829888 2.438854-4.678456 2.646077-4.678456C2.86127-4.678456 3.004732-4.829888 3.004732-5.037111C3.004732-5.379826 2.669988-5.610959 2.247572-5.610959C1.649813-5.610959 .940473-5.180573 .940473-4.327771V-3.435118H.286924V-3.172105H.940473V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.083935-.02391 1.275218-.02391C1.745455-.02391 1.761395-.02391 2.279452 0V-.263014H2.12005C1.538232-.263014 1.522291-.350685 1.522291-.637609V-3.172105Z"></path>
+<path id="tz_fig_vvo_g2-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_vvo_g2-108" d="M1.522291-5.531258L.334745-5.443587V-5.180573C.876712-5.180573 .940473-5.124782 .940473-4.734247V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.227397-.02391C1.3868-.02391 1.817186-.02391 2.12802 0V-.263014C1.617933-.263014 1.522291-.263014 1.522291-.621669V-5.531258Z"></path>
+<path id="tz_fig_vvo_g2-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+<path id="tz_fig_vvo_g2-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_vvo_g2-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_vvo_g2-116" d="M1.482441-3.172105H2.669988V-3.435118H1.482441V-4.901619H1.235367C1.227397-4.176339 .900623-3.419178 .159402-3.395268V-3.172105H.876712V-.996264C.876712-.063761 1.594022 .079701 1.960648 .079701C2.494645 .079701 2.81345-.398506 2.81345-.996264V-1.44259H2.566376V-1.012204C2.566376-.462267 2.319303-.167372 2.016438-.167372C1.482441-.167372 1.482441-.852802 1.482441-.980324V-3.172105Z"></path>
+<path id="tz_fig_vvo_g2-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+<path id="tz_fig_vvo_g3-19" d="M3.425156-5.612951C3.541719-5.702615 3.61345-5.774346 3.61345-5.908842C3.61345-6.115068 3.434122-6.258531 3.272727-6.258531C3.120299-6.258531 3.075467-6.195766 2.99477-6.097136L1.900872-4.743213L2.071233-4.554919L3.425156-5.612951Z"></path>
+<path id="tz_fig_vvo_g3-24" d="M1.407721 1.604981C1.327024 1.604981 1.264259 1.604981 1.201494 1.613948V1.838107C1.578082 1.811208 1.981569 1.85604 2.501619 1.775342C3.048568 1.694645 3.398257 1.515318 3.398257 1.120797S3.057534 .537983 2.636115 .466252V.19726H1.972603V.636613C2.492653 .645579 2.734745 .869738 2.734745 1.120797C2.734745 1.596015 1.891905 1.604981 1.604981 1.604981H1.407721Z"></path>
+<path id="tz_fig_vvo_g3-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+<path id="tz_fig_vvo_g3-98" d="M1.622914-2.860274C1.622914-3.030635 1.622914-3.039601 1.721544-3.183064C2.026401-3.595517 2.465753-3.738979 2.806476-3.738979C3.19203-3.738979 3.550685-3.523786 3.783811-3.147198C4.016936-2.761644 4.034869-2.232628 4.034869-1.945704C4.034869-1.524284 3.981071-1.049066 3.747945-.690411C3.550685-.403487 3.183064-.125529 2.707846-.125529C2.304359-.125529 1.963636-.340722 1.748443-.672478C1.622914-.860772 1.622914-.869738 1.622914-1.0401V-2.860274ZM1.542217-.546949C1.820174-.152428 2.268493 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.057534 3.918306-3.963138 2.842341-3.963138C2.232628-3.963138 1.811208-3.649315 1.596015-3.407223V-6.222665L.268991-6.124035V-5.846077C.878705-5.846077 .959402-5.783313 .959402-5.34396V0H1.210461L1.542217-.546949Z"></path>
+<path id="tz_fig_vvo_g3-99" d="M3.263761-3.523786C3.075467-3.48792 2.896139-3.362391 2.896139-3.102366C2.896139-2.86924 3.075467-2.689913 3.308593-2.689913S3.730012-2.842341 3.730012-3.120299C3.730012-3.676214 3.102366-4.016936 2.313325-4.016936C1.165629-4.016936 .304857-3.057534 .304857-1.936737C.304857-.780075 1.23736 .09863 2.295392 .09863C3.541719 .09863 3.828643-.986301 3.828643-1.066999C3.828643-1.174595 3.730012-1.174595 3.703113-1.174595C3.604483-1.174595 3.604483-1.156663 3.550685-1.004234C3.344458-.385554 2.842341-.152428 2.385056-.152428C1.811208-.152428 1.075965-.61868 1.075965-1.945704C1.075965-3.344458 1.793275-3.765878 2.331258-3.765878C2.447821-3.765878 2.932005-3.747945 3.263761-3.523786Z"></path>
+<path id="tz_fig_vvo_g3-100" d="M3.48792-1.075965C3.48792-.91457 3.48792-.887671 3.353425-.699377C3.075467-.29589 2.663014-.125529 2.304359-.125529C1.918804-.125529 1.560149-.340722 1.327024-.71731C1.093898-1.102864 1.075965-1.63188 1.075965-1.918804C1.075965-2.340224 1.129763-2.815442 1.362889-3.174097C1.560149-3.461021 1.927771-3.738979 2.402989-3.738979C2.779577-3.738979 3.138232-3.550685 3.380324-3.209963C3.48792-3.066501 3.48792-3.057534 3.48792-2.887173V-1.075965ZM3.514819-3.434122C3.469988-3.48792 3.066501-3.963138 2.367123-3.963138C1.264259-3.963138 .304857-3.084433 .304857-1.927771C.304857-.806974 1.201494 .09863 2.268493 .09863C2.923039 .09863 3.326526-.286924 3.48792-.475218V.09863L4.841843 0V-.277958C4.23213-.277958 4.151432-.340722 4.151432-.780075V-6.222665L2.824408-6.124035V-5.846077C3.434122-5.846077 3.514819-5.783313 3.514819-5.34396V-3.434122Z"></path>
+<path id="tz_fig_vvo_g3-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+<path id="tz_fig_vvo_g3-104" d="M1.640847-6.222665L.313823-6.124035V-5.846077C.923537-5.846077 1.004234-5.783313 1.004234-5.34396V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.367123-3.963138 1.927771-3.649315 1.649813-3.147198H1.640847V-6.222665Z"></path>
+<path id="tz_fig_vvo_g3-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+<path id="tz_fig_vvo_g3-108" d="M1.649813-6.222665L.32279-6.124035V-5.846077C.932503-5.846077 1.0132-5.783313 1.0132-5.34396V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.744209-.017933 .91457-.026899 1.327024-.026899C1.748443-.026899 1.900872-.017933 2.340224 0V-.277958C1.748443-.277958 1.649813-.277958 1.649813-.690411V-6.222665Z"></path>
+<path id="tz_fig_vvo_g3-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_vvo_g3-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+<path id="tz_fig_vvo_g3-115" d="M3.084433-3.783811C3.084433-3.936239 3.084433-4.016936 2.976837-4.016936C2.932005-4.016936 2.914072-4.016936 2.797509-3.90934C2.779577-3.891407 2.698879-3.81071 2.645081-3.765878C2.367123-3.963138 2.089166-4.016936 1.784309-4.016936C.600747-4.016936 .304857-3.362391 .304857-2.905106C.304857-2.618182 .430386-2.385056 .636613-2.187796C.941469-1.909838 1.282192-1.847073 1.739477-1.766376C2.196762-1.676712 2.349191-1.649813 2.546451-1.497385C2.636115-1.425654 2.860274-1.255293 2.860274-.91457C2.860274-.125529 1.95467-.125529 1.829141-.125529C.91457-.125529 .681445-.887671 .573848-1.371856C.546949-1.461519 .537983-1.515318 .430386-1.515318C.304857-1.515318 .304857-1.443587 .304857-1.282192V-.134496C.304857 .017933 .304857 .09863 .412453 .09863C.466252 .09863 .475218 .089664 .636613-.080697C.672478-.134496 .771108-.251059 .81594-.29589C1.192528 .071731 1.604981 .09863 1.829141 .09863C2.932005 .09863 3.317559-.546949 3.317559-1.147696C3.317559-1.551183 3.138232-1.793275 2.940971-1.999502C2.636115-2.295392 2.313325-2.358157 1.649813-2.483686C1.416687-2.528518 .762142-2.645081 .762142-3.156164C.762142-3.443088 .968369-3.819676 1.784309-3.819676C2.752677-3.819676 2.815442-3.075467 2.833375-2.851308C2.842341-2.743711 2.842341-2.689913 2.958904-2.689913C3.084433-2.689913 3.084433-2.752677 3.084433-2.923039V-3.783811Z"></path>
+<path id="tz_fig_vvo_g3-117" d="M3.550685-1.497385C3.550685-.699377 3.102366-.125529 2.456787-.125529C1.712578-.125529 1.667746-.511083 1.667746-.995268V-3.963138L.313823-3.864508V-3.58655C1.004234-3.58655 1.004234-3.559651 1.004234-2.761644V-1.416687C1.004234-.833873 1.004234-.457285 1.416687-.143462C1.676712 .035866 2.044334 .09863 2.402989 .09863C2.86924 .09863 3.308593-.107597 3.568618-.645579H3.577584V.09863L4.904608 0V-.277958C4.294894-.277958 4.214197-.340722 4.214197-.780075V-3.963138L2.860274-3.864508V-3.58655C3.469988-3.58655 3.550685-3.523786 3.550685-3.084433V-1.497385Z"></path>
+<path id="tz_fig_vvo_g3-126" d="M3.667248-5.998506C3.425156-5.756413 3.218929-5.586052 2.940971-5.586052C2.743711-5.586052 2.57335-5.66675 2.295392-5.819178C2.178829-5.881943 1.972603-5.998506 1.75741-5.998506C1.425654-5.998506 1.255293-5.819178 .771108-5.290162L.932503-5.137733C1.174595-5.379826 1.380822-5.550187 1.65878-5.550187C1.85604-5.550187 2.026401-5.469489 2.304359-5.317061C2.420922-5.254296 2.627148-5.137733 2.842341-5.137733C3.174097-5.137733 3.344458-5.317061 3.828643-5.846077L3.667248-5.998506Z"></path>
+</defs>
+<g id="tz_fig_vvo_page1">
+<g stroke-miterlimit="10" transform="translate(42.012756,21.796498)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#ffddc6">
+<g fill="#ffddc6">
+<path d="M27.3523 62.59595C27.3523 77.7024 15.10645 89.94824 0 89.94824S-27.3523 77.7024-27.3523 62.59595S-15.10645 35.24365 0 35.24365S27.3523 47.4895 27.3523 62.59595ZM0 62.59595"></path>
+</g>
+<g transform="translate(-20.81409,54.97095)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(42.012756,21.796498)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="42.012756" y="10.837594" href="#tz_fig_vvo_g3-104"></use>
+<use x="47.132412" y="10.837594" href="#tz_fig_vvo_g3-97"></use>
+<use x="51.740102" y="10.837594" href="#tz_fig_vvo_g3-98"></use>
+<use x="56.859759" y="10.837594" href="#tz_fig_vvo_g3-105"></use>
+<use x="59.419587" y="10.837594" href="#tz_fig_vvo_g3-108"></use>
+<use x="61.979415" y="10.837594" href="#tz_fig_vvo_g3-105"></use>
+<use x="64.539243" y="10.837594" href="#tz_fig_vvo_g3-100"></use>
+<use x="69.658899" y="10.837594" href="#tz_fig_vvo_g3-97"></use>
+<use x="74.26659" y="10.837594" href="#tz_fig_vvo_g3-100"></use>
+<use x="79.386246" y="10.837594" href="#tz_fig_vvo_g3-101"></use>
+<use x="45.3419" y="21.796498" href="#tz_fig_vvo_g2-40"></use>
+<use x="48.635154" y="21.796498" href="#tz_fig_vvo_g2-111"></use>
+<use x="52.869336" y="21.796498" href="#tz_fig_vvo_g2-109"></use>
+<use x="59.926308" y="21.796498" href="#tz_fig_vvo_g2-105"></use>
+<use x="62.278632" y="21.796498" href="#tz_fig_vvo_g2-116"></use>
+<use x="65.571885" y="21.796498" href="#tz_fig_vvo_g2-105"></use>
+<use x="67.924209" y="21.796498" href="#tz_fig_vvo_g2-100"></use>
+<use x="72.628856" y="21.796498" href="#tz_fig_vvo_g2-97"></use>
+<use x="76.863039" y="21.796498" href="#tz_fig_vvo_g2-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d8e9fa">
+<g fill="#d8e9fa">
+<path d="M-60.47615-28.45274C-60.47615-14.71059-71.61607-3.57066-85.35823-3.57066S-110.24031-14.71059-110.24031-28.45274C-110.24031-42.1949-99.10039-53.33482-85.35823-53.33482S-60.47615-42.1949-60.47615-28.45274ZM-85.35823-28.45274"></path>
+</g>
+<g transform="translate(-103.60289,-36.5222)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(42.012756,21.796498)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="42.012756" y="10.837594" href="#tz_fig_vvo_g3-101"></use>
+<use x="46.111944" y="10.837594" href="#tz_fig_vvo_g3-100"></use>
+<use x="51.2316" y="10.837594" href="#tz_fig_vvo_g3-117"></use>
+<use x="56.351256" y="10.837594" href="#tz_fig_vvo_g3-99"></use>
+<use x="60.446981" y="10.837594" href="#tz_fig_vvo_g3-97"></use>
+<use x="65.054672" y="10.837594" href="#tz_fig_vvo_g3-24"></use>
+<use x="65.054672" y="10.837594" href="#tz_fig_vvo_g3-99"></use>
+<use x="69.150397" y="10.837594" href="#tz_fig_vvo_g3-126"></use>
+<use x="69.150397" y="10.837594" href="#tz_fig_vvo_g3-97"></use>
+<use x="73.758088" y="10.837594" href="#tz_fig_vvo_g3-111"></use>
+<use x="54.631269" y="21.796498" href="#tz_fig_vvo_g0-88"></use>
+<use x="61.596224" y="22.903446" href="#tz_fig_vvo_g1-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#f8dedc">
+<g fill="#f8dedc">
+<path d="M108.12051-28.45274C108.12051-15.88133 97.92964-5.69046 85.35823-5.69046S62.59595-15.88133 62.59595-28.45274S72.78682-51.21503 85.35823-51.21503S108.12051-41.02415 108.12051-28.45274ZM85.35823-28.45274"></path>
+</g>
+<g transform="translate(72.21805,-37.07774)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(42.012756,21.796498)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="42.012756" y="10.837594" href="#tz_fig_vvo_g3-115"></use>
+<use x="45.647718" y="10.837594" href="#tz_fig_vvo_g3-97"></use>
+<use x="50.255409" y="10.837594" href="#tz_fig_vvo_g3-108"></use>
+<use x="52.815237" y="10.837594" href="#tz_fig_vvo_g3-19"></use>
+<use x="52.815237" y="10.837594" href="#tz_fig_vvo_g3-97"></use>
+<use x="57.422928" y="10.837594" href="#tz_fig_vvo_g3-114"></use>
+<use x="61.027449" y="10.837594" href="#tz_fig_vvo_g3-105"></use>
+<use x="63.587277" y="10.837594" href="#tz_fig_vvo_g3-111"></use>
+<use x="51.708893" y="21.796498" href="#tz_fig_vvo_g0-89"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.8">
+<path d="M-18.8434 42.49635L-66.42612-8.25851" fill="none"></path>
+<g transform="matrix(-0.68391,-0.7295,0.7295,-0.68391,-66.42612,-8.2585)">
+<path d="M2.59995 0L-1.55997 2.07996L0 0L-1.55997-2.07996" stroke="none"></path>
+</g>
+<g fill="#000" stroke="#000">
+<g fill="#000" stroke="#000">
+</g>
+<g transform="translate(-51.31795,13.39282)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(42.012756,21.796498)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="42.012756" y="21.796498" href="#tz_fig_vvo_g0-14"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.8">
+<path d="M18.8434 42.49635L67.87587-9.80493" fill="none"></path>
+<g transform="matrix(0.68391,-0.7295,0.7295,0.68391,67.87587,-9.80492)">
+<path d="M2.59995 0L-1.55997 2.07996L0 0L-1.55997-2.07996" stroke="none"></path>
+</g>
+<g fill="#000" stroke="#000">
+<g fill="#000" stroke="#000">
+</g>
+<g transform="translate(47.98167,14.45294)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(42.012756,21.796498)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="42.012756" y="21.796498" href="#tz_fig_vvo_g0-13"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="0.8">
+<path d="M-60.27615-28.45274H59.796" fill="none"></path>
+<g transform="translate(59.796,-28.45274)">
+<path d="M2.59995 0L-1.55997 2.07996L0 0L-1.55997-2.07996" stroke="none"></path>
+</g>
+<g fill="#000" stroke="#000">
+<g fill="#000" stroke="#000">
+</g>
+<g transform="translate(-30.93912,-38.18571)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(42.012756,21.796498)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="42.012756" y="21.796498" href="#tz_fig_vvo_g0-12"></use>
+<use x="46.764437" y="22.903446" href="#tz_fig_vvo_g1-49"></use>
+<use x="53.73827" y="21.796498" href="#tz_fig_vvo_g2-40"></use>
+<use x="57.031524" y="21.796498" href="#tz_fig_vvo_g2-101"></use>
+<use x="60.795242" y="21.796498" href="#tz_fig_vvo_g2-102"></use>
+<use x="63.382798" y="21.796498" href="#tz_fig_vvo_g2-101"></use>
+<use x="67.146516" y="21.796498" href="#tz_fig_vvo_g2-105"></use>
+<use x="69.49884" y="21.796498" href="#tz_fig_vvo_g2-116"></use>
+<use x="72.792093" y="21.796498" href="#tz_fig_vvo_g2-111"></use>
+<use x="79.849065" y="21.796498" href="#tz_fig_vvo_g2-99"></use>
+<use x="83.612783" y="21.796498" href="#tz_fig_vvo_g2-97"></use>
+<use x="87.846965" y="21.796498" href="#tz_fig_vvo_g2-117"></use>
+<use x="92.551613" y="21.796498" href="#tz_fig_vvo_g2-115"></use>
+<use x="95.891916" y="21.796498" href="#tz_fig_vvo_g2-97"></use>
+<use x="100.126099" y="21.796498" href="#tz_fig_vvo_g2-108"></use>
+<use x="102.478423" y="21.796498" href="#tz_fig_vvo_g2-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vvo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;71.1: A <strong>habilidade</strong> (omitida) causa tanto a educação quanto o salário. Ao deixá-la fora, o coeficiente de MQO da educação captura o efeito verdadeiro <span class="math inline">\(\beta_1\)</span> <strong>mais</strong> um viés proporcional a <span class="math inline">\(\delta\cdot\gamma\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>Para haver viés, a variável omitida precisa satisfazer <strong>duas</strong> condições simultâneas: (i) afetar <span class="math inline">\(Y\)</span> (ser relevante) e (ii) ser <strong>correlacionada</strong> com a variável de interesse incluída. Se qualquer uma falhar, não há viés. O <strong>sinal</strong> do viés é previsível pela regra do produto:</p>
+<p><span id="eq-vies"><span class="math display">\[
+\text{viés de } \hat{\beta}_1 \;\approx\; \underbrace{\gamma}_{\substack{\text{efeito da omitida}\\ \text{sobre } Y}} \times \underbrace{\delta}_{\substack{\text{relação omitida}\\ \times X_1}}.
+\tag{71.2}\]</span></span></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — prevendo o sinal do viés">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — prevendo o sinal do viés
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se a variável omitida tem efeito <strong>positivo</strong> sobre <span class="math inline">\(Y\)</span> e é <strong>positivamente</strong> correlacionada com <span class="math inline">\(X_1\)</span>, o viés é <strong>positivo</strong>: o MQO <strong>superestima</strong> <span class="math inline">\(\beta_1\)</span>. É exatamente o caso educação/habilidade: a habilidade eleva o salário (<span class="math inline">\(\gamma &gt; 0\)</span>) e anda junto com a escolaridade (<span class="math inline">\(\delta &gt; 0\)</span>), então a regressão sem controle de habilidade <strong>superestima</strong> o retorno da educação. Se os sinais de <span class="math inline">\(\gamma\)</span> e <span class="math inline">\(\delta\)</span> forem opostos, o viés é negativo (subestima). Saber prever o sinal permite, ao menos, dizer em que direção erramos quando não temos a variável.</p>
+</div>
+</div>
+<p>O viés de variável omitida é a razão pela qual “adicionar controles” é a resposta reflexa do econometrista — e por que a frase “correlação não é causalidade” (<a href="cap04-correlacao-causalidade.html" class="quarto-xref"><span>Capítulo 69</span></a>) tem, na regressão múltipla, sua primeira linha de defesa. Mas é uma defesa <strong>incompleta</strong>: só podemos controlar o que <strong>observamos</strong>. Variáveis omitidas <strong>não observáveis</strong> (a habilidade inata, a motivação) continuam a viesar os coeficientes — e é justamente para elas que os métodos do próximo capítulo foram inventados.</p>
+</section>
+<section id="variáveis-binárias-dummies-e-interações" class="level2" data-number="71.4">
+<h2 data-number="71.4" class="anchored" data-anchor-id="variáveis-binárias-dummies-e-interações"><span class="header-section-number">71.4</span> Variáveis binárias (<em>dummies</em>) e interações</h2>
+<p>Nem toda variável explicativa é numérica. Sexo, região, ter ou não ensino superior, estar num grupo de tratamento — são <strong>categóricas</strong>. Representamo-las por <strong>variáveis binárias</strong> (<em>dummies</em>), que valem 1 se a característica está presente e 0 caso contrário.</p>
+<p>Numa regressão de salário, incluir uma <em>dummy</em> <span class="math inline">\(\text{mulher}\)</span> (1 se mulher, 0 se homem):</p>
+<p><span class="math display">\[
+\widehat{\text{salário}} = \beta_0 + \beta_1\,\text{estudo} + \beta_2\,\text{mulher},
+\]</span></p>
+<p>faz <span class="math inline">\(\beta_2\)</span> medir a <strong>diferença</strong> de salário entre mulheres e homens <strong>com a mesma escolaridade</strong> — um controle direto do hiato salarial de gênero. A <em>dummy</em> desloca o intercepto entre os grupos.</p>
+<p>Já os <strong>termos de interação</strong> permitem que o <strong>efeito</strong> de uma variável dependa de outra. Um termo <span class="math inline">\(\text{estudo} \times \text{mulher}\)</span> deixa o <strong>retorno da educação</strong> ser diferente para homens e mulheres. Interações são a forma de a regressão captar que “depende” — que o efeito de <span class="math inline">\(X_1\)</span> não é o mesmo em todo lugar.</p>
+</section>
+<section id="multicolinearidade-e-maus-controles" class="level2" data-number="71.5">
+<h2 data-number="71.5" class="anchored" data-anchor-id="multicolinearidade-e-maus-controles"><span class="header-section-number">71.5</span> Multicolinearidade e maus controles</h2>
+<p>A regressão múltipla tem duas armadilhas que todo praticante precisa conhecer.</p>
+<p>A <strong>multicolinearidade</strong> ocorre quando duas ou mais variáveis explicativas são <strong>altamente correlacionadas</strong> entre si (por exemplo, incluir idade e experiência, que caminham quase juntas). O MQO não consegue separar bem os efeitos individuais — os coeficientes ficam <strong>imprecisos</strong> (erros-padrão grandes), embora <strong>não viesados</strong>. Sintoma típico: um <span class="math inline">\(R^2\)</span> alto convivendo com coeficientes individualmente <strong>não significativos</strong> e instáveis. A multicolinearidade não é um erro de modelagem em si, mas limita o que se pode aprender de cada variável separadamente.</p>
+<p>Mais sutil, e mais perigoso, é o problema dos <strong>maus controles</strong> (<em>bad controls</em>):</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — controlar demais também enviesa">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — controlar demais também enviesa
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Existe a crença ingênua de que “quanto mais controles, melhor”. Falso. Incluir uma variável que é, ela mesma, <strong>consequência</strong> do tratamento (um <em>bad control</em>) <strong>introduz</strong> viés em vez de removê-lo. Exemplo: ao estimar o efeito da educação sobre o salário, <strong>controlar pela ocupação</strong> é um erro — a ocupação é, em parte, <strong>resultado</strong> da educação (mais estudo leva a cargos melhores). Controlá-la “fecha” o próprio canal pelo qual a educação eleva o salário, subestimando o efeito. A regra: controle por variáveis <strong>anteriores</strong> (pré-tratamento) ao tratamento; <strong>nunca</strong> por variáveis que estão no <strong>caminho causal</strong> entre o tratamento e o resultado. Adicionar controles é uma decisão <strong>causal</strong>, não estatística.</p>
+</div>
+</div>
+<p>Essas duas armadilhas ensinam a mesma lição: a escolha das variáveis do modelo deve ser guiada por um <strong>raciocínio causal</strong> explícito (qual causa o quê), e não por buscar o melhor ajuste estatístico. Bons diagramas causais (<a href="cap04-correlacao-causalidade.html" class="quarto-xref"><span>Capítulo 69</span></a>) valem mais que qualquer software.</p>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="71.6">
+<h2 data-number="71.6" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">71.6</span> 🇧🇷 Brasil em Foco</h2>
+<p>A regressão múltipla é o instrumento com que a Economia brasileira mede seus problemas sociais mais espinhosos — e o viés de variável omitida é o fantasma que ronda cada estimativa.</p>
+<p><strong>Discriminação salarial: gênero e raça.</strong> Uma das aplicações mais importantes no Brasil é a decomposição dos <strong>hiatos salariais</strong> de gênero e raça. Regressões do log-salário com controles de escolaridade, experiência, setor e região — usando a <strong>PNAD Contínua</strong> — mostram que, mesmo <strong>entre pessoas com as mesmas características observáveis</strong>, mulheres e pessoas negras ganham, em média, menos que homens brancos. A parte do hiato que <strong>sobra após os controles</strong> (a decomposição de Oaxaca-Blinder) é interpretada como possível <strong>discriminação</strong> — embora se deva sempre lembrar do viés de variável omitida: pode haver diferenças <strong>não observadas</strong> (trajetórias, interrupções de carreira) que os dados não captam. Ainda assim, a persistência de hiatos condicionais é uma das evidências empíricas mais robustas da desigualdade brasileira.</p>
+<p><strong>O retorno da educação, revisitado.</strong> A regressão múltipla é o primeiro remédio para o problema de Mincer do <a href="cap05-regressao-simples.html" class="quarto-xref"><span>Capítulo 70</span></a>: controlando experiência, região e setor, aproxima-se melhor o retorno da educação. Mas a <strong>habilidade não observada</strong> permanece omitida — nenhuma pesquisa domiciliar mede talento inato. Por isso os estudos brasileiros mais rigorosos sobre o retorno da educação recorrem a estratégias além do MQO (variáveis instrumentais, gêmeos, reformas educacionais como experimentos naturais), reconhecendo que o coeficiente de MQO, mesmo com controles, ainda <strong>superestima</strong> o efeito causal — viés positivo, como prevê a regra do sinal.</p>
+<p><strong>Determinantes do desempenho escolar.</strong> Regressões múltiplas com dados do <strong>Saeb/Prova Brasil</strong> e do <strong>Censo Escolar</strong> estimam como nível socioeconômico, infraestrutura da escola e formação do professor se associam ao desempenho dos alunos. São insumo direto de política educacional — mas sujeitas a <em>bad controls</em> e endogeneidade: alunos não são alocados aleatoriamente às escolas, e famílias mais estruturadas escolhem melhores escolas (viés de seleção). Ler essas regressões exige o ceticismo causal do <a href="cap04-correlacao-causalidade.html" class="quarto-xref"><span>Capítulo 69</span></a>.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> IBGE/PNAD Contínua (microdados para hiatos salariais e retornos da educação); Inep (Saeb, Censo Escolar — desempenho e insumos escolares); IPEA e periódicos de economia aplicada (decomposições de discriminação). Ao ler estimativas, pergunte: que variáveis relevantes ficaram de fora? em que direção elas viesam o resultado?</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="71.7">
+<h2 data-number="71.7" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">71.7</span> Resumo do capítulo</h2>
+<ul>
+<li>A <strong>regressão múltipla</strong> inclui várias explicativas; cada coeficiente <span class="math inline">\(\beta_j\)</span> é um <strong>efeito parcial</strong> — o impacto de <span class="math inline">\(X_j\)</span> sobre <span class="math inline">\(Y\)</span> <strong>mantendo as demais constantes</strong> (<em>ceteris paribus</em>).</li>
+<li>Incluir <strong>controles</strong> aproxima o <em>ceteris paribus</em> dos experimentos, isolando o efeito de interesse do de outras variáveis observadas.</li>
+<li>O <strong>viés de variável omitida</strong> ocorre quando uma variável relevante fica de fora <strong>e</strong> é correlacionada com a variável de interesse; o coeficiente incluído absorve o efeito da ausente.</li>
+<li>O <strong>sinal</strong> do viés é o produto (efeito da omitida sobre <span class="math inline">\(Y\)</span>) × (correlação da omitida com <span class="math inline">\(X_1\)</span>); educação/habilidade gera viés <strong>positivo</strong> (superestima o retorno da educação).</li>
+<li><strong>Dummies</strong> representam variáveis categóricas (deslocam o intercepto entre grupos); <strong>interações</strong> deixam o efeito de uma variável depender de outra.</li>
+<li><strong>Multicolinearidade</strong> (explicativas muito correlacionadas) torna coeficientes imprecisos, não viesados; <strong>maus controles</strong> (variáveis que são consequência do tratamento) <strong>introduzem</strong> viés — controlar é uma decisão <strong>causal</strong>, não “quanto mais, melhor”.</li>
+<li>Só se controla o que se <strong>observa</strong>; variáveis omitidas <strong>não observáveis</strong> permanecem, motivando os métodos do <a href="cap08-avaliacao-de-politicas.html" class="quarto-xref"><span>Capítulo 73</span></a>.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="71.8">
+<h2 data-number="71.8" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">71.8</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.</p>
+</div>
+</div>
+<p><strong>1.</strong> Qual a diferença de interpretação entre o coeficiente de <span class="math inline">\(X_1\)</span> numa regressão <strong>simples</strong> e numa regressão <strong>múltipla</strong> que inclui <span class="math inline">\(X_2\)</span>?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Na regressão <strong>simples</strong>, o coeficiente de <span class="math inline">\(X_1\)</span> mede a associação <strong>total</strong> entre <span class="math inline">\(X_1\)</span> e <span class="math inline">\(Y\)</span>, incluindo qualquer efeito que passe por <span class="math inline">\(X_2\)</span> (se <span class="math inline">\(X_1\)</span> e <span class="math inline">\(X_2\)</span> forem correlacionados). Na <strong>múltipla</strong>, o coeficiente de <span class="math inline">\(X_1\)</span> é <strong>parcial</strong>: mede o efeito de <span class="math inline">\(X_1\)</span> sobre <span class="math inline">\(Y\)</span> <strong>mantendo <span class="math inline">\(X_2\)</span> constante</strong> — isola a contribuição de <span class="math inline">\(X_1\)</span> da de <span class="math inline">\(X_2\)</span>. Comparamos observações com o <strong>mesmo</strong> valor de <span class="math inline">\(X_2\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Quais as <strong>duas</strong> condições para que uma variável omitida gere viés? Se apenas uma se verifica, há viés?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A variável omitida gera viés quando (i) <strong>afeta <span class="math inline">\(Y\)</span></strong> (é relevante) <strong>e</strong> (ii) é <strong>correlacionada com a variável de interesse</strong> incluída. As duas condições precisam valer <strong>simultaneamente</strong>. Se a omitida não afeta <span class="math inline">\(Y\)</span>, ou se não tem correlação com o regressor de interesse, <strong>não há viés</strong> (embora, no primeiro caso, omiti-la possa apenas aumentar a variância residual). É a conjunção das duas que contamina o coeficiente.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Numa regressão de salário contra educação, omite-se a habilidade. Sabendo que a habilidade eleva o salário e é positivamente correlacionada com a educação, o coeficiente da educação será super ou subestimado?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Superestimado</strong> (viés positivo). Pela regra do sinal, o viés é o produto (efeito da omitida sobre <span class="math inline">\(Y\)</span>) × (correlação da omitida com o regressor). Aqui a habilidade tem efeito <strong>positivo</strong> sobre o salário e correlação <strong>positiva</strong> com a educação: <span class="math inline">\((+)\times(+) = (+)\)</span>. O coeficiente da educação absorve parte do efeito da habilidade, atribuindo à escola um retorno maior que o verdadeiro.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Explique o papel de uma variável <em>dummy</em> <span class="math inline">\(\text{mulher}\)</span> (1 = mulher, 0 = homem) numa regressão de salário. O que mede seu coeficiente?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A <em>dummy</em> <span class="math inline">\(\text{mulher}\)</span> permite que homens e mulheres tenham interceptos diferentes. Seu coeficiente mede a <strong>diferença média de salário</strong> entre mulheres e homens <strong>com os mesmos valores das demais variáveis</strong> do modelo (mesma escolaridade, experiência etc.). Se for negativo e significativo, indica que, controlando o resto, mulheres ganham menos — o hiato salarial de gênero condicional. A <em>dummy</em> desloca a reta verticalmente entre os dois grupos.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Por que incluir simultaneamente “idade” e “experiência” (que crescem quase juntas) pode ser problemático? Que sintoma isso gera?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>É um caso de <strong>multicolinearidade</strong>: idade e experiência são altamente correlacionadas, então o MQO não consegue separar bem seus efeitos individuais. O sintoma clássico é: o modelo tem <span class="math inline">\(R^2\)</span> e significância <strong>conjunta</strong> boas, mas os coeficientes de idade e experiência ficam <strong>imprecisos</strong> (erros-padrão inflados), muitas vezes <strong>individualmente não significativos</strong> e instáveis (mudam muito com pequenas alterações nos dados). Os coeficientes continuam <strong>não viesados</strong>, mas pouco confiáveis individualmente. Solução usual: manter só uma das variáveis ou combiná-las.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Um pesquisador quer estimar o efeito da educação sobre o salário e decide “controlar por tudo”, incluindo a <strong>ocupação</strong> da pessoa. Explique por que isso pode ser um erro.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A ocupação é um <strong>mau controle</strong> (<em>bad control</em>): ela é, em parte, <strong>consequência</strong> da educação — estudar mais leva a ocupações melhores e mais bem pagas. Controlar pela ocupação <strong>fecha</strong> justamente um dos canais pelos quais a educação eleva o salário (educação → melhor ocupação → salário maior), fazendo o coeficiente da educação <strong>subestimar</strong> seu efeito total. A regra é controlar apenas variáveis <strong>pré-tratamento</strong> (anteriores à decisão de estudar), nunca variáveis no <strong>caminho causal</strong> entre educação e salário. “Controlar por tudo” é uma crença errada.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) Um estudo com PNAD encontra que, controlando escolaridade, experiência, setor e região, pessoas negras ganham 15% menos que brancas. Um crítico diz: “isso não prova discriminação, pode ser variável omitida”. Avalie os dois lados.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>A favor da interpretação de discriminação:</strong> o hiato de 15% <strong>persiste</strong> mesmo comparando pessoas com a <strong>mesma</strong> escolaridade, experiência, setor e região — ou seja, não se explica pelas características observáveis usuais, o que é consistente com discriminação no mercado de trabalho. É uma evidência robusta e replicada. <strong>A ressalva do crítico é legítima:</strong> o coeficiente ainda pode sofrer <strong>viés de variável omitida</strong> se houver diferenças <strong>não observadas</strong> correlacionadas com raça e com salário (qualidade da escola frequentada, redes de contato, trajetórias de carreira, interrupções) que os dados não medem. <strong>Síntese:</strong> a regressão não <strong>prova</strong> discriminação de forma incontestável, mas a persistência do hiato condicional é uma forte <strong>evidência compatível</strong> com ela; parte do resíduo pode ser discriminação, parte pode ser omissão. O honesto é reportar o hiato condicional <strong>e</strong> discutir quais omitidas poderiam explicá-lo — e reconhecer que muitas dessas “omitidas” (qualidade da escola, redes) são elas mesmas produto de discriminação histórica, o que reforça, não enfraquece, a leitura estrutural.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) Explique por que a regressão múltipla é uma defesa <strong>incompleta</strong> contra o problema de “correlação não é causalidade”, e o que motiva os métodos do próximo capítulo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A regressão múltipla combate o viés de variável omitida <strong>incluindo</strong> as variáveis de confusão como controles — aproximando o <em>ceteris paribus</em>. Mas ela só pode controlar o que é <strong>observado e medido</strong>. Confundidores <strong>não observáveis</strong> — habilidade inata, motivação, qualidade não medida, escolhas endógenas — permanecem no termo de erro e continuam a viesar os coeficientes, por mais controles que se adicione. Além disso, controlar mal (maus controles) pode <strong>piorar</strong> o viés. Assim, em dados observacionais, o MQO raramente estabelece causalidade de forma definitiva. Isso motiva os <strong>métodos quase-experimentais</strong> do <a href="cap08-avaliacao-de-politicas.html" class="quarto-xref"><span>Capítulo 73</span></a> (experimentos aleatorizados, diferenças-em-diferenças, regressão descontínua, variáveis instrumentais), que buscam fontes de variação <strong>exógena</strong> no tratamento — variação que <strong>não</strong> está correlacionada com os confundidores não observados — para recuperar o efeito causal onde o simples “adicionar controles” fracassa.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="71.9">
+<h2 data-number="71.9" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">71.9</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="wooldridge2016">Wooldridge (<a href="#ref-wooldridge2016" role="doc-biblioref">2016</a>)</span> — o tratamento canônico da regressão múltipla, do viés de variável omitida (com a fórmula do sinal) e das <em>dummies</em>; referência central do curso.</li>
+<li><span class="citation" data-cites="stock2020">Stock; Watson (<a href="#ref-stock2020" role="doc-biblioref">2020</a>)</span> — regressão múltipla com forte ênfase em causalidade, controles e ameaças à validade.</li>
+<li><span class="citation" data-cites="angrist2009">Angrist; Pischke (<a href="#ref-angrist2009" role="doc-biblioref">2009</a>)</span> — discute maus controles, viés de seleção e por que “mais controles” nem sempre ajuda.</li>
+<li><span class="citation" data-cites="gujarati2011">Gujarati; Porter (<a href="#ref-gujarati2011" role="doc-biblioref">2011</a>)</span> — multicolinearidade e diagnósticos de regressão, com exemplos em português.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-angrist2009" class="csl-entry" role="listitem">
+ANGRIST, Joshua D.; PISCHKE, Jörn-Steffen. <strong>Mostly Harmless Econometrics: An Empiricist’s Companion</strong>. Princeton: Princeton University Press, 2009.
+</div>
+<div id="ref-gujarati2011" class="csl-entry" role="listitem">
+GUJARATI, Damodar N.; PORTER, Dawn C. <strong>Econometria Básica</strong>. 5. ed. Porto Alegre: AMGH, 2011.
+</div>
+<div id="ref-stock2020" class="csl-entry" role="listitem">
+STOCK, James H.; WATSON, Mark W. <strong>Introduction to Econometrics</strong>. 4. ed. Harlow: Pearson, 2020.
+</div>
+<div id="ref-wooldridge2016" class="csl-entry" role="listitem">
+WOOLDRIDGE, Jeffrey M. <strong>Introdução à Econometria: Uma Abordagem Moderna</strong>. 6. ed. São Paulo: Cengage Learning, 2016.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../capitulos/vol10/cap05-regressao-simples.html" class="pagination-link" aria-label="Regressão linear simples">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Regressão linear simples</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../capitulos/vol10/cap07-series-temporais.html" class="pagination-link" aria-label="Séries temporais: noções essenciais">
+        <span class="nav-page-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Séries temporais: noções essenciais</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Economia — conteúdo aberto (CC BY-SA).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol10/cap06-regressao-multipla.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
