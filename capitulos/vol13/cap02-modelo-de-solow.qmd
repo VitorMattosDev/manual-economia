@@ -1,0 +1,264 @@
+# Modelos de crescimento: Solow e além {#sec-modelo-de-solow}
+
+Por que a Coreia do Sul, tão pobre quanto Gana em 1960, tornou-se uma potência industrial em duas gerações, enquanto Gana permaneceu pobre? Por que a China cresceu a taxas espantosas por três décadas e depois começou a desacelerar? Por que, no longuíssimo prazo, os países ricos parecem crescer todos a taxas parecidas, sem que os mais ricos disparem indefinidamente à frente? Estas são as perguntas do capítulo mais teórico do volume — e a ferramenta clássica para respondê-las é o **modelo de Solow**, formulado por Robert Solow em 1956, trabalho que lhe rendeu o Nobel [@solow1956].
+
+O modelo de Solow é o cavalo de batalha da teoria do crescimento. Com uma estrutura simples — uma função de produção, poupança e depreciação — ele gera previsões surpreendentes e testáveis: por que o capital sozinho não sustenta o crescimento, por que países pobres *tendem* a crescer mais rápido que ricos (a **convergência**), e por que, no fim das contas, é o **progresso tecnológico** que explica a prosperidade duradoura. Depois, veremos como a teoria foi "além" de Solow, endogeneizando aquilo que ele deixou de fora.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- escrever uma **função de produção agregada** e entender os **retornos decrescentes** do capital;
+- montar a **equação fundamental de Solow** e encontrar o **estado estacionário**;
+- explicar por que a poupança eleva o **nível** de renda, mas não a **taxa de crescimento** de longo prazo;
+- entender por que o **progresso tecnológico** é o único motor do crescimento sustentado da renda per capita;
+- discutir a hipótese de **convergência** e por que ela só vale "condicionalmente";
+- situar os modelos de **crescimento endógeno** e sua crítica a Solow.
+
+## A função de produção agregada
+
+O ponto de partida é uma **função de produção** que relaciona o produto agregado $Y$ aos fatores **capital** $K$ e **trabalho** $L$ (@sec-teoria-da-producao), dado um nível de tecnologia $A$:
+
+$$
+Y = A\,F(K, L).
+$$ {#eq-fp-agregada}
+
+Uma forma muito usada é a **Cobb-Douglas**: $Y = A K^{\alpha} L^{1-\alpha}$, com $0 < \alpha < 1$. Ela tem duas propriedades cruciais:
+
+- **Retornos constantes de escala:** dobrar $K$ e $L$ ao mesmo tempo dobra $Y$. Isso permite trabalhar em termos **per capita** (por trabalhador).
+- **Retornos marginais decrescentes de cada fator:** mantendo $L$ fixo e acrescentando capital, cada máquina adicional produz um pouco menos que a anterior. Esta é a peça central de todo o modelo.
+
+Dividindo tudo por $L$, escrevemos em termos **por trabalhador** (letras minúsculas): $y = Y/L$ é o produto per capita e $k = K/L$ é o capital por trabalhador. A função vira:
+
+$$
+y = A\,f(k) = A\,k^{\alpha}.
+$$ {#eq-fp-percapita}
+
+A @fig-fprod-solow mostra o formato de $y = f(k)$: crescente, porém **côncava** — reflexo dos retornos decrescentes do capital. É essa concavidade que fará toda a diferença.
+
+::: {#fig-fprod-solow}
+
+```{.tikz}
+%%| filename: fig-fprod-solow
+%%| alt: Função de produção por trabalhador côncava, crescente a taxas decrescentes, ilustrando os retornos marginais decrescentes do capital.
+\begin{tikzpicture}
+\begin{axis}[
+  width=10cm, height=6.5cm,
+  axis lines=left,
+  xlabel={Capital por trabalhador $k$},
+  ylabel={Produto por trabalhador $y$},
+  xtick=\empty, ytick=\empty,
+  xmin=0, xmax=10, ymin=0, ymax=3.5,
+  clip=false, font=\small
+]
+  \addplot[curva, manualblue, thick, domain=0:10, samples=100]{sqrt(x)};
+  \node[manualblue] at (axis cs:8.6,3.15) {$y=f(k)$};
+  \draw[auxiliar] (axis cs:2,0) -- (axis cs:2,1.414);
+  \draw[auxiliar] (axis cs:8,0) -- (axis cs:8,2.828);
+  \node[font=\footnotesize, align=center] at (axis cs:5.2,0.9)
+    {cada unidade extra de $k$\\produz cada vez menos $y$};
+\end{axis}
+\end{tikzpicture}
+```
+
+A função de produção por trabalhador é côncava: os retornos marginais do capital são decrescentes.
+:::
+
+## A equação fundamental de Solow
+
+Agora damos vida ao modelo. A cada período, a economia **poupa** uma fração constante $s$ da renda e investe essa poupança em novo capital (@sec-poupanca-investimento). Ao mesmo tempo, o capital existente se **deprecia** a uma taxa $\delta$ (máquinas se desgastam). Para simplificar, suponha população constante. A variação do capital por trabalhador é:
+
+$$
+\Delta k = \underbrace{s\,f(k)}_{\text{investimento}} - \underbrace{\delta\,k}_{\text{depreciação}}.
+$$ {#eq-fundamental-solow}
+
+Esta é a **equação fundamental de Solow**. Ela diz que o estoque de capital por trabalhador cresce quando o investimento ($s\,f(k)$) supera a depreciação ($\delta k$), e encolhe no caso contrário. As duas forças têm formatos diferentes:
+
+- O **investimento** $s\,f(k)$ herda a concavidade de $f$: cresce com $k$, mas cada vez mais devagar (retornos decrescentes).
+- A **depreciação** $\delta k$ é uma **reta**: cresce em proporção fixa ao capital.
+
+Como uma curva côncava e uma reta que partem da origem se cruzam uma única vez (além da origem), existe um valor de capital em que investimento e depreciação **se igualam**. Nesse ponto, $\Delta k = 0$: o capital por trabalhador para de mudar. É o **estado estacionário**.
+
+::: {.callout-note title="Definição — Estado estacionário"}
+O **estado estacionário** (*steady state*) é o nível de capital por trabalhador $k^{*}$ em que o investimento apenas repõe a depreciação, de modo que $k$ permanece constante:
+$$
+s\,f(k^{*}) = \delta\,k^{*}.
+$$ {#eq-steady-state}
+Nele, o produto por trabalhador $y^{*} = f(k^{*})$ também é constante. A economia converge para esse ponto e nele permanece, na ausência de choques.
+:::
+
+A @fig-solow-diagrama é o diagrama de Solow, talvez o gráfico mais importante da teoria do crescimento.
+
+::: {#fig-solow-diagrama}
+
+```{.tikz}
+%%| filename: fig-solow-diagrama
+%%| alt: Diagrama de Solow com a curva de investimento côncava cruzando a reta de depreciação no ponto de estado estacionário k*, com setas indicando a convergência.
+\begin{tikzpicture}
+\begin{axis}[
+  width=11cm, height=7cm,
+  axis lines=left,
+  xlabel={Capital por trabalhador $k$},
+  ylabel={},
+  xtick={4.0}, xticklabels={$k^{*}$},
+  ytick=\empty,
+  xmin=0, xmax=10, ymin=0, ymax=3.2,
+  clip=false, font=\small
+]
+  % depreciacao delta*k (reta)
+  \addplot[curva, manualred, thick, domain=0:10, samples=2]{0.35*x};
+  \node[manualred] at (axis cs:8.7,3.25) {$\delta k$};
+  % investimento s*f(k) = 0.7*sqrt(x)
+  \addplot[curva, manualgreen, thick, domain=0:10, samples=100]{0.7*sqrt(x)};
+  \node[manualgreen] at (axis cs:9.2,2.25) {$s\,f(k)$};
+  % ponto de estado estacionario em k=4 (0.7*2=1.4 ; 0.35*4=1.4)
+  \node[ponto] at (axis cs:4,1.4) {};
+  \draw[auxiliar] (axis cs:4,0) -- (axis cs:4,1.4);
+  % setas de convergencia
+  \draw[vetor, manualgray] (axis cs:1.5,0.25) -- (axis cs:3.2,0.25);
+  \draw[vetor, manualgray] (axis cs:7.5,0.25) -- (axis cs:5.0,0.25);
+  \node[font=\footnotesize] at (axis cs:2.2,0.55) {$\Delta k>0$};
+  \node[font=\footnotesize] at (axis cs:6.6,0.55) {$\Delta k<0$};
+\end{axis}
+\end{tikzpicture}
+```
+
+Diagrama de Solow: onde o investimento $s\,f(k)$ cruza a depreciação $\delta k$ está o estado estacionário $k^{*}$. À esquerda dele o capital cresce; à direita, encolhe — a economia converge para $k^{*}$.
+:::
+
+**Por que há convergência ao estado estacionário?** À esquerda de $k^{*}$, o investimento supera a depreciação, o capital cresce e a economia caminha para a direita. À direita de $k^{*}$, a depreciação supera o investimento, o capital encolhe e a economia recua para a esquerda. Em ambos os casos, o sistema é **puxado de volta** para $k^{*}$ — um equilíbrio estável.
+
+## A grande lição: a poupança eleva o nível, não a taxa
+
+Aqui está o resultado mais famoso — e mais contraintuitivo — do modelo. O que acontece se um país passa a poupar mais (maior $s$)?
+
+Um aumento de $s$ desloca a curva de investimento $s\,f(k)$ **para cima**. O novo cruzamento com a reta de depreciação ocorre num $k^{*}$ **maior**, e portanto num $y^{*}$ maior. Ou seja: **poupar mais eleva o nível de renda per capita de longo prazo**. Durante a transição para o novo estado estacionário, a economia de fato **cresce mais rápido**.
+
+Mas — e este é o ponto — esse crescimento extra é **transitório**. Uma vez atingido o novo estado estacionário, mais alto, o crescimento da renda per capita **volta a zero**. Por quê? Pelos **retornos decrescentes do capital**: à medida que $k$ aumenta, cada unidade nova de capital produz menos, até que o investimento adicional apenas repõe a depreciação de um estoque maior. A poupança não consegue vencer indefinidamente os retornos decrescentes.
+
+::: {.callout-important title="Armadilha comum — acumular capital não sustenta o crescimento"}
+A intuição ingênua diz: "para crescer para sempre, basta investir cada vez mais". O modelo de Solow mostra por que isso **falha**. Por causa dos retornos decrescentes, a acumulação de capital gera crescimento apenas **durante a transição** para um novo estado estacionário mais alto — não um crescimento **permanente** da renda per capita. Foi assim que Solow previu (corretamente) que o espetacular crescimento soviético baseado em acumulação bruta de capital, sem ganhos de produtividade, iria **desacelerar** — como de fato ocorreu.
+:::
+
+## O motor verdadeiro: o progresso tecnológico
+
+Se acumular capital não basta, o que sustenta o crescimento da renda per capita no longo prazo? A resposta de Solow: o **progresso tecnológico** — o crescimento do fator $A$ na @eq-fp-agregada. Melhorias tecnológicas deslocam a **própria função de produção** para cima: com o mesmo capital e o mesmo trabalho, produz-se mais. Isso desloca a curva de investimento continuamente, empurrando o estado estacionário para cima sem parar.
+
+No modelo de Solow, contudo, o progresso tecnológico é **exógeno** — cai do céu, como um maná que a teoria não explica. Solow chegou a estimar, para os EUA, que a maior parte do crescimento da renda per capita no século XX **não** se devia à acumulação de capital ou de trabalho, mas a esse "resíduo" tecnológico — batizado de **resíduo de Solow** ou **Produtividade Total dos Fatores (PTF)**.
+
+::: {.callout-note title="Definição — Produtividade Total dos Fatores (PTF)"}
+A **PTF** é a parcela do crescimento do produto que **não** é explicada pelo aumento das quantidades de capital e trabalho. Mede a **eficiência** com que os fatores são combinados — tecnologia, organização, qualidade das instituições, capital humano. É a fonte última do crescimento sustentado da renda per capita.
+:::
+
+Essa é a mensagem que atravessa todo o resto do volume: no longo prazo, **prosperidade é produtividade**. E a produtividade depende de tecnologia, educação (@sec-educacao-saude) e instituições (@sec-instituicoes) — não de simplesmente empilhar máquinas.
+
+## Convergência: os pobres alcançam os ricos?
+
+O modelo de Solow faz uma previsão testável e provocadora. Como os retornos do capital são **decrescentes**, um país **pobre** (baixo $k$) tem capital muito **produtivo na margem**: cada máquina nova rende muito. Um país **rico** (alto $k$), próximo de seu estado estacionário, tem retornos marginais baixos. Logo, mantidas iguais as demais características, o país pobre deveria **crescer mais rápido** e ir **alcançando** o rico. É a hipótese da **convergência**.
+
+::: {.callout-warning title="Controvérsia — convergência absoluta × condicional"}
+**Convergência absoluta** — todos os países caminhando para o *mesmo* nível de renda — **não** se observa nos dados: há países ricos há séculos e pobres que não os alcançam. **Mas** o modelo prevê apenas **convergência condicional**: cada país converge para o *seu próprio* estado estacionário, que depende de sua taxa de poupança, crescimento populacional, tecnologia e instituições. Controlando por esses fatores, países mais distantes de seu estado estacionário de fato crescem mais rápido — e a convergência condicional **é** encontrada nos dados. A não convergência absoluta indica que os países têm **estados estacionários diferentes**: a pergunta do desenvolvimento vira *por que* eles diferem — o que remete a instituições e políticas.
+:::
+
+## Além de Solow: o crescimento endógeno
+
+O grande incômodo deixado por Solow foi ter posto o motor do crescimento — a tecnologia — **fora** do modelo, como algo inexplicado. A partir dos anos 1980, a **teoria do crescimento endógeno** (ou "nova teoria do crescimento"), com Paul Romer e Robert Lucas, buscou **endogeneizar** o progresso tecnológico: explicá-lo como resultado de decisões econômicas [@romer1990].
+
+As ideias centrais:
+
+- **Conhecimento e ideias** são um fator peculiar: ao contrário de máquinas, são **não rivais** (podem ser usados por muitos ao mesmo tempo) e geram **transbordamentos** (*spillovers*). Isso pode contrabalançar os retornos decrescentes e sustentar o crescimento.
+- **Pesquisa e desenvolvimento (P&D)** é uma atividade intencional: firmas investem em inovação buscando lucros (protegidos por patentes), e é esse investimento que gera $A$ crescente.
+- **Capital humano** (educação, @sec-educacao-saude) entra como fator que, acumulado, pode não sofrer retornos tão decrescentes.
+
+Nesses modelos, **políticas importam para a taxa de crescimento de longo prazo**, e não só para o nível: subsídios a P&D, educação e proteção à inovação podem elevar $g$ permanentemente — algo impossível no Solow básico. O debate entre as duas visões segue vivo, mas ambas convergem numa lição prática: o que faz um país prosperar de forma duradoura é a **capacidade de gerar e absorver ideias e produtividade**.
+
+## 🇧🇷 Brasil em Foco
+
+**O Brasil e a estagnação da produtividade.** O modelo de Solow ilumina o principal enigma da economia brasileira: por que o país cresceu pouco nas últimas décadas. Estudos do Ipea, da FGV e do Banco Mundial mostram que a **Produtividade Total dos Fatores (PTF)** do Brasil praticamente **estagnou** desde os anos 1980 — em alguns períodos até recuou. O crescimento que houve veio majoritariamente do **aumento dos fatores** (mais trabalhadores, com o bônus demográfico, e alguma acumulação de capital), não de ganhos de eficiência. Traduzindo em Solow: o Brasil tentou crescer empurrando $k$ e $L$, sem fazer $A$ crescer — e bateu nos retornos decrescentes.
+
+**O "voo de galinha" e a armadilha da renda média.** A economia brasileira alterna surtos de crescimento com quedas — o chamado "voo de galinha" — e há décadas oscila em torno de um patamar de renda média, sem convergir para o nível dos países ricos. Na linguagem do capítulo, o Brasil parece preso a um **estado estacionário** relativamente baixo, determinado por baixa produtividade, educação deficiente (@sec-educacao-saude) e instituições que não incentivam suficientemente investimento e inovação (@sec-instituicoes) — a chamada **armadilha da renda média**.
+
+**A agenda de produtividade.** Coerente com a lição de Solow ("prosperidade é produtividade"), o debate econômico brasileiro convergiu para uma **agenda de produtividade**: melhorar a educação, elevar o investimento em P&D (ainda baixo como proporção do PIB, segundo o MCTI), abrir a economia ao comércio (@sec-globalizacao-brasil), simplificar tributos (@sec-sistema-tributario-reforma) e melhorar o ambiente de negócios. Todas essas frentes buscam, no fundo, a mesma coisa: fazer o $A$ brasileiro voltar a crescer.
+
+> **Fontes e séries para explorar:** Ipea e FGV/IBRE (estimativas de PTF e contas de crescimento para o Brasil); IBGE (PIB e formação bruta de capital fixo); MCTI (dispêndios em P&D como % do PIB); Banco Mundial e Penn World Table (comparações internacionais de renda per capita em PPC e decomposição do crescimento). Verifique a metodologia: estimativas de PTF variam conforme as hipóteses sobre capital e horas trabalhadas.
+
+## Resumo do capítulo
+
+- O modelo de **Solow** parte de uma função de produção agregada (@eq-fp-agregada) com **retornos decrescentes do capital** — a fonte de suas principais conclusões.
+- A **equação fundamental** (@eq-fundamental-solow), $\Delta k = s\,f(k) - \delta k$, gera um **estado estacionário** $k^{*}$ onde o investimento apenas repõe a depreciação (@eq-steady-state). A economia **converge** para esse ponto.
+- **Poupar mais eleva o nível** de renda per capita de longo prazo (e acelera o crescimento *durante a transição*), mas **não a taxa** de crescimento permanente — por causa dos retornos decrescentes. Acumular capital não sustenta o crescimento.
+- O único motor do crescimento **sustentado** da renda per capita é o **progresso tecnológico** ($A$), captado pelo **resíduo de Solow / PTF**. No longo prazo, **prosperidade é produtividade**.
+- O modelo prevê **convergência condicional** (cada país converge para o *seu* estado estacionário), consistente com os dados — e não convergência absoluta. Estados estacionários diferentes remetem a poupança, demografia, tecnologia e **instituições**.
+- Os modelos de **crescimento endógeno** (Romer, Lucas) endogeneízam a tecnologia via **ideias não rivais**, **P&D** e **capital humano**, permitindo que **políticas** afetem a taxa de crescimento de longo prazo.
+- O **Brasil** ilustra o modelo às avessas: **PTF estagnada** desde os anos 1980, crescimento baseado em fatores, "voo de galinha" e **armadilha da renda média** — daí a centralidade da **agenda de produtividade**.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique, em suas palavras, o que são **retornos decrescentes do capital** e por que essa propriedade é o "coração" do modelo de Solow.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Retornos decrescentes do capital significam que, mantendo o trabalho fixo, cada unidade **adicional** de capital produz um acréscimo de produto **menor** que a anterior — a função de produção por trabalhador é crescente, porém côncava. É o coração do modelo porque garante que a curva de investimento $s\,f(k)$ cruze a reta de depreciação $\delta k$ **uma única vez** (estado estacionário) e porque explica o resultado central: acumular capital gera crescimento apenas transitório, já que o retorno de cada nova máquina cai até só repor a depreciação. Sem retornos decrescentes, não haveria estado estacionário nem a distinção entre efeito-nível e efeito-taxa.
+:::
+
+**2.** Escreva a equação fundamental de Solow e explique o significado econômico de cada termo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$$
+\Delta k = s\,f(k) - \delta k.
+$$
+- $s\,f(k)$ — **investimento por trabalhador**: a fração $s$ da renda $f(k)$ que é poupada e transformada em novo capital. Herda a concavidade de $f$.
+- $\delta k$ — **depreciação por trabalhador**: a parcela $\delta$ do capital existente que se desgasta a cada período. É linear em $k$.
+- $\Delta k$ — a **variação do capital por trabalhador**: positiva quando o investimento supera a depreciação, negativa no caso contrário, e **nula** no estado estacionário.
+:::
+
+**3.** Uma economia tem $y = f(k) = \sqrt{k}$, taxa de poupança $s = 0{,}3$ e depreciação $\delta = 0{,}05$. Encontre o capital por trabalhador de estado estacionário $k^{*}$ e o produto $y^{*}$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+No estado estacionário (@eq-steady-state), $s\,f(k^{*}) = \delta k^{*}$:
+$$
+0{,}3\sqrt{k^{*}} = 0{,}05\,k^{*} \;\Rightarrow\; \frac{0{,}3}{0{,}05} = \frac{k^{*}}{\sqrt{k^{*}}} = \sqrt{k^{*}} \;\Rightarrow\; \sqrt{k^{*}} = 6.
+$$
+Logo $k^{*} = 36$ e $y^{*} = \sqrt{36} = 6$. A economia estabiliza com **36** unidades de capital e **6** de produto por trabalhador.
+:::
+
+**4.** No exercício anterior, a taxa de poupança sobe de $0{,}3$ para $0{,}4$. Recalcule $k^{*}$ e $y^{*}$ e explique o que acontece com o **crescimento** durante e depois da transição.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Agora $0{,}4\sqrt{k^{*}} = 0{,}05\,k^{*} \Rightarrow \sqrt{k^{*}} = 0{,}4/0{,}05 = 8 \Rightarrow k^{*} = 64$ e $y^{*} = 8$. O nível de renda per capita de longo prazo **sobe** (de 6 para 8). **Durante** a transição do antigo para o novo estado estacionário, a economia cresce (o capital está abaixo do novo $k^{*}$, então $\Delta k > 0$). **Depois** de atingir $k^{*}=64$, porém, o crescimento da renda per capita volta a **zero**: a maior poupança elevou o **nível**, não a **taxa** permanente de crescimento. É a lição central de Solow.
+:::
+
+**5.** Explique por que, no modelo de Solow, apenas o **progresso tecnológico** sustenta o crescimento da renda per capita no longo prazo. O que é a PTF?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque a acumulação de capital esbarra nos **retornos decrescentes**: eleva a renda apenas até um novo estado estacionário, depois do qual o crescimento cessa. O **progresso tecnológico** ($A$), ao contrário, desloca a **própria função de produção** para cima continuamente — com o mesmo $k$ e $L$ produz-se mais —, empurrando o estado estacionário para cima sem parar e sustentando o crescimento. A **PTF (Produtividade Total dos Fatores)** é a parcela do crescimento do produto **não** explicada pelo aumento das quantidades de capital e trabalho; mede a eficiência com que os fatores são combinados (tecnologia, organização, capital humano, instituições) e é a fonte última do crescimento per capita duradouro.
+:::
+
+**6.** O que é a hipótese de **convergência**? Por que a convergência **absoluta** não aparece nos dados, mas a **condicional** sim?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A convergência decorre dos retornos decrescentes: países **pobres** (baixo $k$) têm capital muito produtivo na margem e deveriam crescer mais rápido, aproximando-se dos ricos. A **convergência absoluta** — todos os países rumo ao *mesmo* nível de renda — **não** se observa: há ricos que permanecem à frente e pobres que não os alcançam. Mas o modelo prevê só a **convergência condicional**: cada país converge para o *seu próprio* estado estacionário, que depende de sua poupança, demografia, tecnologia e instituições. Controlando por esses fatores, os países mais distantes de seu estado estacionário de fato crescem mais rápido — e isso **é** encontrado nos dados. A ausência de convergência absoluta apenas revela que os estados estacionários **diferem** entre países.
+:::
+
+**7.** (Análise de caso) A PTF do Brasil está estagnada há décadas, embora o país tenha acumulado capital e trabalho. Use o modelo de Solow para explicar por que isso limita o crescimento e por que a "agenda de produtividade" faz sentido teórico.
+
+::: {.callout-tip collapse="true" title="Solução"}
+No modelo de Solow, crescer via aumento de $k$ e $L$ tem limite: os **retornos decrescentes** fazem a economia convergir para um estado estacionário e o crescimento per capita cessar. Se a **PTF ($A$) não cresce**, a função de produção não se desloca para cima, e o país fica preso nesse patamar — exatamente o quadro brasileiro de "voo de galinha" em torno de uma renda média. Como só o progresso tecnológico/produtividade sustenta o crescimento per capita de longo prazo, faz **sentido teórico** que a saída passe por elevar $A$: educação e capital humano (@sec-educacao-saude), P&D e inovação, abertura comercial (que traz tecnologia e concorrência), melhor ambiente de negócios e instituições (@sec-instituicoes). Todas são formas de fazer o $A$ brasileiro voltar a crescer, o único caminho para escapar da armadilha da renda média.
+:::
+
+**8.** (Desafio) Os modelos de crescimento endógeno afirmam que **políticas públicas** podem afetar a **taxa** de crescimento de longo prazo, algo impossível no Solow básico. Explique de onde vem essa diferença e dê um exemplo de política que teria efeitos distintos nos dois modelos.
+
+::: {.callout-tip collapse="true" title="Solução"}
+No **Solow básico**, a tecnologia é **exógena** e o capital tem retornos **estritamente decrescentes**; por isso qualquer política (mais poupança, subsídio ao investimento) afeta apenas o **nível** de renda de longo prazo, não a **taxa** — que, no fim, é ditada pelo progresso tecnológico exógeno. No **crescimento endógeno**, o motor (ideias, conhecimento, capital humano) é produzido por decisões econômicas e tem propriedades especiais — **não rivalidade** e **transbordamentos** — que podem contrabalançar os retornos decrescentes. Assim, políticas que estimulam esse motor elevam $g$ **permanentemente**. **Exemplo:** um subsídio permanente a **P&D**. No Solow, ele elevaria o investimento e o nível de renda, mas o crescimento voltaria à taxa exógena; no crescimento endógeno, ao aumentar continuamente a produção de ideias não rivais, ele poderia elevar a **taxa** de crescimento de longo prazo. (O mesmo valeria para investimento sustentado em educação/capital humano.) É por isso que a nova teoria dá peso muito maior à política de inovação e educação.
+:::
+
+## Para saber mais
+
+- @solow1956 — o artigo seminal que fundou a teoria moderna do crescimento; curto e de leitura recompensadora.
+- @jones2000 — a melhor porta de entrada didática ao modelo de Solow e ao crescimento endógeno, com aplicações empíricas.
+- @romer1990 — o artigo que endogeneizou o progresso tecnológico via ideias não rivais e P&D; base da nova teoria do crescimento.
+- @blanchard2017 — capítulos de crescimento de longo prazo, com o tratamento macroeconômico do modelo de Solow e da PTF.
+- @mankiw2020 — apresentação introdutória e intuitiva do modelo de Solow e do papel da produtividade.

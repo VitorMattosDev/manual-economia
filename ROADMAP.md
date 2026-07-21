@@ -185,12 +185,12 @@
 
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
-| 1 | Crescimento × desenvolvimento: medidas e o IDH | `capitulos/vol13/cap01-crescimento-desenvolvimento.qmd` | ⬜ |
-| 2 | Modelos de crescimento: Solow e além | `capitulos/vol13/cap02-modelo-de-solow.qmd` | ⬜ |
-| 3 | Instituições e desenvolvimento | `capitulos/vol13/cap03-instituicoes.qmd` | ⬜ |
-| 4 | Pobreza e desigualdade: medidas e políticas | `capitulos/vol13/cap04-pobreza-desigualdade.qmd` | ⬜ |
-| 5 | Economia da educação e da saúde | `capitulos/vol13/cap05-educacao-saude.qmd` | ⬜ |
-| 6 | Sustentabilidade, meio ambiente e economia do clima | `capitulos/vol13/cap06-economia-do-clima.qmd` | ⬜ |
+| 1 | Crescimento × desenvolvimento: medidas e o IDH | `capitulos/vol13/cap01-crescimento-desenvolvimento.qmd` | ✅ |
+| 2 | Modelos de crescimento: Solow e além | `capitulos/vol13/cap02-modelo-de-solow.qmd` | ✅ |
+| 3 | Instituições e desenvolvimento | `capitulos/vol13/cap03-instituicoes.qmd` | ✅ |
+| 4 | Pobreza e desigualdade: medidas e políticas | `capitulos/vol13/cap04-pobreza-desigualdade.qmd` | ✅ |
+| 5 | Economia da educação e da saúde | `capitulos/vol13/cap05-educacao-saude.qmd` | ✅ |
+| 6 | Sustentabilidade, meio ambiente e economia do clima | `capitulos/vol13/cap06-economia-do-clima.qmd` | ✅ |
 
 ### Volume 14 — Economia Financeira e Mercado de Capitais
 

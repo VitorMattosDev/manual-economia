@@ -1,0 +1,188 @@
+# Economia da educação e da saúde {#sec-educacao-saude}
+
+Por que vale a pena passar anos estudando em vez de começar a trabalhar mais cedo? Por que um país que educa e cuida da saúde de sua população tende a ser mais rico — e por que, mesmo assim, famílias pobres às vezes investem pouco em educação e saúde dos filhos? Estas perguntas parecem sociais, quase morais. Mas há uma maneira propriamente **econômica** de tratá-las, que rende previsões precisas e orienta algumas das políticas públicas mais importantes de qualquer país: a teoria do **capital humano**.
+
+Vimos que o motor do crescimento sustentado é a produtividade (@sec-modelo-de-solow) e que instituições moldam os incentivos a investir (@sec-instituicoes). Este capítulo olha para o investimento nas **pessoas** — em suas habilidades e em sua saúde — como uma das principais fontes de produtividade e de desenvolvimento humano. Trataremos educação e saúde como **investimentos** com custos e retornos, sem perder de vista que são também **fins em si mesmos**, capacitações valiosas na acepção de Sen (@sec-crescimento-desenvolvimento).
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- entender o conceito de **capital humano** e a decisão de educar-se como **investimento**;
+- interpretar as **taxas de retorno da educação** e o perfil de rendimentos por escolaridade;
+- distinguir a teoria do **capital humano** da do **sinal** (*signaling*);
+- reconhecer as **externalidades** e por que educação e saúde justificam intervenção pública;
+- aplicar a ideia de **capital de saúde** (Grossman) e a relação entre saúde, renda e desenvolvimento;
+- avaliar políticas de educação e saúde no Brasil (Fundeb, SUS, transferências condicionadas).
+
+## Capital humano: educar-se é investir
+
+A ideia fundadora, desenvolvida por Gary Becker e Theodore Schultz nos anos 1960, é tratar as competências das pessoas como uma forma de **capital** [@becker1964].
+
+::: {.callout-note title="Definição — Capital humano"}
+**Capital humano** é o estoque de conhecimentos, habilidades, competências e atributos de saúde incorporados nas pessoas, que aumentam sua **produtividade** e, portanto, sua capacidade de gerar renda. Como o capital físico, ele é **produzido** (por educação, treinamento, saúde), **acumulado** ao longo do tempo e **deprecia** (obsolescência de habilidades).
+:::
+
+A decisão de estudar, nessa ótica, é uma decisão de **investimento** análoga à de uma empresa que compra uma máquina. Ela envolve:
+
+- **Custos**, hoje: os **custos diretos** (mensalidade, material) e, sobretudo, o **custo de oportunidade** — a renda que se deixa de ganhar por estar estudando em vez de trabalhando (@sec-o-que-e-economia). Para o jovem, esse custo implícito costuma ser o maior de todos.
+- **Benefícios**, no futuro: uma renda mais alta ao longo de toda a vida profissional, além de benefícios não monetários (melhor saúde, satisfação).
+
+O investimento vale a pena quando o **valor presente** dos benefícios futuros supera os custos (a técnica do valor presente será formalizada no Volume 14). Como os benefícios chegam ao longo de décadas e os custos são imediatos, a decisão é sensível à **taxa de juros** (quanto se desconta o futuro) e ao **horizonte** (por isso os jovens, com vida profissional longa pela frente, têm mais incentivo a estudar).
+
+## A taxa de retorno da educação
+
+Quanto rende esse investimento? A evidência empírica é uma das mais robustas da economia: cada ano adicional de escolaridade está associado a um aumento da renda do trabalho. A relação é resumida pela **equação de rendimentos de Mincer**, que regride o **logaritmo** do salário sobre os anos de estudo e a experiência (@sec-regressao-multipla). O coeficiente dos anos de estudo é interpretado como a **taxa de retorno privada da educação** — em muitos países, na casa de **8% a 15%** por ano de estudo, um retorno que rivaliza com boa parte dos investimentos financeiros.
+
+Esse retorno se manifesta nos **perfis de rendimentos por idade**: pessoas com mais escolaridade não só ganham mais em média, como têm perfis de renda que **crescem mais** ao longo da carreira. A @fig-perfil-renda ilustra o padrão.
+
+::: {#fig-perfil-renda}
+
+```{.tikz}
+%%| filename: fig-perfil-renda
+%%| alt: Dois perfis de rendimentos ao longo da idade — um para maior escolaridade, mais alto e mais inclinado, outro para menor escolaridade, mais baixo e mais achatado.
+\begin{tikzpicture}
+\begin{axis}[
+  width=10.5cm, height=6.5cm,
+  axis lines=left,
+  xlabel={Idade},
+  ylabel={Rendimento},
+  xtick=\empty, ytick=\empty,
+  xmin=18, xmax=65, ymin=0, ymax=10,
+  clip=false, font=\small
+]
+  % maior escolaridade: comeca mais tarde, sobe mais
+  \addplot[curva, manualblue, thick, domain=23:62, samples=60]{-0.011*(x-58)^2 + 9};
+  \node[manualblue, align=center] at (axis cs:54,8.6) {maior\\escolaridade};
+  % menor escolaridade: comeca cedo, mais baixo e achatado
+  \addplot[curva, manualred, thick, domain=18:62, samples=60]{-0.0045*(x-50)^2 + 4.3};
+  \node[manualred, align=center] at (axis cs:57,2.6) {menor\\escolaridade};
+  % custo de oportunidade (area de renda sacrificada no inicio)
+  \draw[auxiliar] (axis cs:23,0) -- (axis cs:23,2.9);
+  \node[font=\footnotesize, align=center] at (axis cs:20.5,1.3) {renda\\sacrificada};
+\end{axis}
+\end{tikzpicture}
+```
+
+Mais escolaridade adia a entrada no mercado (custo de oportunidade) mas gera um perfil de rendimentos mais alto e mais inclinado ao longo da vida.
+:::
+
+## Capital humano ou sinal? Um debate
+
+Há uma explicação alternativa, provocadora, para por que os mais educados ganham mais: a teoria do **sinal** (*signaling*), de Michael Spence (@sec-informacao-assimetrica).
+
+::: {.callout-warning title="Controvérsia — a escola forma ou apenas sinaliza?"}
+**Teoria do capital humano** (Becker, Schultz). A educação **eleva a produtividade** do trabalhador — ele aprende conhecimentos e habilidades que o tornam mais capaz. O salário maior remunera essa produtividade maior. Implicação: educar mais gente **enriquece** a sociedade (produtividade real sobe).
+
+**Teoria do sinal** (Spence). O diploma serve sobretudo como **sinal** de habilidade **preexistente**: pessoas mais capazes conseguem completar cursos difíceis a menor custo, e o diploma as **separa** das menos capazes aos olhos do empregador, que não observa a produtividade diretamente. Nessa visão, parte do retorno da educação reflete **triagem**, não criação de produtividade. Implicação preocupante: expandir diplomas sem elevar aprendizado pode não elevar a produtividade agregada (apenas encarecer o sinal).
+
+**Onde está o debate:** quase ninguém defende os extremos. A educação **cria** capital humano (há forte evidência de que aprender habilidades eleva a produtividade) **e também** sinaliza. A questão empírica é o **peso** de cada componente — que varia por nível de ensino e contexto. A distinção tem consequência de política: se predomina o capital humano, importa a **qualidade** (o quanto se aprende), não apenas o **acesso** ao diploma.
+:::
+
+Essa controvérsia tem uma lição prática decisiva, sobretudo para o Brasil: **acesso não é aprendizado**. Universalizar a matrícula sem garantir que os alunos **aprendam** eleva a escolaridade formal sem necessariamente elevar o capital humano — daí a centralidade de medir **qualidade** (aprendizado), e não só quantidade (anos de estudo).
+
+## Por que o Estado entra: externalidades e falhas de mercado
+
+Se educação e saúde são bons investimentos privados, por que o Estado deve financiá-los e provê-los? Porque os mercados, sozinhos, **subinvestem** neles. Há várias razões (@sec-bens-publicos, @sec-papel-do-estado):
+
+- **Externalidades positivas** (@sec-externalidades). Minha educação beneficia **outras pessoas**: uma população mais educada é mais produtiva, inova mais, participa melhor da democracia e comete menos crimes; uma população vacinada protege até os não vacinados (imunidade de rebanho). Como o indivíduo não captura todos esses benefícios sociais, ele investe **menos** do que seria socialmente ótimo — o Estado corrige subsidiando ou provendo.
+- **Restrições de crédito.** O investimento em capital humano não pode ser dado como garantia (não se penhora o próprio diploma). Famílias pobres, sem acesso a crédito, não conseguem financiar a educação dos filhos mesmo com retorno alto — uma falha de mercado que perpetua a pobreza entre gerações (@sec-pobreza-desigualdade).
+- **Informação imperfeita e miopia.** Os benefícios são distantes e incertos; famílias podem subestimá-los, sobretudo quando o custo de oportunidade imediato é alto.
+- **Equidade.** Acesso universal a educação e saúde é um poderoso instrumento de **igualdade de oportunidades** e de mobilidade social.
+
+::: {.callout-tip title="Intuição — por que transferências condicionadas funcionam"}
+Junte duas ideias do capítulo: (i) famílias pobres subinvestem em educação por restrição de crédito e alto custo de oportunidade; (ii) a educação tem retorno alto e externalidades. Uma **transferência de renda condicionada** (@sec-pobreza-desigualdade) ataca exatamente isso: paga à família para **reduzir o custo de oportunidade** de manter a criança na escola. É, ao mesmo tempo, alívio da pobreza hoje e investimento em capital humano amanhã — por isso se tornou a política social favorita dos economistas do desenvolvimento [@banerjee2011].
+:::
+
+## O capital de saúde
+
+A saúde entra na análise de duas formas. Primeiro, como **componente do capital humano**: uma pessoa saudável é mais produtiva, falta menos, aprende melhor e trabalha por mais anos. Segundo, como **investimento próprio**, no modelo do economista Michael Grossman.
+
+::: {.callout-note title="Definição — Capital de saúde (Grossman)"}
+No modelo de Grossman, a **saúde** é um estoque de **capital** que a pessoa herda e ao longo da vida **deprecia** (com a idade) e **repõe** com investimentos — alimentação, exercício, cuidados médicos, ambiente. A saúde é, ao mesmo tempo, um **bem de consumo** (estar bem é bom em si) e um **bem de investimento** (mais dias saudáveis para trabalhar e viver) [@grossman1972].
+:::
+
+A relação entre saúde e renda é uma via de **mão dupla**, o que a torna difícil de estudar (@sec-correlacao-causalidade): renda maior compra melhor saúde (nutrição, saneamento, acesso a médicos), e melhor saúde eleva a renda (mais produtividade, mais anos de trabalho). Essa causalidade circular está no coração da "grande saída" da pobreza (@sec-crescimento-desenvolvimento): historicamente, saúde e renda avançaram juntas, cada uma reforçando a outra [@deaton2013]. E, tal como a educação, a saúde gera fortes **externalidades** (doenças contagiosas, imunização) e sofre **falhas de mercado** severas — informação assimétrica, seleção adversa e risco moral nos seguros de saúde (@sec-informacao-assimetrica) —, o que justifica um papel central do Estado em quase todos os países.
+
+## 🇧🇷 Brasil em Foco
+
+**A expansão do acesso — e o desafio da qualidade.** O Brasil **universalizou** o acesso ao ensino fundamental nas últimas décadas: a matrícula é praticamente universal e a escolaridade média da população subiu bastante (IBGE/PNAD). O gargalo migrou do **acesso** para a **qualidade** e a **conclusão**: os resultados de aprendizagem, medidos pelo **Ideb** (INEP) e por avaliações internacionais como o **PISA** (OCDE), permanecem baixos — o aluno brasileiro médio fica atrás de pares de países de renda semelhante em leitura, matemática e ciências. É a lição do debate capital humano × sinal em ação: **matricular não é aprender**, e o desafio brasileiro é elevar o aprendizado, não só os anos de estudo.
+
+**O financiamento: Fundeb e o piso.** O principal mecanismo de financiamento da educação básica é o **Fundeb** (Fundo de Manutenção e Desenvolvimento da Educação Básica), tornado **permanente** pela Emenda Constitucional 108/2020, que **redistribui** recursos entre estados e municípios buscando reduzir desigualdades regionais de gasto por aluno (@sec-federalismo-fiscal) — um reconhecimento de que capital humano exige financiamento estável e mais igualitário entre entes.
+
+**O SUS e a saúde universal.** O **Sistema Único de Saúde (SUS)**, criado pela Constituição de 1988, é uma das maiores políticas de saúde universal do mundo, atendendo a maior parte da população e responsável por conquistas notáveis: o **Programa Nacional de Imunizações** (referência mundial, ligado às externalidades de saúde), a **queda da mortalidade infantil** (de patamares muito altos para um dígito por mil nascidos, segundo o Ministério da Saúde e o IBGE) e o aumento da **expectativa de vida**, que ultrapassou os 75 anos. Persistem desafios de **financiamento** (o gasto público em saúde é relativamente baixo para um sistema universal), de **filas** e de desigualdades regionais.
+
+**Transferências condicionadas e capital humano.** Como visto no @sec-pobreza-desigualdade, o **Bolsa Família** condiciona o benefício à **frequência escolar** e ao acompanhamento de **saúde e vacinação** — desenho que une, na prática, os dois temas deste capítulo: reduzir o custo de oportunidade de estudar e induzir investimento em saúde infantil, quebrando a transmissão intergeracional da pobreza.
+
+> **Fontes e séries para explorar:** INEP (Ideb, Censo Escolar, matrícula e conclusão); OCDE (PISA); IBGE (escolaridade na PNAD Contínua, expectativa de vida, mortalidade infantil); Ministério da Saúde/DATASUS (cobertura, imunização, indicadores do SUS); Tesouro/Siconfi (gasto público em educação e saúde). Verifique a data: indicadores educacionais e de saúde são divulgados em ciclos (o PISA, por exemplo, é trienal).
+
+## Resumo do capítulo
+
+- **Capital humano** é o estoque de habilidades e saúde que eleva a produtividade e a renda. Educar-se é uma decisão de **investimento**: custos hoje (diretos e, sobretudo, o **custo de oportunidade**) contra renda maior no futuro; por isso é sensível a juros e ao horizonte de vida.
+- A **taxa de retorno da educação** (equação de Mincer) é alta e robusta — tipicamente **8–15%** por ano de estudo — e aparece em **perfis de rendimentos** mais altos e inclinados para os mais escolarizados.
+- O debate **capital humano × sinal** (*signaling*): a escola **eleva a produtividade** e/ou **sinaliza** habilidade preexistente. Ambos operam; o peso importa para a política, pois se o capital humano predomina, o que conta é a **qualidade** (aprendizado), não só o acesso ao diploma.
+- Educação e saúde justificam **intervenção pública** por **externalidades positivas**, **restrições de crédito** (famílias pobres subinvestem), **informação imperfeita/miopia** e **equidade**. As **transferências condicionadas** atacam diretamente o subinvestimento dos pobres.
+- No modelo de **Grossman**, a **saúde** é um **capital** que deprecia e se repõe com investimento; é bem de consumo e de investimento. Saúde e renda têm causalidade **de mão dupla**, reforçando-se ao longo do desenvolvimento.
+- No **Brasil**, o acesso à educação foi **universalizado**, mas a **qualidade** (Ideb, PISA) segue baixa — o desafio migrou de matricular para **fazer aprender**. O **Fundeb** financia e redistribui; o **SUS** entrega saúde universal com conquistas notáveis (imunização, queda da mortalidade infantil) e desafios de financiamento.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique por que a decisão de estudar pode ser tratada como uma decisão de **investimento**. Quais são seus custos e benefícios?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque envolve **custos no presente** para obter **benefícios no futuro**, como qualquer investimento. **Custos:** diretos (mensalidade, material) e, principalmente, o **custo de oportunidade** — a renda que se deixa de ganhar por estudar em vez de trabalhar. **Benefícios:** renda mais alta ao longo de toda a vida profissional, mais benefícios não monetários (melhor saúde, satisfação, cidadania). O investimento compensa quando o **valor presente** dos benefícios futuros supera os custos; por isso é sensível à taxa de juros e ao horizonte de vida (jovens têm mais a ganhar).
+:::
+
+**2.** O que é a **taxa de retorno da educação**? O que significa dizer que ela é de "10% por ano de estudo"?
+
+::: {.callout-tip collapse="true" title="Solução"}
+É o ganho percentual de renda associado a cada **ano adicional de escolaridade**, estimado pela equação de rendimentos de Mincer (log do salário sobre anos de estudo e experiência). "10% por ano de estudo" significa que, em média e controlando por experiência, cada ano a mais de escola está associado a uma renda do trabalho cerca de **10% maior**. É um retorno elevado, comparável ou superior ao de muitos investimentos financeiros — o que explica por que educar-se costuma "valer a pena" privadamente.
+:::
+
+**3.** Distinga a teoria do **capital humano** da teoria do **sinal**. Que consequência prática essa distinção tem para a política educacional?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Na teoria do **capital humano**, a educação **eleva a produtividade** real do trabalhador (ele aprende habilidades), e o salário maior a remunera. Na teoria do **sinal**, o diploma sobretudo **sinaliza** habilidade **preexistente** — pessoas mais capazes completam cursos difíceis mais facilmente, e o diploma as separa aos olhos do empregador, sem necessariamente criar produtividade. **Consequência prática:** se o capital humano predomina, o que importa é a **qualidade** do ensino (o quanto se aprende); expandir diplomas sem aprendizado real não eleva a produtividade agregada. A distinção justifica medir e cobrar **aprendizado**, não apenas ampliar o acesso e a certificação.
+:::
+
+**4.** Liste três razões pelas quais o mercado, sozinho, **subinveste** em educação, e explique como o Estado corrige cada uma.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(i) **Externalidades positivas** — os benefícios da educação (produtividade, inovação, cidadania, menos crime) recaem também sobre terceiros, que o indivíduo não captura, levando-o a investir menos que o ótimo social; o Estado corrige **subsidiando ou provendo** educação. (ii) **Restrições de crédito** — não se pode dar o diploma como garantia, então famílias pobres não financiam a educação dos filhos mesmo com retorno alto; o Estado corrige com **ensino público gratuito** e financiamento estudantil. (iii) **Informação imperfeita/miopia** — famílias subestimam benefícios distantes e incertos; o Estado corrige com **obrigatoriedade**, informação e **transferências condicionadas** que reduzem o custo de oportunidade. (Também vale **equidade**/igualdade de oportunidades.)
+:::
+
+**5.** No modelo de Grossman, em que sentido a **saúde** é um "capital"? Por que é, ao mesmo tempo, bem de consumo e de investimento?
+
+::: {.callout-tip collapse="true" title="Solução"}
+É um **capital** porque é um **estoque** que a pessoa herda, que **deprecia** com a idade e que pode ser **reposto/ampliado** por investimentos (alimentação, exercício, cuidados médicos, ambiente saudável) — exatamente como um estoque de capital físico. É **bem de consumo** porque estar saudável é **bom em si mesmo** (dá bem-estar direto), e é **bem de investimento** porque a saúde **aumenta a produtividade** e o número de dias/anos disponíveis para trabalhar e viver, gerando renda futura. Por isso as pessoas "investem" em saúde ao longo da vida, ponderando custos presentes e benefícios futuros.
+:::
+
+**6.** Explique a relação de **mão dupla** entre saúde e renda e por que ela dificulta estabelecer causalidade.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Renda maior **causa** melhor saúde (compra nutrição, saneamento, acesso a médicos), e melhor saúde **causa** maior renda (eleva a produtividade, reduz faltas, prolonga a vida laboral). Como cada variável influencia a outra, observar que "países mais ricos têm melhor saúde" não diz **qual causa qual** — pode ser **causalidade reversa** ou reforço mútuo (@sec-correlacao-causalidade). Isso dificulta isolar o efeito de políticas: um programa de saúde que eleve a renda pode ter seu efeito confundido com o da renda sobre a saúde. Por isso a avaliação séria recorre a métodos quase-experimentais (@sec-avaliacao-de-politicas) para separar os canais.
+:::
+
+**7.** (Análise de caso) O Brasil universalizou a matrícula no ensino fundamental, mas o Ideb e o PISA seguem baixos. Use o debate capital humano × sinal e o conceito de externalidade para explicar por que "acesso não basta" e o que priorizar.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Universalizar a **matrícula** eleva os anos de estudo formais, mas, se os alunos **não aprendem**, o **capital humano** de fato criado é pequeno — e é o capital humano (habilidades reais) que eleva a produtividade e gera as **externalidades positivas** (inovação, cidadania, renda). Na chave do debate, um sistema que dá diplomas sem aprendizado aproxima-se de um mero **sinal** cada vez mais barato, sem elevar a produtividade agregada nem colher os ganhos sociais. Por isso "acesso não basta": o Brasil já resolveu o acesso, mas o gargalo é a **qualidade** (aprendizado) e a **conclusão**. Prioridades coerentes: melhorar a formação e a carreira docente, o tempo e a gestão escolar, a alfabetização na idade certa e a permanência (reduzindo evasão no ensino médio, onde o custo de oportunidade sobe — @sec-o-que-e-economia). O objetivo é converter anos de escola em **aprendizado efetivo**, único caminho para que a educação cumpra seu papel de motor de produtividade (@sec-modelo-de-solow) e de mobilidade social.
+:::
+
+**8.** (Desafio) Um governo com orçamento apertado precisa escolher entre (a) construir mais escolas e (b) melhorar a qualidade das existentes e ampliar transferências condicionadas. Usando os conceitos do capítulo, construa um argumento econômico para a escolha, reconhecendo os *trade-offs*.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A escolha deve seguir o **retorno marginal** de cada real (@sec-o-que-e-economia). Se o **acesso já está próximo do universal** (caso brasileiro), o benefício marginal de **mais escolas** é baixo — construir vagas onde há matrícula não cria capital humano se o problema é aprendizado. O maior retorno tende a estar em (b): **qualidade** (que converte anos de estudo em produtividade real, atacando o lado "capital humano" e as externalidades) e **transferências condicionadas** (que reduzem o custo de oportunidade dos pobres, atacando a **restrição de crédito** e a **evasão**, com efeito redistributivo — @sec-pobreza-desigualdade). *Trade-offs* a reconhecer: (i) se ainda há **exclusão de acesso** em certas regiões, parte do orçamento deve ir para (a) — o retorno de dar acesso a quem não tem é altíssimo; (ii) qualidade é mais difícil de "entregar" e medir que construir prédios, exigindo capacidade de gestão; (iii) transferências têm custo fiscal recorrente. **Síntese:** num contexto de acesso já amplo, a teoria recomenda priorizar **qualidade + transferências condicionadas**, direcionando construção apenas onde persista déficit de vagas — sempre comparando o benefício marginal de cada alternativa, inclusive o custo de oportunidade dos recursos públicos.
+:::
+
+## Para saber mais
+
+- @becker1964 — a obra que fundou a teoria do capital humano e a análise econômica da educação e do treinamento como investimento.
+- @grossman1972 — o artigo que introduziu o conceito de capital de saúde e a demanda por saúde como decisão de investimento.
+- @sen2000 — para ver educação e saúde como **capacitações** e liberdades constitutivas do desenvolvimento, além do valor instrumental.
+- @banerjee2011 — evidência experimental sobre o que funciona (e o que não funciona) em educação e saúde nos países pobres, incluindo transferências condicionadas.
+- @mankiw2020 — capítulos sobre capital humano, produtividade e o papel da educação no padrão de vida, para revisão introdutória.

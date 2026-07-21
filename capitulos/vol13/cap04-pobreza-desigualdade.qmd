@@ -1,0 +1,211 @@
+# Pobreza e desigualdade: medidas e políticas {#sec-pobreza-desigualdade}
+
+O Brasil é, ao mesmo tempo, um país de renda média e um dos mais **desiguais** do mundo. Convivem, no mesmo território, bairros com padrão de vida europeu e comunidades sem saneamento básico; fortunas que rivalizam com as maiores do planeta e milhões de pessoas que não têm o que comer com regularidade. Como *medir* essa distância entre o topo e a base? Como distinguir **pobreza** — um patamar mínimo — de **desigualdade** — a dispersão da renda? E quais políticas efetivamente reduzem uma e outra?
+
+Este capítulo dá as ferramentas para responder. Vimos que o PIB per capita, uma média, esconde a distribuição (@sec-crescimento-desenvolvimento); vimos que o Brasil perde muito do seu IDH quando se ajusta pela desigualdade. Agora vamos abrir a caixa-preta da distribuição: a **curva de Lorenz**, o **índice de Gini**, as **linhas de pobreza** e o debate — teórico e brasileiro — sobre como combater a pobreza sem sufocar o crescimento.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- distinguir **pobreza absoluta** de **pobreza relativa** e entender as **linhas de pobreza**;
+- diferenciar **pobreza** de **desigualdade** e por que uma pode cair enquanto a outra sobe;
+- construir e interpretar a **curva de Lorenz** e calcular o **índice de Gini**;
+- conhecer outras medidas (razão de percentis, índice de Palma, pobreza multidimensional);
+- avaliar as principais **políticas** de combate à pobreza e à desigualdade, com destaque para as **transferências de renda condicionadas**;
+- situar a trajetória brasileira de desigualdade e o papel do Bolsa Família.
+
+## Pobreza: absoluta e relativa
+
+Pobreza é privação — mas privação em relação a quê? Há duas concepções.
+
+::: {.callout-note title="Definição — Pobreza absoluta e relativa"}
+**Pobreza absoluta** é a incapacidade de atingir um padrão **mínimo** de vida, definido por uma **linha de pobreza** — um valor de renda necessário para adquirir uma cesta básica de bens (alimentação, moradia, etc.). É medida em relação a um patamar fixo.
+
+**Pobreza relativa** é ficar muito **abaixo do padrão típico** da própria sociedade — por exemplo, ter renda inferior a 50% ou 60% da renda **mediana** do país. Sobe e desce com o padrão de vida geral: numa sociedade rica, ser pobre é diferente de sê-lo numa pobre.
+:::
+
+As duas concepções respondem a perguntas distintas. A **absoluta** pergunta: "essa pessoa consegue sobreviver com dignidade?" — e domina o debate sobre **extrema pobreza** e as metas globais (como a linha internacional de extrema pobreza do Banco Mundial, hoje algo em torno de poucos dólares por dia em PPC). A **relativa** pergunta: "essa pessoa está excluída do padrão de sua sociedade?" — e aproxima a pobreza da **desigualdade**, sendo mais usada em países ricos, onde a privação absoluta é rara.
+
+## Pobreza não é desigualdade
+
+Um ponto conceitual crucial, fonte de muita confusão pública: **pobreza e desigualdade são coisas diferentes** e podem se mover em direções opostas.
+
+- **Pobreza** olha para a **base**: quantas pessoas estão abaixo de um patamar. É sobre o **nível** de vida dos mais pobres.
+- **Desigualdade** olha para a **dispersão** de toda a distribuição: quão distantes estão os ricos dos pobres. É sobre a **distância relativa**, não sobre o nível.
+
+Um país pode reduzir a **pobreza** (todos ficam acima da linha) e, ao mesmo tempo, aumentar a **desigualdade** (os ricos enriqueceram ainda mais rápido). Ou reduzir a **desigualdade** sem tirar ninguém da pobreza (se todos empobrecem, mas os ricos mais). Confundir as duas leva a diagnósticos e políticas errados.
+
+::: {.callout-tip title="Intuição — a base e a distância"}
+Imagine duas fotos da mesma sociedade. A pobreza pergunta: *quantas cabeças estão abaixo da linha d'água?* A desigualdade pergunta: *qual a distância entre o mais alto e o mais baixo na piscina?* Encher a piscina (crescimento) pode erguer todos acima da linha (menos pobreza) sem mudar a distância entre eles (mesma desigualdade). São réguas diferentes para problemas diferentes — e uma boa política costuma precisar olhar as duas.
+:::
+
+## A curva de Lorenz
+
+A ferramenta gráfica central para visualizar a desigualdade é a **curva de Lorenz**, criada em 1905. Ela relaciona a proporção **acumulada** da população (dos mais pobres aos mais ricos) à proporção **acumulada** da renda que ela detém.
+
+::: {.callout-note title="Definição — Curva de Lorenz"}
+A **curva de Lorenz** mostra, no eixo horizontal, a fração acumulada da população ordenada da renda mais baixa à mais alta e, no eixo vertical, a fração acumulada da renda total que essa parcela recebe. A **diagonal de 45°** representa a **igualdade perfeita** (cada x% da população detém x% da renda). Quanto mais a curva se **afasta** da diagonal (curvando-se para baixo), **maior** a desigualdade.
+:::
+
+Na igualdade perfeita, os 20% mais pobres detêm 20% da renda, os 40% detêm 40%, e a curva coincide com a diagonal. Na realidade, os 20% mais pobres detêm bem menos de 20% da renda, e a curva **afunda** abaixo da diagonal. A @fig-lorenz ilustra.
+
+::: {#fig-lorenz}
+
+```{.tikz}
+%%| filename: fig-lorenz
+%%| alt: Curva de Lorenz afundando abaixo da diagonal de igualdade perfeita; a área entre a diagonal e a curva é a área A usada no cálculo do índice de Gini.
+\begin{tikzpicture}
+\begin{axis}[
+  width=9cm, height=9cm,
+  axis lines=left,
+  xlabel={Proporção acumulada da população},
+  ylabel={Proporção acumulada da renda},
+  xmin=0, xmax=1, ymin=0, ymax=1,
+  xtick={0,0.5,1}, ytick={0,0.5,1},
+  font=\small, clip=false
+]
+  % diagonal de igualdade
+  \addplot[curva, manualgray, thick, domain=0:1, samples=2]{x};
+  \node[manualgray, rotate=45] at (axis cs:0.62,0.68) {igualdade perfeita};
+  % curva de Lorenz y = x^2.3
+  \addplot[curva, manualblue, thick, domain=0:1, samples=100]{x^2.3};
+  \node[manualblue] at (axis cs:0.85,0.55) {Lorenz};
+  % area A (entre diagonal e Lorenz)
+  \node at (axis cs:0.45,0.35) {$A$};
+  % area B (abaixo da Lorenz)
+  \node at (axis cs:0.72,0.18) {$B$};
+\end{axis}
+\end{tikzpicture}
+```
+
+Curva de Lorenz: quanto maior a área $A$ entre a diagonal e a curva, maior a desigualdade. O índice de Gini é $A/(A+B)$.
+:::
+
+## O índice de Gini
+
+A curva de Lorenz é rica, mas queremos, muitas vezes, **um único número** para comparar países e anos. Esse número é o **índice de Gini**, a medida de desigualdade mais usada no mundo.
+
+::: {.callout-note title="Definição — Índice de Gini"}
+O **índice de Gini** é a razão entre a **área $A$** (entre a diagonal de igualdade e a curva de Lorenz) e a **área total** abaixo da diagonal ($A + B$):
+$$
+G = \frac{A}{A + B}.
+$$ {#eq-gini}
+Como $A + B = 1/2$ (o triângulo abaixo da diagonal do quadrado unitário), tem-se $G = 2A$. O Gini varia de **0** (igualdade perfeita: a curva é a diagonal, $A = 0$) a **1** (desigualdade máxima: uma pessoa detém toda a renda, $A$ ocupa todo o triângulo). Quanto **maior** o Gini, **maior** a desigualdade.
+:::
+
+Na prática, reporta-se o Gini entre 0 e 1 (ou multiplicado por 100). Como referência de ordem de grandeza: países escandinavos têm Gini de renda em torno de **0,25–0,30**; muitos países desenvolvidos, **0,30–0,35**; o Brasil situa-se historicamente na faixa **alta**, em torno de **0,50** — entre os mais desiguais do mundo.
+
+::: {.callout-important title="Armadilha comum — o Gini não conta 'onde' está a desigualdade"}
+Dois países podem ter o **mesmo Gini** com estruturas de desigualdade **muito diferentes**: num, a distância se concentra entre a classe média e os pobres; noutro, entre um topo riquíssimo e todo o resto. O Gini é um resumo de **um número** — sensível sobretudo ao **meio** da distribuição — e pode ser **insensível** a mudanças nos extremos. Por isso ele é complementado por outras medidas: a **razão de percentis** (renda do 10% mais rico sobre a do 10% mais pobre, o "P90/P10"), a **participação do 1% mais rico** e o **índice de Palma** (razão entre a renda dos 10% mais ricos e a dos 40% mais pobres). Nenhuma medida sozinha conta a história toda.
+:::
+
+### Um exemplo numérico simplificado
+
+Considere uma sociedade com apenas cinco pessoas, com rendas de R\$\,1, R\$\,2, R\$\,3, R\$\,4 e R\$\,10 (total R\$\,20). A renda média é R\$\,4. Ordenando dos mais pobres aos mais ricos, as frações **acumuladas** de renda são: 5%, 15%, 30%, 50% e 100% — cada pessoa representando 20% da população. A curva de Lorenz passa por esses pontos; quanto mais o último indivíduo (com R\$\,10) concentra, mais a curva afunda e maior o Gini. (O cálculo exato do Gini a partir de dados aparece no exercício 5.)
+
+## Além do Gini: pobreza multidimensional
+
+A tradição das capacitações de Sen (@sec-crescimento-desenvolvimento) insiste que pobreza não é só falta de **renda**, mas privação em **várias dimensões** simultâneas. Daí o **Índice de Pobreza Multidimensional (IPM)**, que combina privações em **saúde** (nutrição, mortalidade), **educação** (anos de escola, frequência) e **padrão de vida** (água, saneamento, eletricidade, moradia). Uma família pode ter renda acima da linha e ainda sofrer privações graves de acesso a serviços — e vice-versa. O IPM capta essa **sobreposição de privações**, oferecendo um retrato mais fiel da pobreza como falta de liberdades reais.
+
+## Políticas de combate à pobreza e à desigualdade
+
+O que fazer? O arsenal de políticas é amplo, e convém organizá-lo.
+
+**1. Crescimento econômico.** O crescimento é a força que, historicamente, mais tirou gente da **pobreza absoluta** (@sec-modelo-de-solow) — a "grande saída" de Deaton [@deaton2013]. Mas seu efeito depende de ser **inclusivo**: crescimento concentrador reduz pouco a pobreza e pode elevar a desigualdade. Não basta crescer; importa **como** se cresce.
+
+**2. Tributação progressiva e gasto social.** O sistema de **impostos e transferências** é o principal instrumento redistributivo do Estado (@sec-tributacao-principios). Tributos **progressivos** (quem ganha mais paga proporcionalmente mais) financiam **gastos** que beneficiam os mais pobres (saúde, educação, transferências). O grau de redistribuição depende tanto de **quanto** se arrecada quanto de **como** se gasta.
+
+**3. Transferências de renda condicionadas.** A inovação mais celebrada das últimas décadas: pagar às famílias pobres, **condicionando** o benefício a contrapartidas (manter crianças na escola, em dia com a vacinação). Combinam **alívio imediato** da pobreza (a transferência) com **investimento em capital humano** (as condicionalidades reduzem o custo de oportunidade de estudar — @sec-o-que-e-economia — e quebram a transmissão intergeracional da pobreza — @sec-educacao-saude).
+
+**4. Acesso universal a serviços.** Saúde e educação públicas de qualidade são redistributivas por natureza e atacam a pobreza **multidimensional** e as capacitações (@sec-educacao-saude).
+
+::: {.callout-warning title="Controvérsia — redistribuir atrapalha o crescimento?"}
+**Visão do *trade-off* (curva de Kuznets, incentivos).** Redistribuir demais reduziria os incentivos a trabalhar, poupar e empreender (tributos altos, benefícios que desestimulam o trabalho), sacrificando crescimento em nome da igualdade — o clássico *trade-off* eficiência × equidade (@sec-o-que-e-economia). Simon Kuznets chegou a sugerir que a desigualdade primeiro sobe e depois cai com o desenvolvimento (o "U invertido").
+
+**Visão da complementaridade.** Desigualdade **excessiva** pode **prejudicar** o crescimento: priva os pobres de acesso a educação e crédito (desperdiçando talentos), reduz a coesão social e a estabilidade política e concentra o poder de bloquear reformas (@sec-instituicoes). Transferências condicionadas e educação universal seriam **investimentos** que elevam a produtividade futura, não apenas consumo. E há evidência de que a curva de Kuznets não é uma lei — muitos países reduziram desigualdade *e* cresceram.
+
+**Onde há mais consenso:** o *desenho* importa mais que a dose. Redistribuição bem focalizada, que preserve incentivos ao trabalho e invista em capital humano, tende a conciliar equidade e eficiência melhor do que transferências mal desenhadas ou tributação distorciva. O debate persiste sobre a magnitude e os instrumentos.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+**A queda da desigualdade nos anos 2000 — e o platô recente.** O Brasil viveu, dos anos 2000 até meados da década de 2010, uma **queda expressiva e sustentada** do índice de Gini da renda domiciliar (dados da PNAD/IBGE), saindo de patamares próximos de **0,59** para cerca de **0,52–0,53** (@sec-anos-2000). Estudos de Ricardo Paes de Barros, Naercio Menezes-Filho, Rodolfo Hoffmann e outros atribuem essa queda a três forças principais: a **valorização real do salário mínimo**, a **expansão da educação** (reduzindo o prêmio salarial dos mais qualificados) e as **transferências de renda**, sobretudo o **Bolsa Família**. Após a recessão de 2014–2016, porém, a desigualdade **parou de cair** e voltou a subir em alguns anos — mostrando que os avanços não são automáticos nem irreversíveis.
+
+**O Bolsa Família como caso mundial.** O **Bolsa Família** (criado em 2003, unificando programas anteriores; posteriormente sucedido pelo Auxílio Brasil e novamente Bolsa Família) tornou-se referência internacional de **transferência de renda condicionada**. Com custo relativamente baixo (algo em torno de 0,5% do PIB por boa parte de sua história), alcançou dezenas de milhões de pessoas, com forte **focalização** (chega majoritariamente aos mais pobres) e **condicionalidades** de educação e saúde. Avaliações (Ipea, Banco Mundial, Cadastro Único) associam-no a **redução da extrema pobreza**, aumento da frequência escolar e melhora de indicadores de saúde infantil — a um custo fiscal modesto.
+
+**Pobreza multidimensional e o abismo regional.** Para além da renda, o Brasil ainda tem **privações multidimensionais** marcantes: déficits de saneamento (milhões sem esgoto tratado), diferenças regionais de acesso a serviços e desigualdades **raciais** e **de gênero** persistentes (a renda média de pessoas negras e de mulheres é sistematicamente inferior, segundo o IBGE). A desigualdade brasileira é, portanto, **multidimensional e estrutural** — enraizada na formação institucional do país (@sec-instituicoes).
+
+> **Fontes e séries para explorar:** IBGE — PNAD Contínua (rendimento, Gini, indicadores de desigualdade por cor/raça e sexo) e Síntese de Indicadores Sociais; Ipea (série histórica do Gini e estudos de decomposição); Banco Mundial (Gini comparado, linhas de pobreza em PPC); Ministério do Desenvolvimento Social e Cadastro Único (cobertura e focalização do Bolsa Família). Atenção: medidas de desigualdade variam conforme a fonte (pesquisa domiciliar × dados tributários, que captam melhor o topo).
+
+## Resumo do capítulo
+
+- **Pobreza absoluta** é ficar abaixo de um patamar mínimo (linha de pobreza); **pobreza relativa** é ficar muito abaixo do padrão típico da sociedade. A primeira domina o debate sobre extrema pobreza; a segunda aproxima-se da desigualdade.
+- **Pobreza** (nível da base) e **desigualdade** (dispersão da distribuição) são conceitos **distintos** e podem se mover em direções opostas: dá para reduzir a pobreza aumentando a desigualdade, e vice-versa.
+- A **curva de Lorenz** relaciona população acumulada à renda acumulada; quanto mais afunda abaixo da diagonal de igualdade, maior a desigualdade. O **índice de Gini** (@eq-gini) resume isso num número de **0** (igualdade) a **1** (concentração máxima).
+- O Gini é **insensível aos extremos**; complementam-no a **razão de percentis** (P90/P10), a **participação do 1% mais rico** e o **índice de Palma**. A **pobreza multidimensional (IPM)** capta privações simultâneas além da renda.
+- **Políticas:** crescimento **inclusivo**; **tributação progressiva** e gasto social; **transferências de renda condicionadas** (alívio imediato + capital humano); **acesso universal** a saúde e educação.
+- O debate **equidade × crescimento** opõe a visão do *trade-off* (redistribuir reduz incentivos) à da **complementaridade** (desigualdade excessiva prejudica o crescimento); há consenso de que o **desenho** da política importa mais que a dose.
+- No **Brasil**, o **Gini caiu** dos anos 2000 a meados de 2010 (salário mínimo, educação, Bolsa Família), com **platô/reversão** depois; o **Bolsa Família** é referência mundial de transferência condicionada; a desigualdade é **multidimensional, regional e racial**, e estrutural.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Distinga pobreza **absoluta** de pobreza **relativa**. Por que uma sociedade rica pode ter pobreza relativa mesmo com pouca pobreza absoluta?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Pobreza absoluta** é ficar abaixo de um patamar **mínimo** fixo (linha de pobreza que garante uma cesta básica); **pobreza relativa** é ficar muito abaixo do **padrão típico** da sociedade (ex.: renda inferior a 60% da mediana). Numa sociedade **rica**, quase ninguém fica abaixo do mínimo de subsistência (pouca pobreza absoluta), mas ainda pode haver muitas pessoas bem **abaixo do padrão médio** dessa sociedade (pobreza relativa) — excluídas do padrão de consumo e participação considerado normal ali. A relativa sobe e desce com o padrão geral; a absoluta, não.
+:::
+
+**2.** Explique por que **pobreza** e **desigualdade** são conceitos diferentes. Dê um exemplo em que a pobreza cai e a desigualdade sobe.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Pobreza** olha para o **nível** da base (quantos estão abaixo de um patamar); **desigualdade** olha para a **dispersão** de toda a distribuição (distância entre ricos e pobres). São réguas distintas. **Exemplo:** num boom econômico, os salários dos mais pobres sobem o suficiente para tirá-los da linha de pobreza (pobreza **cai**), mas as rendas do topo sobem ainda mais rápido, ampliando a distância entre topo e base (desigualdade **sobe**). Ambos os movimentos são reais e simultâneos, o que mostra que reduzir pobreza não implica reduzir desigualdade.
+:::
+
+**3.** O que a **curva de Lorenz** representa? O que significa a diagonal de 45°, e o que significa a curva se afastar dela?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A curva de Lorenz relaciona a fração **acumulada da população** (ordenada da menor à maior renda, no eixo x) à fração **acumulada da renda** que ela detém (eixo y). A **diagonal de 45°** representa a **igualdade perfeita**: cada x% da população detém exatamente x% da renda. Quando a curva se **afasta** da diagonal (afunda abaixo dela), significa que os mais pobres detêm uma fração da renda **menor** que sua fração na população — ou seja, **mais desigualdade**. Quanto maior o afastamento, maior a concentração.
+:::
+
+**4.** Defina o **índice de Gini** em termos das áreas da curva de Lorenz. Que valores ele assume nos casos de igualdade perfeita e de concentração total?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O Gini é $G = A/(A+B)$ (@eq-gini), onde $A$ é a área entre a diagonal de igualdade e a curva de Lorenz, e $B$ é a área abaixo da curva. Como $A+B = 1/2$, tem-se $G = 2A$. Na **igualdade perfeita**, a curva coincide com a diagonal, $A = 0$ e $G = 0$. Na **concentração total** (uma pessoa detém toda a renda), a curva corre pelo eixo até o último ponto, $A$ ocupa todo o triângulo e $G = 1$. Assim, $0 \le G \le 1$, e quanto maior, mais desigual.
+:::
+
+**5.** Uma sociedade tem duas pessoas: uma ganha R\$\,20, a outra R\$\,80 (total R\$\,100). Esboce mentalmente a curva de Lorenz (pontos em população acumulada 0; 0,5; 1) e explique por que o Gini é maior que zero.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Ordenando do mais pobre ao mais rico: os **50% mais pobres** (a pessoa de R\$\,20) detêm **20%** da renda; os **100%** detêm 100%. A curva de Lorenz passa pelos pontos $(0;\,0)$, $(0{,}5;\,0{,}2)$ e $(1;\,1)$. Como o ponto do meio $(0{,}5;\,0{,}2)$ fica **abaixo** da diagonal (que passaria por $(0{,}5;\,0{,}5)$), a curva afunda e existe uma área $A > 0$ entre ela e a diagonal — logo o **Gini é maior que zero**. Se as duas ganhassem R\$\,50, o ponto seria $(0{,}5;\,0{,}5)$ sobre a diagonal e o Gini seria 0. Quanto mais concentrada a renda numa das pessoas, mais o ponto do meio desce e maior o Gini (que aqui vale $G = 2A = 2\times 0{,}15 = 0{,}30$, pois $A$ é o triângulo de base 1 e altura $0{,}3$, área $0{,}15$).
+:::
+
+**6.** Por que o índice de Gini precisa ser complementado por outras medidas, como o índice de Palma ou a participação do 1% mais rico?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque o Gini resume toda a distribuição num **único número** e é mais **sensível ao meio** da distribuição do que aos **extremos**. Dois países com o mesmo Gini podem ter estruturas muito diferentes — num, a distância maior está entre classe média e pobres; noutro, entre um topo riquíssimo e todo o resto. Medidas como a **participação do 1% mais rico** captam melhor a concentração no **topo** (muitas vezes subestimada em pesquisas domiciliares e revelada por dados tributários); o **índice de Palma** (renda dos 10% mais ricos sobre a dos 40% mais pobres) foca na razão entre extremos, que muda mais em termos de política. Combinar medidas dá um retrato mais completo.
+:::
+
+**7.** (Análise de caso) Explique como salário mínimo, educação e Bolsa Família teriam contribuído para a queda do Gini brasileiro nos anos 2000. Por que a queda estagnou depois?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Os três atuaram na **base e no meio** da distribuição. A **valorização real do salário mínimo** elevou a renda de trabalhadores de baixa remuneração e de beneficiários indexados a ele (aposentadorias, benefícios), comprimindo a distância para o topo. A **expansão da educação** aumentou a oferta de trabalhadores mais qualificados, **reduzindo o prêmio salarial** da escolaridade (o topo ganhou vantagem relativa menor). O **Bolsa Família** transferiu renda diretamente aos mais pobres, com boa focalização, erguendo a base da distribuição. Juntos, elevaram mais a renda de baixo do que a de cima, reduzindo o Gini. A queda **estagnou** após 2014 porque: a recessão de 2014–2016 destruiu empregos e renda (atingindo os mais vulneráveis), o salário mínimo perdeu ritmo de valorização real, a expansão educacional maturou (menor efeito marginal) e o espaço fiscal encolheu. Mostra que reduzir desigualdade exige **fluxo contínuo** de políticas — os ganhos não se sustentam sozinhos.
+:::
+
+**8.** (Desafio) Um parlamentar argumenta que "toda redistribuição prejudica o crescimento, porque reduz incentivos". Avalie criticamente, apresentando a visão oposta e uma síntese.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O argumento capta uma verdade parcial — o *trade-off* eficiência × equidade: tributos muito altos e benefícios mal desenhados podem, sim, reduzir incentivos a trabalhar, poupar e empreender, sacrificando crescimento. Mas a afirmação de que **toda** redistribuição prejudica o crescimento é falsa. A **visão da complementaridade** mostra o contrário em vários casos: desigualdade **excessiva** priva os pobres de educação e crédito (desperdiçando talentos e reduzindo a produtividade futura), corrói a coesão social e concentra o poder de bloquear reformas (@sec-instituicoes). Transferências **condicionadas** e educação universal funcionam como **investimento em capital humano** (@sec-educacao-saude), elevando o crescimento potencial, e não apenas como consumo. Além disso, a curva de Kuznets ("desigualdade sobe e depois cai") não é uma lei — países reduziram desigualdade *e* cresceram. **Síntese:** não é a **dose**, mas o **desenho** que decide. Redistribuição bem focalizada, que preserve incentivos ao trabalho e invista em capital humano, tende a conciliar equidade e eficiência; redistribuição mal desenhada ou financiada por tributos muito distorcivos pode, de fato, custar crescimento. A frase do parlamentar troca uma questão de **desenho** por uma falsa lei geral.
+:::
+
+## Para saber mais
+
+- @hoffmann2006 — referência brasileira sobre distribuição de renda, medidas de desigualdade e sua decomposição, com aplicação aos dados nacionais.
+- @sen2000 — para a concepção de pobreza como privação de capacitações, que fundamenta as medidas multidimensionais.
+- @piketty2014 — sobre a dinâmica de longo prazo da concentração de renda e riqueza no topo e o papel do capital; obra que reacendeu o debate global sobre desigualdade.
+- @banerjee2011 — evidência experimental sobre o que efetivamente reduz a pobreza, incluindo transferências e o desenho de programas sociais.
+- @deaton2013 — a "grande saída" da pobreza puxada pelo crescimento e por que ela foi tão desigual entre e dentro dos países.
