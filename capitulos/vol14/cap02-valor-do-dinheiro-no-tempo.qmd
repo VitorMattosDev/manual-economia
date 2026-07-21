@@ -1,5 +1,408 @@
 # Valor do dinheiro no tempo: juros compostos, VP e VF {#sec-valor-do-dinheiro-no-tempo}
 
-::: {.callout-note}
-Capítulo em construção.
+Uma loja anuncia uma geladeira por "R\$ 2.000 à vista **ou** 12 vezes de R\$ 200 sem juros". Some as parcelas: $12 \times R\$\,200 = R\$\,2.400$. Se não há juros, por que o total parcelado é R\$ 400 mais caro que o preço à vista? A resposta é o conceito mais importante de todas as finanças: **um real hoje vale mais do que um real amanhã**. Quem paga à vista entrega o dinheiro imediatamente; quem parcela retém o dinheiro e o vai soltando aos poucos — e esse adiamento tem valor. O "sem juros" da propaganda é uma meia-verdade: os juros estão embutidos no preço à vista, que é menor. Este capítulo constrói a ferramenta que traduz quantias em datas diferentes para uma base comparável — o **valor do dinheiro no tempo** — e com ela você aprenderá a comparar à vista com a prazo, avaliar um investimento, entender uma prestação e enxergar o custo real de uma dívida.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- explicar por que o dinheiro tem **valor no tempo** e por que a taxa de juros é o preço dessa impaciência;
+- distinguir **juros simples** de **juros compostos** e calcular o **valor futuro (VF)** de uma quantia;
+- calcular o **valor presente (VP)** de um pagamento futuro por meio do **desconto** e usá-lo para comparar fluxos em datas diferentes;
+- converter **taxas equivalentes** entre períodos e diferenciar taxa **nominal** de taxa **efetiva**;
+- separar juros **nominais** de juros **reais** pela equação de Fisher, conectando o tema à inflação;
+- avaliar **séries de pagamentos** (anuidades e perpetuidades) e calcular o **valor presente líquido (VPL)** de um projeto.
+
+## Por que o dinheiro tem valor no tempo
+
+Ofereça a alguém R\$ 1.000 hoje ou R\$ 1.000 daqui a um ano, e praticamente todos escolherão hoje. Essa preferência não é irracionalidade nem ganância — tem três fundamentos econômicos sólidos:
+
+1. **Custo de oportunidade.** R\$ 1.000 recebidos hoje podem ser aplicados e render juros; esperar um ano significa abrir mão desse rendimento. O dinheiro parado tem um custo — o retorno que ele deixou de gerar (retome o @sec-taxa-de-juros-selic).
+2. **Inflação.** Se os preços sobem, os mesmos R\$ 1.000 comprarão menos daqui a um ano. O poder de compra do dinheiro tende a corroer-se com o tempo (@sec-inflacao).
+3. **Risco e preferência temporal.** O futuro é incerto — a promessa de pagamento pode não se cumprir — e, mesmo sem risco, as pessoas simplesmente **preferem** consumir agora a consumir depois (impaciência).
+
+::: {.callout-note title="Definição — Valor do dinheiro no tempo"}
+O **valor do dinheiro no tempo** é o princípio de que uma quantia disponível hoje vale mais do que a mesma quantia disponível no futuro, porque o dinheiro presente pode ser aplicado para render juros, está imune à inflação já ocorrida e não carrega o risco da espera. A **taxa de juros** é o preço que reconcilia o valor de quantias em datas diferentes.
 :::
+
+A consequência prática é radical: **não se pode somar nem comparar diretamente quantias em datas diferentes**. R\$ 100 hoje e R\$ 100 daqui a dois anos são grandezas distintas, como reais e dólares. Para compará-las, precisamos "transportá-las" para a mesma data usando a taxa de juros — e é isso que os juros compostos fazem.
+
+## Juros simples e juros compostos
+
+Considere um capital inicial (o **principal**) $C$ aplicado a uma taxa de juros $i$ por período. Há dois regimes de capitalização.
+
+Nos **juros simples**, os juros incidem sempre sobre o principal original; eles não "rendem juros". Após $n$ períodos, o montante é
+
+$$
+M = C\,(1 + i\,n).
+$$ {#eq-juros-simples}
+
+Nos **juros compostos**, ao fim de cada período os juros são incorporados ao capital e passam, eles próprios, a render no período seguinte — os **juros sobre juros**. Após $n$ períodos:
+
+$$
+M = C\,(1 + i)^{n}.
+$$ {#eq-juros-compostos}
+
+::: {.callout-note title="Definição — Capitalização composta"}
+Na **capitalização composta**, os juros de cada período são somados ao capital e passam a gerar juros nos períodos seguintes. O montante cresce de forma **exponencial** com o tempo, enquanto sob juros simples ele cresce de forma **linear**.
+:::
+
+A diferença parece pequena a princípio, mas se amplia dramaticamente com o tempo, como mostra a @fig-simples-composto. É a matemática por trás da frase atribuída a Einstein — "os juros compostos são a força mais poderosa do universo": o que cresce exponencialmente pode partir de valores modestos e alcançar cifras enormes.
+
+::: {#fig-simples-composto}
+
+```{.tikz}
+%%| filename: fig-simples-composto
+%%| alt: Dois gráficos do montante ao longo de 20 períodos partindo de mil reais a 10 por cento — a reta dos juros simples cresce linearmente e a curva dos juros compostos cresce exponencialmente, afastando-se cada vez mais.
+\begin{tikzpicture}
+\begin{axis}[
+  width=11cm, height=7.2cm,
+  xlabel={períodos $n$}, ylabel={montante (R\$)},
+  xmin=0, xmax=20, ymin=800, ymax=7200,
+  axis lines=left, xtick={0,4,8,12,16,20},
+  legend pos=north west, legend cell align=left,
+  every axis plot/.append style={very thick},
+  font=\small]
+  \addplot[manualblue, domain=0:20, samples=60] {1000*(1+0.10*x)};
+  \addlegendentry{juros simples: $1000(1+0{,}10\,n)$}
+  \addplot[manualred, domain=0:20, samples=100] {1000*1.10^x};
+  \addlegendentry{juros compostos: $1000\cdot 1{,}10^{\,n}$}
+  \node[ponto] at (axis cs:20,3000) {};
+  \node[anchor=west, manualblue, font=\footnotesize] at (axis cs:16.5,3000) {R\$\,3.000};
+  \node[ponto] at (axis cs:20,6727) {};
+  \node[anchor=east, manualred, font=\footnotesize] at (axis cs:19.4,6600) {R\$\,6.727};
+\end{axis}
+\end{tikzpicture}
+```
+
+Juros simples × compostos sobre R\$ 1.000 a 10\% por período: em 20 períodos, o regime composto acumula mais que o dobro do simples.
+:::
+
+::: {.callout-important title="Armadilha comum — misturar os dois regimes"}
+No mercado financeiro brasileiro, salvo raríssimas exceções, **tudo é composto**: a poupança, o CDB, o financiamento, o cartão de crédito, o Tesouro Direto. Os juros simples aparecem quase só em exercícios escolares e em alguns contratos de curtíssimo prazo. Ao comparar taxas ou projetar rendimentos, use sempre a capitalização composta — supor juros simples subestima grosseiramente o crescimento de longo prazo (e o custo de uma dívida que rola).
+:::
+
+### Um exemplo numérico
+
+Você aplica $C = R\$\,5.000$ a $i = 12\%$ ao ano por $n = 3$ anos. Pela @eq-juros-compostos:
+
+$$
+M = 5000\,(1{,}12)^{3} = 5000 \times 1{,}404928 = R\$\,7.024{,}64.
+$$
+
+Os juros ganhos foram $R\$\,7.024{,}64 - R\$\,5.000 = R\$\,2.024{,}64$. Sob juros simples, seriam apenas $5000 \times 0{,}12 \times 3 = R\$\,1.800$. A diferença de R\$ 224,64 é exatamente o "juro sobre juro" — o rendimento dos juros do 1º e do 2º ano.
+
+## Valor futuro e valor presente
+
+A @eq-juros-compostos é a chave que abre todo o capítulo. Reescrevendo-a com a linguagem das finanças, chamamos o capital inicial de **valor presente** ($VP$) e o montante final de **valor futuro** ($VF$):
+
+$$
+VF = VP\,(1 + i)^{n}.
+$$ {#eq-vf}
+
+Essa fórmula **capitaliza**: leva uma quantia de hoje para uma data futura. Mas o movimento mais poderoso é o inverso. Dada uma quantia que receberemos no futuro, quanto ela vale **hoje**? Basta isolar $VP$:
+
+$$
+VP = \frac{VF}{(1 + i)^{n}}.
+$$ {#eq-vp}
+
+::: {.callout-note title="Definição — Valor presente e desconto"}
+O **valor presente (VP)** de uma quantia futura é quanto ela vale hoje, obtido dividindo-a por $(1+i)^n$ — operação chamada **desconto**. A taxa $i$ usada nesse desconto é a **taxa de desconto**, e mede o custo de oportunidade do dinheiro. Descontar é o inverso de capitalizar.
+:::
+
+A @fig-linha-do-tempo ilustra os dois sentidos ao longo de uma **linha do tempo** — o instrumento gráfico que todo problema de finanças deveria começar desenhando.
+
+::: {#fig-linha-do-tempo}
+
+```{.tikz}
+%%| filename: fig-linha-do-tempo
+%%| alt: Uma linha do tempo horizontal de zero a n. Uma seta curva para a direita, rotulada capitalizar multiplicando por um mais i elevado a n, leva o valor presente ao valor futuro; uma seta curva para a esquerda, rotulada descontar dividindo por um mais i elevado a n, faz o caminho inverso.
+\begin{tikzpicture}[font=\small]
+  \draw[eixo, ->] (0,0) -- (10,0) node[right]{tempo};
+  \foreach \x/\l in {0/0, 3/1, 5/2, 7/{$\cdots$}, 9/n} {
+    \draw (\x,0.12) -- (\x,-0.12) node[below]{\l};
+  }
+  \node[ponto, label=below:{\color{manualgreen}\textbf{VP}}] at (0,0) {};
+  \node[ponto, label=below:{\color{manualred}\textbf{VF}}] at (9,0) {};
+  \draw[vetor, manualred] (0.4,0.5) to[bend left=30]
+     node[above, font=\footnotesize]{capitalizar: $\times\,(1+i)^n$} (8.6,0.5);
+  \draw[vetor, manualblue] (8.6,-0.9) to[bend left=30]
+     node[below, font=\footnotesize]{descontar: $\div\,(1+i)^n$} (0.4,-0.9);
+\end{tikzpicture}
+```
+
+A linha do tempo: capitalizar leva o valor presente ao futuro; descontar traz o valor futuro ao presente.
+:::
+
+### O desconto na prática
+
+Voltemos à geladeira da abertura. Uma promoção oferece R\$ 2.000 à vista ou uma única parcela de R\$ 2.400 daqui a um ano. Se você consegue aplicar seu dinheiro a $i = 12\%$ ao ano, qual opção é melhor? Traga o pagamento futuro a valor presente pela @eq-vp:
+
+$$
+VP = \frac{2400}{(1{,}12)^{1}} = \frac{2400}{1{,}12} = R\$\,2.142{,}86.
+$$
+
+Pagar R\$ 2.400 daqui a um ano equivale a pagar R\$ 2.142,86 hoje — mais caro que os R\$ 2.000 à vista. **A opção à vista é melhor.** Note que a resposta depende da taxa: se você não tivesse onde aplicar o dinheiro rendendo 12\%, a conta mudaria. A taxa de desconto é o coração da decisão.
+
+::: {.callout-tip title="Intuição — descontar é 'desfazer' os juros"}
+Capitalizar responde: "quanto meu dinheiro vira?". Descontar responde: "quanto preciso ter hoje para chegar a esse valor?". Se R\$ 100 viram R\$ 112 em um ano a 12\%, então R\$ 112 daqui a um ano valem R\$ 100 hoje. Quanto **maior** a taxa ou **mais distante** a data, **menor** o valor presente de uma quantia futura — o futuro distante "encolhe" no presente.
+:::
+
+## Taxas equivalentes: comparando maçãs com maçãs
+
+Taxas de juros vêm em muitos períodos: ao ano (a.a.), ao mês (a.m.), ao dia. Para comparar ou combinar, é preciso convertê-las. Duas taxas são **equivalentes** quando, aplicadas ao mesmo capital pelo mesmo prazo total, produzem o mesmo montante. Sob capitalização composta, a relação entre uma taxa anual $i_a$ e a mensal equivalente $i_m$ é:
+
+$$
+1 + i_a = (1 + i_m)^{12}.
+$$ {#eq-taxas-equivalentes}
+
+Repare no expoente: como os juros compõem, **não se divide a taxa anual por 12** para achar a mensal. Uma taxa de 12\% ao ano **não** equivale a 1\% ao mês. A mensal equivalente é
+
+$$
+i_m = (1{,}12)^{1/12} - 1 = 0{,}00949\ldots \approx 0{,}949\%\ \text{a.m.},
+$$
+
+um pouco **menos** que 1\%, justamente porque 1\% ao mês composto daria $(1{,}01)^{12} - 1 \approx 12{,}68\%$ ao ano.
+
+::: {.callout-important title="Armadilha comum — taxa nominal × taxa efetiva"}
+Um banco anuncia "24\% ao ano com capitalização mensal". Esse é um número **nominal**: a taxa mensal de fato cobrada é $24\%/12 = 2\%$ ao mês, mas, por compor, a **taxa efetiva** anual é $(1{,}02)^{12} - 1 \approx 26{,}82\%$ — maior que os 24\% anunciados. A **taxa nominal** é uma mera convenção de cotação; a **taxa efetiva** é a que você realmente paga ou ganha. Sempre compare taxas **efetivas** no mesmo período. É por isso que o Brasil exige a divulgação do **CET** (Custo Efetivo Total) em financiamentos.
+:::
+
+## Juros nominais e juros reais: a inflação de volta
+
+Até aqui os juros mediram o crescimento do número de reais. Mas o que importa é o **poder de compra**. Se sua aplicação rendeu 10\% no ano mas os preços subiram 6\%, seu ganho *real* foi bem menor que 10\%. A relação exata entre a taxa **nominal** $i$, a taxa **real** $r$ e a inflação $\pi$ é a **equação de Fisher**:
+
+$$
+1 + r = \frac{1 + i}{1 + \pi}
+\qquad\Longleftrightarrow\qquad
+1 + i = (1 + r)(1 + \pi).
+$$ {#eq-fisher}
+
+Com $i = 10\%$ e $\pi = 6\%$:
+
+$$
+r = \frac{1{,}10}{1{,}06} - 1 = 0{,}03774\ldots \approx 3{,}77\%.
+$$
+
+A aproximação popular $r \approx i - \pi = 4\%$ é razoável para taxas baixas, mas superestima o ganho real; a fórmula exata é preferível, sobretudo em regimes de inflação alta (como o Brasil já viveu — @sec-inflacao). O termo que a aproximação ignora, $r\cdot\pi$, é o "juro sobre a inflação".
+
+::: {.callout-warning title="Sinal do juro real"}
+O juro real pode ser **negativo**. Se a poupança rende 6\% e a inflação é 8\%, então $r = 1{,}06/1{,}08 - 1 \approx -1{,}85\%$: apesar de o saldo em reais crescer, seu poder de compra **encolheu**. Foi o que ocorreu com aplicações conservadoras em vários episódios inflacionários brasileiros. Nunca avalie um rendimento sem confrontá-lo com a inflação do período.
+:::
+
+## Séries de pagamentos: anuidades e perpetuidades
+
+Raramente lidamos com um único pagamento. Financiamentos, aluguéis, salários, aposentadorias e dividendos são **fluxos** de várias parcelas ao longo do tempo. Uma sequência de pagamentos iguais, em intervalos regulares, chama-se **anuidade** (ou série uniforme). A @fig-anuidade mostra o fluxo de uma anuidade de $n$ parcelas de valor $PMT$.
+
+::: {#fig-anuidade}
+
+```{.tikz}
+%%| filename: fig-anuidade
+%%| alt: Linha do tempo com pagamentos iguais representados por setas verticais para cima de igual altura, rotuladas PMT, nas datas 1, 2, 3 até n. À esquerda, na data zero, o valor presente VP resume todo o fluxo.
+\begin{tikzpicture}[font=\small]
+  \draw[eixo, ->] (-0.5,0) -- (10,0) node[right]{tempo};
+  \foreach \x/\l in {0/0, 2/1, 4/2, 6/3, 8/{$\cdots$}, 9.2/n} {
+    \draw (\x,0.1) -- (\x,-0.1) node[below]{\l};
+  }
+  \foreach \x in {2,4,6,9.2} {
+    \draw[vetor, manualgreen] (\x,0) -- (\x,1.5);
+  }
+  \node[manualgreen, font=\footnotesize] at (2,1.8) {PMT};
+  \node[manualgreen, font=\footnotesize] at (4,1.8) {PMT};
+  \node[manualgreen, font=\footnotesize] at (6,1.8) {PMT};
+  \node[manualgreen, font=\footnotesize] at (9.2,1.8) {PMT};
+  \draw[vetor, manualblue] (0,1.5) -- (0,0);
+  \node[manualblue, font=\footnotesize, anchor=south] at (0,1.55) {VP};
+\end{tikzpicture}
+```
+
+Uma anuidade postecipada: $n$ pagamentos iguais de $PMT$, resumidos no valor presente $VP$ na data zero.
+:::
+
+O valor presente de uma anuidade **postecipada** (pagamentos ao fim de cada período) é a soma dos valores presentes de cada parcela. Somando a progressão geométrica resultante, obtém-se a fórmula fechada:
+
+$$
+VP = PMT \cdot \frac{1 - (1 + i)^{-n}}{i}.
+$$ {#eq-vp-anuidade}
+
+::: {.callout-note collapse="true" title="Derivação da fórmula da anuidade"}
+O valor presente é a soma dos descontos de cada parcela:
+$$
+VP = \frac{PMT}{(1+i)} + \frac{PMT}{(1+i)^2} + \cdots + \frac{PMT}{(1+i)^n}
+= PMT \sum_{t=1}^{n} (1+i)^{-t}.
+$$
+A soma é uma progressão geométrica de primeiro termo $a_1 = (1+i)^{-1}$ e razão $q = (1+i)^{-1}$, com $n$ termos. Usando $\sum_{t=1}^{n} a_1 q^{t-1} = a_1\dfrac{1 - q^{n}}{1 - q}$:
+$$
+\sum_{t=1}^{n} (1+i)^{-t} = \frac{1}{1+i}\cdot\frac{1 - (1+i)^{-n}}{1 - (1+i)^{-1}}
+= \frac{1 - (1+i)^{-n}}{(1+i) - 1} = \frac{1 - (1+i)^{-n}}{i}.
+$$
+Multiplicando por $PMT$ chega-se à @eq-vp-anuidade. Isolando $PMT$ obtém-se o valor da prestação de um financiamento de valor $VP$ — a base da **Tabela Price**.
+:::
+
+De modo análogo, o **valor futuro** de uma anuidade (quanto você acumula ao poupar $PMT$ por período) é
+
+$$
+VF = PMT \cdot \frac{(1 + i)^{n} - 1}{i}.
+$$ {#eq-vf-anuidade}
+
+### Financiamento: quanto é a prestação?
+
+Você financia um carro de $VP = R\$\,60.000$ em $n = 48$ meses a $i = 1{,}5\%$ ao mês. Isolando $PMT$ na @eq-vp-anuidade:
+
+$$
+PMT = \frac{VP \cdot i}{1 - (1+i)^{-n}}
+= \frac{60000 \times 0{,}015}{1 - (1{,}015)^{-48}}
+= \frac{900}{1 - 0{,}48936}
+= \frac{900}{0{,}51064} \approx R\$\,1.762{,}55.
+$$
+
+Ao longo de 48 meses você pagará $48 \times R\$\,1.762{,}55 \approx R\$\,84.602$ por um carro de R\$ 60.000 — cerca de **R\$ 24.600 em juros**. É o custo do dinheiro no tempo aparecendo no seu contracheque, e a razão pela qual a taxa (não só o valor da parcela) deve guiar a decisão.
+
+### Perpetuidades
+
+Se os pagamentos $PMT$ se estendem **para sempre** ($n \to \infty$), o termo $(1+i)^{-n}$ tende a zero e a @eq-vp-anuidade colapsa numa fórmula extraordinariamente simples:
+
+$$
+VP = \frac{PMT}{i}.
+$$ {#eq-perpetuidade}
+
+Uma **perpetuidade** que paga R\$ 500 ao mês, descontada a 1\% ao mês, vale $500/0{,}01 = R\$\,50.000$ hoje. A fórmula parece abstrata, mas é a base de modelos de avaliação de ações que pagam dividendos "perpétuos" (Volume 14, capítulo 4) e de títulos como as antigas *consols* britânicas.
+
+## O valor presente líquido: reunindo tudo
+
+A ferramenta que sintetiza todo o capítulo — e o critério mais usado para decidir sobre investimentos — é o **valor presente líquido (VPL)**. A ideia: um projeto exige um desembolso inicial $I_0$ hoje e promete uma série de fluxos de caixa $FC_1, FC_2, \ldots, FC_n$ no futuro. Como somá-los, se estão em datas diferentes? Trazendo todos ao presente e subtraindo o investimento:
+
+$$
+VPL = -\,I_0 + \sum_{t=1}^{n} \frac{FC_t}{(1 + i)^{t}}.
+$$ {#eq-vpl}
+
+::: {.callout-note title="Definição — Valor presente líquido (VPL) e o critério de decisão"}
+O **VPL** é a soma dos valores presentes de todos os fluxos de caixa de um projeto, menos o investimento inicial, descontados à taxa que reflete o custo de oportunidade do capital. A regra de decisão é direta: **aceite o projeto se $VPL > 0$** (ele cria valor além do que o capital renderia na melhor alternativa) e **rejeite se $VPL < 0$**.
+:::
+
+**Exemplo.** Um projeto custa $I_0 = R\$\,10.000$ e gera R\$ 4.000 ao ano por 3 anos. A um custo de capital de 10\% ao ano:
+
+$$
+VPL = -10000 + \frac{4000}{1{,}10} + \frac{4000}{1{,}10^2} + \frac{4000}{1{,}10^3}
+= -10000 + 3636{,}36 + 3305{,}79 + 3005{,}26 = R\$\,-52{,}59.
+$$
+
+O VPL é **levemente negativo**: descontados a 10\%, os R\$ 12.000 nominais recebidos não cobrem os R\$ 10.000 investidos hoje. O projeto destrói (pouco) valor a essa taxa e deve ser rejeitado. Note como a decisão depende crucialmente da taxa de desconto: a 8\%, o mesmo projeto teria VPL positivo. A taxa à qual o VPL se anula é a **taxa interna de retorno (TIR)** — aqui, algo em torno de 9,7\%.
+
+## 🇧🇷 Brasil em Foco
+
+Em nenhum país o valor do dinheiro no tempo é tão palpável quanto no Brasil, historicamente marcado por **juros elevados** e por um passado de **inflação alta** — dois fatores que tornam o desconto uma questão prática cotidiana.
+
+**Juros entre os mais altos do mundo.** A taxa básica, a **Selic**, definida pelo Copom (@sec-taxa-de-juros-selic), serve de piso para todas as demais taxas da economia e é o custo de oportunidade de referência para descontar fluxos no Brasil. Ela oscilou muito nas últimas décadas: de mínimas históricas em torno de **2\% ao ano** em 2020 a patamares de **dois dígitos** em vários períodos de aperto monetário. Como a Selic entra elevada a $n$ na fórmula do desconto, prazos longos "encolhem" fortemente no presente — razão pela qual, no Brasil, financiamentos longos custam caro e projetos de longa maturação enfrentam um custo de capital alto. *(Consulte a série SGS do Banco Central para o valor vigente e o histórico.)*
+
+**O juro real que importa.** O que distingue o investidor bem-informado é olhar o **juro real**, não o nominal — a equação de Fisher (@eq-fisher) aplicada ao dia a dia. O Brasil convive há décadas com juros reais **positivos e altos** em termos comparativos, o que ajuda a explicar por que a renda fixa é tão atraente por aqui e por que o mercado de ações permaneceu raso (como visto em @sec-mercado-de-capitais). O Tesouro Direto oferece títulos indexados ao IPCA (o **Tesouro IPCA+**) que pagam explicitamente "inflação + $x\%$ ao ano", entregando um juro real contratado — um produto que só faz sentido para quem entende a distinção entre nominal e real.
+
+**A herança da alta inflação.** Nas décadas de 1980 e início dos 1990, com inflação de dois e três dígitos ao mês (@sec-inflacao), o valor do dinheiro no tempo deixou de ser abstração acadêmica: um salário perdia poder de compra em dias, e a **correção monetária** (indexação) permeava contratos, aluguéis e a caderneta de poupança. Aprendeu-se, na marca, que somar reais de datas diferentes sem descontar é um erro caro. Esse legado moldou instituições até hoje — da indexação de contratos ao próprio desenho do Tesouro IPCA+.
+
+**Proteção ao consumidor: o CET.** Para que o cidadão enxergue o custo real do crédito, o Conselho Monetário Nacional obriga as instituições a informar o **Custo Efetivo Total (CET)** em qualquer financiamento — uma taxa efetiva anual que engloba juros, tarifas, seguros e tributos. O CET é a aplicação regulatória direta da distinção entre taxa nominal e efetiva vista neste capítulo: sem ele, a propaganda de "parcelas baixas" esconderia o custo verdadeiro da dívida.
+
+> **Fontes e séries para explorar:** Banco Central — SGS (Selic, série 432; CDI; taxas médias de crédito); Tesouro Nacional (rentabilidade dos títulos do Tesouro Direto, incluindo Tesouro IPCA+); IBGE (IPCA, para o cálculo do juro real); resoluções do CMN sobre divulgação do CET. Verifique sempre a data de referência: taxas de juros mudam a cada reunião do Copom.
+
+## Resumo do capítulo
+
+- O **valor do dinheiro no tempo** afirma que uma quantia hoje vale mais que a mesma quantia no futuro, por três motivos: **custo de oportunidade**, **inflação** e **risco/preferência temporal**. Quantias em datas diferentes só podem ser comparadas após transportadas para a mesma data pela taxa de juros.
+- Nos **juros simples**, os juros incidem só sobre o principal e o montante cresce linearmente ($M = C(1+in)$); nos **juros compostos**, os juros rendem juros e o montante cresce exponencialmente ($M = C(1+i)^n$). O mercado financeiro brasileiro opera em regime **composto**.
+- O **valor futuro** capitaliza uma quantia ($VF = VP(1+i)^n$) e o **valor presente** a desconta ($VP = VF/(1+i)^n$). **Descontar** é o inverso de capitalizar e é a operação central das finanças.
+- Sob capitalização composta, converter taxas exige a fórmula de **taxas equivalentes** ($1+i_a = (1+i_m)^{12}$) — não se divide a taxa anual pelo número de períodos. A **taxa efetiva** (a que de fato incide) difere da **taxa nominal** (mera convenção de cotação).
+- A **equação de Fisher** separa o juro **nominal** do **real**: $1+r = (1+i)/(1+\pi)$. O juro real pode ser negativo quando a inflação supera o rendimento nominal.
+- Fluxos de pagamentos iguais são **anuidades**, com VP e VF dados por fórmulas fechadas (@eq-vp-anuidade e @eq-vf-anuidade); pagamentos perpétuos valem $VP = PMT/i$. Isolar $PMT$ dá a **prestação** de um financiamento (Tabela Price).
+- O **valor presente líquido (VPL)** desconta todos os fluxos de um projeto e subtrai o investimento inicial; a regra é **aceitar se $VPL>0$**. A taxa que zera o VPL é a **TIR**.
+- No Brasil, **juros altos** (Selic) e o histórico de **inflação** tornam o desconto especialmente relevante; instrumentos como o **Tesouro IPCA+** e o **CET** materializam as distinções nominal/real e nominal/efetiva.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise de caso. Tenha uma calculadora à mão.
+:::
+
+**1.** Explique, com suas palavras, por que R\$ 1.000 hoje valem mais do que R\$ 1.000 daqui a um ano. Cite ao menos dois fundamentos.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque o dinheiro de hoje tem **valor no tempo**. (i) **Custo de oportunidade:** os R\$ 1.000 podem ser aplicados hoje e render juros durante o ano; esperar significa abrir mão desse rendimento. (ii) **Inflação:** com preços em alta, os R\$ 1.000 comprarão menos daqui a um ano. (iii) **Risco/preferência temporal:** o pagamento futuro é incerto e, mesmo sem risco, as pessoas preferem consumir agora. Qualquer dois desses fundamentos respondem à questão.
+:::
+
+**2.** Uma quantia é aplicada a 8\% ao ano em juros compostos. Sem calcular o valor final, explique por que, após 10 anos, ela renderá **mais** do que sob juros simples à mesma taxa.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Sob **juros simples**, os juros incidem sempre só sobre o principal, gerando o mesmo valor todo ano — crescimento linear. Sob **juros compostos**, os juros de cada ano são incorporados ao capital e passam a render juros nos anos seguintes ("juros sobre juros"), gerando crescimento exponencial. Como o expoente amplifica a diferença ao longo do tempo, em 10 anos o regime composto acumula mais. A diferença é justamente a soma dos juros que os próprios juros geraram.
+:::
+
+**3.** Você aplica R\$ 8.000 a 9\% ao ano, em juros compostos, por 4 anos. Qual o montante final e quanto ganhou de juros?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela @eq-vf: $VF = 8000\,(1{,}09)^4 = 8000 \times 1{,}411582 = R\$\,11.292{,}66$.
+Juros ganhos: $11.292{,}66 - 8.000 = R\$\,3.292{,}66$.
+:::
+
+**4.** Um título pagará R\$ 5.000 daqui a 3 anos. Se a taxa de desconto relevante é 10\% ao ano, quanto ele vale hoje? Interprete.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela @eq-vp: $VP = \dfrac{5000}{(1{,}10)^3} = \dfrac{5000}{1{,}331} = R\$\,3.756{,}57$.
+Interpretação: receber R\$ 5.000 em 3 anos equivale a ter R\$ 3.756,57 hoje, porque essa quantia, aplicada a 10\% ao ano por 3 anos, se transformaria exatamente em R\$ 5.000. Você **não** deveria pagar mais que R\$ 3.756,57 por esse título se puder obter 10\% em outra aplicação.
+:::
+
+**5.** Uma taxa é anunciada como 18\% ao ano com capitalização mensal. (a) Qual a taxa mensal cobrada? (b) Qual a taxa **efetiva** anual? (c) Comente a diferença entre a taxa nominal e a efetiva.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) A taxa mensal é a nominal dividida pelos períodos: $18\%/12 = 1{,}5\%$ ao mês.
+(b) Taxa efetiva anual: $(1{,}015)^{12} - 1 = 1{,}19562 - 1 = 0{,}19562 \approx 19{,}56\%$ ao ano.
+(c) A taxa **nominal** (18\%) é apenas uma convenção de cotação; por causa da capitalização mensal (juros sobre juros dentro do ano), a taxa **efetiva** que de fato incide é maior — 19,56\%. Ao comparar produtos, deve-se sempre usar a taxa efetiva no mesmo período.
+:::
+
+**6.** Aplicando a equação de Fisher: uma aplicação rendeu 11\% em um ano no qual a inflação foi de 7\%. (a) Qual o juro real exato? (b) Compare com a aproximação $i - \pi$.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Pela @eq-fisher: $1 + r = \dfrac{1{,}11}{1{,}07} = 1{,}037383$, logo $r \approx 3{,}74\%$.
+(b) A aproximação daria $i - \pi = 11\% - 7\% = 4\%$, que **superestima** o ganho real em cerca de 0,26 ponto percentual. A diferença corresponde ao termo $r\cdot\pi$ que a aproximação ignora; ela cresce quanto maiores forem a taxa e a inflação, por isso a fórmula exata é preferível.
+:::
+
+**7.** Você financia um imóvel de R\$ 300.000 em 120 meses a 0,8\% ao mês (sistema de prestações iguais). Qual o valor da prestação mensal? *(Dado: $(1{,}008)^{-120} \approx 0{,}38391$.)*
+
+::: {.callout-tip collapse="true" title="Solução"}
+Isolando $PMT$ na @eq-vp-anuidade:
+$$
+PMT = \frac{VP \cdot i}{1 - (1+i)^{-n}} = \frac{300000 \times 0{,}008}{1 - 0{,}38391} = \frac{2400}{0{,}61609} \approx R\$\,3.895{,}22.
+$$
+Ao longo de 120 meses pagará cerca de $120 \times 3.895{,}22 \approx R\$\,467.426$ — aproximadamente R\$ 167 mil em juros sobre um imóvel de R\$ 300 mil, ilustrando o peso do valor do dinheiro no tempo em prazos longos.
+:::
+
+**8.** Uma perpetuidade paga R\$ 1.200 ao ano para sempre. (a) Quanto vale hoje se a taxa de desconto é 6\% ao ano? (b) E se a taxa subir para 10\%? (c) O que isso revela sobre a relação entre taxa de juros e valor de ativos?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Pela @eq-perpetuidade: $VP = 1200/0{,}06 = R\$\,20.000$.
+(b) $VP = 1200/0{,}10 = R\$\,12.000$.
+(c) Quanto **maior** a taxa de desconto, **menor** o valor presente do mesmo fluxo futuro — o valor do ativo cai. Essa relação inversa entre juros e preços de ativos é fundamental: quando o Banco Central sobe a Selic, os fluxos futuros de ações, títulos e imóveis passam a ser descontados mais fortemente, e seus preços tendem a cair (e vice-versa).
+:::
+
+**9.** (Análise de caso) Um projeto exige R\$ 50.000 hoje e promete R\$ 20.000 ao ano por 3 anos. O custo de capital da empresa é 12\% ao ano. (a) Calcule o VPL. (b) O projeto deve ser aceito? (c) Sem refazer a conta, o que aconteceria com o VPL se o custo de capital caísse para 8\%?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Pela @eq-vpl (ou usando a @eq-vp-anuidade para o fluxo uniforme):
+$$
+VPL = -50000 + 20000\cdot\frac{1 - (1{,}12)^{-3}}{0{,}12} = -50000 + 20000 \times 2{,}40183 = -50000 + 48036{,}67 = R\$\,-1.963{,}33.
+$$
+(b) O VPL é **negativo**, logo o projeto deve ser **rejeitado** a 12\%: os fluxos, descontados, não recuperam o investimento.
+(c) Com uma taxa de desconto menor (8\%), os fluxos futuros encolhem menos no presente, aumentando seu valor presente; o VPL **subiria** e poderia tornar-se positivo, revertendo a decisão. Isso mostra a sensibilidade da análise à taxa de desconto — a mesma oportunidade pode ser boa ou ruim conforme o custo do capital.
+:::
+
+**10.** (Desafio) A loja da abertura oferece uma geladeira por R\$ 2.000 à vista ou "12x de R\$ 200 sem juros" (primeira parcela em 30 dias). Se você pode aplicar seu dinheiro a 2\% ao mês, qual opção é melhor? *(Dado: $(1{,}02)^{-12} \approx 0{,}78849$.)*
+
+::: {.callout-tip collapse="true" title="Solução"}
+As 12 parcelas de R\$ 200 formam uma anuidade postecipada. Traga-as a valor presente pela @eq-vp-anuidade com $i = 2\%$ ao mês:
+$$
+VP = 200 \cdot \frac{1 - (1{,}02)^{-12}}{0{,}02} = 200 \cdot \frac{1 - 0{,}78849}{0{,}02} = 200 \cdot \frac{0{,}21151}{0{,}02} = 200 \times 10{,}5753 \approx R\$\,2.115{,}07.
+$$
+Pagar parcelado equivale a desembolsar R\$ 2.115,07 **hoje** — mais caro que os R\$ 2.000 à vista. Portanto, para quem tem o dinheiro e consegue aplicá-lo a 2\% ao mês, **pagar à vista é melhor**. O "sem juros" é ilusório: como o dinheiro tem valor no tempo, adiar pagamentos tem valor, mas o preço à vista (menor) já incorpora essa vantagem. Só valeria parcelar se sua taxa de aplicação fosse alta o bastante para que o VP das parcelas ficasse abaixo de R\$ 2.000 — o que aqui exigiria mais de ~2,9\% ao mês.
+:::
+
+## Para saber mais
+
+- @samanez2010 — texto didático e completo de matemática financeira, com capitalização, séries, sistemas de amortização e aplicações; ideal para aprofundar cada fórmula deste capítulo.
+- @assafneto2016mf — referência brasileira clássica de matemática financeira e suas aplicações, com fartos exemplos de VP, VF, anuidades e análise de investimentos.
+- @bodie2014 — para a ponte entre o valor do dinheiro no tempo e a avaliação de ativos (VPL, TIR e desconto de fluxos), preparando os capítulos seguintes do volume.
+- @mankiw2020 — os capítulos de finanças trazem uma introdução acessível ao valor presente e ao papel da taxa de juros na alocação intertemporal, conectando micro e finanças.
