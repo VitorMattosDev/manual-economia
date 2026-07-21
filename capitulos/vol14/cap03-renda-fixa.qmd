@@ -1,5 +1,337 @@
 # Renda fixa: títulos públicos (Tesouro Direto) e privados {#sec-renda-fixa}
 
-::: {.callout-note}
-Capítulo em construção.
+Você abre o aplicativo do banco e vê três ofertas lado a lado: a poupança, "rendendo pouco"; um **CDB** que promete "110% do CDI"; e, na aba do Tesouro Direto, um tal de **Tesouro IPCA+ 2035** pagando "IPCA + 6,20% ao ano". Ao lado, uma amiga comenta que comprou uma **debênture** de uma empresa de energia isenta de imposto. São todos exemplos do mesmo universo — a **renda fixa** —, aquele em que você empresta dinheiro a alguém (um banco, uma empresa, o próprio governo) e recebe de volta o principal acrescido de juros combinados de antemão. É o primeiro degrau de qualquer carteira de investimentos e, no Brasil de juros altos, o mais popular. Mas por trás da aparente simplicidade há decisões finas: prefixado ou pós-fixado? O que acontece com o preço do título se a Selic subir? Por que um papel "seguro" pode dar prejuízo se vendido antes da hora? Este capítulo, apoiado no valor do dinheiro no tempo construído em @sec-valor-do-dinheiro-no-tempo, mostra **como funcionam, como se precificam e como se comparam os títulos de renda fixa**, públicos e privados.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- definir **renda fixa** e distingui-la da renda variável, identificando os elementos de um título: **valor de face**, **cupom**, **prazo** e **preço**;
+- **precificar** um título como o valor presente de seus fluxos de caixa e explicar a **relação inversa entre preço e taxa de juros**;
+- diferenciar títulos **prefixados**, **pós-fixados** e **indexados à inflação**, e reconhecer quando cada um protege melhor o investidor;
+- identificar os títulos do **Tesouro Direto** (Tesouro Selic, Prefixado e IPCA+) e os principais títulos **privados** (CDB, LCI/LCA, debêntures);
+- classificar os **riscos** da renda fixa — crédito, mercado e liquidez — e o papel do **FGC** e das **agências de rating**;
+- entender a **tributação** regressiva do imposto de renda e as **isenções** que moldam as escolhas do investidor brasileiro.
+
+## O que é renda fixa
+
+Todo investimento é, no fundo, entregar dinheiro hoje esperando receber mais dinheiro no futuro. O que muda é a **natureza do vínculo**. Na **renda variável** — ações, que veremos no próximo capítulo do volume —, você se torna **sócio** de um negócio e seu retorno depende do lucro e do humor do mercado: pode ser altíssimo ou negativo, e não há promessa nenhuma. Na **renda fixa**, você é **credor**: empresta uma quantia e o tomador se compromete a devolvê-la com juros segundo uma regra definida no momento da aplicação.
+
+::: {.callout-note title="Definição — Renda fixa"}
+A **renda fixa** reúne os investimentos em que o investidor **empresta** recursos a um emissor (governo, banco ou empresa) em troca de uma remuneração cuja **regra de cálculo é conhecida no momento da aplicação**. O investidor é **credor**, não sócio, e tem direito a receber o principal de volta acrescido de juros — daí o nome do capítulo anterior fazer tanta diferença: precificar renda fixa é aplicar o valor do dinheiro no tempo.
 :::
+
+O nome "fixa" é traiçoeiro. Ele **não** significa que o rendimento é sempre conhecido em reais, nem que o investimento não pode dar prejuízo. Significa apenas que a **regra** de remuneração é fixada de antemão. Essa regra pode ser um percentual fixo ("12% ao ano"), pode acompanhar um indexador que só se conhecerá no futuro ("100% do CDI", "IPCA + 6%"), e o **preço de mercado** do título pode oscilar antes do vencimento. Entender essas nuances é todo o objetivo do capítulo.
+
+### A anatomia de um título
+
+Um **título de renda fixa** (ou *bond*) é um contrato de dívida padronizado. Seus elementos essenciais são:
+
+- **Valor de face** (ou valor nominal, ou principal) $F$: a quantia que o emissor promete pagar no vencimento. No Tesouro Direto, por convenção, o valor de face de cada título é R\$ 1.000 (para o Tesouro Prefixado) ou é corrigido por um índice.
+- **Cupom** $C$: o juro periódico pago ao investidor durante a vida do título, em geral semestral. Um título que **não** paga cupons — devolvendo tudo (juros + principal) só no vencimento — é chamado **título de cupom zero** (*zero-coupon*).
+- **Prazo** (ou maturidade) $n$: o tempo até o vencimento, quando o principal é devolvido.
+- **Preço** $P$: quanto o título custa **hoje** no mercado. É a variável que se ajusta para que a taxa de retorno do título se iguale à taxa exigida pelo mercado.
+
+A @fig-fluxo-titulo mostra o fluxo de caixa típico de um título com cupons: pequenos pagamentos periódicos e um grande pagamento final (o principal mais o último cupom).
+
+::: {#fig-fluxo-titulo}
+
+```{.tikz}
+%%| filename: fig-fluxo-titulo
+%%| alt: Linha do tempo de um título. Na data zero, uma seta para baixo representa o preço pago pelo investidor. Nas datas 1 a n, setas para cima iguais representam os cupons; na data n, uma seta muito maior soma o último cupom ao valor de face.
+\begin{tikzpicture}[font=\small]
+  \draw[eixo, ->] (-0.5,0) -- (10.5,0) node[right]{tempo};
+  \foreach \x/\l in {0/0, 2/1, 4/2, 6/{$\cdots$}, 8.5/n} {
+    \draw (\x,0.1) -- (\x,-0.1) node[below]{\l};
+  }
+  % cupons
+  \foreach \x in {2,4,8.5} {
+    \draw[vetor, manualgreen] (\x,0) -- (\x,1.1);
+  }
+  \node[manualgreen, font=\footnotesize] at (2,1.4) {$C$};
+  \node[manualgreen, font=\footnotesize] at (4,1.4) {$C$};
+  \node[manualgreen, font=\footnotesize] at (8.5,1.4) {$C$};
+  % principal na data n
+  \draw[vetor, manualred] (8.5,1.1) -- (8.5,2.7);
+  \node[manualred, font=\footnotesize, anchor=south] at (8.5,2.75) {$F$};
+  % preço na data zero
+  \draw[vetor, manualblue] (0,-1.4) -- (0,0);
+  \node[manualblue, font=\footnotesize, anchor=north] at (0,-1.45) {$P$ (preço)};
+\end{tikzpicture}
+```
+
+Fluxo de caixa de um título com cupons: o investidor paga o preço $P$ hoje e recebe cupons $C$ periódicos mais o valor de face $F$ no vencimento.
+:::
+
+## Precificação: o preço é o valor presente dos fluxos
+
+Aqui a máquina do capítulo anterior entra em cena. Se um título promete uma sequência de pagamentos futuros, quanto ele vale hoje? Exatamente o **valor presente** de todos esses fluxos, descontados à taxa de juros que o mercado exige de um papel com aquele risco e prazo. Chamando essa taxa exigida de $i$ (a **taxa de mercado**, ou *yield*):
+
+$$
+P = \sum_{t=1}^{n} \frac{C}{(1+i)^{t}} + \frac{F}{(1+i)^{n}}.
+$$ {#eq-preco-titulo}
+
+O primeiro termo é uma anuidade (os cupons); o segundo é o desconto do valor de face. Para um **título de cupom zero** — como o Tesouro Prefixado sem juros semestrais —, não há cupons e a fórmula colapsa em
+
+$$
+P = \frac{F}{(1+i)^{n}},
+$$ {#eq-preco-cupom-zero}
+
+a mesma @eq-vp do capítulo anterior. Comprar um prefixado de cupom zero é, literalmente, comprar hoje por menos um pagamento futuro certo.
+
+::: {.callout-note title="Definição — Taxa de retorno até o vencimento (yield)"}
+A **taxa de retorno até o vencimento** (do inglês *yield to maturity*) é a taxa de desconto $i$ que iguala o preço de mercado do título ao valor presente de todos os seus fluxos de caixa. É o rendimento anual efetivo que o investidor obterá se comprar o título ao preço atual e o mantiver até o vencimento, reinvestindo os cupons à mesma taxa. Quando alguém diz que "o título paga 12% ao ano", está falando da *yield*.
+:::
+
+**Exemplo — cupom zero.** Um Tesouro Prefixado tem valor de face $F = R\$\,1.000$, vence em 2 anos e o mercado exige $i = 12\%$ ao ano. Pela @eq-preco-cupom-zero:
+
+$$
+P = \frac{1000}{(1{,}12)^{2}} = \frac{1000}{1{,}2544} = R\$\,797{,}19.
+$$
+
+Você paga R\$ 797,19 hoje e recebe R\$ 1.000 em dois anos — um ganho de R\$ 202,81, que corresponde justamente a 12% ao ano compostos.
+
+**Exemplo — com cupom.** Um título de $F = R\$\,1.000$ paga cupom de 10% ao ano ($C = R\$\,100$) por 3 anos. Se o mercado exige $i = 12\%$ ao ano:
+
+$$
+P = \frac{100}{1{,}12} + \frac{100}{1{,}12^{2}} + \frac{100}{1{,}12^{3}} + \frac{1000}{1{,}12^{3}}
+= 89{,}29 + 79{,}72 + 71{,}18 + 711{,}78 = R\$\,951{,}96.
+$$
+
+O título vale **menos** que seu valor de face (negocia "com deságio", ou *abaixo do par*). A razão é intuitiva: seu cupom (10%) é menor que o retorno que o mercado exige (12%), então o preço cai até que o rendimento total se iguale aos 12%. Se, ao contrário, o cupom fosse **maior** que a taxa de mercado, o título valeria **mais** que o par (negociaria "com ágio"). E se cupom e taxa de mercado coincidem, o preço é exatamente o valor de face.
+
+### A relação inversa entre preço e taxa
+
+A observação mais importante — e mais contraintuitiva — de toda a renda fixa está escondida na @eq-preco-titulo: como $i$ aparece no **denominador**, **preço e taxa de juros caminham em sentidos opostos**. Se a taxa de mercado sobe, o valor presente dos fluxos cai, e o preço do título desce; se a taxa cai, o preço sobe.
+
+::: {.callout-important title="Armadilha comum — 'renda fixa não perde dinheiro'"}
+Muita gente acredita que renda fixa é sinônimo de segurança absoluta. Não é. Se você compra um título prefixado longo e a Selic **sobe**, o preço de mercado do seu título **cai** — e, se precisar vendê-lo antes do vencimento, realizará **prejuízo**. Esse é o **risco de mercado** (ou risco de taxa de juros). Só quem carrega o título **até o vencimento** trava o retorno contratado; quem vende antes fica sujeito ao preço do dia, o que se chama **marcação a mercado**. Quanto mais **longo** o prazo, mais o preço oscila com a taxa.
+:::
+
+Retomando o título com cupom do exemplo: a R\$ 951,96 ele rende 12%. Se a taxa de mercado saltar para 14%, seu preço cairá para cerca de R\$ 907,13; se recuar para 10% (igual ao cupom), subirá para exatamente R\$ 1.000. A @fig-preco-taxa ilustra essa relação para um título de cupom zero de 10 anos: uma curva **decrescente e convexa** — decrescente porque preço e taxa se opõem, convexa porque a sensibilidade é maior quando as taxas estão baixas.
+
+::: {#fig-preco-taxa}
+
+```{.tikz}
+%%| filename: fig-preco-taxa
+%%| alt: Gráfico do preço de um título de cupom zero de dez anos em função da taxa de juros de mercado. A curva parte de valores altos com taxas baixas e cai, de forma convexa, à medida que a taxa aumenta, mostrando a relação inversa entre preço e taxa.
+\begin{tikzpicture}
+\begin{axis}[
+  width=11cm, height=7cm,
+  xlabel={taxa de mercado $i$ (\% a.a.)}, ylabel={preço $P$ (R\$)},
+  xmin=0, xmax=20, ymin=0, ymax=1050,
+  axis lines=left, xtick={0,4,8,12,16,20},
+  ytick={0,250,500,750,1000},
+  every axis plot/.append style={very thick},
+  font=\small]
+  \addplot[manualblue, domain=2:20, samples=100] {1000/(1+x/100)^10};
+  \node[ponto] at (axis cs:6,558.4) {};
+  \draw[auxiliar] (axis cs:6,0) -- (axis cs:6,558.4) -- (axis cs:0,558.4);
+  \node[ponto] at (axis cs:12,321.97) {};
+  \draw[auxiliar] (axis cs:12,0) -- (axis cs:12,321.97) -- (axis cs:0,321.97);
+  \node[anchor=west, manualblue, font=\footnotesize] at (axis cs:13,430) {$P=\dfrac{1000}{(1+i)^{10}}$};
+\end{axis}
+\end{tikzpicture}
+```
+
+Relação inversa entre preço e taxa de juros para um título de cupom zero de 10 anos: quando a taxa de mercado dobra de 6\% para 12\%, o preço quase se reduz à metade.
+:::
+
+## Os três regimes de remuneração
+
+A regra de remuneração de um título pode assumir três formas, e a escolha entre elas é a decisão central do investidor de renda fixa.
+
+**Prefixado.** A taxa é definida em números fixos no momento da compra — por exemplo, "12% ao ano". Você sabe **exatamente** quantos reais receberá no vencimento. A vantagem é a previsibilidade; o risco é a inflação e os juros correrem contra você. Se você travou 12% e a inflação sobe para 11%, seu ganho real minguou; e, no meio do caminho, se a Selic sobe, o preço de mercado cai (é o título mais sensível ao risco de mercado).
+
+**Pós-fixado.** A remuneração acompanha um **indexador** que só se conhece com o tempo — no Brasil, tipicamente a **Selic** ou o **CDI** (a taxa dos empréstimos entre bancos, que anda praticamente colada à Selic; ver @sec-taxa-de-juros-selic). Um CDB de "110% do CDI" paga 110% do que o CDI render no período. Você não sabe o valor final em reais, mas seu título acompanha os juros da economia: se a Selic sobe, você ganha mais — e, por isso, o preço quase não oscila (baixíssimo risco de mercado). É o perfil de um Tesouro Selic.
+
+**Indexado à inflação.** A remuneração é uma **parte real fixa mais a inflação** do período: "IPCA + 6% ao ano". Esse formato garante um **juro real** contratado (retome a equação de Fisher, @eq-fisher): aconteça o que acontecer com a inflação, seu poder de compra cresce 6% ao ano se você levar o título ao vencimento. É a proteção mais direta contra a corrosão inflacionária — o Tesouro IPCA+.
+
+::: {.callout-tip title="Intuição — qual regime escolher?"}
+Uma regra de bolso: se você **acha que os juros vão cair**, o **prefixado** trava a taxa alta de hoje e ainda se valoriza com a queda. Se **acha que vão subir** ou quer segurança e liquidez, o **pós-fixado** acompanha a alta sem sustos de preço. Se seu objetivo é **de longo prazo** (aposentadoria, um imóvel daqui a 15 anos) e você quer preservar poder de compra custe o que custar, o **indexado à inflação** é o instrumento natural. Repare que a decisão é, no fundo, uma aposta sobre o futuro dos juros e da inflação — exatamente os temas dos Volumes 4 e 8.
+:::
+
+## Títulos públicos: o Tesouro Direto
+
+O maior e mais seguro devedor de um país é o próprio **governo**, que emite **títulos da dívida pública** para financiar seus gastos (o outro lado dessa moeda — o endividamento do Estado — foi tratado em @sec-divida-sustentabilidade). Desde 2002, o Tesouro Nacional, em parceria com a B3, oferece o **Tesouro Direto**, um programa que permite a qualquer pessoa física comprar esses títulos pela internet, com aplicações a partir de cerca de R\$ 30. É considerado o investimento de **menor risco de crédito** da economia brasileira, pois é garantido pelo Tesouro Nacional. Há três famílias, uma para cada regime de remuneração:
+
+| Nome comercial | Sigla técnica | Regime | Cupom | Protege contra |
+|---|---|---|---|---|
+| Tesouro Selic | LFT | Pós-fixado (Selic) | Não | Alta de juros; ideal para reserva |
+| Tesouro Prefixado | LTN / NTN-F | Prefixado | LTN não, NTN-F sim | Queda de juros (se travar taxa alta) |
+| Tesouro IPCA+ | NTN-B Princ. / NTN-B | IPCA + juro real | Princ. não, NTN-B sim | Inflação (garante juro real) |
+
+: Os títulos do Tesouro Direto e o que cada um oferece. {#tbl-tesouro}
+
+O **Tesouro Selic** é o mais conservador: como acompanha a Selic, seu preço quase não oscila, e por isso é o recomendado para a **reserva de emergência**. O **Tesouro Prefixado** e o **Tesouro IPCA+** são mais voláteis (sofrem marcação a mercado), mas oferecem, respectivamente, uma taxa nominal ou um juro real travados para quem carrega até o vencimento.
+
+::: {.callout-warning title="Marcação a mercado no Tesouro Direto"}
+Mesmo no Tesouro Direto, o preço dos títulos prefixados e IPCA+ **oscila diariamente**. Em 2021–2022, com a forte alta da Selic, muitos investidores que haviam comprado Tesouro IPCA+ longo em 2020 viram o valor de mercado de suas posições **cair** e se assustaram — sem entender que, mantendo o título até o vencimento, receberiam integralmente o "IPCA + x%" contratado. A oscilação é uma característica do papel, não um defeito, e só vira prejuízo (ou lucro) para quem **vende antes** do vencimento.
+:::
+
+## Títulos privados: bancos e empresas
+
+Além do governo, **bancos** e **empresas** captam recursos emitindo seus próprios títulos de dívida. Como o risco de crédito é maior que o do Tesouro, costumam pagar taxas mais altas — o prêmio pelo risco.
+
+- **CDB (Certificado de Depósito Bancário).** Um empréstimo a um banco, que usa o dinheiro para emprestar a terceiros. Remunera de forma prefixada, pós-fixada (o clássico "% do CDI") ou por IPCA. É coberto pelo **FGC** (veja adiante).
+- **LCI e LCA (Letras de Crédito Imobiliário e do Agronegócio).** Títulos bancários lastreados em crédito imobiliário ou do agronegócio. Seu grande atrativo é a **isenção de imposto de renda** para a pessoa física, o que eleva o retorno líquido. Também cobertas pelo FGC.
+- **Debêntures.** Títulos de dívida emitidos por **empresas** (não financeiras) para financiar seus projetos. Pagam juros em geral mais altos, **não** têm cobertura do FGC (o risco é integralmente da empresa) e algumas — as **debêntures incentivadas**, ligadas a projetos de infraestrutura — são **isentas de IR** para a pessoa física.
+- **CRI e CRA (Certificados de Recebíveis Imobiliários e do Agronegócio).** Títulos emitidos por securitizadoras, lastreados em fluxos de recebíveis; também isentos de IR e sem FGC.
+
+::: {.callout-note title="Definição — Fundo Garantidor de Créditos (FGC)"}
+O **FGC** é uma entidade privada, mantida pelas próprias instituições financeiras, que garante o ressarcimento de depósitos e aplicações (poupança, CDB, LCI, LCA, letras de câmbio) em caso de **quebra do banco emissor**, até um limite por CPF e por instituição — historicamente **R\$ 250 mil**, com um teto global a cada período de quatro anos *(confira o valor vigente, pois pode ser atualizado)*. O FGC reduz drasticamente o risco de crédito dos títulos bancários, tornando um CDB de banco pequeno quase tão seguro quanto o Tesouro — desde que respeitado o limite de cobertura.
+:::
+
+## Os riscos da renda fixa
+
+Um investidor competente não olha só o rendimento prometido; olha os riscos que o acompanham. Na renda fixa, três se destacam:
+
+1. **Risco de crédito** (ou de calote): a chance de o emissor **não honrar** o pagamento. É mínimo no Tesouro, baixo em bancos grandes (e mitigado pelo FGC), e variável nas debêntures. É medido pelas **agências de rating** (Standard & Poor's, Moody's, Fitch), que atribuem notas de crédito (de "AAA", altíssima segurança, a "D", inadimplência). Quanto pior a nota, maior o juro exigido para compensar.
+2. **Risco de mercado** (ou de taxa de juros): a oscilação do **preço** do título antes do vencimento, decorrente da relação inversa preço–taxa. É maior nos prefixados e IPCA+ longos, e desprezível nos pós-fixados atrelados à Selic.
+3. **Risco de liquidez**: a dificuldade de **vender** o título rapidamente sem perder valor. O Tesouro Direto tem recompra diária garantida pelo Tesouro; já muitas debêntures têm mercado secundário raso, e vendê-las às pressas pode exigir grande deságio.
+
+::: {.callout-important title="Não existe almoço grátis"}
+Se um título privado paga muito mais que o Tesouro para o mesmo prazo, **desconfie**: o retorno extra é o **prêmio de risco** de algo — crédito frágil, liquidez ruim ou ambos. A regra que atravessa todas as finanças (e que o @sec-mercado-de-capitais antecipou) é que **maior retorno esperado só vem com maior risco**. Renda fixa não foge a ela.
+:::
+
+## Tributação: o imposto que decresce com o tempo
+
+Sobre o **rendimento** (não o principal) da maioria das aplicações de renda fixa incide **imposto de renda**, retido na fonte, com uma alíquota **regressiva**: quanto mais tempo o dinheiro fica aplicado, **menor** o imposto. A tabela vigente há anos é:
+
+| Prazo da aplicação | Alíquota de IR sobre o rendimento |
+|---|---|
+| Até 180 dias | 22,5% |
+| De 181 a 360 dias | 20,0% |
+| De 361 a 720 dias | 17,5% |
+| Acima de 720 dias | 15,0% |
+
+: Tabela regressiva do imposto de renda sobre renda fixa. {#tbl-ir}
+
+Essa estrutura **premia o investidor de longo prazo** e desestimula o giro de curto prazo. Aplicações de até 30 dias sofrem ainda o **IOF** (Imposto sobre Operações Financeiras), também regressivo, que zera a partir do 30º dia. As exceções importantes são **LCI, LCA, CRI, CRA, poupança e debêntures incentivadas**, **isentas** de IR para a pessoa física — o que torna essencial comparar sempre o **rendimento líquido**, e não o bruto.
+
+::: {.callout-tip title="Intuição — comparando bruto com líquido"}
+Uma LCI isenta que paga 90% do CDI pode render **mais** no bolso que um CDB tributado que paga 100% do CDI. Para comparar, converta o rendimento tributado em líquido: um CDB de 100% do CDI mantido por mais de 720 dias rende, líquido, $100\% \times (1 - 0{,}15) = 85\%$ do CDI equivalente. Contra uma LCI isenta de 90% do CDI, a LCI vence. Nunca compare renda fixa sem descontar o imposto.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+A renda fixa ocupa, no Brasil, um lugar que surpreende estrangeiros: é a espinha dorsal das carteiras, não um coadjuvante. A razão é estrutural — os **juros elevados** discutidos em @sec-taxa-de-juros-selic tornam o rendimento do simples empréstimo ao governo tão atraente que boa parte da poupança nacional nem chega ao mercado de ações (@sec-mercado-de-capitais).
+
+**A democratização pelo Tesouro Direto.** Criado em 2002, o Tesouro Direto transformou o acesso à dívida pública: antes restrita a bancos e fundos, ela passou a caber no aplicativo do celular, com aplicações a partir de poucas dezenas de reais. O programa acumula **milhões de investidores cadastrados** e é hoje a principal porta de entrada do brasileiro ao mundo dos investimentos. O **Tesouro Selic** virou o substituto natural da poupança para a reserva de emergência; o **Tesouro IPCA+**, o instrumento de aposentadoria de quem entende a diferença entre juro nominal e real.
+
+**A referência do CDI.** Quase toda a renda fixa privada brasileira é cotada em relação ao **CDI** (Certificado de Depósito Interbancário), a taxa dos empréstimos de um dia entre bancos, que segue de perto a Selic. "Rende 100% do CDI" tornou-se o idioma corrente do mercado. Como a Selic (e, portanto, o CDI) oscilou de mínimas em torno de **2% ao ano** em 2020 a **dois dígitos** em ciclos de aperto, o retorno da renda fixa pós-fixada acompanha diretamente a política monetária do Copom (@sec-metas-de-inflacao-copom).
+
+**O FGC e a confiança no sistema bancário.** O Fundo Garantidor de Créditos, com sua cobertura de R\$ 250 mil por CPF e instituição, permitiu que bancos médios e pequenos captassem recursos de varejo pagando taxas atraentes — um CDB de 120% do CDI de um banco menor tornou-se acessível e razoavelmente seguro dentro do limite de garantia. Foi peça-chave na popularização das plataformas de investimento e das corretoras independentes.
+
+**Debêntures incentivadas e o financiamento da infraestrutura.** Para atrair poupança privada a projetos de rodovias, energia e saneamento, a Lei 12.431/2011 criou as **debêntures incentivadas**, isentas de IR para a pessoa física. Elas se tornaram um instrumento relevante de financiamento de longo prazo à infraestrutura, num país em que o Estado, restrito pela situação fiscal (@sec-divida-sustentabilidade), tem menos espaço para bancar esses investimentos diretamente.
+
+> **Fontes e séries para explorar:** Tesouro Nacional (Tesouro Direto — preços, taxas e estatísticas de investidores; Relatório Mensal da Dívida); Banco Central — SGS (Selic série 432, CDI, taxas de crédito); B3 (renda fixa privada, debêntures, CRI/CRA); ANBIMA (índices de renda fixa IMA-B e IRF-M, curva de juros); FGC (regulamento e limites vigentes); Receita Federal (tabela de IR regressivo). Verifique sempre a data de referência: as taxas mudam a cada reunião do Copom.
+
+## Resumo do capítulo
+
+- **Renda fixa** é o investimento em que você é **credor**: empresta a um emissor (governo, banco, empresa) segundo uma **regra de remuneração fixada de antemão**. "Fixa" descreve a regra, não a garantia de um valor em reais nem a ausência de risco.
+- Um título tem **valor de face** ($F$), **cupom** ($C$), **prazo** ($n$) e **preço** ($P$). Títulos de **cupom zero** pagam tudo só no vencimento.
+- O **preço** de um título é o **valor presente** de seus fluxos, descontados à taxa de mercado (@eq-preco-titulo). Daí a **relação inversa preço–taxa**: quando os juros sobem, os preços caem — o **risco de mercado**, maior quanto mais longo o título.
+- Há três regimes: **prefixado** (taxa em números fixos), **pós-fixado** (Selic/CDI) e **indexado à inflação** (IPCA + juro real). A escolha é, no fundo, uma aposta sobre juros e inflação.
+- No **Tesouro Direto**: **Tesouro Selic** (pós-fixado, para reserva), **Tesouro Prefixado** (LTN/NTN-F) e **Tesouro IPCA+** (NTN-B), o mais seguro do país em risco de crédito.
+- Nos **privados**: **CDB**, **LCI/LCA** (isentas de IR), **debêntures** (empresas, sem FGC) e **CRI/CRA**. O **FGC** garante depósitos e títulos bancários até R\$ 250 mil por CPF e instituição.
+- Riscos principais: **crédito** (medido por *rating*), **mercado** (oscilação de preço) e **liquidez**. Maior retorno prometido embute maior risco — não há almoço grátis.
+- A **tributação** do IR é **regressiva** (22,5% a 15% conforme o prazo), premiando o longo prazo; LCI, LCA, CRI, CRA e debêntures incentivadas são **isentas**. Compare sempre o rendimento **líquido**.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise de caso. Tenha uma calculadora à mão.
+:::
+
+**1.** Explique a diferença fundamental entre renda fixa e renda variável do ponto de vista do vínculo do investidor com o emissor.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Na **renda fixa**, o investidor é **credor**: empresta recursos ao emissor e tem direito a receber o principal de volta acrescido de juros segundo uma **regra definida no momento da aplicação**. Na **renda variável** (ações), o investidor é **sócio** (proprietário de uma fração da empresa): não há promessa de devolução nem de rendimento, e o retorno depende do lucro da empresa e do preço de mercado, podendo ser negativo. Em suma: credor com regra conhecida × sócio com resultado incerto.
+:::
+
+**2.** Por que o nome "renda fixa" pode enganar? Cite duas razões pelas quais um investimento de renda fixa pode não entregar um valor conhecido ou pode dar prejuízo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+"Fixa" refere-se à **regra** de remuneração, não ao valor final nem à segurança. (i) Em títulos **pós-fixados ou indexados** ("100% do CDI", "IPCA + 6%"), o valor em reais só se conhece no futuro, pois depende de um indexador ainda não realizado. (ii) Em títulos **prefixados/IPCA+ vendidos antes do vencimento**, a **marcação a mercado** pode gerar **prejuízo**: se a taxa de juros sobe, o preço do título cai (relação inversa preço–taxa). Só carregar até o vencimento trava o retorno contratado.
+:::
+
+**3.** Um Tesouro Prefixado de cupom zero tem valor de face de R\$ 1.000 e vence em 4 anos. O mercado exige 11% ao ano. Qual o preço hoje?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela @eq-preco-cupom-zero:
+$$
+P = \frac{1000}{(1{,}11)^{4}} = \frac{1000}{1{,}518070} = R\$\,658{,}73.
+$$
+Você paga R\$ 658,73 hoje para receber R\$ 1.000 em 4 anos, um retorno de 11% ao ano composto.
+:::
+
+**4.** Explique, em suas palavras e usando a fórmula de precificação, por que o preço de um título cai quando a taxa de juros de mercado sobe.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Na @eq-preco-titulo, a taxa de mercado $i$ aparece no **denominador** de cada fluxo descontado. Se $i$ aumenta, cada parcela $\frac{C}{(1+i)^t}$ e $\frac{F}{(1+i)^n}$ **diminui**, então a soma — o preço $P$ — **cai**. Intuitivamente: como agora o mercado oferece juros mais altos em títulos novos, um título antigo com cupom menor só se torna competitivo se seu preço cair o suficiente para que seu rendimento total iguale a nova taxa. Preço e taxa, portanto, movem-se em sentidos opostos.
+:::
+
+**5.** Um título de valor de face R\$ 1.000 paga cupom anual de 8% ($C = R\$\,80$) por 2 anos. (a) Qual o preço se a taxa de mercado é 8%? (b) E se for 10%? (c) Interprete a comparação.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Com $i = 8\%$ (igual ao cupom):
+$$
+P = \frac{80}{1{,}08} + \frac{80 + 1000}{1{,}08^{2}} = 74{,}07 + 925{,}93 = R\$\,1.000{,}00.
+$$
+O preço é o **valor de face** — o título negocia **ao par**.
+(b) Com $i = 10\%$:
+$$
+P = \frac{80}{1{,}10} + \frac{1080}{1{,}10^{2}} = 72{,}73 + 892{,}56 = R\$\,965{,}29.
+$$
+(c) Quando cupom = taxa de mercado, o preço é igual ao valor de face; quando a taxa de mercado **supera** o cupom, o preço fica **abaixo do par** (deságio), pois o título precisa ficar mais barato para render tanto quanto os títulos novos.
+:::
+
+**6.** Associe cada objetivo ao título mais adequado do Tesouro Direto, justificando: (a) reserva de emergência; (b) travar uma taxa nominal alta porque você acredita que os juros vão cair; (c) garantir poder de compra para a aposentadoria daqui a 20 anos.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Tesouro Selic** (LFT): é pós-fixado atrelado à Selic, tem preço estável (risco de mercado desprezível) e liquidez diária — ideal para dinheiro que pode ser sacado a qualquer momento sem risco de prejuízo.
+(b) **Tesouro Prefixado** (LTN/NTN-F): trava a taxa nominal de hoje; se os juros de fato caírem, além de receber a taxa contratada, o título ainda se **valoriza** (relação inversa preço–taxa).
+(c) **Tesouro IPCA+** (NTN-B): paga IPCA + juro real fixo, garantindo **poder de compra** ao longo de 20 anos independentemente da inflação — o instrumento clássico de aposentadoria.
+:::
+
+**7.** Uma LCI isenta de imposto paga 92% do CDI. Um CDB tributado, mantido por mais de 720 dias, paga 105% do CDI. Considerando apenas a tributação, qual rende mais líquido? *(Use a alíquota de IR de 15% e ignore diferenças de risco e liquidez.)*
+
+::: {.callout-tip collapse="true" title="Solução"}
+A LCI é **isenta**: rende líquido **92%** do CDI.
+O CDB é tributado a 15% sobre o rendimento, então rende líquido $105\% \times (1 - 0{,}15) = 105\% \times 0{,}85 = 89{,}25\%$ do CDI.
+Como $92\% > 89{,}25\%$, a **LCI rende mais líquido**, apesar de sua taxa bruta ser menor. A lição: sempre compare o rendimento **líquido de imposto**, nunca o bruto.
+:::
+
+**8.** Explique o papel do FGC e por que ele torna um CDB de um banco pequeno relativamente seguro. Que cuidado o investidor deve ter para não exceder a proteção?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O **FGC** (Fundo Garantidor de Créditos) é uma entidade mantida pelos bancos que **ressarce** depósitos e aplicações (poupança, CDB, LCI, LCA) em caso de **quebra** do banco emissor, até um limite por CPF e por instituição (historicamente R\$ 250 mil, com teto global a cada quatro anos). Isso reduz drasticamente o **risco de crédito**: mesmo que um banco pequeno faleça, o investidor recupera o valor dentro do limite, o que torna seu CDB quase tão seguro quanto o Tesouro. O cuidado é **não concentrar** mais que o limite (R\$ 250 mil) por instituição — valores acima disso ficam desprotegidos. Distribuir aplicações entre vários bancos mantém tudo sob a garantia.
+:::
+
+**9.** (Análise de caso) Em 2020, com a Selic em torno de 2% ao ano, um investidor comprou Tesouro IPCA+ 2035 pagando "IPCA + 4% ao ano". Em 2022, com a Selic acima de 13%, ele verificou que o **valor de mercado** de sua posição havia **caído** e entrou em pânico. (a) Explique por que o preço caiu. (b) Ele perdeu dinheiro de fato? (c) Que decisão faz sentido?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) A forte **alta dos juros** entre 2020 e 2022 elevou a taxa de mercado exigida dos títulos longos. Pela relação inversa preço–taxa (@eq-preco-titulo), quando a taxa sobe, o **preço de mercado** dos títulos prefixados e IPCA+ **cai** — é a marcação a mercado. Títulos novos passaram a pagar juros reais maiores, tornando o título antigo (IPCA + 4%) menos atraente, o que derruba seu preço.
+(b) **Só no papel.** A queda de preço é uma perda **não realizada**: se ele **mantiver o título até 2035**, receberá integralmente o "IPCA + 4%" contratado, seja qual for o caminho dos juros nesse meio-tempo. A perda só se concretiza se ele **vender antes**.
+(c) Se ele não precisa do dinheiro e o objetivo é de longo prazo, o razoável é **carregar até o vencimento** e ignorar a oscilação. Vender no susto realizaria o prejuízo; a marcação a mercado é característica do papel, não sinal de que algo deu errado.
+:::
+
+**10.** (Desafio) Você tem R\$ 100 mil para aplicar por 5 anos e recebe três ofertas: (i) Tesouro Selic, rendendo a Selic (hoje elevada, mas que você acha que vai cair); (ii) Tesouro Prefixado pagando 12% ao ano; (iii) Tesouro IPCA+ pagando IPCA + 6% ao ano. Discuta os prós e contras de cada uma e como sua expectativa sobre juros e inflação deveria guiar a escolha.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Não há resposta única — a escolha depende de **expectativas** e do **objetivo**. Uma análise razoável:
+
+- **(i) Tesouro Selic:** acompanha os juros e tem preço estável (sem risco de marcação a mercado); é o mais **líquido e seguro**. Porém, se você **acredita que a Selic vai cair**, seu rendimento futuro cairá junto — você não trava a taxa alta de hoje. Bom para quem prioriza liquidez ou acha que os juros ainda podem **subir**.
+- **(ii) Tesouro Prefixado (12%):** **trava** a taxa nominal alta. Se a Selic realmente cair, essa foi a melhor escolha — e o título ainda se **valoriza** no caminho. O risco é a **inflação** corroer os 12% nominais (se a inflação subir muito, o ganho real encolhe) e o risco de marcação a mercado caso precise vender antes. Coerente com sua expectativa de queda de juros, **se** você também espera inflação sob controle.
+- **(iii) Tesouro IPCA+ (IPCA + 6%):** garante **juro real** de 6% qualquer que seja a inflação — proteção máxima do poder de compra. Perde para o prefixado se a inflação vier muito baixa (aí os 12% nominais superariam IPCA + 6%), mas ganha se a inflação surpreender para cima. Ideal para objetivo de **longo prazo** e aversão ao risco inflacionário.
+
+Síntese: quem espera **queda de juros com inflação controlada** tende ao **prefixado**; quem teme **inflação** ou quer proteger poder de compra escolhe o **IPCA+**; quem prioriza **liquidez e segurança** ou acha que os juros ainda sobem fica no **Selic**. Uma estratégia comum é **diversificar** entre os três, equilibrando as apostas.
+:::
+
+## Para saber mais
+
+- @pinheiro2019 — panorama detalhado do mercado de capitais brasileiro, com capítulos dedicados aos títulos de renda fixa públicos e privados e à sua regulação.
+- @assafneto2021 — referência nacional sobre o mercado financeiro, cobrindo a estrutura da renda fixa, o Tesouro Direto, os títulos bancários e a formação de preços.
+- @bodie2014 — para a teoria da precificação de títulos, *yield to maturity*, estrutura a termo e a relação entre preço e taxa, com rigor e aplicações internacionais.
+- @samanez2010 — aprofunda a matemática financeira por trás da precificação: fluxos de caixa, taxas equivalentes e sistemas de amortização, base para todos os cálculos deste capítulo.
