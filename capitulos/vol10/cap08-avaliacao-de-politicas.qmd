@@ -1,0 +1,184 @@
+# Avaliação de políticas públicas: métodos quase-experimentais {#sec-avaliacao-de-politicas}
+
+O Bolsa Família reduz a evasão escolar? A elevação do salário mínimo destrói empregos? Um novo programa de crédito faz as pequenas empresas crescerem? Perguntas assim — sobre o **efeito causal** de uma política — são as mais importantes que um economista pode responder, e as mais difíceis. Difíceis porque, como vimos, o **contrafactual** é inobservável (@sec-correlacao-causalidade): não podemos ver o mesmo país com e sem a política ao mesmo tempo. E o simples "quem recebeu *versus* quem não recebeu" quase sempre engana, porque quem recebe já era diferente de partida (viés de seleção).
+
+Este capítulo fecha o Volume 10 reunindo tudo — inferência, regressão, ceticismo causal — na fronteira mais vibrante da Economia aplicada: a **avaliação de impacto** de políticas. É a "revolução da credibilidade" que transformou a disciplina nas últimas décadas e rendeu o Nobel de 2019 (Banerjee, Duflo, Kremer, pelos experimentos) e o de 2021 (Card, Angrist, Imbens, pelos métodos quase-experimentais). Veremos o padrão-ouro (o **experimento aleatorizado**) e os quatro grandes métodos que recuperam a causa quando o experimento é impossível: **diferenças-em-diferenças**, **controle antes-depois**, **regressão descontínua** e **variáveis instrumentais**. É a coroação prática de todo o volume.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- formular o problema da avaliação de impacto como a busca de um **contrafactual** crível;
+- explicar por que o **experimento aleatorizado (RCT)** é o padrão-ouro;
+- entender e aplicar o método de **diferenças-em-diferenças** (DiD);
+- reconhecer a lógica da **regressão descontínua** (RDD) e das **variáveis instrumentais** (VI);
+- avaliar as **hipóteses de identificação** de cada método e suas ameaças;
+- interpretar avaliações de políticas públicas brasileiras com espírito crítico.
+
+## O problema e o padrão-ouro
+
+Avaliar uma política é estimar seu **efeito causal**: quanto o resultado (renda, matrícula, emprego) mudou **por causa** da política, comparado ao que teria acontecido **sem** ela. Esse "o que teria acontecido sem" é o contrafactual, e toda avaliação é uma estratégia para construí-lo de forma crível.
+
+O **experimento aleatorizado controlado** (*randomized controlled trial*, RCT) resolve o problema por desenho: sorteia-se quem recebe o programa (**tratamento**) e quem não recebe (**controle**). Como vimos (@sec-correlacao-causalidade), a aleatorização torna os dois grupos **estatisticamente idênticos** em tudo — inclusive no não observável —, de modo que a diferença de resultados entre eles é o **efeito causal** do programa, limpo de viés de seleção.
+
+::: {.callout-tip title="Intuição — por que o RCT é o padrão-ouro"}
+No RCT, o grupo de controle **é** o contrafactual: por serem estatisticamente iguais aos tratados de partida, os controles mostram o que teria acontecido com os tratados **se não tivessem sido tratados**. Nenhum outro método garante isso por construção — todos os demais precisam **argumentar** que seu grupo de comparação é crível, enquanto o RCT o **fabrica** pelo sorteio. Por isso experimentos de campo (muitos liderados pelo J-PAL, de Duflo e Banerjee) se espalharam pela economia do desenvolvimento.
+:::
+
+Mas RCTs nem sempre são possíveis: podem ser caros, lentos, inviáveis (não se sorteia quem sofre uma crise cambial) ou **antiéticos** (não se nega tratamento de saúde a um grupo de controle por anos). Para esses casos — a maioria em economia —, foram desenvolvidos os **métodos quase-experimentais**, que exploram variações "quase aleatórias" no mundo real, os chamados **experimentos naturais**.
+
+## Diferenças-em-diferenças
+
+O método quase-experimental mais usado é o de **diferenças-em-diferenças** (DiD). A ideia: quando uma política atinge um grupo (**tratamento**) e não outro (**controle**), comparamos a **variação** do resultado no grupo tratado com a **variação** no grupo de controle, antes e depois da política. A @fig-did ilustra.
+
+::: {#fig-did}
+
+```{.tikz}
+%%| filename: fig-did
+%%| alt: Gráfico com duas retas ascendentes — grupo de controle e grupo de tratamento — antes e depois da política; após a intervenção o grupo de tratamento sobe acima da sua tendência projetada (contrafactual tracejado), e a distância entre a reta observada e o contrafactual é o efeito estimado.
+\begin{tikzpicture}[font=\small]
+  \begin{axis}[
+    width=11.5cm, height=7cm,
+    xmin=0, xmax=4, ymin=0, ymax=10,
+    xtick={1,3}, xticklabels={antes, depois},
+    ylabel={resultado ($Y$)},
+    axis lines=left,
+    ytick=\empty,
+    tick label style={font=\footnotesize},
+    clip=false,
+  ]
+    % controle
+    \addplot[curva, manualgray, very thick] coordinates {(1,3) (3,4.2)};
+    \node[manualgray, font=\footnotesize] at (axis cs:3.35,4.2) {controle};
+    % tratamento observado
+    \addplot[curva, manualblue, very thick] coordinates {(1,5) (3,8)};
+    \node[manualblue, font=\footnotesize] at (axis cs:3.35,8) {tratamento};
+    % contrafactual do tratamento (paralelo ao controle)
+    \addplot[curva, manualred, very thick, dashed] coordinates {(1,5) (3,6.2)};
+    \node[manualred, font=\footnotesize, align=left] at (axis cs:2.05,5.2) {contrafactual\\(tendência paralela)};
+    % efeito
+    \draw[destaque, <->, manualgreen, very thick] (axis cs:3,6.2) -- (axis cs:3,8);
+    \node[manualgreen, font=\footnotesize] at (axis cs:3.5,7.1) {efeito};
+    \draw[auxiliar, dashed, manualgray] (axis cs:1,0) -- (axis cs:1,5);
+    \draw[auxiliar, dashed, manualgray] (axis cs:3,0) -- (axis cs:3,4.2);
+  \end{axis}
+\end{tikzpicture}
+```
+
+Diferenças-em-diferenças: o contrafactual (vermelho tracejado) supõe que, **sem** a política, o grupo de tratamento teria seguido a **mesma tendência** do controle. O efeito é o quanto o tratamento superou esse contrafactual.
+:::
+
+Formalmente, o efeito DiD é a "diferença das diferenças":
+
+$$
+\widehat{\text{efeito}} = \underbrace{(Y_{T,\text{depois}} - Y_{T,\text{antes}})}_{\text{variação no tratamento}} - \underbrace{(Y_{C,\text{depois}} - Y_{C,\text{antes}})}_{\text{variação no controle}}.
+$$ {#eq-did}
+
+A genialidade do método: ao subtrair a variação do grupo de controle, o DiD **remove** tudo o que afetou os **dois** grupos igualmente ao longo do tempo (a conjuntura nacional, a inflação, tendências gerais). Sobra o que atingiu **apenas** o grupo tratado — a política.
+
+::: {.callout-important title="Armadilha comum — a hipótese das tendências paralelas"}
+O DiD só é válido sob a **hipótese de tendências paralelas**: na ausência da política, os dois grupos teriam evoluído em **paralelo** (a mesma variação). Se o grupo tratado já vinha crescendo mais rápido por outras razões **antes** da política, o DiD atribui erroneamente esse descolamento à intervenção. A hipótese não é testável diretamente (é sobre um contrafactual), mas ganha credibilidade se as trajetórias eram paralelas **antes** do tratamento — por isso se examinam sempre os **períodos pré-intervenção**. Tendências paralelas é o coração — e o calcanhar de Aquiles — do DiD.
+:::
+
+O DiD ficou famoso no estudo de Card e Krueger sobre salário mínimo: compararam o emprego em lanchonetes de Nova Jersey (que elevou o mínimo) com o da Pensilvânia vizinha (que não elevou), antes e depois — e não acharam a queda de emprego que a teoria simples previa, abrindo um dos maiores debates da economia do trabalho.
+
+## Regressão descontínua e variáveis instrumentais
+
+Dois outros métodos completam o arsenal.
+
+A **regressão descontínua** (*regression discontinuity design*, RDD) explora regras que criam um **corte arbitrário**: quem fica logo **acima** de um limiar recebe o tratamento; quem fica logo **abaixo**, não. Como as pessoas **imediatamente ao redor** do corte são praticamente idênticas (diferem por um triz na variável que define a regra), comparar os dois lados da fronteira é quase um experimento. Exemplos: um programa que atende municípios com menos de 50 mil habitantes (compare os de 49 mil com os de 51 mil); uma bolsa que exige nota mínima de corte (compare quem tirou 6,9 com quem tirou 7,1); regras de idade, de renda per capita, de população para número de vereadores. A **descontinuidade** na regra vira uma fonte de variação quase aleatória.
+
+As **variáveis instrumentais** (VI) atacam a endogeneidade de frente. Quando a variável de interesse $X$ é correlacionada com o erro (por confundidor não observado ou causalidade reversa), busca-se um **instrumento** $Z$ que afete $Y$ **apenas** através de $X$ — que "empurre" $X$ sem ter relação direta com $Y$ nem com os confundidores.
+
+::: {.callout-note title="Definição — variável instrumental"}
+Um bom **instrumento** $Z$ satisfaz duas condições: (i) **relevância** — é correlacionado com a variável de interesse $X$ (empurra $X$ de fato); e (ii) **exogeneidade (restrição de exclusão)** — afeta o resultado $Y$ **somente** através de $X$, sem canal direto nem ligação com os confundidores. Usa-se a variação em $X$ **induzida pelo instrumento** — que é "limpa" de endogeneidade — para estimar o efeito causal de $X$ sobre $Y$.
+:::
+
+O exemplo clássico é de Angrist: para estimar o efeito da escolaridade sobre o salário livre do viés de habilidade, usou o **trimestre de nascimento** como instrumento — por causa das regras de idade mínima escolar, quem nasce no início do ano acaba com um pouco menos de escolaridade, uma variação que nada tem a ver com habilidade. VI é poderosa, mas frágil: um instrumento **fraco** (pouco correlacionado com $X$) ou que **viole a exclusão** (tenha canal próprio para $Y$) produz estimativas piores que o MQO. Bons instrumentos são raros e sempre defendidos com argumentos, não com estatísticas.
+
+::: {.callout-warning title="Controvérsia — validade interna × validade externa"}
+Os métodos quase-experimentais compram **validade interna** (o efeito causal é bem identificado **naquele** contexto) muitas vezes à custa de **validade externa** (a capacidade de **generalizar** para outros contextos). Um RCT num punhado de vilarejos, ou uma RDD ao redor de um corte específico, estima um efeito **local**, para uma população particular, que pode não valer alhures. O debate na profissão é intenso: de um lado, os que celebram a "revolução da credibilidade" por finalmente identificar efeitos de verdade; de outro, os que alertam para o risco de responder com precisão a perguntas estreitas, perdendo de vista os grandes efeitos de equilíbrio geral e a generalização. Identificar bem **um** efeito local não é o mesmo que entender **a** política — ambas as coisas importam.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+O Brasil é um dos grandes laboratórios mundiais de avaliação de políticas — em parte porque suas políticas sociais de larga escala geraram os "experimentos naturais" que esses métodos exploram.
+
+**Bolsa Família: a política mais avaliada do país.** O **Programa Bolsa Família** (hoje reformulado) é objeto de dezenas de avaliações de impacto usando os métodos deste capítulo. Estudos com **diferenças-em-diferenças** e **regressão descontínua** (explorando as linhas de **corte de renda** que definem a elegibilidade) estimaram efeitos causais sobre frequência escolar, trabalho infantil, saúde e nutrição, geralmente encontrando impactos positivos relevantes sobre educação e saúde, e — contrariando o temor comum — efeito pequeno ou nulo sobre a oferta de trabalho adulto (o programa **não** teria gerado "preguiça" em massa). A regra de corte de renda é um presente para a RDD: famílias logo acima e logo abaixo da linha são quase idênticas.
+
+**Salário mínimo e o debate do emprego.** A valorização real do salário mínimo brasileiro nos anos 2000 gerou estudos que ecoam o debate de Card e Krueger. Explorando a **heterogeneidade regional** (o mínimo "morde" mais no Nordeste, onde os salários são menores, que no Sudeste), pesquisadores usam variações quase-experimentais para estimar efeitos sobre emprego formal, informalidade e distribuição de renda — com resultados que alimentam a controvérsia entre os que enfatizam o ganho distributivo e os que temem efeitos sobre o emprego dos menos qualificados (@sec-economia-do-trabalho). É pluralismo empírico em ação.
+
+**RDD à brasileira: a lei e os cortes populacionais.** A legislação brasileira está cheia de **descontinuidades** que viram instrumentos de pesquisa: o número de **vereadores** e o repasse do **FPM** (Fundo de Participação dos Municípios) mudam em saltos conforme faixas de população; regras eleitorais de **segundo turno** aplicam-se só a municípios com mais de 200 mil eleitores. Economistas brasileiros exploram esses cortes para estimar, por RDD, efeitos de mais recursos ou mais representantes sobre gastos, corrupção e resultados locais — transformando a burocracia federativa em laboratório causal.
+
+> **Fontes e séries para explorar:** IPEA (avaliações de impacto de políticas sociais); Ministério do Desenvolvimento Social e Cadastro Único (dados do Bolsa Família); periódicos brasileiros de economia aplicada; bases eleitorais do TSE e demográficas do IBGE (para cortes populacionais em RDD). Ao ler uma avaliação, identifique: qual o contrafactual? qual a hipótese de identificação? ela é crível?
+
+## Resumo do capítulo
+
+- Avaliar uma política é estimar seu **efeito causal** construindo um **contrafactual** crível — o que teria acontecido sem a política.
+- O **experimento aleatorizado (RCT)** é o padrão-ouro: o sorteio torna tratamento e controle idênticos, e o controle **é** o contrafactual, sem viés de seleção. Nem sempre é viável ou ético.
+- **Diferenças-em-diferenças** compara a **variação** do resultado no grupo tratado com a do grupo de controle (antes × depois), removendo tudo que afetou ambos igualmente; depende da **hipótese de tendências paralelas**.
+- **Regressão descontínua (RDD)** explora cortes arbitrários de regras: unidades logo acima e logo abaixo do limiar são quase idênticas, aproximando um experimento local.
+- **Variáveis instrumentais (VI)** usam um instrumento $Z$ **relevante** (correlacionado com $X$) e **exógeno** (afeta $Y$ só via $X$) para estimar o efeito causal sob endogeneidade; instrumentos fracos ou inválidos arruínam a estimativa.
+- Há um *trade-off* entre **validade interna** (identificar bem o efeito no contexto) e **validade externa** (generalizar) — a "revolução da credibilidade" e suas críticas.
+- O **Brasil** é laboratório mundial dessas técnicas: Bolsa Família (DiD e RDD nos cortes de renda), salário mínimo (heterogeneidade regional) e cortes populacionais legais (RDD).
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Por que comparar simplesmente "quem recebeu o programa" com "quem não recebeu" costuma dar uma estimativa **enviesada** do efeito?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Por **viés de seleção**: em geral quem recebe o programa **não** foi sorteado — inscreveu-se ou foi selecionado por critérios (renda, necessidade, iniciativa) que o tornam **diferente** de quem não recebeu, já **antes** do programa. Essas diferenças preexistentes (observadas e não observadas) também afetam o resultado, então a comparação bruta mistura o **efeito do programa** com as **diferenças de partida** entre os grupos. O grupo dos não participantes não é um contrafactual válido para os participantes.
+:::
+
+**2.** Explique por que o experimento aleatorizado é considerado o "padrão-ouro" da avaliação de impacto.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque a **aleatorização** (sorteio de quem recebe o tratamento) faz com que, em amostras grandes, os grupos de tratamento e controle sejam **estatisticamente idênticos** em todas as características, inclusive as **não observáveis**. Assim, o grupo de controle representa fielmente o que teria acontecido com os tratados **sem** o tratamento — é o contrafactual crível, construído **por desenho**. Qualquer diferença sistemática de resultado só pode ser atribuída ao tratamento, eliminando o viés de seleção. Nenhum outro método garante isso; todos os demais precisam **argumentar** a validade do seu grupo de comparação.
+:::
+
+**3.** Descreva, em palavras, o cálculo de diferenças-em-diferenças. O que a subtração da variação do grupo de controle remove?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Calcula-se a **variação** do resultado no grupo de **tratamento** (depois menos antes) e a **variação** no grupo de **controle** (depois menos antes), e toma-se a **diferença entre essas duas variações**. Subtrair a variação do controle **remove** tudo o que afetou **ambos** os grupos igualmente ao longo do tempo — a conjuntura macroeconômica, a inflação, tendências nacionais, choques comuns. O que sobra é o efeito que atingiu **apenas** o grupo tratado: a política.
+:::
+
+**4.** Qual é a hipótese-chave para a validade do DiD? Como se ganha confiança nela?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A hipótese-chave é a de **tendências paralelas**: na **ausência** da política, os grupos de tratamento e controle teriam evoluído com a **mesma variação** (trajetórias paralelas). Como ela é sobre um contrafactual, **não** é diretamente testável; ganha-se confiança verificando que, nos **períodos anteriores** ao tratamento, as trajetórias dos dois grupos já eram **paralelas** (mesma tendência pré-intervenção). Se o grupo tratado já se descolava antes da política, a hipótese é suspeita e o DiD pode atribuir à política um descolamento que teria ocorrido de qualquer modo.
+:::
+
+**5.** Um programa atende apenas municípios com **menos de 50 mil habitantes**. Explique como usar uma **regressão descontínua** para avaliá-lo e por que ela é crível.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Comparam-se municípios **logo abaixo** de 50 mil habitantes (que recebem o programa) com os **logo acima** (que não recebem) — por exemplo, os na faixa de 48–50 mil contra 50–52 mil. A lógica: municípios tão próximos do corte são **quase idênticos** em tudo (economia, perfil, região); a única diferença relevante é estar de um ou de outro lado de uma linha **arbitrária** de população. Assim, quem cai abaixo do corte é essencialmente **aleatório** em relação a quem cai acima, aproximando um experimento **local**. A diferença de resultados na vizinhança do corte estima o efeito causal do programa — crível porque a regra de corte não tem, em si, relação com os resultados de interesse, só com a elegibilidade.
+:::
+
+**6.** Quais as **duas** condições que um bom instrumento deve satisfazer? Ilustre com o exemplo do trimestre de nascimento para estimar o retorno da educação.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(i) **Relevância:** o instrumento deve ser **correlacionado com a variável de interesse** (educação). O trimestre de nascimento cumpre isso porque, pelas regras de idade mínima de matrícula e de idade para deixar a escola, quem nasce no início do ano acaba com **um pouco menos** de escolaridade. (ii) **Exogeneidade / restrição de exclusão:** o instrumento deve afetar o resultado (salário) **apenas através** da variável de interesse, sem canal próprio nem correlação com confundidores. O trimestre de nascimento é plausivelmente exógeno — não tem relação direta com a **habilidade** nem com o salário, exceto pelo efeito sobre os anos de estudo. Usa-se então a variação de escolaridade **induzida** pelo trimestre de nascimento (limpa de habilidade) para estimar o retorno causal da educação.
+:::
+
+**7.** (Análise de caso) Estudos brasileiros com RDD encontram que o Bolsa Família aumentou a frequência escolar sem reduzir significativamente a oferta de trabalho dos adultos. Explique como a regra de **corte de renda** do programa viabiliza essa avaliação e por que o resultado é mais crível que uma comparação simples.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O Bolsa Família define a elegibilidade por uma **linha de renda per capita**: famílias **abaixo** do limite recebem; **acima**, não. Isso cria uma **descontinuidade** que a RDD explora comparando famílias **logo abaixo** e **logo acima** da linha de corte. Essas famílias são quase idênticas em renda, composição e perfil — a diferença de estar de um lado ou outro é, na prática, quase aleatória (um pequeno acaso de renda medida). Logo, diferenças de frequência escolar e de trabalho entre elas podem ser atribuídas ao **recebimento do benefício**, não a características prévias. É mais crível que uma comparação simples "beneficiários × não beneficiários" porque esta última compara famílias **muito** diferentes (pobres × menos pobres), com forte viés de seleção — enquanto a RDD compara famílias na **vizinhança do corte**, praticamente pareadas. O resultado (mais escola, sem "efeito preguiça") é assim identificado de forma causalmente confiável, ao menos **localmente**, perto da linha de elegibilidade.
+:::
+
+**8.** (Desafio) Um pesquisador afirma que seu RCT num conjunto de vilarejos prova que certo programa de microcrédito "funciona e deve ser adotado nacionalmente". Usando os conceitos de validade interna e externa, avalie a afirmação.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O RCT confere ao estudo alta **validade interna**: por causa da aleatorização, o efeito estimado **naquele** conjunto de vilarejos é causalmente crível, limpo de viés de seleção. Mas "funciona ali" não implica "funcionará em escala nacional" — isso é uma questão de **validade externa** (generalização), e há várias razões para cautela: (i) os vilarejos do estudo podem não ser **representativos** do país (contexto, cultura, mercados locais); (ii) o efeito estimado é **local** para aquela população e desenho; (iii) sobretudo, uma política **nacional** desencadeia **efeitos de equilíbrio geral** que um experimento pequeno não capta — se todos recebem microcrédito, preços, salários e a concorrência entre negócios podem mudar, alterando (ou anulando) o efeito medido no piloto. Assim, o RCT **identifica bem um efeito local**, mas **não prova** que a adoção nacional teria o mesmo resultado. A afirmação confunde validade interna com externa. O correto é tratar o RCT como **forte evidência de que o mecanismo funciona naquele contexto**, a ser complementada por replicações em outros contextos e por análise dos efeitos de escala antes de recomendar a adoção nacional.
+:::
+
+## Para saber mais
+
+- @angrist2015 — *Mastering 'Metrics*: a melhor introdução acessível a RCT, diferenças-em-diferenças, regressão descontínua e variáveis instrumentais, com exemplos vivos.
+- @angrist2009 — *Mostly Harmless Econometrics*: o tratamento avançado e influente dos métodos de identificação causal.
+- @stock2020 — capítulos sobre experimentos, quase-experimentos e variáveis instrumentais, integrados à regressão.
+- @wooldridge2016 — variáveis instrumentais, DiD e métodos de avaliação de política no arcabouço econométrico padrão.

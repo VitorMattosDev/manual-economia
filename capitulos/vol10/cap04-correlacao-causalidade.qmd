@@ -1,0 +1,184 @@
+# Correlação não é causalidade {#sec-correlacao-causalidade}
+
+Nas cidades onde há mais sorveterias, há mais afogamentos. Países que consomem mais chocolate ganham mais prêmios Nobel. Crianças com pés maiores leem melhor. Cada uma dessas afirmações descreve uma **correlação** real nos dados — e cada uma seria desastrosa como base de política pública. Fechar sorveterias não salvaria ninguém de se afogar; distribuir chocolate não produziria cientistas; alongar os pés das crianças não as alfabetizaria. Em todos os casos, a correlação é verdadeira, mas a **causa** é outra: o calor do verão, a riqueza dos países, a idade das crianças.
+
+Este é, talvez, o capítulo mais importante de todo o Volume 10 — e o que mais separa o bom do mau uso da estatística. Vamos primeiro **medir** a associação entre variáveis (a covariância e o coeficiente de correlação) e, em seguida, entender por que medir associação é uma coisa e estabelecer **causa** é outra completamente diferente. Veremos as três razões pelas quais correlação não implica causalidade — **variável de confusão**, **causalidade reversa** e **acaso** —, a lógica do **contrafactual** e por que o **experimento aleatorizado** é o padrão-ouro para inferir causa. É a fundação conceitual da econometria (@sec-regressao-simples) e da avaliação de políticas (@sec-avaliacao-de-politicas).
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- calcular e interpretar a **covariância** e o **coeficiente de correlação de Pearson**;
+- reconhecer que a correlação mede **associação linear**, não causa nem relações não lineares;
+- explicar as três fontes de correlação espúria: **confundidor**, **causalidade reversa** e **acaso**;
+- formular o problema causal em termos de **contrafactual** e de resultados potenciais;
+- entender por que o **experimento aleatorizado** identifica causa e o que é **viés de seleção**;
+- aplicar esse ceticismo à leitura de estudos e manchetes econômicas.
+
+## Medindo associação: covariância e correlação
+
+Antes de discutir causa, é preciso medir **associação**: quando uma variável é alta, a outra tende a ser alta também (associação positiva) ou baixa (negativa)? A medida primitiva é a **covariância**:
+
+$$
+\operatorname{Cov}(X, Y) = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y}).
+$$ {#eq-covariancia}
+
+Quando $X$ acima da sua média tende a vir com $Y$ acima da sua ($(x_i-\bar{x})$ e $(y_i-\bar{y})$ com o mesmo sinal), os produtos são positivos e a covariância é positiva. A covariância tem, porém, um defeito: seu valor depende das **unidades** (covariância de renda com escolaridade muda se medirmos renda em reais ou em milhares). Para obter uma medida **adimensional** e comparável, dividimos pelos desvios-padrão, obtendo o **coeficiente de correlação de Pearson**:
+
+$$
+r = \frac{\operatorname{Cov}(X, Y)}{s_X\, s_Y}, \qquad -1 \le r \le 1.
+$$ {#eq-correlacao}
+
+::: {.callout-note title="Definição — coeficiente de correlação"}
+O **coeficiente de correlação de Pearson** $r$ mede a força e o sentido da associação **linear** entre duas variáveis. Vale entre $-1$ e $+1$: $r = +1$ é associação linear positiva perfeita; $r = -1$, negativa perfeita; $r = 0$, ausência de associação **linear**. Quanto mais próximo dos extremos, mais forte a relação linear.
+:::
+
+::: {.callout-important title="Armadilha comum — correlação zero não é independência"}
+$r = 0$ significa ausência de relação **linear**, mas pode haver uma relação **não linear** forte. Considere $Y = X^2$ com $X$ simétrico em torno de zero: a associação é perfeita e determinística, mas $r \approx 0$, porque metade da curva sobe e metade desce, cancelando a covariância. A correlação de Pearson é cega a curvas em U, ciclos e relações não monotônicas. Sempre **olhe o gráfico de dispersão** antes de confiar em um $r$.
+:::
+
+## O erro fundamental: da associação à causa
+
+Suponha que os dados mostrem $r = 0{,}8$ entre horas de estudo e nota. É tentador concluir "estudar **causa** notas melhores". Talvez cause — mas o coeficiente de correlação, **sozinho**, não autoriza essa conclusão. A frase que resume o capítulo:
+
+> **Correlação não implica causalidade.**
+
+Por quê? Porque uma correlação entre $X$ e $Y$ é compatível com **várias** histórias causais distintas, e os dados observacionais, por si, não distinguem entre elas. Há três grandes explicações alternativas.
+
+### 1. Variável de confusão (confundidor)
+
+A mais insidiosa. Uma terceira variável $Z$ causa **tanto** $X$ quanto $Y$, gerando correlação entre eles sem que um cause o outro. É o caso das sorveterias e afogamentos: o **calor** ($Z$) aumenta o consumo de sorvete ($X$) e as idas à praia — e afogamentos ($Y$). Sorvete e afogamento correlacionam-se, mas nenhum causa o outro. A @fig-confundidor mostra a estrutura.
+
+::: {#fig-confundidor}
+
+```{.tikz}
+%%| filename: fig-confundidor
+%%| alt: Diagrama causal em que uma variável de confusão Z aponta com setas para X e para Y; entre X e Y há apenas uma correlação espúria, sem seta causal direta.
+\begin{tikzpicture}[font=\small, node distance=2.4cm]
+  \node[draw, circle, fill=manualyellow!25, minimum size=1.5cm, align=center] (z) at (0,2) {$Z$\\\footnotesize (calor)};
+  \node[draw, circle, fill=manualblue!18, minimum size=1.5cm, align=center] (x) at (-3,-1) {$X$\\\footnotesize (sorvete)};
+  \node[draw, circle, fill=manualred!18, minimum size=1.5cm, align=center] (y) at (3,-1) {$Y$\\\footnotesize (afogam.)};
+  \draw[vetor, manualgray, thick] (z) -- (x);
+  \draw[vetor, manualgray, thick] (z) -- (y);
+  \draw[destaque, manualred, dashed, <->] (x) -- node[below, font=\footnotesize, black]{correlação espúria} (y);
+\end{tikzpicture}
+```
+
+Um **confundidor** $Z$ causa $X$ e $Y$, produzindo correlação entre eles sem relação causal direta. Controlar $Z$ é essencial para não confundir associação com causa.
+:::
+
+O confundidor é o pesadelo da Economia empírica, porque quase toda variável de interesse tem confundidores plausíveis. Estudo e nota correlacionam-se, mas a **motivação** (ou a renda familiar, que paga cursinho e reforço) pode causar as duas. Voltaremos a isso como **viés de variável omitida** no @sec-regressao-multipla.
+
+### 2. Causalidade reversa
+
+Às vezes a seta causal existe, mas aponta para o **lado contrário** do suposto. Observa-se correlação positiva entre número de policiais e criminalidade nas cidades. Concluir "polícia causa crime" inverte a causa: é a **criminalidade alta** que leva as cidades a contratar mais policiais. A direção da causa não está escrita nos dados — precisa ser argumentada. Muitos debates econômicos (crédito causa crescimento ou crescimento gera crédito? gasto público causa PIB ou PIB gera arrecadação?) são disputas sobre a **direção** da seta.
+
+### 3. Acaso (correlação espúria por coincidência)
+
+Com dados suficientes, sempre se encontram correlações **casuais** sem qualquer mecanismo — o consumo de queijo e o número de doutorados, o divórcio no Maine e o consumo de margarina. Testando milhares de pares de variáveis, algumas exibirão $r$ alto por pura sorte (lembre do erro tipo I: a 5%, 1 em 20 testes dá "significativo" mesmo sem efeito). É o combustível do **data mining** irresponsável.
+
+## O problema do contrafactual
+
+Para pensar causa com rigor, os economistas usam o arcabouço dos **resultados potenciais** (Rubin). O efeito causal de um tratamento (um curso, um remédio, um programa) sobre um indivíduo é a diferença entre dois resultados:
+
+$$
+\text{efeito}_i = Y_i(\text{tratado}) - Y_i(\text{não tratado}).
+$$ {#eq-contrafactual}
+
+::: {.callout-note title="Definição — o problema fundamental da inferência causal"}
+Para cada indivíduo, só observamos **um** dos dois resultados: ou ele foi tratado, ou não foi — nunca os dois. O resultado não observado é o **contrafactual** ("o que teria acontecido se..."). Como o contrafactual é intrinsecamente inobservável, o efeito causal individual **nunca** pode ser medido diretamente. Toda inferência causal é, no fundo, a construção de um **contrafactual crível**.
+:::
+
+Não podemos observar a mesma pessoa tendo e não tendo feito o curso. O que a estatística causal faz é buscar um **grupo de comparação** que sirva de contrafactual — pessoas parecidas que não fizeram o curso. Todo o desafio é garantir que esse grupo seja de fato comparável.
+
+## Por que o experimento aleatorizado resolve
+
+A solução mais limpa é o **experimento aleatorizado controlado** (ECR): sorteia-se quem recebe o tratamento (grupo de tratamento) e quem não recebe (grupo de controle). A aleatorização é mágica porque, em amostras grandes, torna os dois grupos **estatisticamente idênticos** em tudo — inclusive nas variáveis que não observamos (motivação, saúde, renda). Qualquer diferença de resultado entre eles só pode ser atribuída ao tratamento.
+
+::: {.callout-tip title="Intuição — a aleatorização elimina o confundidor por construção"}
+O poder do sorteio é que ele **quebra** a ligação entre o tratamento e todos os confundidores. Se quem recebe o programa é sorteado, então motivação, renda e talento distribuem-se **igualmente** entre tratados e controles — deixam de causar a diferença de resultado, porque estão balanceados nos dois grupos. Por isso o ECR é o **padrão-ouro** da inferência causal: ele constrói o contrafactual crível por desenho, em vez de torcer para que ele exista nos dados.
+:::
+
+O contraponto é o **viés de seleção**, que contamina estudos observacionais: quando as pessoas **escolhem** (ou são escolhidas para) o tratamento, tratados e não tratados já diferem de partida. Quem faz um MBA já era, em média, mais ambicioso e mais bem conectado — comparar seu salário ao de quem não fez superestima o efeito do MBA, pois mistura o efeito do curso com as diferenças **preexistentes**. Grande parte do @sec-avaliacao-de-politicas é dedicada a métodos que tentam recuperar o contrafactual quando um experimento não é possível.
+
+## 🇧🇷 Brasil em Foco
+
+O ceticismo causal é indispensável para ler bem os grandes debates econômicos brasileiros — todos eles atravessados por confusões entre correlação e causa.
+
+**Bolsa Família e resultados educacionais.** Observa-se que crianças de famílias no Bolsa Família têm certas trajetórias escolares e de saúde. Mas famílias beneficiárias diferem das não beneficiárias em renda, escolaridade dos pais e região — **confundidores** clássicos. Por isso as boas avaliações do programa (IPEA, universidades) não se contentam com correlações brutas: usam **desenhos quase-experimentais** (@sec-avaliacao-de-politicas) para construir grupos de comparação críveis e isolar o **efeito causal** das transferências, separando-o das características preexistentes das famílias.
+
+**Educação causa renda, ou renda causa educação?** A forte correlação entre anos de estudo e renda no Brasil é real, mas sua interpretação causal é sutil: parte do retorno é efeito da educação sobre a produtividade, mas parte reflete **causalidade reversa** e **confusão** — famílias mais ricas custeiam mais educação, e pessoas mais habilidosas tanto estudam mais quanto ganham mais (o problema da "habilidade não observada" de Mincer). Estimar o **retorno causal** da educação é um dos problemas mais estudados da economia do trabalho brasileira, e exige métodos que vão além da correlação (@sec-economia-do-trabalho).
+
+**Gasto público e crescimento.** No debate fiscal brasileiro, correlações entre gasto público e PIB são invocadas por todos os lados. Mas a direção da causa é disputada: o gasto **estimula** o PIB (visão keynesiana) ou o PIB alto é que **gera** arrecadação e permite gastar (causalidade reversa)? Além disso, ambos respondem ao **ciclo econômico** (um confundidor). Sem um desenho que identifique a causa, a mesma correlação alimenta conclusões opostas — razão pela qual economistas sérios desconfiam de gráficos de "gasto × crescimento" apresentados como prova.
+
+> **Fontes e séries para explorar:** IPEA e periódicos acadêmicos (avaliações de impacto do Bolsa Família e de programas educacionais); IBGE/PNAD Contínua (dados de educação e renda para estudar retornos); literatura de econometria aplicada ao Brasil. Ao ler qualquer estudo, pergunte: qual é o contrafactual? há confundidores? a causa poderia ser reversa?
+
+## Resumo do capítulo
+
+- A **covariância** mede a associação, mas depende de unidades; o **coeficiente de correlação de Pearson** $r \in [-1, 1]$ a padroniza, medindo força e sentido da associação **linear**.
+- $r = 0$ indica ausência de relação **linear**, não independência: relações não lineares (como $Y = X^2$) podem ter $r \approx 0$. Sempre olhe o gráfico de dispersão.
+- **Correlação não implica causalidade.** Uma correlação entre $X$ e $Y$ é compatível com várias histórias causais.
+- Três fontes de correlação sem causa direta: **variável de confusão** ($Z$ causa $X$ e $Y$), **causalidade reversa** (a seta aponta ao contrário) e **acaso** (coincidência, especialmente com muitos testes).
+- O efeito causal é a diferença entre o resultado com e sem tratamento; como só se observa **um** deles, o **contrafactual** é inobservável — o **problema fundamental** da inferência causal.
+- O **experimento aleatorizado** identifica a causa porque o sorteio balanceia todos os confundidores (observados e não) entre tratamento e controle; estudos observacionais sofrem de **viés de seleção**.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Explique por que a covariância, sozinha, é difícil de interpretar, e o que o coeficiente de correlação acrescenta.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A covariância informa o **sinal** da associação (positiva ou negativa), mas seu **valor** depende das unidades das variáveis: medir renda em reais ou em milhares muda a covariância, sem que a relação mude. Isso impede comparações e a leitura da **força** da associação. O coeficiente de correlação divide a covariância pelos desvios-padrão, produzindo um número **adimensional** entre $-1$ e $+1$ — comparável entre contextos e interpretável como força da relação linear.
+:::
+
+**2.** Um pesquisador encontra $r = 0{,}02$ entre duas variáveis e conclui que elas são independentes. Por que a conclusão pode estar errada?
+
+::: {.callout-tip collapse="true" title="Solução"}
+$r \approx 0$ indica apenas ausência de relação **linear**. Pode existir uma relação **não linear** forte (em U, cíclica) que a correlação de Pearson não capta — por exemplo, produção agrícola e temperatura (sobe até um ponto ótimo, depois cai), que pode ter $r$ próximo de zero apesar de uma relação nítida. Independência é uma condição bem mais forte que $r=0$. O correto é examinar o **gráfico de dispersão** antes de afirmar independência.
+:::
+
+**3.** Para cada correlação, identifique a explicação mais provável (confundidor, causalidade reversa ou acaso): (a) cidades com mais igrejas têm mais bares; (b) mais bombeiros num incêndio, maior o estrago; (c) o consumo de queijo correlaciona-se com o número de PhDs concedidos.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Confundidor:** o **tamanho da cidade** (população) causa mais igrejas e mais bares — nenhum causa o outro. (b) **Causalidade reversa** (ou confundidor pelo tamanho do incêndio): incêndios maiores causam **tanto** mais bombeiros **quanto** mais estrago; não são os bombeiros que causam o estrago. (c) **Acaso:** correlação espúria por coincidência, sem mecanismo — típica de garimpar muitos pares de séries temporais.
+:::
+
+**4.** Explique o "problema fundamental da inferência causal" com um exemplo próprio.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O problema é que, para cada indivíduo, só observamos **um** dos dois mundos possíveis — tratado **ou** não tratado —, nunca os dois. Exemplo: quero saber o efeito de um curso de qualificação sobre o salário de João. Observo o salário de João **tendo feito** o curso; jamais observarei o salário que João teria **se não tivesse feito** o curso, no mesmo período e circunstâncias. Esse resultado não observado é o **contrafactual**, e sua ausência impede medir o efeito causal individual diretamente. Toda inferência causal busca aproximar esse contrafactual por um grupo de comparação crível.
+:::
+
+**5.** Por que comparar o salário de quem fez um MBA com o de quem não fez tende a **superestimar** o efeito do MBA?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Por **viés de seleção**: quem faz MBA não é sorteado — **escolhe** fazê-lo, e tende a já ser, de partida, mais ambicioso, mais bem conectado, de família mais rica e mais habilidoso. Essas características preexistentes **também** elevam o salário, independentemente do MBA. A diferença de salário entre os dois grupos mistura, então, o efeito **do curso** com o efeito das **diferenças prévias** entre quem escolhe e quem não escolhe fazer MBA — superestimando o efeito causal do curso. O grupo de não formados não é um contrafactual válido para os formados.
+:::
+
+**6.** Explique por que a **aleatorização** permite atribuir uma diferença de resultado ao tratamento.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Ao sortear quem recebe o tratamento, a aleatorização faz com que, em amostras grandes, os grupos de tratamento e controle fiquem **estatisticamente idênticos** em **todas** as características — inclusive as não observadas (motivação, saúde, talento). Como os confundidores estão **balanceados** entre os grupos, eles não podem explicar diferenças de resultado. Logo, qualquer diferença sistemática nos resultados só pode ser atribuída à **única** coisa que difere sistematicamente entre os grupos: o tratamento. O sorteio constrói o contrafactual crível por desenho, eliminando o viés de seleção.
+:::
+
+**7.** (Análise de caso) Uma manchete anuncia: "Estudo mostra que quem toma vinho moderadamente vive mais; beba uma taça por dia". Aponte os problemas causais dessa recomendação.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O estudo é observacional (as pessoas escolhem beber ou não), então sofre de **confusão** e **seleção**. Quem bebe vinho moderadamente tende a ter, em média, **mais renda, melhor dieta, mais acesso a saúde e hábitos mais saudáveis** — confundidores que causam **tanto** o consumo moderado de vinho **quanto** a maior longevidade. Além disso, o grupo dos "não bebedores" muitas vezes inclui ex-bebedores que pararam **por doença** (causalidade reversa/seleção), o que faz o grupo de referência parecer pior. A correlação vinho–longevidade não estabelece que o vinho **cause** vida mais longa; recomendar beber com base nela é injustificado. Só um experimento (ou desenho quase-experimental cuidadoso) sustentaria a recomendação.
+:::
+
+**8.** (Desafio) No debate fiscal, um lado mostra gráfico de "mais gasto público, mais crescimento" e conclui que gastar estimula a economia; o outro mostra o mesmo gráfico e conclui que crescer é que permite gastar. Explique como os dois podem usar a **mesma** correlação e o que seria preciso para decidir.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A mesma correlação positiva entre gasto e PIB é compatível com **três** histórias: (i) o gasto **causa** o PIB (keynesiano); (ii) o PIB **causa** o gasto — economias que crescem arrecadam mais e podem gastar mais (**causalidade reversa**); e (iii) ambos respondem ao **ciclo econômico** e a fatores externos (um **confundidor**). Os dados de correlação, sozinhos, **não distinguem** entre elas — por isso cada lado "lê" o gráfico a seu favor. Para decidir, seria preciso um **desenho de identificação** que isole a direção causal: por exemplo, explorar variações no gasto que sejam **exógenas** ao ciclo (mudanças institucionais, choques não antecipados, experimentos naturais) ou usar instrumentos e métodos quase-experimentais (@sec-avaliacao-de-politicas). Sem isso, a correlação é um espelho em que cada um vê a própria tese.
+:::
+
+## Para saber mais
+
+- @angrist2015 — *Mastering 'Metrics*: introdução brilhante e acessível à inferência causal, ao contrafactual e ao experimento aleatorizado, com exemplos memoráveis.
+- @angrist2009 — *Mostly Harmless Econometrics*: tratamento mais avançado do arcabouço de resultados potenciais e viés de seleção.
+- @wooldridge2016 — discute causalidade, ceteris paribus e a distinção entre associação e efeito causal no contexto da regressão.
+- @stock2020 — capítulos sobre causalidade, experimentos e ameaças à validade interna dos estudos.

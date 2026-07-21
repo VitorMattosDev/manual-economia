@@ -1,0 +1,237 @@
+# Inferência: estimação e testes de hipótese {#sec-inferencia}
+
+Quando o IBGE anuncia que a taxa de desemprego é de 7,8%, ele não contou os desempregados um a um. Entrevistou uma **amostra** e, a partir dela, **inferiu** o valor para o país inteiro — acompanhado, nas notas técnicas, de uma **margem de erro**. Quando um economista afirma que "elevar o salário mínimo reduz o emprego formal", ele precisa mostrar que o efeito encontrado nos dados é **real**, e não fruto do acaso da amostra. Ambos os movimentos — estimar um valor desconhecido e decidir se um efeito é genuíno — são o coração da **inferência estatística**.
+
+Este é o capítulo que transforma a estatística de descrição em **ciência**. Munidos da probabilidade (@sec-probabilidade) e, sobretudo, do teorema central do limite, aprenderemos a construir **intervalos de confiança** (cercar o parâmetro desconhecido) e a realizar **testes de hipótese** (decidir entre afirmações rivais à luz dos dados). É a caixa de ferramentas que sustenta toda a econometria dos capítulos seguintes — e a que mais gera mal-entendidos, do "valor-$p$" à confusão entre significância estatística e relevância econômica.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- distinguir **estimador** e **estimativa**, e reconhecer as propriedades de um bom estimador;
+- entender a **distribuição amostral** e o **erro-padrão** de uma estatística;
+- construir e interpretar corretamente um **intervalo de confiança**;
+- formular hipóteses **nula** e **alternativa** e conduzir um **teste de hipótese**;
+- interpretar o **valor-$p$** e os **erros do tipo I e II** sem cair nas armadilhas usuais;
+- separar **significância estatística** de **relevância econômica**.
+
+## Estimação pontual: adivinhar o parâmetro
+
+A inferência parte de um parâmetro populacional desconhecido — a média $\mu$, uma proporção $p$, uma diferença entre grupos — e usa a amostra para estimá-lo.
+
+::: {.callout-note title="Definição — estimador e estimativa"}
+Um **estimador** é uma regra (uma fórmula) que, aplicada aos dados amostrais, produz um palpite para o parâmetro. A média amostral $\bar{X}$ é o estimador natural de $\mu$. O número concreto que ela assume numa amostra específica é a **estimativa**. O estimador é uma **variável aleatória** (muda de amostra para amostra); a estimativa é um valor fixo.
+:::
+
+Nem todo estimador presta. Buscamos três propriedades:
+
+- **Não viesado (não enviesado):** em média, sobre muitas amostras, acerta o parâmetro — $E(\hat{\theta}) = \theta$. A média amostral é não viesada para $\mu$.
+- **Eficiente:** entre os não viesados, tem a **menor variância** — erra menos, em média.
+- **Consistente:** converge para o parâmetro à medida que a amostra cresce ($n \to \infty$).
+
+## A distribuição amostral e o erro-padrão
+
+A ideia-chave, herdada do TCL, é que o estimador tem ele próprio uma distribuição — a **distribuição amostral** — porque varia de amostra para amostra. Para a média amostral, o TCL nos deu:
+
+$$
+\bar{X} \;\approx\; N\!\left(\mu,\; \frac{\sigma^2}{n}\right).
+$$
+
+O desvio-padrão dessa distribuição amostral é o **erro-padrão** (*standard error*), que mede a **precisão** da estimativa:
+
+$$
+EP(\bar{X}) = \frac{\sigma}{\sqrt{n}}.
+$$ {#eq-erro-padrao}
+
+::: {.callout-important title="Armadilha comum — desvio-padrão não é erro-padrão"}
+São coisas distintas. O **desvio-padrão** ($\sigma$) mede a dispersão dos **dados** (o quanto os indivíduos diferem entre si). O **erro-padrão** ($\sigma/\sqrt{n}$) mede a dispersão do **estimador** (o quanto a média amostral variaria de amostra para amostra). O erro-padrão **encolhe** com $\sqrt{n}$; o desvio-padrão dos dados, não. Confundi-los leva a superestimar ou subestimar grosseiramente a precisão de uma estimativa.
+:::
+
+Como $\sigma$ populacional em geral é desconhecido, usamos o desvio-padrão amostral $s$ no lugar, e o erro-padrão estimado passa a ser $s/\sqrt{n}$. Essa substituição, em amostras pequenas, faz a distribuição de referência deixar de ser a normal e virar a **distribuição $t$ de Student** — parecida com a normal, porém com **caudas mais pesadas** para refletir a incerteza extra sobre $\sigma$. Para $n$ grande, a $t$ converge para a normal.
+
+## Intervalos de confiança
+
+Uma estimativa pontual isolada ("o desemprego é 7,8%") esconde sua imprecisão. O **intervalo de confiança** (IC) corrige isso, cercando o parâmetro com uma faixa e um nível de confiança associado.
+
+Para a média, com o erro-padrão conhecido, o IC de 95% é:
+
+$$
+\bar{X} \;\pm\; z_{0{,}975}\cdot \frac{\sigma}{\sqrt{n}} \;=\; \bar{X} \;\pm\; 1{,}96\,\frac{\sigma}{\sqrt{n}}.
+$$ {#eq-ic}
+
+O número $1{,}96$ é o escore-$z$ que deixa 2,5% em cada cauda da normal padrão (a @fig-ic ilustra). Para 90% de confiança usa-se 1,645; para 99%, 2,576. A metade da largura, $z\cdot EP$, é a **margem de erro**.
+
+::: {#fig-ic}
+
+```{.tikz}
+%%| filename: fig-ic
+%%| alt: Curva normal padrão com a região central de 95% sombreada entre menos 1,96 e mais 1,96 desvios-padrão, e as duas caudas de 2,5% em destaque.
+\begin{tikzpicture}[font=\small]
+  \begin{axis}[
+    width=12cm, height=6cm,
+    xmin=-4, xmax=4, ymin=0, ymax=0.45,
+    axis lines=left,
+    xtick={-1.96,0,1.96},
+    xticklabels={$-1{,}96$,$0$,$+1{,}96$},
+    ytick=\empty,
+    tick label style={font=\footnotesize},
+    samples=200, domain=-4:4,
+  ]
+    \addplot[draw=none, fill=manualgreen!35, domain=-1.96:1.96] {1/sqrt(2*pi)*exp(-x^2/2)} \closedcycle;
+    \addplot[draw=none, fill=manualred!30, domain=-4:-1.96] {1/sqrt(2*pi)*exp(-x^2/2)} \closedcycle;
+    \addplot[draw=none, fill=manualred!30, domain=1.96:4] {1/sqrt(2*pi)*exp(-x^2/2)} \closedcycle;
+    \addplot[curva, manualblue, very thick] {1/sqrt(2*pi)*exp(-x^2/2)};
+    \node[font=\footnotesize] at (axis cs:0,0.15) {95\%};
+    \node[font=\footnotesize, manualred] at (axis cs:2.7,0.05) {2,5\%};
+    \node[font=\footnotesize, manualred] at (axis cs:-2.7,0.05) {2,5\%};
+  \end{axis}
+\end{tikzpicture}
+```
+
+O intervalo de 95% corresponde à região central da distribuição amostral, deixando 2,5% em cada cauda ($z = \pm 1{,}96$).
+:::
+
+::: {.callout-important title="Armadilha comum — o que 95% de confiança realmente significa"}
+Não significa que "há 95% de probabilidade de o parâmetro estar **neste** intervalo". O parâmetro é um número **fixo**: ou está no intervalo, ou não está. O correto: se repetíssemos a amostragem muitíssimas vezes, construindo um IC de 95% a cada vez, **cerca de 95% desses intervalos** conteriam o parâmetro verdadeiro. A confiança está no **procedimento**, não em um intervalo particular. É uma distinção sutil, mas central — e das mais erradas na imprensa.
+:::
+
+## Testes de hipótese
+
+Muitas vezes não queremos estimar um valor, mas **decidir** entre duas afirmações: o salário mínimo afeta o emprego ou não? O novo programa aumentou a renda ou não? O **teste de hipótese** é o procedimento formal dessa decisão.
+
+Formulam-se duas hipóteses rivais:
+
+- A **hipótese nula** ($H_0$) — a afirmação de "nada acontece", o *status quo*, o **ceticismo**: nenhum efeito, nenhuma diferença ($H_0: \mu = \mu_0$, ou "o efeito é zero"). É a hipótese que se põe à prova.
+- A **hipótese alternativa** ($H_1$) — o que se quer demonstrar: há efeito, há diferença.
+
+A lógica é a do **cético a ser convencido**: presume-se $H_0$ verdadeira e pergunta-se **quão surpreendentes** seriam os dados observados se ela de fato fosse verdadeira. Se forem surpreendentes o bastante, **rejeitamos** $H_0$.
+
+A medida dessa surpresa é a **estatística de teste**, que expressa a distância entre a estimativa e o valor da nula, em unidades de erro-padrão:
+
+$$
+t = \frac{\bar{X} - \mu_0}{s/\sqrt{n}}.
+$$ {#eq-estatistica-teste}
+
+Quanto maior o $|t|$, mais longe a estimativa está do que $H_0$ prevê, e mais forte a evidência contra a nula.
+
+## O valor-$p$ e o nível de significância
+
+A **estatística de teste** traduz-se num **valor-$p$**, o conceito mais usado e mais mal-interpretado da estatística.
+
+::: {.callout-note title="Definição — valor-$p$"}
+O **valor-$p$** é a probabilidade de se obter uma estatística de teste **tão ou mais extrema** que a observada, **supondo que a hipótese nula seja verdadeira**. Um valor-$p$ pequeno significa que os dados observados seriam improváveis sob $H_0$ — logo, evidência **contra** $H_0$.
+:::
+
+Fixa-se de antemão um **nível de significância** $\alpha$ (tipicamente 5%, às vezes 1% ou 10%), o limiar de surpresa aceitável. A regra de decisão:
+
+- se **valor-$p$ < $\alpha$**: rejeita-se $H_0$ — o resultado é **estatisticamente significativo**;
+- se **valor-$p$ ≥ $\alpha$**: não se rejeita $H_0$ — não há evidência suficiente contra ela.
+
+::: {.callout-important title="Armadilha comum — o que o valor-$p$ NÃO é"}
+O valor-$p$ **não** é a probabilidade de $H_0$ ser verdadeira, nem a probabilidade de o resultado ter sido "sorte". Ele é calculado **assumindo** $H_0$ verdadeira. Um $p = 0{,}03$ **não** significa "3% de chance de não haver efeito"; significa "se não houvesse efeito, dados tão extremos ocorreriam em 3% das amostras". Tampouco "não rejeitar $H_0$" prova que $H_0$ é verdadeira — ausência de evidência não é evidência de ausência; pode faltar amostra (poder) para detectar um efeito real.
+:::
+
+## Os dois tipos de erro
+
+Toda decisão sob incerteza pode errar de dois modos, e há um *trade-off* entre eles:
+
+|  | $H_0$ verdadeira | $H_0$ falsa |
+|---|---|---|
+| **Rejeita $H_0$** | Erro tipo I ($\alpha$) | Decisão correta |
+| **Não rejeita $H_0$** | Decisão correta | Erro tipo II ($\beta$) |
+
+- **Erro tipo I:** rejeitar $H_0$ quando ela é **verdadeira** — um "falso positivo" (afirmar um efeito que não existe). Sua probabilidade é $\alpha$, o nível de significância.
+- **Erro tipo II:** **não** rejeitar $H_0$ quando ela é **falsa** — um "falso negativo" (deixar passar um efeito real). Sua probabilidade é $\beta$; o **poder** do teste é $1 - \beta$.
+
+Reduzir $\alpha$ (ser mais exigente para declarar significância) aumenta $\beta$ (deixa passar mais efeitos reais), e vice-versa. Só há um jeito de reduzir os dois ao mesmo tempo: **aumentar a amostra**. Escolher $\alpha$ é, no fundo, decidir qual erro é mais custoso no contexto — condenar um inocente ou soltar um culpado.
+
+## Significância estatística ≠ relevância econômica
+
+O erro conceitual mais grave — e mais comum na Economia aplicada — é confundir **significância estatística** com **importância prática**.
+
+::: {.callout-warning title="Controvérsia — a tirania do 0,05"}
+Um resultado "estatisticamente significativo" ($p < 0{,}05$) apenas indica que o efeito é **distinguível de zero** — não que ele seja **grande** ou **importante**. Com uma amostra enorme, um efeito minúsculo e economicamente irrelevante (um aumento de renda de R\$\,0,50) pode ser altamente significativo. Inversamente, um efeito grande pode não atingir significância numa amostra pequena. A boa prática econômica sempre reporta o **tamanho do efeito** e seu **intervalo de confiança**, não apenas se $p < 0{,}05$. Há hoje um movimento amplo — a "crise de replicação" — criticando o fetiche do 0,05, o *p-hacking* (testar muitas hipóteses até uma dar significativa) e o viés de publicação. Significância é necessária, mas longe de suficiente: a pergunta final é sempre "**o efeito importa?**", não só "ele existe?".
+:::
+
+## 🇧🇷 Brasil em Foco
+
+A inferência estatística é o alicerce invisível de quase todo número econômico oficial do Brasil.
+
+**A margem de erro do desemprego.** Quando o IBGE divulga a taxa de desocupação da **PNAD Contínua**, o número (digamos, 7,8%) é uma **estimativa pontual** acompanhada de um **coeficiente de variação** e de um **intervalo de confiança** publicados nas notas técnicas. Por isso o instituto é cauteloso ao anunciar "variações": uma oscilação de 7,8% para 7,7% pode estar **dentro da margem de erro** — isto é, não ser **estatisticamente significativa**. Ignorar isso leva a manchetes que celebram ou lamentam mudanças que são apenas ruído amostral. Ler estatística oficial exige perguntar sempre: essa variação é significativa ou cabe na margem de erro?
+
+**Avaliação de programas sociais.** Boa parte da política pública brasileira baseada em evidência usa testes de hipótese. Estudos sobre o **Bolsa Família** (impacto na frequência escolar, na saúde infantil, na oferta de trabalho) formulam a nula "o programa não teve efeito" e buscam rejeitá-la com significância estatística — sempre reportando o **tamanho** do efeito, porque ao gestor público interessa saber não só *se* o programa funciona, mas *quanto*. Instituições como o IPEA e centros acadêmicos produzem essas avaliações, que veremos com método próprio no @sec-avaliacao-de-politicas.
+
+**Pesquisas eleitorais e de confiança.** As pesquisas de intenção de voto e de confiança do consumidor (FGV, CNI) são exercícios de inferência: uma amostra de poucos milhares estima a preferência de um eleitorado de mais de 150 milhões, com **margem de erro** (tipicamente ± 2 pontos percentuais) e **nível de confiança** (95%) declarados. Dois candidatos separados por menos que a margem estão em **empate técnico** — uma aplicação direta de intervalo de confiança que a cobertura jornalística frequentemente atropela.
+
+> **Fontes e séries para explorar:** IBGE (notas técnicas e coeficientes de variação da PNAD Contínua — margens de erro das estimativas); IPEA (avaliações de impacto de políticas); registros de pesquisas eleitorais no TSE (metodologia, amostra e margem). Verifique sempre a margem de erro e o período.
+
+## Resumo do capítulo
+
+- Um **estimador** é a regra que produz um palpite para o parâmetro; a **estimativa** é o valor concreto. Bons estimadores são **não viesados**, **eficientes** e **consistentes**.
+- A **distribuição amostral** descreve como o estimador varia entre amostras; seu desvio-padrão é o **erro-padrão** ($\sigma/\sqrt{n}$), que mede precisão e encolhe com $\sqrt{n}$ — distinto do desvio-padrão dos dados.
+- O **intervalo de confiança** cerca o parâmetro ($\bar{X} \pm z\cdot EP$); "95% de confiança" refere-se ao **procedimento** (95% dos intervalos conteriam o parâmetro), não a um intervalo específico.
+- O **teste de hipótese** confronta a **nula** $H_0$ (nenhum efeito) com a **alternativa** $H_1$; presume-se $H_0$ e mede-se a surpresa dos dados pela **estatística de teste**.
+- O **valor-$p$** é a probabilidade de dados tão extremos sob $H_0$; rejeita-se $H_0$ se $p < \alpha$. Ele **não** é a probabilidade de $H_0$ ser verdadeira.
+- Há dois erros: **tipo I** (falso positivo, prob. $\alpha$) e **tipo II** (falso negativo, prob. $\beta$; poder $= 1-\beta$); só aumentar a amostra reduz ambos.
+- **Significância estatística ≠ relevância econômica**: sempre reporte o **tamanho do efeito** e seu IC, não apenas se $p < 0{,}05$.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Distinga **estimador** de **estimativa**. Qual dos dois é uma variável aleatória?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O **estimador** é a regra/fórmula (por exemplo, $\bar{X}$) que produz um palpite para o parâmetro; é uma **variável aleatória**, porque assume valores diferentes conforme a amostra sorteada. A **estimativa** é o número concreto que o estimador produz numa amostra específica (por exemplo, $\bar{x} = 7{,}8\%$); é um valor fixo. Em suma: o estimador é a receita; a estimativa é o prato pronto de uma amostra.
+:::
+
+**2.** Explique por que o erro-padrão de uma média diminui quando a amostra aumenta, mas o desvio-padrão dos dados não.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O **desvio-padrão dos dados** ($\sigma$) mede a variabilidade entre indivíduos da população — coletar mais gente não muda o quanto as pessoas diferem entre si. Já o **erro-padrão** da média ($\sigma/\sqrt{n}$) mede quanto a **média amostral** varia de amostra para amostra; com mais dados, a média fica mais estável e precisa, então o erro-padrão cai com $\sqrt{n}$. Quadruplicar $n$ corta o erro-padrão pela metade, sem alterar $\sigma$.
+:::
+
+**3.** Uma amostra de $n = 400$ tem média R\$\,2.000 e desvio-padrão R\$\,600. Construa o intervalo de confiança de 95% para a média populacional.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Erro-padrão: $EP = s/\sqrt{n} = 600/\sqrt{400} = 600/20 = 30$. Margem de erro: $1{,}96 \times 30 = 58{,}8$. IC de 95%: $2.000 \pm 58{,}8 = [1.941{,}2;\ 2.058{,}8]$. Interpretação: o procedimento produz intervalos que, em 95% das amostras, conteriam a média populacional verdadeira.
+:::
+
+**4.** Interprete corretamente a afirmação: "o efeito do programa foi estimado em +R\$\,120, com intervalo de confiança de 95% igual a [−20; +260]". O efeito é estatisticamente significativo a 5%?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O intervalo de 95% **contém o zero** (−20 < 0 < 260). Isso significa que não podemos rejeitar, a 5%, a hipótese nula de que o efeito verdadeiro é zero — o efeito **não é estatisticamente significativo** a 5%. A estimativa pontual é +R\$\,120, mas a imprecisão é grande o bastante para que o efeito verdadeiro possa ser nulo (ou até negativo). Regra prática: se o IC de 95% contém zero, o resultado não é significativo a 5%.
+:::
+
+**5.** Um pesquisador testa $H_0: \mu = 100$ e obtém valor-$p = 0{,}02$. Interprete corretamente, apontando duas interpretações **erradas** comuns.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Correto:** se $H_0$ (μ = 100) fosse verdadeira, a probabilidade de obter dados tão ou mais extremos que os observados seria 2%. Como $0{,}02 < 0{,}05$, rejeita-se $H_0$ a 5%. **Erradas:** (i) "há 2% de probabilidade de $H_0$ ser verdadeira" — falso, o valor-$p$ não é a probabilidade de $H_0$; (ii) "há 98% de chance de o efeito ser real" ou "de o resultado se replicar" — também falso, o valor-$p$ não mede nem a probabilidade de $H_1$ nem a de replicação. O valor-$p$ é calculado **supondo** $H_0$ verdadeira.
+:::
+
+**6.** Um banco central quer decidir se cortar juros aqueceria a economia. Defina os erros tipo I e tipo II nesse contexto e discuta qual pode ser mais custoso.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Seja $H_0$: "o corte não aquece a economia". **Erro tipo I:** concluir que o corte aquece (e agir) quando na verdade não aquece — pode gerar estímulo desnecessário e pressão inflacionária. **Erro tipo II:** concluir que o corte não aquece (e não agir) quando na verdade aqueceria — perde-se a oportunidade de estimular uma economia fraca, prolongando o desemprego. Qual é mais custoso depende do contexto: numa economia à beira da recessão, o tipo II (inação diante de efeito real) pode ser pior; com inflação já alta, o tipo I (estímulo indevido) preocupa mais. A escolha de $\alpha$ reflete esse julgamento.
+:::
+
+**7.** (Análise de caso) Um estudo com 2 milhões de observações encontra que um curso aumenta a renda em R\$\,3,00 por mês, com $p < 0{,}001$. Um gestor comemora o "efeito altamente significativo". Critique.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O gestor confunde **significância estatística** com **relevância econômica**. Com 2 milhões de observações, o erro-padrão é minúsculo, então até um efeito **trivial** (R\$\,3 por mês) fica muito distante de zero em unidades de erro-padrão, gerando $p$ baixíssimo. Mas R\$\,3 mensais são economicamente **irrelevantes** — não justificam o custo do curso. A significância diz apenas que o efeito é **distinguível de zero**, não que é **grande** ou que vale a pena. A avaliação correta compara o **tamanho do efeito** (e seu IC) ao **custo** do programa. "Altamente significativo" com efeito de R\$\,3 é um caso de livro da tirania do 0,05.
+:::
+
+**8.** (Desafio) Explique por que "não rejeitar a hipótese nula" **não** é o mesmo que "provar que a hipótese nula é verdadeira". Ilustre com um exemplo em que a falha em rejeitar decorre de amostra pequena.
+
+::: {.callout-tip collapse="true" title="Solução"}
+"Não rejeitar $H_0$" significa apenas que os dados **não trouxeram evidência suficiente** contra ela — não que $H_0$ seja verdadeira. **Ausência de evidência não é evidência de ausência.** A falha em rejeitar pode decorrer de **baixo poder**: uma amostra pequena tem erro-padrão grande, então mesmo um efeito real pode não atingir significância. Exemplo: um programa aumenta a renda em R\$\,200 (efeito real e relevante), mas o estudo tem apenas $n = 30$; o erro-padrão é tão grande que o intervalo de confiança contém zero e o teste não rejeita $H_0$. Concluir daí que "o programa não funciona" é erro grave — o correto é reconhecer que o estudo foi **inconclusivo** por falta de poder, e pedir uma amostra maior. Rejeitar $H_0$ é uma afirmação forte; não rejeitar é apenas silêncio.
+:::
+
+## Para saber mais
+
+- @wooldridge2016 — os capítulos introdutórios tratam estimação, intervalos de confiança e testes de hipótese com a linguagem que a econometria dos capítulos seguintes usa.
+- @stock2020 — apresentação moderna de inferência, com ênfase em erro-padrão, valor-$p$ e a distinção entre significância e importância.
+- @bussab2017 — para os fundamentos de estimação e testes com muitos exemplos resolvidos, em português.
+- @gujarati2011 — revisão acessível de inferência estatística antes da regressão, com aplicações econômicas.

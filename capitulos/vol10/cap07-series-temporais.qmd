@@ -1,0 +1,196 @@
+# Séries temporais: noções essenciais {#sec-series-temporais}
+
+Até aqui, quase todos os nossos dados eram um retrato de um instante: uma amostra de pessoas, empresas ou domicílios observados num mesmo momento — dados de **corte transversal**. Mas boa parte da Economia vive no **tempo**. O IPCA é divulgado mês a mês; o PIB, trimestre a trimestre; o câmbio e a Selic movem-se todo dia. Uma sequência de observações de uma variável **ao longo do tempo** — o IPCA de janeiro, fevereiro, março… — é uma **série temporal**, e ela exige ferramentas próprias, porque suas observações **não** são independentes: o desemprego de hoje é parente próximo do de ontem.
+
+Este capítulo apresenta as noções essenciais para entender e não se enganar com séries temporais econômicas — o pão de cada dia de quem acompanha a conjuntura. Veremos os **componentes** de uma série (tendência, sazonalidade, ciclo), o conceito central de **estacionariedade**, a **autocorrelação**, os modelos descritivos básicos e — talvez o alerta mais valioso — a armadilha da **regressão espúria**, que faz duas séries com tendência parecerem relacionadas quando não são. É a estatística por trás de cada número de conjuntura que o Brasil divulga.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- distinguir dados de **corte transversal**, **série temporal** e **painel**;
+- decompor uma série em **tendência**, **sazonalidade** e **componente irregular**;
+- entender **estacionariedade**, **autocorrelação** e por que elas importam;
+- reconhecer um **passeio aleatório** e o conceito de **raiz unitária**;
+- identificar a armadilha da **regressão espúria** entre séries com tendência;
+- interpretar séries **dessazonalizadas**, variações **interanuais** e por que a diferenciação estabiliza séries.
+
+## Tipos de dados e a natureza da série temporal
+
+Vale fixar três estruturas de dados:
+
+- **Corte transversal (*cross-section*):** muitas unidades num **mesmo** momento (os domicílios da PNAD de um trimestre). Foi o cenário dos capítulos de regressão.
+- **Série temporal:** **uma** unidade (o país, uma empresa) observada em **muitos** momentos (o IPCA mensal ao longo de 20 anos).
+- **Painel (dados longitudinais):** muitas unidades ao longo de muitos momentos (o PIB de vários estados, ano a ano) — combina as duas dimensões.
+
+A peculiaridade da série temporal é a **dependência temporal**: as observações vêm **ordenadas** e são **correlacionadas** entre si. Isso viola a hipótese de independência que sustentava boa parte da inferência anterior, e é a razão de a série temporal ter teoria própria.
+
+## Os componentes de uma série
+
+Uma série econômica pode ser pensada como a soma (ou o produto) de componentes distintos, ilustrados na @fig-serie:
+
+- **Tendência ($T$):** o movimento de **longo prazo**, a direção geral (o PIB brasileiro cresce, em tendência, ao longo de décadas).
+- **Sazonalidade ($S$):** flutuações **regulares** que se repetem dentro do ano (as vendas do varejo disparam todo dezembro; a produção agrícola tem seu calendário; o emprego formal sobe no fim do ano).
+- **Ciclo ($C$):** oscilações de médio prazo ligadas às expansões e recessões (os ciclos econômicos do Volume 7), menos regulares que a sazonalidade.
+- **Componente irregular ($I$):** o resíduo aleatório, imprevisível — choques, ruído.
+
+::: {#fig-serie}
+
+```{.tikz}
+%%| filename: fig-serie
+%%| alt: Série temporal que sobe em tendência de longo prazo enquanto oscila em ondas sazonais regulares em torno da tendência.
+\begin{tikzpicture}[font=\small]
+  \begin{axis}[
+    width=12cm, height=6cm,
+    xmin=0, xmax=12.5, ymin=0, ymax=12,
+    xlabel={tempo (trimestres)},
+    ylabel={nível da série},
+    axis lines=left,
+    ytick=\empty,
+    tick label style={font=\footnotesize},
+    samples=200, domain=0:12,
+  ]
+    % tendência
+    \addplot[curva, manualred, very thick, dashed, domain=0:12] {2 + 0.6*x};
+    % série = tendência + sazonalidade
+    \addplot[curva, manualblue, very thick, domain=0:12] {2 + 0.6*x + 1.2*sin(deg(x*pi/1.5))};
+    \node[manualred, font=\footnotesize] at (axis cs:10.5,10.5) {tendência $T$};
+    \node[manualblue, font=\footnotesize] at (axis cs:3.4,6.6) {série observada};
+  \end{axis}
+\end{tikzpicture}
+```
+
+Uma série (azul) como soma de uma **tendência** de longo prazo (vermelho tracejado) e uma **sazonalidade** regular que oscila em torno dela.
+:::
+
+Separar esses componentes — a **decomposição** da série — é o que permite responder à pergunta prática mais comum na conjuntura: a variação deste mês é **tendência** (sinal) ou apenas **sazonalidade** (padrão de calendário)?
+
+## Estacionariedade
+
+O conceito mais importante da análise de séries temporais é a **estacionariedade**.
+
+::: {.callout-note title="Definição — série estacionária"}
+Uma série é **estacionária** (em sentido fraco) quando suas propriedades estatísticas **não mudam ao longo do tempo**: a **média** é constante, a **variância** é constante, e a covariância entre dois pontos depende apenas da **distância** entre eles, não de sua localização no tempo. Uma série **não estacionária** tem média e/ou variância que mudam com o tempo — tipicamente, exibe **tendência**.
+:::
+
+Por que isso importa tanto? Porque quase toda a teoria estatística de inferência **pressupõe** estacionariedade. Uma série com tendência (o PIB nominal, o nível de preços) é **não estacionária**: sua média cresce sem parar, e aplicar a ela as ferramentas usuais produz resultados enganosos — o mais famoso deles, a regressão espúria, adiante.
+
+A boa notícia é que séries não estacionárias muitas vezes podem ser **transformadas** em estacionárias. A transformação mais comum é a **diferenciação**: em vez do nível da série, trabalha-se com sua **variação** de um período a outro, $\Delta Y_t = Y_t - Y_{t-1}$. O PIB (com tendência, não estacionário) vira o **crescimento** do PIB (sem tendência, estacionário); o nível de preços vira a **inflação**. Muitas variáveis econômicas são não estacionárias em nível, mas estacionárias em **primeira diferença**.
+
+## Autocorrelação e o passeio aleatório
+
+Como as observações de uma série são correlacionadas no tempo, definimos a **autocorrelação**: a correlação de uma série com suas próprias defasagens (*lags*). A autocorrelação de ordem 1 mede o quanto $Y_t$ se relaciona com $Y_{t-1}$; a de ordem 12 (em dados mensais), com o mesmo mês do ano anterior — reveladora de sazonalidade. O gráfico dessas correlações, o **correlograma**, é a primeira ferramenta de diagnóstico de uma série.
+
+Um caso especial e fundamental é o **passeio aleatório** (*random walk*):
+
+$$
+Y_t = Y_{t-1} + u_t,
+$$ {#eq-random-walk}
+
+em que o valor de hoje é o de ontem mais um choque **imprevisível** $u_t$. O passeio aleatório é **não estacionário** (sua variância cresce com o tempo) e diz-se que tem uma **raiz unitária**. Sua propriedade marcante: choques têm efeito **permanente** — um empurrão hoje desloca a série para sempre, sem tendência a retornar a um nível médio. A melhor previsão para amanhã é simplesmente o valor de hoje.
+
+::: {.callout-tip title="Intuição — por que preços de ativos parecem passeios aleatórios"}
+Segundo a hipótese de mercados eficientes, o preço de uma ação já incorpora toda a informação disponível; logo, sua variação futura só pode vir de **notícias novas**, que são por definição imprevisíveis. O preço comporta-se, então, aproximadamente como um **passeio aleatório**: a melhor previsão do preço de amanhã é o preço de hoje. É por isso que "prever" a bolsa é tão difícil — se o movimento fosse previsível, os investidores já o teriam explorado, eliminando-o. Testar se uma série tem raiz unitária é testar essa imprevisibilidade.
+:::
+
+## A armadilha da regressão espúria
+
+Aqui está o alerta mais valioso do capítulo — e um erro que já rendeu conclusões econômicas inteiramente falsas.
+
+::: {.callout-important title="Armadilha comum — regressão espúria"}
+Se você regredir **duas séries não estacionárias** com tendência, uma contra a outra, é quase certo obter um coeficiente **altamente significativo** e um **$R^2$ altíssimo** — **mesmo que as séries não tenham nenhuma relação real**. A razão: ambas apenas **crescem no tempo**, e o MQO confunde esse crescimento comum com uma associação genuína. É a **regressão espúria** (Granger e Newbold, 1974). Exemplos caricatos abundam: o número de afogamentos e o PIB, o consumo de energia e a expectativa de vida — tudo "explica" tudo, porque tudo tem tendência de alta. **Nunca** interprete uma regressão entre séries com tendência sem antes torná-las estacionárias (diferenciando) ou verificar **cointegração**.
+:::
+
+A regressão espúria é a versão temporal da lição do @sec-correlacao-causalidade: correlação não é causalidade, e no tempo o problema é ainda mais traiçoeiro, porque a "correlação" é fabricada pela tendência comum, sem qualquer confundidor específico. A defesa é testar a estacionariedade (testes de **raiz unitária**, como o de Dickey-Fuller), diferenciar as séries antes de regredir, ou — quando as séries compartilham uma tendência estocástica **genuína** de longo prazo — usar o arcabouço de **cointegração**, que distingue relações de longo prazo reais das espúrias.
+
+## Sazonalidade e o ajuste sazonal
+
+Um último tema de enorme importância prática. Como a sazonalidade contamina a leitura de curto prazo (o desemprego **sempre** cai em dezembro; as vendas **sempre** sobem no Natal), os institutos divulgam séries **dessazonalizadas** (com ajuste sazonal), das quais o padrão de calendário foi removido. Duas formas de contornar a sazonalidade:
+
+- **Série dessazonalizada:** compara-se um mês com o **anterior** já sem o efeito sazonal — capta a tendência **recente**. Ideal para saber "para onde a economia está indo **agora**".
+- **Variação interanual (contra o mesmo mês do ano anterior):** compara dezembro com dezembro, eliminando a sazonalidade por construção — mas responde com **defasagem**, pois carrega 12 meses de história.
+
+Confundir os dois gera erros graves de interpretação de conjuntura: celebrar uma "queda do desemprego" que é só sazonalidade, ou uma "alta das vendas" que é apenas o Natal chegando.
+
+## 🇧🇷 Brasil em Foco
+
+Nenhum país oferece um laboratório de séries temporais mais rico — e mais escrutinado — que o Brasil, com sua profusão de indicadores de conjuntura acompanhados mês a mês.
+
+**IPCA e a inflação: nível, variação e ajuste.** O **IPCA** (IBGE) é o exemplo perfeito da distinção nível × diferença. O **índice de preços** em nível é não estacionário (só sobe, tendência de alta permanente); a **inflação** — sua variação mensal — é a série estacionária que o Banco Central efetivamente persegue nas metas (Volume 8). O IBGE divulga o IPCA cheio, os núcleos (que filtram itens voláteis), e analistas acompanham a inflação **acumulada em 12 meses** (variação interanual) e a **mensal dessazonalizada anualizada** — cada uma respondendo a uma pergunta diferente sobre a dinâmica de preços.
+
+**PIB e desemprego: a guerra da sazonalidade.** O **PIB trimestral** e a taxa de desocupação da **PNAD Contínua** são divulgados tanto na série original quanto **dessazonalizada** justamente por causa de seus fortíssimos padrões sazonais — a atividade cai no primeiro trimestre, o emprego formal (Caged) sobe no fim do ano. A leitura correta da conjuntura brasileira depende de saber **qual** série se está olhando: a variação do PIB "contra o trimestre anterior com ajuste sazonal" (a margem) conta uma história; a "contra o mesmo trimestre do ano anterior" (interanual), outra. Erros de interpretação aqui produzem manchetes contraditórias sobre a **mesma** divulgação.
+
+**O tesouro das séries: o SGS do Banco Central.** O **Sistema Gerenciador de Séries Temporais (SGS)** do Banco Central e o **Ipeadata** reúnem milhares de séries temporais brasileiras — câmbio, Selic, crédito, expectativas do boletim Focus, agregados monetários. É a matéria-prima da análise de conjuntura no Brasil. E é também um campo minado de **regressões espúrias**: como a maioria dessas séries em nível tem tendência (economia que cresce, preços que sobem), qualquer par delas "se correlaciona". O analista competente diferencia, testa raiz unitária e desconfia de $R^2$ suspeito — aplicando, na prática, o alerta central deste capítulo.
+
+> **Fontes e séries para explorar:** IBGE (IPCA, PIB trimestral, PNAD Contínua — séries originais e dessazonalizadas); Banco Central (SGS — câmbio, Selic, crédito; boletim Focus); Ipeadata (séries históricas consolidadas). Ao comparar períodos, verifique sempre se a série é original, dessazonalizada ou interanual — e se está em nível ou em variação.
+
+## Resumo do capítulo
+
+- Dados podem ser de **corte transversal** (unidades num instante), **série temporal** (uma unidade no tempo) ou **painel** (ambas as dimensões); séries temporais têm **dependência temporal** — observações correlacionadas.
+- Uma série decompõe-se em **tendência** (longo prazo), **sazonalidade** (padrão regular intra-anual), **ciclo** (médio prazo) e **componente irregular** (ruído).
+- Uma série é **estacionária** se média, variância e autocovariância não mudam no tempo; a inferência usual pressupõe estacionariedade. Séries com tendência são **não estacionárias**.
+- A **diferenciação** ($\Delta Y_t = Y_t - Y_{t-1}$) costuma tornar séries estacionárias: nível de preços → inflação; PIB → crescimento.
+- A **autocorrelação** mede a relação da série com suas defasagens; o **passeio aleatório** ($Y_t = Y_{t-1} + u_t$) é não estacionário, tem **raiz unitária** e choques **permanentes** — modelo de preços de ativos eficientes.
+- A **regressão espúria** faz duas séries com tendência parecerem relacionadas ($R^2$ alto, $t$ significativo) sem relação real; defende-se diferenciando, testando raiz unitária ou usando **cointegração**.
+- Para ler conjuntura, distinga série **original**, **dessazonalizada** (tendência recente) e **variação interanual** (defasada), e **nível** de **variação**.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Classifique cada conjunto como corte transversal, série temporal ou painel: (a) o IPCA mensal de 2000 a 2024; (b) a renda de 50 mil domicílios num trimestre; (c) o PIB anual de 27 unidades da federação ao longo de 10 anos.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Série temporal** — uma variável (IPCA) ao longo de muitos períodos. (b) **Corte transversal** — muitas unidades (domicílios) num único momento. (c) **Painel** — muitas unidades (27 UFs) observadas em muitos períodos (10 anos), combinando as duas dimensões.
+:::
+
+**2.** Explique a diferença entre **sazonalidade** e **ciclo**. Dê um exemplo brasileiro de cada.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A **sazonalidade** é uma flutuação **regular** que se repete dentro do ano, ligada ao calendário — por exemplo, as vendas do varejo que **sempre** disparam em dezembro (Natal), ou o emprego formal que sobe no fim do ano. O **ciclo** é uma oscilação de **médio prazo**, **menos regular**, ligada às expansões e recessões da economia — por exemplo, a recessão brasileira de 2015–2016 e a recuperação seguinte. A sazonalidade é previsível e periódica; o ciclo é irregular em duração e intensidade.
+:::
+
+**3.** Por que o nível de preços (índice) é não estacionário, mas a inflação (sua variação) pode ser estacionária?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O **nível de preços** tem tendência de alta permanente — sua média cresce continuamente ao longo do tempo —, logo é **não estacionário**. A **inflação** é a **variação** (primeira diferença, em termos percentuais) desse nível; ela oscila em torno de um patamar mais ou menos estável (em torno da meta, sob regime de metas), sem tendência sistemática de alta — média e variância aproximadamente constantes. Assim, uma série não estacionária **em nível** torna-se estacionária **em diferença** — caso típico de variáveis econômicas.
+:::
+
+**4.** O que caracteriza um **passeio aleatório**? Por que sua melhor previsão para o próximo período é o valor atual?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Um **passeio aleatório** é $Y_t = Y_{t-1} + u_t$: o valor de hoje é o de ontem mais um choque **imprevisível** de média zero. Como o choque $u_t$ é imprevisível (esperança zero), o **valor esperado** de $Y_t$ dado tudo o que se sabe até $t-1$ é exatamente $Y_{t-1}$ — não há componente previsível a acrescentar. Logo, a melhor previsão para o próximo período é o **último valor observado**. A série não retorna a nenhuma média (não estacionária, raiz unitária) e os choques têm efeito **permanente**.
+:::
+
+**5.** Um analista regride o PIB nominal do Brasil contra o número de assinaturas de streaming ao longo de 2010–2024, obtém $R^2 = 0{,}97$ e conclui que streaming impulsiona o PIB. Diagnostique o erro.
+
+::: {.callout-tip collapse="true" title="Solução"}
+É uma **regressão espúria**. Ambas as séries são **não estacionárias** com forte **tendência de alta** no período (o PIB nominal cresce com inflação e crescimento real; as assinaturas de streaming explodiram de quase zero a milhões). O MQO confunde essas duas tendências ascendentes com uma associação real, produzindo $R^2$ altíssimo e coeficiente "significativo" **sem qualquer relação causal**. O streaming não impulsiona o PIB — as duas apenas crescem no tempo. A correção: diferenciar as séries (trabalhar com **variações**) e/ou testar raiz unitária antes de qualquer regressão; provavelmente a relação desaparece nas diferenças.
+:::
+
+**6.** Explique a diferença entre comparar o desemprego "com o mês anterior, dessazonalizado" e "com o mesmo mês do ano anterior". Quando cada um é mais útil?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A comparação **com o mês anterior dessazonalizado** remove o padrão de calendário e mede a tendência **mais recente** — útil para captar **viradas** de curto prazo ("a economia está piorando **agora**?"). A comparação **interanual** (mesmo mês do ano anterior) elimina a sazonalidade por construção (dezembro contra dezembro), mas responde com **defasagem**, pois embute 12 meses de história — útil para uma leitura **suavizada** de médio prazo, menos sujeita a ruído mensal, mas lenta para detectar mudanças recentes. Em viradas de ciclo, a interanual demora a "perceber" a mudança que a dessazonalizada já mostra.
+:::
+
+**7.** (Análise de caso) Em dezembro, o varejo brasileiro registra forte alta nas vendas. Uma manchete anuncia "consumo aquece e economia decola". Usando o conceito de sazonalidade, critique a manchete.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A alta do varejo em dezembro é, em grande parte, **sazonalidade** pura: o Natal e o 13º salário fazem as vendas subirem **todo** dezembro, independentemente do estado do ciclo econômico. Comparar dezembro com novembro (sem ajuste) e concluir que "a economia decola" confunde **padrão de calendário** com **tendência** genuína. A leitura correta usa a série **dessazonalizada** (a alta de dezembro sobrou depois de removido o efeito Natal?) ou a **variação interanual** (as vendas deste dezembro superaram as do dezembro anterior?). Só se o crescimento **persistir após o ajuste sazonal** é que se pode falar em aquecimento real. A manchete comete o erro clássico de tomar sazonalidade por sinal.
+:::
+
+**8.** (Desafio) Preços de ações costumam se comportar como passeios aleatórios. Explique por que isso decorre da eficiência de mercado e por que implica que estratégias baseadas em "prever o gráfico" tendem a fracassar.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Sob a **hipótese de mercados eficientes**, o preço de uma ação já reflete **toda** a informação publicamente disponível. Se existisse um padrão **previsível** nos preços (por exemplo, "sempre sobe depois de cair três dias"), os investidores o explorariam comprando/vendendo até que a oportunidade de lucro **desaparecesse** — eliminando o próprio padrão. Sobra, então, apenas a variação causada por **notícias novas**, que são por definição **imprevisíveis** (se fossem previsíveis, já estariam no preço). Isso faz o preço se comportar como um **passeio aleatório**: $P_t = P_{t-1} + u_t$, com a melhor previsão de amanhã sendo o preço de hoje, e os choques imprevisíveis. Consequência: estratégias de **análise gráfica** que buscam padrões repetíveis nos preços passados não têm, em média, como gerar retornos anormais consistentes — o passado do gráfico não carrega informação explorável sobre o futuro. (Na prática, há desvios e anomalias, mas o resultado é uma boa primeira aproximação e explica por que "bater o mercado" consistentemente é raríssimo — tema do Volume 14.)
+:::
+
+## Para saber mais
+
+- @morettin2018 — referência brasileira de análise de séries temporais: estacionariedade, autocorrelação, modelos ARIMA e raiz unitária, com rigor e exemplos.
+- @stock2020 — capítulos de séries temporais com ênfase em previsão, raiz unitária e regressão espúria, em linguagem acessível.
+- @wooldridge2016 — tratamento de regressão com séries temporais, tendências, sazonalidade e os cuidados com séries não estacionárias.
+- @gujarati2011 — introdução à econometria de séries temporais, cointegração e testes de raiz unitária, em português.

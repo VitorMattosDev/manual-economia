@@ -143,14 +143,14 @@
 
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
-| 1 | Estatística descritiva para a Economia | `capitulos/vol10/cap01-estatistica-descritiva.qmd` | ⬜ |
-| 2 | Probabilidade e distribuições | `capitulos/vol10/cap02-probabilidade.qmd` | ⬜ |
-| 3 | Inferência: estimação e testes de hipótese | `capitulos/vol10/cap03-inferencia.qmd` | ⬜ |
-| 4 | Correlação não é causalidade | `capitulos/vol10/cap04-correlacao-causalidade.qmd` | ⬜ |
-| 5 | Regressão linear simples | `capitulos/vol10/cap05-regressao-simples.qmd` | ⬜ |
-| 6 | Regressão múltipla e viés de variável omitida | `capitulos/vol10/cap06-regressao-multipla.qmd` | ⬜ |
-| 7 | Séries temporais: noções essenciais | `capitulos/vol10/cap07-series-temporais.qmd` | ⬜ |
-| 8 | Avaliação de políticas públicas: métodos quase-experimentais | `capitulos/vol10/cap08-avaliacao-de-politicas.qmd` | ⬜ |
+| 1 | Estatística descritiva para a Economia | `capitulos/vol10/cap01-estatistica-descritiva.qmd` | ✅ |
+| 2 | Probabilidade e distribuições | `capitulos/vol10/cap02-probabilidade.qmd` | ✅ |
+| 3 | Inferência: estimação e testes de hipótese | `capitulos/vol10/cap03-inferencia.qmd` | ✅ |
+| 4 | Correlação não é causalidade | `capitulos/vol10/cap04-correlacao-causalidade.qmd` | ✅ |
+| 5 | Regressão linear simples | `capitulos/vol10/cap05-regressao-simples.qmd` | ✅ |
+| 6 | Regressão múltipla e viés de variável omitida | `capitulos/vol10/cap06-regressao-multipla.qmd` | ✅ |
+| 7 | Séries temporais: noções essenciais | `capitulos/vol10/cap07-series-temporais.qmd` | ✅ |
+| 8 | Avaliação de políticas públicas: métodos quase-experimentais | `capitulos/vol10/cap08-avaliacao-de-politicas.qmd` | ✅ |
 
 ---
 

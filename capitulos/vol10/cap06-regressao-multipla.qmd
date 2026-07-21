@@ -1,0 +1,183 @@
+# Regressão múltipla e viés de variável omitida {#sec-regressao-multipla}
+
+No capítulo anterior, uma regressão simples do salário contra anos de estudo entregou um número tentador — cada ano de escola "vale" tantos por cento a mais. Mas terminamos com uma ressalva incômoda: quem estuda mais também tende a ter mais **habilidade**, mais **experiência**, vir de famílias mais **ricas** — e todos esses fatores, escondidos no termo de erro, também elevam o salário. A regressão simples, ao ignorá-los, atribui à educação um crédito que em parte é de outros. Como resolver? A resposta é a ferramenta mais poderosa da econometria clássica: a **regressão múltipla**, que permite **segurar constantes** as outras variáveis e isolar o efeito de cada uma.
+
+Este capítulo dá o salto de uma para várias variáveis explicativas — e, com ele, o econometrista ganha a capacidade de aproximar em dados observacionais o *ceteris paribus* que os experimentos garantem por sorteio (@sec-correlacao-causalidade). Veremos como interpretar os coeficientes "mantendo as demais constantes", entenderemos o problema mais importante da econometria aplicada — o **viés de variável omitida** —, e conheceremos suas variantes (variáveis *dummy*, interações) e armadilhas (multicolinearidade, *bad controls*). É a ponte final rumo à avaliação de políticas (@sec-avaliacao-de-politicas).
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- especificar e interpretar o modelo de **regressão múltipla**, com a cláusula *ceteris paribus*;
+- entender como incluir controles ajuda a isolar o efeito de interesse;
+- diagnosticar o **viés de variável omitida** e prever seu **sinal**;
+- usar **variáveis binárias (*dummies*)** e **termos de interação**;
+- reconhecer a **multicolinearidade** e o problema dos **maus controles** (*bad controls*);
+- distinguir quando incluir e quando **não** incluir uma variável no modelo.
+
+## O modelo de regressão múltipla
+
+A generalização é natural: em vez de uma, várias variáveis explicativas entram no modelo:
+
+$$
+Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_k X_{ki} + u_i.
+$$ {#eq-modelo-multiplo}
+
+O estimador continua sendo o **MQO** — minimiza-se a soma dos quadrados dos resíduos, agora ajustando um **plano** (ou hiperplano) em vez de uma reta. O que muda, e muda tudo, é a **interpretação** dos coeficientes.
+
+::: {.callout-note title="Definição — coeficiente parcial (*ceteris paribus*)"}
+Na regressão múltipla, cada coeficiente $\beta_j$ mede o efeito de aumentar $X_j$ em uma unidade sobre $Y$, **mantendo todas as demais variáveis explicativas constantes**. É um efeito **parcial**, *ceteris paribus* — a regressão "segura" as outras variáveis e mostra a contribuição isolada de $X_j$. Essa é a grande virtude da regressão múltipla.
+:::
+
+Voltando ao salário: se estimarmos
+
+$$
+\widehat{\ln(\text{salário})} = \beta_0 + \beta_1\,\text{estudo} + \beta_2\,\text{experiência} + u,
+$$
+
+o coeficiente $\beta_1$ passa a medir o retorno de um ano de estudo **entre pessoas com a mesma experiência** — comparamos maçãs com maçãs. Ao incluir a experiência como **controle**, tiramos do coeficiente da educação a parte que, antes, se confundia com o fato de os mais velhos e experientes também ganharem mais.
+
+## O viés de variável omitida
+
+Chegamos ao conceito mais importante deste volume para a prática empírica. Quando uma variável **relevante** é deixada de fora do modelo — omitida —, o coeficiente das variáveis incluídas fica **viesado**, porque absorve o efeito da variável ausente. A @fig-vvo mostra a estrutura causal do problema.
+
+::: {#fig-vvo}
+
+```{.tikz}
+%%| filename: fig-vvo
+%%| alt: Diagrama causal mostrando a habilidade omitida apontando para educação e para salário; a educação também aponta para salário, de modo que omitir a habilidade contamina o coeficiente da educação.
+\begin{tikzpicture}[font=\small]
+  \node[draw, circle, fill=manualyellow!25, minimum size=1.7cm, align=center] (h) at (0,2.2) {habilidade\\\footnotesize (omitida)};
+  \node[draw, circle, fill=manualblue!18, minimum size=1.6cm, align=center] (e) at (-3,-1) {educação\\\footnotesize $X_1$};
+  \node[draw, circle, fill=manualred!18, minimum size=1.6cm, align=center] (s) at (3,-1) {salário\\\footnotesize $Y$};
+  \draw[vetor, manualgray, thick] (h) -- node[left, font=\footnotesize, black]{$\delta$} (e);
+  \draw[vetor, manualgray, thick] (h) -- node[right, font=\footnotesize, black]{$\gamma$} (s);
+  \draw[vetor, manualblue, thick] (e) -- node[below, font=\footnotesize, black]{$\beta_1$ (efeito causal)} (s);
+\end{tikzpicture}
+```
+
+A **habilidade** (omitida) causa tanto a educação quanto o salário. Ao deixá-la fora, o coeficiente de MQO da educação captura o efeito verdadeiro $\beta_1$ **mais** um viés proporcional a $\delta\cdot\gamma$.
+:::
+
+Para haver viés, a variável omitida precisa satisfazer **duas** condições simultâneas: (i) afetar $Y$ (ser relevante) e (ii) ser **correlacionada** com a variável de interesse incluída. Se qualquer uma falhar, não há viés. O **sinal** do viés é previsível pela regra do produto:
+
+$$
+\text{viés de } \hat{\beta}_1 \;\approx\; \underbrace{\gamma}_{\substack{\text{efeito da omitida}\\ \text{sobre } Y}} \times \underbrace{\delta}_{\substack{\text{relação omitida}\\ \times X_1}}.
+$$ {#eq-vies}
+
+::: {.callout-important title="Armadilha comum — prevendo o sinal do viés"}
+Se a variável omitida tem efeito **positivo** sobre $Y$ e é **positivamente** correlacionada com $X_1$, o viés é **positivo**: o MQO **superestima** $\beta_1$. É exatamente o caso educação/habilidade: a habilidade eleva o salário ($\gamma > 0$) e anda junto com a escolaridade ($\delta > 0$), então a regressão sem controle de habilidade **superestima** o retorno da educação. Se os sinais de $\gamma$ e $\delta$ forem opostos, o viés é negativo (subestima). Saber prever o sinal permite, ao menos, dizer em que direção erramos quando não temos a variável.
+:::
+
+O viés de variável omitida é a razão pela qual "adicionar controles" é a resposta reflexa do econometrista — e por que a frase "correlação não é causalidade" (@sec-correlacao-causalidade) tem, na regressão múltipla, sua primeira linha de defesa. Mas é uma defesa **incompleta**: só podemos controlar o que **observamos**. Variáveis omitidas **não observáveis** (a habilidade inata, a motivação) continuam a viesar os coeficientes — e é justamente para elas que os métodos do próximo capítulo foram inventados.
+
+## Variáveis binárias (*dummies*) e interações
+
+Nem toda variável explicativa é numérica. Sexo, região, ter ou não ensino superior, estar num grupo de tratamento — são **categóricas**. Representamo-las por **variáveis binárias** (*dummies*), que valem 1 se a característica está presente e 0 caso contrário.
+
+Numa regressão de salário, incluir uma *dummy* $\text{mulher}$ (1 se mulher, 0 se homem):
+
+$$
+\widehat{\text{salário}} = \beta_0 + \beta_1\,\text{estudo} + \beta_2\,\text{mulher},
+$$
+
+faz $\beta_2$ medir a **diferença** de salário entre mulheres e homens **com a mesma escolaridade** — um controle direto do hiato salarial de gênero. A *dummy* desloca o intercepto entre os grupos.
+
+Já os **termos de interação** permitem que o **efeito** de uma variável dependa de outra. Um termo $\text{estudo} \times \text{mulher}$ deixa o **retorno da educação** ser diferente para homens e mulheres. Interações são a forma de a regressão captar que "depende" — que o efeito de $X_1$ não é o mesmo em todo lugar.
+
+## Multicolinearidade e maus controles
+
+A regressão múltipla tem duas armadilhas que todo praticante precisa conhecer.
+
+A **multicolinearidade** ocorre quando duas ou mais variáveis explicativas são **altamente correlacionadas** entre si (por exemplo, incluir idade e experiência, que caminham quase juntas). O MQO não consegue separar bem os efeitos individuais — os coeficientes ficam **imprecisos** (erros-padrão grandes), embora **não viesados**. Sintoma típico: um $R^2$ alto convivendo com coeficientes individualmente **não significativos** e instáveis. A multicolinearidade não é um erro de modelagem em si, mas limita o que se pode aprender de cada variável separadamente.
+
+Mais sutil, e mais perigoso, é o problema dos **maus controles** (*bad controls*):
+
+::: {.callout-warning title="Controvérsia — controlar demais também enviesa"}
+Existe a crença ingênua de que "quanto mais controles, melhor". Falso. Incluir uma variável que é, ela mesma, **consequência** do tratamento (um *bad control*) **introduz** viés em vez de removê-lo. Exemplo: ao estimar o efeito da educação sobre o salário, **controlar pela ocupação** é um erro — a ocupação é, em parte, **resultado** da educação (mais estudo leva a cargos melhores). Controlá-la "fecha" o próprio canal pelo qual a educação eleva o salário, subestimando o efeito. A regra: controle por variáveis **anteriores** (pré-tratamento) ao tratamento; **nunca** por variáveis que estão no **caminho causal** entre o tratamento e o resultado. Adicionar controles é uma decisão **causal**, não estatística.
+:::
+
+Essas duas armadilhas ensinam a mesma lição: a escolha das variáveis do modelo deve ser guiada por um **raciocínio causal** explícito (qual causa o quê), e não por buscar o melhor ajuste estatístico. Bons diagramas causais (@sec-correlacao-causalidade) valem mais que qualquer software.
+
+## 🇧🇷 Brasil em Foco
+
+A regressão múltipla é o instrumento com que a Economia brasileira mede seus problemas sociais mais espinhosos — e o viés de variável omitida é o fantasma que ronda cada estimativa.
+
+**Discriminação salarial: gênero e raça.** Uma das aplicações mais importantes no Brasil é a decomposição dos **hiatos salariais** de gênero e raça. Regressões do log-salário com controles de escolaridade, experiência, setor e região — usando a **PNAD Contínua** — mostram que, mesmo **entre pessoas com as mesmas características observáveis**, mulheres e pessoas negras ganham, em média, menos que homens brancos. A parte do hiato que **sobra após os controles** (a decomposição de Oaxaca-Blinder) é interpretada como possível **discriminação** — embora se deva sempre lembrar do viés de variável omitida: pode haver diferenças **não observadas** (trajetórias, interrupções de carreira) que os dados não captam. Ainda assim, a persistência de hiatos condicionais é uma das evidências empíricas mais robustas da desigualdade brasileira.
+
+**O retorno da educação, revisitado.** A regressão múltipla é o primeiro remédio para o problema de Mincer do @sec-regressao-simples: controlando experiência, região e setor, aproxima-se melhor o retorno da educação. Mas a **habilidade não observada** permanece omitida — nenhuma pesquisa domiciliar mede talento inato. Por isso os estudos brasileiros mais rigorosos sobre o retorno da educação recorrem a estratégias além do MQO (variáveis instrumentais, gêmeos, reformas educacionais como experimentos naturais), reconhecendo que o coeficiente de MQO, mesmo com controles, ainda **superestima** o efeito causal — viés positivo, como prevê a regra do sinal.
+
+**Determinantes do desempenho escolar.** Regressões múltiplas com dados do **Saeb/Prova Brasil** e do **Censo Escolar** estimam como nível socioeconômico, infraestrutura da escola e formação do professor se associam ao desempenho dos alunos. São insumo direto de política educacional — mas sujeitas a *bad controls* e endogeneidade: alunos não são alocados aleatoriamente às escolas, e famílias mais estruturadas escolhem melhores escolas (viés de seleção). Ler essas regressões exige o ceticismo causal do @sec-correlacao-causalidade.
+
+> **Fontes e séries para explorar:** IBGE/PNAD Contínua (microdados para hiatos salariais e retornos da educação); Inep (Saeb, Censo Escolar — desempenho e insumos escolares); IPEA e periódicos de economia aplicada (decomposições de discriminação). Ao ler estimativas, pergunte: que variáveis relevantes ficaram de fora? em que direção elas viesam o resultado?
+
+## Resumo do capítulo
+
+- A **regressão múltipla** inclui várias explicativas; cada coeficiente $\beta_j$ é um **efeito parcial** — o impacto de $X_j$ sobre $Y$ **mantendo as demais constantes** (*ceteris paribus*).
+- Incluir **controles** aproxima o *ceteris paribus* dos experimentos, isolando o efeito de interesse do de outras variáveis observadas.
+- O **viés de variável omitida** ocorre quando uma variável relevante fica de fora **e** é correlacionada com a variável de interesse; o coeficiente incluído absorve o efeito da ausente.
+- O **sinal** do viés é o produto (efeito da omitida sobre $Y$) × (correlação da omitida com $X_1$); educação/habilidade gera viés **positivo** (superestima o retorno da educação).
+- **Dummies** representam variáveis categóricas (deslocam o intercepto entre grupos); **interações** deixam o efeito de uma variável depender de outra.
+- **Multicolinearidade** (explicativas muito correlacionadas) torna coeficientes imprecisos, não viesados; **maus controles** (variáveis que são consequência do tratamento) **introduzem** viés — controlar é uma decisão **causal**, não "quanto mais, melhor".
+- Só se controla o que se **observa**; variáveis omitidas **não observáveis** permanecem, motivando os métodos do @sec-avaliacao-de-politicas.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Qual a diferença de interpretação entre o coeficiente de $X_1$ numa regressão **simples** e numa regressão **múltipla** que inclui $X_2$?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Na regressão **simples**, o coeficiente de $X_1$ mede a associação **total** entre $X_1$ e $Y$, incluindo qualquer efeito que passe por $X_2$ (se $X_1$ e $X_2$ forem correlacionados). Na **múltipla**, o coeficiente de $X_1$ é **parcial**: mede o efeito de $X_1$ sobre $Y$ **mantendo $X_2$ constante** — isola a contribuição de $X_1$ da de $X_2$. Comparamos observações com o **mesmo** valor de $X_2$.
+:::
+
+**2.** Quais as **duas** condições para que uma variável omitida gere viés? Se apenas uma se verifica, há viés?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A variável omitida gera viés quando (i) **afeta $Y$** (é relevante) **e** (ii) é **correlacionada com a variável de interesse** incluída. As duas condições precisam valer **simultaneamente**. Se a omitida não afeta $Y$, ou se não tem correlação com o regressor de interesse, **não há viés** (embora, no primeiro caso, omiti-la possa apenas aumentar a variância residual). É a conjunção das duas que contamina o coeficiente.
+:::
+
+**3.** Numa regressão de salário contra educação, omite-se a habilidade. Sabendo que a habilidade eleva o salário e é positivamente correlacionada com a educação, o coeficiente da educação será super ou subestimado?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Superestimado** (viés positivo). Pela regra do sinal, o viés é o produto (efeito da omitida sobre $Y$) × (correlação da omitida com o regressor). Aqui a habilidade tem efeito **positivo** sobre o salário e correlação **positiva** com a educação: $(+)\times(+) = (+)$. O coeficiente da educação absorve parte do efeito da habilidade, atribuindo à escola um retorno maior que o verdadeiro.
+:::
+
+**4.** Explique o papel de uma variável *dummy* $\text{mulher}$ (1 = mulher, 0 = homem) numa regressão de salário. O que mede seu coeficiente?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A *dummy* $\text{mulher}$ permite que homens e mulheres tenham interceptos diferentes. Seu coeficiente mede a **diferença média de salário** entre mulheres e homens **com os mesmos valores das demais variáveis** do modelo (mesma escolaridade, experiência etc.). Se for negativo e significativo, indica que, controlando o resto, mulheres ganham menos — o hiato salarial de gênero condicional. A *dummy* desloca a reta verticalmente entre os dois grupos.
+:::
+
+**5.** Por que incluir simultaneamente "idade" e "experiência" (que crescem quase juntas) pode ser problemático? Que sintoma isso gera?
+
+::: {.callout-tip collapse="true" title="Solução"}
+É um caso de **multicolinearidade**: idade e experiência são altamente correlacionadas, então o MQO não consegue separar bem seus efeitos individuais. O sintoma clássico é: o modelo tem $R^2$ e significância **conjunta** boas, mas os coeficientes de idade e experiência ficam **imprecisos** (erros-padrão inflados), muitas vezes **individualmente não significativos** e instáveis (mudam muito com pequenas alterações nos dados). Os coeficientes continuam **não viesados**, mas pouco confiáveis individualmente. Solução usual: manter só uma das variáveis ou combiná-las.
+:::
+
+**6.** Um pesquisador quer estimar o efeito da educação sobre o salário e decide "controlar por tudo", incluindo a **ocupação** da pessoa. Explique por que isso pode ser um erro.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A ocupação é um **mau controle** (*bad control*): ela é, em parte, **consequência** da educação — estudar mais leva a ocupações melhores e mais bem pagas. Controlar pela ocupação **fecha** justamente um dos canais pelos quais a educação eleva o salário (educação → melhor ocupação → salário maior), fazendo o coeficiente da educação **subestimar** seu efeito total. A regra é controlar apenas variáveis **pré-tratamento** (anteriores à decisão de estudar), nunca variáveis no **caminho causal** entre educação e salário. "Controlar por tudo" é uma crença errada.
+:::
+
+**7.** (Análise de caso) Um estudo com PNAD encontra que, controlando escolaridade, experiência, setor e região, pessoas negras ganham 15% menos que brancas. Um crítico diz: "isso não prova discriminação, pode ser variável omitida". Avalie os dois lados.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**A favor da interpretação de discriminação:** o hiato de 15% **persiste** mesmo comparando pessoas com a **mesma** escolaridade, experiência, setor e região — ou seja, não se explica pelas características observáveis usuais, o que é consistente com discriminação no mercado de trabalho. É uma evidência robusta e replicada. **A ressalva do crítico é legítima:** o coeficiente ainda pode sofrer **viés de variável omitida** se houver diferenças **não observadas** correlacionadas com raça e com salário (qualidade da escola frequentada, redes de contato, trajetórias de carreira, interrupções) que os dados não medem. **Síntese:** a regressão não **prova** discriminação de forma incontestável, mas a persistência do hiato condicional é uma forte **evidência compatível** com ela; parte do resíduo pode ser discriminação, parte pode ser omissão. O honesto é reportar o hiato condicional **e** discutir quais omitidas poderiam explicá-lo — e reconhecer que muitas dessas "omitidas" (qualidade da escola, redes) são elas mesmas produto de discriminação histórica, o que reforça, não enfraquece, a leitura estrutural.
+:::
+
+**8.** (Desafio) Explique por que a regressão múltipla é uma defesa **incompleta** contra o problema de "correlação não é causalidade", e o que motiva os métodos do próximo capítulo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A regressão múltipla combate o viés de variável omitida **incluindo** as variáveis de confusão como controles — aproximando o *ceteris paribus*. Mas ela só pode controlar o que é **observado e medido**. Confundidores **não observáveis** — habilidade inata, motivação, qualidade não medida, escolhas endógenas — permanecem no termo de erro e continuam a viesar os coeficientes, por mais controles que se adicione. Além disso, controlar mal (maus controles) pode **piorar** o viés. Assim, em dados observacionais, o MQO raramente estabelece causalidade de forma definitiva. Isso motiva os **métodos quase-experimentais** do @sec-avaliacao-de-politicas (experimentos aleatorizados, diferenças-em-diferenças, regressão descontínua, variáveis instrumentais), que buscam fontes de variação **exógena** no tratamento — variação que **não** está correlacionada com os confundidores não observados — para recuperar o efeito causal onde o simples "adicionar controles" fracassa.
+:::
+
+## Para saber mais
+
+- @wooldridge2016 — o tratamento canônico da regressão múltipla, do viés de variável omitida (com a fórmula do sinal) e das *dummies*; referência central do curso.
+- @stock2020 — regressão múltipla com forte ênfase em causalidade, controles e ameaças à validade.
+- @angrist2009 — discute maus controles, viés de seleção e por que "mais controles" nem sempre ajuda.
+- @gujarati2011 — multicolinearidade e diagnósticos de regressão, com exemplos em português.

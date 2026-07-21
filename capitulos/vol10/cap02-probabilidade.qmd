@@ -1,0 +1,254 @@
+# Probabilidade e distribuições {#sec-probabilidade}
+
+Um investidor decide entre uma aplicação de renda fixa e uma ação. Uma seguradora precisa fixar o preço de uma apólice contra um evento que talvez nunca ocorra. O Banco Central projeta a inflação do ano que vem sabendo que mil coisas podem sair do previsto. O que essas decisões têm em comum? Todas lidam com o **incerto** — e a linguagem matemática da incerteza é a **probabilidade**.
+
+No capítulo anterior, aprendemos a descrever dados que já temos em mãos. Mas a Economia empírica quer ir além: quer **inferir** características de uma população a partir de uma amostra (@sec-inferencia), e para isso precisa de um modelo do acaso que gera os dados. Este capítulo constrói esse modelo. Veremos os fundamentos da probabilidade, o conceito de **variável aleatória** e suas distribuições, as duas medidas que resumem uma distribuição (**esperança** e **variância**), e a rainha de todas as distribuições — a **normal** —, culminando no resultado mais espantoso da estatística: o **teorema central do limite**, que explica por que a curva em forma de sino aparece em toda parte.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- definir **probabilidade** e aplicar suas regras básicas (soma, produto e complementar);
+- entender **probabilidade condicional**, independência e o **teorema de Bayes**;
+- distinguir variáveis aleatórias **discretas** e **contínuas** e suas distribuições;
+- calcular a **esperança** (valor esperado) e a **variância** de uma variável aleatória;
+- reconhecer as distribuições **binomial** e **normal** e usar a regra empírica;
+- enunciar o **teorema central do limite** e explicar por que ele fundamenta toda a inferência.
+
+## O que é probabilidade
+
+Comece por um **experimento aleatório**: um procedimento cujo resultado não pode ser previsto com certeza (lançar um dado, sortear um domicílio, observar se um cliente dará calote). O conjunto de todos os resultados possíveis é o **espaço amostral** ($\Omega$); um **evento** é um subconjunto de $\Omega$ (por exemplo, "sair um número par").
+
+::: {.callout-note title="Definição — probabilidade"}
+A **probabilidade** de um evento $A$, denotada $P(A)$, é um número entre 0 e 1 que mede a chance de $A$ ocorrer. Ela satisfaz três axiomas (Kolmogorov): (i) $0 \le P(A) \le 1$; (ii) $P(\Omega) = 1$ (algum resultado ocorre); (iii) para eventos **mutuamente exclusivos**, a probabilidade da união é a soma das probabilidades.
+:::
+
+Há duas interpretações complementares. Na visão **frequentista**, $P(A)$ é a frequência relativa com que $A$ ocorreria numa longuíssima repetição do experimento (a probabilidade de "cara" é 0,5 porque, em milhões de lançamentos, metade dá cara). Na visão **bayesiana**, $P(A)$ é um **grau de crença** sobre a ocorrência de $A$, revisável à luz de nova informação. As duas convivem na prática econômica.
+
+Três regras bastam para a maior parte dos cálculos:
+
+- **Complementar:** $P(\text{não } A) = 1 - P(A)$.
+- **Soma:** $P(A \text{ ou } B) = P(A) + P(B) - P(A \text{ e } B)$ (subtrai-se a interseção para não contá-la duas vezes).
+- **Produto:** $P(A \text{ e } B) = P(A)\,P(B \mid A)$, onde $P(B \mid A)$ é a probabilidade **condicional** de $B$ dado que $A$ ocorreu.
+
+## Probabilidade condicional, independência e Bayes
+
+A **probabilidade condicional** é a chave do raciocínio econômico sob incerteza: qual a chance de recessão **dado que** os juros subiram? Formalmente:
+
+$$
+P(B \mid A) = \frac{P(A \text{ e } B)}{P(A)}, \qquad P(A) > 0.
+$$ {#eq-condicional}
+
+Dois eventos são **independentes** quando a ocorrência de um não altera a probabilidade do outro: $P(B \mid A) = P(B)$, o que equivale a $P(A \text{ e } B) = P(A)\,P(B)$. Independência é uma hipótese poderosa — e frequentemente falsa: retornos de ações do mesmo setor, ou o calote de dois tomadores na mesma crise, tendem a ser **correlacionados**, não independentes (subestimar isso esteve na raiz da crise de 2008).
+
+Invertendo a condicional, chega-se ao **teorema de Bayes**, que ensina a **atualizar** uma probabilidade diante de nova evidência:
+
+$$
+P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}.
+$$ {#eq-bayes}
+
+::: {.callout-tip title="Intuição — Bayes e o perigo dos falsos positivos"}
+Suponha um teste para uma fraude que atinge 1% das transações. O teste acerta 99% das fraudes e dá 5% de falsos positivos nas transações legítimas. Se uma transação é sinalizada, qual a chance de ser realmente fraude? A intuição diz "99%", mas Bayes revela algo muito menor: como as transações legítimas são **99%** do total, os 5% de falsos positivos entre elas geram muito mais alarmes que as fraudes verdadeiras. O resultado fica em torno de **17%**. Ignorar a probabilidade **de base** (*base rate*) é um dos erros mais comuns de raciocínio — e Bayes é o antídoto.
+:::
+
+## Variáveis aleatórias e distribuições
+
+Muitas vezes não nos interessa o resultado bruto do experimento, mas um **número** associado a ele: o lucro de uma carteira, o número de clientes que dão calote, a variação do câmbio. Esse número é uma **variável aleatória** (v.a.).
+
+::: {.callout-note title="Definição — variável aleatória"}
+Uma **variável aleatória** é uma função que associa um número real a cada resultado do experimento aleatório. É **discreta** se assume valores isolados (contagens: 0, 1, 2, …) e **contínua** se pode assumir qualquer valor num intervalo (renda, preço, tempo).
+:::
+
+A **distribuição de probabilidade** descreve como a probabilidade se reparte entre os valores da v.a.:
+
+- Para uma v.a. **discreta**, a **função de probabilidade** $p(x) = P(X = x)$ dá a probabilidade de cada valor; a soma de todas é 1.
+- Para uma v.a. **contínua**, a probabilidade de qualquer valor exato é zero; o que existe é a **função densidade** $f(x)$, cuja **área** sob a curva entre dois pontos dá a probabilidade de $X$ cair naquele intervalo (uma integral — @sec-integrais-excedentes). A área total sob a densidade é 1.
+
+## Esperança e variância
+
+Assim como resumíamos dados por média e desvio-padrão, resumimos uma distribuição por dois números análogos.
+
+A **esperança** (ou **valor esperado**, ou **média**) de $X$ é a média dos valores possíveis **ponderada pelas probabilidades** — o valor que se obteria, em média, repetindo o experimento infinitas vezes:
+
+$$
+E(X) = \mu = \sum_x x\,p(x) \quad\text{(discreta)}, \qquad E(X) = \int x\,f(x)\,dx \quad\text{(contínua)}.
+$$ {#eq-esperanca}
+
+A esperança é **linear**: $E(aX + b) = a\,E(X) + b$, e $E(X + Y) = E(X) + E(Y)$ **sempre** (mesmo que $X$ e $Y$ não sejam independentes). Essa propriedade é a base do cálculo de retornos esperados de carteiras.
+
+A **variância** mede a dispersão da v.a. em torno da esperança:
+
+$$
+\operatorname{Var}(X) = \sigma^2 = E\!\left[(X - \mu)^2\right] = E(X^2) - [E(X)]^2,
+$$ {#eq-variancia-va}
+
+e o **desvio-padrão** é $\sigma = \sqrt{\operatorname{Var}(X)}$. Ao contrário da esperança, a variância **não** é linear: $\operatorname{Var}(aX + b) = a^2\operatorname{Var}(X)$ (a constante $b$ não afeta a dispersão), e a variância de uma soma só é a soma das variâncias quando as variáveis são **independentes** — resultado central da teoria de diversificação de carteiras (Volume 14).
+
+::: {.callout-tip title="Intuição — o valor esperado de uma aposta"}
+Você paga R\$\,10 para jogar: com probabilidade 0,5 ganha R\$\,30, e com 0,5 não ganha nada. O valor esperado do prêmio é $0{,}5 \times 30 + 0{,}5 \times 0 = R\$\,15$, contra um custo de R\$\,10 — o jogo é favorável, com ganho esperado de R\$\,5 por rodada. Mas atenção: o valor esperado descreve a **média de longo prazo**, não o que acontece numa jogada. Uma pessoa **avessa ao risco** (@sec-escolha-sob-incerteza) pode recusar apostas de valor esperado positivo se a variância for alta demais. Esperança e variância, juntas, descrevem a aposta.
+:::
+
+## A distribuição binomial
+
+A distribuição discreta mais útil descreve **contagens de sucessos**. Considere $n$ tentativas independentes, cada uma com dois resultados (sucesso/fracasso) e probabilidade $p$ de sucesso — os **ensaios de Bernoulli** (um cliente paga ou dá calote; um eleitor aprova ou não). O número total de sucessos $X$ segue a **distribuição binomial**:
+
+$$
+P(X = k) = \binom{n}{k}\,p^k\,(1-p)^{\,n-k}, \qquad k = 0, 1, \dots, n,
+$$ {#eq-binomial}
+
+com esperança $E(X) = np$ e variância $\operatorname{Var}(X) = np(1-p)$. Se, entre 100 empréstimos com 3% de chance de calote cada, quisermos a probabilidade de exatamente 5 calotes, é a binomial que responde — e seu valor esperado, $np = 3$, é o número médio de calotes.
+
+## A distribuição normal
+
+Chegamos à distribuição mais importante de toda a estatística: a **normal** (ou **gaussiana**), a célebre curva em forma de **sino**. Uma v.a. contínua $X$ tem distribuição normal com média $\mu$ e variância $\sigma^2$, escrita $X \sim N(\mu, \sigma^2)$, quando sua densidade é a curva simétrica da @fig-normal.
+
+::: {#fig-normal}
+
+```{.tikz}
+%%| filename: fig-normal
+%%| alt: Curva normal em forma de sino centrada na média, com faixas sombreadas indicando que aproximadamente 68% da área está a um desvio-padrão, 95% a dois e 99,7% a três desvios-padrão da média.
+\begin{tikzpicture}[font=\small]
+  \begin{axis}[
+    width=12cm, height=6.5cm,
+    xmin=-4, xmax=4, ymin=0, ymax=0.45,
+    axis lines=left,
+    xtick={-3,-2,-1,0,1,2,3},
+    xticklabels={$\mu\!-\!3\sigma$,$\mu\!-\!2\sigma$,$\mu\!-\!\sigma$,$\mu$,$\mu\!+\!\sigma$,$\mu\!+\!2\sigma$,$\mu\!+\!3\sigma$},
+    ytick=\empty,
+    tick label style={font=\footnotesize},
+    samples=200, domain=-4:4,
+  ]
+    % faixa 1 sigma
+    \addplot[draw=none, fill=manualblue!45, domain=-1:1] {1/sqrt(2*pi)*exp(-x^2/2)} \closedcycle;
+    % faixa 2 sigma
+    \addplot[draw=none, fill=manualblue!22, domain=-2:-1] {1/sqrt(2*pi)*exp(-x^2/2)} \closedcycle;
+    \addplot[draw=none, fill=manualblue!22, domain=1:2] {1/sqrt(2*pi)*exp(-x^2/2)} \closedcycle;
+    % curva
+    \addplot[curva, manualred, very thick] {1/sqrt(2*pi)*exp(-x^2/2)};
+    \node[font=\footnotesize] at (axis cs:0,0.17) {68\%};
+    \node[font=\footnotesize] at (axis cs:1.5,0.05) {95\%};
+    \draw[<->, manualgray] (axis cs:-2,0.42) -- (axis cs:2,0.42);
+    \node[font=\footnotesize, manualgray] at (axis cs:0,0.44) {$\approx$ 95\%};
+  \end{axis}
+\end{tikzpicture}
+```
+
+A distribuição normal: simétrica em torno da média $\mu$, com a dispersão governada por $\sigma$. As faixas ilustram a regra empírica 68–95–99,7.
+:::
+
+A normal tem propriedades notáveis: é **simétrica** em torno de $\mu$ (média = mediana = moda), tem forma de sino, e fica **inteiramente determinada** por dois parâmetros — a média $\mu$ (que localiza o centro) e o desvio-padrão $\sigma$ (que controla a largura). Dela decorre a **regra empírica**:
+
+::: {.callout-note title="Regra empírica 68–95–99,7"}
+Em uma distribuição normal, aproximadamente **68%** das observações caem no intervalo $\mu \pm \sigma$; **95%** em $\mu \pm 2\sigma$; e **99,7%** em $\mu \pm 3\sigma$. Uma observação além de $3\sigma$ é rara (menos de 0,3%) — um "evento de três desvios" é notícia.
+:::
+
+Qualquer normal pode ser convertida na **normal padrão** $Z \sim N(0,1)$ pela **padronização**, que mede quantos desvios-padrão um valor está da média:
+
+$$
+Z = \frac{X - \mu}{\sigma}.
+$$ {#eq-padronizacao}
+
+O **escore-$z$** permite comparar observações de distribuições diferentes ("esse retorno está a quantos desvios da média?") e é a base das tabelas usadas na inferência.
+
+## O teorema central do limite
+
+Por que a curva normal aparece em tantos fenômenos — alturas, erros de medição, médias amostrais? A resposta é um dos resultados mais profundos da matemática: o **teorema central do limite** (TCL).
+
+::: {.callout-note title="Teorema central do limite"}
+Seja uma amostra de $n$ observações **independentes** de uma população com média $\mu$ e variância finita $\sigma^2$, **qualquer que seja** a forma da distribuição dessa população. Então, à medida que $n$ cresce, a distribuição da **média amostral** $\bar{X}$ aproxima-se de uma normal:
+$$
+\bar{X} \;\approx\; N\!\left(\mu,\; \frac{\sigma^2}{n}\right).
+$$
+:::
+
+Duas consequências merecem destaque. Primeira: a média amostral tende à normal **mesmo que a população não seja normal** — some muitas influências aleatórias independentes e o resultado agregado é aproximadamente normal. É por isso que o sino aparece em toda parte. Segunda: a variância da média amostral é $\sigma^2/n$, que **encolhe** com o tamanho da amostra. O erro-padrão da média, $\sigma/\sqrt{n}$, diminui com $\sqrt{n}$ — quadruplicar a amostra reduz o erro pela metade. Este é o alicerce de **toda** a inferência estatística do próximo capítulo: é o TCL que nos permite fazer afirmações probabilísticas sobre uma população a partir de uma única amostra.
+
+::: {.callout-important title="Armadilha comum — o TCL não normaliza os dados brutos"}
+O TCL afirma que a distribuição da **média amostral** tende à normal, **não** que os dados individuais viram normais. A renda continua assimétrica à direita por mais que se colete; o que se aproxima da normal é a distribuição das **médias** de muitas amostras de renda. Confundir os dois leva a supor normalidade onde ela não existe — erro grave, por exemplo, em finanças, onde retornos têm **caudas mais pesadas** que a normal, e eventos extremos são mais frequentes do que o sino prevê.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+A probabilidade não é abstração no Brasil: ela precifica riscos, orienta política pública e sustenta a estatística oficial.
+
+**Amostragem probabilística: como o IBGE conhece o Brasil.** A **PNAD Contínua** não entrevista os mais de 70 milhões de domicílios do país — entrevista uma **amostra** de algumas dezenas de milhares, selecionada por **amostragem probabilística** (cada domicílio tem uma probabilidade conhecida de ser sorteado). É o TCL e a teoria da amostragem que autorizam o IBGE a divulgar a taxa de desemprego nacional com uma **margem de erro** calculável a partir de uma fração ínfima da população. Sem probabilidade, não haveria estatística oficial — apenas censos decenais caríssimos.
+
+**Risco de crédito e seguros: probabilidade que vira preço.** Bancos e o próprio arcabouço de Basileia (Volume 8) modelam a **probabilidade de inadimplência** (*probability of default*) de cada tomador para precificar o *spread* bancário e dimensionar o capital de reserva. Seguradoras fazem o mesmo com tábuas atuariais: a probabilidade de um sinistro determina o preço da apólice. A crise de 2008 foi, em boa medida, uma falha de probabilidade — modelos supuseram **independência** entre calotes de hipotecas que, na crise, se revelaram fortemente **correlacionados**, subestimando grosseiramente o risco da carteira.
+
+**A normal e suas caudas pesadas nos mercados.** O câmbio real/dólar, o Ibovespa e os juros futuros são frequentemente modelados como aproximadamente normais no dia a dia — mas o Brasil, com seu histórico de choques, é um lembrete vivo de que os mercados têm **caudas pesadas**: dias de desvalorização de 5% ou 10% ocorrem com frequência muito maior do que o sino previria. Gestores de risco usam medidas como o **VaR** (*Value at Risk*), baseadas em quantis de distribuições de retorno, justamente para dimensionar perdas prováveis — cientes de que subestimar as caudas foi a causa de mais de uma quebra.
+
+> **Fontes e séries para explorar:** IBGE (notas metodológicas da PNAD Contínua e do Censo — desenho amostral e margens de erro); Banco Central (relatórios de estabilidade financeira, dados de inadimplência do SFN); B3 e Bacen (séries de câmbio e Ibovespa para estudar distribuições de retorno). Verifique sempre a metodologia e o período.
+
+## Resumo do capítulo
+
+- A **probabilidade** mede a chance de eventos, entre 0 e 1, seguindo os axiomas de Kolmogorov; interpreta-se como frequência de longo prazo (frequentista) ou grau de crença (bayesiana).
+- As regras do **complementar**, da **soma** e do **produto** resolvem a maioria dos cálculos; a **probabilidade condicional** $P(B\mid A)$ e a **independência** ($P(B\mid A)=P(B)$) são conceitos centrais.
+- O **teorema de Bayes** atualiza probabilidades diante de evidência; ignorar a probabilidade de base gera erros como superestimar falsos positivos.
+- Uma **variável aleatória** associa números a resultados; é **discreta** (função de probabilidade) ou **contínua** (função densidade, probabilidade = área).
+- A **esperança** $E(X)$ é a média ponderada pelas probabilidades (linear); a **variância** mede a dispersão ($\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$; soma de variâncias exige independência).
+- A **binomial** conta sucessos em $n$ ensaios independentes ($E(X)=np$); a **normal** $N(\mu,\sigma^2)$ é simétrica, definida por $\mu$ e $\sigma$, com a regra **68–95–99,7** e padronização $Z=(X-\mu)/\sigma$.
+- O **teorema central do limite** garante que a média amostral $\bar{X}$ tende à normal $N(\mu, \sigma^2/n)$ para $n$ grande, seja qual for a população — o fundamento de toda a inferência. Atenção: normaliza médias, não dados brutos.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** A probabilidade de um dia ser chuvoso é 0,3. Qual a probabilidade de **não** chover? E de chover em dois dias **independentes** seguidos?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Complementar: $P(\text{não chover}) = 1 - 0{,}3 = 0{,}7$. Como os dias são independentes, pela regra do produto $P(\text{chover nos dois}) = 0{,}3 \times 0{,}3 = 0{,}09$ (9%).
+:::
+
+**2.** Explique a diferença entre eventos **mutuamente exclusivos** e eventos **independentes**. Podem ser as duas coisas ao mesmo tempo?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Mutuamente exclusivos:** não podem ocorrer juntos ($P(A \text{ e } B)=0$) — sair "par" e "ímpar" no mesmo lançamento. **Independentes:** a ocorrência de um não altera a probabilidade do outro ($P(A \text{ e } B)=P(A)P(B)$). Não podem ser as duas coisas (se ambos têm probabilidade positiva): se são mutuamente exclusivos, saber que $A$ ocorreu torna $B$ **impossível** — máxima dependência, o oposto de independência.
+:::
+
+**3.** Uma v.a. discreta assume os valores 0, 10 e 100 com probabilidades 0,5, 0,4 e 0,1. Calcule a esperança.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$$
+E(X) = 0 \times 0{,}5 + 10 \times 0{,}4 + 100 \times 0{,}1 = 0 + 4 + 10 = 14.
+$$
+O valor esperado é 14 — repare que **nenhum** dos resultados possíveis é 14; a esperança é uma média ponderada, não necessariamente um valor observável.
+:::
+
+**4.** Você paga R\$\,5 por um bilhete que dá R\$\,50 com probabilidade 0,08 e nada com probabilidade 0,92. O jogo é favorável? Qual o ganho (ou perda) esperado por bilhete?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Prêmio esperado: $50 \times 0{,}08 + 0 \times 0{,}92 = R\$\,4{,}00$. Como o bilhete custa R\$\,5, o resultado líquido esperado é $4 - 5 = -R\$\,1{,}00$ por bilhete: o jogo é **desfavorável** ao apostador (perde-se, em média, R\$\,1 por bilhete). É assim que loterias e cassinos operam — valor esperado negativo para o jogador.
+:::
+
+**5.** Os retornos anuais de um fundo seguem, aproximadamente, uma normal com média 10% e desvio-padrão 4%. Usando a regra empírica, entre que valores está cerca de 95% dos retornos? E qual a chance aproximada de um retorno negativo?
+
+::: {.callout-tip collapse="true" title="Solução"}
+95% dos retornos ficam em $\mu \pm 2\sigma = 10\% \pm 8\% = [2\%,\ 18\%]$. Um retorno **negativo** (abaixo de 0%) está a $z = (0 - 10)/4 = -2{,}5$ desvios da média. Além de $-2\sigma$ (isto é, abaixo de 2%) fica cerca de 2,5% da distribuição; abaixo de $-2{,}5\sigma$, aproximadamente **0,6%** — retorno negativo é raro nesse fundo (supondo normalidade, que subestima caudas).
+:::
+
+**6.** Entre 20 empréstimos independentes, cada um com 10% de probabilidade de calote, qual o número **esperado** de calotes e a variância? (Não precisa calcular probabilidades individuais.)
+
+::: {.callout-tip collapse="true" title="Solução"}
+É uma binomial com $n=20$, $p=0{,}10$. Esperança: $E(X) = np = 20 \times 0{,}10 = 2$ calotes. Variância: $\operatorname{Var}(X) = np(1-p) = 20 \times 0{,}10 \times 0{,}90 = 1{,}8$, com desvio-padrão $\sqrt{1{,}8} \approx 1{,}34$. Espera-se cerca de 2 calotes, com variabilidade de pouco mais de um calote em torno disso.
+:::
+
+**7.** (Análise de caso) Um teste rápido detecta uma doença que atinge 2% da população. O teste acerta 95% dos doentes (verdadeiro positivo) e tem 10% de falso positivo. Se alguém testa positivo, use o raciocínio de Bayes (qualitativamente) para explicar por que a probabilidade de estar de fato doente é bem menor que 95%.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A doença é **rara** (2%), então a maioria (98%) é sadia. Entre os 98% sadios, 10% dão falso positivo — muitos alarmes. Entre os 2% doentes, 95% dão positivo — poucos alarmes, pois a base é pequena. Quantitativamente, em 1.000 pessoas: $\approx 20$ doentes, dos quais 19 positivam; $\approx 980$ sadios, dos quais 98 positivam. Total de positivos $\approx 117$, dos quais só 19 são doentes: $P(\text{doente}\mid\text{positivo}) \approx 19/117 \approx 16\%$. A **baixa probabilidade de base** faz os falsos positivos dominarem — por isso testes de rastreamento em massa geram muitos alarmes falsos, e um positivo pede confirmação.
+:::
+
+**8.** (Desafio) Explique, para um colega que nunca estudou estatística, por que a distribuição normal aparece com tanta frequência na natureza e na economia, e por que isso permite ao IBGE estimar o desemprego do país inteiro entrevistando poucos domicílios.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A frequência da normal vem do **teorema central do limite**: quando um resultado é a **soma de muitas influências aleatórias pequenas e independentes** (mil fatores afetando a altura, o erro de medição, a média de uma amostra), o agregado tende à forma de sino, **qualquer que seja** a distribuição de cada influência. Sobre a amostragem: o IBGE não precisa entrevistar todos porque o TCL garante que a **média (ou proporção) amostral** se distribui aproximadamente como uma normal em torno do valor populacional verdadeiro, com dispersão $\sigma/\sqrt{n}$ que **diminui** conforme a amostra cresce. Isso permite cercar o valor verdadeiro com uma **margem de erro** calculável — a taxa de desemprego é reportada como uma estimativa com intervalo de confiança (próximo capítulo), não como adivinhação. Poucos milhares de domicílios bem sorteados bastam para estimar um país inteiro com precisão conhecida.
+:::
+
+## Para saber mais
+
+- @bussab2017 — introdução clara a probabilidade, variáveis aleatórias e às distribuições binomial e normal, com exemplos.
+- @wooldridge2016 — os apêndices de probabilidade e estatística conectam esses fundamentos diretamente à econometria dos capítulos seguintes.
+- @stock2020 — capítulos iniciais com tratamento moderno de v.a., esperança, variância e o teorema central do limite.
+- @kahneman1979 — para a psicologia das probabilidades e por que humanos erram sistematicamente ao julgar o acaso (ligação com o Volume 15).

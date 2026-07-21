@@ -1,0 +1,219 @@
+# Regressão linear simples {#sec-regressao-simples}
+
+Quanto a mais uma pessoa ganha, em média, por cada ano adicional de estudo? Em quanto a quantidade vendida de um produto cai quando seu preço sobe 1%? De quanto o consumo das famílias aumenta quando a renda cresce R\$\,1.000? Todas essas perguntas — e a maior parte das que a Economia aplicada faz — pedem que se meça a **relação quantitativa** entre duas variáveis a partir de dados. A ferramenta que faz isso, o cavalo de batalha de toda a econometria, é a **regressão linear**.
+
+Chegamos ao coração do Volume 10. Os capítulos anteriores nos deram a estatística descritiva, a probabilidade, a inferência e — crucialmente — o ceticismo causal. Agora vamos **ajustar uma reta** a uma nuvem de pontos: estimar a relação entre uma variável explicativa e uma variável dependente pelo **método dos mínimos quadrados**. Veremos como interpretar os coeficientes, medir a qualidade do ajuste com o $R^2$, testar a significância da relação e — sempre — lembrar que uma reta bem ajustada mede **associação**, e só vira **causa** sob hipóteses fortes (@sec-correlacao-causalidade). É a base sobre a qual o @sec-regressao-multipla e o @sec-avaliacao-de-politicas se erguem.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- especificar o **modelo de regressão linear simples** e interpretar seus componentes;
+- estimar os coeficientes pelo **método dos mínimos quadrados ordinários (MQO)**;
+- interpretar o **intercepto** e a **inclinação** em termos econômicos, com atenção às unidades;
+- calcular e interpretar o **coeficiente de determinação** $R^2$;
+- testar a **significância** da inclinação e reconhecer o papel do erro-padrão;
+- distinguir a leitura **preditiva** da leitura **causal** de uma regressão.
+
+## O modelo de regressão linear simples
+
+Queremos explicar uma variável **dependente** $Y$ (a que se quer entender: consumo, salário, quantidade) por uma variável **explicativa** ou **independente** $X$ (renda, escolaridade, preço). O modelo populacional postula uma relação linear, sujeita a um termo de erro:
+
+$$
+Y_i = \beta_0 + \beta_1 X_i + u_i.
+$$ {#eq-modelo-simples}
+
+Cada componente tem nome e significado:
+
+- $\beta_0$ — o **intercepto**: o valor esperado de $Y$ quando $X = 0$.
+- $\beta_1$ — a **inclinação** (o coeficiente de interesse): a variação **esperada** em $Y$ associada a um aumento de **uma unidade** em $X$. É a resposta à pergunta "quanto $Y$ muda quando $X$ sobe 1?".
+- $u_i$ — o **termo de erro** (ou perturbação): tudo o que afeta $Y$ e **não** está em $X$ — outras variáveis, aleatoriedade, erro de medição. É a alma da econometria e a fonte de quase todos os seus problemas.
+
+::: {.callout-note title="Definição — a função de regressão"}
+A **função de regressão populacional** é $E(Y \mid X) = \beta_0 + \beta_1 X$: a média de $Y$ **condicional** a cada valor de $X$. A regressão não prevê $Y$ exatamente; ela traça como a **média** de $Y$ se move com $X$. Os pontos reais dispersam-se em torno dessa reta, e essa dispersão é o erro $u$.
+:::
+
+## O método dos mínimos quadrados
+
+Como não observamos a reta populacional, precisamos **estimá-la** a partir da amostra, obtendo a reta ajustada $\hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i$. Para cada observação, o **resíduo** é a distância vertical entre o ponto e a reta: $\hat{u}_i = Y_i - \hat{Y}_i$. A @fig-regressao mostra a ideia.
+
+::: {#fig-regressao}
+
+```{.tikz}
+%%| filename: fig-regressao
+%%| alt: Gráfico de dispersão de pontos com tendência positiva e a reta de regressão ajustada passando pelo meio da nuvem; segmentos verticais tracejados ligam alguns pontos à reta, representando os resíduos.
+\begin{tikzpicture}[font=\small]
+  \begin{axis}[
+    width=11cm, height=7cm,
+    xmin=0, xmax=11, ymin=0, ymax=11,
+    xlabel={$X$ (anos de estudo)},
+    ylabel={$Y$ (salário, mil R\$)},
+    axis lines=left,
+    tick label style={font=\footnotesize},
+    clip=false,
+  ]
+    % pontos
+    \addplot[only marks, mark=*, mark size=1.6pt, manualblue] coordinates {
+      (1,2.2) (2,2.6) (2.5,3.6) (3,3.2) (4,4.6) (4.5,3.9) (5,5.4) (6,5.2)
+      (6.5,6.6) (7,6.1) (8,7.4) (8.5,6.9) (9,8.3) (10,8.1)};
+    % reta de regressão y = 1.5 + 0.7 x
+    \addplot[curva, manualred, very thick, domain=0:11] {1.5 + 0.7*x};
+    % residuos ilustrativos
+    \draw[auxiliar, manualgray, dashed] (axis cs:5,5.4) -- (axis cs:5,5.0);
+    \draw[auxiliar, manualgray, dashed] (axis cs:6.5,6.6) -- (axis cs:6.5,6.05);
+    \draw[auxiliar, manualgray, dashed] (axis cs:4,4.6) -- (axis cs:4,4.3);
+    \node[manualred, font=\footnotesize] at (axis cs:9.3,9.2) {$\hat{Y}=\hat{\beta}_0+\hat{\beta}_1 X$};
+  \end{axis}
+\end{tikzpicture}
+```
+
+A reta de MQO é a que **minimiza a soma dos quadrados** das distâncias verticais (resíduos, tracejados) dos pontos à reta.
+:::
+
+O **método dos mínimos quadrados ordinários (MQO)** escolhe a reta que torna os resíduos, no conjunto, os menores possíveis — mais precisamente, a que **minimiza a soma dos quadrados dos resíduos** (elevam-se ao quadrado para que positivos e negativos não se cancelem e para penalizar erros grandes):
+
+$$
+\min_{\hat{\beta}_0,\, \hat{\beta}_1}\; \sum_{i=1}^{n} \hat{u}_i^2 = \sum_{i=1}^{n}\bigl(Y_i - \hat{\beta}_0 - \hat{\beta}_1 X_i\bigr)^2.
+$$ {#eq-mqo}
+
+Resolvendo esse problema de otimização (derivando e igualando a zero — a análise marginal do @sec-otimizacao-livre), obtêm-se as **fórmulas de MQO**:
+
+$$
+\hat{\beta}_1 = \frac{\operatorname{Cov}(X, Y)}{\operatorname{Var}(X)} = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sum (X_i - \bar{X})^2}, \qquad
+\hat{\beta}_0 = \bar{Y} - \hat{\beta}_1 \bar{X}.
+$$ {#eq-formulas-mqo}
+
+Duas coisas valem notar. Primeiro: a inclinação é a covariância entre $X$ e $Y$ dividida pela variância de $X$ — parente próxima do coeficiente de correlação (@sec-correlacao-causalidade). Segundo: a fórmula do intercepto garante que a reta **sempre passa pelo ponto médio** $(\bar{X}, \bar{Y})$.
+
+## Interpretando os coeficientes
+
+Estimar é fácil; **interpretar** com cuidado é o que separa o economista do operador de software.
+
+Suponha que uma regressão de salário mensal (em R\$) contra anos de estudo produza:
+
+$$
+\widehat{\text{salário}} = 800 + 350 \cdot \text{estudo}.
+$$
+
+- A **inclinação** $\hat{\beta}_1 = 350$: cada ano adicional de estudo está associado a um salário **R\$\,350 maior**, em média. Note o "associado a" e o "em média" — não afirmamos ainda que estudar **causa** esse aumento.
+- O **intercepto** $\hat{\beta}_0 = 800$: o salário previsto para alguém com **zero** ano de estudo. Muitas vezes o intercepto **não** tem sentido econômico direto (extrapola para fora da faixa dos dados) e serve apenas para posicionar a reta.
+
+::: {.callout-important title="Armadilha comum — unidades e a leitura da inclinação"}
+A inclinação depende inteiramente das **unidades**. Se $Y$ está em reais e $X$ em anos, $\hat{\beta}_1$ é "reais por ano de estudo". Trocar $Y$ para milhares de reais divide $\hat{\beta}_1$ por mil. Em modelos **log-lineares** ($\ln Y$ contra $X$), a inclinação vira aproximadamente a **variação percentual** de $Y$ por unidade de $X$ (muito usada para retornos da educação: "cada ano de estudo eleva o salário em ~8%"). Sempre declare as unidades antes de interpretar um coeficiente.
+:::
+
+## Qualidade do ajuste: o $R^2$
+
+Quão bem a reta descreve os dados? A resposta é o **coeficiente de determinação**, $R^2$. A ideia: a variação total de $Y$ (a **soma dos quadrados total**, SQT) decompõe-se na parte **explicada** pela regressão (SQE) e na parte que sobra nos resíduos (**soma dos quadrados dos resíduos**, SQR):
+
+$$
+\underbrace{\sum (Y_i - \bar{Y})^2}_{\text{SQT}} = \underbrace{\sum (\hat{Y}_i - \bar{Y})^2}_{\text{SQE}} + \underbrace{\sum \hat{u}_i^2}_{\text{SQR}}.
+$$
+
+O $R^2$ é a **fração da variação de $Y$ explicada pela regressão**:
+
+$$
+R^2 = \frac{\text{SQE}}{\text{SQT}} = 1 - \frac{\text{SQR}}{\text{SQT}}, \qquad 0 \le R^2 \le 1.
+$$ {#eq-r2}
+
+Um $R^2 = 0{,}40$ significa que $X$ explica 40% da variação de $Y$; os 60% restantes ficam no erro. Na regressão simples, o $R^2$ é exatamente o **quadrado do coeficiente de correlação** ($R^2 = r^2$).
+
+::: {.callout-warning title="Controvérsia — $R^2$ alto não é sinônimo de bom modelo"}
+Um $R^2$ elevado impressiona, mas diz pouco sobre o que mais importa. Um modelo pode ter $R^2$ baixo e, ainda assim, uma inclinação **corretamente estimada e útil** (muitos fenômenos sociais têm muito ruído irredutível). Pior: um $R^2$ altíssimo pode vir de uma relação **espúria** ou de **causalidade reversa**. E $R^2$ **nada** diz sobre causalidade ou sobre viés dos coeficientes. Em economia, o coeficiente $\hat{\beta}_1$ e sua interpretação costumam importar muito mais que o $R^2$. Perseguir $R^2$ alto é um erro de iniciante.
+:::
+
+## Inferência na regressão: o coeficiente é significativo?
+
+O coeficiente estimado $\hat{\beta}_1$ é uma **estatística amostral** — muda de amostra para amostra e tem seu próprio **erro-padrão**, $EP(\hat{\beta}_1)$. Isso reconecta a regressão à inferência do @sec-inferencia. A pergunta natural é: a relação é **real** ou poderia ser fruto do acaso amostral? Testamos:
+
+$$
+H_0: \beta_1 = 0 \quad (\text{$X$ não afeta $Y$}) \qquad\text{contra}\qquad H_1: \beta_1 \neq 0,
+$$
+
+com a estatística $t = \hat{\beta}_1 / EP(\hat{\beta}_1)$. Um $|t|$ grande (grosso modo, acima de ~2) leva a rejeitar $H_0$: a inclinação é **estatisticamente significativa**. Softwares reportam automaticamente $\hat{\beta}_1$, seu erro-padrão, o $t$ e o valor-$p$. E vale a lição do @sec-inferencia: significância estatística **não** é o mesmo que magnitude econômica relevante — reporte sempre o **tamanho** do coeficiente e seu intervalo de confiança.
+
+::: {.callout-tip title="Intuição — o que dá precisão a um coeficiente"}
+O erro-padrão da inclinação é menor (estimativa mais precisa) quando: (i) a amostra é **maior**; (ii) o erro $u$ é **pequeno** (pontos pouco dispersos em torno da reta); e (iii) $X$ **varia bastante** (uma nuvem espalhada no eixo horizontal fixa a reta melhor que pontos amontoados). Se $X$ quase não varia na amostra, é difícil estimar como $Y$ responde a $X$ — não há alavanca. Por isso variação em $X$ é preciosa.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+A regressão linear é, sem exagero, a ferramenta empírica mais usada na Economia brasileira aplicada — do mercado de trabalho às finanças.
+
+**O retorno da educação: a equação de Mincer.** A aplicação mais clássica no Brasil é a **equação de rendimentos de Mincer**: uma regressão do **log do salário** contra anos de estudo e experiência. Estimada repetidamente com dados da **PNAD Contínua** e do Censo, ela indica que cada ano adicional de estudo esteve historicamente associado a um aumento salarial da ordem de **8% a 15%** — um dos "retornos da educação" mais altos do mundo, reflexo da escassez relativa de trabalhadores qualificados. Mas os próprios pesquisadores alertam: esse coeficiente mistura o efeito **causal** da educação com o de **habilidade não observada** (@sec-correlacao-causalidade) — quem estuda mais também tende a ter atributos que elevam o salário. A regressão simples mede a **associação**; isolar a causa exige os métodos dos próximos capítulos.
+
+**Curva de Phillips e beta de mercado.** Muitas relações macro e financeiras brasileiras são estimadas por regressão: a **curva de Phillips** (inflação contra hiato do produto, Volume 7) que orienta o Banco Central, a **função consumo** keynesiana (consumo contra renda, Volume 7), e o **beta** de uma ação (retorno da ação contra retorno do Ibovespa, Volume 14) — este último, a inclinação de uma regressão que mede o risco sistemático de um ativo. Em todos, o coeficiente estimado carrega significado econômico direto: a sensibilidade da inflação ao aquecimento, a propensão marginal a consumir, o risco de mercado.
+
+**O cuidado brasileiro com os dados.** Estimar regressões com dados brasileiros exige atenção redobrada a peculiaridades: a **informalidade** (parte da renda não é observada), a **heterogeneidade regional** (o retorno da educação difere entre Sudeste e Nordeste) e mudanças metodológicas nas pesquisas ao longo do tempo. Um bom econometrista brasileiro conhece não só as fórmulas de MQO, mas as **fontes** — suas virtudes e limites —, tema que já apareceu no Volume 4 (@sec-indicadores-na-pratica).
+
+> **Fontes e séries para explorar:** IBGE (PNAD Contínua e Censo — microdados para equações de rendimento); Bacen/SGS (séries para curva de Phillips e função consumo); B3 e Bacen (retornos de ações e Ibovespa para estimar betas). Softwares abertos como R e Python (com dados públicos) permitem replicar essas regressões. Verifique o período e a metodologia.
+
+## Resumo do capítulo
+
+- O modelo de **regressão linear simples** é $Y_i = \beta_0 + \beta_1 X_i + u_i$: $\beta_0$ é o intercepto, $\beta_1$ a inclinação (efeito de +1 em $X$ sobre a média de $Y$) e $u_i$ o erro (tudo o mais que afeta $Y$).
+- O **MQO** estima a reta minimizando a soma dos quadrados dos resíduos; suas fórmulas dão $\hat{\beta}_1 = \operatorname{Cov}(X,Y)/\operatorname{Var}(X)$ e $\hat{\beta}_0 = \bar{Y} - \hat{\beta}_1\bar{X}$; a reta passa por $(\bar{X}, \bar{Y})$.
+- A **inclinação** é lida "por unidade de $X$", e depende das **unidades**; em modelos log-lineares, aproxima uma variação **percentual**. O **intercepto** nem sempre tem sentido econômico.
+- O **$R^2$** é a fração da variação de $Y$ explicada pela regressão ($0$ a $1$; $= r^2$ na regressão simples); $R^2$ alto **não** garante bom modelo, causalidade nem ausência de viés.
+- O coeficiente tem **erro-padrão**; testa-se $H_0: \beta_1 = 0$ com $t = \hat{\beta}_1/EP(\hat{\beta}_1)$. Precisão cresce com amostra maior, erro menor e maior variação de $X$.
+- Uma regressão mede **associação**; só é **causal** sob hipóteses fortes (exogeneidade de $X$) — daí a equação de Mincer estimar retornos que ainda misturam educação e habilidade não observada.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** No modelo $Y_i = \beta_0 + \beta_1 X_i + u_i$, explique o significado de cada um dos três termos do lado direito.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$\beta_0$ (**intercepto**) é o valor esperado de $Y$ quando $X = 0$; posiciona a reta na vertical. $\beta_1$ (**inclinação**) é a variação esperada em $Y$ quando $X$ aumenta uma unidade — o coeficiente de interesse. $u_i$ (**erro**) representa todos os demais fatores que influenciam $Y_i$ e não estão em $X$ (outras variáveis, aleatoriedade, erro de medição). A reta descreve a **média** de $Y$ dado $X$; os pontos reais desviam-se dela pelo erro.
+:::
+
+**2.** Por que o MQO minimiza a soma dos resíduos **ao quadrado**, e não a soma simples dos resíduos?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A soma **simples** dos resíduos pode ser zero para infinitas retas ruins, pois resíduos positivos e negativos se **cancelam** — não serve como critério. Elevar ao quadrado (i) elimina os sinais, impedindo o cancelamento, e (ii) **penaliza mais** os erros grandes, forçando a reta a evitar desvios grandes. O resultado é um critério único e bem definido, com solução fechada (as fórmulas de MQO) obtida por otimização.
+:::
+
+**3.** Uma regressão dá $\widehat{\text{consumo}} = 500 + 0{,}8\cdot\text{renda}$ (em R\$). Interprete os dois coeficientes. Quanto o consumo previsto sobe se a renda aumenta R\$\,1.000?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Intercepto (500):** consumo previsto quando a renda é zero — o "consumo autônomo" (as pessoas gastam mesmo sem renda, poupança negativa/dívida). **Inclinação (0,8):** cada R\$\,1 a mais de renda está associado a R\$\,0,80 a mais de consumo — a **propensão marginal a consumir**. Se a renda sobe R\$\,1.000, o consumo previsto sobe $0{,}8 \times 1.000 = R\$\,800$.
+:::
+
+**4.** Uma regressão tem $R^2 = 0{,}25$. Interprete. Isso significa que o modelo é ruim?
+
+::: {.callout-tip collapse="true" title="Solução"}
+$R^2 = 0{,}25$ significa que a variável explicativa dá conta de **25%** da variação da dependente; 75% ficam no erro (outros fatores e ruído). Isso **não** significa necessariamente que o modelo é ruim: em dados sociais e econômicos, muito da variação individual é irredutível, e $R^2$ baixos são comuns mesmo em modelos úteis. O que importa é se o **coeficiente** de interesse está bem estimado, é significativo e tem magnitude relevante — o $R^2$ mede poder preditivo, não correção causal nem utilidade do coeficiente.
+:::
+
+**5.** Explique por que a estimativa da inclinação é mais **precisa** (menor erro-padrão) quando $X$ varia bastante na amostra.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A inclinação mede como $Y$ responde a mudanças em $X$. Se $X$ **varia pouco** (pontos amontoados numa faixa estreita do eixo horizontal), há pouca "alavanca" para identificar a resposta de $Y$ — pequenas perturbações nos dados fazem a reta girar bastante, gerando erro-padrão grande. Se $X$ **varia muito** (nuvem espalhada horizontalmente), a reta fica bem "presa" pelos extremos e a inclinação é estimada com precisão. Formalmente, $EP(\hat{\beta}_1)$ é inversamente proporcional à raiz da variação de $X$ ($\sum(X_i-\bar{X})^2$): mais variação em $X$, menor o erro-padrão.
+:::
+
+**6.** Dados: $\operatorname{Cov}(X,Y) = 12$, $\operatorname{Var}(X) = 8$, $\bar{X} = 5$, $\bar{Y} = 20$. Encontre a reta de MQO.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Inclinação: $\hat{\beta}_1 = \operatorname{Cov}(X,Y)/\operatorname{Var}(X) = 12/8 = 1{,}5$. Intercepto: $\hat{\beta}_0 = \bar{Y} - \hat{\beta}_1\bar{X} = 20 - 1{,}5 \times 5 = 20 - 7{,}5 = 12{,}5$. Reta ajustada: $\hat{Y} = 12{,}5 + 1{,}5\,X$. (Confira: em $X = \bar{X} = 5$, $\hat{Y} = 12{,}5 + 7{,}5 = 20 = \bar{Y}$ — a reta passa pelo ponto médio.)
+:::
+
+**7.** (Análise de caso) Um estudante estima a equação de Mincer e encontra que cada ano de estudo "aumenta" o salário em 10%. Explique por que ele deve dizer "está associado a", e não "aumenta", e o que ameaça a interpretação causal.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A regressão de MQO mede **associação** entre estudo e salário, não necessariamente o **efeito causal** da educação. A interpretação causal exige que $X$ (estudo) seja **não correlacionado** com o erro $u$ — hipótese de **exogeneidade**. Aqui ela é implausível: $u$ contém a **habilidade não observada** (talento, disciplina, rede familiar), que afeta **tanto** os anos de estudo **quanto** o salário. Quem estuda mais tende a ter mais desses atributos, então parte dos "10%" reflete a habilidade, não a escolaridade — um **viés de variável omitida** (@sec-regressao-multipla). Por isso o correto é "cada ano de estudo está **associado a** um salário ~10% maior"; afirmar que "aumenta" pressupõe uma causalidade que a regressão simples não estabelece. Isolar a causa pediria variação exógena de escolaridade (experimentos naturais, variáveis instrumentais).
+:::
+
+**8.** (Desafio) Dois analistas ajustam retas aos mesmos dados de vendas × preço. Um obtém $R^2 = 0{,}9$; o outro, ao adicionar um ponto extremo (um *outlier*), obtém $R^2 = 0{,}95$ mas uma inclinação bem diferente. Discuta o que isso revela sobre confiar no $R^2$ e sobre a sensibilidade do MQO a *outliers*.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O episódio revela dois pontos. (i) **$R^2$ não é medida de correção:** um $R^2$ **maior** (0,95) acompanhou uma inclinação **distorcida** — um ajuste "melhor" pelo critério de variância explicada pode corresponder a um coeficiente **pior** (viesado pelo *outlier*). Perseguir $R^2$ alto engana. (ii) **Sensibilidade do MQO a *outliers*:** como o método minimiza os resíduos **ao quadrado**, um ponto extremo gera resíduo enorme e "puxa" a reta desproporcionalmente para si, alterando muito a inclinação. Um único *outlier* pode dominar a estimativa. Boas práticas: **examinar o gráfico de dispersão** (nunca confiar só nos números), investigar pontos influentes (erro de medição? caso legítimo?), e usar diagnósticos de influência ou métodos robustos quando apropriado. A lição do @sec-correlacao-causalidade se repete: sempre olhe os dados, não só as estatísticas-resumo.
+:::
+
+## Para saber mais
+
+- @wooldridge2016 — o tratamento moderno e didático da regressão simples, MQO, interpretação de coeficientes e hipóteses de identificação; referência-padrão em cursos brasileiros.
+- @stock2020 — apresentação da regressão com ênfase em causalidade e erro-padrão, e muitos exemplos aplicados.
+- @gujarati2011 — dedução detalhada das fórmulas de MQO e do $R^2$, acessível e em português.
+- @hoffmann2006 — regressão voltada a economistas, com aplicações a dados brasileiros.

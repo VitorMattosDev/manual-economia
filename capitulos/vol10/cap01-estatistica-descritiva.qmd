@@ -1,0 +1,268 @@
+# Estatística descritiva para a Economia {#sec-estatistica-descritiva}
+
+Abra qualquer noticiário econômico e você será soterrado por números: a inflação foi de 4,2%, o desemprego caiu para 7,8%, a renda média do brasileiro é de tantos reais, o Brasil está entre os países mais desiguais do mundo. Nenhum desses números cai do céu. Cada um é um **resumo** — uma forma de comprimir milhões de observações individuais (preços de milhares de produtos, situação de trabalho de centenas de milhares de pessoas, rendimentos de dezenas de milhões de domicílios) em um punhado de indicadores que a mente humana consegue processar. A ferramenta que faz essa compressão é a **estatística descritiva**.
+
+Este capítulo abre o Volume 10, que constrói a ponte entre a teoria econômica dos volumes anteriores e a **evidência empírica** que a confronta com o mundo. Antes de testar hipóteses (@sec-inferencia) ou estimar relações causais (@sec-regressao-simples), é preciso saber **descrever** os dados: organizá-los, resumi-los em medidas de posição e de dispersão, e representá-los graficamente. Veremos também um tema em que o Brasil é um caso de estudo mundial: como medir a **desigualdade**.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- distinguir **população** e **amostra**, e classificar variáveis em qualitativas e quantitativas;
+- organizar dados em **distribuições de frequência** e lê-las em histogramas;
+- calcular e interpretar as **medidas de tendência central** (média, mediana e moda) e escolher a adequada;
+- calcular e interpretar as **medidas de dispersão** (amplitude, variância, desvio-padrão e coeficiente de variação);
+- entender **quantis**, o desvio da simetria (assimetria) e por que a média pode enganar;
+- medir **desigualdade** de renda com a curva de Lorenz e o índice de Gini, aplicando-os ao Brasil.
+
+## População, amostra e variáveis
+
+Toda investigação empírica começa definindo o **conjunto de interesse**.
+
+::: {.callout-note title="Definição — população e amostra"}
+A **população** é o conjunto completo de todos os elementos que se deseja estudar (por exemplo, todos os domicílios do Brasil). A **amostra** é um subconjunto da população, do qual efetivamente coletamos dados. Uma medida calculada sobre a população é um **parâmetro**; a mesma medida calculada sobre a amostra é uma **estatística**, que serve para estimar o parâmetro.
+:::
+
+Raramente observamos a população inteira — um censo é caro e demorado. Por isso, quase toda a Economia empírica trabalha com **amostras** (a PNAD Contínua entrevista uma fração dos domicílios) e usa a estatística amostral para inferir o parâmetro populacional, tema do @sec-inferencia. Para que isso funcione, a amostra precisa ser **representativa** — o que exige amostragem probabilística, não uma coleta de conveniência.
+
+Os dados que coletamos são **variáveis**, e sua natureza determina o que podemos fazer com eles:
+
+- **Qualitativas (categóricas)** — expressam qualidade ou atributo. Podem ser **nominais** (sem ordem: sexo, região, setor de atividade) ou **ordinais** (com ordem: escolaridade, classe social, grau de satisfação).
+- **Quantitativas (numéricas)** — expressam quantidade. Podem ser **discretas** (valores isolados, geralmente contagens: número de filhos, número de empregados) ou **contínuas** (qualquer valor num intervalo: renda, preço, PIB).
+
+Confundir a natureza da variável leva a erros grosseiros: não faz sentido calcular a "média" da variável região, ainda que ela seja codificada por números.
+
+## Distribuições de frequência e histogramas
+
+O primeiro passo para entender um conjunto de dados quantitativos é organizá-lo em uma **distribuição de frequência**: agrupamos os valores em **classes** (intervalos) e contamos quantas observações caem em cada uma. A **frequência absoluta** ($f_i$) é essa contagem; a **frequência relativa** ($f_i / n$, onde $n$ é o total) exprime a proporção, e é o que permite comparar conjuntos de tamanhos diferentes.
+
+A representação gráfica de uma distribuição de frequência de variável contínua é o **histograma**: barras justapostas cuja altura (ou área) representa a frequência de cada classe. Ele revela de relance a **forma** da distribuição — onde os dados se concentram, quão dispersos estão e se há assimetria. A @fig-histograma mostra o padrão típico da distribuição de renda: fortemente **assimétrica à direita**, com a maioria das pessoas em faixas baixas e uma longa cauda de rendas altas.
+
+::: {#fig-histograma}
+
+```{.tikz}
+%%| filename: fig-histograma
+%%| alt: Histograma da distribuição de renda, com barras altas nas faixas baixas de renda e barras cada vez menores nas faixas altas, formando uma cauda longa à direita.
+\begin{tikzpicture}[font=\small]
+  \begin{axis}[
+    width=11cm, height=6.5cm,
+    ybar interval, ymin=0, ymax=30,
+    xmin=0, xmax=10,
+    xlabel={Renda mensal (mil R\$)},
+    ylabel={Frequência relativa (\%)},
+    xtick={0,1,2,3,4,5,6,7,8,9,10},
+    axis lines=left,
+    tick label style={font=\footnotesize},
+  ]
+    \addplot[fill=manualblue!55, draw=manualblue] coordinates {
+      (0,12) (1,27) (2,22) (3,15) (4,9) (5,6) (6,4) (7,2.5) (8,1.5) (9,1) (10,0)};
+  \end{axis}
+\end{tikzpicture}
+```
+
+Distribuição de renda típica: assimétrica à direita, com a massa das observações nas faixas baixas e uma cauda longa à direita.
+:::
+
+## Medidas de tendência central
+
+Um histograma mostra a forma; mas muitas vezes queremos um **único número** que represente o "centro" dos dados. Há três candidatos, e a escolha entre eles é uma das decisões mais importantes — e mais manipuladas — da estatística aplicada.
+
+**A média aritmética** ($\bar{x}$) é a soma dos valores dividida pela quantidade:
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i = \frac{x_1 + x_2 + \cdots + x_n}{n}.
+$$ {#eq-media}
+
+É a medida mais usada, mas tem um calcanhar de Aquiles: é **sensível a valores extremos** (*outliers*). Se numa sala com dez pessoas de renda média R\$\,3.000 entra um bilionário, a média dispara para milhões — sem que a situação das dez pessoas originais tenha mudado em nada.
+
+**A mediana** ($Md$) é o valor que divide o conjunto **ordenado** em duas metades: 50% das observações estão abaixo dela e 50% acima. Para $n$ ímpar, é o valor central; para $n$ par, é a média dos dois centrais. Sua grande virtude é ser **robusta** a extremos: o bilionário que entrou na sala mal desloca a mediana.
+
+**A moda** ($Mo$) é o valor mais frequente. É a única medida aplicável a variáveis qualitativas nominais ("a região com mais empresas").
+
+::: {.callout-tip title="Intuição — por que a mediana descreve melhor a renda"}
+Quando se diz que "a renda média do brasileiro" é X, a média é puxada para cima pela pequena parcela de rendas altíssimas. A **mediana** — a renda da pessoa exatamente no meio da fila — descreve muito melhor a experiência do brasileiro típico. Em distribuições assimétricas à direita, vale sempre a ordem $Mo < Md < \bar{x}$: a média é a maior das três. Por isso políticos gostam de citar a média quando querem parecer que a renda é alta.
+:::
+
+## Medidas de dispersão
+
+Duas turmas podem ter a **mesma** média de notas — digamos, 6,0 — e serem completamente diferentes: numa, todos tiraram perto de 6; noutra, metade tirou 2 e metade tirou 10. A tendência central não basta; precisamos medir o **espalhamento** dos dados.
+
+A **amplitude** é a diferença entre o maior e o menor valor. É simples, mas usa só dois pontos e ignora todo o resto.
+
+A medida central de dispersão parte dos **desvios** de cada observação em relação à média, $(x_i - \bar{x})$. Como a soma desses desvios é sempre zero (os positivos cancelam os negativos), elevamo-los ao quadrado. A média dos desvios quadrados é a **variância**:
+
+$$
+\sigma^2 = \frac{1}{N}\sum_{i=1}^{N}(x_i - \mu)^2 \quad\text{(populacional)}, \qquad
+s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2 \quad\text{(amostral)}.
+$$ {#eq-variancia}
+
+::: {.callout-important title="Armadilha comum — por que dividir por $n-1$?"}
+Na variância **amostral**, dividimos por $n-1$, não por $n$. A razão: ao usar a média **amostral** $\bar{x}$ (em vez da populacional $\mu$, desconhecida), subestimamos sistematicamente a dispersão, porque $\bar{x}$ é, por construção, o ponto que minimiza a soma dos desvios quadrados da própria amostra. Dividir por $n-1$ (os **graus de liberdade**) corrige esse viés, tornando $s^2$ um estimador **não viesado** de $\sigma^2$. Para $n$ grande, a diferença é desprezível.
+:::
+
+A variância tem um inconveniente: está em **unidades ao quadrado** (reais ao quadrado?). Tomando a raiz, voltamos à unidade original e obtemos o **desvio-padrão**:
+
+$$
+\sigma = \sqrt{\sigma^2}, \qquad s = \sqrt{s^2}.
+$$ {#eq-desvio-padrao}
+
+O desvio-padrão é a medida de dispersão mais usada: informa, em média, o quanto as observações se afastam da média, na mesma unidade dos dados.
+
+Para **comparar** a dispersão de conjuntos com médias muito diferentes (a variação dos preços de imóveis *versus* a de cafezinhos), usamos o **coeficiente de variação**, uma medida relativa e adimensional:
+
+$$
+CV = \frac{s}{\bar{x}} \times 100\%.
+$$ {#eq-cv}
+
+Um $CV$ de 15% significa que o desvio-padrão equivale a 15% da média, permitindo comparar a variabilidade **relativa** de grandezas de naturezas distintas.
+
+## Quantis e a forma da distribuição
+
+A mediana é um caso particular de uma família mais geral: os **quantis**, que dividem os dados ordenados em partes iguais. Os **quartis** ($Q_1$, $Q_2 = Md$, $Q_3$) dividem em quatro partes; os **decis**, em dez; os **percentis**, em cem. O percentil 90 da renda, por exemplo, é o valor abaixo do qual estão 90% das pessoas.
+
+Os quantis são a base de uma medida robusta de dispersão, o **intervalo interquartil** ($IIQ = Q_3 - Q_1$), que contém os 50% centrais dos dados e ignora as caudas — útil justamente quando há *outliers*. E são a matéria-prima das medidas de desigualdade que veremos a seguir: quando se diz que "os 10% mais ricos ganham X vezes os 40% mais pobres", fala-se em quantis de renda.
+
+A comparação entre média e mediana revela a **assimetria** da distribuição:
+
+- $\bar{x} \approx Md$: distribuição aproximadamente **simétrica**;
+- $\bar{x} > Md$: assimetria **à direita** (cauda longa de valores altos — o caso da renda);
+- $\bar{x} < Md$: assimetria **à esquerda**.
+
+## Medindo desigualdade: Lorenz e Gini
+
+Nenhuma medida de dispersão é tão carregada de significado econômico e social quanto as da **desigualdade de renda** — e nenhum país as ilustra melhor que o Brasil. A ferramenta gráfica central é a **curva de Lorenz**, que relaciona a proporção **acumulada** da população (do mais pobre ao mais rico) à proporção **acumulada** da renda que ela detém.
+
+::: {#fig-lorenz}
+
+```{.tikz}
+%%| filename: fig-lorenz
+%%| alt: Curva de Lorenz abaixo da diagonal de igualdade perfeita; a área entre as duas curvas, sombreada, representa o índice de Gini.
+\begin{tikzpicture}[font=\small]
+  \begin{axis}[
+    width=8.5cm, height=8.5cm,
+    xmin=0, xmax=100, ymin=0, ymax=100,
+    xlabel={\% acumulada da população (do mais pobre ao mais rico)},
+    ylabel={\% acumulada da renda},
+    axis lines=left,
+    xtick={0,20,40,60,80,100},
+    ytick={0,20,40,60,80,100},
+    tick label style={font=\footnotesize},
+    legend style={at={(0.03,0.97)}, anchor=north west, font=\footnotesize, draw=none, fill=none},
+  ]
+    % área de desigualdade
+    \addplot[draw=none, fill=manualyellow!35] coordinates {
+      (0,0) (20,3) (40,9) (60,20) (80,40) (100,100) (0,0)} \closedcycle;
+    % linha de igualdade perfeita
+    \addplot[eixo, manualgray, thick] coordinates {(0,0) (100,100)};
+    \addlegendentry{Igualdade perfeita}
+    % curva de Lorenz
+    \addplot[curva, manualblue, very thick] coordinates {
+      (0,0) (20,3) (40,9) (60,20) (80,40) (100,100)};
+    \addlegendentry{Curva de Lorenz}
+    \node[manualred, font=\footnotesize] at (axis cs:62,30) {Área $A$};
+  \end{axis}
+\end{tikzpicture}
+```
+
+Curva de Lorenz: quanto mais ela se afasta da diagonal de igualdade perfeita, maior a desigualdade. O índice de Gini é a razão entre a área $A$ (sombreada) e a área total do triângulo abaixo da diagonal.
+:::
+
+Se a renda fosse **perfeitamente igual**, 20% mais pobres da população deteriam 20% da renda, 40% deteriam 40%, e assim por diante: a curva coincidiria com a **diagonal** de 45°. Na realidade, os mais pobres detêm uma fração da renda menor que sua fração populacional, e a curva **afunda** abaixo da diagonal. Quanto maior o afundamento, maior a desigualdade.
+
+O **índice de Gini** transforma essa distância em um número entre 0 e 1:
+
+$$
+G = \frac{A}{A + B} = \frac{\text{área entre a diagonal e a curva de Lorenz}}{\text{área total do triângulo abaixo da diagonal}}.
+$$ {#eq-gini}
+
+Um Gini de **0** significa igualdade perfeita (a curva é a própria diagonal, $A = 0$); um Gini de **1**, desigualdade máxima (uma pessoa detém toda a renda). Quanto mais próximo de 1, mais concentrada é a renda.
+
+::: {.callout-warning title="Controvérsia — o Gini esconde onde está a desigualdade"}
+O Gini é um resumo poderoso, mas um único número não captura **tudo**. Duas sociedades com o mesmo Gini podem ter estruturas muito diferentes: numa, a desigualdade concentra-se entre os pobres; noutra, no topo. Por isso os economistas complementam o Gini com medidas sensíveis a partes específicas da distribuição — a razão entre a renda dos 10% mais ricos e a dos 40% mais pobres, a participação do **1% do topo** (tema de Piketty), ou o índice de Theil (decomponível entre grupos). Nenhuma medida isolada é a última palavra sobre desigualdade.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+A estatística descritiva não é um exercício abstrato no Brasil: é o instrumento que revela um dos traços mais marcantes do país — a **desigualdade**.
+
+**O Brasil no mapa mundial da desigualdade.** O índice de Gini da renda domiciliar per capita brasileira, calculado pelo IBGE a partir da **PNAD Contínua**, situa-se historicamente em torno de **0,52 a 0,54** — um dos mais altos do mundo, comparável ao de vizinhos latino-americanos e muito acima da média dos países desenvolvidos (tipicamente entre 0,25 e 0,35). Houve queda relevante ao longo dos anos 2000 (o Gini recuou de cerca de 0,58 para perto de 0,52), atribuída à valorização do salário mínimo, à expansão do emprego formal e a transferências como o Bolsa Família; a tendência oscilou nos anos seguintes, com pioras em períodos de crise. Verifique sempre a divulgação mais recente do IBGE.
+
+**Média *versus* mediana: o abismo brasileiro.** A distância entre a renda **média** e a renda **mediana** do trabalho no Brasil é gritante — reflexo direto da assimetria à direita e da concentração no topo. A média do rendimento é substancialmente **maior** que a mediana, porque é puxada por uma minoria de rendimentos muito altos. Quem se guia apenas pela média superestima a renda do brasileiro típico. É por isso que o IBGE e o IPEA reportam frequentemente **medianas** e a distribuição por **décimos** (decis) de renda, e não apenas a média.
+
+**As fontes.** O retrato estatístico da economia brasileira vem de algumas séries-chave: a **PNAD Contínua** (IBGE) para renda, trabalho e desigualdade; o **Censo Demográfico** (IBGE), a foto da população inteira feita a cada dez anos; a **POF** (Pesquisa de Orçamentos Familiares) para consumo e estrutura de gastos; e as bases do **IPEA** (Ipeadata) e do **Banco Central** (SGS), que reúnem séries macroeconômicas. Dominar a estatística descritiva é o que permite ler essas fontes com espírito crítico — e desconfiar de todo número apresentado sem sua medida de dispersão.
+
+> **Fontes e séries para explorar:** IBGE (PNAD Contínua — rendimento e Gini; Censo; POF); Ipeadata (séries de distribuição de renda); Banco Mundial (comparações internacionais de Gini); World Inequality Database (participação do topo). Verifique sempre o período de referência: medidas de desigualdade mudam a cada divulgação.
+
+## Resumo do capítulo
+
+- A **população** é o conjunto completo de interesse; a **amostra** é o subconjunto observado. Medidas na população são **parâmetros**; na amostra, **estatísticas**.
+- As variáveis são **qualitativas** (nominais ou ordinais) ou **quantitativas** (discretas ou contínuas); a natureza da variável determina que operações fazem sentido.
+- **Distribuições de frequência** e **histogramas** organizam e revelam a forma dos dados; a renda tem forma tipicamente **assimétrica à direita**.
+- As **medidas de tendência central** são a **média** (sensível a *outliers*), a **mediana** (robusta, descreve melhor a renda) e a **moda** (única aplicável a nominais). Em distribuições assimétricas à direita, $Mo < Md < \bar{x}$.
+- As **medidas de dispersão** são a amplitude, a **variância** (média dos desvios quadrados; amostral divide por $n-1$), o **desvio-padrão** (raiz da variância, na unidade original) e o **coeficiente de variação** (dispersão relativa, adimensional).
+- **Quantis** (quartis, decis, percentis) dividem os dados ordenados; a comparação média × mediana indica a **assimetria**.
+- A **desigualdade** de renda mede-se pela **curva de Lorenz** e pelo **índice de Gini** (0 = igualdade, 1 = concentração máxima); o Brasil tem Gini historicamente alto (≈ 0,52–0,54).
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise de caso.
+:::
+
+**1.** Classifique cada variável como qualitativa (nominal/ordinal) ou quantitativa (discreta/contínua): (a) o setor de atividade de uma empresa; (b) o número de filhos de um domicílio; (c) o salário mensal de um trabalhador; (d) o grau de escolaridade (fundamental, médio, superior).
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Qualitativa **nominal** (categorias sem ordem). (b) Quantitativa **discreta** (contagem). (c) Quantitativa **contínua** (qualquer valor num intervalo). (d) Qualitativa **ordinal** (categorias com ordem natural).
+:::
+
+**2.** Explique por que, ao descrever a renda de uma população, a **mediana** costuma ser mais informativa que a **média**.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A distribuição de renda é **assimétrica à direita**: a maioria das pessoas tem renda baixa ou média, e uma pequena minoria tem rendas altíssimas. A **média** é sensível a esses valores extremos e é puxada para cima, superestimando a renda do indivíduo típico. A **mediana** — a renda da pessoa no meio da fila — é robusta a *outliers* e descreve melhor a experiência da maioria. Por isso vale $Md < \bar{x}$ na renda.
+:::
+
+**3.** Considere as notas: 4, 5, 6, 6, 9. Calcule a média, a mediana e a moda.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Média:** $(4+5+6+6+9)/5 = 30/5 = 6{,}0$. **Mediana:** com os dados já ordenados e $n=5$ (ímpar), é o valor central, o terceiro: $Md = 6$. **Moda:** o valor mais frequente é $Mo = 6$ (aparece duas vezes). Aqui as três coincidem em torno de 6 — distribuição aproximadamente simétrica.
+:::
+
+**4.** Para a amostra 2, 4, 4, 6, 9 ($n = 5$), calcule a variância amostral e o desvio-padrão amostral.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Média: $\bar{x} = (2+4+4+6+9)/5 = 25/5 = 5$. Desvios quadrados: $(2-5)^2=9$; $(4-5)^2=1$; $(4-5)^2=1$; $(6-5)^2=1$; $(9-5)^2=16$. Soma $= 28$.
+$$
+s^2 = \frac{28}{n-1} = \frac{28}{4} = 7, \qquad s = \sqrt{7} \approx 2{,}65.
+$$
+:::
+
+**5.** Duas ações têm retorno médio mensal de 1%. A ação A tem desvio-padrão de 2%; a ação B, de 8%. Calcule o coeficiente de variação de cada uma e interprete em termos de risco.
+
+::: {.callout-tip collapse="true" title="Solução"}
+$CV_A = 2/1 \times 100\% = 200\%$; $CV_B = 8/1 \times 100\% = 800\%$. Ambas têm o mesmo retorno médio, mas B tem variabilidade relativa quatro vezes maior — é muito mais **arriscada** por unidade de retorno esperado. O coeficiente de variação permite comparar risco relativo mesmo quando as médias fossem diferentes; aqui, com médias iguais, ele apenas confirma que B é bem mais volátil (antecipa a relação risco-retorno do Volume 14).
+:::
+
+**6.** Numa distribuição de renda, verificou-se que a média é R\$\,3.200 e a mediana é R\$\,2.100. Que forma tem a distribuição? O que isso diz sobre a concentração de renda?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Como $\bar{x} = 3.200 > Md = 2.100$, a distribuição é **assimétrica à direita** (cauda longa de rendas altas). A média está bem acima da mediana porque uma minoria de rendas elevadas puxa a média para cima. Isso indica **concentração de renda no topo**: metade da população ganha até R\$\,2.100, enquanto os poucos rendimentos altos elevam a média para R\$\,3.200. É o padrão típico da renda brasileira.
+:::
+
+**7.** (Análise de caso) Um economista afirma: "o Gini do país caiu de 0,58 para 0,52 em uma década, logo a desigualdade acabou". Critique a afirmação usando o que você aprendeu sobre o Gini e a curva de Lorenz.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A afirmação exagera. Uma queda de 0,58 para 0,52 é uma **redução relevante** da desigualdade, mas 0,52 ainda é um Gini **muito alto** para padrões internacionais (desenvolvidos ficam em 0,25–0,35) — a desigualdade diminuiu, não acabou. Além disso, o Gini é um **resumo**: dois países com o mesmo Gini podem ter estruturas distintas, e a queda pode ter ocorrido em parte da distribuição (por exemplo, na base, via salário mínimo e transferências) sem alterar a **concentração no topo** (o 1% mais rico). Uma avaliação completa examinaria a curva de Lorenz inteira e medidas complementares (participação do topo, razão 10%/40%). Reduzir tudo a "acabou" é ler mal um indicador-resumo.
+:::
+
+**8.** (Desafio) Uma sala tem 9 pessoas com renda de R\$\,2.000 cada. Entra uma décima pessoa com renda de R\$\,2.000.000. Calcule a média e a mediana antes e depois. Comente qual medida representa melhor o grupo e por quê.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Antes** (9 pessoas): média $=$ mediana $=$ R\$\,2.000. **Depois** (10 pessoas): a média é $\frac{9 \times 2.000 + 2.000.000}{10} = \frac{2.018.000}{10} = R\$\,201.800$. A mediana, com $n=10$ (par), é a média dos dois valores centrais (5º e 6º), ambos R\$\,2.000 — logo $Md = R\$\,2.000$. A **média** saltou para R\$\,201.800, um valor que **nenhuma** das dez pessoas chega perto de ter (nove ganham 2 mil, uma ganha 2 milhões). A **mediana** permaneceu em R\$\,2.000 e descreve fielmente a renda da esmagadora maioria. O exemplo mostra a fragilidade da média diante de *outliers* e por que, para renda, a mediana é a medida mais honesta.
+:::
+
+## Para saber mais
+
+- @bussab2017 — referência brasileira clássica de estatística descritiva: distribuições de frequência, medidas de posição e dispersão, com muitos exemplos.
+- @hoffmann2006 — estatística voltada a economistas, com tratamento cuidadoso de desigualdade, curva de Lorenz e índice de Gini.
+- @wooldridge2016 — o apêndice de revisão de estatística contextualiza esses conceitos para a econometria que vem a seguir.
+- @gremaud2017 — para os dados e a interpretação econômica da desigualdade brasileira e sua evolução recente.
