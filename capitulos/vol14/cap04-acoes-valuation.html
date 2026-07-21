@@ -23,7 +23,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -74,6 +94,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -885,8 +934,31 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">98.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#o-que-é-uma-ação" id="toc-o-que-é-uma-ação" class="nav-link" data-scroll-target="#o-que-é-uma-ação"><span class="header-section-number">98.2</span> O que é uma ação</a>
+  <ul class="collapse">
+  <li><a href="#ordinárias-e-preferenciais" id="toc-ordinárias-e-preferenciais" class="nav-link" data-scroll-target="#ordinárias-e-preferenciais"><span class="header-section-number">98.2.1</span> Ordinárias e preferenciais</a></li>
+  <li><a href="#de-onde-vem-o-retorno-do-acionista" id="toc-de-onde-vem-o-retorno-do-acionista" class="nav-link" data-scroll-target="#de-onde-vem-o-retorno-do-acionista"><span class="header-section-number">98.2.2</span> De onde vem o retorno do acionista</a></li>
+  </ul></li>
+  <li><a href="#avaliação-de-empresas-preço-não-é-valor" id="toc-avaliação-de-empresas-preço-não-é-valor" class="nav-link" data-scroll-target="#avaliação-de-empresas-preço-não-é-valor"><span class="header-section-number">98.3</span> Avaliação de empresas: preço não é valor</a></li>
+  <li><a href="#avaliação-relativa-os-múltiplos" id="toc-avaliação-relativa-os-múltiplos" class="nav-link" data-scroll-target="#avaliação-relativa-os-múltiplos"><span class="header-section-number">98.4</span> Avaliação relativa: os múltiplos</a></li>
+  <li><a href="#avaliação-intrínseca-o-fluxo-de-caixa-descontado" id="toc-avaliação-intrínseca-o-fluxo-de-caixa-descontado" class="nav-link" data-scroll-target="#avaliação-intrínseca-o-fluxo-de-caixa-descontado"><span class="header-section-number">98.5</span> Avaliação intrínseca: o fluxo de caixa descontado</a>
+  <ul class="collapse">
+  <li><a href="#o-modelo-de-gordon-uma-perpetuidade-que-cresce" id="toc-o-modelo-de-gordon-uma-perpetuidade-que-cresce" class="nav-link" data-scroll-target="#o-modelo-de-gordon-uma-perpetuidade-que-cresce"><span class="header-section-number">98.5.1</span> O modelo de Gordon: uma perpetuidade que cresce</a></li>
+  <li><a href="#a-sensibilidade-às-premissas" id="toc-a-sensibilidade-às-premissas" class="nav-link" data-scroll-target="#a-sensibilidade-às-premissas"><span class="header-section-number">98.5.2</span> A sensibilidade às premissas</a></li>
+  </ul></li>
+  <li><a href="#preço-valor-e-a-eficiência-dos-mercados" id="toc-preço-valor-e-a-eficiência-dos-mercados" class="nav-link" data-scroll-target="#preço-valor-e-a-eficiência-dos-mercados"><span class="header-section-number">98.6</span> Preço, valor e a eficiência dos mercados</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">98.7</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">98.8</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">98.9</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">98.10</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol14/cap04-acoes-valuation.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -910,21 +982,1128 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
+<p>Você abre o aplicativo da corretora e vê uma parede de códigos e números que piscam em verde e vermelho: <strong>PETR4</strong> a R$ 38, <strong>VALE3</strong> a R$ 62, <strong>ITUB4</strong>, <strong>MGLU3</strong>, <strong>WEGE3</strong>. Ao lado de cada um, uma cotação que muda a cada segundo. Um amigo jura que “comprou Petrobras porque paga muito dividendo”; um analista na TV diz que “a ação está cara, negocia a 20 vezes o lucro”; um influenciador promete que tal empresa “vai multiplicar por dez”. Por trás de todo esse ruído há uma pergunta única e antiga: <strong>quanto vale uma empresa — e, portanto, quanto vale um pedacinho dela?</strong> Comprar uma ação é tornar-se sócio de um negócio real, com fábricas, funcionários, lucros e riscos. Seu preço no mercado (<a href="cap01-mercado-de-capitais.html" class="quarto-xref"><span>Capítulo 95</span></a>) sobe e desce com o humor dos investidores, mas por trás do preço existe um <strong>valor</strong> que se pode estimar com as mesmas ferramentas do valor do dinheiro no tempo que você construiu em <a href="cap02-valor-do-dinheiro-no-tempo.html" class="quarto-xref"><span>Capítulo 96</span></a>. Este capítulo mostra <strong>o que é uma ação, como o acionista ganha (ou perde) dinheiro e como se avalia uma empresa</strong> — pelos dois grandes caminhos: os múltiplos de mercado e o desconto de fluxos de caixa futuros.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="98.1">
+<h2 data-number="98.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">98.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>definir <strong>ação</strong> e explicar o que significa ser <strong>sócio</strong> de uma empresa, distinguindo <strong>ordinárias (ON)</strong> de <strong>preferenciais (PN)</strong> e os direitos do acionista;</li>
+<li>decompor o <strong>retorno total</strong> de uma ação em <strong>dividendos</strong> e <strong>ganho de capital</strong>, e calculá-lo;</li>
+<li>diferenciar as duas grandes abordagens de <strong>avaliação (valuation)</strong>: a <strong>relativa</strong> (por múltiplos) e a <strong>intrínseca</strong> (por fluxo de caixa descontado);</li>
+<li>interpretar e calcular os principais <strong>múltiplos</strong> — <strong>P/L</strong>, <strong>P/VP</strong>, <strong>dividend yield</strong> e <strong>EV/EBITDA</strong> — e reconhecer suas armadilhas;</li>
+<li>deduzir e aplicar o <strong>modelo de dividendos descontados (Gordon)</strong>, ligando o valor de uma ação a uma perpetuidade crescente;</li>
+<li>distinguir <strong>preço</strong> de <strong>valor</strong> e situar o debate sobre a <strong>eficiência dos mercados</strong>.</li>
+</ul>
+</section>
+<section id="o-que-é-uma-ação" class="level2" data-number="98.2">
+<h2 data-number="98.2" class="anchored" data-anchor-id="o-que-é-uma-ação"><span class="header-section-number">98.2</span> O que é uma ação</h2>
+<p>Uma <strong>ação</strong> é a menor fração do capital de uma sociedade anônima. Quem possui ações de uma empresa é <strong>coproprietário</strong> dela, na proporção que suas ações representam do total — e, como sócio, tem direito a participar dos <strong>lucros</strong> e, em graus variados, das <strong>decisões</strong>. É a essência da <strong>renda variável</strong>: ao contrário do credor da renda fixa (<a href="cap03-renda-fixa.html" class="quarto-xref"><span>Capítulo 97</span></a>), que empresta e recebe uma remuneração combinada, o acionista <strong>é dono</strong> e seu retorno depende inteiramente do sucesso do negócio e do preço que o mercado atribui a ele.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Ação">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota
+<span class="screen-reader-only">Nota</span>Definição — Ação
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Capítulo em construção.</p>
+<p>Uma <strong>ação</strong> é um título que representa a menor parcela do <strong>capital social</strong> de uma sociedade anônima. Seu titular, o <strong>acionista</strong>, é <strong>sócio</strong> da empresa na proporção de suas ações e tem direito a uma fração dos lucros distribuídos (<strong>dividendos</strong>) e, conforme o tipo de ação, ao <strong>voto</strong> nas assembleias. Não há promessa de retorno nem de devolução do capital: o acionista ganha se a empresa prosperar e o mercado reconhecer esse valor, e perde se ocorrer o contrário.</p>
 </div>
 </div>
+<section id="ordinárias-e-preferenciais" class="level3" data-number="98.2.1">
+<h3 data-number="98.2.1" class="anchored" data-anchor-id="ordinárias-e-preferenciais"><span class="header-section-number">98.2.1</span> Ordinárias e preferenciais</h3>
+<p>No Brasil, as ações se dividem em duas grandes classes, e a diferença aparece no <strong>final do código de negociação</strong> (o <em>ticker</em>):</p>
+<ul>
+<li><strong>Ações ordinárias (ON)</strong> — código terminado em <strong>3</strong> (ex.: <code>VALE3</code>, <code>WEGE3</code>). Dão <strong>direito a voto</strong> nas assembleias de acionistas: quem as detém ajuda a eleger a administração e a decidir os rumos da empresa. É a ação do <strong>controle</strong>.</li>
+<li><strong>Ações preferenciais (PN)</strong> — código terminado em <strong>4</strong> (ex.: <code>PETR4</code>, <code>ITUB4</code>). Em regra <strong>não dão voto</strong>, mas oferecem <strong>preferência</strong> na distribuição de dividendos e no reembolso de capital. É a ação de quem quer participar do resultado sem se envolver no controle.</li>
+</ul>
+<p>Há ainda as <strong>units</strong> (código terminado em <strong>11</strong>), pacotes que combinam ações de tipos diferentes. Todas são negociadas na <strong>B3</strong>, a bolsa brasileira, em geral em <strong>lotes-padrão</strong> de 100 ações, embora o <strong>mercado fracionário</strong> permita comprar de 1 a 99 unidades.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — por que ON e PN têm preços diferentes?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — por que ON e PN têm preços diferentes?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma mesma empresa pode ter ON e PN cotadas a preços distintos. A ON embute o <strong>valor do voto</strong> (o poder de decidir e de negociar o controle), enquanto a PN costuma pagar dividendos com prioridade e ter, historicamente, mais liquidez em muitas empresas brasileiras. Não é raro que a PN seja mais líquida e a ON carregue um <strong>prêmio de controle</strong> — por isso comparar <code>PETR3</code> com <code>PETR4</code> exige atenção ao que cada classe oferece.</p>
+</div>
+</div>
+</section>
+<section id="de-onde-vem-o-retorno-do-acionista" class="level3" data-number="98.2.2">
+<h3 data-number="98.2.2" class="anchored" data-anchor-id="de-onde-vem-o-retorno-do-acionista"><span class="header-section-number">98.2.2</span> De onde vem o retorno do acionista</h3>
+<p>O acionista ganha dinheiro por <strong>dois canais</strong>, e é fundamental separá-los:</p>
+<ol type="1">
+<li><strong>Dividendos</strong> (e formas afins): a parcela do <strong>lucro</strong> que a empresa distribui aos sócios, em dinheiro, periodicamente. É a renda que a ação “paga” enquanto você a mantém.</li>
+<li><strong>Ganho de capital</strong>: a <strong>valorização</strong> do preço da ação. Se você comprou a R$ 30 e vendeu a R$ 40, embolsou R$ 10 de ganho de capital por ação.</li>
+</ol>
+<p>Somando os dois, o <strong>retorno total</strong> de uma ação, ao longo de um período, é</p>
+<p><span id="eq-retorno-total"><span class="math display">\[
+R = \frac{(P_1 - P_0) + D}{P_0},
+\tag{98.1}\]</span></span></p>
+<p>onde <span class="math inline">\(P_0\)</span> é o preço de compra, <span class="math inline">\(P_1\)</span> o preço ao final do período e <span class="math inline">\(D\)</span> os dividendos recebidos no intervalo. O primeiro termo é o <strong>ganho de capital percentual</strong>; o segundo, o <em>dividend yield</em> realizado. Uma ação comprada a R$ 100 que sobe para R$ 108 e paga R$ 4 de dividendos rendeu <span class="math inline">\(\frac{(108-100)+4}{100} = 12\%\)</span> no período — 8% de valorização e 4% de dividendos.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — confundir dividendo com 'juro da ação'">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — confundir dividendo com ‘juro da ação’
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O dividendo <strong>não</strong> é um juro garantido. A empresa decide quanto (e se) distribui, conforme o lucro do período e sua política de reinvestimento. Uma empresa em crescimento pode <strong>não pagar dividendo nenhum</strong> — reinvestindo todo o lucro para crescer — e ainda assim ser um ótimo investimento, se essa retenção gerar valorização. Já uma empresa madura, que reinveste pouco, tende a distribuir muito. Avaliar uma ação só pelo dividendo que ela paga hoje ignora metade da equação (o ganho de capital) e pode enganar.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="avaliação-de-empresas-preço-não-é-valor" class="level2" data-number="98.3">
+<h2 data-number="98.3" class="anchored" data-anchor-id="avaliação-de-empresas-preço-não-é-valor"><span class="header-section-number">98.3</span> Avaliação de empresas: preço não é valor</h2>
+<p>Chegamos ao coração do capítulo. O <strong>preço</strong> de uma ação é o número que pisca na tela — o que o mercado, hoje, está disposto a pagar. O <strong>valor</strong> (ou valor intrínseco) é uma estimativa de quanto a empresa <em>realmente vale</em>, dado seu potencial de gerar lucros e caixa no futuro. Investir com método é, no fundo, comparar preço e valor: comprar quando o preço está <strong>abaixo</strong> do valor estimado, evitar quando está <strong>acima</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Valuation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Valuation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Valuation</strong> (avaliação) é o conjunto de técnicas para estimar o <strong>valor econômico</strong> de uma empresa ou de suas ações. Divide-se em duas grandes famílias: a <strong>avaliação relativa</strong>, que compara a empresa a semelhantes por meio de <strong>múltiplos</strong> de mercado, e a <strong>avaliação intrínseca</strong> (ou <strong>absoluta</strong>), que estima o valor descontando a trazendo a valor presente os <strong>fluxos de caixa futuros</strong> que a empresa deve gerar.</p>
+</div>
+</div>
+<p>As duas abordagens são complementares — analistas sérios usam ambas — e as veremos em ordem: primeiro a mais simples e difundida (múltiplos), depois a mais fundamentada (fluxo de caixa descontado).</p>
+</section>
+<section id="avaliação-relativa-os-múltiplos" class="level2" data-number="98.4">
+<h2 data-number="98.4" class="anchored" data-anchor-id="avaliação-relativa-os-múltiplos"><span class="header-section-number">98.4</span> Avaliação relativa: os múltiplos</h2>
+<p>Um <strong>múltiplo</strong> relaciona o <strong>preço</strong> (ou o valor) de uma empresa a alguma medida do seu tamanho ou resultado — lucro, patrimônio, receita. A lógica é comparativa: <em>empresas parecidas devem valer múltiplos parecidos</em>; quando uma se descola das concorrentes, vale investigar por quê. Os quatro múltiplos mais usados:</p>
+<div id="tbl-multiplos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-multiplos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;98.1: Os principais múltiplos de avaliação relativa.
+</figcaption>
+<div aria-describedby="tbl-multiplos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Múltiplo</th>
+<th>Fórmula</th>
+<th>O que mede</th>
+<th>Leitura</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>P/L</strong> (preço/lucro)</td>
+<td><span class="math inline">\(\dfrac{\text{Preço da ação}}{\text{LPA}}\)</span></td>
+<td>Anos de lucro para “pagar” o preço</td>
+<td>Alto = caro ou muito crescimento esperado</td>
+</tr>
+<tr class="even">
+<td><strong>P/VP</strong> (preço/valor patrimonial)</td>
+<td><span class="math inline">\(\dfrac{\text{Preço da ação}}{\text{VPA}}\)</span></td>
+<td>Preço ante o patrimônio contábil</td>
+<td><span class="math inline">\(&lt;1\)</span> = negocia abaixo do patrimônio</td>
+</tr>
+<tr class="odd">
+<td><strong>Dividend yield</strong></td>
+<td><span class="math inline">\(\dfrac{\text{Dividendo por ação}}{\text{Preço}}\)</span></td>
+<td>Renda de dividendos anual</td>
+<td>Alto = boa renda (ou pouca reinvestida)</td>
+</tr>
+<tr class="even">
+<td><strong>EV/EBITDA</strong></td>
+<td><span class="math inline">\(\dfrac{\text{Valor da firma}}{\text{EBITDA}}\)</span></td>
+<td>Preço da operação ante a geração de caixa operacional</td>
+<td>Neutro à estrutura de capital</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>O mais popular é o <strong>P/L</strong> (preço sobre lucro), que divide o preço da ação pelo <strong>lucro por ação (LPA)</strong> — o lucro líquido anual dividido pelo número de ações. Um P/L de 10 significa que, ao preço atual, você paga <strong>10 anos</strong> de lucro corrente pela empresa; equivale a um “rendimento do lucro” (o inverso, <span class="math inline">\(1/(P/L)\)</span>) de 10% ao ano. Um P/L <strong>alto</strong> indica que o mercado ou considera a ação cara, ou espera que seus lucros <strong>cresçam</strong> muito (e por isso aceita pagar mais pelo lucro de hoje). Um P/L <strong>baixo</strong> pode sinalizar uma pechincha — ou uma empresa em dificuldade, cujo lucro o mercado desconfia que vá cair.</p>
+<p>O <strong>P/VP</strong> compara o preço ao <strong>valor patrimonial por ação (VPA)</strong>, o patrimônio líquido contábil dividido pelo número de ações. Bancos e empresas intensivas em ativos costumam ser avaliados por ele. O <strong>dividend yield</strong> é o dividendo anual dividido pelo preço — a “renda” da ação, tão cara aos investidores brasileiros. E o <strong>EV/EBITDA</strong> relaciona o <strong>valor da firma</strong> (<em>enterprise value</em> = valor de mercado das ações mais a dívida líquida) ao <strong>EBITDA</strong> (lucro antes de juros, impostos, depreciação e amortização) — uma medida de geração de caixa operacional que permite comparar empresas com endividamentos diferentes.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — múltiplos são atalhos, não verdades">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — múltiplos são atalhos, não verdades
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Múltiplos são rápidos e intuitivos, mas <strong>relativos por natureza</strong>: dizem se uma ação está cara ou barata <em>em relação a outras</em> — e, se o setor inteiro estiver sobrevalorizado, um múltiplo “na média” apenas confirma o exagero coletivo. Além disso, o P/L usa o <strong>lucro contábil</strong>, que pode ser distorcido por eventos não recorrentes, e fica <strong>sem sentido</strong> quando o lucro é negativo. Por isso a avaliação relativa deve ser cruzada com a intrínseca, e nunca aplicada entre empresas de setores, riscos e perspectivas de crescimento muito diferentes.</p>
+</div>
+</div>
+</section>
+<section id="avaliação-intrínseca-o-fluxo-de-caixa-descontado" class="level2" data-number="98.5">
+<h2 data-number="98.5" class="anchored" data-anchor-id="avaliação-intrínseca-o-fluxo-de-caixa-descontado"><span class="header-section-number">98.5</span> Avaliação intrínseca: o fluxo de caixa descontado</h2>
+<p>A abordagem mais fundamentada parte de uma ideia simples e poderosa: <strong>uma empresa vale a soma de todo o dinheiro que ela distribuirá aos seus donos no futuro, trazido a valor presente</strong>. É a aplicação direta do desconto (<a href="cap02-valor-do-dinheiro-no-tempo.html#eq-vp" class="quarto-xref">Equação&nbsp;<span>96.4</span></a>) a um negócio inteiro. Se pensarmos nos pagamentos ao acionista como uma sequência de <strong>dividendos</strong> <span class="math inline">\(D_1, D_2, D_3, \dots\)</span>, o valor da ação hoje é</p>
+<p><span id="eq-ddm"><span class="math display">\[
+P_0 = \frac{D_1}{(1+r)} + \frac{D_2}{(1+r)^2} + \frac{D_3}{(1+r)^3} + \cdots = \sum_{t=1}^{\infty} \frac{D_t}{(1+r)^t},
+\tag{98.2}\]</span></span></p>
+<p>onde <span class="math inline">\(r\)</span> é a <strong>taxa de retorno exigida</strong> pelo investidor — o custo de oportunidade do capital, que remunera o risco de ser sócio (o próximo capítulo, <a href="cap05-risco-retorno-capm.html" class="quarto-xref"><span>Capítulo 99</span></a>, mostra como calculá-la). Este é o <strong>modelo de dividendos descontados</strong>. A <a href="#fig-fluxo-dividendos" class="quarto-xref">Figura&nbsp;<span>98.1</span></a> mostra o fluxo: você paga <span class="math inline">\(P_0\)</span> hoje e recebe uma corrente infinita de dividendos que, em geral, <strong>cresce</strong> com o tempo.</p>
+<div id="fig-fluxo-dividendos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fluxo-dividendos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="360.996045pt" height="129.520767pt" viewbox="-68.014948 -68.014948 360.996045 129.520767">
+<defs>
+<path id="tz_fig_fluxo_dividendos_g0-68" d="M1.331009-.629639C1.259278-.326775 1.243337-.263014 .653549-.263014C.502117-.263014 .406476-.263014 .406476-.111582C.406476 0 .510087 0 .645579 0H3.387298C5.068991 0 6.742715-1.609963 6.742715-3.387298C6.742715-4.606725 5.929763-5.443587 4.742217-5.443587H1.952677C1.809215-5.443587 1.705604-5.443587 1.705604-5.292154C1.705604-5.180573 1.801245-5.180573 1.936737-5.180573C2.199751-5.180573 2.430884-5.180573 2.430884-5.053051C2.430884-5.021171 2.422914-5.0132 2.399004-4.909589L1.331009-.629639ZM3.092403-4.885679C3.164134-5.156663 3.172105-5.180573 3.498879-5.180573H4.463263C5.395766-5.180573 6.025405-4.646575 6.025405-3.674222C6.025405-3.411208 5.913823-2.11208 5.220423-1.219427C4.869738-.773101 4.184309-.263014 3.243836-.263014H2.056289C1.984558-.278954 1.960648-.278954 1.960648-.334745C1.960648-.398506 1.976588-.462267 1.992528-.510087L3.092403-4.885679Z"></path>
+<path id="tz_fig_fluxo_dividendos_g0-80" d="M2.510585-2.486675H3.961146C5.108842-2.486675 6.304359-3.283686 6.304359-4.224159C6.304359-4.901619 5.66675-5.443587 4.638605-5.443587H1.952677C1.809215-5.443587 1.705604-5.443587 1.705604-5.292154C1.705604-5.180573 1.809215-5.180573 1.936737-5.180573C2.199751-5.180573 2.430884-5.180573 2.430884-5.053051C2.430884-5.021171 2.422914-5.0132 2.399004-4.909589L1.331009-.629639C1.259278-.334745 1.243337-.263014 .67746-.263014C.494147-.263014 .406476-.263014 .406476-.111582C.406476-.079701 .430386 0 .533998 0C.68543 0 .876712-.01594 1.028144-.02391H1.538232C2.303362-.02391 2.510585 0 2.566376 0C2.614197 0 2.725778 0 2.725778-.151432C2.725778-.263014 2.622167-.263014 2.486675-.263014C2.462765-.263014 2.319303-.263014 2.183811-.278954C2.016438-.294894 2.000498-.318804 2.000498-.390535C2.000498-.430386 2.016438-.478207 2.024408-.518057L2.510585-2.486675ZM3.092403-4.885679C3.164134-5.156663 3.172105-5.180573 3.498879-5.180573H4.375592C5.029141-5.180573 5.531258-4.98929 5.531258-4.399502C5.531258-4.29589 5.491407-3.58655 5.045081-3.148194C4.925529-3.028643 4.542964-2.725778 3.761893-2.725778H2.550436L3.092403-4.885679Z"></path>
+<path id="tz_fig_fluxo_dividendos_g0-103" d="M3.953176-2.940971C3.985056-3.060523 3.985056-3.108344 3.985056-3.116314C3.985056-3.299626 3.833624-3.363387 3.730012-3.363387C3.5467-3.363387 3.403238-3.219925 3.371357-3.052553C3.307597-3.172105 3.068493-3.514819 2.590286-3.514819C1.641843-3.514819 .605729-2.454795 .605729-1.291158C.605729-.430386 1.171606 0 1.761395 0C2.12802 0 2.454795-.199253 2.717808-.430386L2.542466 .286924C2.454795 .621669 2.399004 .852802 2.088169 1.115816C1.753425 1.40274 1.45056 1.40274 1.251308 1.40274S.860772 1.39477 .669489 1.354919C.844832 1.259278 .924533 1.091905 .924533 .956413C.924533 .765131 .781071 .661519 .613699 .661519C.414446 .661519 .167372 .820922 .167372 1.139726C.167372 1.594022 .789041 1.625903 1.267248 1.625903C2.399004 1.625903 2.964882 1.020174 3.084433 .533998L3.953176-2.940971ZM2.87721-1.052055C2.82142-.828892 2.646077-.669489 2.478705-.518057C2.406974-.462267 2.10411-.223163 1.777335-.223163C1.458531-.223163 1.227397-.486177 1.227397-.964384C1.227397-1.299128 1.42665-2.16787 1.641843-2.574346C1.896887-3.028643 2.271482-3.291656 2.590286-3.291656C3.124284-3.291656 3.267746-2.701868 3.267746-2.630137L3.243836-2.518555L2.87721-1.052055Z"></path>
+<path id="tz_fig_fluxo_dividendos_g1-24" d="M2.414944 .167372H1.809215V.557908C2.351183 .565878 2.518555 .797011 2.518555 .980324C2.518555 1.251308 2.207721 1.41071 1.370859 1.41071H1.099875V1.633873H1.474471C1.578082 1.633873 2.12802 1.625903 2.478705 1.546202C2.797509 1.474471 3.124284 1.338979 3.124284 .980324C3.124284 .557908 2.677958 .430386 2.414944 .382565V.167372Z"></path>
+<path id="tz_fig_fluxo_dividendos_g1-40" d="M2.654047 1.992528C2.717808 1.992528 2.81345 1.992528 2.81345 1.896887C2.81345 1.865006 2.805479 1.857036 2.701868 1.753425C1.609963 .72528 1.338979-.757161 1.338979-1.992528C1.338979-4.28792 2.287422-5.363885 2.693898-5.730511C2.805479-5.834122 2.81345-5.842092 2.81345-5.881943S2.781569-5.977584 2.701868-5.977584C2.574346-5.977584 2.175841-5.571108 2.11208-5.499377C1.044085-4.383562 .820922-2.948941 .820922-1.992528C.820922-.207223 1.570112 1.227397 2.654047 1.992528Z"></path>
+<path id="tz_fig_fluxo_dividendos_g1-41" d="M2.462765-1.992528C2.462765-2.749689 2.335243-3.658281 1.841096-4.598755C1.45056-5.332005 .72528-5.977584 .581818-5.977584C.502117-5.977584 .478207-5.921793 .478207-5.881943C.478207-5.850062 .478207-5.834122 .573848-5.738481C1.689664-4.678456 1.944707-3.219925 1.944707-1.992528C1.944707 .294894 .996264 1.378829 .589788 1.745455C.486177 1.849066 .478207 1.857036 .478207 1.896887S.502117 1.992528 .581818 1.992528C.70934 1.992528 1.107846 1.586052 1.171606 1.514321C2.239601 .398506 2.462765-1.036115 2.462765-1.992528Z"></path>
+<path id="tz_fig_fluxo_dividendos_g1-43" d="M3.474969-1.809215H5.818182C5.929763-1.809215 6.105106-1.809215 6.105106-1.992528S5.929763-2.175841 5.818182-2.175841H3.474969V-4.527024C3.474969-4.638605 3.474969-4.813948 3.291656-4.813948S3.108344-4.638605 3.108344-4.527024V-2.175841H.757161C.645579-2.175841 .470237-2.175841 .470237-1.992528S.645579-1.809215 .757161-1.809215H3.108344V.541968C3.108344 .653549 3.108344 .828892 3.291656 .828892S3.474969 .653549 3.474969 .541968V-1.809215Z"></path>
+<path id="tz_fig_fluxo_dividendos_g1-49" d="M2.502615-5.076961C2.502615-5.292154 2.486675-5.300125 2.271482-5.300125C1.944707-4.98132 1.522291-4.790037 .765131-4.790037V-4.527024C.980324-4.527024 1.41071-4.527024 1.872976-4.742217V-.653549C1.872976-.358655 1.849066-.263014 1.091905-.263014H.812951V0C1.139726-.02391 1.825156-.02391 2.183811-.02391S3.235866-.02391 3.56264 0V-.263014H3.283686C2.526526-.263014 2.502615-.358655 2.502615-.653549V-5.076961Z"></path>
+<path id="tz_fig_fluxo_dividendos_g1-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_fluxo_dividendos_g1-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_fluxo_dividendos_g1-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_fluxo_dividendos_g1-112" d="M2.096139 1.283188C1.586052 1.283188 1.490411 1.283188 1.490411 .924533V-.390535C1.865006 .01594 2.271482 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.717808 3.610461-3.514819 2.646077-3.514819C2.335243-3.514819 1.872976-3.435118 1.466501-3.020672V-3.514819L.278954-3.427148V-3.164134C.844832-3.164134 .884682-3.116314 .884682-2.781569V.924533C.884682 1.283188 .789041 1.283188 .278954 1.283188V1.546202C.621669 1.522291 .972354 1.522291 1.187547 1.522291C1.41868 1.522291 1.753425 1.522291 2.096139 1.546202V1.283188ZM1.490411-2.654047C1.673724-2.972852 2.072229-3.267746 2.574346-3.267746C3.188045-3.267746 3.706102-2.590286 3.706102-1.721544C3.706102-.804981 3.132254-.143462 2.486675-.143462C2.207721-.143462 1.841096-.263014 1.586052-.661519C1.490411-.797011 1.490411-.804981 1.490411-.956413V-2.654047Z"></path>
+<path id="tz_fig_fluxo_dividendos_g1-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_fluxo_dividendos_g2-1" d="M1.75741-2.25056C1.75741-2.510585 1.551183-2.734745 1.273225-2.734745S.789041-2.510585 .789041-2.25056S.995268-1.766376 1.273225-1.766376S1.75741-1.990535 1.75741-2.25056Z"></path>
+<path id="tz_fig_fluxo_dividendos_g3-48" d="M3.287671-1.906849C3.287671-2.343213 3.287671-3.975093 1.823163-3.975093S.358655-2.343213 .358655-1.906849C.358655-1.476463 .358655 .125529 1.823163 .125529S3.287671-1.476463 3.287671-1.906849ZM1.823163-.065753C1.572105-.065753 1.165629-.185305 1.022167-.681445C.926526-1.028144 .926526-1.613948 .926526-1.984558C.926526-2.385056 .926526-2.84533 1.010212-3.16812C1.159651-3.706102 1.613948-3.783811 1.823163-3.783811C2.098132-3.783811 2.492653-3.652304 2.624159-3.198007C2.713823-2.881196 2.719801-2.444832 2.719801-1.984558C2.719801-1.601993 2.719801-.998257 2.618182-.663512C2.450809-.143462 2.020423-.065753 1.823163-.065753Z"></path>
+<path id="tz_fig_fluxo_dividendos_g3-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_fig_fluxo_dividendos_g3-50" d="M3.21594-1.117808H2.99477C2.982814-1.034122 2.923039-.639601 2.833375-.573848C2.791532-.537983 2.307347-.537983 2.223661-.537983H1.105853L1.870984-1.159651C2.074222-1.321046 2.606227-1.703611 2.791532-1.882939C2.970859-2.062267 3.21594-2.367123 3.21594-2.791532C3.21594-3.53873 2.540473-3.975093 1.739477-3.975093C.968369-3.975093 .430386-3.466999 .430386-2.905106C.430386-2.600249 .687422-2.564384 .753176-2.564384C.902615-2.564384 1.075965-2.67198 1.075965-2.887173C1.075965-3.01868 .998257-3.209963 .735243-3.209963C.872727-3.514819 1.23736-3.741968 1.649813-3.741968C2.27746-3.741968 2.612204-3.275716 2.612204-2.791532C2.612204-2.367123 2.331258-1.93076 1.912827-1.548194L.496139-.251059C.436364-.191283 .430386-.185305 .430386 0H3.030635L3.21594-1.117808Z"></path>
+<path id="tz_fig_fluxo_dividendos_g3-51" d="M1.75741-1.984558C2.265504-1.984558 2.606227-1.643836 2.606227-1.034122C2.606227-.376588 2.211706-.089664 1.775342-.089664C1.613948-.089664 .998257-.125529 .729265-.472229C.962391-.496139 1.058032-.651557 1.058032-.812951C1.058032-1.016189 .91457-1.153674 .71731-1.153674C.555915-1.153674 .376588-1.052055 .376588-.800996C.376588-.209215 1.034122 .125529 1.793275 .125529C2.677958 .125529 3.269738-.442341 3.269738-1.034122C3.269738-1.470486 2.934994-1.93076 2.223661-2.110087C2.69589-2.265504 3.078456-2.64807 3.078456-3.138232C3.078456-3.616438 2.516563-3.975093 1.799253-3.975093C1.099875-3.975093 .56787-3.652304 .56787-3.162142C.56787-2.905106 .765131-2.833375 .884682-2.833375C1.0401-2.833375 1.201494-2.940971 1.201494-3.150187C1.201494-3.335492 1.069988-3.443088 .908593-3.466999C1.189539-3.777833 1.733499-3.777833 1.787298-3.777833C2.092154-3.777833 2.47472-3.634371 2.47472-3.138232C2.47472-2.809465 2.289415-2.235616 1.691656-2.199751C1.58406-2.193773 1.422665-2.181818 1.368867-2.181818C1.309091-2.175841 1.243337-2.169863 1.243337-2.080199C1.243337-1.984558 1.309091-1.984558 1.41071-1.984558H1.75741Z"></path>
+<path id="tz_fig_fluxo_dividendos_g4-48" d="M4.241096-2.86924C4.241096-3.469988 4.214197-4.241096 3.900374-4.913574C3.505853-5.756413 2.824408-5.971606 2.304359-5.971606C1.766376-5.971606 1.084932-5.756413 .690411-4.895641C.403487-4.276961 .358655-3.550685 .358655-2.86924C.358655-2.286426 .376588-1.416687 .762142-.708344C1.183562 .053798 1.882939 .19726 2.295392 .19726C2.878207 .19726 3.541719-.053798 3.918306-.878705C4.187298-1.479452 4.241096-2.15193 4.241096-2.86924ZM2.304359-.026899C2.035367-.026899 1.389788-.152428 1.219427-1.165629C1.129763-1.694645 1.129763-2.465753 1.129763-2.976837C1.129763-3.58655 1.129763-4.294894 1.23736-4.788045C1.416687-5.586052 1.990535-5.747447 2.295392-5.747447C2.636115-5.747447 3.200996-5.56812 3.371357-4.734247C3.469988-4.241096 3.469988-3.541719 3.469988-2.976837C3.469988-2.420922 3.469988-1.667746 3.380324-1.13873C3.19203-.116563 2.528518-.026899 2.304359-.026899Z"></path>
+<path id="tz_fig_fluxo_dividendos_g4-49" d="M2.725778-5.729514C2.725778-5.953674 2.716812-5.971606 2.492653-5.971606C1.936737-5.397758 1.111831-5.397758 .833873-5.397758V-5.119801C1.004234-5.119801 1.551183-5.119801 2.035367-5.352927V-.71731C2.035367-.385554 2.008468-.277958 1.174595-.277958H.887671V0C1.210461-.026899 2.008468-.026899 2.37609-.026899S3.550685-.026899 3.873474 0V-.277958H3.58655C2.752677-.277958 2.725778-.385554 2.725778-.71731V-5.729514Z"></path>
+<path id="tz_fig_fluxo_dividendos_g4-50" d="M4.142466-1.587049H3.891407C3.873474-1.470486 3.801743-.941469 3.685181-.798007C3.631382-.71731 3.012702-.71731 2.833375-.71731H1.23736L2.125031-1.560149C3.595517-2.833375 4.142466-3.308593 4.142466-4.223163C4.142466-5.254296 3.29066-5.971606 2.187796-5.971606C1.156663-5.971606 .457285-5.155666 .457285-4.339726C.457285-3.891407 .842839-3.846575 .923537-3.846575C1.120797-3.846575 1.389788-3.990037 1.389788-4.312827C1.389788-4.581818 1.201494-4.779078 .923537-4.779078C.878705-4.779078 .851806-4.779078 .81594-4.770112C1.031133-5.406725 1.604981-5.693649 2.089166-5.693649C3.003736-5.693649 3.317559-4.841843 3.317559-4.223163C3.317559-3.308593 2.627148-2.564384 2.196762-2.098132L.555915-.32279C.457285-.224159 .457285-.206227 .457285 0H3.891407L4.142466-1.587049Z"></path>
+<path id="tz_fig_fluxo_dividendos_g4-51" d="M2.734745-3.156164C3.568618-3.469988 3.963138-4.124533 3.963138-4.743213C3.963138-5.433624 3.200996-5.971606 2.268493-5.971606S.636613-5.44259 .636613-4.761146C.636613-4.465255 .833873-4.294894 1.093898-4.294894S1.542217-4.483188 1.542217-4.743213C1.542217-5.057036 1.327024-5.191532 1.022167-5.191532C1.255293-5.56812 1.802242-5.747447 2.241594-5.747447C2.985803-5.747447 3.129265-5.155666 3.129265-4.734247C3.129265-4.465255 3.075467-4.034869 2.851308-3.694147C2.57335-3.29066 2.259527-3.272727 1.999502-3.254795C1.775342-3.236862 1.75741-3.236862 1.685679-3.236862C1.604981-3.227895 1.53325-3.218929 1.53325-3.120299C1.53325-3.003736 1.604981-3.003736 1.75741-3.003736H2.178829C2.958904-3.003736 3.299626-2.37609 3.299626-1.524284C3.299626-.376588 2.689913-.053798 2.232628-.053798C2.062267-.053798 1.192528-.09863 .789041-.762142C1.111831-.71731 1.362889-.941469 1.362889-1.246326C1.362889-1.542217 1.13873-1.730511 .878705-1.730511C.654545-1.730511 .385554-1.596015 .385554-1.219427C.385554-.42142 1.219427 .19726 2.259527 .19726C3.380324 .19726 4.214197-.609714 4.214197-1.524284C4.214197-2.304359 3.595517-2.96787 2.734745-3.156164Z"></path>
+<path id="tz_fig_fluxo_dividendos_g4-52" d="M.260025-1.75741V-1.479452H2.707846V-.708344C2.707846-.376588 2.680946-.277958 2.008468-.277958H1.811208V0C2.37609-.026899 3.003736-.026899 3.066501-.026899C3.111333-.026899 3.756912-.026899 4.321793 0V-.277958H4.124533C3.452055-.277958 3.425156-.376588 3.425156-.708344V-1.479452H4.339726V-1.75741H3.425156V-5.828144C3.425156-6.007472 3.425156-6.070237 3.254795-6.070237C3.147198-6.070237 3.138232-6.06127 3.057534-5.935741L.260025-1.75741ZM.546949-1.75741L2.761644-5.074969V-1.75741H.546949Z"></path>
+<path id="tz_fig_fluxo_dividendos_g4-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+<path id="tz_fig_fluxo_dividendos_g4-109" d="M1.667746-2.322291C1.667746-3.29066 2.367123-3.738979 2.905106-3.738979C3.398257-3.738979 3.559651-3.38929 3.559651-2.761644V-.690411C3.559651-.277958 3.461021-.277958 2.86924-.277958V0C3.29066-.017933 3.461021-.026899 3.891407-.026899S4.438356-.017933 4.913574 0V-.277958C4.321793-.277958 4.223163-.277958 4.223163-.690411V-2.322291C4.223163-3.29066 4.92254-3.738979 5.460523-3.738979C5.953674-3.738979 6.115068-3.38929 6.115068-2.761644V-.690411C6.115068-.277958 6.016438-.277958 5.424658-.277958V0C5.846077-.017933 6.016438-.026899 6.446824-.026899S6.993773-.017933 7.468991 0V-.277958C7.011706-.277958 6.787547-.277958 6.77858-.555915V-2.27746C6.77858-3.057534 6.77858-3.308593 6.48269-3.640349C6.294396-3.855542 5.935741-3.963138 5.523288-3.963138C4.877709-3.963138 4.438356-3.58655 4.187298-3.111333C4.079701-3.640349 3.721046-3.963138 2.96787-3.963138C2.25056-3.963138 1.811208-3.496887 1.622914-3.084433H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_fluxo_dividendos_g4-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_fluxo_dividendos_g4-112" d="M1.622914-3.012702C1.927771-3.532752 2.420922-3.71208 2.797509-3.71208C3.496887-3.71208 4.034869-2.905106 4.034869-1.936737C4.034869-.91457 3.425156-.125529 2.698879-.125529C2.295392-.125529 1.95467-.358655 1.739477-.672478C1.622914-.851806 1.622914-.869738 1.622914-1.0401V-3.012702ZM1.622914-.430386C1.85604-.19726 2.160897 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.066501 3.927273-3.963138 2.86924-3.963138C2.385056-3.963138 1.936737-3.765878 1.596015-3.398257V-3.963138L.268991-3.864508V-3.58655C.905604-3.58655 .959402-3.532752 .959402-3.147198V1.049066C.959402 1.461519 .860772 1.461519 .268991 1.461519V1.739477C.690411 1.721544 .860772 1.712578 1.291158 1.712578S1.838107 1.721544 2.313325 1.739477V1.461519C1.721544 1.461519 1.622914 1.461519 1.622914 1.049066V-.430386Z"></path>
+<path id="tz_fig_fluxo_dividendos_g4-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+</defs>
+<g id="tz_fig_fluxo_dividendos_page1">
+<g stroke-miterlimit="10" transform="translate(-45.346628,2.758333)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M-14.22636 0H305.28973" fill="none"></path>
+<g transform="translate(305.28973,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(310.82268,-1.89285)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.346628,2.758333)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-45.346628" y="2.758333" href="#tz_fig_fluxo_dividendos_g4-116"></use>
+<use x="-41.762869" y="2.758333" href="#tz_fig_fluxo_dividendos_g4-101"></use>
+<use x="-37.66368" y="2.758333" href="#tz_fig_fluxo_dividendos_g4-109"></use>
+<use x="-29.984196" y="2.758333" href="#tz_fig_fluxo_dividendos_g4-112"></use>
+<use x="-24.608557" y="2.758333" href="#tz_fig_fluxo_dividendos_g4-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<path d="M0 2.84544V-2.84544" fill="none"></path>
+<g transform="translate(-2.31248,-12.1784)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.346628,2.758333)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-45.346628" y="2.758333" href="#tz_fig_fluxo_dividendos_g4-48"></use>
+</g>
+</g>
+</g>
+</g>
+<path d="M56.90549 2.84544V-2.84544" fill="none"></path>
+<g transform="translate(54.593,-12.1784)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.346628,2.758333)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-45.346628" y="2.758333" href="#tz_fig_fluxo_dividendos_g4-49"></use>
+</g>
+</g>
+</g>
+</g>
+<path d="M113.81097 2.84544V-2.84544" fill="none"></path>
+<g transform="translate(111.49849,-12.1784)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.346628,2.758333)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-45.346628" y="2.758333" href="#tz_fig_fluxo_dividendos_g4-50"></use>
+</g>
+</g>
+</g>
+</g>
+<path d="M170.71646 2.84544V-2.84544" fill="none"></path>
+<g transform="translate(168.40398,-12.1784)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.346628,2.758333)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-45.346628" y="2.758333" href="#tz_fig_fluxo_dividendos_g4-51"></use>
+</g>
+</g>
+</g>
+</g>
+<path d="M227.62195 2.84544V-2.84544" fill="none"></path>
+<g transform="translate(225.30946,-12.1784)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.346628,2.758333)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-45.346628" y="2.758333" href="#tz_fig_fluxo_dividendos_g4-52"></use>
+</g>
+</g>
+</g>
+</g>
+<path d="M273.1465 2.84544V-2.84544" fill="none"></path>
+<g transform="translate(266.97987,-10.427)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.346628,2.758333)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-45.346628" y="2.758333" href="#tz_fig_fluxo_dividendos_g2-1"></use>
+<use x="-41.250903" y="2.758333" href="#tz_fig_fluxo_dividendos_g2-1"></use>
+<use x="-37.155178" y="2.758333" href="#tz_fig_fluxo_dividendos_g2-1"></use>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#3fb618" stroke="#3fb618">
+<path d="M56.90549 0V22.40729" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,56.90549,22.40729)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+<g fill="#3fb618" stroke="#3fb618">
+<g fill="#3fb618" stroke="#3fb618">
+</g>
+<g transform="translate(51.33548,30.25136)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.346628,2.758333)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none">
+<g fill="#3fb618">
+<use x="-45.346628" y="2.758333" href="#tz_fig_fluxo_dividendos_g0-68"></use>
+<use x="-38.399261" y="3.865281" href="#tz_fig_fluxo_dividendos_g3-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#3fb618" stroke="#3fb618">
+<path d="M113.81097 0V32.36592" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,113.81097,32.36592)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+<g fill="#3fb618" stroke="#3fb618">
+<g fill="#3fb618" stroke="#3fb618">
+</g>
+<g transform="translate(97.33873,41.09889)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.346628,2.758333)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none">
+<g fill="#3fb618">
+<use x="-45.346628" y="2.758333" href="#tz_fig_fluxo_dividendos_g0-68"></use>
+<use x="-38.399261" y="3.865281" href="#tz_fig_fluxo_dividendos_g3-49"></use>
+<use x="-34.248217" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-40"></use>
+<use x="-30.954964" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-49"></use>
+<use x="-26.720781" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-43"></use>
+<use x="-20.134274" y="2.758333" href="#tz_fig_fluxo_dividendos_g0-103"></use>
+<use x="-15.818458" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#3fb618" stroke="#3fb618">
+<path d="M170.71646 0V42.32455" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,170.71646,42.32455)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+<g fill="#3fb618" stroke="#3fb618">
+<g fill="#3fb618" stroke="#3fb618">
+</g>
+<g transform="translate(152.1609,51.05753)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.346628,2.758333)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none">
+<g fill="#3fb618">
+<use x="-45.346628" y="2.758333" href="#tz_fig_fluxo_dividendos_g0-68"></use>
+<use x="-38.399261" y="3.865281" href="#tz_fig_fluxo_dividendos_g3-49"></use>
+<use x="-34.248217" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-40"></use>
+<use x="-30.954964" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-49"></use>
+<use x="-26.720781" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-43"></use>
+<use x="-20.134274" y="2.758333" href="#tz_fig_fluxo_dividendos_g0-103"></use>
+<use x="-15.818458" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-41"></use>
+<use x="-12.525205" y="-.054453" href="#tz_fig_fluxo_dividendos_g3-50"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#3fb618" stroke="#3fb618">
+<path d="M227.62195 0V52.28276" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,227.62195,52.28276)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+<g fill="#3fb618" stroke="#3fb618">
+<g fill="#3fb618" stroke="#3fb618">
+</g>
+<g transform="translate(209.06639,61.01573)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.346628,2.758333)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none">
+<g fill="#3fb618">
+<use x="-45.346628" y="2.758333" href="#tz_fig_fluxo_dividendos_g0-68"></use>
+<use x="-38.399261" y="3.865281" href="#tz_fig_fluxo_dividendos_g3-49"></use>
+<use x="-34.248217" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-40"></use>
+<use x="-30.954964" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-49"></use>
+<use x="-26.720781" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-43"></use>
+<use x="-20.134274" y="2.758333" href="#tz_fig_fluxo_dividendos_g0-103"></use>
+<use x="-15.818458" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-41"></use>
+<use x="-12.525205" y="-.054453" href="#tz_fig_fluxo_dividendos_g3-51"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#3fb618" stroke="#3fb618">
+<path d="M273.1465 0V60.81866" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,273.1465,60.81866)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M0-42.67911V-3.2" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,-3.2)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(-19.42035,-53.63481)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.346628,2.758333)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-45.346628" y="2.758333" href="#tz_fig_fluxo_dividendos_g0-80"></use>
+<use x="-39.977815" y="3.865281" href="#tz_fig_fluxo_dividendos_g3-48"></use>
+<use x="-33.003982" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-40"></use>
+<use x="-29.710728" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-112"></use>
+<use x="-25.006081" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-114"></use>
+<use x="-21.705911" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-101"></use>
+<use x="-17.942192" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-24"></use>
+<use x="-17.942192" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-99"></use>
+<use x="-14.178474" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-111"></use>
+<use x="-9.944292" y="2.758333" href="#tz_fig_fluxo_dividendos_g1-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fluxo-dividendos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;98.1: Fluxo de caixa de uma ação sob o modelo de dividendos: o investidor paga <span class="math inline">\(P_0\)</span> hoje e recebe uma corrente perpétua de dividendos que cresce à taxa <span class="math inline">\(g\)</span> por período.
+</figcaption>
+</figure>
+</div>
+<section id="o-modelo-de-gordon-uma-perpetuidade-que-cresce" class="level3" data-number="98.5.1">
+<h3 data-number="98.5.1" class="anchored" data-anchor-id="o-modelo-de-gordon-uma-perpetuidade-que-cresce"><span class="header-section-number">98.5.1</span> O modelo de Gordon: uma perpetuidade que cresce</h3>
+<p>Somar infinitos termos parece impossível, mas há um caso célebre em que a conta fecha em uma linha. Suponha que os dividendos cresçam a uma <strong>taxa constante</strong> <span class="math inline">\(g\)</span> para sempre — isto é, <span class="math inline">\(D_t = D_1 (1+g)^{t-1}\)</span> — e que a taxa exigida <span class="math inline">\(r\)</span> seja maior que <span class="math inline">\(g\)</span>. Substituindo em <a href="#eq-ddm" class="quarto-xref">Equação&nbsp;<span>98.2</span></a>:</p>
+<p><span class="math display">\[
+P_0 = \sum_{t=1}^{\infty} \frac{D_1 (1+g)^{t-1}}{(1+r)^t} = \frac{D_1}{1+r} \sum_{t=1}^{\infty} \left(\frac{1+g}{1+r}\right)^{t-1}.
+\]</span></p>
+<p>A soma é uma <strong>série geométrica</strong> de razão <span class="math inline">\(\frac{1+g}{1+r} &lt; 1\)</span> (garantida porque <span class="math inline">\(r &gt; g\)</span>), que converge para <span class="math inline">\(\frac{1}{1 - \frac{1+g}{1+r}} = \frac{1+r}{r-g}\)</span>. Logo:</p>
+<p><span id="eq-gordon"><span class="math display">\[
+P_0 = \frac{D_1}{1+r} \cdot \frac{1+r}{r-g} = \frac{D_1}{r - g}.
+\tag{98.3}\]</span></span></p>
+<p>Este é o <strong>modelo de crescimento de Gordon</strong> — uma <strong>perpetuidade crescente</strong>. Repare que ele é a versão geral da perpetuidade simples da <a href="cap02-valor-do-dinheiro-no-tempo.html#eq-perpetuidade" class="quarto-xref">Equação&nbsp;<span>96.9</span></a>: fazendo <span class="math inline">\(g = 0\)</span>, recuperamos <span class="math inline">\(P_0 = D_1/r\)</span>. A ação vale o dividendo esperado do próximo ano dividido pela diferença entre o retorno exigido e a taxa de crescimento.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Modelo de Gordon">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Modelo de Gordon
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <strong>modelo de crescimento de Gordon</strong> avalia uma ação cujos dividendos crescem a uma taxa constante <span class="math inline">\(g &lt; r\)</span> indefinidamente: <span class="math display">\[
+P_0 = \frac{D_1}{r - g},
+\]</span> onde <span class="math inline">\(D_1\)</span> é o dividendo esperado daqui a um ano, <span class="math inline">\(r\)</span> é a taxa de retorno exigida e <span class="math inline">\(g\)</span> a taxa de crescimento perpétuo dos dividendos. É a base conceitual de toda a avaliação por fluxo de caixa descontado.</p>
+</div>
+</div>
+<p><strong>Exemplo.</strong> Uma empresa madura deve pagar <span class="math inline">\(D_1 = R\$\,5{,}00\)</span> de dividendo por ação no próximo ano, crescendo <span class="math inline">\(4\%\)</span> ao ano para sempre. Se você exige um retorno de <span class="math inline">\(r = 12\%\)</span> ao ano, o valor justo da ação é</p>
+<p><span class="math display">\[
+P_0 = \frac{5{,}00}{0{,}12 - 0{,}04} = \frac{5{,}00}{0{,}08} = R\$\,62{,}50.
+\]</span></p>
+<p>Se a ação negocia a R$ 50 no mercado, seu modelo sugere que ela está <strong>barata</strong>; se negocia a R$ 80, <strong>cara</strong> — sempre condicionado às suas premissas de <span class="math inline">\(D_1\)</span>, <span class="math inline">\(r\)</span> e <span class="math inline">\(g\)</span>.</p>
+</section>
+<section id="a-sensibilidade-às-premissas" class="level3" data-number="98.5.2">
+<h3 data-number="98.5.2" class="anchored" data-anchor-id="a-sensibilidade-às-premissas"><span class="header-section-number">98.5.2</span> A sensibilidade às premissas</h3>
+<p>O poder do modelo de Gordon vem acompanhado de uma fragilidade: o resultado é <strong>extremamente sensível</strong> ao denominador <span class="math inline">\(r - g\)</span>. Como <span class="math inline">\(g\)</span> se aproxima de <span class="math inline">\(r\)</span>, a diferença encolhe e o valor <strong>explode</strong> — matematicamente, tende ao infinito quando <span class="math inline">\(g \to r\)</span>. A <a href="#fig-gordon" class="quarto-xref">Figura&nbsp;<span>98.2</span></a> ilustra: pequenas mudanças na taxa de crescimento esperada provocam variações enormes no valor estimado. É por isso que dois analistas competentes, partindo de premissas ligeiramente diferentes, chegam a “preços-alvo” muito distantes.</p>
+<div id="fig-gordon" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gordon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="305.773001pt" height="190.350565pt" viewbox="-68.014948 -68.014951 305.773001 190.350565">
+<defs>
+<path id="tz_fig_gordon_g0-36" d="M2.15193-6.527522V-6.339228L1.918804-6.28543C1.111831-6.115068 .502117-5.388792 .502117-4.599751C.502117-4.070735 .806974-3.505853 1.264259-3.200996C1.479452-3.057534 1.596015-3.003736 1.900872-2.923039L2.142964-2.851308L2.15193-1.515318V-.170361L2.017435-.188294C1.497385-.268991 1.120797-.529016 .923537-.932503C.806974-1.183562 .806974-1.228394 .932503-1.228394C1.255293-1.228394 1.452553-1.596015 1.273225-1.85604C1.093898-2.125031 .735243-2.125031 .564882-1.847073C.457285-1.667746 .511083-1.183562 .681445-.81594C.789041-.600747 1.0401-.313823 1.264259-.170361C1.425654-.071731 1.75741 .035866 1.999502 .071731L2.15193 .089664V.29589V.502117H2.286426H2.429888V.29589V.089664L2.537484 .071731C2.914072 .008966 3.263761-.170361 3.541719-.448319C4.23213-1.147696 4.250062-2.286426 3.58655-3.012702C3.308593-3.317559 3.039601-3.469988 2.555417-3.595517L2.429888-3.631382V-4.841843C2.429888-5.550187 2.438854-6.052304 2.456787-6.052304C2.564384-6.052304 2.949938-5.953674 3.0934-5.899875C3.380324-5.76538 3.640349-5.478456 3.730012-5.191532C3.747945-5.128767 3.738979-5.128767 3.631382-5.128767C3.326526-5.128767 3.129265-4.770112 3.29066-4.501121C3.461021-4.23213 3.828643-4.223163 4.00797-4.492154C4.178331-4.743213 4.016936-5.406725 3.703113-5.774346C3.469988-6.043337 3.030635-6.258531 2.600249-6.312329L2.429888-6.330262V-6.518555V-6.715816H2.286426H2.15193ZM2.15193-4.868742V-3.685181L1.945704-3.747945C1.578082-3.846575 1.327024-4.016936 1.156663-4.259029C.654545-5.003238 1.156663-5.908842 2.133998-6.052304C2.142964-6.052304 2.15193-5.523288 2.15193-4.868742ZM2.77061-2.689913C3.532752-2.411955 3.855542-1.506351 3.434122-.806974C3.245828-.493151 2.940971-.286924 2.510585-.188294L2.429888-.170361V-1.479452V-2.788543L2.519552-2.77061C2.57335-2.761644 2.689913-2.725778 2.77061-2.689913Z"></path>
+<path id="tz_fig_gordon_g1-0" d="M5.571108-1.809215C5.69863-1.809215 5.873973-1.809215 5.873973-1.992528S5.69863-2.175841 5.571108-2.175841H1.004234C.876712-2.175841 .70137-2.175841 .70137-1.992528S.876712-1.809215 1.004234-1.809215H5.571108Z"></path>
+<path id="tz_fig_gordon_g2-59" d="M1.490411-.119552C1.490411 .398506 1.378829 .852802 .884682 1.346949C.852802 1.370859 .836862 1.3868 .836862 1.42665C.836862 1.490411 .900623 1.538232 .956413 1.538232C1.052055 1.538232 1.713574 .908593 1.713574-.02391C1.713574-.533998 1.522291-.884682 1.171606-.884682C.892653-.884682 .73325-.661519 .73325-.446326C.73325-.223163 .884682 0 1.179577 0C1.370859 0 1.490411-.111582 1.490411-.119552Z"></path>
+<path id="tz_fig_gordon_g2-68" d="M1.331009-.629639C1.259278-.326775 1.243337-.263014 .653549-.263014C.502117-.263014 .406476-.263014 .406476-.111582C.406476 0 .510087 0 .645579 0H3.387298C5.068991 0 6.742715-1.609963 6.742715-3.387298C6.742715-4.606725 5.929763-5.443587 4.742217-5.443587H1.952677C1.809215-5.443587 1.705604-5.443587 1.705604-5.292154C1.705604-5.180573 1.801245-5.180573 1.936737-5.180573C2.199751-5.180573 2.430884-5.180573 2.430884-5.053051C2.430884-5.021171 2.422914-5.0132 2.399004-4.909589L1.331009-.629639ZM3.092403-4.885679C3.164134-5.156663 3.172105-5.180573 3.498879-5.180573H4.463263C5.395766-5.180573 6.025405-4.646575 6.025405-3.674222C6.025405-3.411208 5.913823-2.11208 5.220423-1.219427C4.869738-.773101 4.184309-.263014 3.243836-.263014H2.056289C1.984558-.278954 1.960648-.278954 1.960648-.334745C1.960648-.398506 1.976588-.462267 1.992528-.510087L3.092403-4.885679Z"></path>
+<path id="tz_fig_gordon_g2-80" d="M2.510585-2.486675H3.961146C5.108842-2.486675 6.304359-3.283686 6.304359-4.224159C6.304359-4.901619 5.66675-5.443587 4.638605-5.443587H1.952677C1.809215-5.443587 1.705604-5.443587 1.705604-5.292154C1.705604-5.180573 1.809215-5.180573 1.936737-5.180573C2.199751-5.180573 2.430884-5.180573 2.430884-5.053051C2.430884-5.021171 2.422914-5.0132 2.399004-4.909589L1.331009-.629639C1.259278-.334745 1.243337-.263014 .67746-.263014C.494147-.263014 .406476-.263014 .406476-.111582C.406476-.079701 .430386 0 .533998 0C.68543 0 .876712-.01594 1.028144-.02391H1.538232C2.303362-.02391 2.510585 0 2.566376 0C2.614197 0 2.725778 0 2.725778-.151432C2.725778-.263014 2.622167-.263014 2.486675-.263014C2.462765-.263014 2.319303-.263014 2.183811-.278954C2.016438-.294894 2.000498-.318804 2.000498-.390535C2.000498-.430386 2.016438-.478207 2.024408-.518057L2.510585-2.486675ZM3.092403-4.885679C3.164134-5.156663 3.172105-5.180573 3.498879-5.180573H4.375592C5.029141-5.180573 5.531258-4.98929 5.531258-4.399502C5.531258-4.29589 5.491407-3.58655 5.045081-3.148194C4.925529-3.028643 4.542964-2.725778 3.761893-2.725778H2.550436L3.092403-4.885679Z"></path>
+<path id="tz_fig_gordon_g2-103" d="M3.953176-2.940971C3.985056-3.060523 3.985056-3.108344 3.985056-3.116314C3.985056-3.299626 3.833624-3.363387 3.730012-3.363387C3.5467-3.363387 3.403238-3.219925 3.371357-3.052553C3.307597-3.172105 3.068493-3.514819 2.590286-3.514819C1.641843-3.514819 .605729-2.454795 .605729-1.291158C.605729-.430386 1.171606 0 1.761395 0C2.12802 0 2.454795-.199253 2.717808-.430386L2.542466 .286924C2.454795 .621669 2.399004 .852802 2.088169 1.115816C1.753425 1.40274 1.45056 1.40274 1.251308 1.40274S.860772 1.39477 .669489 1.354919C.844832 1.259278 .924533 1.091905 .924533 .956413C.924533 .765131 .781071 .661519 .613699 .661519C.414446 .661519 .167372 .820922 .167372 1.139726C.167372 1.594022 .789041 1.625903 1.267248 1.625903C2.399004 1.625903 2.964882 1.020174 3.084433 .533998L3.953176-2.940971ZM2.87721-1.052055C2.82142-.828892 2.646077-.669489 2.478705-.518057C2.406974-.462267 2.10411-.223163 1.777335-.223163C1.458531-.223163 1.227397-.486177 1.227397-.964384C1.227397-1.299128 1.42665-2.16787 1.641843-2.574346C1.896887-3.028643 2.271482-3.291656 2.590286-3.291656C3.124284-3.291656 3.267746-2.701868 3.267746-2.630137L3.243836-2.518555L2.87721-1.052055Z"></path>
+<path id="tz_fig_gordon_g2-114" d="M1.538232-1.099875C1.625903-1.44259 1.713574-1.785305 1.793275-2.13599C1.801245-2.15193 1.857036-2.383064 1.865006-2.422914C1.888917-2.494645 2.088169-2.82142 2.295392-3.020672C2.550436-3.251806 2.82142-3.291656 2.964882-3.291656C3.052553-3.291656 3.196015-3.283686 3.307597-3.188045C2.964882-3.116314 2.917061-2.82142 2.917061-2.749689C2.917061-2.574346 3.052553-2.454795 3.227895-2.454795C3.443088-2.454795 3.682192-2.630137 3.682192-2.948941C3.682192-3.235866 3.435118-3.514819 2.980822-3.514819C2.438854-3.514819 2.072229-3.156164 1.904857-2.940971C1.745455-3.514819 1.203487-3.514819 1.123786-3.514819C.836862-3.514819 .637609-3.331507 .510087-3.084433C.326775-2.725778 .239103-2.319303 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.223661 .526027-2.430884C.621669-2.82142 .765131-3.291656 1.099875-3.291656C1.307098-3.291656 1.354919-3.092403 1.354919-2.917061C1.354919-2.773599 1.315068-2.622167 1.251308-2.359153C1.235367-2.295392 1.115816-1.825156 1.083935-1.713574L.789041-.518057C.757161-.398506 .70934-.199253 .70934-.167372C.70934 .01594 .860772 .079701 .964384 .079701C1.243337 .079701 1.299128-.143462 1.362889-.414446L1.538232-1.099875Z"></path>
+<path id="tz_fig_gordon_g3-37" d="M5.794271-5.626899C5.866002-5.72254 5.866002-5.770361 5.866002-5.794271C5.866002-5.897883 5.786301-5.977584 5.68269-5.977584C5.595019-5.977584 5.555168-5.921793 5.507347-5.866002C5.156663-5.419676 4.646575-5.092902 3.913325-5.092902C3.610461-5.092902 2.964882-5.164633 2.335243-5.69863C2.191781-5.826152 2.016438-5.977584 1.705604-5.977584C1.060025-5.977584 .470237-5.300125 .470237-4.375592C.470237-3.427148 1.075965-2.765629 1.705604-2.765629S2.81345-3.482939 2.81345-4.367621C2.81345-4.750187 2.725778-5.045081 2.662017-5.204483C3.267746-4.869738 3.825654-4.869738 3.921295-4.869738C4.112578-4.869738 4.566874-4.901619 4.95741-5.116812L4.96538-5.108842L1.267248 .087671C1.179577 .199253 1.179577 .215193 1.179577 .263014C1.179577 .366625 1.259278 .446326 1.362889 .446326C1.43462 .446326 1.482441 .414446 1.546202 .326775L5.794271-5.626899ZM1.721544-2.988792C1.578082-2.988792 1.012204-3.060523 1.012204-4.367621C1.012204-5.68269 1.570112-5.754421 1.721544-5.754421C2.13599-5.754421 2.566376-5.196513 2.566376-4.375592C2.566376-3.53076 2.12802-2.988792 1.721544-2.988792ZM6.575342-1.155666C6.575342-2.072229 6.081196-2.765629 5.467497-2.765629C4.821918-2.765629 4.23213-2.088169 4.23213-1.163636C4.23213-.215193 4.837858 .446326 5.467497 .446326S6.575342-.270984 6.575342-1.155666ZM5.483437 .223163C5.339975 .223163 4.774097 .151432 4.774097-1.155666C4.774097-2.470735 5.332005-2.542466 5.483437-2.542466C5.897883-2.542466 6.328269-1.984558 6.328269-1.163636C6.328269-.318804 5.889913 .223163 5.483437 .223163Z"></path>
+<path id="tz_fig_gordon_g3-49" d="M2.502615-5.076961C2.502615-5.292154 2.486675-5.300125 2.271482-5.300125C1.944707-4.98132 1.522291-4.790037 .765131-4.790037V-4.527024C.980324-4.527024 1.41071-4.527024 1.872976-4.742217V-.653549C1.872976-.358655 1.849066-.263014 1.091905-.263014H.812951V0C1.139726-.02391 1.825156-.02391 2.183811-.02391S3.235866-.02391 3.56264 0V-.263014H3.283686C2.526526-.263014 2.502615-.358655 2.502615-.653549V-5.076961Z"></path>
+<path id="tz_fig_gordon_g3-50" d="M2.247572-1.625903C2.375093-1.745455 2.709838-2.008468 2.83736-2.12005C3.331507-2.574346 3.801743-3.012702 3.801743-3.737983C3.801743-4.686426 3.004732-5.300125 2.008468-5.300125C1.052055-5.300125 .422416-4.574844 .422416-3.865504C.422416-3.474969 .73325-3.419178 .844832-3.419178C1.012204-3.419178 1.259278-3.53873 1.259278-3.841594C1.259278-4.25604 .860772-4.25604 .765131-4.25604C.996264-4.837858 1.530262-5.037111 1.920797-5.037111C2.662017-5.037111 3.044583-4.407472 3.044583-3.737983C3.044583-2.909091 2.462765-2.303362 1.522291-1.338979L.518057-.302864C.422416-.215193 .422416-.199253 .422416 0H3.57061L3.801743-1.42665H3.55467C3.53076-1.267248 3.466999-.868742 3.371357-.71731C3.323537-.653549 2.717808-.653549 2.590286-.653549H1.171606L2.247572-1.625903Z"></path>
+<path id="tz_fig_gordon_g3-53" d="M1.115816-4.479203C1.219427-4.447323 1.538232-4.367621 1.872976-4.367621C2.86924-4.367621 3.474969-5.068991 3.474969-5.188543C3.474969-5.276214 3.419178-5.300125 3.379328-5.300125C3.363387-5.300125 3.347447-5.300125 3.275716-5.260274C2.964882-5.140722 2.598257-5.045081 2.16787-5.045081C1.697634-5.045081 1.307098-5.164633 1.060025-5.260274C.980324-5.300125 .964384-5.300125 .956413-5.300125C.852802-5.300125 .852802-5.212453 .852802-5.068991V-2.733748C.852802-2.590286 .852802-2.494645 .980324-2.494645C1.044085-2.494645 1.067995-2.526526 1.107846-2.590286C1.203487-2.709838 1.506351-3.116314 2.183811-3.116314C2.630137-3.116314 2.84533-2.749689 2.917061-2.598257C3.052553-2.311333 3.068493-1.944707 3.068493-1.633873C3.068493-1.338979 3.060523-.908593 2.83736-.557908C2.685928-.318804 2.367123-.071731 1.944707-.071731C1.42665-.071731 .916563-.398506 .73325-.916563C.757161-.908593 .804981-.908593 .812951-.908593C1.036115-.908593 1.211457-1.052055 1.211457-1.299128C1.211457-1.594022 .980324-1.697634 .820922-1.697634C.67746-1.697634 .422416-1.617933 .422416-1.275218C.422416-.557908 1.044085 .167372 1.960648 .167372C2.956912 .167372 3.801743-.605729 3.801743-1.594022C3.801743-2.518555 3.132254-3.339477 2.191781-3.339477C1.793275-3.339477 1.41868-3.211955 1.115816-2.940971V-4.479203Z"></path>
+<path id="tz_fig_gordon_g3-61" d="M5.826152-2.654047C5.945704-2.654047 6.105106-2.654047 6.105106-2.83736S5.913823-3.020672 5.794271-3.020672H.781071C.661519-3.020672 .470237-3.020672 .470237-2.83736S.629639-2.654047 .749191-2.654047H5.826152ZM5.794271-.964384C5.913823-.964384 6.105106-.964384 6.105106-1.147696S5.945704-1.331009 5.826152-1.331009H.749191C.629639-1.331009 .470237-1.331009 .470237-1.147696S.661519-.964384 .781071-.964384H5.794271Z"></path>
+<path id="tz_fig_gordon_g4-80" d="M2.77061-2.815442H4.267995C5.720548-2.815442 6.90411-3.81071 6.90411-4.761146C6.90411-5.469489 6.267497-6.124035 5.092902-6.124035H2.133998C1.972603-6.124035 1.865006-6.124035 1.865006-5.96264C1.865006-5.846077 1.945704-5.846077 2.133998-5.846077C2.169863-5.846077 2.331258-5.846077 2.47472-5.828144C2.627148-5.810212 2.689913-5.792279 2.689913-5.693649C2.689913-5.648817 2.680946-5.612951 2.654047-5.514321L1.443587-.681445C1.362889-.358655 1.344956-.277958 .672478-.277958C.502117-.277958 .403487-.277958 .403487-.116563C.403487-.017933 .475218 0 .537983 0C.708344 0 .932503-.008966 1.102864-.017933C1.371856-.026899 1.389788-.026899 1.676712-.026899S1.981569-.026899 2.25056-.017933C2.429888-.008966 2.663014 0 2.833375 0C2.896139 0 3.012702 0 3.012702-.161395C3.012702-.277958 2.923039-.277958 2.734745-.277958C2.698879-.277958 2.537484-.277958 2.394022-.29589C2.196762-.32279 2.187796-.358655 2.187796-.439352C2.187796-.466252 2.187796-.484184 2.232628-.645579L2.77061-2.815442ZM3.416189-5.496389C3.496887-5.819178 3.514819-5.846077 3.891407-5.846077H4.797011C5.496389-5.846077 6.052304-5.630884 6.052304-4.976339C6.052304-4.788045 5.953674-3.945205 5.487422-3.514819C5.290162-3.335492 4.877709-3.066501 4.1066-3.066501H2.806476L3.416189-5.496389Z"></path>
+<path id="tz_fig_gordon_g4-103" d="M4.366625-3.523786C4.366625-3.667248 4.250062-3.783811 4.088667-3.783811C3.936239-3.783811 3.747945-3.676214 3.703113-3.425156C3.505853-3.765878 3.218929-3.963138 2.851308-3.963138C1.766376-3.963138 .663512-2.689913 .663512-1.43462C.663512-.591781 1.192528 0 1.909838 0C2.313325 0 2.67198-.224159 2.96787-.493151C2.851308 0 2.707846 .600747 2.636115 .762142C2.591283 .860772 2.268493 1.613948 1.362889 1.613948C1.183562 1.613948 .896638 1.604981 .672478 1.542217C.842839 1.470486 .995268 1.273225 .995268 1.084932C.995268 .887671 .842839 .762142 .654545 .762142C.448319 .762142 .161395 .923537 .161395 1.291158C.161395 1.730511 .663512 1.838107 1.380822 1.838107C2.537484 1.838107 3.200996 1.174595 3.344458 .600747L4.366625-3.523786ZM3.138232-1.165629C3.102366-1.004234 3.0934-.986301 2.949938-.81594C2.492653-.29589 2.116065-.224159 1.936737-.224159C1.497385-.224159 1.33599-.654545 1.33599-1.058032C1.33599-1.407721 1.551183-2.411955 1.820174-2.932005C2.0533-3.353425 2.447821-3.738979 2.860274-3.738979C3.434122-3.738979 3.58655-3.057534 3.58655-2.976837C3.58655-2.958904 3.568618-2.887173 3.559651-2.842341L3.138232-1.165629Z"></path>
+<path id="tz_fig_gordon_g5-48" d="M3.287671-1.906849C3.287671-2.343213 3.287671-3.975093 1.823163-3.975093S.358655-2.343213 .358655-1.906849C.358655-1.476463 .358655 .125529 1.823163 .125529S3.287671-1.476463 3.287671-1.906849ZM1.823163-.065753C1.572105-.065753 1.165629-.185305 1.022167-.681445C.926526-1.028144 .926526-1.613948 .926526-1.984558C.926526-2.385056 .926526-2.84533 1.010212-3.16812C1.159651-3.706102 1.613948-3.783811 1.823163-3.783811C2.098132-3.783811 2.492653-3.652304 2.624159-3.198007C2.713823-2.881196 2.719801-2.444832 2.719801-1.984558C2.719801-1.601993 2.719801-.998257 2.618182-.663512C2.450809-.143462 2.020423-.065753 1.823163-.065753Z"></path>
+<path id="tz_fig_gordon_g5-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_fig_gordon_g6-37" d="M6.312329-6.366127C6.357161-6.428892 6.38406-6.464757 6.38406-6.527522C6.38406-6.653051 6.276463-6.724782 6.195766-6.724782C6.097136-6.724782 6.052304-6.670984 5.998506-6.590286C5.424658-5.837111 4.671482-5.738481 4.259029-5.738481C3.38929-5.738481 2.815442-6.168867 2.501619-6.464757C2.259527-6.67995 2.026401-6.724782 1.865006-6.724782C1.174595-6.724782 .511083-5.980573 .511083-4.92254C.511083-3.828643 1.192528-3.111333 1.865006-3.111333C2.528518-3.111333 3.066501-3.900374 3.066501-4.913574C3.066501-5.04807 3.066501-5.451557 2.887173-5.890909C3.443088-5.577086 3.945205-5.514321 4.259029-5.514321C4.653549-5.514321 5.066002-5.603985 5.44259-5.810212L5.451557-5.801245L1.362889 .125529C1.353923 .143462 1.282192 .242092 1.282192 .304857C1.282192 .42142 1.371856 .502117 1.479452 .502117C1.578082 .502117 1.622914 .430386 1.676712 .358655L6.312329-6.366127ZM1.882939-3.335492C1.694645-3.335492 1.102864-3.452055 1.102864-4.913574C1.102864-6.393026 1.694645-6.500623 1.882939-6.500623C2.358157-6.500623 2.815442-5.837111 2.815442-4.92254C2.815442-3.972105 2.340224-3.335492 1.882939-3.335492ZM7.155168-1.300125C7.155168-2.349191 6.608219-3.111333 5.953674-3.111333C5.263263-3.111333 4.599751-2.367123 4.599751-1.309091C4.599751-.215193 5.281196 .502117 5.953674 .502117C6.617186 .502117 7.155168-.286924 7.155168-1.300125ZM5.971606 .277958C5.783313 .277958 5.191532 .161395 5.191532-1.300125C5.191532-2.779577 5.783313-2.887173 5.971606-2.887173C6.446824-2.887173 6.90411-2.223661 6.90411-1.309091C6.90411-.358655 6.428892 .277958 5.971606 .277958Z"></path>
+<path id="tz_fig_gordon_g6-40" d="M3.057534 2.133998C3.057534 2.089166 3.030635 2.062267 2.976837 1.999502C1.820174 .941469 1.470486-.672478 1.470486-2.241594C1.470486-3.631382 1.739477-5.317061 3.003736-6.518555C3.039601-6.554421 3.057534-6.58132 3.057534-6.626152C3.057534-6.688917 3.012702-6.724782 2.949938-6.724782C2.842341-6.724782 2.035367-6.079203 1.551183-5.101868C1.120797-4.241096 .905604-3.317559 .905604-2.25056C.905604-1.604981 .986301-.582814 1.479452 .475218C2.008468 1.578082 2.842341 2.232628 2.949938 2.232628C3.012702 2.232628 3.057534 2.196762 3.057534 2.133998Z"></path>
+<path id="tz_fig_gordon_g6-41" d="M2.67198-2.25056C2.67198-2.985803 2.564384-3.972105 2.098132-4.967372C1.569116-6.070237 .735243-6.724782 .627646-6.724782C.537983-6.724782 .52005-6.653051 .52005-6.626152C.52005-6.58132 .537983-6.554421 .600747-6.491656C1.120797-6.025405 2.107098-4.805978 2.107098-2.25056C2.107098-.968369 1.873973 .81594 .573848 2.026401C.555915 2.0533 .52005 2.089166 .52005 2.133998C.52005 2.160897 .537983 2.232628 .627646 2.232628C.735243 2.232628 1.542217 1.587049 2.026401 .609714C2.456787-.251059 2.67198-1.174595 2.67198-2.25056Z"></path>
+<path id="tz_fig_gordon_g6-46" d="M1.75741-.484184C1.75741-.744209 1.542217-.968369 1.273225-.968369S.789041-.744209 .789041-.484184C.789041-.215193 1.004234 0 1.273225 0S1.75741-.215193 1.75741-.484184Z"></path>
+<path id="tz_fig_gordon_g6-48" d="M4.241096-2.86924C4.241096-3.469988 4.214197-4.241096 3.900374-4.913574C3.505853-5.756413 2.824408-5.971606 2.304359-5.971606C1.766376-5.971606 1.084932-5.756413 .690411-4.895641C.403487-4.276961 .358655-3.550685 .358655-2.86924C.358655-2.286426 .376588-1.416687 .762142-.708344C1.183562 .053798 1.882939 .19726 2.295392 .19726C2.878207 .19726 3.541719-.053798 3.918306-.878705C4.187298-1.479452 4.241096-2.15193 4.241096-2.86924ZM2.304359-.026899C2.035367-.026899 1.389788-.152428 1.219427-1.165629C1.129763-1.694645 1.129763-2.465753 1.129763-2.976837C1.129763-3.58655 1.129763-4.294894 1.23736-4.788045C1.416687-5.586052 1.990535-5.747447 2.295392-5.747447C2.636115-5.747447 3.200996-5.56812 3.371357-4.734247C3.469988-4.241096 3.469988-3.541719 3.469988-2.976837C3.469988-2.420922 3.469988-1.667746 3.380324-1.13873C3.19203-.116563 2.528518-.026899 2.304359-.026899Z"></path>
+<path id="tz_fig_gordon_g6-49" d="M2.725778-5.729514C2.725778-5.953674 2.716812-5.971606 2.492653-5.971606C1.936737-5.397758 1.111831-5.397758 .833873-5.397758V-5.119801C1.004234-5.119801 1.551183-5.119801 2.035367-5.352927V-.71731C2.035367-.385554 2.008468-.277958 1.174595-.277958H.887671V0C1.210461-.026899 2.008468-.026899 2.37609-.026899S3.550685-.026899 3.873474 0V-.277958H3.58655C2.752677-.277958 2.725778-.385554 2.725778-.71731V-5.729514Z"></path>
+<path id="tz_fig_gordon_g6-50" d="M4.142466-1.587049H3.891407C3.873474-1.470486 3.801743-.941469 3.685181-.798007C3.631382-.71731 3.012702-.71731 2.833375-.71731H1.23736L2.125031-1.560149C3.595517-2.833375 4.142466-3.308593 4.142466-4.223163C4.142466-5.254296 3.29066-5.971606 2.187796-5.971606C1.156663-5.971606 .457285-5.155666 .457285-4.339726C.457285-3.891407 .842839-3.846575 .923537-3.846575C1.120797-3.846575 1.389788-3.990037 1.389788-4.312827C1.389788-4.581818 1.201494-4.779078 .923537-4.779078C.878705-4.779078 .851806-4.779078 .81594-4.770112C1.031133-5.406725 1.604981-5.693649 2.089166-5.693649C3.003736-5.693649 3.317559-4.841843 3.317559-4.223163C3.317559-3.308593 2.627148-2.564384 2.196762-2.098132L.555915-.32279C.457285-.224159 .457285-.206227 .457285 0H3.891407L4.142466-1.587049Z"></path>
+<path id="tz_fig_gordon_g6-51" d="M2.734745-3.156164C3.568618-3.469988 3.963138-4.124533 3.963138-4.743213C3.963138-5.433624 3.200996-5.971606 2.268493-5.971606S.636613-5.44259 .636613-4.761146C.636613-4.465255 .833873-4.294894 1.093898-4.294894S1.542217-4.483188 1.542217-4.743213C1.542217-5.057036 1.327024-5.191532 1.022167-5.191532C1.255293-5.56812 1.802242-5.747447 2.241594-5.747447C2.985803-5.747447 3.129265-5.155666 3.129265-4.734247C3.129265-4.465255 3.075467-4.034869 2.851308-3.694147C2.57335-3.29066 2.259527-3.272727 1.999502-3.254795C1.775342-3.236862 1.75741-3.236862 1.685679-3.236862C1.604981-3.227895 1.53325-3.218929 1.53325-3.120299C1.53325-3.003736 1.604981-3.003736 1.75741-3.003736H2.178829C2.958904-3.003736 3.299626-2.37609 3.299626-1.524284C3.299626-.376588 2.689913-.053798 2.232628-.053798C2.062267-.053798 1.192528-.09863 .789041-.762142C1.111831-.71731 1.362889-.941469 1.362889-1.246326C1.362889-1.542217 1.13873-1.730511 .878705-1.730511C.654545-1.730511 .385554-1.596015 .385554-1.219427C.385554-.42142 1.219427 .19726 2.259527 .19726C3.380324 .19726 4.214197-.609714 4.214197-1.524284C4.214197-2.304359 3.595517-2.96787 2.734745-3.156164Z"></path>
+<path id="tz_fig_gordon_g6-52" d="M.260025-1.75741V-1.479452H2.707846V-.708344C2.707846-.376588 2.680946-.277958 2.008468-.277958H1.811208V0C2.37609-.026899 3.003736-.026899 3.066501-.026899C3.111333-.026899 3.756912-.026899 4.321793 0V-.277958H4.124533C3.452055-.277958 3.425156-.376588 3.425156-.708344V-1.479452H4.339726V-1.75741H3.425156V-5.828144C3.425156-6.007472 3.425156-6.070237 3.254795-6.070237C3.147198-6.070237 3.138232-6.06127 3.057534-5.935741L.260025-1.75741ZM.546949-1.75741L2.761644-5.074969V-1.75741H.546949Z"></path>
+<path id="tz_fig_gordon_g6-53" d="M.932503-3.0934C.932503-2.932005 .932503-2.833375 1.058032-2.833375C1.129763-2.833375 1.156663-2.86924 1.210461-2.949938C1.479452-3.326526 1.909838-3.541719 2.37609-3.541719C3.335492-3.541719 3.335492-2.160897 3.335492-1.838107C3.335492-1.560149 3.335492-1.004234 3.084433-.600747C2.842341-.224159 2.465753-.053798 2.116065-.053798C1.587049-.053798 .986301-.385554 .771108-1.049066C.780075-1.049066 .833873-1.031133 .896638-1.031133C1.075965-1.031133 1.33599-1.147696 1.33599-1.470486C1.33599-1.748443 1.13873-1.909838 .896638-1.909838C.708344-1.909838 .457285-1.802242 .457285-1.443587C.457285-.627646 1.13873 .19726 2.133998 .19726C3.218929 .19726 4.142466-.681445 4.142466-1.793275C4.142466-2.878207 3.371357-3.765878 2.394022-3.765878C1.963636-3.765878 1.524284-3.622416 1.210461-3.299626V-5.066002C1.479452-4.985305 1.75741-4.940473 2.035367-4.940473C3.138232-4.940473 3.783811-5.738481 3.783811-5.855044C3.783811-5.935741 3.730012-5.971606 3.685181-5.971606C3.667248-5.971606 3.649315-5.971606 3.568618-5.926775C3.147198-5.756413 2.734745-5.684682 2.358157-5.684682C1.972603-5.684682 1.569116-5.756413 1.156663-5.926775C1.066999-5.971606 1.049066-5.971606 1.0401-5.971606C.932503-5.971606 .932503-5.881943 .932503-5.729514V-3.0934Z"></path>
+<path id="tz_fig_gordon_g6-54" d="M1.201494-2.96787C1.201494-3.882441 1.300125-4.393524 1.542217-4.859776C1.721544-5.227397 2.160897-5.747447 2.824408-5.747447C3.003736-5.747447 3.416189-5.711582 3.622416-5.388792C3.29066-5.388792 3.147198-5.218431 3.147198-4.976339C3.147198-4.743213 3.308593-4.563885 3.559651-4.563885S3.981071-4.72528 3.981071-4.994271C3.981071-5.496389 3.622416-5.971606 2.806476-5.971606C1.649813-5.971606 .385554-4.832877 .385554-2.833375C.385554-.403487 1.479452 .19726 2.322291 .19726C3.317559 .19726 4.214197-.636613 4.214197-1.820174C4.214197-2.958904 3.38929-3.819676 2.37609-3.819676C1.838107-3.819676 1.452553-3.505853 1.201494-2.96787ZM2.313325-.053798C1.802242-.053798 1.506351-.475218 1.398755-.735243C1.228394-1.13873 1.219427-1.882939 1.219427-2.026401C1.219427-2.627148 1.497385-3.595517 2.358157-3.595517C2.501619-3.595517 2.940971-3.595517 3.227895-3.039601C3.398257-2.698879 3.398257-2.259527 3.398257-1.829141S3.398257-.959402 3.227895-.627646C2.949938-.116563 2.555417-.053798 2.313325-.053798Z"></path>
+<path id="tz_fig_gordon_g6-56" d="M1.542217-4.070735C1.273225-4.241096 1.066999-4.483188 1.066999-4.814944C1.066999-5.397758 1.694645-5.747447 2.286426-5.747447C2.976837-5.747447 3.532752-5.263263 3.532752-4.635616S2.99477-3.595517 2.636115-3.38929L1.542217-4.070735ZM2.860274-3.245828C3.308593-3.461021 3.963138-3.90934 3.963138-4.635616C3.963138-5.478456 3.120299-5.971606 2.313325-5.971606C1.371856-5.971606 .636613-5.299128 .636613-4.474222C.636613-4.133499 .762142-3.81071 .977335-3.550685C1.129763-3.380324 1.183562-3.344458 1.703611-3.012702C.91457-2.636115 .385554-2.089166 .385554-1.353923C.385554-.403487 1.327024 .19726 2.295392 .19726C3.335492 .19726 4.214197-.537983 4.214197-1.506351C4.214197-2.37609 3.550685-2.806476 3.326526-2.949938C3.227895-3.021669 2.96787-3.183064 2.860274-3.245828ZM1.945704-2.860274L3.075467-2.160897C3.281694-2.026401 3.730012-1.739477 3.730012-1.192528C3.730012-.484184 3.012702-.053798 2.304359-.053798C1.524284-.053798 .869738-.609714 .869738-1.353923C.869738-1.999502 1.318057-2.537484 1.945704-2.860274Z"></path>
+<path id="tz_fig_gordon_g6-82" d="M2.0533-3.174097V-5.478456C2.0533-5.711582 2.071233-5.792279 2.241594-5.828144C2.322291-5.846077 2.609215-5.846077 2.797509-5.846077C3.568618-5.846077 4.707347-5.846077 4.707347-4.510087C4.707347-3.738979 4.312827-3.174097 3.0934-3.174097H2.0533ZM4.070735-3.039601C4.92254-3.281694 5.621918-3.81071 5.621918-4.510087C5.621918-5.397758 4.536986-6.124035 3.218929-6.124035H.358655V-5.846077H.564882C1.255293-5.846077 1.273225-5.747447 1.273225-5.415691V-.708344C1.273225-.376588 1.255293-.277958 .564882-.277958H.358655V0C.780075-.026899 1.228394-.026899 1.65878-.026899S2.537484-.026899 2.96787 0V-.277958H2.761644C2.071233-.277958 2.0533-.376588 2.0533-.708344V-2.949938H3.129265C3.774844-2.949938 4.061768-2.609215 4.097634-2.57335C4.366625-2.241594 4.366625-2.107098 4.366625-1.470486C4.366625-.869738 4.366625-.475218 4.797011-.134496C5.218431 .19726 5.756413 .19726 5.855044 .19726C6.608219 .19726 6.742715-.582814 6.742715-.798007C6.742715-.851806 6.742715-.959402 6.617186-.959402C6.500623-.959402 6.500623-.878705 6.491656-.806974C6.446824-.242092 6.168867-.026899 5.890909-.026899C5.603985-.026899 5.505355-.206227 5.433624-.358655C5.352927-.555915 5.272229-1.165629 5.218431-1.569116C5.1467-2.125031 5.066002-2.725778 4.070735-3.039601Z"></path>
+<path id="tz_fig_gordon_g6-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+<path id="tz_fig_gordon_g6-99" d="M3.263761-3.523786C3.075467-3.48792 2.896139-3.362391 2.896139-3.102366C2.896139-2.86924 3.075467-2.689913 3.308593-2.689913S3.730012-2.842341 3.730012-3.120299C3.730012-3.676214 3.102366-4.016936 2.313325-4.016936C1.165629-4.016936 .304857-3.057534 .304857-1.936737C.304857-.780075 1.23736 .09863 2.295392 .09863C3.541719 .09863 3.828643-.986301 3.828643-1.066999C3.828643-1.174595 3.730012-1.174595 3.703113-1.174595C3.604483-1.174595 3.604483-1.156663 3.550685-1.004234C3.344458-.385554 2.842341-.152428 2.385056-.152428C1.811208-.152428 1.075965-.61868 1.075965-1.945704C1.075965-3.344458 1.793275-3.765878 2.331258-3.765878C2.447821-3.765878 2.932005-3.747945 3.263761-3.523786Z"></path>
+<path id="tz_fig_gordon_g6-100" d="M3.48792-1.075965C3.48792-.91457 3.48792-.887671 3.353425-.699377C3.075467-.29589 2.663014-.125529 2.304359-.125529C1.918804-.125529 1.560149-.340722 1.327024-.71731C1.093898-1.102864 1.075965-1.63188 1.075965-1.918804C1.075965-2.340224 1.129763-2.815442 1.362889-3.174097C1.560149-3.461021 1.927771-3.738979 2.402989-3.738979C2.779577-3.738979 3.138232-3.550685 3.380324-3.209963C3.48792-3.066501 3.48792-3.057534 3.48792-2.887173V-1.075965ZM3.514819-3.434122C3.469988-3.48792 3.066501-3.963138 2.367123-3.963138C1.264259-3.963138 .304857-3.084433 .304857-1.927771C.304857-.806974 1.201494 .09863 2.268493 .09863C2.923039 .09863 3.326526-.286924 3.48792-.475218V.09863L4.841843 0V-.277958C4.23213-.277958 4.151432-.340722 4.151432-.780075V-6.222665L2.824408-6.124035V-5.846077C3.434122-5.846077 3.514819-5.783313 3.514819-5.34396V-3.434122Z"></path>
+<path id="tz_fig_gordon_g6-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+<path id="tz_fig_gordon_g6-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+<path id="tz_fig_gordon_g6-108" d="M1.649813-6.222665L.32279-6.124035V-5.846077C.932503-5.846077 1.0132-5.783313 1.0132-5.34396V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.744209-.017933 .91457-.026899 1.327024-.026899C1.748443-.026899 1.900872-.017933 2.340224 0V-.277958C1.748443-.277958 1.649813-.277958 1.649813-.690411V-6.222665Z"></path>
+<path id="tz_fig_gordon_g6-109" d="M1.667746-2.322291C1.667746-3.29066 2.367123-3.738979 2.905106-3.738979C3.398257-3.738979 3.559651-3.38929 3.559651-2.761644V-.690411C3.559651-.277958 3.461021-.277958 2.86924-.277958V0C3.29066-.017933 3.461021-.026899 3.891407-.026899S4.438356-.017933 4.913574 0V-.277958C4.321793-.277958 4.223163-.277958 4.223163-.690411V-2.322291C4.223163-3.29066 4.92254-3.738979 5.460523-3.738979C5.953674-3.738979 6.115068-3.38929 6.115068-2.761644V-.690411C6.115068-.277958 6.016438-.277958 5.424658-.277958V0C5.846077-.017933 6.016438-.026899 6.446824-.026899S6.993773-.017933 7.468991 0V-.277958C7.011706-.277958 6.787547-.277958 6.77858-.555915V-2.27746C6.77858-3.057534 6.77858-3.308593 6.48269-3.640349C6.294396-3.855542 5.935741-3.963138 5.523288-3.963138C4.877709-3.963138 4.438356-3.58655 4.187298-3.111333C4.079701-3.640349 3.721046-3.963138 2.96787-3.963138C2.25056-3.963138 1.811208-3.496887 1.622914-3.084433H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_gordon_g6-110" d="M1.667746-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.133998-3.963138 1.748443-3.344458 1.622914-3.0934H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_gordon_g6-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_gordon_g6-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+<path id="tz_fig_gordon_g6-115" d="M3.084433-3.783811C3.084433-3.936239 3.084433-4.016936 2.976837-4.016936C2.932005-4.016936 2.914072-4.016936 2.797509-3.90934C2.779577-3.891407 2.698879-3.81071 2.645081-3.765878C2.367123-3.963138 2.089166-4.016936 1.784309-4.016936C.600747-4.016936 .304857-3.362391 .304857-2.905106C.304857-2.618182 .430386-2.385056 .636613-2.187796C.941469-1.909838 1.282192-1.847073 1.739477-1.766376C2.196762-1.676712 2.349191-1.649813 2.546451-1.497385C2.636115-1.425654 2.860274-1.255293 2.860274-.91457C2.860274-.125529 1.95467-.125529 1.829141-.125529C.91457-.125529 .681445-.887671 .573848-1.371856C.546949-1.461519 .537983-1.515318 .430386-1.515318C.304857-1.515318 .304857-1.443587 .304857-1.282192V-.134496C.304857 .017933 .304857 .09863 .412453 .09863C.466252 .09863 .475218 .089664 .636613-.080697C.672478-.134496 .771108-.251059 .81594-.29589C1.192528 .071731 1.604981 .09863 1.829141 .09863C2.932005 .09863 3.317559-.546949 3.317559-1.147696C3.317559-1.551183 3.138232-1.793275 2.940971-1.999502C2.636115-2.295392 2.313325-2.358157 1.649813-2.483686C1.416687-2.528518 .762142-2.645081 .762142-3.156164C.762142-3.443088 .968369-3.819676 1.784309-3.819676C2.752677-3.819676 2.815442-3.075467 2.833375-2.851308C2.842341-2.743711 2.842341-2.689913 2.958904-2.689913C3.084433-2.689913 3.084433-2.752677 3.084433-2.923039V-3.783811Z"></path>
+<path id="tz_fig_gordon_g6-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+<path id="tz_fig_gordon_g6-118" d="M1.613948-3.183064C1.587049-3.236862 1.569116-3.29066 1.569116-3.353425C1.569116-3.58655 1.891905-3.58655 2.062267-3.58655V-3.864508C1.676712-3.846575 1.470486-3.837609 1.075965-3.837609C.762142-3.837609 .502117-3.837609 .179328-3.864508V-3.58655C.600747-3.58655 .771108-3.58655 .905604-3.254795L2.214695-.071731C2.268493 .071731 2.340224 .09863 2.420922 .09863S2.57335 .080697 2.636115-.071731L3.855542-3.012702C4.043836-3.469988 4.357659-3.577584 4.671482-3.58655V-3.864508C4.402491-3.837609 3.999004-3.837609 3.981071-3.837609C3.730012-3.837609 3.452055-3.846575 3.200996-3.864508V-3.58655C3.461021-3.568618 3.61345-3.434122 3.61345-3.200996C3.61345-3.111333 3.604483-3.0934 3.568618-2.99477L2.636115-.735243L1.613948-3.183064Z"></path>
+<path id="tz_fig_gordon_g6-120" d="M2.734745-2.017435C2.67198-2.098132 2.67198-2.107098 2.67198-2.116065C2.67198-2.133998 3.371357-2.985803 3.443088-3.057534C3.721046-3.362391 4.025903-3.577584 4.572852-3.58655V-3.864508C4.312827-3.837609 4.070735-3.837609 3.81071-3.837609C3.469988-3.837609 3.308593-3.837609 2.949938-3.864508V-3.58655C3.084433-3.568618 3.200996-3.496887 3.200996-3.317559C3.200996-3.174097 3.120299-3.075467 3.075467-3.021669L2.501619-2.313325L1.802242-3.200996C1.739477-3.281694 1.721544-3.299626 1.721544-3.362391C1.721544-3.469988 1.820174-3.577584 2.026401-3.58655V-3.864508C1.685679-3.846575 1.452553-3.837609 1.049066-3.837609C1.031133-3.837609 .52005-3.837609 .170361-3.864508V-3.58655C.789041-3.58655 .806974-3.568618 1.219427-3.039601L2.142964-1.882939C1.945704-1.649813 1.470486-1.058032 1.273225-.833873C.824907-.29589 .313823-.277958 .125529-.277958V0C.385554-.026899 .627646-.026899 .887671-.026899C1.174595-.026899 1.461519-.017933 1.748443 0V-.277958C1.524284-.304857 1.497385-.457285 1.497385-.546949C1.497385-.573848 1.497385-.699377 1.63188-.860772C1.847073-1.13873 2.080199-1.407721 2.304359-1.676712L3.012702-.771108C3.183064-.573848 3.183064-.555915 3.183064-.502117C3.183064-.403487 3.0934-.286924 2.878207-.277958V0C3.254795-.017933 3.469988-.026899 3.855542-.026899C3.873474-.026899 4.384558-.026899 4.734247 0V-.277958C4.375592-.277958 4.1066-.277958 3.90934-.529016L2.734745-2.017435Z"></path>
+</defs>
+<g id="tz_fig_gordon_page1">
+<g stroke-miterlimit="10" transform="translate(-29.419006,91.784425)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-29.419006,91.784425)scale(-1,-1)"></g>
+<g transform="translate(-38.74068,-30.66576)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-29.419006,91.784425)scale(-1,-1)">
+<g stroke="#000" stroke-miterlimit="10" transform="translate(9.176936,61.233235)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="M0-2.13403V2.13403M48.72345-2.13403V2.13403M97.4469-2.13403V2.13403M146.17035-2.13403V2.13403M194.8938-2.13403V2.13403M243.61725-2.13403V2.13403" fill="none"></path>
+</g>
+</g>
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="M-2.13391 0H2.13391M-2.13391 25.69427H2.13391M-2.13391 51.38855H2.13391M-2.13391 77.08282H2.13391M-2.13391 102.7771H2.13391M-2.13391 128.47137H2.13391M-2.13391 154.16565H2.13391" fill="none"></path>
+</g>
+</g>
+<path d="M0 0H265.979" fill="none"></path>
+<g transform="translate(265.979,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<path d="M0 0V152.16568" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,152.16568)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-2.31248,-11.467)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(46.41096,-11.467)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-50"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(95.13441,-11.467)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-52"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(143.85786,-11.467)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-54"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(192.58131,-11.467)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-56"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(238.99228,-11.467)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-49"></use>
+<use x="13.784627" y="61.233235" href="#tz_fig_gordon_g6-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-10.29185,-2.9)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-14.91682,22.79428)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-53"></use>
+<use x="13.784627" y="61.233235" href="#tz_fig_gordon_g6-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-19.5418,48.48856)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-49"></use>
+<use x="13.784627" y="61.233235" href="#tz_fig_gordon_g6-48"></use>
+<use x="18.392317" y="61.233235" href="#tz_fig_gordon_g6-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-19.5418,74.18283)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-49"></use>
+<use x="13.784627" y="61.233235" href="#tz_fig_gordon_g6-53"></use>
+<use x="18.392317" y="61.233235" href="#tz_fig_gordon_g6-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-19.5418,99.8771)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-50"></use>
+<use x="13.784627" y="61.233235" href="#tz_fig_gordon_g6-48"></use>
+<use x="18.392317" y="61.233235" href="#tz_fig_gordon_g6-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-19.5418,125.57138)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-50"></use>
+<use x="13.784627" y="61.233235" href="#tz_fig_gordon_g6-53"></use>
+<use x="18.392317" y="61.233235" href="#tz_fig_gordon_g6-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-19.5418,151.26566)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-51"></use>
+<use x="13.784627" y="61.233235" href="#tz_fig_gordon_g6-48"></use>
+<use x="18.392317" y="61.233235" href="#tz_fig_gordon_g6-48"></use>
+</g>
+</g>
+</g>
+</g>
+<clippath id="tz_fig_gordon_pgfcp1">
+<path d="M0 0H267.97897V154.16565H0Z"></path> </clippath>
+<g clip-path="url(#tz_fig_gordon_pgfcp1)">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M0 21.41185L2.04718 21.56284L4.09438 21.71602L6.14157 21.87132L8.18874 22.02893L10.23593 22.18875L12.28311 22.35107L14.3303 22.51558L16.3775 22.6827L18.4247 22.85202L20.4719 23.02417L22.51909 23.19884L24.56624 23.37624L26.61343 23.5564L28.66063 23.73918L30.70782 23.92496L32.75502 24.1136L34.80222 24.30533L36.84941 24.50009L38.8966 24.69795L40.94376 24.89908L42.99095 25.1035L45.03815 25.31133L47.08534 25.52252L49.13254 25.73743L51.17972 25.95634L53.22691 26.17783L55.27408 26.40395L57.32127 26.63467L59.36847 26.86798L61.41565 27.10643L63.46284 27.34898L65.51004 27.59564L67.55724 27.84692L69.60443 28.10336L71.6516 28.36339L73.69878 28.62907L75.74597 28.89989L77.79317 29.17584L79.84036 29.45642L81.88756 29.74368L83.93475 30.03506L85.98195 30.33311L88.0291 30.63733L90.0763 30.9472L92.12349 31.26376L94.17068 31.58699L96.21788 31.9164L98.26508 32.25351L100.31227 32.59679L102.35945 32.94827L104.40662 33.30748L106.45381 33.6744L108.501 34.04901L110.5482 34.43237L112.59538 34.82446L114.64258 35.22633L116.68977 35.63641L118.73694 36.05626L120.78413 36.4869L122.83131 36.92781L124.87851 37.37848L126.9257 37.84097L128.9729 38.31529L131.0201 38.80194L133.06729 39.30042L135.11444 39.81224L137.16164 40.33795L139.20883 40.87753L141.25603 41.43098L143.30322 41.99985L145.35042 42.58517L147.39761 43.18692L149.44481 43.80513L151.49196 44.44183L153.53915 45.09755L155.58635 45.77177L157.63354 46.4681L159.68074 47.18497L161.72794 47.92444L163.77512 48.68806L165.82228 49.47534L167.86948 50.28986L169.91667 51.12955L171.96387 51.99954L174.01105 52.89937L176.05824 53.83104L178.10544 54.79561L180.15263 55.7951L182.1998 56.83214L184.24698 57.90872L186.29417 59.02693L188.34137 60.18883L190.38857 61.39697L192.43576 62.65497L194.48296 63.9659L196.53015 65.33282L198.5773 66.75989L200.6245 68.24965L202.67169 69.80774L204.71889 71.43881L206.76619 73.14748L208.8132 74.94043L210.8605 76.8233L212.90752 78.80331L214.95482 80.88763L217.00212 83.08499L219.04913 85.40622L221.09648 87.86053L223.14345 90.45978L225.19078 93.21677L227.2381 96.1495L229.2851 99.26982L231.33241 102.60237L233.37941 106.16359L235.42671 109.98228L237.47403 114.08669L239.52103 118.50713L241.56834 123.28677L243.61534 128.46521" fill="none"></path>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M99.28552 32.11784C99.28552 33.13329 98.46234 33.95647 97.4469 33.95647S95.60828 33.13329 95.60828 32.11784C95.60828 31.1024 96.43146 30.27922 97.4469 30.27922S99.28552 31.1024 99.28552 32.11784ZM97.4469 32.11784" stroke="none"></path>
+</g>
+<g transform="translate(97.4469,32.11784)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M97.4469 0V32.11784H0" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(32.76704,108.74095)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g2-80"></use>
+<use x="14.545749" y="62.340184" href="#tz_fig_gordon_g5-48"></use>
+<use x="21.049118" y="61.233235" href="#tz_fig_gordon_g3-61"></use>
+<use x="34.995582" y="55.683399" href="#tz_fig_gordon_g2-68"></use>
+<use x="41.942949" y="56.790347" href="#tz_fig_gordon_g5-49"></use>
+</g>
+<rect x="31.183462" y="59.061372" height=".358656" width="18.722637" fill="#2780e3"></rect>
+<g fill="#2780e3">
+<use x="31.183462" y="67.203705" href="#tz_fig_gordon_g2-114"></use>
+<use x="37.121916" y="67.203705" href="#tz_fig_gordon_g1-0"></use>
+<use x="45.590282" y="67.203705" href="#tz_fig_gordon_g2-103"></use>
+<use x="51.101612" y="61.233235" href="#tz_fig_gordon_g2-59"></use>
+<use x="57.688119" y="61.233235" href="#tz_fig_gordon_g2-68"></use>
+<use x="64.635486" y="62.340184" href="#tz_fig_gordon_g5-49"></use>
+<use x="71.138854" y="61.233235" href="#tz_fig_gordon_g3-61"></use>
+<use x="80.077684" y="61.233235" href="#tz_fig_gordon_g3-53"></use>
+<use x="84.311867" y="61.233235" href="#tz_fig_gordon_g2-59"></use>
+<use x="90.898374" y="61.233235" href="#tz_fig_gordon_g2-114"></use>
+<use x="97.307293" y="61.233235" href="#tz_fig_gordon_g3-61"></use>
+<use x="106.246124" y="61.233235" href="#tz_fig_gordon_g3-49"></use>
+<use x="110.480306" y="61.233235" href="#tz_fig_gordon_g3-50"></use>
+<use x="114.714489" y="61.233235" href="#tz_fig_gordon_g3-37"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(72.2276,-25.08278)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-116"></use>
+<use x="12.760695" y="61.233235" href="#tz_fig_gordon_g6-97"></use>
+<use x="17.368386" y="61.233235" href="#tz_fig_gordon_g6-120"></use>
+<use x="22.232059" y="61.233235" href="#tz_fig_gordon_g6-97"></use>
+<use x="29.911544" y="61.233235" href="#tz_fig_gordon_g6-100"></use>
+<use x="35.0312" y="61.233235" href="#tz_fig_gordon_g6-101"></use>
+<use x="42.202182" y="61.233235" href="#tz_fig_gordon_g6-99"></use>
+<use x="46.297907" y="61.233235" href="#tz_fig_gordon_g6-114"></use>
+<use x="49.902428" y="61.233235" href="#tz_fig_gordon_g6-101"></use>
+<use x="54.001616" y="61.233235" href="#tz_fig_gordon_g6-115"></use>
+<use x="57.636579" y="61.233235" href="#tz_fig_gordon_g6-99"></use>
+<use x="61.732304" y="61.233235" href="#tz_fig_gordon_g6-105"></use>
+<use x="64.292132" y="61.233235" href="#tz_fig_gordon_g6-109"></use>
+<use x="71.971617" y="61.233235" href="#tz_fig_gordon_g6-101"></use>
+<use x="76.070805" y="61.233235" href="#tz_fig_gordon_g6-110"></use>
+<use x="80.934478" y="61.233235" href="#tz_fig_gordon_g6-116"></use>
+<use x="84.518238" y="61.233235" href="#tz_fig_gordon_g6-111"></use>
+<use x="92.197722" y="61.233235" href="#tz_fig_gordon_g4-103"></use>
+<use x="99.985457" y="61.233235" href="#tz_fig_gordon_g6-40"></use>
+<use x="103.569216" y="61.233235" href="#tz_fig_gordon_g6-37"></use>
+<use x="114.320494" y="61.233235" href="#tz_fig_gordon_g6-97"></use>
+<use x="118.928185" y="61.233235" href="#tz_fig_gordon_g6-46"></use>
+<use x="121.488013" y="61.233235" href="#tz_fig_gordon_g6-97"></use>
+<use x="126.095704" y="61.233235" href="#tz_fig_gordon_g6-46"></use>
+<use x="128.655532" y="61.233235" href="#tz_fig_gordon_g6-41"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(0.0,1.0,-1.0,0.0,-28.6577,49.7473)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(9.176936,61.233235)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="9.176936" y="61.233235" href="#tz_fig_gordon_g6-118"></use>
+<use x="13.528644" y="61.233235" href="#tz_fig_gordon_g6-97"></use>
+<use x="18.136334" y="61.233235" href="#tz_fig_gordon_g6-108"></use>
+<use x="20.696163" y="61.233235" href="#tz_fig_gordon_g6-111"></use>
+<use x="25.303853" y="61.233235" href="#tz_fig_gordon_g6-114"></use>
+<use x="31.980168" y="61.233235" href="#tz_fig_gordon_g4-80"></use>
+<use x="37.863976" y="62.229484" href="#tz_fig_gordon_g5-48"></use>
+<use x="45.086814" y="61.233235" href="#tz_fig_gordon_g6-40"></use>
+<use x="48.670574" y="61.233235" href="#tz_fig_gordon_g6-82"></use>
+<use x="55.453426" y="61.233235" href="#tz_fig_gordon_g0-36"></use>
+<use x="60.060022" y="61.233235" href="#tz_fig_gordon_g6-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gordon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;98.2: Valor de uma ação pelo modelo de Gordon em função da taxa de crescimento <span class="math inline">\(g\)</span> dos dividendos: a curva é crescente e convexa e dispara quando <span class="math inline">\(g\)</span> se aproxima do retorno exigido <span class="math inline">\(r = 12\%\)</span>. Em <span class="math inline">\(g = 4\%\)</span>, o valor é R$ 62,50.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Limites do modelo — cuidado com o crescimento perpétuo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Limites do modelo — cuidado com o crescimento perpétuo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O modelo de Gordon supõe crescimento constante <strong>para sempre</strong> — uma hipótese heroica. Nenhuma empresa cresce mais rápido que a economia indefinidamente (senão, um dia seria maior que o PIB). Por isso <span class="math inline">\(g\)</span> nunca deve superar, no longo prazo, a taxa de crescimento nominal da economia, e jamais pode igualar ou exceder <span class="math inline">\(r\)</span> (aí a fórmula perde sentido). Modelos profissionais contornam isso projetando fluxos ano a ano por um período explícito e aplicando Gordon só ao <strong>valor terminal</strong>. Use a fórmula como ferramenta de intuição e ordem de grandeza, não como oráculo.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="preço-valor-e-a-eficiência-dos-mercados" class="level2" data-number="98.6">
+<h2 data-number="98.6" class="anchored" data-anchor-id="preço-valor-e-a-eficiência-dos-mercados"><span class="header-section-number">98.6</span> Preço, valor e a eficiência dos mercados</h2>
+<p>Se o valor é calculável, por que o preço oscila tanto? Porque o preço reflete as <strong>expectativas coletivas</strong> — sobre lucros, juros, riscos — que mudam a cada notícia. A <strong>hipótese dos mercados eficientes</strong> sustenta que os preços já incorporam toda a informação pública disponível, de modo que seria impossível, de forma consistente, “ganhar do mercado” apenas analisando dados conhecidos. Se ela for verdadeira, o preço é a <strong>melhor estimativa disponível</strong> do valor, e a busca por pechinchas é em vão.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — os mercados são realmente eficientes?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — os mercados são realmente eficientes?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A hipótese dos mercados eficientes, associada a Eugene Fama, foi um dos pilares das finanças modernas e explica por que superar índices de forma sistemática é tão raro. Mas críticos apontam <strong>bolhas</strong> e <strong>pânicos</strong> (da euforia das “pontocom” às crises financeiras) que parecem incompatíveis com preços sempre racionais. A <strong>economia comportamental</strong> (que o Volume 15 abordará), com Robert Shiller à frente, mostra que investidores reais são movidos por vieses e emoções, gerando exageros de preço. O debate segue aberto: os mercados são eficientes o bastante para punir os ingênuos, mas humanos o bastante para exagerar. A prudência de comparar preço e valor nunca é supérflua.</p>
+</div>
+</div>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="98.7">
+<h2 data-number="98.7" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">98.7</span> 🇧🇷 Brasil em Foco</h2>
+<p>O mercado de ações brasileiro é jovem e concentrado, mas tem particularidades que moldam decisivamente a decisão de investir — a começar pela tributação e pela cultura dos dividendos.</p>
+<p><strong>A B3 e o Ibovespa.</strong> Todas as ações brasileiras são negociadas na <strong>B3</strong> (Brasil, Bolsa, Balcão), em São Paulo. Seu principal termômetro é o <strong>Ibovespa</strong>, índice que reúne as ações mais negociadas e serve de referência (“<em>benchmark</em>”) para comparar o desempenho de qualquer carteira — como visto em <a href="cap01-mercado-de-capitais.html" class="quarto-xref"><span>Capítulo 95</span></a>. O número de investidores pessoas físicas na bolsa <strong>cresceu muitas vezes</strong> ao longo dos anos 2010 e início dos 2020, impulsionado pela queda dos juros em certos períodos, pelas corretoras digitais e pela popularização do investimento — embora ainda seja pequeno frente ao total da população e à renda fixa, que segue dominante num país de juros altos (<a href="cap03-renda-fixa.html" class="quarto-xref"><span>Capítulo 97</span></a>).</p>
+<p><strong>A isenção dos dividendos.</strong> Uma peculiaridade marcante: no Brasil, os <strong>dividendos</strong> distribuídos aos acionistas são, historicamente, <strong>isentos de imposto de renda</strong> na pessoa física — regra em vigor desde 1996 e objeto de recorrente debate de reforma tributária. Isso ajuda a explicar a paixão nacional por ações “boas pagadoras de dividendos” e por setores maduros (elétricas, bancos, saneamento). Convivendo com os dividendos existem os <strong>juros sobre capital próprio (JCP)</strong>, uma forma de remunerar o acionista que é dedutível para a empresa, mas <strong>tributada</strong> em 15% na fonte para quem recebe. <em>(Atenção: as regras de tributação de dividendos e JCP estão sob discussão legislativa e podem mudar — confira a legislação vigente.)</em></p>
+<p><strong>A tributação do ganho de capital.</strong> Sobre o <strong>ganho de capital</strong> com ações (a valorização, quando você vende), incide IR de <strong>15%</strong> nas operações comuns (e 20% no <em>day trade</em>). Há uma <strong>isenção</strong> relevante para o pequeno investidor: vendas de ações que <strong>não ultrapassem R$ 20 mil no mês</strong> ficam isentas do imposto sobre o ganho no mercado à vista. Diferentemente da renda fixa, aqui o recolhimento é, em regra, de responsabilidade do próprio investidor (via DARF).</p>
+<p><strong>Governança: o Novo Mercado e o tag along.</strong> Para atrair investidores num ambiente historicamente marcado por conflitos entre controladores e minoritários, a B3 criou segmentos de <strong>governança corporativa</strong> — o mais exigente é o <strong>Novo Mercado</strong>, que só admite empresas com ações <strong>exclusivamente ordinárias</strong> (uma ação, um voto) e regras rígidas de transparência. Outro direito importante é o <strong>tag along</strong>: se o controle da empresa for vendido, os acionistas minoritários têm direito de vender suas ações por, no mínimo, 80% do preço pago ao controlador (100% no Novo Mercado). São mecanismos que reduzem o risco de o pequeno acionista ser “deixado para trás”.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> B3 (cotações, composição e metodologia do Ibovespa, segmentos de governança, estatísticas de investidores pessoa física); CVM (Comissão de Valores Mobiliários — regulação, informes de resultados das companhias abertas); Receita Federal (tributação de ganho de capital, dividendos e JCP); demonstrações financeiras das companhias (formulários de referência, ITR/DFP). Verifique sempre a data de referência e a legislação vigente, sobretudo quanto à tributação, que está em debate.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="98.8">
+<h2 data-number="98.8" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">98.8</span> Resumo do capítulo</h2>
+<ul>
+<li>Uma <strong>ação</strong> é a menor fração do capital de uma empresa; seu titular é <strong>sócio</strong> (renda variável), não credor. No Brasil, <strong>ON</strong> (final 3) dão <strong>voto</strong>; <strong>PN</strong> (final 4) dão preferência em dividendos, em geral sem voto; <strong>units</strong> (final 11) combinam classes.</li>
+<li>O <strong>retorno total</strong> do acionista tem dois componentes: <strong>dividendos</strong> (lucro distribuído) e <strong>ganho de capital</strong> (valorização do preço), reunidos em <a href="#eq-retorno-total" class="quarto-xref">Equação&nbsp;<span>98.1</span></a>.</li>
+<li><strong>Avaliar (valuation)</strong> é estimar o <strong>valor</strong> de uma empresa para compará-lo ao <strong>preço</strong>. Há duas famílias: <strong>relativa</strong> (múltiplos) e <strong>intrínseca</strong> (fluxo de caixa descontado).</li>
+<li>Os principais <strong>múltiplos</strong>: <strong>P/L</strong> (preço/lucro), <strong>P/VP</strong> (preço/valor patrimonial), <strong>dividend yield</strong> e <strong>EV/EBITDA</strong>. São atalhos comparativos, sensíveis a distorções contábeis e ao exagero coletivo de um setor.</li>
+<li>A <strong>avaliação intrínseca</strong> trata a ação como o valor presente dos <strong>dividendos futuros</strong> (<a href="#eq-ddm" class="quarto-xref">Equação&nbsp;<span>98.2</span></a>). Com crescimento constante <span class="math inline">\(g &lt; r\)</span>, colapsa no <strong>modelo de Gordon</strong>: <span class="math inline">\(P_0 = D_1/(r-g)\)</span> (<a href="#eq-gordon" class="quarto-xref">Equação&nbsp;<span>98.3</span></a>), uma <strong>perpetuidade crescente</strong>.</li>
+<li>O modelo de Gordon é <strong>muito sensível</strong> ao denominador <span class="math inline">\(r-g\)</span>: o valor dispara quando <span class="math inline">\(g \to r\)</span>. Por isso premissas ligeiramente diferentes geram preços-alvo muito distintos.</li>
+<li><strong>Preço não é valor</strong>: o preço reflete expectativas coletivas. A <strong>hipótese dos mercados eficientes</strong> diz que os preços já embutem toda a informação pública; a <strong>economia comportamental</strong> contesta, apontando bolhas e vieses.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="98.9">
+<h2 data-number="98.9" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">98.9</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise de caso. Tenha uma calculadora à mão.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique a diferença fundamental entre ser <strong>acionista</strong> de uma empresa e ser <strong>credor</strong> dela (como na renda fixa). O que cada um recebe e com que garantias?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O <strong>acionista</strong> é <strong>sócio</strong> (coproprietário): tem direito a uma fração dos lucros distribuídos (dividendos) e, no caso das ON, a voto, mas <strong>não</strong> há promessa de devolução do capital nem de rendimento — ganha se a empresa prosperar e perde se ela fracassar, e em caso de falência recebe <strong>por último</strong>. O <strong>credor</strong> (renda fixa) empresta recursos e tem direito a receber o principal de volta acrescido de juros segundo uma <strong>regra combinada</strong>, com prioridade sobre os sócios em caso de dificuldade. Em resumo: sócio com resultado incerto e residual × credor com remuneração definida e prioritária.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Uma empresa tem ações <code>ABCD3</code> e <code>ABCD4</code>. (a) Qual é ordinária e qual é preferencial? (b) Cite uma vantagem de cada uma para o investidor.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>O código terminado em <strong>3</strong> (<code>ABCD3</code>) é <strong>ordinária (ON)</strong>; o terminado em <strong>4</strong> (<code>ABCD4</code>) é <strong>preferencial (PN)</strong>.</li>
+<li>A <strong>ON</strong> dá <strong>direito a voto</strong> nas assembleias (participação nas decisões e no controle) e, se houver venda de controle, tag along. A <strong>PN</strong> costuma ter <strong>preferência na distribuição de dividendos</strong> e, em muitas empresas brasileiras, maior <strong>liquidez</strong> — bom para quem quer participar do resultado sem se envolver no controle.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Você comprou uma ação por R$ 40. Um ano depois, ela vale R$ 45 e, no período, pagou R$ 2 de dividendos. Calcule o <strong>retorno total</strong> e separe-o em ganho de capital e dividend yield.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Pela <a href="#eq-retorno-total" class="quarto-xref">Equação&nbsp;<span>98.1</span></a>: <span class="math display">\[
+R = \frac{(45 - 40) + 2}{40} = \frac{7}{40} = 0{,}175 = 17{,}5\%.
+\]</span> Desse total, o <strong>ganho de capital</strong> foi <span class="math inline">\(\frac{45-40}{40} = 12{,}5\%\)</span> e o <strong>dividend yield</strong> realizado foi <span class="math inline">\(\frac{2}{40} = 5\%\)</span>. Juntos, <span class="math inline">\(12{,}5\% + 5\% = 17{,}5\%\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Uma ação custa R$ 30 e a empresa teve lucro por ação (LPA) de R$ 2,50 no último ano. (a) Qual o <strong>P/L</strong>? (b) Interprete-o. (c) Que “rendimento do lucro” ele implica?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(P/L = \frac{30}{2{,}50} = 12\)</span>.</li>
+<li>Ao preço atual, você paga o equivalente a <strong>12 anos</strong> de lucro corrente pela empresa. Se compará-la a pares do mesmo setor, um P/L de 12 será “caro” ou “barato” conforme esteja acima ou abaixo da média deles e conforme as perspectivas de crescimento.</li>
+<li>O rendimento implícito do lucro é o inverso: <span class="math inline">\(1/12 \approx 8{,}3\%\)</span> ao ano — o lucro anual da empresa equivale a cerca de 8,3% do preço que você paga.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Deduza que a perpetuidade simples <span class="math inline">\(P_0 = D_1/r\)</span> é um caso particular do modelo de Gordon. O que ela representa economicamente?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No modelo de Gordon (<a href="#eq-gordon" class="quarto-xref">Equação&nbsp;<span>98.3</span></a>), <span class="math inline">\(P_0 = \frac{D_1}{r-g}\)</span>. Fazendo a taxa de crescimento <span class="math inline">\(g = 0\)</span> (dividendos <strong>constantes</strong>, sem crescimento), obtém-se <span class="math inline">\(P_0 = \frac{D_1}{r-0} = \frac{D_1}{r}\)</span>, exatamente a <a href="cap02-valor-do-dinheiro-no-tempo.html#eq-perpetuidade" class="quarto-xref">Equação&nbsp;<span>96.9</span></a>. Economicamente, representa uma empresa que paga o <strong>mesmo dividendo</strong> <span class="math inline">\(D_1\)</span> para sempre — uma perpetuidade sem crescimento, cujo valor é o dividendo dividido pela taxa exigida.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Uma empresa deve pagar dividendo de <span class="math inline">\(D_1 = R\$\,3{,}00\)</span> no próximo ano, com crescimento perpétuo de <span class="math inline">\(g = 5\%\)</span> ao ano. O investidor exige retorno de <span class="math inline">\(r = 11\%\)</span>. (a) Qual o valor justo da ação? (b) Se o preço de mercado é R$ 60, a ação está cara ou barata segundo o modelo?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Pela <a href="#eq-gordon" class="quarto-xref">Equação&nbsp;<span>98.3</span></a>: <span class="math display">\[
+P_0 = \frac{3{,}00}{0{,}11 - 0{,}05} = \frac{3{,}00}{0{,}06} = R\$\,50{,}00.
+\]</span></li>
+<li>O valor estimado (R$ 50) é <strong>menor</strong> que o preço de mercado (R$ 60), então, segundo o modelo e suas premissas, a ação está <strong>cara</strong> — o mercado paga mais do que os dividendos descontados justificariam. (Vale lembrar: o resultado depende inteiramente das premissas de <span class="math inline">\(D_1\)</span>, <span class="math inline">\(g\)</span> e <span class="math inline">\(r\)</span>.)</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> No exercício anterior, mantenha <span class="math inline">\(D_1 = R\$\,3{,}00\)</span> e <span class="math inline">\(r = 11\%\)</span>, mas suponha que a expectativa de crescimento suba de <span class="math inline">\(g = 5\%\)</span> para <span class="math inline">\(g = 8\%\)</span>. (a) Qual o novo valor? (b) Comente a sensibilidade do modelo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Agora <span class="math inline">\(P_0 = \frac{3{,}00}{0{,}11 - 0{,}08} = \frac{3{,}00}{0{,}03} = R\$\,100{,}00\)</span>.</li>
+<li>Uma mudança de apenas <strong>3 pontos</strong> na taxa de crescimento <strong>dobrou</strong> o valor estimado (de R$ 50 para R$ 100), porque encolheu o denominador <span class="math inline">\(r-g\)</span> de 0,06 para 0,03. Isso ilustra a <strong>enorme sensibilidade</strong> do modelo de Gordon às premissas: quanto mais <span class="math inline">\(g\)</span> se aproxima de <span class="math inline">\(r\)</span>, mais o valor dispara (relação convexa da <a href="#fig-gordon" class="quarto-xref">Figura&nbsp;<span>98.2</span></a>). Pequenos otimismos sobre crescimento produzem grandes saltos de preço-alvo — daí a necessidade de cautela.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> Uma LCI de renda fixa isenta rende 12% ao ano com baixo risco. Uma ação “boa pagadora” oferece dividend yield de 8% ao ano. Um investidor conclui que “a renda fixa é melhor, pois rende mais”. Onde está o erro de raciocínio?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O erro é comparar apenas o <strong>fluxo de renda</strong> (juros × dividendos) e <strong>ignorar o ganho de capital</strong>. O retorno total de uma ação é dividendos <strong>mais</strong> valorização (<a href="#eq-retorno-total" class="quarto-xref">Equação&nbsp;<span>98.1</span></a>): uma ação com 8% de dividend yield pode, além disso, valorizar-se ao longo do tempo se a empresa crescer, entregando retorno total bem acima de 12%. Por outro lado, esse retorno é <strong>incerto e arriscado</strong> — a ação pode cair —, enquanto a renda fixa é mais previsível. A comparação correta pondera <strong>retorno total esperado × risco</strong>, não apenas a renda corrente. Comparar o dividend yield com a taxa da renda fixa é comparar apenas metade da equação.</p>
+</div>
+</div>
+</div>
+<p><strong>9.</strong> (Análise de caso) Duas empresas do mesmo setor têm P/L bem diferentes: a empresa A negocia a P/L 8 e a empresa B a P/L 25. Um investidor conclui: “A está barata, B está cara; devo comprar A”. (a) Que hipóteses alternativas explicariam a diferença? (b) Que informações você buscaria antes de decidir?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>O P/L mais alto de B <strong>não</strong> significa necessariamente que está cara: pode refletir uma <strong>expectativa de crescimento</strong> muito maior dos lucros (o mercado paga mais hoje por lucros que devem crescer), menor risco, ou lucro atual temporariamente deprimido. O P/L baixo de A pode ser uma <strong>pechincha</strong> — ou um sinal de alerta: o mercado pode desconfiar que seus lucros vão <strong>cair</strong> (empresa em declínio, problemas de governança, setor ameaçado). P/L baixo às vezes é uma “armadilha de valor”.</li>
+<li>Antes de decidir, eu buscaria: as <strong>perspectivas de crescimento</strong> de lucro de cada uma; a <strong>qualidade e recorrência</strong> dos lucros (evitar distorções por eventos não recorrentes); o <strong>endividamento</strong> (comparar também EV/EBITDA); a <strong>governança</strong> e os riscos específicos; e faria uma <strong>avaliação intrínseca</strong> (fluxo de caixa descontado) para não depender só do múltiplo. O múltiplo levanta a pergunta, não dá a resposta.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>10.</strong> (Desafio) Uma empresa madura paga hoje dividendos estáveis, com crescimento próximo de zero, e negocia com P/L baixo e dividend yield alto. Outra, jovem e inovadora, <strong>não paga dividendos</strong>, reinveste todo o lucro e negocia com P/L altíssimo. (a) Como o modelo de dividendos descontados pode avaliar a segunda, se ela não paga dividendos? (b) Que perfil de investidor combina com cada uma?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>O modelo de dividendos descontados <strong>não deixa de valer</strong> só porque a empresa não paga dividendos <strong>hoje</strong>: ele avalia o <strong>valor presente dos dividendos futuros</strong> (<a href="#eq-ddm" class="quarto-xref">Equação&nbsp;<span>98.2</span></a>). A premissa para a empresa jovem é que ela <strong>reinveste agora para crescer</strong> e distribuirá dividendos maiores <strong>no futuro</strong>, quando amadurecer. Na prática, avalia-se projetando fluxos de caixa por um período explícito (sem distribuição, mas com crescimento) e aplicando o modelo de Gordon ao <strong>valor terminal</strong>, quando o crescimento se estabiliza. O P/L altíssimo reflete justamente a expectativa desse crescimento futuro — e todo o risco de ele não se concretizar.</li>
+<li>A <strong>madura</strong> (dividendos altos, P/L baixo, baixo crescimento) combina com o investidor que busca <strong>renda</strong> e <strong>previsibilidade</strong>, com menor tolerância ao risco — típico da cultura brasileira de dividendos. A <strong>jovem</strong> (sem dividendos, P/L alto, alto crescimento) combina com quem busca <strong>ganho de capital</strong>, aceita <strong>mais risco e volatilidade</strong> e tem horizonte longo. Nenhuma é “melhor” em abstrato: a escolha depende do objetivo, do horizonte e da tolerância ao risco do investidor — tema que o próximo capítulo, sobre risco e retorno, aprofunda.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="98.10">
+<h2 data-number="98.10" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">98.10</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="damodaran2012">Damodaran (<a href="#ref-damodaran2012" role="doc-biblioref">2012</a>)</span> — a referência mundial em avaliação de empresas: dos múltiplos ao fluxo de caixa descontado, com rigor e inúmeras aplicações práticas, incluindo mercados emergentes.</li>
+<li><span class="citation" data-cites="pinheiro2019">Pinheiro (<a href="#ref-pinheiro2019" role="doc-biblioref">2019</a>)</span> — panorama do mercado de capitais brasileiro, com o funcionamento das ações, os tipos ON/PN, a B3 e os segmentos de governança.</li>
+<li><span class="citation" data-cites="assafneto2021">Assaf Neto (<a href="#ref-assafneto2021" role="doc-biblioref">2021</a>)</span> — cobre a avaliação de ações, os múltiplos de mercado e a formação de preços no contexto do mercado financeiro nacional.</li>
+<li><span class="citation" data-cites="bodie2014">Bodie; Kane; Marcus (<a href="#ref-bodie2014" role="doc-biblioref">2014</a>)</span> — para a teoria de avaliação de ações, o modelo de dividendos descontados e a hipótese dos mercados eficientes, com tratamento formal e internacional.</li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-assafneto2021" class="csl-entry" role="listitem">
+ASSAF NETO, Alexandre. <strong>Mercado Financeiro</strong>. 14. ed. São Paulo: Atlas, 2021.
+</div>
+<div id="ref-bodie2014" class="csl-entry" role="listitem">
+BODIE, Zvi; KANE, Alex; MARCUS, Alan J. <strong>Investimentos</strong>. 10. ed. Porto Alegre: AMGH, 2014.
+</div>
+<div id="ref-damodaran2012" class="csl-entry" role="listitem">
+DAMODARAN, Aswath. <strong>Avaliação de Investimentos: ferramentas e técnicas para a determinação do valor de qualquer ativo</strong>. 2. ed. Rio de Janeiro: Qualitymark, 2012.
+</div>
+<div id="ref-pinheiro2019" class="csl-entry" role="listitem">
+PINHEIRO, Juliano Lima. <strong>Mercado de Capitais</strong>. 9. ed. São Paulo: Atlas, 2019.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1347,7 +2526,7 @@ Nota
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol14/cap04-acoes-valuation.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol14/cap04-acoes-valuation.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
 </div>
