@@ -23,7 +23,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -74,6 +94,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -885,8 +934,31 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">97.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#o-que-é-renda-fixa" id="toc-o-que-é-renda-fixa" class="nav-link" data-scroll-target="#o-que-é-renda-fixa"><span class="header-section-number">97.2</span> O que é renda fixa</a>
+  <ul class="collapse">
+  <li><a href="#a-anatomia-de-um-título" id="toc-a-anatomia-de-um-título" class="nav-link" data-scroll-target="#a-anatomia-de-um-título"><span class="header-section-number">97.2.1</span> A anatomia de um título</a></li>
+  </ul></li>
+  <li><a href="#precificação-o-preço-é-o-valor-presente-dos-fluxos" id="toc-precificação-o-preço-é-o-valor-presente-dos-fluxos" class="nav-link" data-scroll-target="#precificação-o-preço-é-o-valor-presente-dos-fluxos"><span class="header-section-number">97.3</span> Precificação: o preço é o valor presente dos fluxos</a>
+  <ul class="collapse">
+  <li><a href="#a-relação-inversa-entre-preço-e-taxa" id="toc-a-relação-inversa-entre-preço-e-taxa" class="nav-link" data-scroll-target="#a-relação-inversa-entre-preço-e-taxa"><span class="header-section-number">97.3.1</span> A relação inversa entre preço e taxa</a></li>
+  </ul></li>
+  <li><a href="#os-três-regimes-de-remuneração" id="toc-os-três-regimes-de-remuneração" class="nav-link" data-scroll-target="#os-três-regimes-de-remuneração"><span class="header-section-number">97.4</span> Os três regimes de remuneração</a></li>
+  <li><a href="#títulos-públicos-o-tesouro-direto" id="toc-títulos-públicos-o-tesouro-direto" class="nav-link" data-scroll-target="#títulos-públicos-o-tesouro-direto"><span class="header-section-number">97.5</span> Títulos públicos: o Tesouro Direto</a></li>
+  <li><a href="#títulos-privados-bancos-e-empresas" id="toc-títulos-privados-bancos-e-empresas" class="nav-link" data-scroll-target="#títulos-privados-bancos-e-empresas"><span class="header-section-number">97.6</span> Títulos privados: bancos e empresas</a></li>
+  <li><a href="#os-riscos-da-renda-fixa" id="toc-os-riscos-da-renda-fixa" class="nav-link" data-scroll-target="#os-riscos-da-renda-fixa"><span class="header-section-number">97.7</span> Os riscos da renda fixa</a></li>
+  <li><a href="#tributação-o-imposto-que-decresce-com-o-tempo" id="toc-tributação-o-imposto-que-decresce-com-o-tempo" class="nav-link" data-scroll-target="#tributação-o-imposto-que-decresce-com-o-tempo"><span class="header-section-number">97.8</span> Tributação: o imposto que decresce com o tempo</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">97.9</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">97.10</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">97.11</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">97.12</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol14/cap03-renda-fixa.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -910,21 +982,1112 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
+<p>Você abre o aplicativo do banco e vê três ofertas lado a lado: a poupança, “rendendo pouco”; um <strong>CDB</strong> que promete “110% do CDI”; e, na aba do Tesouro Direto, um tal de <strong>Tesouro IPCA+ 2035</strong> pagando “IPCA + 6,20% ao ano”. Ao lado, uma amiga comenta que comprou uma <strong>debênture</strong> de uma empresa de energia isenta de imposto. São todos exemplos do mesmo universo — a <strong>renda fixa</strong> —, aquele em que você empresta dinheiro a alguém (um banco, uma empresa, o próprio governo) e recebe de volta o principal acrescido de juros combinados de antemão. É o primeiro degrau de qualquer carteira de investimentos e, no Brasil de juros altos, o mais popular. Mas por trás da aparente simplicidade há decisões finas: prefixado ou pós-fixado? O que acontece com o preço do título se a Selic subir? Por que um papel “seguro” pode dar prejuízo se vendido antes da hora? Este capítulo, apoiado no valor do dinheiro no tempo construído em <a href="cap02-valor-do-dinheiro-no-tempo.html" class="quarto-xref"><span>Capítulo 96</span></a>, mostra <strong>como funcionam, como se precificam e como se comparam os títulos de renda fixa</strong>, públicos e privados.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="97.1">
+<h2 data-number="97.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">97.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>definir <strong>renda fixa</strong> e distingui-la da renda variável, identificando os elementos de um título: <strong>valor de face</strong>, <strong>cupom</strong>, <strong>prazo</strong> e <strong>preço</strong>;</li>
+<li><strong>precificar</strong> um título como o valor presente de seus fluxos de caixa e explicar a <strong>relação inversa entre preço e taxa de juros</strong>;</li>
+<li>diferenciar títulos <strong>prefixados</strong>, <strong>pós-fixados</strong> e <strong>indexados à inflação</strong>, e reconhecer quando cada um protege melhor o investidor;</li>
+<li>identificar os títulos do <strong>Tesouro Direto</strong> (Tesouro Selic, Prefixado e IPCA+) e os principais títulos <strong>privados</strong> (CDB, LCI/LCA, debêntures);</li>
+<li>classificar os <strong>riscos</strong> da renda fixa — crédito, mercado e liquidez — e o papel do <strong>FGC</strong> e das <strong>agências de rating</strong>;</li>
+<li>entender a <strong>tributação</strong> regressiva do imposto de renda e as <strong>isenções</strong> que moldam as escolhas do investidor brasileiro.</li>
+</ul>
+</section>
+<section id="o-que-é-renda-fixa" class="level2" data-number="97.2">
+<h2 data-number="97.2" class="anchored" data-anchor-id="o-que-é-renda-fixa"><span class="header-section-number">97.2</span> O que é renda fixa</h2>
+<p>Todo investimento é, no fundo, entregar dinheiro hoje esperando receber mais dinheiro no futuro. O que muda é a <strong>natureza do vínculo</strong>. Na <strong>renda variável</strong> — ações, que veremos no próximo capítulo do volume —, você se torna <strong>sócio</strong> de um negócio e seu retorno depende do lucro e do humor do mercado: pode ser altíssimo ou negativo, e não há promessa nenhuma. Na <strong>renda fixa</strong>, você é <strong>credor</strong>: empresta uma quantia e o tomador se compromete a devolvê-la com juros segundo uma regra definida no momento da aplicação.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Renda fixa">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota
+<span class="screen-reader-only">Nota</span>Definição — Renda fixa
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Capítulo em construção.</p>
+<p>A <strong>renda fixa</strong> reúne os investimentos em que o investidor <strong>empresta</strong> recursos a um emissor (governo, banco ou empresa) em troca de uma remuneração cuja <strong>regra de cálculo é conhecida no momento da aplicação</strong>. O investidor é <strong>credor</strong>, não sócio, e tem direito a receber o principal de volta acrescido de juros — daí o nome do capítulo anterior fazer tanta diferença: precificar renda fixa é aplicar o valor do dinheiro no tempo.</p>
 </div>
 </div>
+<p>O nome “fixa” é traiçoeiro. Ele <strong>não</strong> significa que o rendimento é sempre conhecido em reais, nem que o investimento não pode dar prejuízo. Significa apenas que a <strong>regra</strong> de remuneração é fixada de antemão. Essa regra pode ser um percentual fixo (“12% ao ano”), pode acompanhar um indexador que só se conhecerá no futuro (“100% do CDI”, “IPCA + 6%”), e o <strong>preço de mercado</strong> do título pode oscilar antes do vencimento. Entender essas nuances é todo o objetivo do capítulo.</p>
+<section id="a-anatomia-de-um-título" class="level3" data-number="97.2.1">
+<h3 data-number="97.2.1" class="anchored" data-anchor-id="a-anatomia-de-um-título"><span class="header-section-number">97.2.1</span> A anatomia de um título</h3>
+<p>Um <strong>título de renda fixa</strong> (ou <em>bond</em>) é um contrato de dívida padronizado. Seus elementos essenciais são:</p>
+<ul>
+<li><strong>Valor de face</strong> (ou valor nominal, ou principal) <span class="math inline">\(F\)</span>: a quantia que o emissor promete pagar no vencimento. No Tesouro Direto, por convenção, o valor de face de cada título é R$ 1.000 (para o Tesouro Prefixado) ou é corrigido por um índice.</li>
+<li><strong>Cupom</strong> <span class="math inline">\(C\)</span>: o juro periódico pago ao investidor durante a vida do título, em geral semestral. Um título que <strong>não</strong> paga cupons — devolvendo tudo (juros + principal) só no vencimento — é chamado <strong>título de cupom zero</strong> (<em>zero-coupon</em>).</li>
+<li><strong>Prazo</strong> (ou maturidade) <span class="math inline">\(n\)</span>: o tempo até o vencimento, quando o principal é devolvido.</li>
+<li><strong>Preço</strong> <span class="math inline">\(P\)</span>: quanto o título custa <strong>hoje</strong> no mercado. É a variável que se ajusta para que a taxa de retorno do título se iguale à taxa exigida pelo mercado.</li>
+</ul>
+<p>A <a href="#fig-fluxo-titulo" class="quarto-xref">Figura&nbsp;<span>97.1</span></a> mostra o fluxo de caixa típico de um título com cupons: pequenos pagamentos periódicos e um grande pagamento final (o principal mais o último cupom).</p>
+<div id="fig-fluxo-titulo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fluxo-titulo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="351.004583pt" height="146.1519pt" viewbox="-68.014948 -68.014952 351.004583 146.1519">
+<defs>
+<path id="tz_fig_fluxo_titulo_g0-67" d="M6.344209-5.395766C6.352179-5.427646 6.36812-5.475467 6.36812-5.515318C6.36812-5.571108 6.320299-5.610959 6.264508-5.610959S6.184807-5.587049 6.121046-5.515318L5.563138-4.901619C5.491407-5.00523 5.068991-5.610959 4.136488-5.610959C2.287422-5.610959 .422416-3.897385 .422416-2.064259C.422416-.67746 1.474471 .167372 2.741719 .167372C3.785803 .167372 4.670486-.470237 5.100872-1.091905C5.363885-1.482441 5.467497-1.865006 5.467497-1.912827C5.467497-1.984558 5.419676-2.016438 5.347945-2.016438C5.252304-2.016438 5.236364-1.976588 5.212453-1.888917C4.877709-.789041 3.801743-.095641 2.84533-.095641C2.032379-.095641 1.179577-.573848 1.179577-1.793275C1.179577-2.048319 1.267248-3.379328 2.15193-4.375592C2.749689-5.045081 3.56264-5.347945 4.192279-5.347945C5.196513-5.347945 5.610959-4.542964 5.610959-3.785803C5.610959-3.674222 5.579078-3.52279 5.579078-3.427148C5.579078-3.323537 5.68269-3.323537 5.71457-3.323537C5.818182-3.323537 5.834122-3.355417 5.866002-3.498879L6.344209-5.395766Z"></path>
+<path id="tz_fig_fluxo_titulo_g0-70" d="M2.518555-2.582316H3.347447C4.000996-2.582316 4.032877-2.454795 4.032877-2.223661C4.032877-2.16787 4.032877-2.088169 3.977086-1.880946C3.969116-1.849066 3.961146-1.785305 3.961146-1.761395C3.961146-1.753425 3.961146-1.649813 4.080697-1.649813C4.176339-1.649813 4.200249-1.729514 4.224159-1.833126L4.646575-3.53873C4.654545-3.55467 4.678456-3.658281 4.678456-3.666252C4.678456-3.698132 4.654545-3.777833 4.550934-3.777833C4.455293-3.777833 4.439352-3.706102 4.415442-3.610461C4.25604-2.988792 4.072727-2.84533 3.363387-2.84533H2.590286L3.092403-4.853798C3.164134-5.140722 3.172105-5.156663 3.498879-5.156663H4.670486C5.618929-5.156663 5.889913-4.95741 5.889913-4.27198C5.889913-4.104608 5.850062-3.897385 5.850062-3.745953C5.850062-3.650311 5.905853-3.610461 5.969614-3.610461C6.081196-3.610461 6.089166-3.682192 6.105106-3.817684L6.248568-5.172603C6.256538-5.212453 6.256538-5.268244 6.256538-5.308095C6.256538-5.419676 6.160897-5.419676 6.017435-5.419676H1.928767C1.785305-5.419676 1.681694-5.419676 1.681694-5.276214C1.681694-5.156663 1.777335-5.156663 1.912827-5.156663C1.968618-5.156663 2.080199-5.156663 2.215691-5.140722C2.383064-5.124782 2.406974-5.108842 2.406974-5.029141C2.406974-4.98929 2.399004-4.95741 2.375093-4.869738L1.315068-.629639C1.243337-.326775 1.227397-.263014 .637609-.263014C.486177-.263014 .390535-.263014 .390535-.111582C.390535-.079701 .414446 0 .518057 0C.68543 0 .876712-.02391 1.052055-.02391H2.15193C2.303362-.01594 2.590286 0 2.741719 0C2.797509 0 2.909091 0 2.909091-.151432C2.909091-.263014 2.81345-.263014 2.646077-.263014S2.414944-.263014 2.231631-.278954C2.016438-.302864 1.992528-.326775 1.992528-.422416C1.992528-.430386 1.992528-.478207 2.024408-.597758L2.518555-2.582316Z"></path>
+<path id="tz_fig_fluxo_titulo_g0-80" d="M2.510585-2.486675H3.961146C5.108842-2.486675 6.304359-3.283686 6.304359-4.224159C6.304359-4.901619 5.66675-5.443587 4.638605-5.443587H1.952677C1.809215-5.443587 1.705604-5.443587 1.705604-5.292154C1.705604-5.180573 1.809215-5.180573 1.936737-5.180573C2.199751-5.180573 2.430884-5.180573 2.430884-5.053051C2.430884-5.021171 2.422914-5.0132 2.399004-4.909589L1.331009-.629639C1.259278-.334745 1.243337-.263014 .67746-.263014C.494147-.263014 .406476-.263014 .406476-.111582C.406476-.079701 .430386 0 .533998 0C.68543 0 .876712-.01594 1.028144-.02391H1.538232C2.303362-.02391 2.510585 0 2.566376 0C2.614197 0 2.725778 0 2.725778-.151432C2.725778-.263014 2.622167-.263014 2.486675-.263014C2.462765-.263014 2.319303-.263014 2.183811-.278954C2.016438-.294894 2.000498-.318804 2.000498-.390535C2.000498-.430386 2.016438-.478207 2.024408-.518057L2.510585-2.486675ZM3.092403-4.885679C3.164134-5.156663 3.172105-5.180573 3.498879-5.180573H4.375592C5.029141-5.180573 5.531258-4.98929 5.531258-4.399502C5.531258-4.29589 5.491407-3.58655 5.045081-3.148194C4.925529-3.028643 4.542964-2.725778 3.761893-2.725778H2.550436L3.092403-4.885679Z"></path>
+<path id="tz_fig_fluxo_titulo_g1-24" d="M2.414944 .167372H1.809215V.557908C2.351183 .565878 2.518555 .797011 2.518555 .980324C2.518555 1.251308 2.207721 1.41071 1.370859 1.41071H1.099875V1.633873H1.474471C1.578082 1.633873 2.12802 1.625903 2.478705 1.546202C2.797509 1.474471 3.124284 1.338979 3.124284 .980324C3.124284 .557908 2.677958 .430386 2.414944 .382565V.167372Z"></path>
+<path id="tz_fig_fluxo_titulo_g1-40" d="M2.654047 1.992528C2.717808 1.992528 2.81345 1.992528 2.81345 1.896887C2.81345 1.865006 2.805479 1.857036 2.701868 1.753425C1.609963 .72528 1.338979-.757161 1.338979-1.992528C1.338979-4.28792 2.287422-5.363885 2.693898-5.730511C2.805479-5.834122 2.81345-5.842092 2.81345-5.881943S2.781569-5.977584 2.701868-5.977584C2.574346-5.977584 2.175841-5.571108 2.11208-5.499377C1.044085-4.383562 .820922-2.948941 .820922-1.992528C.820922-.207223 1.570112 1.227397 2.654047 1.992528Z"></path>
+<path id="tz_fig_fluxo_titulo_g1-41" d="M2.462765-1.992528C2.462765-2.749689 2.335243-3.658281 1.841096-4.598755C1.45056-5.332005 .72528-5.977584 .581818-5.977584C.502117-5.977584 .478207-5.921793 .478207-5.881943C.478207-5.850062 .478207-5.834122 .573848-5.738481C1.689664-4.678456 1.944707-3.219925 1.944707-1.992528C1.944707 .294894 .996264 1.378829 .589788 1.745455C.486177 1.849066 .478207 1.857036 .478207 1.896887S.502117 1.992528 .581818 1.992528C.70934 1.992528 1.107846 1.586052 1.171606 1.514321C2.239601 .398506 2.462765-1.036115 2.462765-1.992528Z"></path>
+<path id="tz_fig_fluxo_titulo_g1-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_fluxo_titulo_g1-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_fluxo_titulo_g1-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_fluxo_titulo_g1-112" d="M2.096139 1.283188C1.586052 1.283188 1.490411 1.283188 1.490411 .924533V-.390535C1.865006 .01594 2.271482 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.717808 3.610461-3.514819 2.646077-3.514819C2.335243-3.514819 1.872976-3.435118 1.466501-3.020672V-3.514819L.278954-3.427148V-3.164134C.844832-3.164134 .884682-3.116314 .884682-2.781569V.924533C.884682 1.283188 .789041 1.283188 .278954 1.283188V1.546202C.621669 1.522291 .972354 1.522291 1.187547 1.522291C1.41868 1.522291 1.753425 1.522291 2.096139 1.546202V1.283188ZM1.490411-2.654047C1.673724-2.972852 2.072229-3.267746 2.574346-3.267746C3.188045-3.267746 3.706102-2.590286 3.706102-1.721544C3.706102-.804981 3.132254-.143462 2.486675-.143462C2.207721-.143462 1.841096-.263014 1.586052-.661519C1.490411-.797011 1.490411-.804981 1.490411-.956413V-2.654047Z"></path>
+<path id="tz_fig_fluxo_titulo_g1-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_fluxo_titulo_g2-1" d="M1.75741-2.25056C1.75741-2.510585 1.551183-2.734745 1.273225-2.734745S.789041-2.510585 .789041-2.25056S.995268-1.766376 1.273225-1.766376S1.75741-1.990535 1.75741-2.25056Z"></path>
+<path id="tz_fig_fluxo_titulo_g3-48" d="M4.241096-2.86924C4.241096-3.469988 4.214197-4.241096 3.900374-4.913574C3.505853-5.756413 2.824408-5.971606 2.304359-5.971606C1.766376-5.971606 1.084932-5.756413 .690411-4.895641C.403487-4.276961 .358655-3.550685 .358655-2.86924C.358655-2.286426 .376588-1.416687 .762142-.708344C1.183562 .053798 1.882939 .19726 2.295392 .19726C2.878207 .19726 3.541719-.053798 3.918306-.878705C4.187298-1.479452 4.241096-2.15193 4.241096-2.86924ZM2.304359-.026899C2.035367-.026899 1.389788-.152428 1.219427-1.165629C1.129763-1.694645 1.129763-2.465753 1.129763-2.976837C1.129763-3.58655 1.129763-4.294894 1.23736-4.788045C1.416687-5.586052 1.990535-5.747447 2.295392-5.747447C2.636115-5.747447 3.200996-5.56812 3.371357-4.734247C3.469988-4.241096 3.469988-3.541719 3.469988-2.976837C3.469988-2.420922 3.469988-1.667746 3.380324-1.13873C3.19203-.116563 2.528518-.026899 2.304359-.026899Z"></path>
+<path id="tz_fig_fluxo_titulo_g3-49" d="M2.725778-5.729514C2.725778-5.953674 2.716812-5.971606 2.492653-5.971606C1.936737-5.397758 1.111831-5.397758 .833873-5.397758V-5.119801C1.004234-5.119801 1.551183-5.119801 2.035367-5.352927V-.71731C2.035367-.385554 2.008468-.277958 1.174595-.277958H.887671V0C1.210461-.026899 2.008468-.026899 2.37609-.026899S3.550685-.026899 3.873474 0V-.277958H3.58655C2.752677-.277958 2.725778-.385554 2.725778-.71731V-5.729514Z"></path>
+<path id="tz_fig_fluxo_titulo_g3-50" d="M4.142466-1.587049H3.891407C3.873474-1.470486 3.801743-.941469 3.685181-.798007C3.631382-.71731 3.012702-.71731 2.833375-.71731H1.23736L2.125031-1.560149C3.595517-2.833375 4.142466-3.308593 4.142466-4.223163C4.142466-5.254296 3.29066-5.971606 2.187796-5.971606C1.156663-5.971606 .457285-5.155666 .457285-4.339726C.457285-3.891407 .842839-3.846575 .923537-3.846575C1.120797-3.846575 1.389788-3.990037 1.389788-4.312827C1.389788-4.581818 1.201494-4.779078 .923537-4.779078C.878705-4.779078 .851806-4.779078 .81594-4.770112C1.031133-5.406725 1.604981-5.693649 2.089166-5.693649C3.003736-5.693649 3.317559-4.841843 3.317559-4.223163C3.317559-3.308593 2.627148-2.564384 2.196762-2.098132L.555915-.32279C.457285-.224159 .457285-.206227 .457285 0H3.891407L4.142466-1.587049Z"></path>
+<path id="tz_fig_fluxo_titulo_g3-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+<path id="tz_fig_fluxo_titulo_g3-109" d="M1.667746-2.322291C1.667746-3.29066 2.367123-3.738979 2.905106-3.738979C3.398257-3.738979 3.559651-3.38929 3.559651-2.761644V-.690411C3.559651-.277958 3.461021-.277958 2.86924-.277958V0C3.29066-.017933 3.461021-.026899 3.891407-.026899S4.438356-.017933 4.913574 0V-.277958C4.321793-.277958 4.223163-.277958 4.223163-.690411V-2.322291C4.223163-3.29066 4.92254-3.738979 5.460523-3.738979C5.953674-3.738979 6.115068-3.38929 6.115068-2.761644V-.690411C6.115068-.277958 6.016438-.277958 5.424658-.277958V0C5.846077-.017933 6.016438-.026899 6.446824-.026899S6.993773-.017933 7.468991 0V-.277958C7.011706-.277958 6.787547-.277958 6.77858-.555915V-2.27746C6.77858-3.057534 6.77858-3.308593 6.48269-3.640349C6.294396-3.855542 5.935741-3.963138 5.523288-3.963138C4.877709-3.963138 4.438356-3.58655 4.187298-3.111333C4.079701-3.640349 3.721046-3.963138 2.96787-3.963138C2.25056-3.963138 1.811208-3.496887 1.622914-3.084433H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_fluxo_titulo_g3-110" d="M1.667746-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.133998-3.963138 1.748443-3.344458 1.622914-3.0934H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_fluxo_titulo_g3-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_fluxo_titulo_g3-112" d="M1.622914-3.012702C1.927771-3.532752 2.420922-3.71208 2.797509-3.71208C3.496887-3.71208 4.034869-2.905106 4.034869-1.936737C4.034869-.91457 3.425156-.125529 2.698879-.125529C2.295392-.125529 1.95467-.358655 1.739477-.672478C1.622914-.851806 1.622914-.869738 1.622914-1.0401V-3.012702ZM1.622914-.430386C1.85604-.19726 2.160897 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.066501 3.927273-3.963138 2.86924-3.963138C2.385056-3.963138 1.936737-3.765878 1.596015-3.398257V-3.963138L.268991-3.864508V-3.58655C.905604-3.58655 .959402-3.532752 .959402-3.147198V1.049066C.959402 1.461519 .860772 1.461519 .268991 1.461519V1.739477C.690411 1.721544 .860772 1.712578 1.291158 1.712578S1.838107 1.721544 2.313325 1.739477V1.461519C1.721544 1.461519 1.622914 1.461519 1.622914 1.049066V-.430386Z"></path>
+<path id="tz_fig_fluxo_titulo_g3-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+</defs>
+<g id="tz_fig_fluxo_titulo_page1">
+<g stroke-miterlimit="10" transform="translate(-46.834077,22.224291)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M-14.22636 0H296.75383" fill="none"></path>
+<g transform="translate(296.75383,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(302.28677,-1.89285)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-46.834077,22.224291)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-46.834077" y="22.224291" href="#tz_fig_fluxo_titulo_g3-116"></use>
+<use x="-43.250317" y="22.224291" href="#tz_fig_fluxo_titulo_g3-101"></use>
+<use x="-39.151129" y="22.224291" href="#tz_fig_fluxo_titulo_g3-109"></use>
+<use x="-31.471645" y="22.224291" href="#tz_fig_fluxo_titulo_g3-112"></use>
+<use x="-26.096006" y="22.224291" href="#tz_fig_fluxo_titulo_g3-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<path d="M0 2.84544V-2.84544" fill="none"></path>
+<g transform="translate(-2.31248,-12.1784)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-46.834077,22.224291)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-46.834077" y="22.224291" href="#tz_fig_fluxo_titulo_g3-48"></use>
+</g>
+</g>
+</g>
+</g>
+<path d="M56.90549 2.84544V-2.84544" fill="none"></path>
+<g transform="translate(54.593,-12.1784)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-46.834077,22.224291)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-46.834077" y="22.224291" href="#tz_fig_fluxo_titulo_g3-49"></use>
+</g>
+</g>
+</g>
+</g>
+<path d="M113.81097 2.84544V-2.84544" fill="none"></path>
+<g transform="translate(111.49849,-12.1784)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-46.834077,22.224291)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-46.834077" y="22.224291" href="#tz_fig_fluxo_titulo_g3-50"></use>
+</g>
+</g>
+</g>
+</g>
+<path d="M170.71646 2.84544V-2.84544" fill="none"></path>
+<g transform="translate(164.54984,-10.427)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-46.834077,22.224291)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-46.834077" y="22.224291" href="#tz_fig_fluxo_titulo_g2-1"></use>
+<use x="-42.738352" y="22.224291" href="#tz_fig_fluxo_titulo_g2-1"></use>
+<use x="-38.642627" y="22.224291" href="#tz_fig_fluxo_titulo_g2-1"></use>
+</g>
+</g>
+</g>
+</g>
+<path d="M241.84831 2.84544V-2.84544" fill="none"></path>
+<g transform="translate(239.27888,-10.25339)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-46.834077,22.224291)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-46.834077" y="22.224291" href="#tz_fig_fluxo_titulo_g3-110"></use>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#3fb618" stroke="#3fb618">
+<path d="M56.90549 0V28.09819" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,56.90549,28.09819)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#3fb618" stroke="#3fb618">
+<path d="M113.81097 0V28.09819" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,113.81097,28.09819)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#3fb618" stroke="#3fb618">
+<path d="M241.84831 0V28.09819" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,241.84831,28.09819)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+<g fill="#3fb618" stroke="#3fb618">
+<g fill="#3fb618" stroke="#3fb618">
+</g>
+<g transform="translate(53.59378,37.10034)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-46.834077,22.224291)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none">
+<g fill="#3fb618">
+<use x="-46.834077" y="22.224291" href="#tz_fig_fluxo_titulo_g0-67"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#3fb618" stroke="#3fb618">
+<g fill="#3fb618" stroke="#3fb618">
+</g>
+<g transform="translate(110.49927,37.10034)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-46.834077,22.224291)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none">
+<g fill="#3fb618">
+<use x="-46.834077" y="22.224291" href="#tz_fig_fluxo_titulo_g0-67"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#3fb618" stroke="#3fb618">
+<g fill="#3fb618" stroke="#3fb618">
+</g>
+<g transform="translate(238.5366,37.10034)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-46.834077,22.224291)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none">
+<g fill="#3fb618">
+<use x="-46.834077" y="22.224291" href="#tz_fig_fluxo_titulo_g0-67"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<path d="M241.84831 31.29819V73.62231" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,241.84831,73.62231)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(238.56842,81.77802)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-46.834077,22.224291)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-46.834077" y="22.224291" href="#tz_fig_fluxo_titulo_g0-70"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M0-39.83366V-3.2" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,-3.2)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(-17.92732,-50.78935)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-46.834077,22.224291)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-46.834077" y="22.224291" href="#tz_fig_fluxo_titulo_g0-80"></use>
+<use x="-37.466313" y="22.224291" href="#tz_fig_fluxo_titulo_g1-40"></use>
+<use x="-34.17306" y="22.224291" href="#tz_fig_fluxo_titulo_g1-112"></use>
+<use x="-29.468412" y="22.224291" href="#tz_fig_fluxo_titulo_g1-114"></use>
+<use x="-26.168242" y="22.224291" href="#tz_fig_fluxo_titulo_g1-101"></use>
+<use x="-22.404524" y="22.224291" href="#tz_fig_fluxo_titulo_g1-24"></use>
+<use x="-22.404524" y="22.224291" href="#tz_fig_fluxo_titulo_g1-99"></use>
+<use x="-18.640806" y="22.224291" href="#tz_fig_fluxo_titulo_g1-111"></use>
+<use x="-14.406623" y="22.224291" href="#tz_fig_fluxo_titulo_g1-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fluxo-titulo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;97.1: Fluxo de caixa de um título com cupons: o investidor paga o preço <span class="math inline">\(P\)</span> hoje e recebe cupons <span class="math inline">\(C\)</span> periódicos mais o valor de face <span class="math inline">\(F\)</span> no vencimento.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="precificação-o-preço-é-o-valor-presente-dos-fluxos" class="level2" data-number="97.3">
+<h2 data-number="97.3" class="anchored" data-anchor-id="precificação-o-preço-é-o-valor-presente-dos-fluxos"><span class="header-section-number">97.3</span> Precificação: o preço é o valor presente dos fluxos</h2>
+<p>Aqui a máquina do capítulo anterior entra em cena. Se um título promete uma sequência de pagamentos futuros, quanto ele vale hoje? Exatamente o <strong>valor presente</strong> de todos esses fluxos, descontados à taxa de juros que o mercado exige de um papel com aquele risco e prazo. Chamando essa taxa exigida de <span class="math inline">\(i\)</span> (a <strong>taxa de mercado</strong>, ou <em>yield</em>):</p>
+<p><span id="eq-preco-titulo"><span class="math display">\[
+P = \sum_{t=1}^{n} \frac{C}{(1+i)^{t}} + \frac{F}{(1+i)^{n}}.
+\tag{97.1}\]</span></span></p>
+<p>O primeiro termo é uma anuidade (os cupons); o segundo é o desconto do valor de face. Para um <strong>título de cupom zero</strong> — como o Tesouro Prefixado sem juros semestrais —, não há cupons e a fórmula colapsa em</p>
+<p><span id="eq-preco-cupom-zero"><span class="math display">\[
+P = \frac{F}{(1+i)^{n}},
+\tag{97.2}\]</span></span></p>
+<p>a mesma <a href="cap02-valor-do-dinheiro-no-tempo.html#eq-vp" class="quarto-xref">Equação&nbsp;<span>96.4</span></a> do capítulo anterior. Comprar um prefixado de cupom zero é, literalmente, comprar hoje por menos um pagamento futuro certo.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Taxa de retorno até o vencimento (yield)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Taxa de retorno até o vencimento (yield)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>taxa de retorno até o vencimento</strong> (do inglês <em>yield to maturity</em>) é a taxa de desconto <span class="math inline">\(i\)</span> que iguala o preço de mercado do título ao valor presente de todos os seus fluxos de caixa. É o rendimento anual efetivo que o investidor obterá se comprar o título ao preço atual e o mantiver até o vencimento, reinvestindo os cupons à mesma taxa. Quando alguém diz que “o título paga 12% ao ano”, está falando da <em>yield</em>.</p>
+</div>
+</div>
+<p><strong>Exemplo — cupom zero.</strong> Um Tesouro Prefixado tem valor de face <span class="math inline">\(F = R\$\,1.000\)</span>, vence em 2 anos e o mercado exige <span class="math inline">\(i = 12\%\)</span> ao ano. Pela <a href="#eq-preco-cupom-zero" class="quarto-xref">Equação&nbsp;<span>97.2</span></a>:</p>
+<p><span class="math display">\[
+P = \frac{1000}{(1{,}12)^{2}} = \frac{1000}{1{,}2544} = R\$\,797{,}19.
+\]</span></p>
+<p>Você paga R$ 797,19 hoje e recebe R$ 1.000 em dois anos — um ganho de R$ 202,81, que corresponde justamente a 12% ao ano compostos.</p>
+<p><strong>Exemplo — com cupom.</strong> Um título de <span class="math inline">\(F = R\$\,1.000\)</span> paga cupom de 10% ao ano (<span class="math inline">\(C = R\$\,100\)</span>) por 3 anos. Se o mercado exige <span class="math inline">\(i = 12\%\)</span> ao ano:</p>
+<p><span class="math display">\[
+P = \frac{100}{1{,}12} + \frac{100}{1{,}12^{2}} + \frac{100}{1{,}12^{3}} + \frac{1000}{1{,}12^{3}}
+= 89{,}29 + 79{,}72 + 71{,}18 + 711{,}78 = R\$\,951{,}96.
+\]</span></p>
+<p>O título vale <strong>menos</strong> que seu valor de face (negocia “com deságio”, ou <em>abaixo do par</em>). A razão é intuitiva: seu cupom (10%) é menor que o retorno que o mercado exige (12%), então o preço cai até que o rendimento total se iguale aos 12%. Se, ao contrário, o cupom fosse <strong>maior</strong> que a taxa de mercado, o título valeria <strong>mais</strong> que o par (negociaria “com ágio”). E se cupom e taxa de mercado coincidem, o preço é exatamente o valor de face.</p>
+<section id="a-relação-inversa-entre-preço-e-taxa" class="level3" data-number="97.3.1">
+<h3 data-number="97.3.1" class="anchored" data-anchor-id="a-relação-inversa-entre-preço-e-taxa"><span class="header-section-number">97.3.1</span> A relação inversa entre preço e taxa</h3>
+<p>A observação mais importante — e mais contraintuitiva — de toda a renda fixa está escondida na <a href="#eq-preco-titulo" class="quarto-xref">Equação&nbsp;<span>97.1</span></a>: como <span class="math inline">\(i\)</span> aparece no <strong>denominador</strong>, <strong>preço e taxa de juros caminham em sentidos opostos</strong>. Se a taxa de mercado sobe, o valor presente dos fluxos cai, e o preço do título desce; se a taxa cai, o preço sobe.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — 'renda fixa não perde dinheiro'">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — ‘renda fixa não perde dinheiro’
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Muita gente acredita que renda fixa é sinônimo de segurança absoluta. Não é. Se você compra um título prefixado longo e a Selic <strong>sobe</strong>, o preço de mercado do seu título <strong>cai</strong> — e, se precisar vendê-lo antes do vencimento, realizará <strong>prejuízo</strong>. Esse é o <strong>risco de mercado</strong> (ou risco de taxa de juros). Só quem carrega o título <strong>até o vencimento</strong> trava o retorno contratado; quem vende antes fica sujeito ao preço do dia, o que se chama <strong>marcação a mercado</strong>. Quanto mais <strong>longo</strong> o prazo, mais o preço oscila com a taxa.</p>
+</div>
+</div>
+<p>Retomando o título com cupom do exemplo: a R$ 951,96 ele rende 12%. Se a taxa de mercado saltar para 14%, seu preço cairá para cerca de R$ 907,13; se recuar para 10% (igual ao cupom), subirá para exatamente R$ 1.000. A <a href="#fig-preco-taxa" class="quarto-xref">Figura&nbsp;<span>97.2</span></a> ilustra essa relação para um título de cupom zero de 10 anos: uma curva <strong>decrescente e convexa</strong> — decrescente porque preço e taxa se opõem, convexa porque a sensibilidade é maior quando as taxas estão baixas.</p>
+<div id="fig-preco-taxa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-preco-taxa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="320.668423pt" height="184.343552pt" viewbox="-68.014948 -68.014952 320.668423 184.343552">
+<defs>
+<path id="tz_fig_preco_taxa_g0-36" d="M2.15193-6.527522V-6.339228L1.918804-6.28543C1.111831-6.115068 .502117-5.388792 .502117-4.599751C.502117-4.070735 .806974-3.505853 1.264259-3.200996C1.479452-3.057534 1.596015-3.003736 1.900872-2.923039L2.142964-2.851308L2.15193-1.515318V-.170361L2.017435-.188294C1.497385-.268991 1.120797-.529016 .923537-.932503C.806974-1.183562 .806974-1.228394 .932503-1.228394C1.255293-1.228394 1.452553-1.596015 1.273225-1.85604C1.093898-2.125031 .735243-2.125031 .564882-1.847073C.457285-1.667746 .511083-1.183562 .681445-.81594C.789041-.600747 1.0401-.313823 1.264259-.170361C1.425654-.071731 1.75741 .035866 1.999502 .071731L2.15193 .089664V.29589V.502117H2.286426H2.429888V.29589V.089664L2.537484 .071731C2.914072 .008966 3.263761-.170361 3.541719-.448319C4.23213-1.147696 4.250062-2.286426 3.58655-3.012702C3.308593-3.317559 3.039601-3.469988 2.555417-3.595517L2.429888-3.631382V-4.841843C2.429888-5.550187 2.438854-6.052304 2.456787-6.052304C2.564384-6.052304 2.949938-5.953674 3.0934-5.899875C3.380324-5.76538 3.640349-5.478456 3.730012-5.191532C3.747945-5.128767 3.738979-5.128767 3.631382-5.128767C3.326526-5.128767 3.129265-4.770112 3.29066-4.501121C3.461021-4.23213 3.828643-4.223163 4.00797-4.492154C4.178331-4.743213 4.016936-5.406725 3.703113-5.774346C3.469988-6.043337 3.030635-6.258531 2.600249-6.312329L2.429888-6.330262V-6.518555V-6.715816H2.286426H2.15193ZM2.15193-4.868742V-3.685181L1.945704-3.747945C1.578082-3.846575 1.327024-4.016936 1.156663-4.259029C.654545-5.003238 1.156663-5.908842 2.133998-6.052304C2.142964-6.052304 2.15193-5.523288 2.15193-4.868742ZM2.77061-2.689913C3.532752-2.411955 3.855542-1.506351 3.434122-.806974C3.245828-.493151 2.940971-.286924 2.510585-.188294L2.429888-.170361V-1.479452V-2.788543L2.519552-2.77061C2.57335-2.761644 2.689913-2.725778 2.77061-2.689913Z"></path>
+<path id="tz_fig_preco_taxa_g1-80" d="M2.510585-2.486675H3.961146C5.108842-2.486675 6.304359-3.283686 6.304359-4.224159C6.304359-4.901619 5.66675-5.443587 4.638605-5.443587H1.952677C1.809215-5.443587 1.705604-5.443587 1.705604-5.292154C1.705604-5.180573 1.809215-5.180573 1.936737-5.180573C2.199751-5.180573 2.430884-5.180573 2.430884-5.053051C2.430884-5.021171 2.422914-5.0132 2.399004-4.909589L1.331009-.629639C1.259278-.334745 1.243337-.263014 .67746-.263014C.494147-.263014 .406476-.263014 .406476-.111582C.406476-.079701 .430386 0 .533998 0C.68543 0 .876712-.01594 1.028144-.02391H1.538232C2.303362-.02391 2.510585 0 2.566376 0C2.614197 0 2.725778 0 2.725778-.151432C2.725778-.263014 2.622167-.263014 2.486675-.263014C2.462765-.263014 2.319303-.263014 2.183811-.278954C2.016438-.294894 2.000498-.318804 2.000498-.390535C2.000498-.430386 2.016438-.478207 2.024408-.518057L2.510585-2.486675ZM3.092403-4.885679C3.164134-5.156663 3.172105-5.180573 3.498879-5.180573H4.375592C5.029141-5.180573 5.531258-4.98929 5.531258-4.399502C5.531258-4.29589 5.491407-3.58655 5.045081-3.148194C4.925529-3.028643 4.542964-2.725778 3.761893-2.725778H2.550436L3.092403-4.885679Z"></path>
+<path id="tz_fig_preco_taxa_g1-105" d="M2.375093-4.97335C2.375093-5.148692 2.247572-5.276214 2.064259-5.276214C1.857036-5.276214 1.625903-5.084932 1.625903-4.845828C1.625903-4.670486 1.753425-4.542964 1.936737-4.542964C2.14396-4.542964 2.375093-4.734247 2.375093-4.97335ZM1.211457-2.048319L.781071-.948443C.74122-.828892 .70137-.73325 .70137-.597758C.70137-.207223 1.004234 .079701 1.42665 .079701C2.199751 .079701 2.526526-1.036115 2.526526-1.139726C2.526526-1.219427 2.462765-1.243337 2.406974-1.243337C2.311333-1.243337 2.295392-1.187547 2.271482-1.107846C2.088169-.470237 1.761395-.143462 1.44259-.143462C1.346949-.143462 1.251308-.183313 1.251308-.398506C1.251308-.589788 1.307098-.73325 1.41071-.980324C1.490411-1.195517 1.570112-1.41071 1.657783-1.625903L1.904857-2.271482C1.976588-2.454795 2.072229-2.701868 2.072229-2.83736C2.072229-3.235866 1.753425-3.514819 1.346949-3.514819C.573848-3.514819 .239103-2.399004 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.239601 .494147-2.319303C.71731-3.076463 1.083935-3.291656 1.323039-3.291656C1.43462-3.291656 1.514321-3.251806 1.514321-3.028643C1.514321-2.948941 1.506351-2.83736 1.42665-2.598257L1.211457-2.048319Z"></path>
+<path id="tz_fig_preco_taxa_g2-40" d="M2.654047 1.992528C2.717808 1.992528 2.81345 1.992528 2.81345 1.896887C2.81345 1.865006 2.805479 1.857036 2.701868 1.753425C1.609963 .72528 1.338979-.757161 1.338979-1.992528C1.338979-4.28792 2.287422-5.363885 2.693898-5.730511C2.805479-5.834122 2.81345-5.842092 2.81345-5.881943S2.781569-5.977584 2.701868-5.977584C2.574346-5.977584 2.175841-5.571108 2.11208-5.499377C1.044085-4.383562 .820922-2.948941 .820922-1.992528C.820922-.207223 1.570112 1.227397 2.654047 1.992528Z"></path>
+<path id="tz_fig_preco_taxa_g2-41" d="M2.462765-1.992528C2.462765-2.749689 2.335243-3.658281 1.841096-4.598755C1.45056-5.332005 .72528-5.977584 .581818-5.977584C.502117-5.977584 .478207-5.921793 .478207-5.881943C.478207-5.850062 .478207-5.834122 .573848-5.738481C1.689664-4.678456 1.944707-3.219925 1.944707-1.992528C1.944707 .294894 .996264 1.378829 .589788 1.745455C.486177 1.849066 .478207 1.857036 .478207 1.896887S.502117 1.992528 .581818 1.992528C.70934 1.992528 1.107846 1.586052 1.171606 1.514321C2.239601 .398506 2.462765-1.036115 2.462765-1.992528Z"></path>
+<path id="tz_fig_preco_taxa_g2-43" d="M3.474969-1.809215H5.818182C5.929763-1.809215 6.105106-1.809215 6.105106-1.992528S5.929763-2.175841 5.818182-2.175841H3.474969V-4.527024C3.474969-4.638605 3.474969-4.813948 3.291656-4.813948S3.108344-4.638605 3.108344-4.527024V-2.175841H.757161C.645579-2.175841 .470237-2.175841 .470237-1.992528S.645579-1.809215 .757161-1.809215H3.108344V.541968C3.108344 .653549 3.108344 .828892 3.291656 .828892S3.474969 .653549 3.474969 .541968V-1.809215Z"></path>
+<path id="tz_fig_preco_taxa_g2-48" d="M3.897385-2.542466C3.897385-3.395268 3.809714-3.913325 3.5467-4.423412C3.196015-5.124782 2.550436-5.300125 2.11208-5.300125C1.107846-5.300125 .74122-4.550934 .629639-4.327771C.342715-3.745953 .326775-2.956912 .326775-2.542466C.326775-2.016438 .350685-1.211457 .73325-.573848C1.099875 .01594 1.689664 .167372 2.11208 .167372C2.494645 .167372 3.180075 .047821 3.57858-.74122C3.873474-1.315068 3.897385-2.024408 3.897385-2.542466ZM2.11208-.055791C1.841096-.055791 1.291158-.183313 1.123786-1.020174C1.036115-1.474471 1.036115-2.223661 1.036115-2.638107C1.036115-3.188045 1.036115-3.745953 1.123786-4.184309C1.291158-4.99726 1.912827-5.076961 2.11208-5.076961C2.383064-5.076961 2.933001-4.941469 3.092403-4.216189C3.188045-3.777833 3.188045-3.180075 3.188045-2.638107C3.188045-2.16787 3.188045-1.45056 3.092403-1.004234C2.925031-.167372 2.375093-.055791 2.11208-.055791Z"></path>
+<path id="tz_fig_preco_taxa_g2-49" d="M2.502615-5.076961C2.502615-5.292154 2.486675-5.300125 2.271482-5.300125C1.944707-4.98132 1.522291-4.790037 .765131-4.790037V-4.527024C.980324-4.527024 1.41071-4.527024 1.872976-4.742217V-.653549C1.872976-.358655 1.849066-.263014 1.091905-.263014H.812951V0C1.139726-.02391 1.825156-.02391 2.183811-.02391S3.235866-.02391 3.56264 0V-.263014H3.283686C2.526526-.263014 2.502615-.358655 2.502615-.653549V-5.076961Z"></path>
+<path id="tz_fig_preco_taxa_g2-61" d="M5.826152-2.654047C5.945704-2.654047 6.105106-2.654047 6.105106-2.83736S5.913823-3.020672 5.794271-3.020672H.781071C.661519-3.020672 .470237-3.020672 .470237-2.83736S.629639-2.654047 .749191-2.654047H5.826152ZM5.794271-.964384C5.913823-.964384 6.105106-.964384 6.105106-1.147696S5.945704-1.331009 5.826152-1.331009H.749191C.629639-1.331009 .470237-1.331009 .470237-1.147696S.661519-.964384 .781071-.964384H5.794271Z"></path>
+<path id="tz_fig_preco_taxa_g3-59" d="M1.63188-.143462C1.63188 .152428 1.63188 .887671 .968369 1.524284C.91457 1.578082 .91457 1.587049 .91457 1.622914C.91457 1.685679 .977335 1.730511 1.031133 1.730511C1.129763 1.730511 1.85604 1.031133 1.85604-.017933C1.85604-.573848 1.65878-.968369 1.273225-.968369C.968369-.968369 .789041-.735243 .789041-.484184S.968369 0 1.273225 0C1.407721 0 1.542217-.044832 1.63188-.143462Z"></path>
+<path id="tz_fig_preco_taxa_g3-80" d="M2.77061-2.815442H4.267995C5.720548-2.815442 6.90411-3.81071 6.90411-4.761146C6.90411-5.469489 6.267497-6.124035 5.092902-6.124035H2.133998C1.972603-6.124035 1.865006-6.124035 1.865006-5.96264C1.865006-5.846077 1.945704-5.846077 2.133998-5.846077C2.169863-5.846077 2.331258-5.846077 2.47472-5.828144C2.627148-5.810212 2.689913-5.792279 2.689913-5.693649C2.689913-5.648817 2.680946-5.612951 2.654047-5.514321L1.443587-.681445C1.362889-.358655 1.344956-.277958 .672478-.277958C.502117-.277958 .403487-.277958 .403487-.116563C.403487-.017933 .475218 0 .537983 0C.708344 0 .932503-.008966 1.102864-.017933C1.371856-.026899 1.389788-.026899 1.676712-.026899S1.981569-.026899 2.25056-.017933C2.429888-.008966 2.663014 0 2.833375 0C2.896139 0 3.012702 0 3.012702-.161395C3.012702-.277958 2.923039-.277958 2.734745-.277958C2.698879-.277958 2.537484-.277958 2.394022-.29589C2.196762-.32279 2.187796-.358655 2.187796-.439352C2.187796-.466252 2.187796-.484184 2.232628-.645579L2.77061-2.815442ZM3.416189-5.496389C3.496887-5.819178 3.514819-5.846077 3.891407-5.846077H4.797011C5.496389-5.846077 6.052304-5.630884 6.052304-4.976339C6.052304-4.788045 5.953674-3.945205 5.487422-3.514819C5.290162-3.335492 4.877709-3.066501 4.1066-3.066501H2.806476L3.416189-5.496389Z"></path>
+<path id="tz_fig_preco_taxa_g3-105" d="M2.600249-5.595019C2.600249-5.792279 2.456787-5.926775 2.259527-5.926775C2.017435-5.926775 1.775342-5.693649 1.775342-5.451557C1.775342-5.272229 1.909838-5.119801 2.116065-5.119801C2.358157-5.119801 2.600249-5.34396 2.600249-5.595019ZM2.725778-1.282192C2.725778-1.327024 2.698879-1.389788 2.609215-1.389788C2.510585-1.389788 2.501619-1.344956 2.465753-1.228394C2.25056-.493151 1.882939-.125529 1.542217-.125529C1.398755-.125529 1.327024-.19726 1.327024-.42142C1.327024-.636613 1.398755-.833873 1.470486-1.004234C1.63188-1.43462 1.63188-1.452553 1.748443-1.730511C1.891905-2.116065 2.089166-2.627148 2.178829-2.878207C2.241594-3.039601 2.241594-3.129265 2.241594-3.209963C2.241594-3.721046 1.838107-3.963138 1.479452-3.963138C.609714-3.963138 .260025-2.680946 .260025-2.582316C.260025-2.501619 .32279-2.47472 .385554-2.47472C.484184-2.47472 .493151-2.528518 .529016-2.645081C.71731-3.281694 1.058032-3.738979 1.452553-3.738979C1.542217-3.738979 1.667746-3.721046 1.667746-3.452055C1.667746-3.227895 1.578082-2.99477 1.497385-2.788543L.860772-1.129763C.798007-.959402 .744209-.81594 .744209-.654545C.744209-.233126 1.058032 .09863 1.515318 .09863C2.385056 .09863 2.725778-1.192528 2.725778-1.282192Z"></path>
+<path id="tz_fig_preco_taxa_g4-48" d="M3.287671-1.906849C3.287671-2.343213 3.287671-3.975093 1.823163-3.975093S.358655-2.343213 .358655-1.906849C.358655-1.476463 .358655 .125529 1.823163 .125529S3.287671-1.476463 3.287671-1.906849ZM1.823163-.065753C1.572105-.065753 1.165629-.185305 1.022167-.681445C.926526-1.028144 .926526-1.613948 .926526-1.984558C.926526-2.385056 .926526-2.84533 1.010212-3.16812C1.159651-3.706102 1.613948-3.783811 1.823163-3.783811C2.098132-3.783811 2.492653-3.652304 2.624159-3.198007C2.713823-2.881196 2.719801-2.444832 2.719801-1.984558C2.719801-1.601993 2.719801-.998257 2.618182-.663512C2.450809-.143462 2.020423-.065753 1.823163-.065753Z"></path>
+<path id="tz_fig_preco_taxa_g4-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_fig_preco_taxa_g5-24" d="M1.407721 1.604981C1.327024 1.604981 1.264259 1.604981 1.201494 1.613948V1.838107C1.578082 1.811208 1.981569 1.85604 2.501619 1.775342C3.048568 1.694645 3.398257 1.515318 3.398257 1.120797S3.057534 .537983 2.636115 .466252V.19726H1.972603V.636613C2.492653 .645579 2.734745 .869738 2.734745 1.120797C2.734745 1.596015 1.891905 1.604981 1.604981 1.604981H1.407721Z"></path>
+<path id="tz_fig_preco_taxa_g5-37" d="M6.312329-6.366127C6.357161-6.428892 6.38406-6.464757 6.38406-6.527522C6.38406-6.653051 6.276463-6.724782 6.195766-6.724782C6.097136-6.724782 6.052304-6.670984 5.998506-6.590286C5.424658-5.837111 4.671482-5.738481 4.259029-5.738481C3.38929-5.738481 2.815442-6.168867 2.501619-6.464757C2.259527-6.67995 2.026401-6.724782 1.865006-6.724782C1.174595-6.724782 .511083-5.980573 .511083-4.92254C.511083-3.828643 1.192528-3.111333 1.865006-3.111333C2.528518-3.111333 3.066501-3.900374 3.066501-4.913574C3.066501-5.04807 3.066501-5.451557 2.887173-5.890909C3.443088-5.577086 3.945205-5.514321 4.259029-5.514321C4.653549-5.514321 5.066002-5.603985 5.44259-5.810212L5.451557-5.801245L1.362889 .125529C1.353923 .143462 1.282192 .242092 1.282192 .304857C1.282192 .42142 1.371856 .502117 1.479452 .502117C1.578082 .502117 1.622914 .430386 1.676712 .358655L6.312329-6.366127ZM1.882939-3.335492C1.694645-3.335492 1.102864-3.452055 1.102864-4.913574C1.102864-6.393026 1.694645-6.500623 1.882939-6.500623C2.358157-6.500623 2.815442-5.837111 2.815442-4.92254C2.815442-3.972105 2.340224-3.335492 1.882939-3.335492ZM7.155168-1.300125C7.155168-2.349191 6.608219-3.111333 5.953674-3.111333C5.263263-3.111333 4.599751-2.367123 4.599751-1.309091C4.599751-.215193 5.281196 .502117 5.953674 .502117C6.617186 .502117 7.155168-.286924 7.155168-1.300125ZM5.971606 .277958C5.783313 .277958 5.191532 .161395 5.191532-1.300125C5.191532-2.779577 5.783313-2.887173 5.971606-2.887173C6.446824-2.887173 6.90411-2.223661 6.90411-1.309091C6.90411-.358655 6.428892 .277958 5.971606 .277958Z"></path>
+<path id="tz_fig_preco_taxa_g5-40" d="M3.057534 2.133998C3.057534 2.089166 3.030635 2.062267 2.976837 1.999502C1.820174 .941469 1.470486-.672478 1.470486-2.241594C1.470486-3.631382 1.739477-5.317061 3.003736-6.518555C3.039601-6.554421 3.057534-6.58132 3.057534-6.626152C3.057534-6.688917 3.012702-6.724782 2.949938-6.724782C2.842341-6.724782 2.035367-6.079203 1.551183-5.101868C1.120797-4.241096 .905604-3.317559 .905604-2.25056C.905604-1.604981 .986301-.582814 1.479452 .475218C2.008468 1.578082 2.842341 2.232628 2.949938 2.232628C3.012702 2.232628 3.057534 2.196762 3.057534 2.133998Z"></path>
+<path id="tz_fig_preco_taxa_g5-41" d="M2.67198-2.25056C2.67198-2.985803 2.564384-3.972105 2.098132-4.967372C1.569116-6.070237 .735243-6.724782 .627646-6.724782C.537983-6.724782 .52005-6.653051 .52005-6.626152C.52005-6.58132 .537983-6.554421 .600747-6.491656C1.120797-6.025405 2.107098-4.805978 2.107098-2.25056C2.107098-.968369 1.873973 .81594 .573848 2.026401C.555915 2.0533 .52005 2.089166 .52005 2.133998C.52005 2.160897 .537983 2.232628 .627646 2.232628C.735243 2.232628 1.542217 1.587049 2.026401 .609714C2.456787-.251059 2.67198-1.174595 2.67198-2.25056Z"></path>
+<path id="tz_fig_preco_taxa_g5-46" d="M1.75741-.484184C1.75741-.744209 1.542217-.968369 1.273225-.968369S.789041-.744209 .789041-.484184C.789041-.215193 1.004234 0 1.273225 0S1.75741-.215193 1.75741-.484184Z"></path>
+<path id="tz_fig_preco_taxa_g5-48" d="M4.241096-2.86924C4.241096-3.469988 4.214197-4.241096 3.900374-4.913574C3.505853-5.756413 2.824408-5.971606 2.304359-5.971606C1.766376-5.971606 1.084932-5.756413 .690411-4.895641C.403487-4.276961 .358655-3.550685 .358655-2.86924C.358655-2.286426 .376588-1.416687 .762142-.708344C1.183562 .053798 1.882939 .19726 2.295392 .19726C2.878207 .19726 3.541719-.053798 3.918306-.878705C4.187298-1.479452 4.241096-2.15193 4.241096-2.86924ZM2.304359-.026899C2.035367-.026899 1.389788-.152428 1.219427-1.165629C1.129763-1.694645 1.129763-2.465753 1.129763-2.976837C1.129763-3.58655 1.129763-4.294894 1.23736-4.788045C1.416687-5.586052 1.990535-5.747447 2.295392-5.747447C2.636115-5.747447 3.200996-5.56812 3.371357-4.734247C3.469988-4.241096 3.469988-3.541719 3.469988-2.976837C3.469988-2.420922 3.469988-1.667746 3.380324-1.13873C3.19203-.116563 2.528518-.026899 2.304359-.026899Z"></path>
+<path id="tz_fig_preco_taxa_g5-49" d="M2.725778-5.729514C2.725778-5.953674 2.716812-5.971606 2.492653-5.971606C1.936737-5.397758 1.111831-5.397758 .833873-5.397758V-5.119801C1.004234-5.119801 1.551183-5.119801 2.035367-5.352927V-.71731C2.035367-.385554 2.008468-.277958 1.174595-.277958H.887671V0C1.210461-.026899 2.008468-.026899 2.37609-.026899S3.550685-.026899 3.873474 0V-.277958H3.58655C2.752677-.277958 2.725778-.385554 2.725778-.71731V-5.729514Z"></path>
+<path id="tz_fig_preco_taxa_g5-50" d="M4.142466-1.587049H3.891407C3.873474-1.470486 3.801743-.941469 3.685181-.798007C3.631382-.71731 3.012702-.71731 2.833375-.71731H1.23736L2.125031-1.560149C3.595517-2.833375 4.142466-3.308593 4.142466-4.223163C4.142466-5.254296 3.29066-5.971606 2.187796-5.971606C1.156663-5.971606 .457285-5.155666 .457285-4.339726C.457285-3.891407 .842839-3.846575 .923537-3.846575C1.120797-3.846575 1.389788-3.990037 1.389788-4.312827C1.389788-4.581818 1.201494-4.779078 .923537-4.779078C.878705-4.779078 .851806-4.779078 .81594-4.770112C1.031133-5.406725 1.604981-5.693649 2.089166-5.693649C3.003736-5.693649 3.317559-4.841843 3.317559-4.223163C3.317559-3.308593 2.627148-2.564384 2.196762-2.098132L.555915-.32279C.457285-.224159 .457285-.206227 .457285 0H3.891407L4.142466-1.587049Z"></path>
+<path id="tz_fig_preco_taxa_g5-52" d="M.260025-1.75741V-1.479452H2.707846V-.708344C2.707846-.376588 2.680946-.277958 2.008468-.277958H1.811208V0C2.37609-.026899 3.003736-.026899 3.066501-.026899C3.111333-.026899 3.756912-.026899 4.321793 0V-.277958H4.124533C3.452055-.277958 3.425156-.376588 3.425156-.708344V-1.479452H4.339726V-1.75741H3.425156V-5.828144C3.425156-6.007472 3.425156-6.070237 3.254795-6.070237C3.147198-6.070237 3.138232-6.06127 3.057534-5.935741L.260025-1.75741ZM.546949-1.75741L2.761644-5.074969V-1.75741H.546949Z"></path>
+<path id="tz_fig_preco_taxa_g5-53" d="M.932503-3.0934C.932503-2.932005 .932503-2.833375 1.058032-2.833375C1.129763-2.833375 1.156663-2.86924 1.210461-2.949938C1.479452-3.326526 1.909838-3.541719 2.37609-3.541719C3.335492-3.541719 3.335492-2.160897 3.335492-1.838107C3.335492-1.560149 3.335492-1.004234 3.084433-.600747C2.842341-.224159 2.465753-.053798 2.116065-.053798C1.587049-.053798 .986301-.385554 .771108-1.049066C.780075-1.049066 .833873-1.031133 .896638-1.031133C1.075965-1.031133 1.33599-1.147696 1.33599-1.470486C1.33599-1.748443 1.13873-1.909838 .896638-1.909838C.708344-1.909838 .457285-1.802242 .457285-1.443587C.457285-.627646 1.13873 .19726 2.133998 .19726C3.218929 .19726 4.142466-.681445 4.142466-1.793275C4.142466-2.878207 3.371357-3.765878 2.394022-3.765878C1.963636-3.765878 1.524284-3.622416 1.210461-3.299626V-5.066002C1.479452-4.985305 1.75741-4.940473 2.035367-4.940473C3.138232-4.940473 3.783811-5.738481 3.783811-5.855044C3.783811-5.935741 3.730012-5.971606 3.685181-5.971606C3.667248-5.971606 3.649315-5.971606 3.568618-5.926775C3.147198-5.756413 2.734745-5.684682 2.358157-5.684682C1.972603-5.684682 1.569116-5.756413 1.156663-5.926775C1.066999-5.971606 1.049066-5.971606 1.0401-5.971606C.932503-5.971606 .932503-5.881943 .932503-5.729514V-3.0934Z"></path>
+<path id="tz_fig_preco_taxa_g5-54" d="M1.201494-2.96787C1.201494-3.882441 1.300125-4.393524 1.542217-4.859776C1.721544-5.227397 2.160897-5.747447 2.824408-5.747447C3.003736-5.747447 3.416189-5.711582 3.622416-5.388792C3.29066-5.388792 3.147198-5.218431 3.147198-4.976339C3.147198-4.743213 3.308593-4.563885 3.559651-4.563885S3.981071-4.72528 3.981071-4.994271C3.981071-5.496389 3.622416-5.971606 2.806476-5.971606C1.649813-5.971606 .385554-4.832877 .385554-2.833375C.385554-.403487 1.479452 .19726 2.322291 .19726C3.317559 .19726 4.214197-.636613 4.214197-1.820174C4.214197-2.958904 3.38929-3.819676 2.37609-3.819676C1.838107-3.819676 1.452553-3.505853 1.201494-2.96787ZM2.313325-.053798C1.802242-.053798 1.506351-.475218 1.398755-.735243C1.228394-1.13873 1.219427-1.882939 1.219427-2.026401C1.219427-2.627148 1.497385-3.595517 2.358157-3.595517C2.501619-3.595517 2.940971-3.595517 3.227895-3.039601C3.398257-2.698879 3.398257-2.259527 3.398257-1.829141S3.398257-.959402 3.227895-.627646C2.949938-.116563 2.555417-.053798 2.313325-.053798Z"></path>
+<path id="tz_fig_preco_taxa_g5-55" d="M4.393524-5.469489C4.474222-5.56812 4.474222-5.586052 4.474222-5.774346H2.241594C1.111831-5.774346 1.084932-5.890909 1.058032-6.06127H.806974L.511083-4.187298H.762142C.798007-4.393524 .869738-4.895641 .986301-5.003238C1.049066-5.057036 1.75741-5.057036 1.882939-5.057036H3.765878L2.905106-3.882441C1.739477-2.27746 1.63188-.81594 1.63188-.304857C1.63188-.206227 1.63188 .19726 2.044334 .19726C2.465753 .19726 2.465753-.19726 2.465753-.313823V-.753176C2.465753-2.071233 2.663014-3.111333 3.138232-3.756912L4.393524-5.469489Z"></path>
+<path id="tz_fig_preco_taxa_g5-56" d="M1.542217-4.070735C1.273225-4.241096 1.066999-4.483188 1.066999-4.814944C1.066999-5.397758 1.694645-5.747447 2.286426-5.747447C2.976837-5.747447 3.532752-5.263263 3.532752-4.635616S2.99477-3.595517 2.636115-3.38929L1.542217-4.070735ZM2.860274-3.245828C3.308593-3.461021 3.963138-3.90934 3.963138-4.635616C3.963138-5.478456 3.120299-5.971606 2.313325-5.971606C1.371856-5.971606 .636613-5.299128 .636613-4.474222C.636613-4.133499 .762142-3.81071 .977335-3.550685C1.129763-3.380324 1.183562-3.344458 1.703611-3.012702C.91457-2.636115 .385554-2.089166 .385554-1.353923C.385554-.403487 1.327024 .19726 2.295392 .19726C3.335492 .19726 4.214197-.537983 4.214197-1.506351C4.214197-2.37609 3.550685-2.806476 3.326526-2.949938C3.227895-3.021669 2.96787-3.183064 2.860274-3.245828ZM1.945704-2.860274L3.075467-2.160897C3.281694-2.026401 3.730012-1.739477 3.730012-1.192528C3.730012-.484184 3.012702-.053798 2.304359-.053798C1.524284-.053798 .869738-.609714 .869738-1.353923C.869738-1.999502 1.318057-2.537484 1.945704-2.860274Z"></path>
+<path id="tz_fig_preco_taxa_g5-82" d="M2.0533-3.174097V-5.478456C2.0533-5.711582 2.071233-5.792279 2.241594-5.828144C2.322291-5.846077 2.609215-5.846077 2.797509-5.846077C3.568618-5.846077 4.707347-5.846077 4.707347-4.510087C4.707347-3.738979 4.312827-3.174097 3.0934-3.174097H2.0533ZM4.070735-3.039601C4.92254-3.281694 5.621918-3.81071 5.621918-4.510087C5.621918-5.397758 4.536986-6.124035 3.218929-6.124035H.358655V-5.846077H.564882C1.255293-5.846077 1.273225-5.747447 1.273225-5.415691V-.708344C1.273225-.376588 1.255293-.277958 .564882-.277958H.358655V0C.780075-.026899 1.228394-.026899 1.65878-.026899S2.537484-.026899 2.96787 0V-.277958H2.761644C2.071233-.277958 2.0533-.376588 2.0533-.708344V-2.949938H3.129265C3.774844-2.949938 4.061768-2.609215 4.097634-2.57335C4.366625-2.241594 4.366625-2.107098 4.366625-1.470486C4.366625-.869738 4.366625-.475218 4.797011-.134496C5.218431 .19726 5.756413 .19726 5.855044 .19726C6.608219 .19726 6.742715-.582814 6.742715-.798007C6.742715-.851806 6.742715-.959402 6.617186-.959402C6.500623-.959402 6.500623-.878705 6.491656-.806974C6.446824-.242092 6.168867-.026899 5.890909-.026899C5.603985-.026899 5.505355-.206227 5.433624-.358655C5.352927-.555915 5.272229-1.165629 5.218431-1.569116C5.1467-2.125031 5.066002-2.725778 4.070735-3.039601Z"></path>
+<path id="tz_fig_preco_taxa_g5-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+<path id="tz_fig_preco_taxa_g5-99" d="M3.263761-3.523786C3.075467-3.48792 2.896139-3.362391 2.896139-3.102366C2.896139-2.86924 3.075467-2.689913 3.308593-2.689913S3.730012-2.842341 3.730012-3.120299C3.730012-3.676214 3.102366-4.016936 2.313325-4.016936C1.165629-4.016936 .304857-3.057534 .304857-1.936737C.304857-.780075 1.23736 .09863 2.295392 .09863C3.541719 .09863 3.828643-.986301 3.828643-1.066999C3.828643-1.174595 3.730012-1.174595 3.703113-1.174595C3.604483-1.174595 3.604483-1.156663 3.550685-1.004234C3.344458-.385554 2.842341-.152428 2.385056-.152428C1.811208-.152428 1.075965-.61868 1.075965-1.945704C1.075965-3.344458 1.793275-3.765878 2.331258-3.765878C2.447821-3.765878 2.932005-3.747945 3.263761-3.523786Z"></path>
+<path id="tz_fig_preco_taxa_g5-100" d="M3.48792-1.075965C3.48792-.91457 3.48792-.887671 3.353425-.699377C3.075467-.29589 2.663014-.125529 2.304359-.125529C1.918804-.125529 1.560149-.340722 1.327024-.71731C1.093898-1.102864 1.075965-1.63188 1.075965-1.918804C1.075965-2.340224 1.129763-2.815442 1.362889-3.174097C1.560149-3.461021 1.927771-3.738979 2.402989-3.738979C2.779577-3.738979 3.138232-3.550685 3.380324-3.209963C3.48792-3.066501 3.48792-3.057534 3.48792-2.887173V-1.075965ZM3.514819-3.434122C3.469988-3.48792 3.066501-3.963138 2.367123-3.963138C1.264259-3.963138 .304857-3.084433 .304857-1.927771C.304857-.806974 1.201494 .09863 2.268493 .09863C2.923039 .09863 3.326526-.286924 3.48792-.475218V.09863L4.841843 0V-.277958C4.23213-.277958 4.151432-.340722 4.151432-.780075V-6.222665L2.824408-6.124035V-5.846077C3.434122-5.846077 3.514819-5.783313 3.514819-5.34396V-3.434122Z"></path>
+<path id="tz_fig_preco_taxa_g5-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+<path id="tz_fig_preco_taxa_g5-109" d="M1.667746-2.322291C1.667746-3.29066 2.367123-3.738979 2.905106-3.738979C3.398257-3.738979 3.559651-3.38929 3.559651-2.761644V-.690411C3.559651-.277958 3.461021-.277958 2.86924-.277958V0C3.29066-.017933 3.461021-.026899 3.891407-.026899S4.438356-.017933 4.913574 0V-.277958C4.321793-.277958 4.223163-.277958 4.223163-.690411V-2.322291C4.223163-3.29066 4.92254-3.738979 5.460523-3.738979C5.953674-3.738979 6.115068-3.38929 6.115068-2.761644V-.690411C6.115068-.277958 6.016438-.277958 5.424658-.277958V0C5.846077-.017933 6.016438-.026899 6.446824-.026899S6.993773-.017933 7.468991 0V-.277958C7.011706-.277958 6.787547-.277958 6.77858-.555915V-2.27746C6.77858-3.057534 6.77858-3.308593 6.48269-3.640349C6.294396-3.855542 5.935741-3.963138 5.523288-3.963138C4.877709-3.963138 4.438356-3.58655 4.187298-3.111333C4.079701-3.640349 3.721046-3.963138 2.96787-3.963138C2.25056-3.963138 1.811208-3.496887 1.622914-3.084433H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_preco_taxa_g5-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_preco_taxa_g5-112" d="M1.622914-3.012702C1.927771-3.532752 2.420922-3.71208 2.797509-3.71208C3.496887-3.71208 4.034869-2.905106 4.034869-1.936737C4.034869-.91457 3.425156-.125529 2.698879-.125529C2.295392-.125529 1.95467-.358655 1.739477-.672478C1.622914-.851806 1.622914-.869738 1.622914-1.0401V-3.012702ZM1.622914-.430386C1.85604-.19726 2.160897 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.066501 3.927273-3.963138 2.86924-3.963138C2.385056-3.963138 1.936737-3.765878 1.596015-3.398257V-3.963138L.268991-3.864508V-3.58655C.905604-3.58655 .959402-3.532752 .959402-3.147198V1.049066C.959402 1.461519 .860772 1.461519 .268991 1.461519V1.739477C.690411 1.721544 .860772 1.712578 1.291158 1.712578S1.838107 1.721544 2.313325 1.739477V1.461519C1.721544 1.461519 1.622914 1.461519 1.622914 1.049066V-.430386Z"></path>
+<path id="tz_fig_preco_taxa_g5-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+<path id="tz_fig_preco_taxa_g5-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+<path id="tz_fig_preco_taxa_g5-120" d="M2.734745-2.017435C2.67198-2.098132 2.67198-2.107098 2.67198-2.116065C2.67198-2.133998 3.371357-2.985803 3.443088-3.057534C3.721046-3.362391 4.025903-3.577584 4.572852-3.58655V-3.864508C4.312827-3.837609 4.070735-3.837609 3.81071-3.837609C3.469988-3.837609 3.308593-3.837609 2.949938-3.864508V-3.58655C3.084433-3.568618 3.200996-3.496887 3.200996-3.317559C3.200996-3.174097 3.120299-3.075467 3.075467-3.021669L2.501619-2.313325L1.802242-3.200996C1.739477-3.281694 1.721544-3.299626 1.721544-3.362391C1.721544-3.469988 1.820174-3.577584 2.026401-3.58655V-3.864508C1.685679-3.846575 1.452553-3.837609 1.049066-3.837609C1.031133-3.837609 .52005-3.837609 .170361-3.864508V-3.58655C.789041-3.58655 .806974-3.568618 1.219427-3.039601L2.142964-1.882939C1.945704-1.649813 1.470486-1.058032 1.273225-.833873C.824907-.29589 .313823-.277958 .125529-.277958V0C.385554-.026899 .627646-.026899 .887671-.026899C1.174595-.026899 1.461519-.017933 1.748443 0V-.277958C1.524284-.304857 1.497385-.457285 1.497385-.546949C1.497385-.573848 1.497385-.699377 1.63188-.860772C1.847073-1.13873 2.080199-1.407721 2.304359-1.676712L3.012702-.771108C3.183064-.573848 3.183064-.555915 3.183064-.502117C3.183064-.403487 3.0934-.286924 2.878207-.277958V0C3.254795-.017933 3.469988-.026899 3.855542-.026899C3.873474-.026899 4.384558-.026899 4.734247 0V-.277958C4.375592-.277958 4.1066-.277958 3.90934-.529016L2.734745-2.017435Z"></path>
+</defs>
+<g id="tz_fig_preco_taxa_page1">
+<g stroke-miterlimit="10" transform="translate(-22.251487,85.77741)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-22.251487,85.77741)scale(-1,-1)"></g>
+<g transform="translate(-45.93507,-30.66576)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-22.251487,85.77741)scale(-1,-1)">
+<g stroke="#000" stroke-miterlimit="10" transform="translate(23.511974,55.226221)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="M0-2.1341V2.1341M53.59558-2.1341V2.1341M107.19116-2.1341V2.1341M160.78674-2.1341V2.1341M214.38232-2.1341V2.1341M267.9779-2.1341V2.1341" fill="none"></path>
+</g>
+</g>
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="M-2.13426 0H2.13426M-2.13426 36.70692H2.13426M-2.13426 73.41385H2.13426M-2.13426 110.12077H2.13426M-2.13426 146.8277H2.13426" fill="none"></path>
+</g>
+</g>
+<path d="M0 0H265.97794" fill="none"></path>
+<g transform="translate(265.97794,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<path d="M0 0V152.16911" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,152.16911)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-2.31248,-11.46706)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g5-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(51.2831,-11.46706)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g5-52"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(104.87868,-11.46706)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g5-56"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(156.16177,-11.46706)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g5-49"></use>
+<use x="28.119664" y="55.226221" href="#tz_fig_preco_taxa_g5-50"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(209.75735,-11.46706)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g5-49"></use>
+<use x="28.119664" y="55.226221" href="#tz_fig_preco_taxa_g5-54"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(263.35294,-11.46706)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g5-50"></use>
+<use x="28.119664" y="55.226221" href="#tz_fig_preco_taxa_g5-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-10.2922,-2.9)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g5-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-19.54214,33.80693)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g5-50"></use>
+<use x="28.119664" y="55.226221" href="#tz_fig_preco_taxa_g5-53"></use>
+<use x="32.727355" y="55.226221" href="#tz_fig_preco_taxa_g5-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-19.54214,70.51385)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g5-53"></use>
+<use x="28.119664" y="55.226221" href="#tz_fig_preco_taxa_g5-48"></use>
+<use x="32.727355" y="55.226221" href="#tz_fig_preco_taxa_g5-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-19.54214,107.22078)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g5-55"></use>
+<use x="28.119664" y="55.226221" href="#tz_fig_preco_taxa_g5-53"></use>
+<use x="32.727355" y="55.226221" href="#tz_fig_preco_taxa_g5-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(-26.73654,144.8027)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g5-49"></use>
+<use x="28.119664" y="55.226221" href="#tz_fig_preco_taxa_g3-59"></use>
+<use x="30.679492" y="55.226221" href="#tz_fig_preco_taxa_g5-48"></use>
+<use x="35.287183" y="55.226221" href="#tz_fig_preco_taxa_g5-48"></use>
+<use x="39.894874" y="55.226221" href="#tz_fig_preco_taxa_g5-48"></use>
+</g>
+</g>
+</g>
+</g>
+<clippath id="tz_fig_preco_taxa_pgfcp1">
+<path d="M0 0H267.9779V154.16908H0Z"></path> </clippath>
+<g clip-path="url(#tz_fig_preco_taxa_pgfcp1)">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M26.79779 120.44862L29.23384 118.32256L31.66989 116.23909L34.10594 114.19377L36.54199 112.18811L38.97804 110.22208L41.41411 108.29422L43.85016 106.40161L46.28621 104.54718L48.72226 102.72798L51.15831 100.94403L53.59436 99.19238L56.03043 97.47304L58.46648 95.79039L60.90253 94.1371L63.33858 92.5176L65.77463 90.9245L68.2107 89.36374L70.64674 87.83086L73.0828 86.33028L75.51884 84.85612L77.9549 83.40842L80.39095 81.98857L82.82701 80.59372L85.26306 79.22823L87.69911 77.88768L90.13516 76.56769L92.57121 75.27856L95.00726 74.00996L97.44333 72.7634L99.87938 71.54031L102.31543 70.34515L104.75148 69.1661L107.18753 68.01059L109.6236 66.8756L112.05965 65.76265L114.4957 64.6688L116.93175 63.59694L119.3678 62.54271L121.80385 61.5076L124.23991 60.49155L126.67596 59.49603L129.11201 58.51671L131.54807 57.55351L133.98412 56.61089L136.42017 55.68292L138.85623 54.77405L141.29228 53.87695L143.72833 52.9989L146.16438 52.1385L148.60043 51.28986L151.0365 50.4588L153.47255 49.64244L155.9086 48.8393L158.34465 48.0523L160.7807 47.27705L163.21675 46.515L165.65282 45.76912L168.08887 45.03497L170.52492 44.31258L172.96097 43.60487L175.39702 42.9104L177.83307 42.2247L180.26913 41.55518L182.70518 40.89445L185.14124 40.24547L187.57729 39.60823L190.01334 38.98128L192.4494 38.36607L194.88545 37.7626L197.3215 37.16795L199.75755 36.58359L202.1936 36.00948L204.62965 35.44568L207.06572 34.89214L209.50177 34.3474L211.93782 33.81L214.37387 33.28583L216.80992 32.76898L219.24597 32.25949L221.68204 31.76028L224.11809 31.26988L226.55414 30.78535L228.99019 30.3111L231.42624 29.8442L233.8623 29.38756L236.29836 28.93533L238.7344 28.49191L241.17046 28.05728L243.6065 27.62856L246.04256 27.2057L248.47862 26.79018L250.91467 26.38345L253.35072 25.98262L255.78677 25.58766L258.22282 25.20296L260.65887 24.82121L263.09494 24.44534L265.53099 24.07826L267.96704 23.71414" fill="none"></path>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M82.232 81.98857C82.232 83.00401 81.40881 83.8272 80.39337 83.8272S78.55475 83.00401 78.55475 81.98857S79.37793 80.14995 80.39337 80.14995S82.232 80.97313 82.232 81.98857ZM80.39337 81.98857" stroke="none"></path>
+</g>
+<g transform="translate(80.39337,81.98857)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M80.39337 0V81.98857H0" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M162.62537 47.27411C162.62537 48.28955 161.80219 49.11273 160.78674 49.11273C159.7713 49.11273 158.94812 48.28955 158.94812 47.27411S159.7713 45.43549 160.78674 45.43549C161.80219 45.43549 162.62537 46.25867 162.62537 47.27411ZM160.78674 47.27411" stroke="none"></path>
+</g>
+<g transform="translate(160.78674,47.27411)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M160.78674 0V47.27411H0" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(177.71861,61.76924)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g1-80"></use>
+<use x="32.409273" y="55.226221" href="#tz_fig_preco_taxa_g2-61"></use>
+<use x="50.004256" y="49.676384" href="#tz_fig_preco_taxa_g2-49"></use>
+<use x="54.238439" y="49.676384" href="#tz_fig_preco_taxa_g2-48"></use>
+<use x="58.472622" y="49.676384" href="#tz_fig_preco_taxa_g2-48"></use>
+<use x="62.706805" y="49.676384" href="#tz_fig_preco_taxa_g2-48"></use>
+</g>
+<rect x="42.543617" y="53.054357" height=".358656" width="31.85801" fill="#2780e3"></rect>
+<g fill="#2780e3">
+<use x="42.543617" y="61.19669" href="#tz_fig_preco_taxa_g2-40"></use>
+<use x="45.83687" y="61.19669" href="#tz_fig_preco_taxa_g2-49"></use>
+<use x="51.952912" y="61.19669" href="#tz_fig_preco_taxa_g2-43"></use>
+<use x="60.421278" y="61.19669" href="#tz_fig_preco_taxa_g1-105"></use>
+<use x="63.304418" y="61.19669" href="#tz_fig_preco_taxa_g2-41"></use>
+<use x="66.597671" y="58.927429" href="#tz_fig_preco_taxa_g4-49"></use>
+<use x="70.250596" y="58.927429" href="#tz_fig_preco_taxa_g4-48"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(79.59074,-25.08278)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g5-116"></use>
+<use x="27.095733" y="55.226221" href="#tz_fig_preco_taxa_g5-97"></use>
+<use x="31.703424" y="55.226221" href="#tz_fig_preco_taxa_g5-120"></use>
+<use x="36.567097" y="55.226221" href="#tz_fig_preco_taxa_g5-97"></use>
+<use x="44.246581" y="55.226221" href="#tz_fig_preco_taxa_g5-100"></use>
+<use x="49.366238" y="55.226221" href="#tz_fig_preco_taxa_g5-101"></use>
+<use x="56.53722" y="55.226221" href="#tz_fig_preco_taxa_g5-109"></use>
+<use x="64.216704" y="55.226221" href="#tz_fig_preco_taxa_g5-101"></use>
+<use x="68.315892" y="55.226221" href="#tz_fig_preco_taxa_g5-114"></use>
+<use x="71.920413" y="55.226221" href="#tz_fig_preco_taxa_g5-99"></use>
+<use x="76.016138" y="55.226221" href="#tz_fig_preco_taxa_g5-97"></use>
+<use x="80.623829" y="55.226221" href="#tz_fig_preco_taxa_g5-100"></use>
+<use x="85.743485" y="55.226221" href="#tz_fig_preco_taxa_g5-111"></use>
+<use x="93.42297" y="55.226221" href="#tz_fig_preco_taxa_g3-105"></use>
+<use x="99.648134" y="55.226221" href="#tz_fig_preco_taxa_g5-40"></use>
+<use x="103.231893" y="55.226221" href="#tz_fig_preco_taxa_g5-37"></use>
+<use x="113.983171" y="55.226221" href="#tz_fig_preco_taxa_g5-97"></use>
+<use x="118.590862" y="55.226221" href="#tz_fig_preco_taxa_g5-46"></use>
+<use x="121.15069" y="55.226221" href="#tz_fig_preco_taxa_g5-97"></use>
+<use x="125.758381" y="55.226221" href="#tz_fig_preco_taxa_g5-46"></use>
+<use x="128.318209" y="55.226221" href="#tz_fig_preco_taxa_g5-41"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(0.0,1.0,-1.0,0.0,-35.8521,50.28893)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(23.511974,55.226221)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="23.511974" y="55.226221" href="#tz_fig_preco_taxa_g5-112"></use>
+<use x="28.63163" y="55.226221" href="#tz_fig_preco_taxa_g5-114"></use>
+<use x="32.236151" y="55.226221" href="#tz_fig_preco_taxa_g5-101"></use>
+<use x="36.335339" y="55.226221" href="#tz_fig_preco_taxa_g5-24"></use>
+<use x="36.335339" y="55.226221" href="#tz_fig_preco_taxa_g5-99"></use>
+<use x="40.431064" y="55.226221" href="#tz_fig_preco_taxa_g5-111"></use>
+<use x="48.110549" y="55.226221" href="#tz_fig_preco_taxa_g3-80"></use>
+<use x="58.346065" y="55.226221" href="#tz_fig_preco_taxa_g5-40"></use>
+<use x="61.929824" y="55.226221" href="#tz_fig_preco_taxa_g5-82"></use>
+<use x="68.712676" y="55.226221" href="#tz_fig_preco_taxa_g0-36"></use>
+<use x="73.319272" y="55.226221" href="#tz_fig_preco_taxa_g5-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-preco-taxa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;97.2: Relação inversa entre preço e taxa de juros para um título de cupom zero de 10 anos: quando a taxa de mercado dobra de 6% para 12%, o preço quase se reduz à metade.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="os-três-regimes-de-remuneração" class="level2" data-number="97.4">
+<h2 data-number="97.4" class="anchored" data-anchor-id="os-três-regimes-de-remuneração"><span class="header-section-number">97.4</span> Os três regimes de remuneração</h2>
+<p>A regra de remuneração de um título pode assumir três formas, e a escolha entre elas é a decisão central do investidor de renda fixa.</p>
+<p><strong>Prefixado.</strong> A taxa é definida em números fixos no momento da compra — por exemplo, “12% ao ano”. Você sabe <strong>exatamente</strong> quantos reais receberá no vencimento. A vantagem é a previsibilidade; o risco é a inflação e os juros correrem contra você. Se você travou 12% e a inflação sobe para 11%, seu ganho real minguou; e, no meio do caminho, se a Selic sobe, o preço de mercado cai (é o título mais sensível ao risco de mercado).</p>
+<p><strong>Pós-fixado.</strong> A remuneração acompanha um <strong>indexador</strong> que só se conhece com o tempo — no Brasil, tipicamente a <strong>Selic</strong> ou o <strong>CDI</strong> (a taxa dos empréstimos entre bancos, que anda praticamente colada à Selic; ver <a href="../vol08/cap05-taxa-de-juros-selic.html" class="quarto-xref"><span>Capítulo 56</span></a>). Um CDB de “110% do CDI” paga 110% do que o CDI render no período. Você não sabe o valor final em reais, mas seu título acompanha os juros da economia: se a Selic sobe, você ganha mais — e, por isso, o preço quase não oscila (baixíssimo risco de mercado). É o perfil de um Tesouro Selic.</p>
+<p><strong>Indexado à inflação.</strong> A remuneração é uma <strong>parte real fixa mais a inflação</strong> do período: “IPCA + 6% ao ano”. Esse formato garante um <strong>juro real</strong> contratado (retome a equação de Fisher, <a href="cap02-valor-do-dinheiro-no-tempo.html#eq-fisher" class="quarto-xref">Equação&nbsp;<span>96.6</span></a>): aconteça o que acontecer com a inflação, seu poder de compra cresce 6% ao ano se você levar o título ao vencimento. É a proteção mais direta contra a corrosão inflacionária — o Tesouro IPCA+.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — qual regime escolher?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — qual regime escolher?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma regra de bolso: se você <strong>acha que os juros vão cair</strong>, o <strong>prefixado</strong> trava a taxa alta de hoje e ainda se valoriza com a queda. Se <strong>acha que vão subir</strong> ou quer segurança e liquidez, o <strong>pós-fixado</strong> acompanha a alta sem sustos de preço. Se seu objetivo é <strong>de longo prazo</strong> (aposentadoria, um imóvel daqui a 15 anos) e você quer preservar poder de compra custe o que custar, o <strong>indexado à inflação</strong> é o instrumento natural. Repare que a decisão é, no fundo, uma aposta sobre o futuro dos juros e da inflação — exatamente os temas dos Volumes 4 e 8.</p>
+</div>
+</div>
+</section>
+<section id="títulos-públicos-o-tesouro-direto" class="level2" data-number="97.5">
+<h2 data-number="97.5" class="anchored" data-anchor-id="títulos-públicos-o-tesouro-direto"><span class="header-section-number">97.5</span> Títulos públicos: o Tesouro Direto</h2>
+<p>O maior e mais seguro devedor de um país é o próprio <strong>governo</strong>, que emite <strong>títulos da dívida pública</strong> para financiar seus gastos (o outro lado dessa moeda — o endividamento do Estado — foi tratado em <a href="../vol12/cap05-divida-sustentabilidade.html" class="quarto-xref"><span>Capítulo 86</span></a>). Desde 2002, o Tesouro Nacional, em parceria com a B3, oferece o <strong>Tesouro Direto</strong>, um programa que permite a qualquer pessoa física comprar esses títulos pela internet, com aplicações a partir de cerca de R$ 30. É considerado o investimento de <strong>menor risco de crédito</strong> da economia brasileira, pois é garantido pelo Tesouro Nacional. Há três famílias, uma para cada regime de remuneração:</p>
+<div id="tbl-tesouro" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tesouro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;97.1: Os títulos do Tesouro Direto e o que cada um oferece.
+</figcaption>
+<div aria-describedby="tbl-tesouro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nome comercial</th>
+<th>Sigla técnica</th>
+<th>Regime</th>
+<th>Cupom</th>
+<th>Protege contra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tesouro Selic</td>
+<td>LFT</td>
+<td>Pós-fixado (Selic)</td>
+<td>Não</td>
+<td>Alta de juros; ideal para reserva</td>
+</tr>
+<tr class="even">
+<td>Tesouro Prefixado</td>
+<td>LTN / NTN-F</td>
+<td>Prefixado</td>
+<td>LTN não, NTN-F sim</td>
+<td>Queda de juros (se travar taxa alta)</td>
+</tr>
+<tr class="odd">
+<td>Tesouro IPCA+</td>
+<td>NTN-B Princ. / NTN-B</td>
+<td>IPCA + juro real</td>
+<td>Princ. não, NTN-B sim</td>
+<td>Inflação (garante juro real)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>O <strong>Tesouro Selic</strong> é o mais conservador: como acompanha a Selic, seu preço quase não oscila, e por isso é o recomendado para a <strong>reserva de emergência</strong>. O <strong>Tesouro Prefixado</strong> e o <strong>Tesouro IPCA+</strong> são mais voláteis (sofrem marcação a mercado), mas oferecem, respectivamente, uma taxa nominal ou um juro real travados para quem carrega até o vencimento.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Marcação a mercado no Tesouro Direto">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Marcação a mercado no Tesouro Direto
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mesmo no Tesouro Direto, o preço dos títulos prefixados e IPCA+ <strong>oscila diariamente</strong>. Em 2021–2022, com a forte alta da Selic, muitos investidores que haviam comprado Tesouro IPCA+ longo em 2020 viram o valor de mercado de suas posições <strong>cair</strong> e se assustaram — sem entender que, mantendo o título até o vencimento, receberiam integralmente o “IPCA + x%” contratado. A oscilação é uma característica do papel, não um defeito, e só vira prejuízo (ou lucro) para quem <strong>vende antes</strong> do vencimento.</p>
+</div>
+</div>
+</section>
+<section id="títulos-privados-bancos-e-empresas" class="level2" data-number="97.6">
+<h2 data-number="97.6" class="anchored" data-anchor-id="títulos-privados-bancos-e-empresas"><span class="header-section-number">97.6</span> Títulos privados: bancos e empresas</h2>
+<p>Além do governo, <strong>bancos</strong> e <strong>empresas</strong> captam recursos emitindo seus próprios títulos de dívida. Como o risco de crédito é maior que o do Tesouro, costumam pagar taxas mais altas — o prêmio pelo risco.</p>
+<ul>
+<li><strong>CDB (Certificado de Depósito Bancário).</strong> Um empréstimo a um banco, que usa o dinheiro para emprestar a terceiros. Remunera de forma prefixada, pós-fixada (o clássico “% do CDI”) ou por IPCA. É coberto pelo <strong>FGC</strong> (veja adiante).</li>
+<li><strong>LCI e LCA (Letras de Crédito Imobiliário e do Agronegócio).</strong> Títulos bancários lastreados em crédito imobiliário ou do agronegócio. Seu grande atrativo é a <strong>isenção de imposto de renda</strong> para a pessoa física, o que eleva o retorno líquido. Também cobertas pelo FGC.</li>
+<li><strong>Debêntures.</strong> Títulos de dívida emitidos por <strong>empresas</strong> (não financeiras) para financiar seus projetos. Pagam juros em geral mais altos, <strong>não</strong> têm cobertura do FGC (o risco é integralmente da empresa) e algumas — as <strong>debêntures incentivadas</strong>, ligadas a projetos de infraestrutura — são <strong>isentas de IR</strong> para a pessoa física.</li>
+<li><strong>CRI e CRA (Certificados de Recebíveis Imobiliários e do Agronegócio).</strong> Títulos emitidos por securitizadoras, lastreados em fluxos de recebíveis; também isentos de IR e sem FGC.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Fundo Garantidor de Créditos (FGC)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Fundo Garantidor de Créditos (FGC)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <strong>FGC</strong> é uma entidade privada, mantida pelas próprias instituições financeiras, que garante o ressarcimento de depósitos e aplicações (poupança, CDB, LCI, LCA, letras de câmbio) em caso de <strong>quebra do banco emissor</strong>, até um limite por CPF e por instituição — historicamente <strong>R$ 250 mil</strong>, com um teto global a cada período de quatro anos <em>(confira o valor vigente, pois pode ser atualizado)</em>. O FGC reduz drasticamente o risco de crédito dos títulos bancários, tornando um CDB de banco pequeno quase tão seguro quanto o Tesouro — desde que respeitado o limite de cobertura.</p>
+</div>
+</div>
+</section>
+<section id="os-riscos-da-renda-fixa" class="level2" data-number="97.7">
+<h2 data-number="97.7" class="anchored" data-anchor-id="os-riscos-da-renda-fixa"><span class="header-section-number">97.7</span> Os riscos da renda fixa</h2>
+<p>Um investidor competente não olha só o rendimento prometido; olha os riscos que o acompanham. Na renda fixa, três se destacam:</p>
+<ol type="1">
+<li><strong>Risco de crédito</strong> (ou de calote): a chance de o emissor <strong>não honrar</strong> o pagamento. É mínimo no Tesouro, baixo em bancos grandes (e mitigado pelo FGC), e variável nas debêntures. É medido pelas <strong>agências de rating</strong> (Standard &amp; Poor’s, Moody’s, Fitch), que atribuem notas de crédito (de “AAA”, altíssima segurança, a “D”, inadimplência). Quanto pior a nota, maior o juro exigido para compensar.</li>
+<li><strong>Risco de mercado</strong> (ou de taxa de juros): a oscilação do <strong>preço</strong> do título antes do vencimento, decorrente da relação inversa preço–taxa. É maior nos prefixados e IPCA+ longos, e desprezível nos pós-fixados atrelados à Selic.</li>
+<li><strong>Risco de liquidez</strong>: a dificuldade de <strong>vender</strong> o título rapidamente sem perder valor. O Tesouro Direto tem recompra diária garantida pelo Tesouro; já muitas debêntures têm mercado secundário raso, e vendê-las às pressas pode exigir grande deságio.</li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled" title="Não existe almoço grátis">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Não existe almoço grátis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se um título privado paga muito mais que o Tesouro para o mesmo prazo, <strong>desconfie</strong>: o retorno extra é o <strong>prêmio de risco</strong> de algo — crédito frágil, liquidez ruim ou ambos. A regra que atravessa todas as finanças (e que o <a href="cap01-mercado-de-capitais.html" class="quarto-xref"><span>Capítulo 95</span></a> antecipou) é que <strong>maior retorno esperado só vem com maior risco</strong>. Renda fixa não foge a ela.</p>
+</div>
+</div>
+</section>
+<section id="tributação-o-imposto-que-decresce-com-o-tempo" class="level2" data-number="97.8">
+<h2 data-number="97.8" class="anchored" data-anchor-id="tributação-o-imposto-que-decresce-com-o-tempo"><span class="header-section-number">97.8</span> Tributação: o imposto que decresce com o tempo</h2>
+<p>Sobre o <strong>rendimento</strong> (não o principal) da maioria das aplicações de renda fixa incide <strong>imposto de renda</strong>, retido na fonte, com uma alíquota <strong>regressiva</strong>: quanto mais tempo o dinheiro fica aplicado, <strong>menor</strong> o imposto. A tabela vigente há anos é:</p>
+<div id="tbl-ir" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;97.2: Tabela regressiva do imposto de renda sobre renda fixa.
+</figcaption>
+<div aria-describedby="tbl-ir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Prazo da aplicação</th>
+<th>Alíquota de IR sobre o rendimento</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Até 180 dias</td>
+<td>22,5%</td>
+</tr>
+<tr class="even">
+<td>De 181 a 360 dias</td>
+<td>20,0%</td>
+</tr>
+<tr class="odd">
+<td>De 361 a 720 dias</td>
+<td>17,5%</td>
+</tr>
+<tr class="even">
+<td>Acima de 720 dias</td>
+<td>15,0%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Essa estrutura <strong>premia o investidor de longo prazo</strong> e desestimula o giro de curto prazo. Aplicações de até 30 dias sofrem ainda o <strong>IOF</strong> (Imposto sobre Operações Financeiras), também regressivo, que zera a partir do 30º dia. As exceções importantes são <strong>LCI, LCA, CRI, CRA, poupança e debêntures incentivadas</strong>, <strong>isentas</strong> de IR para a pessoa física — o que torna essencial comparar sempre o <strong>rendimento líquido</strong>, e não o bruto.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — comparando bruto com líquido">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — comparando bruto com líquido
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma LCI isenta que paga 90% do CDI pode render <strong>mais</strong> no bolso que um CDB tributado que paga 100% do CDI. Para comparar, converta o rendimento tributado em líquido: um CDB de 100% do CDI mantido por mais de 720 dias rende, líquido, <span class="math inline">\(100\% \times (1 - 0{,}15) = 85\%\)</span> do CDI equivalente. Contra uma LCI isenta de 90% do CDI, a LCI vence. Nunca compare renda fixa sem descontar o imposto.</p>
+</div>
+</div>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="97.9">
+<h2 data-number="97.9" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">97.9</span> 🇧🇷 Brasil em Foco</h2>
+<p>A renda fixa ocupa, no Brasil, um lugar que surpreende estrangeiros: é a espinha dorsal das carteiras, não um coadjuvante. A razão é estrutural — os <strong>juros elevados</strong> discutidos em <a href="../vol08/cap05-taxa-de-juros-selic.html" class="quarto-xref"><span>Capítulo 56</span></a> tornam o rendimento do simples empréstimo ao governo tão atraente que boa parte da poupança nacional nem chega ao mercado de ações (<a href="cap01-mercado-de-capitais.html" class="quarto-xref"><span>Capítulo 95</span></a>).</p>
+<p><strong>A democratização pelo Tesouro Direto.</strong> Criado em 2002, o Tesouro Direto transformou o acesso à dívida pública: antes restrita a bancos e fundos, ela passou a caber no aplicativo do celular, com aplicações a partir de poucas dezenas de reais. O programa acumula <strong>milhões de investidores cadastrados</strong> e é hoje a principal porta de entrada do brasileiro ao mundo dos investimentos. O <strong>Tesouro Selic</strong> virou o substituto natural da poupança para a reserva de emergência; o <strong>Tesouro IPCA+</strong>, o instrumento de aposentadoria de quem entende a diferença entre juro nominal e real.</p>
+<p><strong>A referência do CDI.</strong> Quase toda a renda fixa privada brasileira é cotada em relação ao <strong>CDI</strong> (Certificado de Depósito Interbancário), a taxa dos empréstimos de um dia entre bancos, que segue de perto a Selic. “Rende 100% do CDI” tornou-se o idioma corrente do mercado. Como a Selic (e, portanto, o CDI) oscilou de mínimas em torno de <strong>2% ao ano</strong> em 2020 a <strong>dois dígitos</strong> em ciclos de aperto, o retorno da renda fixa pós-fixada acompanha diretamente a política monetária do Copom (<a href="../vol08/cap04-metas-de-inflacao-copom.html" class="quarto-xref"><span>Capítulo 55</span></a>).</p>
+<p><strong>O FGC e a confiança no sistema bancário.</strong> O Fundo Garantidor de Créditos, com sua cobertura de R$ 250 mil por CPF e instituição, permitiu que bancos médios e pequenos captassem recursos de varejo pagando taxas atraentes — um CDB de 120% do CDI de um banco menor tornou-se acessível e razoavelmente seguro dentro do limite de garantia. Foi peça-chave na popularização das plataformas de investimento e das corretoras independentes.</p>
+<p><strong>Debêntures incentivadas e o financiamento da infraestrutura.</strong> Para atrair poupança privada a projetos de rodovias, energia e saneamento, a Lei 12.431/2011 criou as <strong>debêntures incentivadas</strong>, isentas de IR para a pessoa física. Elas se tornaram um instrumento relevante de financiamento de longo prazo à infraestrutura, num país em que o Estado, restrito pela situação fiscal (<a href="../vol12/cap05-divida-sustentabilidade.html" class="quarto-xref"><span>Capítulo 86</span></a>), tem menos espaço para bancar esses investimentos diretamente.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> Tesouro Nacional (Tesouro Direto — preços, taxas e estatísticas de investidores; Relatório Mensal da Dívida); Banco Central — SGS (Selic série 432, CDI, taxas de crédito); B3 (renda fixa privada, debêntures, CRI/CRA); ANBIMA (índices de renda fixa IMA-B e IRF-M, curva de juros); FGC (regulamento e limites vigentes); Receita Federal (tabela de IR regressivo). Verifique sempre a data de referência: as taxas mudam a cada reunião do Copom.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="97.10">
+<h2 data-number="97.10" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">97.10</span> Resumo do capítulo</h2>
+<ul>
+<li><strong>Renda fixa</strong> é o investimento em que você é <strong>credor</strong>: empresta a um emissor (governo, banco, empresa) segundo uma <strong>regra de remuneração fixada de antemão</strong>. “Fixa” descreve a regra, não a garantia de um valor em reais nem a ausência de risco.</li>
+<li>Um título tem <strong>valor de face</strong> (<span class="math inline">\(F\)</span>), <strong>cupom</strong> (<span class="math inline">\(C\)</span>), <strong>prazo</strong> (<span class="math inline">\(n\)</span>) e <strong>preço</strong> (<span class="math inline">\(P\)</span>). Títulos de <strong>cupom zero</strong> pagam tudo só no vencimento.</li>
+<li>O <strong>preço</strong> de um título é o <strong>valor presente</strong> de seus fluxos, descontados à taxa de mercado (<a href="#eq-preco-titulo" class="quarto-xref">Equação&nbsp;<span>97.1</span></a>). Daí a <strong>relação inversa preço–taxa</strong>: quando os juros sobem, os preços caem — o <strong>risco de mercado</strong>, maior quanto mais longo o título.</li>
+<li>Há três regimes: <strong>prefixado</strong> (taxa em números fixos), <strong>pós-fixado</strong> (Selic/CDI) e <strong>indexado à inflação</strong> (IPCA + juro real). A escolha é, no fundo, uma aposta sobre juros e inflação.</li>
+<li>No <strong>Tesouro Direto</strong>: <strong>Tesouro Selic</strong> (pós-fixado, para reserva), <strong>Tesouro Prefixado</strong> (LTN/NTN-F) e <strong>Tesouro IPCA+</strong> (NTN-B), o mais seguro do país em risco de crédito.</li>
+<li>Nos <strong>privados</strong>: <strong>CDB</strong>, <strong>LCI/LCA</strong> (isentas de IR), <strong>debêntures</strong> (empresas, sem FGC) e <strong>CRI/CRA</strong>. O <strong>FGC</strong> garante depósitos e títulos bancários até R$ 250 mil por CPF e instituição.</li>
+<li>Riscos principais: <strong>crédito</strong> (medido por <em>rating</em>), <strong>mercado</strong> (oscilação de preço) e <strong>liquidez</strong>. Maior retorno prometido embute maior risco — não há almoço grátis.</li>
+<li>A <strong>tributação</strong> do IR é <strong>regressiva</strong> (22,5% a 15% conforme o prazo), premiando o longo prazo; LCI, LCA, CRI, CRA e debêntures incentivadas são <strong>isentas</strong>. Compare sempre o rendimento <strong>líquido</strong>.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="97.11">
+<h2 data-number="97.11" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">97.11</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise de caso. Tenha uma calculadora à mão.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique a diferença fundamental entre renda fixa e renda variável do ponto de vista do vínculo do investidor com o emissor.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Na <strong>renda fixa</strong>, o investidor é <strong>credor</strong>: empresta recursos ao emissor e tem direito a receber o principal de volta acrescido de juros segundo uma <strong>regra definida no momento da aplicação</strong>. Na <strong>renda variável</strong> (ações), o investidor é <strong>sócio</strong> (proprietário de uma fração da empresa): não há promessa de devolução nem de rendimento, e o retorno depende do lucro da empresa e do preço de mercado, podendo ser negativo. Em suma: credor com regra conhecida × sócio com resultado incerto.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Por que o nome “renda fixa” pode enganar? Cite duas razões pelas quais um investimento de renda fixa pode não entregar um valor conhecido ou pode dar prejuízo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>“Fixa” refere-se à <strong>regra</strong> de remuneração, não ao valor final nem à segurança. (i) Em títulos <strong>pós-fixados ou indexados</strong> (“100% do CDI”, “IPCA + 6%”), o valor em reais só se conhece no futuro, pois depende de um indexador ainda não realizado. (ii) Em títulos <strong>prefixados/IPCA+ vendidos antes do vencimento</strong>, a <strong>marcação a mercado</strong> pode gerar <strong>prejuízo</strong>: se a taxa de juros sobe, o preço do título cai (relação inversa preço–taxa). Só carregar até o vencimento trava o retorno contratado.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Um Tesouro Prefixado de cupom zero tem valor de face de R$ 1.000 e vence em 4 anos. O mercado exige 11% ao ano. Qual o preço hoje?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Pela <a href="#eq-preco-cupom-zero" class="quarto-xref">Equação&nbsp;<span>97.2</span></a>: <span class="math display">\[
+P = \frac{1000}{(1{,}11)^{4}} = \frac{1000}{1{,}518070} = R\$\,658{,}73.
+\]</span> Você paga R$ 658,73 hoje para receber R$ 1.000 em 4 anos, um retorno de 11% ao ano composto.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Explique, em suas palavras e usando a fórmula de precificação, por que o preço de um título cai quando a taxa de juros de mercado sobe.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Na <a href="#eq-preco-titulo" class="quarto-xref">Equação&nbsp;<span>97.1</span></a>, a taxa de mercado <span class="math inline">\(i\)</span> aparece no <strong>denominador</strong> de cada fluxo descontado. Se <span class="math inline">\(i\)</span> aumenta, cada parcela <span class="math inline">\(\frac{C}{(1+i)^t}\)</span> e <span class="math inline">\(\frac{F}{(1+i)^n}\)</span> <strong>diminui</strong>, então a soma — o preço <span class="math inline">\(P\)</span> — <strong>cai</strong>. Intuitivamente: como agora o mercado oferece juros mais altos em títulos novos, um título antigo com cupom menor só se torna competitivo se seu preço cair o suficiente para que seu rendimento total iguale a nova taxa. Preço e taxa, portanto, movem-se em sentidos opostos.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Um título de valor de face R$ 1.000 paga cupom anual de 8% (<span class="math inline">\(C = R\$\,80\)</span>) por 2 anos. (a) Qual o preço se a taxa de mercado é 8%? (b) E se for 10%? (c) Interprete a comparação.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Com <span class="math inline">\(i = 8\%\)</span> (igual ao cupom): <span class="math display">\[
+P = \frac{80}{1{,}08} + \frac{80 + 1000}{1{,}08^{2}} = 74{,}07 + 925{,}93 = R\$\,1.000{,}00.
+\]</span> O preço é o <strong>valor de face</strong> — o título negocia <strong>ao par</strong>.</li>
+<li>Com <span class="math inline">\(i = 10\%\)</span>: <span class="math display">\[
+P = \frac{80}{1{,}10} + \frac{1080}{1{,}10^{2}} = 72{,}73 + 892{,}56 = R\$\,965{,}29.
+\]</span></li>
+<li>Quando cupom = taxa de mercado, o preço é igual ao valor de face; quando a taxa de mercado <strong>supera</strong> o cupom, o preço fica <strong>abaixo do par</strong> (deságio), pois o título precisa ficar mais barato para render tanto quanto os títulos novos.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Associe cada objetivo ao título mais adequado do Tesouro Direto, justificando: (a) reserva de emergência; (b) travar uma taxa nominal alta porque você acredita que os juros vão cair; (c) garantir poder de compra para a aposentadoria daqui a 20 anos.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><strong>Tesouro Selic</strong> (LFT): é pós-fixado atrelado à Selic, tem preço estável (risco de mercado desprezível) e liquidez diária — ideal para dinheiro que pode ser sacado a qualquer momento sem risco de prejuízo.</li>
+<li><strong>Tesouro Prefixado</strong> (LTN/NTN-F): trava a taxa nominal de hoje; se os juros de fato caírem, além de receber a taxa contratada, o título ainda se <strong>valoriza</strong> (relação inversa preço–taxa).</li>
+<li><strong>Tesouro IPCA+</strong> (NTN-B): paga IPCA + juro real fixo, garantindo <strong>poder de compra</strong> ao longo de 20 anos independentemente da inflação — o instrumento clássico de aposentadoria.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> Uma LCI isenta de imposto paga 92% do CDI. Um CDB tributado, mantido por mais de 720 dias, paga 105% do CDI. Considerando apenas a tributação, qual rende mais líquido? <em>(Use a alíquota de IR de 15% e ignore diferenças de risco e liquidez.)</em></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A LCI é <strong>isenta</strong>: rende líquido <strong>92%</strong> do CDI. O CDB é tributado a 15% sobre o rendimento, então rende líquido <span class="math inline">\(105\% \times (1 - 0{,}15) = 105\% \times 0{,}85 = 89{,}25\%\)</span> do CDI. Como <span class="math inline">\(92\% &gt; 89{,}25\%\)</span>, a <strong>LCI rende mais líquido</strong>, apesar de sua taxa bruta ser menor. A lição: sempre compare o rendimento <strong>líquido de imposto</strong>, nunca o bruto.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> Explique o papel do FGC e por que ele torna um CDB de um banco pequeno relativamente seguro. Que cuidado o investidor deve ter para não exceder a proteção?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O <strong>FGC</strong> (Fundo Garantidor de Créditos) é uma entidade mantida pelos bancos que <strong>ressarce</strong> depósitos e aplicações (poupança, CDB, LCI, LCA) em caso de <strong>quebra</strong> do banco emissor, até um limite por CPF e por instituição (historicamente R$ 250 mil, com teto global a cada quatro anos). Isso reduz drasticamente o <strong>risco de crédito</strong>: mesmo que um banco pequeno faleça, o investidor recupera o valor dentro do limite, o que torna seu CDB quase tão seguro quanto o Tesouro. O cuidado é <strong>não concentrar</strong> mais que o limite (R$ 250 mil) por instituição — valores acima disso ficam desprotegidos. Distribuir aplicações entre vários bancos mantém tudo sob a garantia.</p>
+</div>
+</div>
+</div>
+<p><strong>9.</strong> (Análise de caso) Em 2020, com a Selic em torno de 2% ao ano, um investidor comprou Tesouro IPCA+ 2035 pagando “IPCA + 4% ao ano”. Em 2022, com a Selic acima de 13%, ele verificou que o <strong>valor de mercado</strong> de sua posição havia <strong>caído</strong> e entrou em pânico. (a) Explique por que o preço caiu. (b) Ele perdeu dinheiro de fato? (c) Que decisão faz sentido?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>A forte <strong>alta dos juros</strong> entre 2020 e 2022 elevou a taxa de mercado exigida dos títulos longos. Pela relação inversa preço–taxa (<a href="#eq-preco-titulo" class="quarto-xref">Equação&nbsp;<span>97.1</span></a>), quando a taxa sobe, o <strong>preço de mercado</strong> dos títulos prefixados e IPCA+ <strong>cai</strong> — é a marcação a mercado. Títulos novos passaram a pagar juros reais maiores, tornando o título antigo (IPCA + 4%) menos atraente, o que derruba seu preço.</li>
+<li><strong>Só no papel.</strong> A queda de preço é uma perda <strong>não realizada</strong>: se ele <strong>mantiver o título até 2035</strong>, receberá integralmente o “IPCA + 4%” contratado, seja qual for o caminho dos juros nesse meio-tempo. A perda só se concretiza se ele <strong>vender antes</strong>.</li>
+<li>Se ele não precisa do dinheiro e o objetivo é de longo prazo, o razoável é <strong>carregar até o vencimento</strong> e ignorar a oscilação. Vender no susto realizaria o prejuízo; a marcação a mercado é característica do papel, não sinal de que algo deu errado.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>10.</strong> (Desafio) Você tem R$ 100 mil para aplicar por 5 anos e recebe três ofertas: (i) Tesouro Selic, rendendo a Selic (hoje elevada, mas que você acha que vai cair); (ii) Tesouro Prefixado pagando 12% ao ano; (iii) Tesouro IPCA+ pagando IPCA + 6% ao ano. Discuta os prós e contras de cada uma e como sua expectativa sobre juros e inflação deveria guiar a escolha.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Não há resposta única — a escolha depende de <strong>expectativas</strong> e do <strong>objetivo</strong>. Uma análise razoável:</p>
+<ul>
+<li><strong>(i) Tesouro Selic:</strong> acompanha os juros e tem preço estável (sem risco de marcação a mercado); é o mais <strong>líquido e seguro</strong>. Porém, se você <strong>acredita que a Selic vai cair</strong>, seu rendimento futuro cairá junto — você não trava a taxa alta de hoje. Bom para quem prioriza liquidez ou acha que os juros ainda podem <strong>subir</strong>.</li>
+<li><strong>(ii) Tesouro Prefixado (12%):</strong> <strong>trava</strong> a taxa nominal alta. Se a Selic realmente cair, essa foi a melhor escolha — e o título ainda se <strong>valoriza</strong> no caminho. O risco é a <strong>inflação</strong> corroer os 12% nominais (se a inflação subir muito, o ganho real encolhe) e o risco de marcação a mercado caso precise vender antes. Coerente com sua expectativa de queda de juros, <strong>se</strong> você também espera inflação sob controle.</li>
+<li><strong>(iii) Tesouro IPCA+ (IPCA + 6%):</strong> garante <strong>juro real</strong> de 6% qualquer que seja a inflação — proteção máxima do poder de compra. Perde para o prefixado se a inflação vier muito baixa (aí os 12% nominais superariam IPCA + 6%), mas ganha se a inflação surpreender para cima. Ideal para objetivo de <strong>longo prazo</strong> e aversão ao risco inflacionário.</li>
+</ul>
+<p>Síntese: quem espera <strong>queda de juros com inflação controlada</strong> tende ao <strong>prefixado</strong>; quem teme <strong>inflação</strong> ou quer proteger poder de compra escolhe o <strong>IPCA+</strong>; quem prioriza <strong>liquidez e segurança</strong> ou acha que os juros ainda sobem fica no <strong>Selic</strong>. Uma estratégia comum é <strong>diversificar</strong> entre os três, equilibrando as apostas.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="97.12">
+<h2 data-number="97.12" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">97.12</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="pinheiro2019">Pinheiro (<a href="#ref-pinheiro2019" role="doc-biblioref">2019</a>)</span> — panorama detalhado do mercado de capitais brasileiro, com capítulos dedicados aos títulos de renda fixa públicos e privados e à sua regulação.</li>
+<li><span class="citation" data-cites="assafneto2021">Assaf Neto (<a href="#ref-assafneto2021" role="doc-biblioref">2021</a>)</span> — referência nacional sobre o mercado financeiro, cobrindo a estrutura da renda fixa, o Tesouro Direto, os títulos bancários e a formação de preços.</li>
+<li><span class="citation" data-cites="bodie2014">Bodie; Kane; Marcus (<a href="#ref-bodie2014" role="doc-biblioref">2014</a>)</span> — para a teoria da precificação de títulos, <em>yield to maturity</em>, estrutura a termo e a relação entre preço e taxa, com rigor e aplicações internacionais.</li>
+<li><span class="citation" data-cites="samanez2010">Samanez (<a href="#ref-samanez2010" role="doc-biblioref">2010</a>)</span> — aprofunda a matemática financeira por trás da precificação: fluxos de caixa, taxas equivalentes e sistemas de amortização, base para todos os cálculos deste capítulo.</li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-assafneto2021" class="csl-entry" role="listitem">
+ASSAF NETO, Alexandre. <strong>Mercado Financeiro</strong>. 14. ed. São Paulo: Atlas, 2021.
+</div>
+<div id="ref-bodie2014" class="csl-entry" role="listitem">
+BODIE, Zvi; KANE, Alex; MARCUS, Alan J. <strong>Investimentos</strong>. 10. ed. Porto Alegre: AMGH, 2014.
+</div>
+<div id="ref-pinheiro2019" class="csl-entry" role="listitem">
+PINHEIRO, Juliano Lima. <strong>Mercado de Capitais</strong>. 9. ed. São Paulo: Atlas, 2019.
+</div>
+<div id="ref-samanez2010" class="csl-entry" role="listitem">
+SAMANEZ, Carlos Patricio. <strong>Matemática Financeira</strong>. 5. ed. São Paulo: Pearson Prentice Hall, 2010.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1347,7 +2510,7 @@ Nota
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol14/cap03-renda-fixa.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol14/cap03-renda-fixa.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
 </div>
