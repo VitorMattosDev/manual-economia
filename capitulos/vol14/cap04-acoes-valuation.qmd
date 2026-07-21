@@ -1,5 +1,308 @@
 # Ações e avaliação de empresas {#sec-acoes-valuation}
 
-::: {.callout-note}
-Capítulo em construção.
+Você abre o aplicativo da corretora e vê uma parede de códigos e números que piscam em verde e vermelho: **PETR4** a R\$ 38, **VALE3** a R\$ 62, **ITUB4**, **MGLU3**, **WEGE3**. Ao lado de cada um, uma cotação que muda a cada segundo. Um amigo jura que "comprou Petrobras porque paga muito dividendo"; um analista na TV diz que "a ação está cara, negocia a 20 vezes o lucro"; um influenciador promete que tal empresa "vai multiplicar por dez". Por trás de todo esse ruído há uma pergunta única e antiga: **quanto vale uma empresa — e, portanto, quanto vale um pedacinho dela?** Comprar uma ação é tornar-se sócio de um negócio real, com fábricas, funcionários, lucros e riscos. Seu preço no mercado (@sec-mercado-de-capitais) sobe e desce com o humor dos investidores, mas por trás do preço existe um **valor** que se pode estimar com as mesmas ferramentas do valor do dinheiro no tempo que você construiu em @sec-valor-do-dinheiro-no-tempo. Este capítulo mostra **o que é uma ação, como o acionista ganha (ou perde) dinheiro e como se avalia uma empresa** — pelos dois grandes caminhos: os múltiplos de mercado e o desconto de fluxos de caixa futuros.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- definir **ação** e explicar o que significa ser **sócio** de uma empresa, distinguindo **ordinárias (ON)** de **preferenciais (PN)** e os direitos do acionista;
+- decompor o **retorno total** de uma ação em **dividendos** e **ganho de capital**, e calculá-lo;
+- diferenciar as duas grandes abordagens de **avaliação (valuation)**: a **relativa** (por múltiplos) e a **intrínseca** (por fluxo de caixa descontado);
+- interpretar e calcular os principais **múltiplos** — **P/L**, **P/VP**, **dividend yield** e **EV/EBITDA** — e reconhecer suas armadilhas;
+- deduzir e aplicar o **modelo de dividendos descontados (Gordon)**, ligando o valor de uma ação a uma perpetuidade crescente;
+- distinguir **preço** de **valor** e situar o debate sobre a **eficiência dos mercados**.
+
+## O que é uma ação
+
+Uma **ação** é a menor fração do capital de uma sociedade anônima. Quem possui ações de uma empresa é **coproprietário** dela, na proporção que suas ações representam do total — e, como sócio, tem direito a participar dos **lucros** e, em graus variados, das **decisões**. É a essência da **renda variável**: ao contrário do credor da renda fixa (@sec-renda-fixa), que empresta e recebe uma remuneração combinada, o acionista **é dono** e seu retorno depende inteiramente do sucesso do negócio e do preço que o mercado atribui a ele.
+
+::: {.callout-note title="Definição — Ação"}
+Uma **ação** é um título que representa a menor parcela do **capital social** de uma sociedade anônima. Seu titular, o **acionista**, é **sócio** da empresa na proporção de suas ações e tem direito a uma fração dos lucros distribuídos (**dividendos**) e, conforme o tipo de ação, ao **voto** nas assembleias. Não há promessa de retorno nem de devolução do capital: o acionista ganha se a empresa prosperar e o mercado reconhecer esse valor, e perde se ocorrer o contrário.
 :::
+
+### Ordinárias e preferenciais
+
+No Brasil, as ações se dividem em duas grandes classes, e a diferença aparece no **final do código de negociação** (o *ticker*):
+
+- **Ações ordinárias (ON)** — código terminado em **3** (ex.: `VALE3`, `WEGE3`). Dão **direito a voto** nas assembleias de acionistas: quem as detém ajuda a eleger a administração e a decidir os rumos da empresa. É a ação do **controle**.
+- **Ações preferenciais (PN)** — código terminado em **4** (ex.: `PETR4`, `ITUB4`). Em regra **não dão voto**, mas oferecem **preferência** na distribuição de dividendos e no reembolso de capital. É a ação de quem quer participar do resultado sem se envolver no controle.
+
+Há ainda as **units** (código terminado em **11**), pacotes que combinam ações de tipos diferentes. Todas são negociadas na **B3**, a bolsa brasileira, em geral em **lotes-padrão** de 100 ações, embora o **mercado fracionário** permita comprar de 1 a 99 unidades.
+
+::: {.callout-tip title="Intuição — por que ON e PN têm preços diferentes?"}
+Uma mesma empresa pode ter ON e PN cotadas a preços distintos. A ON embute o **valor do voto** (o poder de decidir e de negociar o controle), enquanto a PN costuma pagar dividendos com prioridade e ter, historicamente, mais liquidez em muitas empresas brasileiras. Não é raro que a PN seja mais líquida e a ON carregue um **prêmio de controle** — por isso comparar `PETR3` com `PETR4` exige atenção ao que cada classe oferece.
+:::
+
+### De onde vem o retorno do acionista
+
+O acionista ganha dinheiro por **dois canais**, e é fundamental separá-los:
+
+1. **Dividendos** (e formas afins): a parcela do **lucro** que a empresa distribui aos sócios, em dinheiro, periodicamente. É a renda que a ação "paga" enquanto você a mantém.
+2. **Ganho de capital**: a **valorização** do preço da ação. Se você comprou a R\$ 30 e vendeu a R\$ 40, embolsou R\$ 10 de ganho de capital por ação.
+
+Somando os dois, o **retorno total** de uma ação, ao longo de um período, é
+
+$$
+R = \frac{(P_1 - P_0) + D}{P_0},
+$$ {#eq-retorno-total}
+
+onde $P_0$ é o preço de compra, $P_1$ o preço ao final do período e $D$ os dividendos recebidos no intervalo. O primeiro termo é o **ganho de capital percentual**; o segundo, o *dividend yield* realizado. Uma ação comprada a R\$ 100 que sobe para R\$ 108 e paga R\$ 4 de dividendos rendeu $\frac{(108-100)+4}{100} = 12\%$ no período — 8% de valorização e 4% de dividendos.
+
+::: {.callout-important title="Armadilha comum — confundir dividendo com 'juro da ação'"}
+O dividendo **não** é um juro garantido. A empresa decide quanto (e se) distribui, conforme o lucro do período e sua política de reinvestimento. Uma empresa em crescimento pode **não pagar dividendo nenhum** — reinvestindo todo o lucro para crescer — e ainda assim ser um ótimo investimento, se essa retenção gerar valorização. Já uma empresa madura, que reinveste pouco, tende a distribuir muito. Avaliar uma ação só pelo dividendo que ela paga hoje ignora metade da equação (o ganho de capital) e pode enganar.
+:::
+
+## Avaliação de empresas: preço não é valor
+
+Chegamos ao coração do capítulo. O **preço** de uma ação é o número que pisca na tela — o que o mercado, hoje, está disposto a pagar. O **valor** (ou valor intrínseco) é uma estimativa de quanto a empresa *realmente vale*, dado seu potencial de gerar lucros e caixa no futuro. Investir com método é, no fundo, comparar preço e valor: comprar quando o preço está **abaixo** do valor estimado, evitar quando está **acima**.
+
+::: {.callout-note title="Definição — Valuation"}
+**Valuation** (avaliação) é o conjunto de técnicas para estimar o **valor econômico** de uma empresa ou de suas ações. Divide-se em duas grandes famílias: a **avaliação relativa**, que compara a empresa a semelhantes por meio de **múltiplos** de mercado, e a **avaliação intrínseca** (ou **absoluta**), que estima o valor descontando a trazendo a valor presente os **fluxos de caixa futuros** que a empresa deve gerar.
+:::
+
+As duas abordagens são complementares — analistas sérios usam ambas — e as veremos em ordem: primeiro a mais simples e difundida (múltiplos), depois a mais fundamentada (fluxo de caixa descontado).
+
+## Avaliação relativa: os múltiplos
+
+Um **múltiplo** relaciona o **preço** (ou o valor) de uma empresa a alguma medida do seu tamanho ou resultado — lucro, patrimônio, receita. A lógica é comparativa: *empresas parecidas devem valer múltiplos parecidos*; quando uma se descola das concorrentes, vale investigar por quê. Os quatro múltiplos mais usados:
+
+| Múltiplo | Fórmula | O que mede | Leitura |
+|---|---|---|---|
+| **P/L** (preço/lucro) | $\dfrac{\text{Preço da ação}}{\text{LPA}}$ | Anos de lucro para "pagar" o preço | Alto = caro ou muito crescimento esperado |
+| **P/VP** (preço/valor patrimonial) | $\dfrac{\text{Preço da ação}}{\text{VPA}}$ | Preço ante o patrimônio contábil | $<1$ = negocia abaixo do patrimônio |
+| **Dividend yield** | $\dfrac{\text{Dividendo por ação}}{\text{Preço}}$ | Renda de dividendos anual | Alto = boa renda (ou pouca reinvestida) |
+| **EV/EBITDA** | $\dfrac{\text{Valor da firma}}{\text{EBITDA}}$ | Preço da operação ante a geração de caixa operacional | Neutro à estrutura de capital |
+
+: Os principais múltiplos de avaliação relativa. {#tbl-multiplos}
+
+O mais popular é o **P/L** (preço sobre lucro), que divide o preço da ação pelo **lucro por ação (LPA)** — o lucro líquido anual dividido pelo número de ações. Um P/L de 10 significa que, ao preço atual, você paga **10 anos** de lucro corrente pela empresa; equivale a um "rendimento do lucro" (o inverso, $1/(P/L)$) de 10% ao ano. Um P/L **alto** indica que o mercado ou considera a ação cara, ou espera que seus lucros **cresçam** muito (e por isso aceita pagar mais pelo lucro de hoje). Um P/L **baixo** pode sinalizar uma pechincha — ou uma empresa em dificuldade, cujo lucro o mercado desconfia que vá cair.
+
+O **P/VP** compara o preço ao **valor patrimonial por ação (VPA)**, o patrimônio líquido contábil dividido pelo número de ações. Bancos e empresas intensivas em ativos costumam ser avaliados por ele. O **dividend yield** é o dividendo anual dividido pelo preço — a "renda" da ação, tão cara aos investidores brasileiros. E o **EV/EBITDA** relaciona o **valor da firma** (*enterprise value* = valor de mercado das ações mais a dívida líquida) ao **EBITDA** (lucro antes de juros, impostos, depreciação e amortização) — uma medida de geração de caixa operacional que permite comparar empresas com endividamentos diferentes.
+
+::: {.callout-warning title="Controvérsia — múltiplos são atalhos, não verdades"}
+Múltiplos são rápidos e intuitivos, mas **relativos por natureza**: dizem se uma ação está cara ou barata *em relação a outras* — e, se o setor inteiro estiver sobrevalorizado, um múltiplo "na média" apenas confirma o exagero coletivo. Além disso, o P/L usa o **lucro contábil**, que pode ser distorcido por eventos não recorrentes, e fica **sem sentido** quando o lucro é negativo. Por isso a avaliação relativa deve ser cruzada com a intrínseca, e nunca aplicada entre empresas de setores, riscos e perspectivas de crescimento muito diferentes.
+:::
+
+## Avaliação intrínseca: o fluxo de caixa descontado
+
+A abordagem mais fundamentada parte de uma ideia simples e poderosa: **uma empresa vale a soma de todo o dinheiro que ela distribuirá aos seus donos no futuro, trazido a valor presente**. É a aplicação direta do desconto (@eq-vp) a um negócio inteiro. Se pensarmos nos pagamentos ao acionista como uma sequência de **dividendos** $D_1, D_2, D_3, \dots$, o valor da ação hoje é
+
+$$
+P_0 = \frac{D_1}{(1+r)} + \frac{D_2}{(1+r)^2} + \frac{D_3}{(1+r)^3} + \cdots = \sum_{t=1}^{\infty} \frac{D_t}{(1+r)^t},
+$$ {#eq-ddm}
+
+onde $r$ é a **taxa de retorno exigida** pelo investidor — o custo de oportunidade do capital, que remunera o risco de ser sócio (o próximo capítulo, @sec-risco-retorno-capm, mostra como calculá-la). Este é o **modelo de dividendos descontados**. A @fig-fluxo-dividendos mostra o fluxo: você paga $P_0$ hoje e recebe uma corrente infinita de dividendos que, em geral, **cresce** com o tempo.
+
+::: {#fig-fluxo-dividendos}
+
+```{.tikz}
+%%| filename: fig-fluxo-dividendos
+%%| alt: Linha do tempo da avaliação de uma ação. Na data zero, uma seta para baixo representa o preço pago pelo investidor. Nas datas 1, 2, 3 e seguintes, setas para cima crescentes representam dividendos que aumentam à taxa g a cada período, estendendo-se ao infinito.
+\begin{tikzpicture}[font=\small]
+  \draw[eixo, ->] (-0.5,0) -- (10.8,0) node[right]{tempo};
+  \foreach \x/\l in {0/0, 2/1, 4/2, 6/3, 8/4, 9.6/{$\cdots$}} {
+    \draw (\x,0.1) -- (\x,-0.1) node[below]{\l};
+  }
+  % dividendos crescentes
+  \draw[vetor, manualgreen] (2,0) -- (2,0.9);
+  \node[manualgreen, font=\footnotesize, anchor=south] at (2,0.9) {$D_1$};
+  \draw[vetor, manualgreen] (4,0) -- (4,1.25);
+  \node[manualgreen, font=\footnotesize, anchor=south] at (4,1.25) {$D_1(1{+}g)$};
+  \draw[vetor, manualgreen] (6,0) -- (6,1.6);
+  \node[manualgreen, font=\footnotesize, anchor=south] at (6,1.6) {$D_1(1{+}g)^2$};
+  \draw[vetor, manualgreen] (8,0) -- (8,1.95);
+  \node[manualgreen, font=\footnotesize, anchor=south] at (8,1.95) {$D_1(1{+}g)^3$};
+  \draw[vetor, manualgreen] (9.6,0) -- (9.6,2.25);
+  % preço na data zero
+  \draw[vetor, manualblue] (0,-1.5) -- (0,0);
+  \node[manualblue, font=\footnotesize, anchor=north] at (0,-1.55) {$P_0$ (preço)};
+\end{tikzpicture}
+```
+
+Fluxo de caixa de uma ação sob o modelo de dividendos: o investidor paga $P_0$ hoje e recebe uma corrente perpétua de dividendos que cresce à taxa $g$ por período.
+:::
+
+### O modelo de Gordon: uma perpetuidade que cresce
+
+Somar infinitos termos parece impossível, mas há um caso célebre em que a conta fecha em uma linha. Suponha que os dividendos cresçam a uma **taxa constante** $g$ para sempre — isto é, $D_t = D_1 (1+g)^{t-1}$ — e que a taxa exigida $r$ seja maior que $g$. Substituindo em @eq-ddm:
+
+$$
+P_0 = \sum_{t=1}^{\infty} \frac{D_1 (1+g)^{t-1}}{(1+r)^t} = \frac{D_1}{1+r} \sum_{t=1}^{\infty} \left(\frac{1+g}{1+r}\right)^{t-1}.
+$$
+
+A soma é uma **série geométrica** de razão $\frac{1+g}{1+r} < 1$ (garantida porque $r > g$), que converge para $\frac{1}{1 - \frac{1+g}{1+r}} = \frac{1+r}{r-g}$. Logo:
+
+$$
+P_0 = \frac{D_1}{1+r} \cdot \frac{1+r}{r-g} = \frac{D_1}{r - g}.
+$$ {#eq-gordon}
+
+Este é o **modelo de crescimento de Gordon** — uma **perpetuidade crescente**. Repare que ele é a versão geral da perpetuidade simples da @eq-perpetuidade: fazendo $g = 0$, recuperamos $P_0 = D_1/r$. A ação vale o dividendo esperado do próximo ano dividido pela diferença entre o retorno exigido e a taxa de crescimento.
+
+::: {.callout-note title="Definição — Modelo de Gordon"}
+O **modelo de crescimento de Gordon** avalia uma ação cujos dividendos crescem a uma taxa constante $g < r$ indefinidamente:
+$$
+P_0 = \frac{D_1}{r - g},
+$$
+onde $D_1$ é o dividendo esperado daqui a um ano, $r$ é a taxa de retorno exigida e $g$ a taxa de crescimento perpétuo dos dividendos. É a base conceitual de toda a avaliação por fluxo de caixa descontado.
+:::
+
+**Exemplo.** Uma empresa madura deve pagar $D_1 = R\$\,5{,}00$ de dividendo por ação no próximo ano, crescendo $4\%$ ao ano para sempre. Se você exige um retorno de $r = 12\%$ ao ano, o valor justo da ação é
+
+$$
+P_0 = \frac{5{,}00}{0{,}12 - 0{,}04} = \frac{5{,}00}{0{,}08} = R\$\,62{,}50.
+$$
+
+Se a ação negocia a R\$ 50 no mercado, seu modelo sugere que ela está **barata**; se negocia a R\$ 80, **cara** — sempre condicionado às suas premissas de $D_1$, $r$ e $g$.
+
+### A sensibilidade às premissas
+
+O poder do modelo de Gordon vem acompanhado de uma fragilidade: o resultado é **extremamente sensível** ao denominador $r - g$. Como $g$ se aproxima de $r$, a diferença encolhe e o valor **explode** — matematicamente, tende ao infinito quando $g \to r$. A @fig-gordon ilustra: pequenas mudanças na taxa de crescimento esperada provocam variações enormes no valor estimado. É por isso que dois analistas competentes, partindo de premissas ligeiramente diferentes, chegam a "preços-alvo" muito distantes.
+
+::: {#fig-gordon}
+
+```{.tikz}
+%%| filename: fig-gordon
+%%| alt: Gráfico do valor de uma ação pelo modelo de Gordon em função da taxa de crescimento g dos dividendos, com dividendo inicial de cinco reais e retorno exigido de doze por cento. A curva é crescente e convexa, subindo lentamente para g baixo e disparando à medida que g se aproxima de doze por cento.
+\begin{tikzpicture}
+\begin{axis}[
+  width=11cm, height=7cm,
+  xlabel={taxa de crescimento $g$ (\% a.a.)}, ylabel={valor $P_0$ (R\$)},
+  xmin=0, xmax=11, ymin=0, ymax=300,
+  axis lines=left, xtick={0,2,4,6,8,10},
+  ytick={0,50,100,150,200,250,300},
+  every axis plot/.append style={very thick},
+  font=\small]
+  \addplot[manualblue, domain=0:10, samples=120] {5/(0.12-x/100)};
+  \node[ponto] at (axis cs:4,62.5) {};
+  \draw[auxiliar] (axis cs:4,0) -- (axis cs:4,62.5) -- (axis cs:0,62.5);
+  \node[anchor=west, manualblue, font=\footnotesize] at (axis cs:1.2,215) {$P_0=\dfrac{D_1}{r-g},\ D_1=5,\ r=12\%$};
+\end{axis}
+\end{tikzpicture}
+```
+
+Valor de uma ação pelo modelo de Gordon em função da taxa de crescimento $g$ dos dividendos: a curva é crescente e convexa e dispara quando $g$ se aproxima do retorno exigido $r = 12\%$. Em $g = 4\%$, o valor é R\$ 62,50.
+:::
+
+::: {.callout-warning title="Limites do modelo — cuidado com o crescimento perpétuo"}
+O modelo de Gordon supõe crescimento constante **para sempre** — uma hipótese heroica. Nenhuma empresa cresce mais rápido que a economia indefinidamente (senão, um dia seria maior que o PIB). Por isso $g$ nunca deve superar, no longo prazo, a taxa de crescimento nominal da economia, e jamais pode igualar ou exceder $r$ (aí a fórmula perde sentido). Modelos profissionais contornam isso projetando fluxos ano a ano por um período explícito e aplicando Gordon só ao **valor terminal**. Use a fórmula como ferramenta de intuição e ordem de grandeza, não como oráculo.
+:::
+
+## Preço, valor e a eficiência dos mercados
+
+Se o valor é calculável, por que o preço oscila tanto? Porque o preço reflete as **expectativas coletivas** — sobre lucros, juros, riscos — que mudam a cada notícia. A **hipótese dos mercados eficientes** sustenta que os preços já incorporam toda a informação pública disponível, de modo que seria impossível, de forma consistente, "ganhar do mercado" apenas analisando dados conhecidos. Se ela for verdadeira, o preço é a **melhor estimativa disponível** do valor, e a busca por pechinchas é em vão.
+
+::: {.callout-warning title="Controvérsia — os mercados são realmente eficientes?"}
+A hipótese dos mercados eficientes, associada a Eugene Fama, foi um dos pilares das finanças modernas e explica por que superar índices de forma sistemática é tão raro. Mas críticos apontam **bolhas** e **pânicos** (da euforia das "pontocom" às crises financeiras) que parecem incompatíveis com preços sempre racionais. A **economia comportamental** (que o Volume 15 abordará), com Robert Shiller à frente, mostra que investidores reais são movidos por vieses e emoções, gerando exageros de preço. O debate segue aberto: os mercados são eficientes o bastante para punir os ingênuos, mas humanos o bastante para exagerar. A prudência de comparar preço e valor nunca é supérflua.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+O mercado de ações brasileiro é jovem e concentrado, mas tem particularidades que moldam decisivamente a decisão de investir — a começar pela tributação e pela cultura dos dividendos.
+
+**A B3 e o Ibovespa.** Todas as ações brasileiras são negociadas na **B3** (Brasil, Bolsa, Balcão), em São Paulo. Seu principal termômetro é o **Ibovespa**, índice que reúne as ações mais negociadas e serve de referência ("*benchmark*") para comparar o desempenho de qualquer carteira — como visto em @sec-mercado-de-capitais. O número de investidores pessoas físicas na bolsa **cresceu muitas vezes** ao longo dos anos 2010 e início dos 2020, impulsionado pela queda dos juros em certos períodos, pelas corretoras digitais e pela popularização do investimento — embora ainda seja pequeno frente ao total da população e à renda fixa, que segue dominante num país de juros altos (@sec-renda-fixa).
+
+**A isenção dos dividendos.** Uma peculiaridade marcante: no Brasil, os **dividendos** distribuídos aos acionistas são, historicamente, **isentos de imposto de renda** na pessoa física — regra em vigor desde 1996 e objeto de recorrente debate de reforma tributária. Isso ajuda a explicar a paixão nacional por ações "boas pagadoras de dividendos" e por setores maduros (elétricas, bancos, saneamento). Convivendo com os dividendos existem os **juros sobre capital próprio (JCP)**, uma forma de remunerar o acionista que é dedutível para a empresa, mas **tributada** em 15% na fonte para quem recebe. *(Atenção: as regras de tributação de dividendos e JCP estão sob discussão legislativa e podem mudar — confira a legislação vigente.)*
+
+**A tributação do ganho de capital.** Sobre o **ganho de capital** com ações (a valorização, quando você vende), incide IR de **15%** nas operações comuns (e 20% no *day trade*). Há uma **isenção** relevante para o pequeno investidor: vendas de ações que **não ultrapassem R\$ 20 mil no mês** ficam isentas do imposto sobre o ganho no mercado à vista. Diferentemente da renda fixa, aqui o recolhimento é, em regra, de responsabilidade do próprio investidor (via DARF).
+
+**Governança: o Novo Mercado e o tag along.** Para atrair investidores num ambiente historicamente marcado por conflitos entre controladores e minoritários, a B3 criou segmentos de **governança corporativa** — o mais exigente é o **Novo Mercado**, que só admite empresas com ações **exclusivamente ordinárias** (uma ação, um voto) e regras rígidas de transparência. Outro direito importante é o **tag along**: se o controle da empresa for vendido, os acionistas minoritários têm direito de vender suas ações por, no mínimo, 80% do preço pago ao controlador (100% no Novo Mercado). São mecanismos que reduzem o risco de o pequeno acionista ser "deixado para trás".
+
+> **Fontes e séries para explorar:** B3 (cotações, composição e metodologia do Ibovespa, segmentos de governança, estatísticas de investidores pessoa física); CVM (Comissão de Valores Mobiliários — regulação, informes de resultados das companhias abertas); Receita Federal (tributação de ganho de capital, dividendos e JCP); demonstrações financeiras das companhias (formulários de referência, ITR/DFP). Verifique sempre a data de referência e a legislação vigente, sobretudo quanto à tributação, que está em debate.
+
+## Resumo do capítulo
+
+- Uma **ação** é a menor fração do capital de uma empresa; seu titular é **sócio** (renda variável), não credor. No Brasil, **ON** (final 3) dão **voto**; **PN** (final 4) dão preferência em dividendos, em geral sem voto; **units** (final 11) combinam classes.
+- O **retorno total** do acionista tem dois componentes: **dividendos** (lucro distribuído) e **ganho de capital** (valorização do preço), reunidos em @eq-retorno-total.
+- **Avaliar (valuation)** é estimar o **valor** de uma empresa para compará-lo ao **preço**. Há duas famílias: **relativa** (múltiplos) e **intrínseca** (fluxo de caixa descontado).
+- Os principais **múltiplos**: **P/L** (preço/lucro), **P/VP** (preço/valor patrimonial), **dividend yield** e **EV/EBITDA**. São atalhos comparativos, sensíveis a distorções contábeis e ao exagero coletivo de um setor.
+- A **avaliação intrínseca** trata a ação como o valor presente dos **dividendos futuros** (@eq-ddm). Com crescimento constante $g < r$, colapsa no **modelo de Gordon**: $P_0 = D_1/(r-g)$ (@eq-gordon), uma **perpetuidade crescente**.
+- O modelo de Gordon é **muito sensível** ao denominador $r-g$: o valor dispara quando $g \to r$. Por isso premissas ligeiramente diferentes geram preços-alvo muito distintos.
+- **Preço não é valor**: o preço reflete expectativas coletivas. A **hipótese dos mercados eficientes** diz que os preços já embutem toda a informação pública; a **economia comportamental** contesta, apontando bolhas e vieses.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise de caso. Tenha uma calculadora à mão.
+:::
+
+**1.** Explique a diferença fundamental entre ser **acionista** de uma empresa e ser **credor** dela (como na renda fixa). O que cada um recebe e com que garantias?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O **acionista** é **sócio** (coproprietário): tem direito a uma fração dos lucros distribuídos (dividendos) e, no caso das ON, a voto, mas **não** há promessa de devolução do capital nem de rendimento — ganha se a empresa prosperar e perde se ela fracassar, e em caso de falência recebe **por último**. O **credor** (renda fixa) empresta recursos e tem direito a receber o principal de volta acrescido de juros segundo uma **regra combinada**, com prioridade sobre os sócios em caso de dificuldade. Em resumo: sócio com resultado incerto e residual × credor com remuneração definida e prioritária.
+:::
+
+**2.** Uma empresa tem ações `ABCD3` e `ABCD4`. (a) Qual é ordinária e qual é preferencial? (b) Cite uma vantagem de cada uma para o investidor.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) O código terminado em **3** (`ABCD3`) é **ordinária (ON)**; o terminado em **4** (`ABCD4`) é **preferencial (PN)**.
+(b) A **ON** dá **direito a voto** nas assembleias (participação nas decisões e no controle) e, se houver venda de controle, tag along. A **PN** costuma ter **preferência na distribuição de dividendos** e, em muitas empresas brasileiras, maior **liquidez** — bom para quem quer participar do resultado sem se envolver no controle.
+:::
+
+**3.** Você comprou uma ação por R\$ 40. Um ano depois, ela vale R\$ 45 e, no período, pagou R\$ 2 de dividendos. Calcule o **retorno total** e separe-o em ganho de capital e dividend yield.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Pela @eq-retorno-total:
+$$
+R = \frac{(45 - 40) + 2}{40} = \frac{7}{40} = 0{,}175 = 17{,}5\%.
+$$
+Desse total, o **ganho de capital** foi $\frac{45-40}{40} = 12{,}5\%$ e o **dividend yield** realizado foi $\frac{2}{40} = 5\%$. Juntos, $12{,}5\% + 5\% = 17{,}5\%$.
+:::
+
+**4.** Uma ação custa R\$ 30 e a empresa teve lucro por ação (LPA) de R\$ 2,50 no último ano. (a) Qual o **P/L**? (b) Interprete-o. (c) Que "rendimento do lucro" ele implica?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) $P/L = \frac{30}{2{,}50} = 12$.
+(b) Ao preço atual, você paga o equivalente a **12 anos** de lucro corrente pela empresa. Se compará-la a pares do mesmo setor, um P/L de 12 será "caro" ou "barato" conforme esteja acima ou abaixo da média deles e conforme as perspectivas de crescimento.
+(c) O rendimento implícito do lucro é o inverso: $1/12 \approx 8{,}3\%$ ao ano — o lucro anual da empresa equivale a cerca de 8,3% do preço que você paga.
+:::
+
+**5.** Deduza que a perpetuidade simples $P_0 = D_1/r$ é um caso particular do modelo de Gordon. O que ela representa economicamente?
+
+::: {.callout-tip collapse="true" title="Solução"}
+No modelo de Gordon (@eq-gordon), $P_0 = \frac{D_1}{r-g}$. Fazendo a taxa de crescimento $g = 0$ (dividendos **constantes**, sem crescimento), obtém-se $P_0 = \frac{D_1}{r-0} = \frac{D_1}{r}$, exatamente a @eq-perpetuidade. Economicamente, representa uma empresa que paga o **mesmo dividendo** $D_1$ para sempre — uma perpetuidade sem crescimento, cujo valor é o dividendo dividido pela taxa exigida.
+:::
+
+**6.** Uma empresa deve pagar dividendo de $D_1 = R\$\,3{,}00$ no próximo ano, com crescimento perpétuo de $g = 5\%$ ao ano. O investidor exige retorno de $r = 11\%$. (a) Qual o valor justo da ação? (b) Se o preço de mercado é R\$ 60, a ação está cara ou barata segundo o modelo?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Pela @eq-gordon:
+$$
+P_0 = \frac{3{,}00}{0{,}11 - 0{,}05} = \frac{3{,}00}{0{,}06} = R\$\,50{,}00.
+$$
+(b) O valor estimado (R\$ 50) é **menor** que o preço de mercado (R\$ 60), então, segundo o modelo e suas premissas, a ação está **cara** — o mercado paga mais do que os dividendos descontados justificariam. (Vale lembrar: o resultado depende inteiramente das premissas de $D_1$, $g$ e $r$.)
+:::
+
+**7.** No exercício anterior, mantenha $D_1 = R\$\,3{,}00$ e $r = 11\%$, mas suponha que a expectativa de crescimento suba de $g = 5\%$ para $g = 8\%$. (a) Qual o novo valor? (b) Comente a sensibilidade do modelo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) Agora $P_0 = \frac{3{,}00}{0{,}11 - 0{,}08} = \frac{3{,}00}{0{,}03} = R\$\,100{,}00$.
+(b) Uma mudança de apenas **3 pontos** na taxa de crescimento **dobrou** o valor estimado (de R\$ 50 para R\$ 100), porque encolheu o denominador $r-g$ de 0,06 para 0,03. Isso ilustra a **enorme sensibilidade** do modelo de Gordon às premissas: quanto mais $g$ se aproxima de $r$, mais o valor dispara (relação convexa da @fig-gordon). Pequenos otimismos sobre crescimento produzem grandes saltos de preço-alvo — daí a necessidade de cautela.
+:::
+
+**8.** Uma LCI de renda fixa isenta rende 12% ao ano com baixo risco. Uma ação "boa pagadora" oferece dividend yield de 8% ao ano. Um investidor conclui que "a renda fixa é melhor, pois rende mais". Onde está o erro de raciocínio?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O erro é comparar apenas o **fluxo de renda** (juros × dividendos) e **ignorar o ganho de capital**. O retorno total de uma ação é dividendos **mais** valorização (@eq-retorno-total): uma ação com 8% de dividend yield pode, além disso, valorizar-se ao longo do tempo se a empresa crescer, entregando retorno total bem acima de 12%. Por outro lado, esse retorno é **incerto e arriscado** — a ação pode cair —, enquanto a renda fixa é mais previsível. A comparação correta pondera **retorno total esperado × risco**, não apenas a renda corrente. Comparar o dividend yield com a taxa da renda fixa é comparar apenas metade da equação.
+:::
+
+**9.** (Análise de caso) Duas empresas do mesmo setor têm P/L bem diferentes: a empresa A negocia a P/L 8 e a empresa B a P/L 25. Um investidor conclui: "A está barata, B está cara; devo comprar A". (a) Que hipóteses alternativas explicariam a diferença? (b) Que informações você buscaria antes de decidir?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) O P/L mais alto de B **não** significa necessariamente que está cara: pode refletir uma **expectativa de crescimento** muito maior dos lucros (o mercado paga mais hoje por lucros que devem crescer), menor risco, ou lucro atual temporariamente deprimido. O P/L baixo de A pode ser uma **pechincha** — ou um sinal de alerta: o mercado pode desconfiar que seus lucros vão **cair** (empresa em declínio, problemas de governança, setor ameaçado). P/L baixo às vezes é uma "armadilha de valor".
+(b) Antes de decidir, eu buscaria: as **perspectivas de crescimento** de lucro de cada uma; a **qualidade e recorrência** dos lucros (evitar distorções por eventos não recorrentes); o **endividamento** (comparar também EV/EBITDA); a **governança** e os riscos específicos; e faria uma **avaliação intrínseca** (fluxo de caixa descontado) para não depender só do múltiplo. O múltiplo levanta a pergunta, não dá a resposta.
+:::
+
+**10.** (Desafio) Uma empresa madura paga hoje dividendos estáveis, com crescimento próximo de zero, e negocia com P/L baixo e dividend yield alto. Outra, jovem e inovadora, **não paga dividendos**, reinveste todo o lucro e negocia com P/L altíssimo. (a) Como o modelo de dividendos descontados pode avaliar a segunda, se ela não paga dividendos? (b) Que perfil de investidor combina com cada uma?
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) O modelo de dividendos descontados **não deixa de valer** só porque a empresa não paga dividendos **hoje**: ele avalia o **valor presente dos dividendos futuros** (@eq-ddm). A premissa para a empresa jovem é que ela **reinveste agora para crescer** e distribuirá dividendos maiores **no futuro**, quando amadurecer. Na prática, avalia-se projetando fluxos de caixa por um período explícito (sem distribuição, mas com crescimento) e aplicando o modelo de Gordon ao **valor terminal**, quando o crescimento se estabiliza. O P/L altíssimo reflete justamente a expectativa desse crescimento futuro — e todo o risco de ele não se concretizar.
+(b) A **madura** (dividendos altos, P/L baixo, baixo crescimento) combina com o investidor que busca **renda** e **previsibilidade**, com menor tolerância ao risco — típico da cultura brasileira de dividendos. A **jovem** (sem dividendos, P/L alto, alto crescimento) combina com quem busca **ganho de capital**, aceita **mais risco e volatilidade** e tem horizonte longo. Nenhuma é "melhor" em abstrato: a escolha depende do objetivo, do horizonte e da tolerância ao risco do investidor — tema que o próximo capítulo, sobre risco e retorno, aprofunda.
+:::
+
+## Para saber mais
+
+- @damodaran2012 — a referência mundial em avaliação de empresas: dos múltiplos ao fluxo de caixa descontado, com rigor e inúmeras aplicações práticas, incluindo mercados emergentes.
+- @pinheiro2019 — panorama do mercado de capitais brasileiro, com o funcionamento das ações, os tipos ON/PN, a B3 e os segmentos de governança.
+- @assafneto2021 — cobre a avaliação de ações, os múltiplos de mercado e a formação de preços no contexto do mercado financeiro nacional.
+- @bodie2014 — para a teoria de avaliação de ações, o modelo de dividendos descontados e a hipótese dos mercados eficientes, com tratamento formal e internacional.
