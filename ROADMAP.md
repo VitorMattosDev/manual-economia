@@ -160,14 +160,14 @@
 
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
-| 1 | Do café à industrialização (1889–1930) | `capitulos/vol11/cap01-cafe-industrializacao.qmd` | ⬜ |
-| 2 | Era Vargas e a substituição de importações | `capitulos/vol11/cap02-vargas-psi.qmd` | ⬜ |
-| 3 | Do milagre econômico à crise da dívida | `capitulos/vol11/cap03-milagre-crise-divida.qmd` | ⬜ |
-| 4 | Hiperinflação e os planos heterodoxos | `capitulos/vol11/cap04-hiperinflacao-planos.qmd` | ⬜ |
-| 5 | O Plano Real | `capitulos/vol11/cap05-plano-real.qmd` | ⬜ |
-| 6 | Anos 2000: boom de commodities e inclusão social | `capitulos/vol11/cap06-anos-2000.qmd` | ⬜ |
-| 7 | Crises recentes e agenda de reformas (2014–hoje) | `capitulos/vol11/cap07-crises-recentes-reformas.qmd` | ⬜ |
-| 8 | A estrutura produtiva do Brasil hoje | `capitulos/vol11/cap08-estrutura-produtiva-atual.qmd` | ⬜ |
+| 1 | Do café à industrialização (1889–1930) | `capitulos/vol11/cap01-cafe-industrializacao.qmd` | ✅ |
+| 2 | Era Vargas e a substituição de importações | `capitulos/vol11/cap02-vargas-psi.qmd` | ✅ |
+| 3 | Do milagre econômico à crise da dívida | `capitulos/vol11/cap03-milagre-crise-divida.qmd` | ✅ |
+| 4 | Hiperinflação e os planos heterodoxos | `capitulos/vol11/cap04-hiperinflacao-planos.qmd` | ✅ |
+| 5 | O Plano Real | `capitulos/vol11/cap05-plano-real.qmd` | ✅ |
+| 6 | Anos 2000: boom de commodities e inclusão social | `capitulos/vol11/cap06-anos-2000.qmd` | ✅ |
+| 7 | Crises recentes e agenda de reformas (2014–hoje) | `capitulos/vol11/cap07-crises-recentes-reformas.qmd` | ✅ |
+| 8 | A estrutura produtiva do Brasil hoje | `capitulos/vol11/cap08-estrutura-produtiva-atual.qmd` | ✅ |
 
 ### Volume 12 — Finanças Públicas e Tributação
 

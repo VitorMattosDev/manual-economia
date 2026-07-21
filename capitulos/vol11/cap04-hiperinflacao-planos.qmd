@@ -1,0 +1,202 @@
+# Hiperinflação e os planos heterodoxos {#sec-hiperinflacao-planos}
+
+Imagine ir ao supermercado e encontrar funcionários com pistolas de etiqueta remarcando os preços nas prateleiras — para cima, várias vezes no mesmo dia. Imagine receber o salário e correr para gastá-lo na mesma tarde, porque amanhã ele valerá menos. Imagine que o preço de uma geladeira, cotado numa unidade de conta que ninguém sabia quanto valeria na semana seguinte, era uma incógnita até a hora de pagar. Isso não é ficção: foi o cotidiano brasileiro na segunda metade dos anos 1980, quando a inflação passou de alta para **crônica** e, por fim, beirou a **hiperinflação**, com o país fechando 1993 com uma taxa acumulada superior a **2.400% ao ano**.
+
+Este capítulo conta a mais longa e frustrante batalha da história econômica brasileira: o combate à inflação inercial. Entre 1986 e 1991, o país tentou, um após o outro, cinco grandes planos de estabilização — Cruzado, Bresser, Verão, Collor I e Collor II — e todos fracassaram. Entender *por que* fracassaram, e o que faltou a cada um, é a chave para entender por que o **Plano Real** (@sec-plano-real), que finalmente venceu, foi desenhado do jeito que foi. Para o leitor, é a chance de ver a teoria da inflação (@sec-inflacao), das expectativas (@sec-expectativas) e da credibilidade da política econômica operando num laboratório histórico de altíssimo risco.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- distinguir **inflação de demanda**, **inflação de custos** e **inflação inercial**, e explicar o papel da indexação;
+- descrever o **diagnóstico da inércia inflacionária** e as ideias de "moeda indexada" que o antecederam;
+- caracterizar os **choques heterodoxos** — o **Plano Cruzado** (1986) e seus sucessores (Bresser, Verão) — e as causas de seus fracassos;
+- analisar o **Plano Collor** (1990) e o episódio do **confisco da liquidez**;
+- entender por que a **inflação inercial** exige um tratamento diferente da inflação de demanda, preparando o terreno para o Plano Real.
+
+## Anatomia de uma inflação crônica
+
+Antes de contar os planos, é preciso entender o inimigo. A teoria (@sec-inflacao) distingue três forças que podem elevar o nível geral de preços:
+
+- **Inflação de demanda:** a demanda agregada cresce além da capacidade de oferta da economia — "muita moeda perseguindo poucos bens". É a inflação clássica dos livros-texto.
+- **Inflação de custos:** um choque eleva os custos de produção (petróleo, câmbio, salários) e as empresas repassam-no aos preços, mesmo sem excesso de demanda.
+- **Inflação inercial:** a inflação se **reproduz sozinha**, pela indexação, independentemente de novos choques de demanda ou de custo.
+
+A inflação brasileira dos anos 1980 tinha as três componentes, mas a **inercial** era a que a tornava tão difícil de matar. A raiz estava na **correção monetária** criada em 1964 (@sec-milagre-crise-divida): salários, aluguéis, contratos, câmbio e títulos eram reajustados automaticamente pela inflação **passada**.
+
+::: {.callout-note title="Definição — Inércia inflacionária"}
+**Inércia inflacionária** é a tendência de a inflação de um período se **perpetuar** no período seguinte por força de mecanismos de indexação (formais e informais), que reajustam preços e salários com base na inflação passada. Numa economia inercial, a inflação de hoje é, em boa medida, apenas a de ontem "repassada adiante" — de modo que ela persiste mesmo na ausência de excesso de demanda ou de novos choques de custo. Combatê-la apenas com recessão (contração da demanda) é caro e pouco eficaz: a inércia mantém a inflação alta mesmo com a economia parada.
+:::
+
+O mecanismo funcionava como uma escada em espiral. Considere os salários, tipicamente reajustados a cada seis meses (e, mais tarde, mensalmente) pela inflação acumulada. Logo após o reajuste, o salário real está no pico; ele então se corrói pela inflação até o próximo reajuste, quando salta de volta ao pico. Cada categoria — trabalhadores, comerciantes, locadores — reajusta seus preços em datas diferentes, buscando **recompor seu pico anterior**. Mas o pico de um é o custo do outro: quando todos tentam simultaneamente recuperar seu poder de compra de referência, a soma dos reajustes **realimenta a inflação**. A economia trava num patamar de inflação alta que, como um carro no ponto morto ladeira abaixo, segue rolando por inércia.
+
+::: {#fig-dente-de-serra}
+
+```{.tikz}
+%%| filename: fig-dente-de-serra
+%%| alt: Gráfico do salário real ao longo do tempo em forma de dente de serra, subindo bruscamente a cada reajuste e caindo gradualmente pela inflação, com uma linha tracejada indicando o valor médio.
+\begin{tikzpicture}
+\begin{axis}[
+  width=12cm, height=5.5cm,
+  xlabel={tempo (meses)}, ylabel={salário real},
+  xmin=0, xmax=18, ymin=0.6, ymax=1.15,
+  xtick={0,6,12,18},
+  ytick={0.7,0.85,1.0},
+  yticklabels={,,pico},
+  axis lines=left,
+  label style={font=\footnotesize}, tick label style={font=\footnotesize},
+  clip=false
+]
+% dente de serra: sobe ao pico a cada 6 meses e decai
+\addplot[manualblue, thick] coordinates {
+ (0,1.0)(6,0.72)(6,1.0)(12,0.72)(12,1.0)(18,0.72)
+};
+\addplot[manualgray, dashed] coordinates {(0,0.86)(18,0.86)};
+\node[manualgray, font=\footnotesize] at (axis cs:16,0.9){média};
+\node[manualred, font=\footnotesize] at (axis cs:3,1.06){reajuste};
+\end{axis}
+\end{tikzpicture}
+```
+
+O **"dente de serra"** do salário real sob inflação com indexação: a cada reajuste o salário salta ao pico e depois se corrói. Quanto maior a inflação, mais fundo o desgaste entre reajustes — e mais os agentes brigam para recompor o pico, realimentando a espiral.
+:::
+
+## O diagnóstico da inércia e a ideia da "moeda indexada"
+
+No início dos anos 1980, um grupo de economistas brasileiros — entre eles **Francisco Lopes**, **André Lara Resende** e **Pérsio Arida** — formulou um diagnóstico que romperia com a ortodoxia então dominante. A tese era: se boa parte da inflação brasileira era **inercial** (pura repetição do passado via indexação), então tentar derrubá-la com recessão e aperto monetário — o receituário ortodoxo contra a inflação de demanda — seria **ineficaz e socialmente devastador**. A inflação inercial não cede à recessão; ela precisa de um **choque de coordenação** que quebre a indexação e sincronize as expectativas.
+
+Surgiram então duas famílias de propostas:
+
+1. **O choque heterodoxo:** um **congelamento geral de preços e salários**, imposto por decreto, que interromperia a espiral de reajustes de uma só vez. Se todos os preços param ao mesmo tempo, ninguém precisa "correr na frente" para se proteger — a inércia é quebrada por decreto.
+
+2. **A reforma monetária com moeda indexada.** A proposta mais engenhosa, formulada por Arida e Lara Resende (a "proposta Larida"), era criar uma **nova moeda** indexada, que circularia em paralelo à antiga e teria valor estável. Os contratos migrariam voluntariamente para ela; quando a nova moeda dominasse a economia, a velha (e sua inflação) seria descartada. A ideia era **desindexar sem congelar** — sem a violência e as distorções de um congelamento.
+
+::: {.callout-tip title="Intuição — por que congelar não basta"}
+Pense na inflação inercial como uma corrida em que todos correm porque todos os outros estão correndo. Congelar os preços é como gritar "**parem!**": funciona no instante em que todos param juntos. Mas o congelamento não elimina a **causa** da corrida — as pressões de custo e de demanda reprimidas e, sobretudo, a expectativa de que a corrida vai recomeçar. Se os agentes **não acreditam** que a estabilidade é permanente, no momento em que o congelamento é levantado todos disparam de novo, muitas vezes com mais força (para recompor o que ficou "represado"). Foi exatamente o que aconteceu, uma e outra vez, entre 1986 e 1991. A lição, que só o Real absorveria: estabilizar exige **quebrar a inércia** *e* **ancorar as expectativas** de forma crível.
+:::
+
+## O Plano Cruzado (1986): a euforia e o colapso
+
+Em fevereiro de 1986, o governo **José Sarney** lançou o **Plano Cruzado**, o primeiro grande choque heterodoxo. Seus pilares:
+
+- **Reforma monetária:** o cruzeiro deu lugar ao **cruzado** (corte de três zeros).
+- **Congelamento geral de preços** por tempo indeterminado.
+- **Fim da correção monetária** para prazos inferiores a um ano (tentativa de desindexar).
+- **Regra de conversão de salários** pela média real dos meses anteriores, com um abono, e o **"gatilho salarial"**, que dispararia reajustes automáticos se a inflação superasse 20%.
+
+O efeito imediato foi espetacular. A inflação despencou para perto de zero, e o **poder de compra** dos salários — congelados num pico e livres da corrosão inflacionária — saltou. A demanda **explodiu**: com dinheiro no bolso e preços estáveis, os brasileiros foram às compras. O plano tornou-se enormemente popular; virou causa cívica, com cidadãos fiscalizando remarcações ("os fiscais do Sarney").
+
+Mas a euforia continha as sementes do fracasso, e elas eram várias:
+
+- **Excesso de demanda.** O congelamento fora feito com preços relativos **desalinhados**, e o boom de consumo pressionou uma oferta que não podia responder (preços congelados desestimulam produzir mais). Surgiram **desabastecimento**, filas e o **ágio**: pagava-se por fora para conseguir produtos, o famoso "**ágio**" sobre o carro zero e a carne.
+- **Congelamento por tempo demais.** Manteve-se o congelamento muito além do razoável — em parte por **cálculo eleitoral** (as eleições de novembro de 1986). Preços represados acumulavam pressão.
+- **Nenhum ajuste fiscal.** O plano não atacou o **déficit público**, uma fonte estrutural de pressão inflacionária.
+
+Passadas as eleições, o governo liberou os preços (o "Cruzado II") e a inflação **explodiu de volta**, agora turbinada pela demanda reprimida e pelo gatilho salarial. Em 1987, a inflação já superava a do período anterior ao plano. O Cruzado havia fracassado — mas deixou uma lição que se repetiria: **congelar sem ajustar as contas públicas e sem desindexar de verdade é apenas adiar a inflação, com juros**.
+
+## Bresser e Verão: os planos que já nasceram descrentes (1987–1989)
+
+O fracasso do Cruzado inaugurou uma sequência de tentativas cada vez menos críveis:
+
+- **Plano Bresser (1987)**, do ministro Luiz Carlos Bresser-Pereira: um novo congelamento, agora **temporário** e combinado com alguma preocupação fiscal e a "URP" (Unidade de Referência de Preços) para desindexar gradualmente os salários. Conteve a inflação por poucos meses; sem ancoragem crível, ela retornou.
+
+- **Plano Verão (1989)**, do ministro Maílson da Nóbrega: nova moeda (o **cruzado novo**, mais um corte de zeros), novo congelamento, nova tentativa de desindexação. Já nasceu sob ceticismo generalizado. A inflação, que os agentes agora esperavam de volta, voltou — e mais rápido.
+
+A cada plano, os agentes aprendiam: **congelamentos não duram**. Isso é crucial na linguagem das expectativas (@sec-expectativas): a política econômica perdera **credibilidade**. Com **expectativas racionais**, os agentes anteciparam o fracasso — remarcavam preços antes mesmo do congelamento, na expectativa da liberação — o que tornava cada plano ainda menos eficaz que o anterior. A inflação entrou em aceleração rumo ao patamar hiperinflacionário: no fim de 1989, rodava a mais de **1.700% ao ano**.
+
+::: {.callout-warning title="Controvérsia — heterodoxos erraram, ou faltou-lhes o ajuste fiscal?"}
+Há um debate persistente sobre *por que* os planos dos anos 1980 fracassaram. Uma leitura (mais próxima da ortodoxia) atribui o fracasso à **ausência de ajuste fiscal**: enquanto o Estado gastasse mais do que arrecadava e financiasse o déficit com emissão, nenhum congelamento seguraria a inflação por muito tempo. Outra leitura (heterodoxa) responde que o diagnóstico da **inércia** estava correto — o problema não foi a ideia, mas a **execução**: congelamentos mal calibrados, mantidos por tempo demais, por razões eleitorais, e sem um mecanismo crível de desindexação. O Plano Real, anos depois, daria uma resposta ao combinar **as duas coisas**: quebrou a inércia (com a URV) *e* buscou consistência fiscal e ancoragem cambial — sem recorrer a congelamento. O capítulo seguinte (@sec-plano-real) detalha essa síntese.
+:::
+
+## O Plano Collor (1990): o choque e o confisco
+
+Em março de 1990, o recém-empossado presidente **Fernando Collor** lançou o plano mais dramático de todos. Além de mais uma reforma monetária (o retorno ao **cruzeiro**), congelamento e medidas fiscais, o **Plano Collor I** trouxe uma medida sem precedentes: o **bloqueio da liquidez**. Depósitos à vista, cadernetas de poupança e aplicações financeiras acima de um teto (cerca de Cr\$\,50 mil) foram **retidos** no Banco Central por 18 meses — o **"confisco da poupança"**.
+
+A lógica declarada era enxugar a **liquidez** da economia para estancar a inflação: com menos moeda em circulação, menos pressão sobre os preços. O impacto foi brutal — a economia mergulhou numa **recessão** aguda, com queda do PIB e do consumo. A inflação caiu no susto, mas **voltou** em poucos meses, à medida que os recursos bloqueados eram liberados e o congelamento afrouxava. O **Plano Collor II (1991)**, com novo congelamento e a criação da **TR** (Taxa Referencial), teve vida ainda mais curta.
+
+::: {.callout-important title="Armadilha comum — confundir liquidez com riqueza"}
+O confisco Collor baseou-se, em parte, na ideia de que reduzir a **quantidade de moeda** (liquidez) resolveria a inflação. Mas a inflação brasileira era, sobretudo, **inercial e fiscal**, não um puro fenômeno de excesso de liquidez momentâneo. Bloquear os ativos gerou uma recessão violenta e uma **quebra de confiança** duradoura nos contratos e na moeda, sem atacar a raiz do problema. Foi um custo enorme — jurídico, econômico e de credibilidade — por um alívio efêmero. A lição reforça a anterior: sem quebrar a **inércia** e sem **âncora crível**, nem mesmo medidas extremas estabilizam a inflação de forma duradoura.
+:::
+
+Ao fim de 1991, o Brasil havia gasto meia década e cinco planos, trocado de moeda cinco vezes, e a inflação seguia **fora de controle**, a caminho de superar 1.000% e depois 2.000% ao ano em 1992–93. A hiperinflação parecia inevitável. O que faltava? A resposta viria de uma equipe que, tendo aprendido com cada fracasso, montaria — sem congelar, sem confiscar e em etapas transparentes — o plano que finalmente funcionaria.
+
+## 🇧🇷 Brasil em Foco
+
+**A escala dos números.** A inflação brasileira nos anos 1980–94 é difícil de apreender sem os dados. Medida pelo **IGP** e pelo **IPCA** (@sec-inflacao), a taxa **anual** saiu de patamares de dois/três dígitos no início dos anos 1980 e escalou até cerca de **1.973%** em 1989, **1.621%** em 1990, e o pico próximo de **2.477%** em 1993 (índices acumulados no ano; as séries oficiais estão no **IBGE**, na **FGV** e no **Ipeadata**). Uma inflação de 2.000% ao ano equivale a preços que, em média, **quase triplicam a cada trimestre**. É a razão pela qual a moeda trocou de nome tantas vezes — cruzeiro, cruzado, cruzado novo, cruzeiro, cruzeiro real — cada reforma cortando três zeros que a inflação recriava em poucos anos.
+
+**A "moeda indexada" na prática: as URs.** Durante a alta inflação, os brasileiros aprenderam a **pensar em unidades indexadas**, não em moeda. Aluguéis, mensalidades escolares e contratos eram cotados em **ORTN/OTN/BTN** (títulos indexados) ou em índices como a **UPC**. Essa prática cotidiana — precificar em uma "moeda de conta" estável e pagar na moeda corrente que se desvalorizava — foi justamente a **semente conceitual** da **URV** do Plano Real (@sec-plano-real): o país já sabia, informalmente, separar a **unidade de conta** do **meio de pagamento**. O Real transformaria essa prática dispersa em política oficial e ordenada.
+
+**O imposto inflacionário e quem mais sofria.** A inflação crônica funcionava como um **imposto inflacionário**: o governo financiava seu déficit emitindo moeda, e a perda de valor do dinheiro na mão do público era, na prática, uma transferência de recursos para o Estado. Os mais **ricos** protegiam-se aplicando no *overnight* e em ativos indexados; os mais **pobres**, sem acesso a essas aplicações e recebendo salários corroídos entre reajustes, arcavam com a maior parte do imposto. Estudos do **IPEA** e do **IBGE** mostraram que a estabilização de 1994 teve forte efeito **redistributivo pró-pobre**, justamente por eliminar esse imposto regressivo — tema que reaparece em @sec-plano-real.
+
+> **Fontes e séries para explorar:** IBGE (IPCA, séries históricas de inflação); FGV/Ipeadata (IGP-DI, IGP-M, ORTN/OTN/BTN); Banco Central — SGS (base monetária, meios de pagamento, imposto inflacionário); IPEA (estudos sobre efeito distributivo da estabilização). Para a memória dos planos, os relatórios e a legislação de cada plano (Cruzado, Bresser, Verão, Collor).
+
+## Resumo do capítulo
+
+- A inflação brasileira dos anos 1980 combinava componentes de **demanda**, de **custos** e, decisivamente, **inercial** — a repetição automática da inflação passada via **indexação** (correção monetária de 1964).
+- A **inércia** faz a inflação persistir mesmo sem excesso de demanda; combatê-la só com **recessão** é caro e ineficaz. O **"dente de serra"** do salário real ilustra a espiral de reajustes que realimenta a inflação.
+- Economistas brasileiros (Lopes, Arida, Lara Resende) diagnosticaram a inércia e propuseram o **choque heterodoxo** (congelamento) e a **moeda indexada** ("proposta Larida") para desindexar e coordenar expectativas.
+- O **Plano Cruzado** (1986) congelou preços e animou a demanda, mas fracassou por **excesso de demanda**, desabastecimento/ágio, congelamento prolongado por **cálculo eleitoral** e **ausência de ajuste fiscal**.
+- **Bresser (1987)** e **Verão (1989)** repetiram congelamentos cada vez menos **críveis**; com expectativas racionais, os agentes anteciparam o fracasso e a inflação acelerou rumo à hiperinflação.
+- O **Plano Collor (1990)** recorreu ao **bloqueio da liquidez** ("confisco"), gerando recessão profunda e quebra de confiança, sem estabilizar. A lição de meia década: sem **quebrar a inércia** e **ancorar as expectativas** de forma crível — e sem consistência fiscal — nenhum plano dura.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista.
+:::
+
+**1.** Distinga **inflação de demanda**, **inflação de custos** e **inflação inercial**. Qual delas explica por que a inflação brasileira era tão difícil de derrubar?
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Demanda:** a demanda agregada excede a capacidade de oferta ("muita moeda perseguindo poucos bens"). **Custos:** um choque (câmbio, petróleo, salários) eleva custos de produção, repassados aos preços. **Inercial:** a inflação se reproduz sozinha, pela **indexação**, que reajusta preços e salários pela inflação passada, independentemente de novos choques. A componente **inercial** era a que tornava a inflação brasileira tão resistente: ela persistia mesmo com a economia parada, de modo que a recessão (que combate a inflação de demanda) era ineficaz contra ela.
+:::
+
+**2.** Explique o mecanismo do **"dente de serra"** do salário real e como ele realimenta a inflação.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Com reajustes periódicos pela inflação passada, o salário real salta ao **pico** no reajuste e depois se **corrói** pela inflação até o próximo reajuste — o padrão em "dente de serra". Como cada categoria reajusta em datas diferentes buscando recompor seu pico, e o pico (custo salarial) de um é preço para os outros, os reajustes simultâneos de todos os agentes **somam-se** e realimentam a inflação. A economia trava num patamar alto de inflação que se sustenta por **inércia**, mesmo sem novos choques.
+:::
+
+**3.** O que foi a **"proposta Larida"** (moeda indexada) e em que ela diferia de um simples congelamento?
+
+::: {.callout-tip collapse="true" title="Solução"}
+A proposta de Pérsio **Ari**da e André **La**ra Resende sugeria criar uma **nova moeda indexada**, de valor estável, que circularia em paralelo à antiga. Os contratos migrariam voluntariamente para ela e, quando a nova moeda dominasse a economia, a velha (e sua inflação) seria descartada. Diferia do congelamento porque **desindexava sem congelar**: em vez de proibir reajustes por decreto (com desabastecimento e distorções de preços relativos), permitia uma transição ordenada para uma unidade de conta estável. Foi a semente conceitual da **URV** do Plano Real.
+:::
+
+**4.** Liste as causas do fracasso do **Plano Cruzado**. Por que o congelamento durou "tempo demais"?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Causas: (1) **excesso de demanda** — o boom de consumo (salários no pico, preços estáveis) pressionou uma oferta desestimulada pelos preços congelados, gerando **desabastecimento** e **ágio**; (2) **preços relativos desalinhados** no momento do congelamento, acumulando pressões represadas; (3) **ausência de ajuste fiscal** — o déficit público seguiu pressionando; (4) **congelamento prolongado** além do razoável. Ele durou tempo demais em parte por **cálculo eleitoral**: manter os preços congelados até as eleições de novembro de 1986 era politicamente conveniente, mas acumulou pressão que explodiu na liberação (Cruzado II).
+:::
+
+**5.** Usando a ideia de **expectativas racionais** (@sec-expectativas) e **credibilidade**, explique por que cada plano de estabilização tendia a ser menos eficaz que o anterior.
+
+::: {.callout-tip collapse="true" title="Solução"}
+A cada plano fracassado, os agentes **aprendiam** que congelamentos não duram — a política perdia **credibilidade**. Com expectativas racionais, eles passaram a **antecipar** o fracasso: remarcavam preços antes ou logo no início do congelamento (na expectativa da liberação), buscavam se proteger em ativos indexados e não ajustavam suas expectativas de inflação para baixo. Como a eficácia de um choque heterodoxo depende de os agentes **acreditarem** na estabilidade e pararem de reajustar, a descrença acumulada tornou cada plano progressivamente **menos eficaz**, e a inflação acelerou entre um plano e outro.
+:::
+
+**6.** Por que o **confisco Collor** (bloqueio da liquidez) não estabilizou a inflação de forma duradoura? Que confusão conceitual estava por trás dele?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque a inflação brasileira era sobretudo **inercial e fiscal**, não um mero excesso momentâneo de **liquidez**. Bloquear ativos reduziu a moeda em circulação e provocou uma **recessão** aguda, derrubando a inflação no susto; mas, à medida que os recursos eram liberados e sem que a **inércia** e o desequilíbrio fiscal fossem resolvidos, a inflação **voltou**. A confusão conceitual foi tratar **liquidez** (quantidade de moeda) como se fosse a causa central da inflação — e confundir enxugar liquidez com atacar a **raiz** inercial/fiscal. O custo (recessão, quebra de confiança nos contratos e na moeda) foi altíssimo para um alívio efêmero.
+:::
+
+**7.** (Análise de caso) O Plano Cruzado foi imensamente popular e, ainda assim, fracassou. O que esse contraste ensina sobre a diferença entre **sucesso político** de curto prazo e **estabilização duradoura**?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O Cruzado gerou, no curtíssimo prazo, ganhos reais palpáveis — salários no pico, preços estáveis, consumo em alta — que o tornaram popular e útil eleitoralmente. Mas estabilização **duradoura** exige atacar as **causas** (inércia e déficit fiscal) e **ancorar expectativas** de forma crível, não apenas suprimir os **sintomas** (os reajustes) por decreto. O contraste ensina que decisões guiadas pelo ganho político imediato (manter o congelamento até a eleição, evitar o custo do ajuste fiscal) podem **sabotar** a estabilização: ao adiar o ajuste e prolongar o congelamento, o governo acumulou pressões que tornaram a volta da inflação mais violenta. Sucesso político efêmero e estabilização sustentável podem ser, no curto prazo, objetivos **conflitantes** — e ceder ao primeiro custou o segundo.
+:::
+
+**8.** (Desafio) Com base nos fracassos deste capítulo, formule os **requisitos** que um plano de estabilização bem-sucedido teria de cumprir. (Compare depois com o Plano Real em @sec-plano-real.)
+
+::: {.callout-tip collapse="true" title="Solução"}
+Dos fracassos emergem quatro requisitos: (1) **quebrar a inércia** — neutralizar a indexação que reproduz a inflação passada, mas de forma **ordenada** (sem os desalinhamentos de um congelamento por decreto), idealmente via uma **unidade de conta estável** que sincronize os preços; (2) **ancorar as expectativas** com um mecanismo **crível** (uma âncora nominal — cambial ou monetária — em que os agentes acreditem), recuperando a credibilidade perdida; (3) **consistência fiscal** — reduzir o déficit público para eliminar a pressão estrutural e a necessidade de financiar gasto com emissão; (4) **não recorrer a congelamentos ou confiscos**, que geram desabastecimento, distorções e quebra de confiança. O Plano Real cumpriria os quatro: a **URV** desindexou de forma ordenada (requisito 1), a âncora cambial e depois as metas ancoraram expectativas (2), buscou-se ajuste fiscal (3), e não houve congelamento nem confisco (4).
+:::
+
+## Para saber mais
+
+- @gremaud2017 — capítulos sobre a inflação inercial e os planos heterodoxos, com os detalhes de cada plano (Cruzado a Collor).
+- @giambiagi2011 — *Economia Brasileira Contemporânea*: análise período a período da alta inflação e das tentativas de estabilização.
+- @bacha2012 — reflexões de um dos protagonistas sobre a inflação inercial, a inércia e o caminho até o Real.
+- @simonsen2007 — para a teoria da inflação inercial e da indexação, de um de seus principais formuladores.
+- @blanchard2017 — para a teoria macroeconômica da inflação, das expectativas e da credibilidade que fundamenta o episódio.
