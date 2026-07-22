@@ -209,7 +209,7 @@
 | # | Capítulo | Arquivo | Status |
 |---|----------|---------|--------|
 | 1 | Os clássicos: Smith, Ricardo e Malthus | `capitulos/vol15/cap01-classicos.qmd` | ✅ |
-| 2 | Marx e a crítica da economia política | `capitulos/vol15/cap02-marx.qmd` | ⬜ |
+| 2 | Marx e a crítica da economia política | `capitulos/vol15/cap02-marx.qmd` | ✅ |
 | 3 | A revolução marginalista e os neoclássicos | `capitulos/vol15/cap03-marginalistas.qmd` | ⬜ |
 | 4 | Keynes e a revolução keynesiana | `capitulos/vol15/cap04-keynes.qmd` | ⬜ |
 | 5 | Monetaristas, novos clássicos e novos keynesianos | `capitulos/vol15/cap05-monetaristas-novos.qmd` | ⬜ |
