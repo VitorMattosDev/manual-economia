@@ -214,7 +214,7 @@
 | 4 | Keynes e a revolução keynesiana | `capitulos/vol15/cap04-keynes.qmd` | ✅ |
 | 5 | Monetaristas, novos clássicos e novos keynesianos | `capitulos/vol15/cap05-monetaristas-novos.qmd` | ✅ |
 | 6 | Economia comportamental: vieses, heurísticas e nudges | `capitulos/vol15/cap06-economia-comportamental.qmd` | ✅ |
-| 7 | Fronteiras: economia experimental, complexidade e IA | `capitulos/vol15/cap07-fronteiras.qmd` | ⬜ |
+| 7 | Fronteiras: economia experimental, complexidade e IA | `capitulos/vol15/cap07-fronteiras.qmd` | ✅ |
 
 ---
 
