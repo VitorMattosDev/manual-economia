@@ -23,7 +23,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -74,6 +94,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -885,8 +934,30 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">100.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#o-que-é-um-derivativo" id="toc-o-que-é-um-derivativo" class="nav-link" data-scroll-target="#o-que-é-um-derivativo"><span class="header-section-number">100.2</span> O que é um derivativo</a></li>
+  <li><a href="#contratos-a-termo-e-futuros" id="toc-contratos-a-termo-e-futuros" class="nav-link" data-scroll-target="#contratos-a-termo-e-futuros"><span class="header-section-number">100.3</span> Contratos a termo e futuros</a>
+  <ul class="collapse">
+  <li><a href="#posições-comprada-e-vendida" id="toc-posições-comprada-e-vendida" class="nav-link" data-scroll-target="#posições-comprada-e-vendida"><span class="header-section-number">100.3.1</span> Posições comprada e vendida</a></li>
+  </ul></li>
+  <li><a href="#hedge-especulação-e-arbitragem" id="toc-hedge-especulação-e-arbitragem" class="nav-link" data-scroll-target="#hedge-especulação-e-arbitragem"><span class="header-section-number">100.4</span> Hedge, especulação e arbitragem</a></li>
+  <li><a href="#opções-direitos-não-obrigações" id="toc-opções-direitos-não-obrigações" class="nav-link" data-scroll-target="#opções-direitos-não-obrigações"><span class="header-section-number">100.5</span> Opções: direitos, não obrigações</a>
+  <ul class="collapse">
+  <li><a href="#o-outro-lado-o-lançador" id="toc-o-outro-lado-o-lançador" class="nav-link" data-scroll-target="#o-outro-lado-o-lançador"><span class="header-section-number">100.5.1</span> O outro lado: o lançador</a></li>
+  <li><a href="#o-que-determina-o-prêmio" id="toc-o-que-determina-o-prêmio" class="nav-link" data-scroll-target="#o-que-determina-o-prêmio"><span class="header-section-number">100.5.2</span> O que determina o prêmio</a></li>
+  </ul></li>
+  <li><a href="#alavancagem-a-faca-de-dois-gumes" id="toc-alavancagem-a-faca-de-dois-gumes" class="nav-link" data-scroll-target="#alavancagem-a-faca-de-dois-gumes"><span class="header-section-number">100.6</span> Alavancagem: a faca de dois gumes</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">100.7</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">100.8</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">100.9</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">100.10</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol14/cap06-derivativos.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -910,21 +981,989 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
+<p>Um produtor de soja no oeste da Bahia planta em novembro e só colhe em abril. Ele já sabe, hoje, quanto vai gastar com sementes, adubo e diesel — mas não faz a menor ideia de quanto valerá a saca quando a lavoura estiver pronta. Se o preço despencar entre o plantio e a colheita, meses de trabalho podem virar prejuízo. Do outro lado do país, uma companhia aérea vende passagens com seis meses de antecedência sem saber quanto pagará pelo querosene na data do voo. E um turista que comprará dólares para uma viagem em dezembro tem o mesmo problema, em escala menor. Todos enfrentam a <strong>incerteza de um preço futuro</strong> — e todos podem, hoje, transferir essa incerteza para outra pessoa disposta a carregá-la. O instrumento que torna isso possível é o <strong>derivativo</strong>.</p>
+<p>Este capítulo apresenta os derivativos como o que eles de fato são: ferramentas para <strong>administrar risco de preço</strong>. Vamos partir dos contratos a termo e futuros, entender o mecanismo de <strong>hedge</strong> que trava um preço com antecedência, e então chegar às <strong>opções</strong> — contratos que funcionam como um seguro, dando direitos sem impor obrigações. No caminho, veremos por que os mesmos instrumentos que protegem o produtor rural podem, nas mãos erradas, multiplicar perdas a ponto de quebrar grandes empresas.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="100.1">
+<h2 data-number="100.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">100.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>definir <strong>derivativo</strong> e explicar por que seu valor “deriva” de um ativo subjacente;</li>
+<li>distinguir <strong>contrato a termo</strong> de <strong>contrato futuro</strong>, entendendo o papel do <strong>ajuste diário</strong>, da <strong>margem de garantia</strong> e da câmara de compensação;</li>
+<li>interpretar os diagramas de <strong>resultado (payoff)</strong> de posições <strong>compradas</strong> e <strong>vendidas</strong> em futuros;</li>
+<li>explicar o mecanismo do <strong>hedge</strong> e diferenciá-lo de <strong>especulação</strong> e <strong>arbitragem</strong>;</li>
+<li>definir <strong>opção de compra (call)</strong> e <strong>opção de venda (put)</strong>, calcular seus resultados no vencimento e reconhecer a <strong>assimetria</strong> entre titular e lançador;</li>
+<li>identificar os determinantes do <strong>prêmio</strong> de uma opção e o papel da <strong>alavancagem</strong> na ampliação de ganhos e perdas.</li>
+</ul>
+</section>
+<section id="o-que-é-um-derivativo" class="level2" data-number="100.2">
+<h2 data-number="100.2" class="anchored" data-anchor-id="o-que-é-um-derivativo"><span class="header-section-number">100.2</span> O que é um derivativo</h2>
+<p>Comece pela palavra. Um <strong>derivativo</strong> é um contrato cujo valor <strong>deriva</strong> — depende — do preço de outra coisa, chamada <strong>ativo subjacente</strong> (ou <em>ativo-objeto</em>). Esse subjacente pode ser uma mercadoria (soja, boi, petróleo, ouro), um ativo financeiro (uma ação, um índice como o Ibovespa, uma taxa de juros) ou uma moeda (o dólar). O derivativo não é o ativo em si; é um acordo sobre o que acontecerá com o <strong>preço</strong> desse ativo no futuro.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Derivativo">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota
+<span class="screen-reader-only">Nota</span>Definição — Derivativo
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Capítulo em construção.</p>
+<p>Um <strong>derivativo</strong> é um contrato financeiro cujo valor depende do preço de um <strong>ativo subjacente</strong>. Ele estabelece direitos e obrigações entre duas partes, referenciados a um preço futuro, sem exigir necessariamente a posse do ativo subjacente.</p>
 </div>
 </div>
+<p>A função econômica primordial do derivativo é a <strong>transferência de risco</strong>. O produtor de soja quer se livrar do risco de queda do preço; um comprador industrial, ou um especulador que aposta na alta, aceita assumi-lo. O derivativo é o instrumento que permite essa troca — ele desmembra o risco de preço do ativo físico e o negocia separadamente. É por isso que os derivativos surgiram, historicamente, nos mercados agrícolas: onde há uma longa distância no tempo entre a decisão de produzir e a venda, há incerteza de preço a administrar.</p>
+<p>Trataremos aqui das duas grandes famílias: os <strong>contratos a termo e futuros</strong>, que criam uma <strong>obrigação</strong> de comprar ou vender no futuro, e as <strong>opções</strong>, que criam um <strong>direito</strong> — a distinção que organizará todo o capítulo.</p>
+</section>
+<section id="contratos-a-termo-e-futuros" class="level2" data-number="100.3">
+<h2 data-number="100.3" class="anchored" data-anchor-id="contratos-a-termo-e-futuros"><span class="header-section-number">100.3</span> Contratos a termo e futuros</h2>
+<p>O derivativo mais simples é o <strong>contrato a termo</strong> (<em>forward</em>): um acordo entre duas partes para comprar e vender um ativo em uma <strong>data futura</strong> por um <strong>preço fixado hoje</strong>. Nada é pago no momento do acordo; a liquidação ocorre integralmente no vencimento. Nosso produtor de soja pode, em novembro, acertar com uma trading a venda de 1.000 sacas em abril a R$,120 a saca. Chegado abril, ele entrega a soja e recebe R$,120 por saca — <strong>não importa</strong> se o preço à vista naquele dia for R$,90 ou R$,150.</p>
+<p>O preço acertado é o <strong>preço a termo</strong> <span class="math inline">\(F\)</span>. Ele não é uma adivinhação do preço futuro: decorre de uma relação de não arbitragem com o preço à vista de hoje. Para um ativo sem custos de estocagem nem rendimentos, quem quisesse ter o ativo no vencimento poderia (i) comprá-lo hoje a <span class="math inline">\(S_0\)</span>, tomando o dinheiro emprestado à taxa <span class="math inline">\(r\)</span>, ou (ii) travar o termo a <span class="math inline">\(F\)</span>. As duas rotas devem custar o mesmo, sob pena de lucro sem risco. Daí o <strong>custo de carregamento</strong> (<em>cost of carry</em>):</p>
+<p><span id="eq-preco-futuro"><span class="math display">\[
+F = S_0\,(1+r)^{T},
+\tag{100.1}\]</span></span></p>
+<p>onde <span class="math inline">\(S_0\)</span> é o preço à vista hoje, <span class="math inline">\(r\)</span> a taxa de juros do período e <span class="math inline">\(T\)</span> o prazo. Para commodities, somam-se custos de armazenagem; para ações, descontam-se dividendos. A intuição é a do valor do dinheiro no tempo (<a href="cap02-valor-do-dinheiro-no-tempo.html" class="quarto-xref"><span>Capítulo 96</span></a>): o preço futuro é o preço de hoje “carregado” pelos juros.</p>
+<p>O contrato a termo tem, porém, dois inconvenientes. Ele é <strong>sob medida</strong> e negociado em <strong>balcão</strong> (diretamente entre as partes), o que o torna pouco líquido — difícil de repassar a um terceiro. E carrega <strong>risco de contraparte</strong>: se, em abril, o comprador quebrar ou simplesmente não honrar o acordo, o produtor fica a ver navios. O <strong>contrato futuro</strong> nasce para resolver esses dois problemas.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Contrato futuro">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Contrato futuro
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um <strong>contrato futuro</strong> é um contrato a termo <strong>padronizado</strong> (em quantidade, qualidade e vencimento) e negociado em <strong>bolsa</strong>. Uma <strong>câmara de compensação</strong> (<em>clearing</em>) se interpõe entre comprador e vendedor, tornando-se a contraparte de ambos, e administra dois mecanismos que eliminam o risco de calote: a <strong>margem de garantia</strong> e o <strong>ajuste diário</strong>.</p>
+</div>
+</div>
+<p>A padronização torna o contrato <strong>fungível</strong>: como todos os contratos de “boi gordo, vencimento outubro” são idênticos, eles podem ser comprados e revendidos livremente na bolsa, gerando liquidez. E a câmara de compensação (no Brasil, a da <strong>B3</strong>, <a href="cap01-mercado-de-capitais.html" class="quarto-xref"><span>Capítulo 95</span></a>) garante a liquidação por dois instrumentos:</p>
+<ul>
+<li><strong>Margem de garantia:</strong> ao abrir a posição, cada parte deposita uma quantia (uma fração do valor do contrato) como caução, que cobre eventuais perdas.</li>
+<li><strong>Ajuste diário</strong> (<em>marking-to-market</em>): em vez de esperar o vencimento, os ganhos e perdas são apurados e liquidados <strong>todo dia</strong>, com base na variação do preço futuro. Quem perdeu no dia paga; quem ganhou recebe, em dinheiro, diariamente. Ao chegar o vencimento, todos os resultados já foram acertados ao longo do caminho — o que reduz a quase zero o risco de um acúmulo de dívida impagável.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — futuro não é 'aposta paga só no fim'">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — futuro não é ‘aposta paga só no fim’
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Muita gente imagina que, num contrato futuro, o acerto de contas só ocorre no vencimento. Não é assim: o <strong>ajuste diário</strong> credita ou debita sua conta a cada pregão. Uma posição que “no fim” daria lucro pode, no meio do caminho, exigir depósitos de margem tão grandes (as chamadas de margem, <em>margin calls</em>) que o investidor sem caixa é obrigado a encerrá-la no prejuízo. O fluxo de caixa intermediário importa — e já quebrou muita gente que “estava certa no longo prazo”.</p>
+</div>
+</div>
+<section id="posições-comprada-e-vendida" class="level3" data-number="100.3.1">
+<h3 data-number="100.3.1" class="anchored" data-anchor-id="posições-comprada-e-vendida"><span class="header-section-number">100.3.1</span> Posições comprada e vendida</h3>
+<p>Em qualquer derivativo, há dois lados. Quem assume a posição <strong>comprada</strong> (<em>long</em>) concorda em <strong>comprar</strong> o ativo no futuro pelo preço acertado — e, portanto, <strong>ganha se o preço subir</strong> (pagará <span class="math inline">\(F\)</span> por algo que passou a valer mais). Quem assume a posição <strong>vendida</strong> (<em>short</em>) concorda em <strong>vender</strong> — e <strong>ganha se o preço cair</strong> (receberá <span class="math inline">\(F\)</span> por algo que passou a valer menos). O resultado de cada posição no vencimento é uma função linear do preço à vista <span class="math inline">\(S_T\)</span>:</p>
+<p><span class="math display">\[
+\text{resultado (comprado)} = S_T - F, \qquad \text{resultado (vendido)} = F - S_T.
+\]</span></p>
+<p>A <a href="#fig-payoff-futuro" class="quarto-xref">Figura&nbsp;<span>100.1</span></a> mostra esses dois resultados. São retas espelhadas que se cruzam em <span class="math inline">\(S_T = F\)</span>, onde ambas dão resultado zero. Note que o ganho de um lado é exatamente a perda do outro: o mercado futuro é um <strong>jogo de soma zero</strong> entre as partes (antes de custos) — a riqueza não é criada nem destruída, apenas <strong>transferida</strong> conforme o preço se move.</p>
+<div id="fig-payoff-futuro" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-payoff-futuro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="196.609504pt" height="165.644941pt" viewbox="-68.014948 -68.014945 196.609504 165.644941">
+<defs>
+<path id="tz_fig_payoff_futuro_g0-84" d="M3.108344-3.598506C3.156164-3.789788 3.16812-3.801743 3.4132-3.801743H3.963138C4.60274-3.801743 4.692403-3.616438 4.692403-3.269738C4.692403-3.186052 4.680448-3.024658 4.656538-2.839352C4.65056-2.82142 4.638605-2.755666 4.638605-2.737733C4.638605-2.677958 4.686426-2.642092 4.752179-2.642092C4.847821-2.642092 4.859776-2.701868 4.871731-2.791532L5.033126-3.939228C5.033126-4.040847 4.967372-4.040847 4.847821-4.040847H.962391C.806974-4.040847 .795019-4.040847 .753176-3.915318L.364633-2.827397C.340722-2.755666 .340722-2.737733 .340722-2.731756C.340722-2.713823 .3467-2.642092 .448319-2.642092C.532005-2.642092 .537983-2.660025 .591781-2.815442C.860772-3.544707 1.046077-3.801743 1.817186-3.801743H2.361146C2.47472-3.801743 2.486675-3.801743 2.558406-3.783811L1.751432-.514072C1.709589-.3467 1.679701-.292902 1.512329-.268991C1.344956-.239103 .998257-.239103 .992279-.239103C.836862-.239103 .824907-.239103 .800996-.221171C.771108-.19726 .747198-.113574 .747198-.083686C.747198-.077709 .759153 0 .860772 0C1.022167 0 1.201494-.017933 1.362889-.017933C1.601993-.017933 1.75741-.02391 1.918804-.02391C2.098132-.02391 2.27746-.017933 2.456787-.017933C2.630137-.017933 2.82142 0 2.99477 0C3.04259 0 3.084433 0 3.108344-.041843C3.120299-.059776 3.144209-.131507 3.144209-.155417C3.126276-.239103 3.084433-.239103 2.899128-.239103C2.767621-.239103 2.642092-.245081 2.510585-.251059C2.373101-.263014 2.30137-.268991 2.30137-.358655L3.108344-3.598506Z"></path>
+<path id="tz_fig_payoff_futuro_g1-70" d="M2.518555-2.582316H3.347447C4.000996-2.582316 4.032877-2.454795 4.032877-2.223661C4.032877-2.16787 4.032877-2.088169 3.977086-1.880946C3.969116-1.849066 3.961146-1.785305 3.961146-1.761395C3.961146-1.753425 3.961146-1.649813 4.080697-1.649813C4.176339-1.649813 4.200249-1.729514 4.224159-1.833126L4.646575-3.53873C4.654545-3.55467 4.678456-3.658281 4.678456-3.666252C4.678456-3.698132 4.654545-3.777833 4.550934-3.777833C4.455293-3.777833 4.439352-3.706102 4.415442-3.610461C4.25604-2.988792 4.072727-2.84533 3.363387-2.84533H2.590286L3.092403-4.853798C3.164134-5.140722 3.172105-5.156663 3.498879-5.156663H4.670486C5.618929-5.156663 5.889913-4.95741 5.889913-4.27198C5.889913-4.104608 5.850062-3.897385 5.850062-3.745953C5.850062-3.650311 5.905853-3.610461 5.969614-3.610461C6.081196-3.610461 6.089166-3.682192 6.105106-3.817684L6.248568-5.172603C6.256538-5.212453 6.256538-5.268244 6.256538-5.308095C6.256538-5.419676 6.160897-5.419676 6.017435-5.419676H1.928767C1.785305-5.419676 1.681694-5.419676 1.681694-5.276214C1.681694-5.156663 1.777335-5.156663 1.912827-5.156663C1.968618-5.156663 2.080199-5.156663 2.215691-5.140722C2.383064-5.124782 2.406974-5.108842 2.406974-5.029141C2.406974-4.98929 2.399004-4.95741 2.375093-4.869738L1.315068-.629639C1.243337-.326775 1.227397-.263014 .637609-.263014C.486177-.263014 .390535-.263014 .390535-.111582C.390535-.079701 .414446 0 .518057 0C.68543 0 .876712-.02391 1.052055-.02391H2.15193C2.303362-.01594 2.590286 0 2.741719 0C2.797509 0 2.909091 0 2.909091-.151432C2.909091-.263014 2.81345-.263014 2.646077-.263014S2.414944-.263014 2.231631-.278954C2.016438-.302864 1.992528-.326775 1.992528-.422416C1.992528-.430386 1.992528-.478207 2.024408-.597758L2.518555-2.582316Z"></path>
+<path id="tz_fig_payoff_futuro_g1-83" d="M5.347945-5.395766C5.355915-5.427646 5.371856-5.475467 5.371856-5.515318C5.371856-5.571108 5.324035-5.610959 5.268244-5.610959S5.196513-5.595019 5.108842-5.499377C5.021171-5.395766 4.813948-5.140722 4.726276-5.045081C4.415442-5.499377 3.913325-5.610959 3.506849-5.610959C2.399004-5.610959 1.45056-4.678456 1.45056-3.769863C1.45056-3.307597 1.697634-3.036613 1.737484-2.980822C2.000498-2.701868 2.231631-2.638107 2.805479-2.502615C3.084433-2.430884 3.100374-2.430884 3.331507-2.375093S4.072727-2.191781 4.072727-1.530262C4.072727-.836862 3.387298-.095641 2.550436-.095641C2.032379-.095641 1.083935-.255044 1.083935-1.243337C1.083935-1.267248 1.083935-1.43462 1.131756-1.625903L1.139726-1.705604C1.139726-1.801245 1.052055-1.809215 1.020174-1.809215C.916563-1.809215 .908593-1.777335 .868742-1.594022L.541968-.294894C.510087-.175342 .454296 .039851 .454296 .063761C.454296 .127522 .502117 .167372 .557908 .167372S.621669 .159402 .70934 .055791L1.091905-.390535C1.275218-.151432 1.729514 .167372 2.534496 .167372C3.690162 .167372 4.638605-.876712 4.638605-1.833126C4.638605-2.199751 4.519054-2.486675 4.303861-2.709838C4.064757-2.972852 3.801743-3.036613 3.427148-3.132254C3.196015-3.188045 2.885181-3.259776 2.701868-3.307597C2.462765-3.363387 2.016438-3.52279 2.016438-4.080697C2.016438-4.702366 2.685928-5.371856 3.498879-5.371856C4.216189-5.371856 4.710336-4.99726 4.710336-4.136488C4.710336-3.945205 4.678456-3.777833 4.678456-3.745953C4.678456-3.650311 4.750187-3.634371 4.805978-3.634371C4.901619-3.634371 4.909589-3.666252 4.941469-3.793773L5.347945-5.395766Z"></path>
+<path id="tz_fig_payoff_futuro_g2-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_payoff_futuro_g2-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_payoff_futuro_g2-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_payoff_futuro_g2-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_payoff_futuro_g2-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_payoff_futuro_g2-108" d="M1.522291-5.531258L.334745-5.443587V-5.180573C.876712-5.180573 .940473-5.124782 .940473-4.734247V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.227397-.02391C1.3868-.02391 1.817186-.02391 2.12802 0V-.263014C1.617933-.263014 1.522291-.263014 1.522291-.621669V-5.531258Z"></path>
+<path id="tz_fig_payoff_futuro_g2-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+<path id="tz_fig_payoff_futuro_g2-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_payoff_futuro_g2-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_payoff_futuro_g2-112" d="M2.096139 1.283188C1.586052 1.283188 1.490411 1.283188 1.490411 .924533V-.390535C1.865006 .01594 2.271482 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.717808 3.610461-3.514819 2.646077-3.514819C2.335243-3.514819 1.872976-3.435118 1.466501-3.020672V-3.514819L.278954-3.427148V-3.164134C.844832-3.164134 .884682-3.116314 .884682-2.781569V.924533C.884682 1.283188 .789041 1.283188 .278954 1.283188V1.546202C.621669 1.522291 .972354 1.522291 1.187547 1.522291C1.41868 1.522291 1.753425 1.522291 2.096139 1.546202V1.283188ZM1.490411-2.654047C1.673724-2.972852 2.072229-3.267746 2.574346-3.267746C3.188045-3.267746 3.706102-2.590286 3.706102-1.721544C3.706102-.804981 3.132254-.143462 2.486675-.143462C2.207721-.143462 1.841096-.263014 1.586052-.661519C1.490411-.797011 1.490411-.804981 1.490411-.956413V-2.654047Z"></path>
+<path id="tz_fig_payoff_futuro_g2-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_payoff_futuro_g2-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_payoff_futuro_g2-116" d="M1.482441-3.172105H2.669988V-3.435118H1.482441V-4.901619H1.235367C1.227397-4.176339 .900623-3.419178 .159402-3.395268V-3.172105H.876712V-.996264C.876712-.063761 1.594022 .079701 1.960648 .079701C2.494645 .079701 2.81345-.398506 2.81345-.996264V-1.44259H2.566376V-1.012204C2.566376-.462267 2.319303-.167372 2.016438-.167372C1.482441-.167372 1.482441-.852802 1.482441-.980324V-3.172105Z"></path>
+<path id="tz_fig_payoff_futuro_g2-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+<path id="tz_fig_payoff_futuro_g2-118" d="M3.53076-2.614197C3.722042-3.060523 3.993026-3.164134 4.28792-3.172105V-3.435118C4.008966-3.411208 3.993026-3.411208 3.666252-3.411208C3.594521-3.411208 3.219925-3.411208 2.972852-3.435118V-3.172105C3.251806-3.156164 3.323537-2.980822 3.323537-2.84533C3.323537-2.765629 3.307597-2.725778 3.275716-2.654047L2.414944-.645579L1.474471-2.805479C1.42665-2.909091 1.42665-2.956912 1.42665-2.972852C1.42665-3.172105 1.713574-3.172105 1.849066-3.172105V-3.435118C1.506351-3.411208 1.131756-3.411208 .980324-3.411208C.812951-3.411208 .430386-3.411208 .175342-3.435118V-3.172105C.661519-3.172105 .70137-3.124284 .820922-2.8533L2.016438-.095641C2.072229 .02391 2.12005 .079701 2.231631 .079701S2.399004 .01594 2.438854-.079701L3.53076-2.614197Z"></path>
+</defs>
+<g id="tz_fig_payoff_futuro_page1">
+<g stroke-miterlimit="10" transform="translate(-79.1541,20.895443)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M11.38092 0H188.63332" fill="none"></path>
+<g transform="translate(188.63332,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(194.16626,-2.0611)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-79.1541,20.895443)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-79.1541" y="20.895443" href="#tz_fig_payoff_futuro_g1-83"></use>
+<use x="-74.003903" y="22.234872" href="#tz_fig_payoff_futuro_g0-84"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M99.5846-76.82231V74.82234" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,99.5846,74.82234)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(82.55727,80.35529)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-79.1541,20.895443)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-79.1541" y="20.895443" href="#tz_fig_payoff_futuro_g2-114"></use>
+<use x="-75.85393" y="20.895443" href="#tz_fig_payoff_futuro_g2-101"></use>
+<use x="-72.090212" y="20.895443" href="#tz_fig_payoff_futuro_g2-115"></use>
+<use x="-68.749909" y="20.895443" href="#tz_fig_payoff_futuro_g2-117"></use>
+<use x="-64.045261" y="20.895443" href="#tz_fig_payoff_futuro_g2-108"></use>
+<use x="-61.692937" y="20.895443" href="#tz_fig_payoff_futuro_g2-116"></use>
+<use x="-58.399684" y="20.895443" href="#tz_fig_payoff_futuro_g2-97"></use>
+<use x="-54.165501" y="20.895443" href="#tz_fig_payoff_futuro_g2-100"></use>
+<use x="-49.460854" y="20.895443" href="#tz_fig_payoff_futuro_g2-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(96.3047,-11.27588)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-79.1541,20.895443)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-79.1541" y="20.895443" href="#tz_fig_payoff_futuro_g1-70"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M28.45274-71.13185L170.71646 71.13185" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(157.17761,61.99402)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-79.1541,20.895443)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-79.1541" y="20.895443" href="#tz_fig_payoff_futuro_g2-99"></use>
+<use x="-75.390382" y="20.895443" href="#tz_fig_payoff_futuro_g2-111"></use>
+<use x="-71.156199" y="20.895443" href="#tz_fig_payoff_futuro_g2-109"></use>
+<use x="-64.099228" y="20.895443" href="#tz_fig_payoff_futuro_g2-112"></use>
+<use x="-59.39458" y="20.895443" href="#tz_fig_payoff_futuro_g2-114"></use>
+<use x="-56.09441" y="20.895443" href="#tz_fig_payoff_futuro_g2-97"></use>
+<use x="-51.860227" y="20.895443" href="#tz_fig_payoff_futuro_g2-100"></use>
+<use x="-47.155579" y="20.895443" href="#tz_fig_payoff_futuro_g2-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<path d="M28.45274 71.13185L170.71646-71.13185" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(157.17761,-65.994)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-79.1541,20.895443)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-79.1541" y="20.895443" href="#tz_fig_payoff_futuro_g2-118"></use>
+<use x="-74.919917" y="20.895443" href="#tz_fig_payoff_futuro_g2-101"></use>
+<use x="-71.156199" y="20.895443" href="#tz_fig_payoff_futuro_g2-110"></use>
+<use x="-66.451551" y="20.895443" href="#tz_fig_payoff_futuro_g2-100"></use>
+<use x="-61.746904" y="20.895443" href="#tz_fig_payoff_futuro_g2-105"></use>
+<use x="-59.39458" y="20.895443" href="#tz_fig_payoff_futuro_g2-100"></use>
+<use x="-54.689932" y="20.895443" href="#tz_fig_payoff_futuro_g2-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-payoff-futuro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;100.1: Resultado no vencimento de posições em um contrato futuro. O comprado ganha com a alta (<span class="math inline">\(S_T &gt; F\)</span>); o vendido, com a queda. O ganho de um é a perda do outro.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="hedge-especulação-e-arbitragem" class="level2" data-number="100.4">
+<h2 data-number="100.4" class="anchored" data-anchor-id="hedge-especulação-e-arbitragem"><span class="header-section-number">100.4</span> Hedge, especulação e arbitragem</h2>
+<p>Os mesmos contratos servem a três propósitos econômicos bem distintos. Distingui-los é essencial para não confundir uma ferramenta de proteção com uma aposta.</p>
+<p>O <strong>hedge</strong> (proteção) é o uso do derivativo para <strong>reduzir</strong> um risco de preço a que já se está exposto. O produtor de soja está <strong>naturalmente comprado</strong> no ativo físico: ele possui (ou terá) a soja e perde se o preço cair. Para se proteger, ele assume no mercado futuro a posição <strong>oposta</strong> — <strong>vende</strong> futuros de soja. Se o preço cair, a perda na lavoura é compensada pelo ganho na posição vendida; se subir, o ganho na lavoura é anulado pela perda no futuro. Em ambos os casos, o preço de venda fica <strong>travado</strong> perto de <span class="math inline">\(F\)</span>. É o que a <a href="#fig-hedge" class="quarto-xref">Figura&nbsp;<span>100.2</span></a> ilustra: a soma de uma posição física comprada com um futuro vendido é uma linha aproximadamente <strong>horizontal</strong> — o resultado deixou de depender do preço.</p>
+<div id="fig-hedge" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hedge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="200.680269pt" height="165.644941pt" viewbox="-68.014948 -68.014945 200.680269 165.644941">
+<defs>
+<path id="tz_fig_hedge_g0-84" d="M3.108344-3.598506C3.156164-3.789788 3.16812-3.801743 3.4132-3.801743H3.963138C4.60274-3.801743 4.692403-3.616438 4.692403-3.269738C4.692403-3.186052 4.680448-3.024658 4.656538-2.839352C4.65056-2.82142 4.638605-2.755666 4.638605-2.737733C4.638605-2.677958 4.686426-2.642092 4.752179-2.642092C4.847821-2.642092 4.859776-2.701868 4.871731-2.791532L5.033126-3.939228C5.033126-4.040847 4.967372-4.040847 4.847821-4.040847H.962391C.806974-4.040847 .795019-4.040847 .753176-3.915318L.364633-2.827397C.340722-2.755666 .340722-2.737733 .340722-2.731756C.340722-2.713823 .3467-2.642092 .448319-2.642092C.532005-2.642092 .537983-2.660025 .591781-2.815442C.860772-3.544707 1.046077-3.801743 1.817186-3.801743H2.361146C2.47472-3.801743 2.486675-3.801743 2.558406-3.783811L1.751432-.514072C1.709589-.3467 1.679701-.292902 1.512329-.268991C1.344956-.239103 .998257-.239103 .992279-.239103C.836862-.239103 .824907-.239103 .800996-.221171C.771108-.19726 .747198-.113574 .747198-.083686C.747198-.077709 .759153 0 .860772 0C1.022167 0 1.201494-.017933 1.362889-.017933C1.601993-.017933 1.75741-.02391 1.918804-.02391C2.098132-.02391 2.27746-.017933 2.456787-.017933C2.630137-.017933 2.82142 0 2.99477 0C3.04259 0 3.084433 0 3.108344-.041843C3.120299-.059776 3.144209-.131507 3.144209-.155417C3.126276-.239103 3.084433-.239103 2.899128-.239103C2.767621-.239103 2.642092-.245081 2.510585-.251059C2.373101-.263014 2.30137-.268991 2.30137-.358655L3.108344-3.598506Z"></path>
+<path id="tz_fig_hedge_g1-83" d="M5.347945-5.395766C5.355915-5.427646 5.371856-5.475467 5.371856-5.515318C5.371856-5.571108 5.324035-5.610959 5.268244-5.610959S5.196513-5.595019 5.108842-5.499377C5.021171-5.395766 4.813948-5.140722 4.726276-5.045081C4.415442-5.499377 3.913325-5.610959 3.506849-5.610959C2.399004-5.610959 1.45056-4.678456 1.45056-3.769863C1.45056-3.307597 1.697634-3.036613 1.737484-2.980822C2.000498-2.701868 2.231631-2.638107 2.805479-2.502615C3.084433-2.430884 3.100374-2.430884 3.331507-2.375093S4.072727-2.191781 4.072727-1.530262C4.072727-.836862 3.387298-.095641 2.550436-.095641C2.032379-.095641 1.083935-.255044 1.083935-1.243337C1.083935-1.267248 1.083935-1.43462 1.131756-1.625903L1.139726-1.705604C1.139726-1.801245 1.052055-1.809215 1.020174-1.809215C.916563-1.809215 .908593-1.777335 .868742-1.594022L.541968-.294894C.510087-.175342 .454296 .039851 .454296 .063761C.454296 .127522 .502117 .167372 .557908 .167372S.621669 .159402 .70934 .055791L1.091905-.390535C1.275218-.151432 1.729514 .167372 2.534496 .167372C3.690162 .167372 4.638605-.876712 4.638605-1.833126C4.638605-2.199751 4.519054-2.486675 4.303861-2.709838C4.064757-2.972852 3.801743-3.036613 3.427148-3.132254C3.196015-3.188045 2.885181-3.259776 2.701868-3.307597C2.462765-3.363387 2.016438-3.52279 2.016438-4.080697C2.016438-4.702366 2.685928-5.371856 3.498879-5.371856C4.216189-5.371856 4.710336-4.99726 4.710336-4.136488C4.710336-3.945205 4.678456-3.777833 4.678456-3.745953C4.678456-3.650311 4.750187-3.634371 4.805978-3.634371C4.901619-3.634371 4.909589-3.666252 4.941469-3.793773L5.347945-5.395766Z"></path>
+<path id="tz_fig_hedge_g2-16" d="M1.522291-3.514819L.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819Z"></path>
+<path id="tz_fig_hedge_g2-19" d="M3.156164-4.98132C3.243836-5.045081 3.315567-5.116812 3.315567-5.244334C3.315567-5.427646 3.148194-5.563138 3.004732-5.563138C2.972852-5.563138 2.86127-5.563138 2.757659-5.435616L1.737484-4.224159L1.904857-4.040847L3.156164-4.98132Z"></path>
+<path id="tz_fig_hedge_g2-40" d="M2.654047 1.992528C2.717808 1.992528 2.81345 1.992528 2.81345 1.896887C2.81345 1.865006 2.805479 1.857036 2.701868 1.753425C1.609963 .72528 1.338979-.757161 1.338979-1.992528C1.338979-4.28792 2.287422-5.363885 2.693898-5.730511C2.805479-5.834122 2.81345-5.842092 2.81345-5.881943S2.781569-5.977584 2.701868-5.977584C2.574346-5.977584 2.175841-5.571108 2.11208-5.499377C1.044085-4.383562 .820922-2.948941 .820922-1.992528C.820922-.207223 1.570112 1.227397 2.654047 1.992528Z"></path>
+<path id="tz_fig_hedge_g2-41" d="M2.462765-1.992528C2.462765-2.749689 2.335243-3.658281 1.841096-4.598755C1.45056-5.332005 .72528-5.977584 .581818-5.977584C.502117-5.977584 .478207-5.921793 .478207-5.881943C.478207-5.850062 .478207-5.834122 .573848-5.738481C1.689664-4.678456 1.944707-3.219925 1.944707-1.992528C1.944707 .294894 .996264 1.378829 .589788 1.745455C.486177 1.849066 .478207 1.857036 .478207 1.896887S.502117 1.992528 .581818 1.992528C.70934 1.992528 1.107846 1.586052 1.171606 1.514321C2.239601 .398506 2.462765-1.036115 2.462765-1.992528Z"></path>
+<path id="tz_fig_hedge_g2-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_hedge_g2-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_hedge_g2-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_hedge_g2-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_hedge_g2-102" d="M1.522291-3.172105H2.478705V-3.435118H1.498381V-4.335741C1.498381-5.029141 1.888917-5.387796 2.239601-5.387796C2.367123-5.387796 2.438854-5.355915 2.470735-5.347945C2.327273-5.276214 2.287422-5.140722 2.287422-5.037111C2.287422-4.829888 2.438854-4.678456 2.646077-4.678456C2.86127-4.678456 3.004732-4.829888 3.004732-5.037111C3.004732-5.379826 2.669988-5.610959 2.247572-5.610959C1.649813-5.610959 .940473-5.180573 .940473-4.327771V-3.435118H.286924V-3.172105H.940473V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.083935-.02391 1.275218-.02391C1.745455-.02391 1.761395-.02391 2.279452 0V-.263014H2.12005C1.538232-.263014 1.522291-.350685 1.522291-.637609V-3.172105Z"></path>
+<path id="tz_fig_hedge_g2-103" d="M1.378829-.549938C1.131756-.573848 .932503-.789041 .932503-1.075965C.932503-1.267248 .980324-1.338979 1.036115-1.41071C1.370859-1.211457 1.681694-1.171606 1.872976-1.171606C2.662017-1.171606 3.243836-1.721544 3.243836-2.343213C3.243836-2.646077 3.108344-2.901121 2.917061-3.108344C3.028643-3.203985 3.291656-3.371357 3.682192-3.379328C3.650311-3.355417 3.610461-3.315567 3.610461-3.188045C3.610461-3.044583 3.714072-2.940971 3.857534-2.940971C3.969116-2.940971 4.104608-3.012702 4.104608-3.196015C4.104608-3.331507 4.000996-3.602491 3.650311-3.602491C3.514819-3.602491 3.132254-3.57061 2.765629-3.235866C2.566376-3.379328 2.255542-3.514819 1.880946-3.514819C1.091905-3.514819 .510087-2.964882 .510087-2.343213C.510087-1.968618 .71731-1.689664 .884682-1.530262C.70934-1.331009 .645579-1.075965 .645579-.884682C.645579-.557908 .804981-.310834 .980324-.175342C.565878-.063761 .239103 .247073 .239103 .613699C.239103 1.187547 1.060025 1.633873 2.11208 1.633873C3.108344 1.633873 3.985056 1.227397 3.985056 .597758C3.985056 .167372 3.730012-.167372 3.466999-.302864C2.996762-.549938 2.606227-.549938 1.825156-.549938H1.378829ZM1.880946-1.40274C1.139726-1.40274 1.139726-2.16787 1.139726-2.343213C1.139726-2.638107 1.179577-2.84533 1.299128-3.004732C1.43462-3.188045 1.657783-3.283686 1.872976-3.283686C2.614197-3.283686 2.614197-2.518555 2.614197-2.343213C2.614197-2.048319 2.574346-1.841096 2.454795-1.681694C2.279452-1.458531 2.024408-1.40274 1.880946-1.40274ZM2.255542-.03188C2.470735-.03188 3.514819-.03188 3.514819 .605729C3.514819 1.036115 2.901121 1.40274 2.11208 1.40274C1.315068 1.40274 .70934 1.036115 .70934 .605729C.70934 .438356 .836862-.03188 1.490411-.03188H2.255542Z"></path>
+<path id="tz_fig_hedge_g2-104" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C2.032379-3.514819 1.665753-3.068493 1.522291-2.81345H1.514321V-5.531258L.326775-5.443587V-5.180573C.868742-5.180573 .932503-5.124782 .932503-4.734247V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_hedge_g2-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_hedge_g2-108" d="M1.522291-5.531258L.334745-5.443587V-5.180573C.876712-5.180573 .940473-5.124782 .940473-4.734247V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.227397-.02391C1.3868-.02391 1.817186-.02391 2.12802 0V-.263014C1.617933-.263014 1.522291-.263014 1.522291-.621669V-5.531258Z"></path>
+<path id="tz_fig_hedge_g2-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_hedge_g2-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_hedge_g2-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_hedge_g2-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_hedge_g2-116" d="M1.482441-3.172105H2.669988V-3.435118H1.482441V-4.901619H1.235367C1.227397-4.176339 .900623-3.419178 .159402-3.395268V-3.172105H.876712V-.996264C.876712-.063761 1.594022 .079701 1.960648 .079701C2.494645 .079701 2.81345-.398506 2.81345-.996264V-1.44259H2.566376V-1.012204C2.566376-.462267 2.319303-.167372 2.016438-.167372C1.482441-.167372 1.482441-.852802 1.482441-.980324V-3.172105Z"></path>
+<path id="tz_fig_hedge_g2-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+<path id="tz_fig_hedge_g2-118" d="M3.53076-2.614197C3.722042-3.060523 3.993026-3.164134 4.28792-3.172105V-3.435118C4.008966-3.411208 3.993026-3.411208 3.666252-3.411208C3.594521-3.411208 3.219925-3.411208 2.972852-3.435118V-3.172105C3.251806-3.156164 3.323537-2.980822 3.323537-2.84533C3.323537-2.765629 3.307597-2.725778 3.275716-2.654047L2.414944-.645579L1.474471-2.805479C1.42665-2.909091 1.42665-2.956912 1.42665-2.972852C1.42665-3.172105 1.713574-3.172105 1.849066-3.172105V-3.435118C1.506351-3.411208 1.131756-3.411208 .980324-3.411208C.812951-3.411208 .430386-3.411208 .175342-3.435118V-3.172105C.661519-3.172105 .70137-3.124284 .820922-2.8533L2.016438-.095641C2.072229 .02391 2.12005 .079701 2.231631 .079701S2.399004 .01594 2.438854-.079701L3.53076-2.614197Z"></path>
+</defs>
+<g id="tz_fig_hedge_page1">
+<g stroke-miterlimit="10" transform="translate(-76.67475,20.895443)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M11.38092 0H188.63332" fill="none"></path>
+<g transform="translate(188.63332,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(194.16626,-2.0611)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-76.67475,20.895443)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-76.67475" y="20.895443" href="#tz_fig_hedge_g1-83"></use>
+<use x="-71.524553" y="22.234872" href="#tz_fig_hedge_g0-84"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M99.5846-76.82231V74.82234" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,99.5846,74.82234)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(82.55727,80.35529)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-76.67475,20.895443)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-76.67475" y="20.895443" href="#tz_fig_hedge_g2-114"></use>
+<use x="-73.37458" y="20.895443" href="#tz_fig_hedge_g2-101"></use>
+<use x="-69.610862" y="20.895443" href="#tz_fig_hedge_g2-115"></use>
+<use x="-66.270559" y="20.895443" href="#tz_fig_hedge_g2-117"></use>
+<use x="-61.565911" y="20.895443" href="#tz_fig_hedge_g2-108"></use>
+<use x="-59.213587" y="20.895443" href="#tz_fig_hedge_g2-116"></use>
+<use x="-55.920334" y="20.895443" href="#tz_fig_hedge_g2-97"></use>
+<use x="-51.686151" y="20.895443" href="#tz_fig_hedge_g2-100"></use>
+<use x="-46.981504" y="20.895443" href="#tz_fig_hedge_g2-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M28.45274-71.13185L170.71646 71.13185" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(151.48715,62.43846)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-76.67475,20.895443)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-76.67475" y="20.895443" href="#tz_fig_hedge_g2-108"></use>
+<use x="-74.322426" y="20.895443" href="#tz_fig_hedge_g2-97"></use>
+<use x="-70.323476" y="20.895443" href="#tz_fig_hedge_g2-118"></use>
+<use x="-66.089293" y="20.895443" href="#tz_fig_hedge_g2-111"></use>
+<use x="-61.85511" y="20.895443" href="#tz_fig_hedge_g2-117"></use>
+<use x="-57.150462" y="20.895443" href="#tz_fig_hedge_g2-114"></use>
+<use x="-53.850292" y="20.895443" href="#tz_fig_hedge_g2-97"></use>
+<use x="-46.793321" y="20.895443" href="#tz_fig_hedge_g2-40"></use>
+<use x="-43.500067" y="20.895443" href="#tz_fig_hedge_g2-102"></use>
+<use x="-41.853441" y="20.895443" href="#tz_fig_hedge_g2-19"></use>
+<use x="-40.912511" y="20.895443" href="#tz_fig_hedge_g2-16"></use>
+<use x="-38.560188" y="20.895443" href="#tz_fig_hedge_g2-115"></use>
+<use x="-35.219885" y="20.895443" href="#tz_fig_hedge_g2-105"></use>
+<use x="-32.867561" y="20.895443" href="#tz_fig_hedge_g2-99"></use>
+<use x="-29.103843" y="20.895443" href="#tz_fig_hedge_g2-111"></use>
+<use x="-24.86966" y="20.895443" href="#tz_fig_hedge_g2-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<path d="M28.45274 71.13185L170.71646-71.13185" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(151.48715,-65.994)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-76.67475,20.895443)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-76.67475" y="20.895443" href="#tz_fig_hedge_g2-102"></use>
+<use x="-74.087194" y="20.895443" href="#tz_fig_hedge_g2-117"></use>
+<use x="-69.382546" y="20.895443" href="#tz_fig_hedge_g2-116"></use>
+<use x="-66.089293" y="20.895443" href="#tz_fig_hedge_g2-117"></use>
+<use x="-61.384645" y="20.895443" href="#tz_fig_hedge_g2-114"></use>
+<use x="-58.084475" y="20.895443" href="#tz_fig_hedge_g2-111"></use>
+<use x="-51.027504" y="20.895443" href="#tz_fig_hedge_g2-118"></use>
+<use x="-46.793321" y="20.895443" href="#tz_fig_hedge_g2-101"></use>
+<use x="-43.029603" y="20.895443" href="#tz_fig_hedge_g2-110"></use>
+<use x="-38.324955" y="20.895443" href="#tz_fig_hedge_g2-100"></use>
+<use x="-33.620308" y="20.895443" href="#tz_fig_hedge_g2-105"></use>
+<use x="-31.267984" y="20.895443" href="#tz_fig_hedge_g2-100"></use>
+<use x="-26.563336" y="20.895443" href="#tz_fig_hedge_g2-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<g fill="#3fb618" stroke="#3fb618">
+<path d="M28.45274 0H170.71646" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#3fb618" stroke="#3fb618">
+<g fill="#3fb618" stroke="#3fb618">
+</g>
+<g transform="translate(12.02525,8.94716)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-76.67475,20.895443)scale(-1,-1)">
+<g fill="#3fb618">
+<g stroke="none">
+<g fill="#3fb618">
+<use x="-76.67475" y="20.895443" href="#tz_fig_hedge_g2-114"></use>
+<use x="-73.37458" y="20.895443" href="#tz_fig_hedge_g2-101"></use>
+<use x="-69.610862" y="20.895443" href="#tz_fig_hedge_g2-115"></use>
+<use x="-66.270559" y="20.895443" href="#tz_fig_hedge_g2-117"></use>
+<use x="-61.565911" y="20.895443" href="#tz_fig_hedge_g2-108"></use>
+<use x="-59.213587" y="20.895443" href="#tz_fig_hedge_g2-116"></use>
+<use x="-55.920334" y="20.895443" href="#tz_fig_hedge_g2-97"></use>
+<use x="-51.686151" y="20.895443" href="#tz_fig_hedge_g2-100"></use>
+<use x="-46.981504" y="20.895443" href="#tz_fig_hedge_g2-111"></use>
+<use x="-39.924532" y="20.895443" href="#tz_fig_hedge_g2-116"></use>
+<use x="-36.631279" y="20.895443" href="#tz_fig_hedge_g2-114"></use>
+<use x="-33.331109" y="20.895443" href="#tz_fig_hedge_g2-97"></use>
+<use x="-29.332158" y="20.895443" href="#tz_fig_hedge_g2-118"></use>
+<use x="-25.333208" y="20.895443" href="#tz_fig_hedge_g2-97"></use>
+<use x="-21.099025" y="20.895443" href="#tz_fig_hedge_g2-100"></use>
+<use x="-16.394377" y="20.895443" href="#tz_fig_hedge_g2-111"></use>
+<use x="-9.337406" y="20.895443" href="#tz_fig_hedge_g2-40"></use>
+<use x="-6.044153" y="20.895443" href="#tz_fig_hedge_g2-104"></use>
+<use x="-1.339505" y="20.895443" href="#tz_fig_hedge_g2-101"></use>
+<use x="2.424213" y="20.895443" href="#tz_fig_hedge_g2-100"></use>
+<use x="7.128861" y="20.895443" href="#tz_fig_hedge_g2-103"></use>
+<use x="11.363043" y="20.895443" href="#tz_fig_hedge_g2-101"></use>
+<use x="15.126762" y="20.895443" href="#tz_fig_hedge_g2-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hedge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;100.2: Hedge de venda: à posição comprada no ativo físico (lavoura) soma-se um futuro vendido de sinal contrário. O resultado combinado torna-se praticamente independente do preço à vista — o preço fica travado.
+</figcaption>
+</figure>
+</div>
+<p>O comprador tem o problema simétrico. A companhia aérea está <strong>naturalmente vendida</strong> em combustível (precisará comprá-lo e perde se o preço subir); ela faz um <strong>hedge de compra</strong>, comprando futuros de petróleo para travar o custo. A regra geral do hedge é simples: <strong>assuma no derivativo a posição contrária à sua exposição natural</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Hedge, especulação e arbitragem">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Hedge, especulação e arbitragem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Hedge:</strong> tomar posição em derivativos para <strong>reduzir</strong> um risco preexistente, travando um preço. O hedger abre mão de eventuais ganhos em troca de eliminar a incerteza.</li>
+<li><strong>Especulação:</strong> tomar posição para <strong>lucrar com a variação esperada</strong> do preço, <strong>assumindo</strong> risco que antes não se tinha. O especulador aposta em direção.</li>
+<li><strong>Arbitragem:</strong> obter lucro <strong>sem risco</strong> explorando um desalinhamento momentâneo de preços (por exemplo, entre o futuro e o à vista fora da relação da <a href="#eq-preco-futuro" class="quarto-xref">Equação&nbsp;<span>100.1</span></a>). A ação dos arbitradores <strong>corrige</strong> o desalinhamento e mantém os preços coerentes.</li>
+</ul>
+</div>
+</div>
+<p>Os três papéis são interdependentes e todos úteis. O hedger só consegue se proteger porque há um especulador disposto a comprar o risco de que ele quer se livrar — o especulador é a <strong>contraparte</strong> que dá liquidez ao mercado. E o arbitrador é quem garante que o preço futuro não descole do à vista, mantendo a <a href="#eq-preco-futuro" class="quarto-xref">Equação&nbsp;<span>100.1</span></a> válida. Um mercado de derivativos saudável precisa dos três.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — especulação: vilã ou necessária?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — especulação: vilã ou necessária?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No debate público, “especulador” costuma ser xingamento, associado a manipulação e à alta de preços de alimentos. A visão econômica padrão é mais matizada: especuladores <strong>fornecem liquidez</strong> e ajudam a <strong>descobrir preços</strong>, absorvendo o risco que os produtores querem repassar. Sem eles, o hedger não teria com quem negociar. Por outro lado, há evidências de que <strong>excesso</strong> de posições especulativas pode amplificar a volatilidade de curto prazo em certos mercados (como o de petróleo e o de alimentos em 2007–2008), o que motiva a regulação de limites de posição. Como quase tudo em Economia, a resposta depende de dose e de contexto — não é “sempre bom” nem “sempre ruim”.</p>
+</div>
+</div>
+</section>
+<section id="opções-direitos-não-obrigações" class="level2" data-number="100.5">
+<h2 data-number="100.5" class="anchored" data-anchor-id="opções-direitos-não-obrigações"><span class="header-section-number">100.5</span> Opções: direitos, não obrigações</h2>
+<p>O contrato futuro trava o preço, mas tem um custo oculto: ele elimina a incerteza <strong>nos dois sentidos</strong>. O produtor que vendeu futuros a R$,120 está protegido da queda, mas <strong>não se beneficia</strong> se o preço disparar para R$,150 — abriu mão do lado bom junto com o lado ruim. E se ele quisesse um <strong>seguro</strong> — proteção contra a queda, mas mantendo a chance de ganho na alta? É exatamente isso que uma <strong>opção</strong> oferece. Diferentemente do futuro, a opção dá um <strong>direito</strong>, não uma obrigação.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Opção de compra (call) e de venda (put)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Opção de compra (call) e de venda (put)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma <strong>opção</strong> dá ao seu <strong>titular</strong> o <strong>direito</strong>, mas não a obrigação, de negociar o ativo subjacente a um preço prefixado — o <strong>preço de exercício</strong> (<em>strike</em>) <span class="math inline">\(K\)</span> — até (ou em) uma data de vencimento. Em troca desse direito, o titular paga ao <strong>lançador</strong> (quem vende a opção) uma quantia, o <strong>prêmio</strong>.</p>
+<ul>
+<li>Uma <strong>opção de compra</strong> (<em>call</em>) dá o direito de <strong>comprar</strong> o ativo por <span class="math inline">\(K\)</span>.</li>
+<li>Uma <strong>opção de venda</strong> (<em>put</em>) dá o direito de <strong>vender</strong> o ativo por <span class="math inline">\(K\)</span>.</li>
+</ul>
+</div>
+</div>
+<p>Como o titular só exerce o direito quando lhe é vantajoso, o resultado de uma opção é <strong>assimétrico</strong>. Considere a <strong>call</strong>. No vencimento, se o preço à vista <span class="math inline">\(S_T\)</span> estiver <strong>acima</strong> do strike <span class="math inline">\(K\)</span>, o titular exerce — compra por <span class="math inline">\(K\)</span> algo que vale <span class="math inline">\(S_T\)</span>, embolsando <span class="math inline">\(S_T - K\)</span>. Se estiver <strong>abaixo</strong>, ele simplesmente <strong>não exerce</strong> (por que comprar a <span class="math inline">\(K\)</span> o que o mercado vende mais barato?) e perde apenas o prêmio. O resultado no vencimento, <strong>antes</strong> de descontar o prêmio, é:</p>
+<p><span id="eq-payoff-call"><span class="math display">\[
+\text{resultado da call} = \max(S_T - K,\ 0).
+\tag{100.2}\]</span></span></p>
+<p>A <a href="#fig-payoff-call" class="quarto-xref">Figura&nbsp;<span>100.3</span></a> mostra o <strong>lucro líquido</strong> do titular de uma call (já descontado o prêmio pago): uma linha achatada no prejuízo do prêmio enquanto <span class="math inline">\(S_T \le K\)</span>, que passa a subir a 45° depois de <span class="math inline">\(K\)</span>, cruzando o zero no <strong>ponto de equilíbrio</strong> <span class="math inline">\(S_T = K + \text{prêmio}\)</span>. Repare na assimetria: a <strong>perda é limitada</strong> ao prêmio pago, mas o <strong>ganho é, em princípio, ilimitado</strong>. A opção funciona como um bilhete de loteria com prejuízo máximo conhecido.</p>
+<div id="fig-payoff-call" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-payoff-call-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="197.091776pt" height="125.9601pt" viewbox="-68.014948 -68.014949 197.091776 125.9601">
+<defs>
+<path id="tz_fig_payoff_call_g0-0" d="M5.571108-1.809215C5.69863-1.809215 5.873973-1.809215 5.873973-1.992528S5.69863-2.175841 5.571108-2.175841H1.004234C.876712-2.175841 .70137-2.175841 .70137-1.992528S.876712-1.809215 1.004234-1.809215H5.571108Z"></path>
+<path id="tz_fig_payoff_call_g1-84" d="M3.108344-3.598506C3.156164-3.789788 3.16812-3.801743 3.4132-3.801743H3.963138C4.60274-3.801743 4.692403-3.616438 4.692403-3.269738C4.692403-3.186052 4.680448-3.024658 4.656538-2.839352C4.65056-2.82142 4.638605-2.755666 4.638605-2.737733C4.638605-2.677958 4.686426-2.642092 4.752179-2.642092C4.847821-2.642092 4.859776-2.701868 4.871731-2.791532L5.033126-3.939228C5.033126-4.040847 4.967372-4.040847 4.847821-4.040847H.962391C.806974-4.040847 .795019-4.040847 .753176-3.915318L.364633-2.827397C.340722-2.755666 .340722-2.737733 .340722-2.731756C.340722-2.713823 .3467-2.642092 .448319-2.642092C.532005-2.642092 .537983-2.660025 .591781-2.815442C.860772-3.544707 1.046077-3.801743 1.817186-3.801743H2.361146C2.47472-3.801743 2.486675-3.801743 2.558406-3.783811L1.751432-.514072C1.709589-.3467 1.679701-.292902 1.512329-.268991C1.344956-.239103 .998257-.239103 .992279-.239103C.836862-.239103 .824907-.239103 .800996-.221171C.771108-.19726 .747198-.113574 .747198-.083686C.747198-.077709 .759153 0 .860772 0C1.022167 0 1.201494-.017933 1.362889-.017933C1.601993-.017933 1.75741-.02391 1.918804-.02391C2.098132-.02391 2.27746-.017933 2.456787-.017933C2.630137-.017933 2.82142 0 2.99477 0C3.04259 0 3.084433 0 3.108344-.041843C3.120299-.059776 3.144209-.131507 3.144209-.155417C3.126276-.239103 3.084433-.239103 2.899128-.239103C2.767621-.239103 2.642092-.245081 2.510585-.251059C2.373101-.263014 2.30137-.268991 2.30137-.358655L3.108344-3.598506Z"></path>
+<path id="tz_fig_payoff_call_g2-75" d="M4.27995-3.203985C4.27198-3.219925 4.23213-3.299626 4.23213-3.307597C4.23213-3.323537 4.367621-3.419178 4.447323-3.474969C5.076961-3.937235 5.937733-4.558904 6.200747-4.726276C6.607223-4.98132 6.902117-5.148692 7.260772-5.180573C7.324533-5.188543 7.436115-5.196513 7.436115-5.339975C7.428144-5.395766 7.380324-5.443587 7.324533-5.443587C7.316563-5.443587 7.0934-5.419676 7.037609-5.419676H6.718804C6.583313-5.419676 6.38406-5.419676 6.312329-5.427646C6.256538-5.427646 5.945704-5.443587 5.889913-5.443587S5.72254-5.443587 5.72254-5.292154C5.72254-5.284184 5.730511-5.188543 5.850062-5.180573C5.913823-5.172603 6.041345-5.156663 6.041345-5.061021C6.041345-4.933499 5.881943-4.798007 5.866002-4.790037L5.802242-4.734247C5.778331-4.710336 5.746451-4.678456 5.7066-4.654545L2.454795-2.295392L3.084433-4.821918C3.156164-5.108842 3.172105-5.180573 3.753923-5.180573C3.913325-5.180573 4.008966-5.180573 4.008966-5.332005C4.008966-5.339975 4.000996-5.443587 3.873474-5.443587C3.722042-5.443587 3.53076-5.427646 3.379328-5.419676H2.87721C2.11208-5.419676 1.904857-5.443587 1.849066-5.443587C1.809215-5.443587 1.689664-5.443587 1.689664-5.292154C1.689664-5.180573 1.785305-5.180573 1.920797-5.180573C2.183811-5.180573 2.414944-5.180573 2.414944-5.053051C2.414944-5.021171 2.406974-5.0132 2.383064-4.909589L1.315068-.629639C1.243337-.326775 1.227397-.263014 .637609-.263014C.486177-.263014 .390535-.263014 .390535-.111582C.390535-.079701 .414446 0 .518057 0C.669489 0 .860772-.01594 1.012204-.02391H2.040349C2.16787-.01594 2.430884 0 2.550436 0C2.590286 0 2.709838 0 2.709838-.143462C2.709838-.263014 2.614197-.263014 2.478705-.263014C2.422914-.263014 2.311333-.263014 2.175841-.278954C2.008468-.294894 1.984558-.310834 1.984558-.390535C1.984558-.438356 2.040349-.637609 2.064259-.765131L2.367123-1.968618L3.650311-2.893151L4.606725-.924533C4.638605-.860772 4.726276-.68543 4.758157-.613699C4.805978-.533998 4.805978-.518057 4.805978-.486177C4.805978-.270984 4.511083-.263014 4.423412-.263014C4.343711-.263014 4.23213-.263014 4.23213-.111582C4.23213-.103611 4.2401 0 4.367621 0C4.447323 0 4.750187-.01594 4.821918-.02391H5.284184C6.017435-.02391 5.993524 0 6.097136 0C6.129016 0 6.248568 0 6.248568-.151432C6.248568-.263014 6.136986-.263014 6.089166-.263014C5.778331-.270984 5.67472-.326775 5.547198-.597758L4.27995-3.203985Z"></path>
+<path id="tz_fig_payoff_call_g2-83" d="M5.347945-5.395766C5.355915-5.427646 5.371856-5.475467 5.371856-5.515318C5.371856-5.571108 5.324035-5.610959 5.268244-5.610959S5.196513-5.595019 5.108842-5.499377C5.021171-5.395766 4.813948-5.140722 4.726276-5.045081C4.415442-5.499377 3.913325-5.610959 3.506849-5.610959C2.399004-5.610959 1.45056-4.678456 1.45056-3.769863C1.45056-3.307597 1.697634-3.036613 1.737484-2.980822C2.000498-2.701868 2.231631-2.638107 2.805479-2.502615C3.084433-2.430884 3.100374-2.430884 3.331507-2.375093S4.072727-2.191781 4.072727-1.530262C4.072727-.836862 3.387298-.095641 2.550436-.095641C2.032379-.095641 1.083935-.255044 1.083935-1.243337C1.083935-1.267248 1.083935-1.43462 1.131756-1.625903L1.139726-1.705604C1.139726-1.801245 1.052055-1.809215 1.020174-1.809215C.916563-1.809215 .908593-1.777335 .868742-1.594022L.541968-.294894C.510087-.175342 .454296 .039851 .454296 .063761C.454296 .127522 .502117 .167372 .557908 .167372S.621669 .159402 .70934 .055791L1.091905-.390535C1.275218-.151432 1.729514 .167372 2.534496 .167372C3.690162 .167372 4.638605-.876712 4.638605-1.833126C4.638605-2.199751 4.519054-2.486675 4.303861-2.709838C4.064757-2.972852 3.801743-3.036613 3.427148-3.132254C3.196015-3.188045 2.885181-3.259776 2.701868-3.307597C2.462765-3.363387 2.016438-3.52279 2.016438-4.080697C2.016438-4.702366 2.685928-5.371856 3.498879-5.371856C4.216189-5.371856 4.710336-4.99726 4.710336-4.136488C4.710336-3.945205 4.678456-3.777833 4.678456-3.745953C4.678456-3.650311 4.750187-3.634371 4.805978-3.634371C4.901619-3.634371 4.909589-3.666252 4.941469-3.793773L5.347945-5.395766Z"></path>
+<path id="tz_fig_payoff_call_g2-112" d="M.414446 .964384C.350685 1.219427 .334745 1.283188 .01594 1.283188C-.095641 1.283188-.191283 1.283188-.191283 1.43462C-.191283 1.506351-.119552 1.546202-.079701 1.546202C0 1.546202 .03188 1.522291 .621669 1.522291C1.195517 1.522291 1.362889 1.546202 1.41868 1.546202C1.45056 1.546202 1.570112 1.546202 1.570112 1.39477C1.570112 1.283188 1.458531 1.283188 1.362889 1.283188C.980324 1.283188 .980324 1.235367 .980324 1.163636C.980324 1.107846 1.123786 .541968 1.362889-.390535C1.466501-.207223 1.713574 .079701 2.14396 .079701C3.124284 .079701 4.144458-1.052055 4.144458-2.207721C4.144458-2.996762 3.634371-3.514819 2.996762-3.514819C2.518555-3.514819 2.13599-3.188045 1.904857-2.948941C1.737484-3.514819 1.203487-3.514819 1.123786-3.514819C.836862-3.514819 .637609-3.331507 .510087-3.084433C.326775-2.725778 .239103-2.319303 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.223661 .526027-2.430884C.629639-2.83736 .773101-3.291656 1.099875-3.291656C1.299128-3.291656 1.354919-3.108344 1.354919-2.917061C1.354919-2.83736 1.323039-2.646077 1.307098-2.582316L.414446 .964384ZM1.880946-2.454795C1.920797-2.590286 1.920797-2.606227 2.040349-2.749689C2.343213-3.108344 2.685928-3.291656 2.972852-3.291656C3.371357-3.291656 3.52279-2.901121 3.52279-2.542466C3.52279-2.247572 3.347447-1.39477 3.108344-.924533C2.901121-.494147 2.518555-.143462 2.14396-.143462C1.601993-.143462 1.474471-.765131 1.474471-.820922C1.474471-.836862 1.490411-.924533 1.498381-.948443L1.880946-2.454795Z"></path>
+<path id="tz_fig_payoff_call_g3-16" d="M1.522291-3.514819L.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819Z"></path>
+<path id="tz_fig_payoff_call_g3-19" d="M3.156164-4.98132C3.243836-5.045081 3.315567-5.116812 3.315567-5.244334C3.315567-5.427646 3.148194-5.563138 3.004732-5.563138C2.972852-5.563138 2.86127-5.563138 2.757659-5.435616L1.737484-4.224159L1.904857-4.040847L3.156164-4.98132Z"></path>
+<path id="tz_fig_payoff_call_g3-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_payoff_call_g3-98" d="M1.466501-5.531258L.278954-5.443587V-5.180573C.820922-5.180573 .884682-5.124782 .884682-4.734247V0H1.131756L1.41868-.494147C1.609963-.223163 1.984558 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.725778 3.594521-3.514819 2.622167-3.514819C1.992528-3.514819 1.601993-3.172105 1.466501-3.028643V-5.531258ZM1.490411-2.518555C1.490411-2.669988 1.490411-2.685928 1.609963-2.82939C1.841096-3.124284 2.215691-3.291656 2.574346-3.291656C2.988792-3.291656 3.299626-3.044583 3.459029-2.805479C3.594521-2.590286 3.706102-2.311333 3.706102-1.729514C3.706102-1.546202 3.706102-.980324 3.419178-.605729C3.132254-.247073 2.757659-.143462 2.494645-.143462C2.11208-.143462 1.793275-.342715 1.586052-.653549C1.490411-.804981 1.490411-.812951 1.490411-.964384V-2.518555Z"></path>
+<path id="tz_fig_payoff_call_g3-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_payoff_call_g3-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_payoff_call_g3-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_payoff_call_g3-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_payoff_call_g3-108" d="M1.522291-5.531258L.334745-5.443587V-5.180573C.876712-5.180573 .940473-5.124782 .940473-4.734247V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.227397-.02391C1.3868-.02391 1.817186-.02391 2.12802 0V-.263014C1.617933-.263014 1.522291-.263014 1.522291-.621669V-5.531258Z"></path>
+<path id="tz_fig_payoff_call_g3-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+<path id="tz_fig_payoff_call_g3-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_payoff_call_g3-112" d="M2.096139 1.283188C1.586052 1.283188 1.490411 1.283188 1.490411 .924533V-.390535C1.865006 .01594 2.271482 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.717808 3.610461-3.514819 2.646077-3.514819C2.335243-3.514819 1.872976-3.435118 1.466501-3.020672V-3.514819L.278954-3.427148V-3.164134C.844832-3.164134 .884682-3.116314 .884682-2.781569V.924533C.884682 1.283188 .789041 1.283188 .278954 1.283188V1.546202C.621669 1.522291 .972354 1.522291 1.187547 1.522291C1.41868 1.522291 1.753425 1.522291 2.096139 1.546202V1.283188ZM1.490411-2.654047C1.673724-2.972852 2.072229-3.267746 2.574346-3.267746C3.188045-3.267746 3.706102-2.590286 3.706102-1.721544C3.706102-.804981 3.132254-.143462 2.486675-.143462C2.207721-.143462 1.841096-.263014 1.586052-.661519C1.490411-.797011 1.490411-.804981 1.490411-.956413V-2.654047Z"></path>
+<path id="tz_fig_payoff_call_g3-113" d="M3.817684-3.514819H3.594521L3.299626-2.82142C3.036613-3.243836 2.654047-3.514819 2.15193-3.514819C1.155666-3.514819 .278954-2.741719 .278954-1.713574C.278954-.71731 1.099875 .079701 2.080199 .079701C2.654047 .079701 3.020672-.239103 3.211955-.478207V.924533C3.211955 1.283188 3.116314 1.283188 2.606227 1.283188V1.546202C2.948941 1.522291 3.299626 1.522291 3.514819 1.522291C3.745953 1.522291 4.080697 1.522291 4.423412 1.546202V1.283188C3.913325 1.283188 3.817684 1.283188 3.817684 .924533V-3.514819ZM3.235866-1.131756C3.235866-1.004234 3.235866-.956413 3.116314-.749191C2.82142-.263014 2.399004-.143462 2.12802-.143462C1.490411-.143462 .988294-.852802 .988294-1.713574C.988294-2.622167 1.578082-3.267746 2.207721-3.267746C2.8533-3.267746 3.235866-2.622167 3.235866-2.183811V-1.131756Z"></path>
+<path id="tz_fig_payoff_call_g3-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_payoff_call_g3-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+</defs>
+<g id="tz_fig_payoff_call_page1">
+<g stroke-miterlimit="10" transform="translate(-78.671823,18.061055)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M19.91682 0H188.63332" fill="none"></path>
+<g transform="translate(188.63332,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(194.16626,-2.0611)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-78.671823,18.061055)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-78.671823" y="18.061055" href="#tz_fig_payoff_call_g2-83"></use>
+<use x="-73.521627" y="19.400484" href="#tz_fig_payoff_call_g1-84"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M28.45274-39.83366V71.97733" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,28.45274,71.97733)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(19.24081,77.51027)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-78.671823,18.061055)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-78.671823" y="18.061055" href="#tz_fig_payoff_call_g3-108"></use>
+<use x="-76.3195" y="18.061055" href="#tz_fig_payoff_call_g3-117"></use>
+<use x="-71.614852" y="18.061055" href="#tz_fig_payoff_call_g3-99"></use>
+<use x="-67.851134" y="18.061055" href="#tz_fig_payoff_call_g3-114"></use>
+<use x="-64.550964" y="18.061055" href="#tz_fig_payoff_call_g3-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M28.45274-22.76227H99.5846" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g fill="#6c757d" stroke="#6c757d">
+</g>
+<g transform="translate(14.02982,-24.40118)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-78.671823,18.061055)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-78.671823" y="18.061055" href="#tz_fig_payoff_call_g0-0"></use>
+<use x="-72.085317" y="18.061055" href="#tz_fig_payoff_call_g2-112"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M28.45274-22.76227H99.5846L170.71646 48.36957" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M99.5846 2.27626V-2.27626" fill="none"></path>
+</g>
+</g>
+</g>
+<g transform="translate(95.71788,-12.4138)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-78.671823,18.061055)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-78.671823" y="18.061055" href="#tz_fig_payoff_call_g2-75"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M124.1855 0C124.1855 1.01544 123.36232 1.83862 122.34688 1.83862S120.50826 1.01544 120.50826 0S121.33144-1.83862 122.34688-1.83862S124.1855-1.01544 124.1855 0ZM122.34688 0" stroke="none"></path>
+</g>
+<g transform="translate(122.34688,0.0)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-78.671823,18.061055)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(127.30258,6.51125)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-78.671823,18.061055)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-78.671823" y="18.061055" href="#tz_fig_payoff_call_g3-101"></use>
+<use x="-74.908105" y="18.061055" href="#tz_fig_payoff_call_g3-113"></use>
+<use x="-70.43869" y="18.061055" href="#tz_fig_payoff_call_g3-117"></use>
+<use x="-65.734042" y="18.061055" href="#tz_fig_payoff_call_g3-105"></use>
+<use x="-63.381719" y="18.061055" href="#tz_fig_payoff_call_g3-108"></use>
+<use x="-61.970324" y="18.061055" href="#tz_fig_payoff_call_g3-19"></use>
+<use x="-61.029395" y="18.061055" href="#tz_fig_payoff_call_g3-16"></use>
+<use x="-58.677071" y="18.061055" href="#tz_fig_payoff_call_g3-98"></use>
+<use x="-53.972423" y="18.061055" href="#tz_fig_payoff_call_g3-114"></use>
+<use x="-50.672253" y="18.061055" href="#tz_fig_payoff_call_g3-105"></use>
+<use x="-48.319929" y="18.061055" href="#tz_fig_payoff_call_g3-111"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(145.79669,42.07718)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-78.671823,18.061055)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-78.671823" y="18.061055" href="#tz_fig_payoff_call_g3-99"></use>
+<use x="-74.908105" y="18.061055" href="#tz_fig_payoff_call_g3-97"></use>
+<use x="-70.673922" y="18.061055" href="#tz_fig_payoff_call_g3-108"></use>
+<use x="-68.321599" y="18.061055" href="#tz_fig_payoff_call_g3-108"></use>
+<use x="-63.146486" y="18.061055" href="#tz_fig_payoff_call_g3-99"></use>
+<use x="-59.382768" y="18.061055" href="#tz_fig_payoff_call_g3-111"></use>
+<use x="-55.148585" y="18.061055" href="#tz_fig_payoff_call_g3-109"></use>
+<use x="-48.091614" y="18.061055" href="#tz_fig_payoff_call_g3-112"></use>
+<use x="-43.386966" y="18.061055" href="#tz_fig_payoff_call_g3-114"></use>
+<use x="-40.086796" y="18.061055" href="#tz_fig_payoff_call_g3-97"></use>
+<use x="-35.852613" y="18.061055" href="#tz_fig_payoff_call_g3-100"></use>
+<use x="-31.147966" y="18.061055" href="#tz_fig_payoff_call_g3-97"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-payoff-call-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;100.3: Lucro do titular de uma opção de compra (call). A perda máxima é o prêmio <span class="math inline">\(p\)</span>; o ganho cresce sem teto acima do ponto de equilíbrio <span class="math inline">\(K + p\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>A <strong>put</strong> é o espelho: dá lucro quando o preço <strong>cai</strong>. Seu titular exerce se <span class="math inline">\(S_T &lt; K\)</span> (vende por <span class="math inline">\(K\)</span> algo que vale menos), com resultado <span class="math inline">\(\max(K - S_T,\ 0)\)</span>. É a opção que serve de <strong>seguro contra queda</strong> — precisamente o que faltava ao produtor rural. Comprando uma put de soja com strike R$,120 por um prêmio de, digamos, R$,4 por saca, ele garante um piso de venda de R$,120: se o preço cair a R$,90, ele exerce e vende a R$,120; se subir a R$,150, ele deixa a put vencer, perde os R$,4 de prêmio e vende sua soja no mercado a R$,150. Ao contrário do futuro, a put <strong>preserva o lado bom</strong> — o custo dessa vantagem é o prêmio, como o de qualquer apólice de seguro.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — a opção é um seguro">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — a opção é um seguro
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pense na put como o seguro do seu carro. Você paga um <strong>prêmio</strong> (não reembolsável) e, em troca, fica protegido contra um evento ruim (a batida; a queda do preço). Se o evento ruim não ocorre, você “perde” o prêmio — mas ninguém lamenta ter pago o seguro do carro que não bateu. A call é o inverso: o direito de aproveitar um evento <strong>bom</strong> (a alta) sem se comprometer com a compra. Em ambos, o prêmio é o preço da assimetria: perda limitada, do outro lado uma chance preservada.</p>
+</div>
+</div>
+<section id="o-outro-lado-o-lançador" class="level3" data-number="100.5.1">
+<h3 data-number="100.5.1" class="anchored" data-anchor-id="o-outro-lado-o-lançador"><span class="header-section-number">100.5.1</span> O outro lado: o lançador</h3>
+<p>Para cada titular há um <strong>lançador</strong>, que <strong>vendeu</strong> a opção e embolsou o prêmio. Sua posição é a imagem invertida: o <strong>ganho máximo é o prêmio</strong> recebido, e a <strong>perda pode ser enorme</strong>. O lançador de uma call, se o preço disparar, é obrigado a vender por <span class="math inline">\(K\)</span> algo que vale muito mais, com prejuízo potencialmente ilimitado. Por que alguém lançaria? Porque, na maioria dos cenários, a opção vira pó e o lançador fica com o prêmio — é o negócio da seguradora, que lucra com prêmios enquanto o sinistro não vem. É um negócio de “ganhar pouco muitas vezes e, de vez em quando, perder muito”, que exige gestão de risco rigorosa.</p>
+</section>
+<section id="o-que-determina-o-prêmio" class="level3" data-number="100.5.2">
+<h3 data-number="100.5.2" class="anchored" data-anchor-id="o-que-determina-o-prêmio"><span class="header-section-number">100.5.2</span> O que determina o prêmio</h3>
+<p>Quanto vale uma opção antes do vencimento? Seu prêmio decompõe-se em duas parcelas. O <strong>valor intrínseco</strong> é o que ela renderia se exercida agora — <span class="math inline">\(\max(S - K, 0)\)</span> para uma call. O <strong>valor temporal</strong> é o adicional que reflete a <strong>possibilidade</strong> de a opção ficar ainda mais vantajosa até o vencimento. Cinco fatores movem o prêmio de uma call: sobe com o <strong>preço à vista</strong> <span class="math inline">\(S\)</span>, cai com o <strong>strike</strong> <span class="math inline">\(K\)</span>, e sobe com o <strong>prazo</strong>, com a <strong>taxa de juros</strong> e — de forma crucial — com a <strong>volatilidade</strong> do ativo. Mais volatilidade significa maior chance de grandes altas (que o titular aproveita) sem piorar o lado ruim (limitado ao prêmio): por isso <strong>incerteza valoriza a opção</strong>, ao contrário do que ocorre com quase todos os outros ativos.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — dá para 'precificar' uma opção?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — dá para ‘precificar’ uma opção?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A precificação de opções foi um problema em aberto até 1973, quando Fischer Black, Myron Scholes e Robert Merton publicaram a fórmula que leva seus nomes <span class="citation" data-cites="black1973">(<a href="#ref-black1973" role="doc-biblioref">Black; Scholes, 1973</a>)</span> — feito que rendeu o Nobel a Scholes e Merton e fundou a engenharia financeira moderna. O <strong>modelo de Black-Scholes</strong> dá o prêmio “justo” de uma opção europeia a partir dos cinco fatores acima, sob hipóteses fortes (volatilidade constante, mercados sem atritos, retornos com distribuição bem-comportada). Sua influência é imensa, mas suas hipóteses falham justamente nos momentos de crise: o modelo subestima a probabilidade de quedas extremas (os “cisnes negros”). O episódio mais célebre foi a quebra, em 1998, do fundo <strong>LTCM</strong> — que tinha Scholes e Merton entre os sócios —, lembrete de que um modelo elegante não substitui a prudência diante do risco de cauda.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="alavancagem-a-faca-de-dois-gumes" class="level2" data-number="100.6">
+<h2 data-number="100.6" class="anchored" data-anchor-id="alavancagem-a-faca-de-dois-gumes"><span class="header-section-number">100.6</span> Alavancagem: a faca de dois gumes</h2>
+<p>Há um traço comum a futuros e opções que explica tanto seu poder quanto seu perigo: a <strong>alavancagem</strong>. Como para abrir uma posição em futuros basta depositar uma <strong>margem</strong> (uma fração do valor do contrato), e como o prêmio de uma opção é pequeno perto do valor do ativo, o investidor <strong>controla uma exposição muitas vezes maior que o capital que colocou</strong>. Um movimento de 5% no ativo pode significar 50% de ganho — ou de perda — sobre o capital investido.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — confundir alavancagem com dinheiro fácil">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — confundir alavancagem com dinheiro fácil
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A alavancagem <strong>amplifica os dois lados</strong>. O mesmo mecanismo que transforma uma alta modesta em lucro polpudo transforma uma queda modesta em perda que <strong>excede</strong> o capital aplicado — no caso de futuros e do lançamento de opções, você pode dever <strong>mais</strong> do que investiu. Propagandas que vendem derivativos como caminho rápido para a riqueza omitem essa simetria. Estudos de mercados de varejo mostram que a <strong>maioria</strong> dos pequenos investidores que fazem <em>day trade</em> alavancado perde dinheiro de forma consistente. Alavancagem não é atalho: é um multiplicador do resultado, seja ele qual for.</p>
+</div>
+</div>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="100.7">
+<h2 data-number="100.7" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">100.7</span> 🇧🇷 Brasil em Foco</h2>
+<p>O Brasil tem um dos mercados de derivativos mais desenvolvidos entre os emergentes — herança da antiga <strong>BM&amp;F</strong> (Bolsa de Mercadorias &amp; Futuros), hoje integrada à <strong>B3</strong> (<a href="cap01-mercado-de-capitais.html" class="quarto-xref"><span>Capítulo 95</span></a>).</p>
+<p><strong>Os contratos mais líquidos são financeiros.</strong> Embora os derivativos tenham nascido no agronegócio, os mais negociados na B3 são o <strong>dólar futuro</strong> e o <strong>DI futuro</strong> (que negocia a taxa de juros, ligada à Selic — <a href="../vol08/cap05-taxa-de-juros-selic.html" class="quarto-xref"><span>Capítulo 56</span></a>), seguidos pelo <strong>futuro de Ibovespa</strong>. O dólar futuro é um dos instrumentos mais líquidos do país: por ele passam bancos, exportadores e importadores que fazem <strong>hedge cambial</strong> (<a href="../vol09/cap04-cambio.html" class="quarto-xref"><span>Capítulo 62</span></a>), além de um enorme volume especulativo. Empresas com dívida ou receita em dólar usam esses contratos exatamente como o produtor de soja usa o futuro agrícola — para travar hoje um preço (a cotação da moeda) que só se realizará adiante.</p>
+<p><strong>O hedge do produtor rural.</strong> Nos contratos agropecuários da B3 — <strong>boi gordo</strong>, <strong>café arábica</strong>, <strong>milho</strong>, <strong>soja</strong> e <strong>etanol</strong> — o produtor pode travar o preço de sua safra com meses de antecedência, protegendo-se da volatilidade das commodities. Complementarmente, instrumentos do mercado de balcão como a <strong>CPR (Cédula de Produto Rural)</strong> e os contratos a termo com tradings cumprem função semelhante, integrando o financiamento e o hedge da produção. Para um país em que o agronegócio responde por parcela expressiva do PIB e das exportações, esses mercados são peça de política de <strong>gestão de risco agrícola</strong>.</p>
+<p><strong>Quando o hedge vira aposta: as perdas de 2008.</strong> O caso mais didático da diferença entre hedge e especulação ocorreu no Brasil na crise de 2008. Grandes empresas — entre elas <strong>Sadia</strong>, <strong>Aracruz</strong> e o grupo <strong>Votorantim</strong> — haviam contratado derivativos cambiais complexos (os chamados <em>target forwards</em>) que, sob a aparência de hedge, embutiam uma <strong>aposta alavancada</strong> na continuidade da valorização do real. Quando o dólar disparou com a crise, essas posições geraram perdas bilionárias: a Sadia amargou prejuízo que acelerou sua fusão com a Perdigão (dando origem à BRF), e a Aracruz sofreu rombo que a levou à venda. A lição é a do próprio capítulo: o mesmo instrumento <strong>protege</strong> quando neutraliza uma exposição existente e <strong>destrói</strong> quando cria uma exposição nova e alavancada.</p>
+<p><strong>Mini contratos e o day trade de pessoa física.</strong> Na última década, os <strong>minicontratos</strong> de dólar (WDO) e de índice (WIN) popularizaram a negociação de derivativos entre pessoas físicas, com margens acessíveis e alta alavancagem. O fenômeno atraiu a atenção dos reguladores: a <strong>CVM</strong> (Comissão de Valores Mobiliários) e a B3 emitem alertas recorrentes sobre os riscos, amparados por estudos que mostram que a <strong>ampla maioria</strong> dos day traders de varejo tem prejuízo consistente. É a alavancagem da seção anterior em ação — no varejo brasileiro.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> B3 (volumes e especificações dos contratos futuros e de opções; contratos agropecuários); CVM (regulação de derivativos e alertas ao investidor; estudos sobre resultados de day trade); Banco Central do Brasil (posição de derivativos cambiais, dólar de referência); CEPEA/ESALQ (indicadores de preços de commodities agrícolas usados como referência dos contratos). Verifique sempre a data de referência: volumes, cotações e prêmios mudam continuamente.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="100.8">
+<h2 data-number="100.8" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">100.8</span> Resumo do capítulo</h2>
+<ul>
+<li>Um <strong>derivativo</strong> é um contrato cujo valor deriva de um <strong>ativo subjacente</strong>; sua função econômica central é <strong>transferir risco de preço</strong> de quem quer se proteger para quem aceita assumi-lo.</li>
+<li>O <strong>contrato a termo</strong> (<em>forward</em>) fixa hoje o preço de uma compra/venda futura, mas é de balcão, ilíquido e sujeito a <strong>risco de contraparte</strong>. O preço a termo segue o <strong>custo de carregamento</strong> (<a href="#eq-preco-futuro" class="quarto-xref">Equação&nbsp;<span>100.1</span></a>): <span class="math inline">\(F = S_0(1+r)^T\)</span>.</li>
+<li>O <strong>contrato futuro</strong> é o termo <strong>padronizado e negociado em bolsa</strong>, com <strong>câmara de compensação</strong>, <strong>margem de garantia</strong> e <strong>ajuste diário</strong>, que eliminam o risco de calote e dão liquidez.</li>
+<li>A posição <strong>comprada</strong> (<em>long</em>) ganha com a alta; a <strong>vendida</strong> (<em>short</em>), com a queda. O mercado futuro é um <strong>jogo de soma zero</strong> entre as partes (<a href="#fig-payoff-futuro" class="quarto-xref">Figura&nbsp;<span>100.1</span></a>).</li>
+<li><strong>Hedge</strong> é usar o derivativo para <strong>reduzir</strong> um risco existente (posição contrária à exposição natural); <strong>especulação</strong> é assumir risco apostando na direção; <strong>arbitragem</strong> é lucro sem risco que mantém os preços coerentes. Os três são interdependentes.</li>
+<li>Uma <strong>opção</strong> dá um <strong>direito</strong> (não obrigação): a <strong>call</strong> de comprar por <span class="math inline">\(K\)</span> (<a href="#eq-payoff-call" class="quarto-xref">Equação&nbsp;<span>100.2</span></a>), a <strong>put</strong> de vender por <span class="math inline">\(K\)</span>. O resultado é <strong>assimétrico</strong> — para o titular, perda limitada ao <strong>prêmio</strong> e ganho amplo; para o lançador, o inverso. A put funciona como <strong>seguro</strong> contra queda.</li>
+<li>O prêmio de uma opção soma <strong>valor intrínseco</strong> e <strong>valor temporal</strong>; cresce com a <strong>volatilidade</strong> do ativo. O modelo de <strong>Black-Scholes</strong> dá seu preço teórico, com hipóteses que falham nas crises.</li>
+<li>A <strong>alavancagem</strong> de futuros e opções amplifica ganhos <strong>e</strong> perdas, que podem exceder o capital investido — a raiz tanto da utilidade quanto do perigo desses instrumentos.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="100.9">
+<h2 data-number="100.9" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">100.9</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise de caso. Tenha uma calculadora à mão.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique, com suas palavras, por que se diz que o valor de um derivativo “deriva” de outro ativo. Dê um exemplo de ativo subjacente financeiro e um de mercadoria.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O derivativo não tem valor próprio: ele é um contrato cujo resultado <strong>depende do preço de outro ativo</strong>, o subjacente. Se o preço do subjacente muda, o valor do derivativo muda junto — daí “derivar”. Exemplos de subjacente <strong>financeiro</strong>: uma ação, o Ibovespa, a taxa de juros (DI), o dólar. Exemplos de <strong>mercadoria</strong> (commodity): soja, boi gordo, café, petróleo, ouro.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Qual a diferença fundamental entre um contrato <strong>a termo</strong> e um contrato <strong>futuro</strong>? Cite dois mecanismos do futuro que o termo não tem e diga que problema cada um resolve.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O termo é <strong>sob medida e de balcão</strong> (negociado direto entre as partes); o futuro é <strong>padronizado e negociado em bolsa</strong>. Dois mecanismos do futuro: (i) a <strong>câmara de compensação</strong> com <strong>margem de garantia</strong>, que se interpõe entre as partes e resolve o <strong>risco de contraparte</strong> (calote); (ii) o <strong>ajuste diário</strong> (<em>marking-to-market</em>), que liquida ganhos e perdas todo dia, evitando o acúmulo de uma dívida impagável até o vencimento. A padronização, além disso, dá <strong>liquidez</strong> ao contrato, que pode ser revendido a terceiros.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Classifique cada operação como <strong>hedge</strong>, <strong>especulação</strong> ou <strong>arbitragem</strong>: (a) Uma exportadora que receberá US$ 1 milhão em 90 dias vende dólar futuro hoje. (b) Um investidor, achando que o dólar vai subir, compra dólar futuro sem ter nenhuma dívida ou receita em dólar. (c) Um banco percebe que o dólar futuro está caro demais frente ao à vista e à taxa de juros, vende futuro e compra à vista simultaneamente, travando um lucro certo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><strong>Hedge</strong> — a exportadora tem exposição natural comprada em dólar (vai receber dólares) e toma a posição contrária (vendida) para travar a cotação, reduzindo risco.</li>
+<li><strong>Especulação</strong> — ele assume um risco que não tinha, apostando na direção do preço.</li>
+<li><strong>Arbitragem</strong> — explora um desalinhamento entre futuro e à vista (violação da <a href="#eq-preco-futuro" class="quarto-xref">Equação&nbsp;<span>100.1</span></a>) para obter lucro <strong>sem risco</strong>; sua ação tende a corrigir o desalinhamento.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Um produtor vende contratos futuros de café a R$,1.200 por saca. No vencimento, calcule o resultado da posição vendida <strong>no futuro</strong> se o preço à vista for (a) R$,1.000; (b) R$,1.200; (c) R$,1.400. Depois explique por que, somando esse resultado à venda física da saca ao preço à vista, o produtor recebe aproximadamente R$,1.200 nos três casos.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Resultado do vendido <span class="math inline">\(= F - S_T = 1.200 - S_T\)</span>: (a) <span class="math inline">\(1.200 - 1.000 = +200\)</span>; (b) <span class="math inline">\(1.200 - 1.200 = 0\)</span>; (c) <span class="math inline">\(1.200 - 1.400 = -200\)</span>. Somando à venda física (que rende <span class="math inline">\(S_T\)</span> por saca): (a) <span class="math inline">\(1.000 + 200 = 1.200\)</span>; (b) <span class="math inline">\(1.200 + 0 = 1.200\)</span>; (c) <span class="math inline">\(1.400 - 200 = 1.200\)</span>. Em todos os cenários o produtor fica com <strong>R$,1.200</strong> por saca: o ganho (ou perda) na posição futura <strong>compensa</strong> exatamente a perda (ou ganho) no preço de venda da soja. É o hedge da <a href="#fig-hedge" class="quarto-xref">Figura&nbsp;<span>100.2</span></a>: o preço foi travado, e o resultado deixou de depender de <span class="math inline">\(S_T\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Uma call sobre uma ação tem strike <span class="math inline">\(K = R\$\,50\)</span> e foi comprada por um prêmio de R$,3. Calcule o <strong>lucro líquido</strong> do titular no vencimento se o preço da ação for (a) R$,45; (b) R$,52; (c) R$,60. Qual é o preço de equilíbrio (<em>break-even</em>)?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Lucro líquido <span class="math inline">\(= \max(S_T - K, 0) - \text{prêmio} = \max(S_T - 50, 0) - 3\)</span>. (a) <span class="math inline">\(S_T = 45\)</span>: não exerce; lucro <span class="math inline">\(= 0 - 3 = -R\$\,3\)</span> (perde só o prêmio). (b) <span class="math inline">\(S_T = 52\)</span>: exerce; lucro <span class="math inline">\(= (52 - 50) - 3 = 2 - 3 = -R\$\,1\)</span>. (c) <span class="math inline">\(S_T = 60\)</span>: exerce; lucro <span class="math inline">\(= (60 - 50) - 3 = 10 - 3 = +R\$\,7\)</span>. O <strong>preço de equilíbrio</strong> é <span class="math inline">\(K + \text{prêmio} = 50 + 3 = R\$\,53\)</span>: acima dele o titular tem lucro; abaixo, prejuízo (limitado a R$,3). Note a assimetria da <a href="#fig-payoff-call" class="quarto-xref">Figura&nbsp;<span>100.3</span></a>: a perda máxima é o prêmio, mas o ganho cresce sem teto.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Um agricultor quer se proteger da <strong>queda</strong> do preço da soja, mas não quer abrir mão de eventual <strong>alta</strong>. Compare, para esse objetivo, <strong>vender um futuro</strong> e <strong>comprar uma put</strong>. Em que cada estratégia difere quanto a custo inicial e ao resultado se o preço subir?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Vender futuro:</strong> não tem custo inicial (só a margem de garantia, devolvida ao fim), e <strong>trava</strong> o preço nos dois sentidos. Se o preço <strong>subir</strong>, o ganho na lavoura é anulado pela perda no futuro — ele <strong>não</strong> aproveita a alta.</li>
+<li><strong>Comprar put:</strong> tem <strong>custo inicial</strong> (o prêmio), mas garante apenas um <strong>piso</strong> de preço. Se o preço <strong>subir</strong>, ele deixa a put vencer (perde só o prêmio) e vende a soja ao preço alto de mercado — <strong>aproveita a alta</strong>. A put atende melhor ao objetivo do agricultor (proteção contra queda <strong>preservando</strong> a alta), ao custo do prêmio. É a diferença entre travar um preço (futuro) e comprar um <strong>seguro</strong> com piso (put).</li>
+</ul>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> Explique a <strong>assimetria</strong> de resultados entre o <strong>titular</strong> e o <strong>lançador</strong> de uma opção de compra. Por que alguém aceitaria ser lançador, se sua perda pode ser ilimitada?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O <strong>titular</strong> de uma call tem <strong>perda limitada</strong> ao prêmio pago e <strong>ganho potencialmente ilimitado</strong> (cresce com a alta do ativo). O <strong>lançador</strong> tem o espelho: <strong>ganho máximo</strong> igual ao prêmio recebido e <strong>perda potencialmente ilimitada</strong> (se o preço dispara, é obrigado a entregar por <span class="math inline">\(K\)</span> algo que vale muito mais). Alguém aceita lançar porque, na <strong>maioria</strong> dos cenários, o preço não sobe o suficiente e a opção “vira pó”: o lançador fica com o prêmio. É o modelo de negócio da seguradora — receber muitos prêmios pequenos e pagar sinistros raros —, que só é sustentável com boa gestão de risco e diversificação.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> Por que a <strong>volatilidade</strong> do ativo subjacente <strong>aumenta</strong> o valor de uma opção, se em quase todos os outros ativos mais incerteza reduz o preço?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Porque o resultado da opção é <strong>assimétrico e truncado</strong>. Para o titular de uma call, quedas maiores do ativo <strong>não</strong> aumentam a perda (que já está limitada ao prêmio), mas altas maiores aumentam o ganho sem teto. Mais volatilidade amplia as duas caudas da distribuição de preços; como só a cauda <strong>boa</strong> se traduz em resultado para o titular, o valor esperado da opção <strong>sobe</strong>. Em um ativo comum (uma ação, um título), o investidor sofre integralmente tanto a alta quanto a queda, e a aversão ao risco (<a href="../vol06/cap07-escolha-sob-incerteza.html" class="quarto-xref"><span>Capítulo 43</span></a>) faz a incerteza <strong>reduzir</strong> o valor. A opção inverte isso porque elimina o lado ruim ao preço do prêmio.</p>
+</div>
+</div>
+</div>
+<p><strong>9.</strong> (Análise de caso) Em 2008, empresas brasileiras como Sadia e Aracruz tiveram perdas bilionárias com derivativos cambiais que, segundo elas, seriam “hedge”. Usando os conceitos do capítulo, explique como um instrumento de proteção pode se transformar em aposta e como distinguir os dois casos.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O critério é a <strong>exposição preexistente</strong>. Hedge é tomar no derivativo a posição <strong>contrária</strong> a um risco que já se tem, e em <strong>magnitude compatível</strong> com ele: uma exportadora que receberá US$ 10 milhões pode vender até ~US$ 10 milhões em dólar futuro para travar a receita — isso <strong>reduz</strong> risco. Vira <strong>especulação</strong> quando (i) o volume de derivativos <strong>excede</strong> a exposição real (a empresa “vende” muito mais dólar do que receberá), criando uma posição direcional nova; ou (ii) a estrutura embute <strong>alavancagem</strong> que amplia perdas em cenários adversos, como os <em>target forwards</em> de 2008, que multiplicavam a perda se o dólar subisse além de certo ponto. Nesses casos, a empresa deixou de neutralizar risco e passou a <strong>apostar</strong> na valorização do real — quando o dólar disparou com a crise, a aposta alavancada gerou o rombo. Distinguir: comparar o <strong>nocional</strong> dos derivativos com a exposição operacional real e checar se há alavancagem assimétrica. Hedge diminui a variância do resultado; a posição de 2008 a <strong>aumentou</strong>.</p>
+</div>
+</div>
+</div>
+<p><strong>10.</strong> (Desafio) O modelo de Black-Scholes é usado no mundo todo para precificar opções, mas fracassou em episódios como a quebra do LTCM (1998) e a crise de 2008. Isso significa que o modelo é “inútil”? Relacione com a discussão sobre modelos econômicos e seus limites.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Não</strong> é inútil — mas não deve ser tomado como verdade literal. O Black-Scholes é um <strong>modelo</strong>: uma simplificação útil que captura bem a relação entre prêmio, preço, strike, prazo, juros e volatilidade em condições normais, e por isso organiza um mercado inteiro. Seu ponto cego são as <strong>hipóteses</strong>: volatilidade constante e retornos “bem-comportados”, que subestimam a probabilidade de movimentos extremos (o <strong>risco de cauda</strong>, os “cisnes negros”). Nas crises, os preços se movem muito além do que o modelo considera provável, e quem confiou cegamente nele — apostando alavancado, como o LTCM — quebrou. A lição é geral e vale para todo modelo econômico (como discutido sobre modelos e o CAPM em <a href="cap05-risco-retorno-capm.html" class="quarto-xref"><span>Capítulo 99</span></a>): o modelo é uma lente que ilumina o essencial e omite o resto; usá-lo bem exige <strong>conhecer suas hipóteses</strong> e reservar prudência para os cenários em que elas falham. “Todos os modelos estão errados, mas alguns são úteis” — desde que o usuário saiba onde eles quebram.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="100.10">
+<h2 data-number="100.10" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">100.10</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="hull2016">Hull (<a href="#ref-hull2016" role="doc-biblioref">2016</a>)</span> — a referência mundial sobre derivativos: futuros, opções, hedge e precificação, do básico ao avançado, com rigor e clareza. O ponto de partida para aprofundar qualquer tema deste capítulo.</li>
+<li><span class="citation" data-cites="black1973">Black; Scholes (<a href="#ref-black1973" role="doc-biblioref">1973</a>)</span> — o artigo seminal que resolveu a precificação de opções e fundou a engenharia financeira moderna; denso, mas historicamente decisivo.</li>
+<li><span class="citation" data-cites="bodie2014">Bodie; Kane; Marcus (<a href="#ref-bodie2014" role="doc-biblioref">2014</a>)</span> — capítulos dedicados a opções e futuros, com tratamento didático das estratégias e dos diagramas de resultado.</li>
+<li><span class="citation" data-cites="assafneto2021">Assaf Neto (<a href="#ref-assafneto2021" role="doc-biblioref">2021</a>)</span> — cobre o mercado de derivativos no contexto brasileiro, com os contratos da B3, o hedge cambial e agrícola e a regulação da CVM.</li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-assafneto2021" class="csl-entry" role="listitem">
+ASSAF NETO, Alexandre. <strong>Mercado Financeiro</strong>. 14. ed. São Paulo: Atlas, 2021.
+</div>
+<div id="ref-black1973" class="csl-entry" role="listitem">
+BLACK, Fischer; SCHOLES, Myron. The Pricing of Options and Corporate Liabilities. <strong>Journal of Political Economy</strong>, v. 81, n. 3, p. 637–654, 1973.
+</div>
+<div id="ref-bodie2014" class="csl-entry" role="listitem">
+BODIE, Zvi; KANE, Alex; MARCUS, Alan J. <strong>Investimentos</strong>. 10. ed. Porto Alegre: AMGH, 2014.
+</div>
+<div id="ref-hull2016" class="csl-entry" role="listitem">
+HULL, John C. <strong>Opções, Futuros e Outros Derivativos</strong>. 9. ed. Porto Alegre: Bookman, 2016.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1347,7 +2386,7 @@ Nota
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol14/cap06-derivativos.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol14/cap06-derivativos.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
 </div>
