@@ -23,7 +23,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -74,6 +94,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -938,8 +987,35 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">106.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#a-ruptura-a-estagflação-dos-anos-1970" id="toc-a-ruptura-a-estagflação-dos-anos-1970" class="nav-link" data-scroll-target="#a-ruptura-a-estagflação-dos-anos-1970"><span class="header-section-number">106.2</span> A ruptura: a estagflação dos anos 1970</a></li>
+  <li><a href="#o-monetarismo-de-friedman" id="toc-o-monetarismo-de-friedman" class="nav-link" data-scroll-target="#o-monetarismo-de-friedman"><span class="header-section-number">106.3</span> O monetarismo de Friedman</a>
+  <ul class="collapse">
+  <li><a href="#a-teoria-quantitativa-reformulada" id="toc-a-teoria-quantitativa-reformulada" class="nav-link" data-scroll-target="#a-teoria-quantitativa-reformulada"><span class="header-section-number">106.3.1</span> A teoria quantitativa reformulada</a></li>
+  <li><a href="#a-taxa-natural-e-a-curva-de-phillips-vertical" id="toc-a-taxa-natural-e-a-curva-de-phillips-vertical" class="nav-link" data-scroll-target="#a-taxa-natural-e-a-curva-de-phillips-vertical"><span class="header-section-number">106.3.2</span> A taxa natural e a curva de Phillips vertical</a></li>
+  <li><a href="#regras-contra-discricionariedade" id="toc-regras-contra-discricionariedade" class="nav-link" data-scroll-target="#regras-contra-discricionariedade"><span class="header-section-number">106.3.3</span> Regras contra discricionariedade</a></li>
+  </ul></li>
+  <li><a href="#os-novos-clássicos-expectativas-racionais-e-a-crítica-de-lucas" id="toc-os-novos-clássicos-expectativas-racionais-e-a-crítica-de-lucas" class="nav-link" data-scroll-target="#os-novos-clássicos-expectativas-racionais-e-a-crítica-de-lucas"><span class="header-section-number">106.4</span> Os novos clássicos: expectativas racionais e a crítica de Lucas</a>
+  <ul class="collapse">
+  <li><a href="#a-hipótese-das-expectativas-racionais" id="toc-a-hipótese-das-expectativas-racionais" class="nav-link" data-scroll-target="#a-hipótese-das-expectativas-racionais"><span class="header-section-number">106.4.1</span> A hipótese das expectativas racionais</a></li>
+  <li><a href="#a-proposição-da-ineficácia-da-política" id="toc-a-proposição-da-ineficácia-da-política" class="nav-link" data-scroll-target="#a-proposição-da-ineficácia-da-política"><span class="header-section-number">106.4.2</span> A proposição da ineficácia da política</a></li>
+  <li><a href="#a-crítica-de-lucas" id="toc-a-crítica-de-lucas" class="nav-link" data-scroll-target="#a-crítica-de-lucas"><span class="header-section-number">106.4.3</span> A crítica de Lucas</a></li>
+  <li><a href="#ciclos-reais-de-negócios" id="toc-ciclos-reais-de-negócios" class="nav-link" data-scroll-target="#ciclos-reais-de-negócios"><span class="header-section-number">106.4.4</span> Ciclos reais de negócios</a></li>
+  </ul></li>
+  <li><a href="#regras-credibilidade-e-inconsistência-temporal" id="toc-regras-credibilidade-e-inconsistência-temporal" class="nav-link" data-scroll-target="#regras-credibilidade-e-inconsistência-temporal"><span class="header-section-number">106.5</span> Regras, credibilidade e inconsistência temporal</a></li>
+  <li><a href="#os-novos-keynesianos-microfundamentos-da-rigidez" id="toc-os-novos-keynesianos-microfundamentos-da-rigidez" class="nav-link" data-scroll-target="#os-novos-keynesianos-microfundamentos-da-rigidez"><span class="header-section-number">106.6</span> Os novos keynesianos: microfundamentos da rigidez</a></li>
+  <li><a href="#o-novo-consenso" id="toc-o-novo-consenso" class="nav-link" data-scroll-target="#o-novo-consenso"><span class="header-section-number">106.7</span> O novo consenso</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">106.8</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">106.9</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">106.10</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">106.11</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol15/cap05-monetaristas-novos.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -963,9 +1039,1186 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>Capítulo em elaboração.</em></p>
+<p>A cada 45 dias, oito diretores do Banco Central do Brasil se reúnem em Brasília, olham para a inflação e as expectativas de mercado e anunciam um único número: a nova taxa Selic. Não improvisam um estímulo à economia conforme o humor do momento; seguem uma lógica declarada e uma meta de inflação fixada de antemão. Desde 2021, o Banco Central é, por lei, <strong>autônomo</strong> — o presidente da República não pode demiti-lo por discordar de um aumento de juros. Tudo isso soa hoje como bom senso institucional. Mas é o oposto do que a era keynesiana pregava: lá, a política econômica devia ser <strong>ativa, discricionária e a serviço do emprego</strong>, ajustada mês a mês por gestores confiantes de que sabiam dosar a demanda. <strong>Por que a Economia deu essa guinada — de “o Estado deve gerir a demanda com mão firme” para “o Estado deve amarrar as próprias mãos a regras”?</strong></p>
+<p>A resposta está na maior crise intelectual da macroeconomia no século XX, deflagrada quando o consenso keynesiano (<a href="cap04-keynes.html" class="quarto-xref"><span>Capítulo 105</span></a>) bateu num fato que ele não previa. Deste choque nasceram três ondas de pensamento — o <strong>monetarismo</strong>, os <strong>novos clássicos</strong> e os <strong>novos keynesianos</strong> — cujo embate redesenhou não só a teoria, mas as instituições que governam sua vida financeira: o regime de metas de inflação, a independência do Banco Central e a própria ideia de que credibilidade vale mais que ativismo. Este capítulo conta essa história e mostra por que o “novo consenso” que dela emergiu está impresso em cada decisão do Copom.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="106.1">
+<h2 data-number="106.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">106.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>explicar por que a <strong>estagflação</strong> dos anos 1970 quebrou o consenso keynesiano do pós-guerra;</li>
+<li>reconstruir o <strong>monetarismo</strong> de Milton Friedman: a teoria quantitativa reformulada, a <strong>taxa natural de desemprego</strong> e a <strong>curva de Phillips aumentada pelas expectativas</strong>;</li>
+<li>distinguir <strong>regras</strong> de <strong>discricionariedade</strong> e entender o problema da <strong>inconsistência temporal</strong> de Kydland e Prescott;</li>
+<li>enunciar a hipótese das <strong>expectativas racionais</strong> e a <strong>crítica de Lucas</strong>, e o que elas implicam para a eficácia da política econômica;</li>
+<li>caracterizar a escola dos <strong>ciclos reais de negócios</strong> e sua ruptura metodológica;</li>
+<li>descrever a resposta <strong>novo-keynesiana</strong> — microfundamentos da rigidez de preços e salários (custos de menu, salários de eficiência);</li>
+<li>reconhecer o <strong>novo consenso</strong> macroeconômico (metas de inflação, regra de Taylor, modelos DSGE) como síntese dessas correntes.</li>
+</ul>
+</section>
+<section id="a-ruptura-a-estagflação-dos-anos-1970" class="level2" data-number="106.2">
+<h2 data-number="106.2" class="anchored" data-anchor-id="a-ruptura-a-estagflação-dos-anos-1970"><span class="header-section-number">106.2</span> A ruptura: a estagflação dos anos 1970</h2>
+<p>Durante o auge da síntese neoclássica, os economistas acreditavam ter domado o ciclo. A <strong>curva de Phillips</strong> (<a href="../vol07/cap04-oferta-agregada-phillips.html" class="quarto-xref"><span>Capítulo 47</span></a>) parecia oferecer um cardápio confiável: havia uma relação estável e inversa entre <strong>inflação</strong> e <strong>desemprego</strong> — bastava aceitar um pouco mais de inflação para comprar um pouco menos de desemprego. Os governos julgavam poder escolher um ponto nesse trade-off e mantê-lo com política de demanda.</p>
+<p>Os anos 1970 destruíram essa crença. Após os <strong>choques do petróleo</strong> (1973 e 1979), as economias avançadas viram algo que a curva de Phillips ingênua dizia ser impossível: <strong>inflação alta e desemprego alto ao mesmo tempo</strong> — a <strong>estagflação</strong>. O cardápio havia sumido. Pior: quanto mais os governos estimulavam a demanda para reduzir o desemprego, mais a inflação disparava, sem que o desemprego cedesse de forma duradoura. A ferramenta central da era keynesiana falhava justamente onde deveria funcionar.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — a estagflação matou Keynes?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — a estagflação matou Keynes?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>É tentador dizer que os anos 1970 “refutaram” o keynesianismo, mas a leitura é exagerada. O que ruiu foi uma <strong>versão mecânica</strong> — a fé numa curva de Phillips estável e explorável para sempre. O próprio Keynes nunca prometeu tal coisa, e boa parte da reação (a curva de Phillips aumentada pelas expectativas) já havia sido antecipada <strong>dentro</strong> do campo keynesiano. O que os anos 1970 fizeram foi expor a fragilidade dos <strong>microfundamentos</strong> da macro dominante e abrir espaço para que críticos — que existiam desde sempre — assumissem a dianteira. A história das ideias raramente é uma refutação limpa; é uma disputa por quem explica melhor o fato novo.</p>
+</div>
+</div>
+</section>
+<section id="o-monetarismo-de-friedman" class="level2" data-number="106.3">
+<h2 data-number="106.3" class="anchored" data-anchor-id="o-monetarismo-de-friedman"><span class="header-section-number">106.3</span> O monetarismo de Friedman</h2>
+<p>O primeiro a capitalizar a crise foi <strong>Milton Friedman</strong> (1912–2006), líder da Escola de Chicago e principal voz do <strong>monetarismo</strong>. Sua mensagem central, resumida numa frase que virou lema, era: <em>“a inflação é sempre e em toda parte um fenômeno monetário”</em>.</p>
+<section id="a-teoria-quantitativa-reformulada" class="level3" data-number="106.3.1">
+<h3 data-number="106.3.1" class="anchored" data-anchor-id="a-teoria-quantitativa-reformulada"><span class="header-section-number">106.3.1</span> A teoria quantitativa reformulada</h3>
+<p>Friedman ressuscitou e refinou a antiga <strong>teoria quantitativa da moeda</strong> (<a href="../vol08/cap01-moeda.html" class="quarto-xref"><span>Capítulo 52</span></a>), sintetizada na equação de trocas:</p>
+<p><span id="eq-teoria-quantitativa"><span class="math display">\[
+M \cdot V = P \cdot Y,
+\tag{106.1}\]</span></span></p>
+<p>onde <span class="math inline">\(M\)</span> é a quantidade de moeda, <span class="math inline">\(V\)</span> a <strong>velocidade de circulação</strong> (quantas vezes cada unidade monetária troca de mãos no período), <span class="math inline">\(P\)</span> o nível de preços e <span class="math inline">\(Y\)</span> o produto real. Os clássicos supunham <span class="math inline">\(V\)</span> constante e <span class="math inline">\(Y\)</span> dado pelo pleno emprego; logo, variações em <span class="math inline">\(M\)</span> se traduziam diretamente em <span class="math inline">\(P\)</span>. Friedman não era tão rígido, mas defendia que a demanda por moeda (e portanto <span class="math inline">\(V\)</span>) é <strong>estável e previsível</strong>, de modo que expansões monetárias excessivas acabam, no fim das contas, em <strong>inflação</strong> — não em crescimento real duradouro. O corolário de política é direto: para controlar a inflação, controle o crescimento da moeda.</p>
+</section>
+<section id="a-taxa-natural-e-a-curva-de-phillips-vertical" class="level3" data-number="106.3.2">
+<h3 data-number="106.3.2" class="anchored" data-anchor-id="a-taxa-natural-e-a-curva-de-phillips-vertical"><span class="header-section-number">106.3.2</span> A taxa natural e a curva de Phillips vertical</h3>
+<p>A contribuição mais devastadora de Friedman <span class="citation" data-cites="friedman1968">(<a href="#ref-friedman1968" role="doc-biblioref">Friedman, 1968</a>)</span> — desenvolvida em paralelo por <strong>Edmund Phelps</strong> <span class="citation" data-cites="phelps1968">(<a href="#ref-phelps1968" role="doc-biblioref">Phelps, 1968</a>)</span> — foi reinterpretar a curva de Phillips. Segundo eles, existe uma <strong>taxa natural de desemprego</strong>: o nível de desemprego compatível com o equilíbrio do mercado de trabalho, determinado por fatores reais (mobilidade, qualificação, instituições), para o qual a economia <strong>converge no longo prazo</strong>, qualquer que seja a inflação.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Taxa natural de desemprego">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Taxa natural de desemprego
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>taxa natural de desemprego</strong> (<span class="math inline">\(u^n\)</span>) é o nível de desemprego que persiste quando a inflação <strong>efetiva</strong> iguala a inflação <strong>esperada</strong> — ou seja, quando não há surpresas inflacionárias. Corresponde ao desemprego “friccional + estrutural” da economia. Política de demanda pode afastar o desemprego de <span class="math inline">\(u^n\)</span> <strong>temporariamente</strong>, mas não de forma permanente. É também chamada de <strong>NAIRU</strong> (<em>Non-Accelerating Inflation Rate of Unemployment</em>): a taxa de desemprego abaixo da qual a inflação tende a <strong>acelerar</strong>.</p>
+</div>
+</div>
+<p>A chave é o papel das <strong>expectativas</strong>. A curva de Phillips de curto prazo existe, mas só porque os trabalhadores são momentaneamente <strong>enganados</strong>: quando a inflação sobe inesperadamente, os salários nominais demoram a acompanhar, o salário real cai, as firmas contratam mais e o desemprego recua abaixo de <span class="math inline">\(u^n\)</span>. Isso, porém, não dura. Assim que os trabalhadores percebem a inflação e a <strong>incorporam às suas expectativas</strong>, exigem reajustes, o salário real se restaura e o desemprego volta a <span class="math inline">\(u^n\)</span> — agora com inflação <strong>mais alta</strong>. A curva de Phillips de curto prazo se desloca para cima. No <strong>longo prazo</strong>, portanto, não há trade-off: a curva de Phillips é <strong>vertical</strong> na taxa natural, como mostra a <a href="#fig-phillips-longo-prazo" class="quarto-xref">Figura&nbsp;<span>106.1</span></a>.</p>
+<div id="fig-phillips-longo-prazo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-phillips-longo-prazo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="294.663143pt" height="203.563298pt" viewbox="-68.014948 -68.014948 294.663143 203.563298">
+<defs>
+<path id="tz_fig_phillips_longo_prazo_g0-67" d="M5.314072-4.034869C5.326027-4.088667 5.332005-4.112578 5.332005-4.124533S5.326027-4.208219 5.242341-4.208219C5.194521-4.208219 5.188543-4.202242 5.128767-4.136488L4.680448-3.670237C4.357659-4.070735 3.921295-4.208219 3.490909-4.208219C1.972603-4.208219 .508095-2.929016 .508095-1.596015C.508095-.56787 1.344956 .125529 2.456787 .125529C3.078456 .125529 3.622416-.131507 3.975093-.406476C4.566874-.878705 4.662516-1.41071 4.662516-1.440598C4.662516-1.500374 4.608717-1.524284 4.554919-1.524284C4.483188-1.524284 4.459278-1.500374 4.441345-1.440598C4.154421-.508095 3.21594-.113574 2.552428-.113574C2.110087-.113574 1.135741-.292902 1.135741-1.428643C1.135741-1.667746 1.189539-2.492653 1.847073-3.21594C2.163885-3.568618 2.803487-3.969116 3.550685-3.969116C4.321793-3.969116 4.722291-3.419178 4.722291-2.791532C4.722291-2.689913 4.704359-2.582316 4.704359-2.570361C4.704359-2.480697 4.794022-2.480697 4.82391-2.480697C4.901619-2.480697 4.931507-2.486675 4.961395-2.612204L5.314072-4.034869Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g0-76" d="M2.594271-3.592528C2.642092-3.789788 2.654047-3.843587 3.263761-3.843587C3.407223-3.843587 3.478954-3.843587 3.478954-3.993026C3.478954-4.010959 3.466999-4.08269 3.377335-4.08269C3.233873-4.08269 3.078456-4.064757 2.934994-4.064757C2.773599-4.064757 2.600249-4.05878 2.438854-4.05878C2.30137-4.05878 2.163885-4.064757 2.026401-4.064757S1.733499-4.08269 1.596015-4.08269C1.560149-4.08269 1.464508-4.08269 1.464508-3.93325C1.464508-3.843587 1.542217-3.843587 1.655791-3.843587C1.763387-3.843587 1.912827-3.843587 2.038356-3.801743C2.038356-3.741968 2.038356-3.706102 2.014446-3.610461L1.231382-.496139C1.177584-.280946 1.165629-.239103 .71731-.239103C.579826-.239103 .502117-.239103 .502117-.089664C.502117 0 .579826 0 .687422 0H3.855542C4.010959 0 4.016936-.005978 4.05878-.119552C4.118555-.268991 4.584807-1.464508 4.584807-1.500374C4.584807-1.560149 4.536986-1.596015 4.471233-1.596015C4.393524-1.596015 4.375592-1.554172 4.345704-1.482441C4.076712-.806974 3.777833-.239103 2.701868-.239103H1.966625C1.853051-.239103 1.841096-.239103 1.769365-.257036L2.594271-3.592528Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g0-80" d="M2.169863-1.829141H3.371357C4.262017-1.829141 5.254296-2.414944 5.254296-3.138232C5.254296-3.664259 4.704359-4.08269 3.879452-4.08269H1.679701C1.566127-4.08269 1.482441-4.08269 1.482441-3.93325C1.482441-3.843587 1.560149-3.843587 1.673724-3.843587C1.78132-3.843587 1.93076-3.843587 2.056289-3.801743C2.056289-3.73599 2.056289-3.706102 2.032379-3.610461L1.249315-.496139C1.195517-.280946 1.183562-.239103 .735243-.239103C.597758-.239103 .52005-.239103 .52005-.089664C.52005-.041843 .555915 0 .621669 0C.747198 0 .89066-.017933 1.022167-.017933C1.159651-.017933 1.291158-.02391 1.422665-.02391C1.560149-.02391 1.697634-.017933 1.835118-.017933C1.966625-.017933 2.116065 0 2.241594 0C2.283437 0 2.379078 0 2.379078-.14944C2.379078-.239103 2.307347-.239103 2.181818-.239103C2.169863-.239103 2.062267-.239103 1.95467-.251059C1.835118-.263014 1.799253-.263014 1.799253-.328767C1.799253-.352677 1.80523-.376588 1.823163-.436364L2.169863-1.829141ZM2.600249-3.640349C2.64807-3.831631 2.654047-3.843587 2.905106-3.843587H3.676214C4.220174-3.843587 4.620672-3.700125 4.620672-3.245828C4.620672-3.066501 4.542964-2.570361 4.208219-2.313325C3.939228-2.110087 3.56264-2.044334 3.221918-2.044334H2.199751L2.600249-3.640349Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g0-110" d="M1.751432-2.068244C1.721544-2.52254 1.303113-2.636115 1.075965-2.636115S.6934-2.49863 .585803-2.307347C.436364-2.062267 .364633-1.745455 .364633-1.721544C.364633-1.655791 .418431-1.63188 .472229-1.63188C.56787-1.63188 .573848-1.673724 .603736-1.769365C.723288-2.247572 .86675-2.438854 1.058032-2.438854C1.273225-2.438854 1.273225-2.193773 1.273225-2.133998C1.273225-2.038356 1.21345-1.799253 1.171606-1.63188C1.129763-1.470486 1.069988-1.225405 1.0401-1.093898C.998257-.944458 .962391-.789041 .920548-.639601C.878705-.472229 .806974-.17335 .806974-.137484C.806974-.005978 .908593 .059776 1.016189 .059776S1.225405-.011955 1.273225-.101619C1.285181-.137484 1.338979-.3467 1.368867-.466252L1.500374-1.004234C1.542217-1.159651 1.566127-1.267248 1.601993-1.404732C1.655791-1.60797 1.865006-1.924782 2.086177-2.145953C2.205729-2.259527 2.462765-2.438854 2.785554-2.438854C3.16812-2.438854 3.16812-2.133998 3.16812-2.020423C3.16812-1.667746 2.911083-1.028144 2.803487-.759153C2.767621-.657534 2.725778-.561893 2.725778-.460274C2.725778-.155417 3.000747 .059776 3.329514 .059776C3.93325 .059776 4.23213-.729265 4.23213-.860772C4.23213-.872727 4.226152-.944458 4.118555-.944458C4.034869-.944458 4.028892-.91457 3.993026-.800996C3.897385-.484184 3.652304-.137484 3.347447-.137484C3.233873-.137484 3.186052-.227148 3.186052-.352677C3.186052-.472229 3.227895-.573848 3.281694-.699377C3.371357-.932503 3.640349-1.60797 3.640349-1.942715C3.640349-2.432877 3.269738-2.636115 2.815442-2.636115C2.516563-2.636115 2.133998-2.540473 1.751432-2.068244Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g1-25" d="M2.447821-3.308593H3.469988C3.335492-2.743711 3.102366-1.811208 3.102366-1.066999C3.102366-1.004234 3.102366-.672478 3.183064-.349689C3.272727-.008966 3.353425 .09863 3.532752 .09863C3.721046 .09863 3.918306-.062765 3.918306-.268991C3.918306-.331756 3.90934-.358655 3.855542-.475218C3.577584-1.102864 3.577584-1.766376 3.577584-1.972603C3.577584-2.196762 3.577584-2.591283 3.730012-3.308593H4.779078C4.895641-3.308593 5.227397-3.308593 5.227397-3.631382C5.227397-3.864508 5.030137-3.864508 4.859776-3.864508H1.75741C1.542217-3.864508 1.228394-3.864508 .806974-3.443088C.564882-3.200996 .242092-2.707846 .242092-2.636115C.242092-2.537484 .340722-2.537484 .367621-2.537484C.439352-2.537484 .457285-2.555417 .511083-2.645081C.950436-3.308593 1.497385-3.308593 1.676712-3.308593H2.187796C1.802242-1.95467 1.183562-.681445 1.120797-.546949C1.058032-.42142 .968369-.233126 .968369-.161395C.968369-.044832 1.049066 .09863 1.246326 .09863C1.569116 .09863 1.649813-.224159 1.838107-.950436L2.447821-3.308593Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g1-65" d="M1.63188-1.049066C1.192528-.331756 .798007-.304857 .439352-.277958C.376588-.268991 .331756-.19726 .331756-.116563C.331756-.062765 .367621 0 .457285 0C.627646 0 1.049066-.026899 1.219427-.026899C1.416687-.026899 1.900872 0 2.098132 0C2.15193 0 2.268493 0 2.268493-.161395C2.268493-.268991 2.160897-.277958 2.133998-.277958C2.0533-.286924 1.712578-.304857 1.712578-.573848C1.712578-.699377 1.811208-.869738 1.838107-.91457L2.546451-2.071233H4.886675C4.913574-1.865006 4.940473-1.560149 4.967372-1.33599C5.003238-.986301 5.057036-.591781 5.057036-.564882C5.057036-.430386 4.931507-.277958 4.411457-.277958C4.321793-.277958 4.20523-.277958 4.20523-.116563C4.20523-.017933 4.276961 0 4.339726 0C4.510087 0 4.72528-.017933 4.904608-.017933S5.299128-.026899 5.44259-.026899C5.738481-.026899 5.756413-.026899 5.971606-.017933C6.115068-.008966 6.321295 0 6.464757 0C6.518555 0 6.635118 0 6.635118-.161395C6.635118-.277958 6.536488-.277958 6.428892-.277958C5.890909-.277958 5.881943-.340722 5.855044-.600747L5.227397-6.177833C5.209465-6.375093 5.200498-6.419925 5.04807-6.419925C4.92254-6.419925 4.868742-6.357161 4.797011-6.240598L1.63188-1.049066ZM2.716812-2.349191L4.52802-5.308095L4.859776-2.349191H2.716812Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g1-66" d="M1.461519-.681445C1.380822-.358655 1.362889-.277958 .690411-.277958C.52005-.277958 .42142-.277958 .42142-.116563C.42142 0 .511083 0 .672478 0H3.936239C5.388792 0 6.455791-1.058032 6.455791-1.927771C6.455791-2.564384 5.926775-3.102366 5.039103-3.200996C6.06127-3.398257 6.931009-4.079701 6.931009-4.877709C6.931009-5.577086 6.28543-6.124035 5.218431-6.124035H2.15193C1.990535-6.124035 1.882939-6.124035 1.882939-5.96264C1.882939-5.846077 1.963636-5.846077 2.15193-5.846077C2.187796-5.846077 2.349191-5.846077 2.492653-5.828144C2.645081-5.810212 2.707846-5.792279 2.707846-5.693649C2.707846-5.648817 2.698879-5.612951 2.67198-5.514321L1.461519-.681445ZM2.860274-3.299626L3.407223-5.496389C3.48792-5.819178 3.505853-5.846077 3.882441-5.846077H5.092902C6.025405-5.846077 6.106102-5.137733 6.106102-4.913574C6.106102-4.115567 5.272229-3.299626 4.259029-3.299626H2.860274ZM2.429888-.277958C2.304359-.277958 2.286426-.277958 2.25056-.286924C2.160897-.29589 2.133998-.304857 2.133998-.367621C2.133998-.394521 2.133998-.412453 2.178829-.573848L2.797509-3.075467H4.483188C5.039103-3.075467 5.603985-2.833375 5.603985-2.017435C5.603985-1.129763 4.788045-.277958 3.71208-.277958H2.429888Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g1-67" d="M6.939975-6.079203C6.966874-6.1868 6.966874-6.204732 6.966874-6.222665C6.966874-6.231631 6.957908-6.321295 6.859278-6.321295C6.805479-6.321295 6.77858-6.294396 6.715816-6.222665L6.168867-5.621918C6.133001-5.577086 6.097136-5.54122 6.088169-5.54122S6.070237-5.550187 6.016438-5.612951C5.881943-5.792279 5.478456-6.321295 4.545953-6.321295C2.492653-6.321295 .457285-4.33076 .457285-2.286426C.457285-.824907 1.524284 .19726 2.96787 .19726C3.900374 .19726 4.635616-.286924 4.985305-.600747C5.801245-1.327024 5.953674-2.116065 5.953674-2.15193S5.935741-2.25056 5.828144-2.25056C5.729514-2.25056 5.711582-2.196762 5.702615-2.160897C5.263263-.71731 3.981071-.080697 3.084433-.080697C2.214695-.080697 1.291158-.609714 1.291158-1.963636C1.291158-2.367123 1.425654-3.783811 2.331258-4.886675C2.86924-5.532254 3.747945-6.043337 4.608717-6.043337C5.603985-6.043337 6.133001-5.281196 6.133001-4.294894C6.133001-3.990037 6.106102-3.927273 6.106102-3.855542C6.106102-3.756912 6.213699-3.756912 6.240598-3.756912C6.357161-3.756912 6.357161-3.774844 6.401993-3.945205L6.939975-6.079203Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g1-80" d="M2.77061-2.815442H4.267995C5.720548-2.815442 6.90411-3.81071 6.90411-4.761146C6.90411-5.469489 6.267497-6.124035 5.092902-6.124035H2.133998C1.972603-6.124035 1.865006-6.124035 1.865006-5.96264C1.865006-5.846077 1.945704-5.846077 2.133998-5.846077C2.169863-5.846077 2.331258-5.846077 2.47472-5.828144C2.627148-5.810212 2.689913-5.792279 2.689913-5.693649C2.689913-5.648817 2.680946-5.612951 2.654047-5.514321L1.443587-.681445C1.362889-.358655 1.344956-.277958 .672478-.277958C.502117-.277958 .403487-.277958 .403487-.116563C.403487-.017933 .475218 0 .537983 0C.708344 0 .932503-.008966 1.102864-.017933C1.371856-.026899 1.389788-.026899 1.676712-.026899S1.981569-.026899 2.25056-.017933C2.429888-.008966 2.663014 0 2.833375 0C2.896139 0 3.012702 0 3.012702-.161395C3.012702-.277958 2.923039-.277958 2.734745-.277958C2.698879-.277958 2.537484-.277958 2.394022-.29589C2.196762-.32279 2.187796-.358655 2.187796-.439352C2.187796-.466252 2.187796-.484184 2.232628-.645579L2.77061-2.815442ZM3.416189-5.496389C3.496887-5.819178 3.514819-5.846077 3.891407-5.846077H4.797011C5.496389-5.846077 6.052304-5.630884 6.052304-4.976339C6.052304-4.788045 5.953674-3.945205 5.487422-3.514819C5.290162-3.335492 4.877709-3.066501 4.1066-3.066501H2.806476L3.416189-5.496389Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g1-117" d="M4.366625-2.923039C4.420423-3.156164 4.52802-3.568618 4.52802-3.604483C4.52802-3.721046 4.447323-3.864508 4.250062-3.864508C4.124533-3.864508 3.990037-3.783811 3.927273-3.676214C3.882441-3.58655 3.272727-1.156663 3.218929-.860772C3.030635-.537983 2.67198-.125529 2.178829-.125529C1.622914-.125529 1.622914-.690411 1.622914-.860772C1.622914-1.264259 1.739477-1.703611 2.125031-2.707846C2.196762-2.914072 2.25056-3.039601 2.25056-3.209963C2.25056-3.649315 1.918804-3.963138 1.479452-3.963138C.61868-3.963138 .260025-2.689913 .260025-2.582316C.260025-2.501619 .32279-2.47472 .385554-2.47472C.484184-2.47472 .493151-2.528518 .529016-2.645081C.71731-3.29066 1.066999-3.738979 1.452553-3.738979C1.640847-3.738979 1.667746-3.604483 1.667746-3.443088C1.667746-3.29066 1.63188-3.129265 1.551183-2.914072C1.129763-1.802242 1.0132-1.425654 1.0132-.995268C1.0132 0 1.820174 .09863 2.15193 .09863C2.663014 .09863 3.030635-.215193 3.245828-.493151C3.416189 .09863 4.00797 .09863 4.061768 .09863C4.321793 .09863 4.545953-.026899 4.734247-.376588C4.895641-.672478 5.030137-1.246326 5.030137-1.282192C5.030137-1.327024 5.003238-1.389788 4.913574-1.389788C4.805978-1.389788 4.797011-1.344956 4.761146-1.174595C4.581818-.466252 4.393524-.125529 4.088667-.125529C3.873474-.125529 3.81071-.313823 3.81071-.537983C3.81071-.708344 3.855542-.887671 3.936239-1.201494L4.160399-2.125031L4.366625-2.923039Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g2-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g2-50" d="M3.21594-1.117808H2.99477C2.982814-1.034122 2.923039-.639601 2.833375-.573848C2.791532-.537983 2.307347-.537983 2.223661-.537983H1.105853L1.870984-1.159651C2.074222-1.321046 2.606227-1.703611 2.791532-1.882939C2.970859-2.062267 3.21594-2.367123 3.21594-2.791532C3.21594-3.53873 2.540473-3.975093 1.739477-3.975093C.968369-3.975093 .430386-3.466999 .430386-2.905106C.430386-2.600249 .687422-2.564384 .753176-2.564384C.902615-2.564384 1.075965-2.67198 1.075965-2.887173C1.075965-3.01868 .998257-3.209963 .735243-3.209963C.872727-3.514819 1.23736-3.741968 1.649813-3.741968C2.27746-3.741968 2.612204-3.275716 2.612204-2.791532C2.612204-2.367123 2.331258-1.93076 1.912827-1.548194L.496139-.251059C.436364-.191283 .430386-.185305 .430386 0H3.030635L3.21594-1.117808Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-13" d="M3.819676-6.168867C3.792777-6.168867 3.783811-6.177833 3.71208-6.204732C3.434122-6.312329 3.0934-6.321295 2.949938-6.321295C1.927771-6.321295 .959402-5.783313 .959402-4.877709V-3.864508H.251059V-3.58655H.959402V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.690411-.017933 .860772-.026899 1.273225-.026899C1.694645-.026899 1.847073-.017933 2.286426 0V-.277958C1.694645-.277958 1.596015-.277958 1.596015-.690411V-3.58655H3.514819V-.690411C3.514819-.277958 3.416189-.277958 2.824408-.277958V0C3.245828-.017933 3.416189-.026899 3.828643-.026899C4.250062-.026899 4.402491-.017933 4.841843 0V-.277958C4.250062-.277958 4.151432-.277958 4.151432-.690411V-6.222665L3.819676-6.168867ZM1.569116-4.850809C1.569116-5.729514 2.313325-6.097136 2.940971-6.097136C3.129265-6.097136 3.317559-6.079203 3.514819-6.025405C3.38929-5.96264 3.308593-5.819178 3.308593-5.675716C3.308593-5.550187 3.371357-5.406725 3.514819-5.326027V-3.864508H1.569116V-4.850809Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-24" d="M1.407721 1.604981C1.327024 1.604981 1.264259 1.604981 1.201494 1.613948V1.838107C1.578082 1.811208 1.981569 1.85604 2.501619 1.775342C3.048568 1.694645 3.398257 1.515318 3.398257 1.120797S3.057534 .537983 2.636115 .466252V.19726H1.972603V.636613C2.492653 .645579 2.734745 .869738 2.734745 1.120797C2.734745 1.596015 1.891905 1.604981 1.604981 1.604981H1.407721Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-99" d="M3.263761-3.523786C3.075467-3.48792 2.896139-3.362391 2.896139-3.102366C2.896139-2.86924 3.075467-2.689913 3.308593-2.689913S3.730012-2.842341 3.730012-3.120299C3.730012-3.676214 3.102366-4.016936 2.313325-4.016936C1.165629-4.016936 .304857-3.057534 .304857-1.936737C.304857-.780075 1.23736 .09863 2.295392 .09863C3.541719 .09863 3.828643-.986301 3.828643-1.066999C3.828643-1.174595 3.730012-1.174595 3.703113-1.174595C3.604483-1.174595 3.604483-1.156663 3.550685-1.004234C3.344458-.385554 2.842341-.152428 2.385056-.152428C1.811208-.152428 1.075965-.61868 1.075965-1.945704C1.075965-3.344458 1.793275-3.765878 2.331258-3.765878C2.447821-3.765878 2.932005-3.747945 3.263761-3.523786Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-100" d="M3.48792-1.075965C3.48792-.91457 3.48792-.887671 3.353425-.699377C3.075467-.29589 2.663014-.125529 2.304359-.125529C1.918804-.125529 1.560149-.340722 1.327024-.71731C1.093898-1.102864 1.075965-1.63188 1.075965-1.918804C1.075965-2.340224 1.129763-2.815442 1.362889-3.174097C1.560149-3.461021 1.927771-3.738979 2.402989-3.738979C2.779577-3.738979 3.138232-3.550685 3.380324-3.209963C3.48792-3.066501 3.48792-3.057534 3.48792-2.887173V-1.075965ZM3.514819-3.434122C3.469988-3.48792 3.066501-3.963138 2.367123-3.963138C1.264259-3.963138 .304857-3.084433 .304857-1.927771C.304857-.806974 1.201494 .09863 2.268493 .09863C2.923039 .09863 3.326526-.286924 3.48792-.475218V.09863L4.841843 0V-.277958C4.23213-.277958 4.151432-.340722 4.151432-.780075V-6.222665L2.824408-6.124035V-5.846077C3.434122-5.846077 3.514819-5.783313 3.514819-5.34396V-3.434122Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-103" d="M1.120797-1.604981C1.344956-1.461519 1.622914-1.327024 2.035367-1.327024C2.887173-1.327024 3.532752-1.936737 3.532752-2.645081C3.532752-3.084433 3.281694-3.38929 3.165131-3.514819C3.523786-3.837609 3.945205-3.837609 4.052802-3.837609C4.00797-3.81071 3.936239-3.765878 3.936239-3.604483C3.936239-3.505853 3.999004-3.335492 4.20523-3.335492C4.33076-3.335492 4.474222-3.425156 4.474222-3.61345C4.474222-3.783811 4.348692-4.061768 3.990037-4.061768C3.730012-4.061768 3.326526-3.963138 3.012702-3.640349C2.77061-3.837609 2.420922-3.963138 2.044334-3.963138C1.192528-3.963138 .546949-3.353425 .546949-2.645081C.546949-2.187796 .81594-1.865006 .959402-1.730511C.941469-1.712578 .690411-1.398755 .690411-.986301C.690411-.681445 .833873-.358655 1.075965-.19726C.61868-.053798 .260025 .277958 .260025 .699377C.260025 1.33599 1.147696 1.847073 2.295392 1.847073C3.398257 1.847073 4.339726 1.371856 4.339726 .681445C4.339726 .313823 4.169365-.080697 3.837609-.29589C3.335492-.609714 2.815442-.609714 1.963636-.609714C1.784309-.609714 1.497385-.609714 1.425654-.627646C1.165629-.681445 .995268-.923537 .995268-1.210461C.995268-1.353923 1.0401-1.488418 1.120797-1.604981ZM2.035367-1.569116C1.23736-1.569116 1.23736-2.447821 1.23736-2.645081C1.23736-2.887173 1.255293-3.19203 1.407721-3.407223C1.542217-3.58655 1.784309-3.721046 2.035367-3.721046C2.842341-3.721046 2.842341-2.851308 2.842341-2.645081S2.842341-1.569116 2.035367-1.569116ZM2.447821-.044832C2.734745-.044832 3.837609-.035866 3.837609 .690411C3.837609 1.201494 3.147198 1.604981 2.304359 1.604981C1.425654 1.604981 .762142 1.183562 .762142 .690411C.762142 .546949 .851806-.044832 1.622914-.044832H2.447821Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-109" d="M1.667746-2.322291C1.667746-3.29066 2.367123-3.738979 2.905106-3.738979C3.398257-3.738979 3.559651-3.38929 3.559651-2.761644V-.690411C3.559651-.277958 3.461021-.277958 2.86924-.277958V0C3.29066-.017933 3.461021-.026899 3.891407-.026899S4.438356-.017933 4.913574 0V-.277958C4.321793-.277958 4.223163-.277958 4.223163-.690411V-2.322291C4.223163-3.29066 4.92254-3.738979 5.460523-3.738979C5.953674-3.738979 6.115068-3.38929 6.115068-2.761644V-.690411C6.115068-.277958 6.016438-.277958 5.424658-.277958V0C5.846077-.017933 6.016438-.026899 6.446824-.026899S6.993773-.017933 7.468991 0V-.277958C7.011706-.277958 6.787547-.277958 6.77858-.555915V-2.27746C6.77858-3.057534 6.77858-3.308593 6.48269-3.640349C6.294396-3.855542 5.935741-3.963138 5.523288-3.963138C4.877709-3.963138 4.438356-3.58655 4.187298-3.111333C4.079701-3.640349 3.721046-3.963138 2.96787-3.963138C2.25056-3.963138 1.811208-3.496887 1.622914-3.084433H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-110" d="M1.667746-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.133998-3.963138 1.748443-3.344458 1.622914-3.0934H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-112" d="M1.622914-3.012702C1.927771-3.532752 2.420922-3.71208 2.797509-3.71208C3.496887-3.71208 4.034869-2.905106 4.034869-1.936737C4.034869-.91457 3.425156-.125529 2.698879-.125529C2.295392-.125529 1.95467-.358655 1.739477-.672478C1.622914-.851806 1.622914-.869738 1.622914-1.0401V-3.012702ZM1.622914-.430386C1.85604-.19726 2.160897 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.066501 3.927273-3.963138 2.86924-3.963138C2.385056-3.963138 1.936737-3.765878 1.596015-3.398257V-3.963138L.268991-3.864508V-3.58655C.905604-3.58655 .959402-3.532752 .959402-3.147198V1.049066C.959402 1.461519 .860772 1.461519 .268991 1.461519V1.739477C.690411 1.721544 .860772 1.712578 1.291158 1.712578S1.838107 1.721544 2.313325 1.739477V1.461519C1.721544 1.461519 1.622914 1.461519 1.622914 1.049066V-.430386Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-115" d="M3.084433-3.783811C3.084433-3.936239 3.084433-4.016936 2.976837-4.016936C2.932005-4.016936 2.914072-4.016936 2.797509-3.90934C2.779577-3.891407 2.698879-3.81071 2.645081-3.765878C2.367123-3.963138 2.089166-4.016936 1.784309-4.016936C.600747-4.016936 .304857-3.362391 .304857-2.905106C.304857-2.618182 .430386-2.385056 .636613-2.187796C.941469-1.909838 1.282192-1.847073 1.739477-1.766376C2.196762-1.676712 2.349191-1.649813 2.546451-1.497385C2.636115-1.425654 2.860274-1.255293 2.860274-.91457C2.860274-.125529 1.95467-.125529 1.829141-.125529C.91457-.125529 .681445-.887671 .573848-1.371856C.546949-1.461519 .537983-1.515318 .430386-1.515318C.304857-1.515318 .304857-1.443587 .304857-1.282192V-.134496C.304857 .017933 .304857 .09863 .412453 .09863C.466252 .09863 .475218 .089664 .636613-.080697C.672478-.134496 .771108-.251059 .81594-.29589C1.192528 .071731 1.604981 .09863 1.829141 .09863C2.932005 .09863 3.317559-.546949 3.317559-1.147696C3.317559-1.551183 3.138232-1.793275 2.940971-1.999502C2.636115-2.295392 2.313325-2.358157 1.649813-2.483686C1.416687-2.528518 .762142-2.645081 .762142-3.156164C.762142-3.443088 .968369-3.819676 1.784309-3.819676C2.752677-3.819676 2.815442-3.075467 2.833375-2.851308C2.842341-2.743711 2.842341-2.689913 2.958904-2.689913C3.084433-2.689913 3.084433-2.752677 3.084433-2.923039V-3.783811Z"></path>
+<path id="tz_fig_phillips_longo_prazo_g3-126" d="M3.667248-5.998506C3.425156-5.756413 3.218929-5.586052 2.940971-5.586052C2.743711-5.586052 2.57335-5.66675 2.295392-5.819178C2.178829-5.881943 1.972603-5.998506 1.75741-5.998506C1.425654-5.998506 1.255293-5.819178 .771108-5.290162L.932503-5.137733C1.174595-5.379826 1.380822-5.550187 1.65878-5.550187C1.85604-5.550187 2.026401-5.469489 2.304359-5.317061C2.420922-5.254296 2.627148-5.137733 2.842341-5.137733C3.174097-5.137733 3.344458-5.317061 3.828643-5.846077L3.667248-5.998506Z"></path>
+</defs>
+<g id="tz_fig_phillips_longo_prazo_page1">
+<g stroke-miterlimit="10" transform="translate(-45.001578,122.325398)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0H208.55016" fill="none"></path>
+<g transform="translate(208.55016,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(214.0831,-2.25)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.001578,122.325398)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-45.001578" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-100"></use>
+<use x="-39.881922" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-101"></use>
+<use x="-35.782734" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-115"></use>
+<use x="-32.147771" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-101"></use>
+<use x="-28.048583" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-109"></use>
+<use x="-20.369098" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-112"></use>
+<use x="-15.249442" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-114"></use>
+<use x="-11.644921" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-101"></use>
+<use x="-7.545732" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-103"></use>
+<use x="-2.938042" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-111"></use>
+<use x="4.741443" y="122.325398" href="#tz_fig_phillips_longo_prazo_g1-117"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V174.40695" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,174.40695)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-19.7667,181.47115)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.001578,122.325398)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-45.001578" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-105"></use>
+<use x="-42.44175" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-110"></use>
+<use x="-37.322094" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-13"></use>
+<use x="-32.202437" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-97"></use>
+<use x="-27.594747" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-24"></use>
+<use x="-27.594747" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-99"></use>
+<use x="-23.499022" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-126"></use>
+<use x="-23.499022" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-97"></use>
+<use x="-18.891331" y="122.325398" href="#tz_fig_phillips_longo_prazo_g3-111"></use>
+<use x="-11.211847" y="122.325398" href="#tz_fig_phillips_longo_prazo_g1-25"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M119.50143 0V165.02599" fill="none"></path>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(107.31218,169.75899)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.001578,122.325398)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-45.001578" y="122.325398" href="#tz_fig_phillips_longo_prazo_g1-67"></use>
+<use x="-37.785775" y="122.325398" href="#tz_fig_phillips_longo_prazo_g1-80"></use>
+<use x="-31.901967" y="123.321693" href="#tz_fig_phillips_longo_prazo_g0-76"></use>
+<use x="-26.843194" y="123.321693" href="#tz_fig_phillips_longo_prazo_g0-80"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M119.50143 0" fill="none"></path>
+<g transform="translate(114.28098,-9.93956)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.001578,122.325398)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-45.001578" y="122.325398" href="#tz_fig_phillips_longo_prazo_g1-117"></use>
+<use x="-39.698571" y="118.516394" href="#tz_fig_phillips_longo_prazo_g0-110"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="0.8">
+<path d="M62.59595 99.5846L159.33553 22.76227" fill="none"></path>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(163.0685,19.81566)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.001578,122.325398)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-45.001578" y="122.325398" href="#tz_fig_phillips_longo_prazo_g1-67"></use>
+<use x="-37.785775" y="122.325398" href="#tz_fig_phillips_longo_prazo_g1-80"></use>
+<use x="-29.349071" y="118.516394" href="#tz_fig_phillips_longo_prazo_g2-49"></use>
+<use x="-31.901967" y="124.115423" href="#tz_fig_phillips_longo_prazo_g0-67"></use>
+<use x="-26.20586" y="124.115423" href="#tz_fig_phillips_longo_prazo_g0-80"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#93c0f1" stroke="#93c0f1">
+<g stroke-width="0.8">
+<path d="M62.59595 147.95418L159.33553 71.13185" fill="none"></path>
+<g fill="#7db3ef" stroke="#7db3ef">
+<g fill="#7db3ef" stroke="#7db3ef">
+</g>
+<g transform="translate(163.0685,68.18524)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.001578,122.325398)scale(-1,-1)">
+<g fill="#7db3ef">
+<g stroke="none">
+<g fill="#7db3ee">
+<use x="-45.001578" y="122.325398" href="#tz_fig_phillips_longo_prazo_g1-67"></use>
+<use x="-37.785775" y="122.325398" href="#tz_fig_phillips_longo_prazo_g1-80"></use>
+<use x="-29.349071" y="118.516394" href="#tz_fig_phillips_longo_prazo_g2-50"></use>
+<use x="-31.901967" y="124.115423" href="#tz_fig_phillips_longo_prazo_g0-67"></use>
+<use x="-26.20586" y="124.115423" href="#tz_fig_phillips_longo_prazo_g0-80"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M121.34006 45.52455C121.34006 46.54 120.51688 47.36317 119.50143 47.36317C118.486 47.36317 117.66281 46.54 117.66281 45.52455C117.66281 44.50911 118.486 43.68593 119.50143 43.68593C120.51688 43.68593 121.34006 44.50911 121.34006 45.52455ZM119.50143 45.52455" stroke="none"></path>
+</g>
+<g transform="translate(119.50143,45.52455)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.001578,122.325398)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(123.03441,35.84161)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.001578,122.325398)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-45.001578" y="122.325398" href="#tz_fig_phillips_longo_prazo_g1-65"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M75.81592 88.20367C75.81592 89.21912 74.99274 90.0423 73.9773 90.0423C72.96185 90.0423 72.13867 89.21912 72.13867 88.20367C72.13867 87.18823 72.96185 86.36505 73.9773 86.36505C74.99274 86.36505 75.81592 87.18823 75.81592 88.20367ZM73.9773 88.20367" stroke="none"></path>
+</g>
+<g transform="translate(73.9773,88.20367)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.001578,122.325398)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(62.99684,91.73665)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.001578,122.325398)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-45.001578" y="122.325398" href="#tz_fig_phillips_longo_prazo_g1-66"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M121.34006 93.89413C121.34006 94.90958 120.51688 95.73276 119.50143 95.73276C118.486 95.73276 117.66281 94.90958 117.66281 93.89413C117.66281 92.8787 118.486 92.05551 119.50143 92.05551C120.51688 92.05551 121.34006 92.8787 121.34006 93.89413ZM119.50143 93.89413" stroke="none"></path>
+</g>
+<g transform="translate(119.50143,93.89413)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.001578,122.325398)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(123.03441,90.81915)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-45.001578,122.325398)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-45.001578" y="122.325398" href="#tz_fig_phillips_longo_prazo_g1-67"></use>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<path d="M119.50143 45.52455C97.41696 55.89432 85.74878 66.83342 75.52113 85.4009" fill="none"></path>
+<g transform="matrix(-0.48245,0.87587,-0.87587,-0.48245,75.52115,85.4009)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+<g stroke-width="1.2">
+<path d="M73.9773 88.20367C90.17668 95.80046 101.93059 97.26997 116.35901 94.49779" fill="none"></path>
+<g transform="matrix(0.98201,-0.18864,0.18864,0.98201,116.35901,94.4978)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-phillips-longo-prazo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;106.1: A curva de Phillips aumentada pelas expectativas. Estimular a demanda leva a economia de <span class="math inline">\(A\)</span> para <span class="math inline">\(B\)</span> (menos desemprego, mais inflação) — mas só enquanto os trabalhadores são surpreendidos. Revistas as expectativas, a curva de curto prazo sobe e a economia vai a <span class="math inline">\(C\)</span>: desemprego de volta à taxa natural <span class="math inline">\(u^n\)</span>, agora com inflação permanentemente maior. No longo prazo, o trade-off some: <span class="math inline">\(CP_{LP}\)</span> é <strong>vertical</strong>.
+</figcaption>
+</figure>
+</div>
+<p>A implicação é dramática. Tentar manter o desemprego <strong>abaixo</strong> da taxa natural não gera emprego duradouro — gera <strong>inflação acelerada</strong>. É a explicação monetarista da estagflação: governos empurraram a demanda além do sustentável, e tudo o que colheram, depois do efeito passageiro, foi inflação sem redução de desemprego.</p>
+</section>
+<section id="regras-contra-discricionariedade" class="level3" data-number="106.3.3">
+<h3 data-number="106.3.3" class="anchored" data-anchor-id="regras-contra-discricionariedade"><span class="header-section-number">106.3.3</span> Regras contra discricionariedade</h3>
+<p>Daí Friedman extraiu sua receita de política. Se a política monetária ativa é ineficaz no longo prazo e desestabilizadora no curto (por causa das <strong>defasagens longas e variáveis</strong> entre a ação e seu efeito), o melhor que o Banco Central pode fazer é <strong>abandonar o ativismo</strong> e seguir uma <strong>regra fixa</strong>: expandir a moeda a uma taxa constante, próxima ao crescimento do produto (a “regra dos <span class="math inline">\(k\)</span> por cento”). Menos discricionariedade, mais previsibilidade. A política fiscal, por sua vez, seria em grande parte impotente — sujeita ao <strong>efeito deslocamento</strong> (<em>crowding out</em>), em que o gasto público, ao pressionar os juros, expulsa investimento privado equivalente.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — por que defasagens longas viram um argumento por regras">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — por que defasagens longas viram um argumento por regras
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Imagine dirigir um carro cujo volante responde com atraso imprevisível: às vezes 2 segundos, às vezes 10. Você vê uma curva e gira — mas o carro só reage depois, talvez quando a estrada já mudou. Corrigir “no olho” faz você <strong>zigue-zaguear</strong>, amplificando os desvios em vez de suavizá-los. Foi assim que Friedman via o Banco Central tentando ajustar a economia em tempo real: com defasagens longas e variáveis, o ativismo bem-intencionado tende a <strong>acionar o estímulo tarde demais</strong>, quando a economia já se recuperou — adicionando gasolina a um motor que já esquentou. Uma regra estável, ainda que imperfeita, evita esses erros de sincronia.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="os-novos-clássicos-expectativas-racionais-e-a-crítica-de-lucas" class="level2" data-number="106.4">
+<h2 data-number="106.4" class="anchored" data-anchor-id="os-novos-clássicos-expectativas-racionais-e-a-crítica-de-lucas"><span class="header-section-number">106.4</span> Os novos clássicos: expectativas racionais e a crítica de Lucas</h2>
+<p>O monetarismo abalou o consenso; os <strong>novos clássicos</strong> o demoliram. Liderados por <strong>Robert Lucas</strong> (1937–2023), Thomas Sargent e Robert Barro, eles levaram o argumento das expectativas ao limite lógico e reconstruíram a macroeconomia sobre novos alicerces nos anos 1970.</p>
+<section id="a-hipótese-das-expectativas-racionais" class="level3" data-number="106.4.1">
+<h3 data-number="106.4.1" class="anchored" data-anchor-id="a-hipótese-das-expectativas-racionais"><span class="header-section-number">106.4.1</span> A hipótese das expectativas racionais</h3>
+<p>Friedman supunha que os agentes formavam expectativas <strong>adaptativas</strong> — olhando para trás, para a inflação passada, e corrigindo aos poucos (<a href="../vol07/cap06-expectativas.html" class="quarto-xref"><span>Capítulo 49</span></a>). Lucas adotou a hipótese das <strong>expectativas racionais</strong>, formulada por <strong>John Muth</strong> <span class="citation" data-cites="muth1961">(<a href="#ref-muth1961" role="doc-biblioref">Muth, 1961</a>)</span>: os agentes usam <strong>toda</strong> a informação disponível, inclusive o conhecimento de como a economia e a política funcionam, para formar previsões que, em média, <strong>não erram sistematicamente</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Expectativas racionais">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Expectativas racionais
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sob <strong>expectativas racionais</strong>, os agentes não cometem erros previsíveis: sua expectativa sobre uma variável (inflação, por exemplo) é igual à previsão <strong>estatisticamente ótima</strong> dada toda a informação disponível, incluindo o modelo da economia e a regra de conduta do formulador de política. Erram, sim — o futuro é incerto —, mas seus erros são <strong>aleatórios</strong>, sem viés persistente. Não dá para “enganar todo mundo o tempo todo”.</p>
+</div>
+</div>
+</section>
+<section id="a-proposição-da-ineficácia-da-política" class="level3" data-number="106.4.2">
+<h3 data-number="106.4.2" class="anchored" data-anchor-id="a-proposição-da-ineficácia-da-política"><span class="header-section-number">106.4.2</span> A proposição da ineficácia da política</h3>
+<p>A consequência é radical. Se os agentes antecipam a política, uma expansão monetária <strong>anunciada e previsível</strong> não engana ninguém: trabalhadores e firmas já embutem a inflação esperada em salários e preços <strong>antes</strong> que ela apareça. O salário real não cai, o emprego não sobe — só a inflação. É a <strong>proposição da ineficácia da política</strong>: política <strong>sistemática</strong> e antecipada não tem efeito real nem no curto prazo; apenas <strong>surpresas</strong> (choques não antecipados) movem o produto, e surpresas, por definição, não podem ser usadas de forma confiável. A curva de Phillips torna-se vertical <strong>até no curto prazo</strong> para políticas previsíveis. O ativismo keynesiano perde o pouco de terreno que Friedman ainda lhe concedia.</p>
+</section>
+<section id="a-crítica-de-lucas" class="level3" data-number="106.4.3">
+<h3 data-number="106.4.3" class="anchored" data-anchor-id="a-crítica-de-lucas"><span class="header-section-number">106.4.3</span> A crítica de Lucas</h3>
+<p>O golpe metodológico mais duradouro foi a <strong>crítica de Lucas</strong> <span class="citation" data-cites="lucas1976">(<a href="#ref-lucas1976" role="doc-biblioref">Lucas, 1976</a>)</span>. Os grandes modelos macroeconométricos keynesianos estimavam relações (como a curva de Phillips) a partir de dados históricos e as usavam para prever o efeito de novas políticas. Lucas mostrou o erro: essas relações <strong>não são estáveis</strong> quando a política muda, porque embutem as <strong>expectativas</strong> que os agentes tinham sob o regime <strong>anterior</strong>. Mude a regra da política, e os agentes mudam seu comportamento — os parâmetros do modelo se deslocam sob os pés do econometrista.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — extrapolar o passado ignorando reações">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — extrapolar o passado ignorando reações
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A crítica de Lucas é uma das ideias mais férteis da economia moderna, e vai muito além da macro. Sempre que você usa uma regularidade observada para prever o efeito de uma <strong>mudança de regra</strong>, corre o risco de errar, porque as pessoas <strong>reagem</strong> à nova regra. Exemplos: um banco que estima inadimplência com dados de antes de afrouxar a concessão de crédito; um governo que projeta arrecadação de um novo imposto supondo que ninguém mudará de comportamento para evitá-lo; um app que prevê engajamento supondo que os usuários não se adaptarão ao novo algoritmo. A lição de Lucas: <strong>parâmetros comportamentais não são leis da natureza</strong> — para avaliar políticas, é preciso modelar os fundamentos que <strong>não</strong> mudam (preferências, tecnologia), não as correlações que mudam.</p>
+</div>
+</div>
+</section>
+<section id="ciclos-reais-de-negócios" class="level3" data-number="106.4.4">
+<h3 data-number="106.4.4" class="anchored" data-anchor-id="ciclos-reais-de-negócios"><span class="header-section-number">106.4.4</span> Ciclos reais de negócios</h3>
+<p>Uma ala dos novos clássicos foi ainda mais longe. <strong>Finn Kydland</strong> e <strong>Edward Prescott</strong> <span class="citation" data-cites="kydland1982">(<a href="#ref-kydland1982" role="doc-biblioref">Kydland; Prescott, 1982</a>)</span> fundaram a teoria dos <strong>ciclos reais de negócios</strong> (RBC), que abandona de vez a moeda e a demanda como motores do ciclo. Para os RBC, as flutuações do produto são a <strong>resposta ótima</strong> de agentes racionais a <strong>choques reais</strong> — sobretudo choques de <strong>produtividade</strong> (tecnologia). Uma recessão não seria uma falha de mercado a ser corrigida, mas a reação eficiente da economia a um período de produtividade mais baixa; tentar combatê-la com política só pioraria as coisas. A tese é extrema e minoritária, mas seu <strong>método</strong> — construir modelos a partir de otimização intertemporal com fundamentos microeconômicos explícitos — venceu e se tornou o padrão da profissão.</p>
+</section>
+</section>
+<section id="regras-credibilidade-e-inconsistência-temporal" class="level2" data-number="106.5">
+<h2 data-number="106.5" class="anchored" data-anchor-id="regras-credibilidade-e-inconsistência-temporal"><span class="header-section-number">106.5</span> Regras, credibilidade e inconsistência temporal</h2>
+<p>Antes de os RBC, Kydland e Prescott <span class="citation" data-cites="kydland1977">(<a href="#ref-kydland1977" role="doc-biblioref">Kydland; Prescott, 1977</a>)</span> haviam dado o argumento teórico mais influente a favor de <strong>regras</strong> contra <strong>discricionariedade</strong>: o problema da <strong>inconsistência temporal</strong>. É a razão pela qual, hoje, bancos centrais são independentes.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Inconsistência temporal">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Inconsistência temporal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Há <strong>inconsistência temporal</strong> quando uma política que é ótima anunciar hoje deixa de ser ótima executar amanhã — de modo que, se o formulador tiver liberdade para reotimizar, ele <strong>trairá</strong> o anúncio, e o público, sabendo disso, não acreditará nele desde o início. A solução é <strong>amarrar-se</strong> a uma regra que remova a tentação de desviar.</p>
+</div>
+</div>
+<p>O exemplo clássico é a inflação. Um Banco Central anuncia inflação baixa. Se o público <strong>acredita</strong> e fixa preços e salários de acordo, o Banco Central sente a tentação de criar uma <strong>surpresa inflacionária</strong> para reduzir o desemprego abaixo da taxa natural — um ganho de curto prazo. Mas o público <strong>antecipa</strong> essa tentação (expectativas racionais!), já não acredita no anúncio e embute inflação alta nos preços. Resultado: a economia termina com inflação alta <strong>e</strong> desemprego na taxa natural — o pior dos mundos, o chamado <strong>viés inflacionário</strong> da política discricionária. A saída é institucional: retirar do governo a <strong>discricionariedade</strong> sobre a moeda, delegando-a a um Banco Central <strong>independente</strong> e comprometido com uma <strong>regra</strong> ou uma <strong>meta</strong>. Amarrar as mãos, aqui, é o que torna a promessa <strong>crível</strong> — e a credibilidade é o que baixa a inflação a baixo custo. Foi essa ideia que pavimentou os regimes de metas de inflação mundo afora, e a regra de <strong>Taylor</strong> <span class="citation" data-cites="taylor1993">(<a href="#ref-taylor1993" role="doc-biblioref">Taylor, 1993</a>)</span>, que descreve como um bom banco central deve mover os juros em resposta à inflação e ao hiato do produto.</p>
+</section>
+<section id="os-novos-keynesianos-microfundamentos-da-rigidez" class="level2" data-number="106.6">
+<h2 data-number="106.6" class="anchored" data-anchor-id="os-novos-keynesianos-microfundamentos-da-rigidez"><span class="header-section-number">106.6</span> Os novos keynesianos: microfundamentos da rigidez</h2>
+<p>A contrarrevolução novo-clássica tinha uma força e uma fraqueza. A força: rigor microeconômico, expectativas racionais, imunidade à crítica de Lucas. A fraqueza: seus modelos, com mercados sempre em equilíbrio e preços perfeitamente flexíveis, tinham dificuldade para explicar por que recessões são <strong>profundas, prolongadas e dolorosas</strong> — e por que política monetária <strong>claramente</strong> afeta o produto no mundo real, como toda evidência mostra.</p>
+<p>Os <strong>novos keynesianos</strong> — Gregory Mankiw, David Romer, Olivier Blanchard, Stanley Fischer, Joseph Stiglitz — aceitaram as <strong>armas</strong> dos novos clássicos (expectativas racionais, otimização, microfundamentos) para defender uma <strong>conclusão keynesiana</strong>: preços e salários são <strong>rígidos</strong> no curto prazo, o mercado <strong>não</strong> se equilibra instantaneamente, e por isso a demanda importa e a política de estabilização é útil. A novidade foi <strong>fundamentar</strong> essa rigidez em comportamento racional, não postulá-la.</p>
+<ul>
+<li><strong>Custos de menu.</strong> Reajustar preços tem custo (reimprimir cardápios e tabelas, renegociar contratos, irritar clientes). Se o custo de mudar o preço supera o pequeno ganho de ajustá-lo a cada flutuação, a firma racional <strong>mantém o preço fixo</strong> por algum tempo. Individualmente trivial, esse atrito, somado por toda a economia, gera rigidez de preços suficiente para que choques de demanda movam o produto real.</li>
+<li><strong>Salários de eficiência.</strong> Firmas podem preferir pagar <strong>acima</strong> do salário de equilíbrio para elevar produtividade, reduzir rotatividade e desestimular o desleixo (<a href="../vol04/cap04-desemprego.html" class="quarto-xref"><span>Capítulo 26</span></a>). Salários rígidos para baixo explicam desemprego involuntário sem apelar a “irracionalidade”.</li>
+<li><strong>Concorrência imperfeita e falhas de coordenação.</strong> Num mundo de firmas com poder de mercado, ninguém quer ser o primeiro a cortar preços numa recessão; a economia pode ficar presa num equilíbrio ruim que uma coordenação (via política) destravaria.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — pequenas fricções, grandes recessões">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — pequenas fricções, grandes recessões
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O achado mais elegante dos novos keynesianos é que atritos <strong>minúsculos</strong> no nível da firma produzem custos <strong>enormes</strong> no nível agregado. O custo de um restaurante não reimprimir o cardápio é irrisório; mas se milhões de firmas seguram preços ao mesmo tempo, uma queda da demanda que “deveria” baixar preços baixa, em vez disso, a <strong>produção e o emprego</strong>. É a ponte que faltava entre a microeconomia do indivíduo racional e a macroeconomia das recessões keynesianas: a rigidez não é irracionalidade, é a resposta ótima a pequenos custos — com uma externalidade agregada gigantesca.</p>
+</div>
+</div>
+</section>
+<section id="o-novo-consenso" class="level2" data-number="106.7">
+<h2 data-number="106.7" class="anchored" data-anchor-id="o-novo-consenso"><span class="header-section-number">106.7</span> O novo consenso</h2>
+<p>Das guerras dos anos 1970–1980 emergiu, nos anos 1990–2000, uma <strong>síntese novo-keynesiana</strong> que estruturou a macroeconomia até a crise de 2008 e, em boa medida, até hoje — o <strong>novo consenso</strong> (<a href="../vol07/cap08-debates-macroeconomicos.html" class="quarto-xref"><span>Capítulo 51</span></a>). Ele combina o <strong>método</strong> dos novos clássicos com as <strong>conclusões</strong> dos novos keynesianos:</p>
+<ul>
+<li>modelos <strong>DSGE</strong> (equilíbrio geral dinâmico estocástico): microfundamentados, com agentes otimizadores e expectativas racionais — herança novo-clássica;</li>
+<li>mas com <strong>rigidez de preços</strong> à la novos keynesianos, o que devolve à política monetária o poder de afetar o produto no curto prazo;</li>
+<li><strong>política monetária</strong> conduzida por um Banco Central <strong>independente</strong>, via uma <strong>regra de juros</strong> (tipo Taylor), tendo a inflação como âncora — herança da inconsistência temporal e da crítica às regras;</li>
+<li>reconhecimento da <strong>taxa natural</strong> e das expectativas: a política estabiliza flutuações em torno dela, sem tentar superá-la permanentemente.</li>
+</ul>
+<p>A <a href="#fig-linhagem-escolas" class="quarto-xref">Figura&nbsp;<span>106.2</span></a> resume a genealogia dessas correntes — de onde vieram e para onde convergiram.</p>
+<div id="fig-linhagem-escolas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linhagem-escolas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="256.140194pt" height="195.988782pt" viewbox="-68.014948 -68.014949 256.140194 195.988782">
+<defs>
+<path id="tz_fig_linhagem_escolas_g0-13" d="M3.809714-5.531258L3.490909-5.483437C3.459029-5.483437 3.451059-5.491407 3.419178-5.507347C3.156164-5.610959 2.805479-5.610959 2.709838-5.610959C1.849066-5.610959 .884682-5.188543 .884682-4.311831V-3.435118H.231133V-3.172105H.884682V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.036115-.02391 1.171606-.02391C1.331009-.02391 1.761395-.02391 2.072229 0V-.263014C1.562142-.263014 1.466501-.263014 1.466501-.621669V-3.172105H3.227895V-.621669C3.227895-.263014 3.132254-.263014 2.622167-.263014V0C2.933001-.02391 3.379328-.02391 3.514819-.02391C3.674222-.02391 4.104608-.02391 4.415442 0V-.263014C3.905355-.263014 3.809714-.263014 3.809714-.621669V-5.531258ZM1.44259-3.435118V-4.303861C1.44259-5.029141 2.064259-5.387796 2.701868-5.387796C2.988792-5.387796 3.116314-5.355915 3.203985-5.332005C3.092403-5.260274 3.052553-5.156663 3.052553-5.037111C3.052553-4.805978 3.211955-4.726276 3.227895-4.718306V-3.435118H1.44259Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-16" d="M1.522291-3.514819L.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-19" d="M3.156164-4.98132C3.243836-5.045081 3.315567-5.116812 3.315567-5.244334C3.315567-5.427646 3.148194-5.563138 3.004732-5.563138C2.972852-5.563138 2.86127-5.563138 2.757659-5.435616L1.737484-4.224159L1.904857-4.040847L3.156164-4.98132Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-24" d="M2.414944 .167372H1.809215V.557908C2.351183 .565878 2.518555 .797011 2.518555 .980324C2.518555 1.251308 2.207721 1.41071 1.370859 1.41071H1.099875V1.633873H1.474471C1.578082 1.633873 2.12802 1.625903 2.478705 1.546202C2.797509 1.474471 3.124284 1.338979 3.124284 .980324C3.124284 .557908 2.677958 .430386 2.414944 .382565V.167372Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-40" d="M2.654047 1.992528C2.717808 1.992528 2.81345 1.992528 2.81345 1.896887C2.81345 1.865006 2.805479 1.857036 2.701868 1.753425C1.609963 .72528 1.338979-.757161 1.338979-1.992528C1.338979-4.28792 2.287422-5.363885 2.693898-5.730511C2.805479-5.834122 2.81345-5.842092 2.81345-5.881943S2.781569-5.977584 2.701868-5.977584C2.574346-5.977584 2.175841-5.571108 2.11208-5.499377C1.044085-4.383562 .820922-2.948941 .820922-1.992528C.820922-.207223 1.570112 1.227397 2.654047 1.992528Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-41" d="M2.462765-1.992528C2.462765-2.749689 2.335243-3.658281 1.841096-4.598755C1.45056-5.332005 .72528-5.977584 .581818-5.977584C.502117-5.977584 .478207-5.921793 .478207-5.881943C.478207-5.850062 .478207-5.834122 .573848-5.738481C1.689664-4.678456 1.944707-3.219925 1.944707-1.992528C1.944707 .294894 .996264 1.378829 .589788 1.745455C.486177 1.849066 .478207 1.857036 .478207 1.896887S.502117 1.992528 .581818 1.992528C.70934 1.992528 1.107846 1.586052 1.171606 1.514321C2.239601 .398506 2.462765-1.036115 2.462765-1.992528Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-44" d="M1.490411-.119552C1.490411 .119552 1.490411 .773101 .884682 1.338979C.860772 1.362889 .836862 1.378829 .836862 1.42665C.836862 1.498381 .908593 1.546202 .948443 1.546202C1.052055 1.546202 1.713574 .924533 1.713574-.03188C1.713574-.470237 1.554172-.884682 1.171606-.884682C.908593-.884682 .73325-.67746 .73325-.446326C.73325-.207223 .900623 0 1.179577 0C1.354919 0 1.466501-.095641 1.490411-.119552Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-45" d="M2.343213-1.458531V-1.976588H.095641V-1.458531H2.343213Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-49" d="M2.502615-5.076961C2.502615-5.292154 2.486675-5.300125 2.271482-5.300125C1.944707-4.98132 1.522291-4.790037 .765131-4.790037V-4.527024C.980324-4.527024 1.41071-4.527024 1.872976-4.742217V-.653549C1.872976-.358655 1.849066-.263014 1.091905-.263014H.812951V0C1.139726-.02391 1.825156-.02391 2.183811-.02391S3.235866-.02391 3.56264 0V-.263014H3.283686C2.526526-.263014 2.502615-.358655 2.502615-.653549V-5.076961Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-51" d="M2.016438-2.662017C2.646077-2.662017 3.044583-2.199751 3.044583-1.362889C3.044583-.366625 2.478705-.071731 2.056289-.071731C1.617933-.071731 1.020174-.231133 .74122-.653549C1.028144-.653549 1.227397-.836862 1.227397-1.099875C1.227397-1.354919 1.044085-1.538232 .789041-1.538232C.573848-1.538232 .350685-1.40274 .350685-1.083935C.350685-.326775 1.163636 .167372 2.072229 .167372C3.132254 .167372 3.873474-.565878 3.873474-1.362889C3.873474-2.024408 3.347447-2.630137 2.534496-2.805479C3.164134-3.028643 3.634371-3.57061 3.634371-4.208219S2.917061-5.300125 2.088169-5.300125C1.235367-5.300125 .589788-4.837858 .589788-4.23213C.589788-3.937235 .789041-3.809714 .996264-3.809714C1.243337-3.809714 1.40274-3.985056 1.40274-4.216189C1.40274-4.511083 1.147696-4.622665 .972354-4.630635C1.307098-5.068991 1.920797-5.092902 2.064259-5.092902C2.271482-5.092902 2.87721-5.029141 2.87721-4.208219C2.87721-3.650311 2.646077-3.315567 2.534496-3.188045C2.295392-2.940971 2.11208-2.925031 1.625903-2.893151C1.474471-2.885181 1.41071-2.87721 1.41071-2.773599C1.41071-2.662017 1.482441-2.662017 1.617933-2.662017H2.016438Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-54" d="M1.099875-2.638107C1.099875-3.299626 1.155666-3.881445 1.44259-4.367621C1.681694-4.766127 2.088169-5.092902 2.590286-5.092902C2.749689-5.092902 3.116314-5.068991 3.299626-4.790037C2.940971-4.774097 2.909091-4.503113 2.909091-4.415442C2.909091-4.176339 3.092403-4.040847 3.283686-4.040847C3.427148-4.040847 3.658281-4.128518 3.658281-4.431382C3.658281-4.909589 3.299626-5.300125 2.582316-5.300125C1.474471-5.300125 .350685-4.24807 .350685-2.526526C.350685-.366625 1.354919 .167372 2.12802 .167372C2.510585 .167372 2.925031 .063761 3.283686-.278954C3.602491-.589788 3.873474-.924533 3.873474-1.617933C3.873474-2.662017 3.084433-3.395268 2.199751-3.395268C1.625903-3.395268 1.283188-3.028643 1.099875-2.638107ZM2.12802-.071731C1.705604-.071731 1.44259-.366625 1.323039-.589788C1.139726-.948443 1.123786-1.490411 1.123786-1.793275C1.123786-2.582316 1.554172-3.172105 2.16787-3.172105C2.566376-3.172105 2.805479-2.964882 2.956912-2.685928C3.124284-2.391034 3.124284-2.032379 3.124284-1.625903S3.124284-.868742 2.964882-.581818C2.757659-.215193 2.478705-.071731 2.12802-.071731Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-57" d="M3.124284-2.351183C3.124284-.406476 2.199751-.071731 1.737484-.071731C1.570112-.071731 1.155666-.095641 .940473-.342715C1.291158-.374595 1.315068-.637609 1.315068-.71731C1.315068-.956413 1.131756-1.091905 .940473-1.091905C.797011-1.091905 .565878-1.004234 .565878-.70137C.565878-.159402 1.012204 .167372 1.745455 .167372C2.83736 .167372 3.873474-.916563 3.873474-2.622167C3.873474-4.694396 2.956912-5.300125 2.13599-5.300125C1.195517-5.300125 .350685-4.566874 .350685-3.52279C.350685-2.494645 1.123786-1.745455 2.024408-1.745455C2.590286-1.745455 2.933001-2.10411 3.124284-2.510585V-2.351183ZM2.056289-1.968618C1.689664-1.968618 1.458531-2.13599 1.283188-2.430884C1.099875-2.725778 1.099875-3.108344 1.099875-3.514819C1.099875-3.985056 1.099875-4.319801 1.315068-4.646575C1.514321-4.933499 1.769365-5.092902 2.14396-5.092902C2.677958-5.092902 2.909091-4.566874 2.933001-4.527024C3.100374-4.136488 3.108344-3.514819 3.108344-3.355417C3.108344-2.725778 2.765629-1.968618 2.056289-1.968618Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-67" d="M5.634869-5.403736C5.634869-5.531258 5.634869-5.610959 5.531258-5.610959C5.475467-5.610959 5.467497-5.602989 5.395766-5.499377L4.98929-4.909589C4.702366-5.220423 4.176339-5.610959 3.411208-5.610959C1.809215-5.610959 .470237-4.327771 .470237-2.725778C.470237-1.115816 1.801245 .167372 3.419178 .167372C4.758157 .167372 5.634869-.892653 5.634869-1.865006C5.634869-1.944707 5.634869-2.016438 5.507347-2.016438C5.419676-2.016438 5.395766-1.976588 5.387796-1.896887C5.324035-.669489 4.335741-.095641 3.490909-.095641C2.81345-.095641 1.299128-.510087 1.299128-2.725778C1.299128-4.869738 2.733748-5.347945 3.490909-5.347945C4.2401-5.347945 5.164633-4.813948 5.371856-3.443088C5.379826-3.379328 5.387796-3.323537 5.499377-3.323537C5.634869-3.323537 5.634869-3.379328 5.634869-3.53076V-5.403736Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-68" d="M.366625-5.443587V-5.180573H.541968C1.155666-5.180573 1.171606-5.092902 1.171606-4.798007V-.645579C1.171606-.350685 1.155666-.263014 .541968-.263014H.366625V0H3.395268C4.829888 0 5.985554-1.195517 5.985554-2.669988C5.985554-4.208219 4.821918-5.443587 3.395268-5.443587H.366625ZM2.263512-.263014C1.896887-.263014 1.880946-.318804 1.880946-.589788V-4.853798C1.880946-5.124782 1.896887-5.180573 2.263512-5.180573H3.180075C3.801743-5.180573 4.319801-4.925529 4.670486-4.527024C5.180573-3.921295 5.180573-3.068493 5.180573-2.677958C5.180573-2.271482 5.180573-1.490411 4.678456-.900623C4.399502-.573848 3.889415-.263014 3.180075-.263014H2.263512Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-69" d="M5.515318-2.072229H5.268244C5.061021-.876712 4.893649-.263014 3.459029-.263014H2.271482C1.904857-.263014 1.888917-.318804 1.888917-.589788V-2.685928H2.662017C3.451059-2.685928 3.56264-2.446824 3.56264-1.753425H3.809714V-3.881445H3.56264C3.56264-3.188045 3.451059-2.948941 2.662017-2.948941H1.888917V-4.829888C1.888917-5.100872 1.904857-5.156663 2.271482-5.156663H3.403238C4.726276-5.156663 4.893649-4.678456 5.037111-3.610461H5.284184L5.053051-5.419676H.350685V-5.156663H.526027C1.139726-5.156663 1.155666-5.068991 1.155666-4.774097V-.645579C1.155666-.350685 1.139726-.263014 .526027-.263014H.350685V0H5.164633L5.515318-2.072229Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-70" d="M4.933499-5.419676H.350685V-5.156663H.526027C1.139726-5.156663 1.155666-5.068991 1.155666-4.774097V-.645579C1.155666-.350685 1.139726-.263014 .526027-.263014H.350685V0C1.028144-.02391 1.044085-.02391 1.578082-.02391C1.952677-.02391 2.534496-.02391 2.893151 0V-.263014H2.638107C1.888917-.263014 1.888917-.374595 1.888917-.653549V-2.582316H2.630137C3.411208-2.582316 3.506849-2.335243 3.506849-1.649813H3.753923V-3.777833H3.506849C3.506849-3.100374 3.411208-2.84533 2.630137-2.84533H1.888917V-4.829888C1.888917-5.100872 1.904857-5.156663 2.271482-5.156663H3.331507C4.630635-5.156663 4.782067-4.654545 4.917559-3.610461H5.164633L4.933499-5.419676Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-71" d="M5.642839-1.578082C5.642839-1.896887 5.67472-1.936737 6.232628-1.936737V-2.199751C5.826152-2.175841 5.602989-2.175841 5.148692-2.175841C4.805978-2.175841 4.160399-2.175841 3.849564-2.199751V-1.936737H4.128518C4.885679-1.936737 4.909589-1.841096 4.909589-1.546202V-1.036115C4.909589-.876712 4.909589-.549938 4.487173-.318804C4.088667-.095641 3.642341-.095641 3.5467-.095641C2.733748-.095641 1.299128-.589788 1.299128-2.725778C1.299128-4.885679 2.757659-5.347945 3.490909-5.347945C4.28792-5.347945 5.180573-4.766127 5.379826-3.451059C5.387796-3.371357 5.395766-3.323537 5.507347-3.323537C5.642839-3.323537 5.642839-3.379328 5.642839-3.53076V-5.403736C5.642839-5.531258 5.642839-5.610959 5.539228-5.610959C5.483437-5.610959 5.475467-5.602989 5.403736-5.499377L4.99726-4.909589C4.654545-5.276214 4.128518-5.610959 3.411208-5.610959C1.817186-5.610959 .470237-4.327771 .470237-2.725778C.470237-1.139726 1.777335 .167372 3.435118 .167372C4.048817 .167372 4.734247-.01594 5.053051-.486177C5.196513-.263014 5.467497 0 5.547198 0C5.642839 0 5.642839-.087671 5.642839-.207223V-1.578082Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-73" d="M1.888917-4.798007C1.888917-5.100872 1.912827-5.180573 2.542466-5.180573H2.733748V-5.443587C2.096139-5.419676 2.080199-5.419676 1.522291-5.419676S.948443-5.419676 .310834-5.443587V-5.180573H.502117C1.131756-5.180573 1.155666-5.100872 1.155666-4.798007V-.645579C1.155666-.342715 1.131756-.263014 .502117-.263014H.310834V0C.948443-.02391 .964384-.02391 1.522291-.02391S2.096139-.02391 2.733748 0V-.263014H2.542466C1.912827-.263014 1.888917-.342715 1.888917-.645579V-4.798007Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-75" d="M3.403238-3.315567L4.96538-4.694396C5.491407-5.164633 5.913823-5.172603 6.097136-5.180573V-5.443587C5.786301-5.419676 5.770361-5.419676 5.355915-5.419676C4.94944-5.419676 4.925529-5.419676 4.399502-5.443587V-5.180573C4.558904-5.172603 4.702366-5.100872 4.702366-4.941469C4.702366-4.877709 4.678456-4.774097 4.527024-4.638605L1.888917-2.303362V-4.798007C1.888917-5.092902 1.904857-5.180573 2.518555-5.180573H2.693898V-5.443587C2.016438-5.419676 2.000498-5.419676 1.522291-5.419676S1.028144-5.419676 .350685-5.443587V-5.180573H.526027C1.139726-5.180573 1.155666-5.092902 1.155666-4.798007V-.645579C1.155666-.350685 1.139726-.263014 .526027-.263014H.350685V0C1.028144-.02391 1.044085-.02391 1.522291-.02391S2.016438-.02391 2.693898 0V-.263014H2.518555C1.904857-.263014 1.888917-.350685 1.888917-.645579V-1.976588L2.917061-2.885181L4.471233-.757161C4.550934-.653549 4.598755-.581818 4.598755-.486177C4.598755-.263014 4.319801-.263014 4.176339-.263014V0C4.853798-.02391 4.869738-.02391 5.268244-.02391C5.483437-.02391 5.929763-.02391 6.208717 0V-.263014C5.921793-.263014 5.650809-.263014 5.419676-.581818L3.403238-3.315567Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-76" d="M4.933499-2.072229H4.686426C4.590785-1.243337 4.471233-.263014 3.012702-.263014H2.271482C1.904857-.263014 1.888917-.318804 1.888917-.589788V-4.790037C1.888917-5.068991 1.888917-5.180573 2.638107-5.180573H2.893151V-5.443587C2.534496-5.419676 1.952677-5.419676 1.578082-5.419676C1.044085-5.419676 1.028144-5.419676 .350685-5.443587V-5.180573H.526027C1.139726-5.180573 1.155666-5.092902 1.155666-4.798007V-.645579C1.155666-.350685 1.139726-.263014 .526027-.263014H.350685V0H4.702366L4.933499-2.072229Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-77" d="M2.024408-5.260274C1.960648-5.419676 1.952677-5.443587 1.729514-5.443587H.390535V-5.180573H.565878C1.179577-5.180573 1.195517-5.092902 1.195517-4.798007V-.852802C1.195517-.645579 1.195517-.263014 .390535-.263014V0C.749191-.02391 1.123786-.02391 1.331009-.02391S1.912827-.02391 2.271482 0V-.263014C1.466501-.263014 1.466501-.645579 1.466501-.852802V-5.084932L1.474471-5.092902L3.482939-.191283C3.53076-.087671 3.56264 0 3.674222 0C3.777833 0 3.817684-.095641 3.857534-.191283L5.889913-5.156663L5.897883-5.148692V-.645579C5.897883-.350685 5.881943-.263014 5.268244-.263014H5.092902V0C5.72254-.02391 5.738481-.02391 6.224658-.02391S6.726775-.02391 7.356413 0V-.263014H7.181071C6.567372-.263014 6.551432-.350685 6.551432-.645579V-4.798007C6.551432-5.092902 6.567372-5.180573 7.181071-5.180573H7.356413V-5.443587H6.009465C5.794271-5.443587 5.778331-5.419676 5.72254-5.276214L3.873474-.757161L2.024408-5.260274Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-78" d="M1.936737-5.324035C1.849066-5.435616 1.841096-5.443587 1.681694-5.443587H.350685V-5.180573H.573848C.71731-5.180573 .781071-5.180573 .940473-5.164633C1.147696-5.140722 1.155666-5.132752 1.155666-4.98132V-.852802C1.155666-.645579 1.155666-.263014 .350685-.263014V0C.70934-.02391 1.083935-.02391 1.291158-.02391S1.872976-.02391 2.231631 0V-.263014C1.42665-.263014 1.42665-.645579 1.42665-.852802V-4.917559L4.877709-.119552C4.94944-.02391 4.96538 0 5.045081 0C5.180573 0 5.180573-.079701 5.180573-.223163V-4.590785C5.180573-4.798007 5.180573-5.180573 5.985554-5.180573V-5.443587C5.626899-5.419676 5.252304-5.419676 5.045081-5.419676S4.463263-5.419676 4.104608-5.443587V-5.180573C4.909589-5.180573 4.909589-4.798007 4.909589-4.590785V-1.187547L1.936737-5.324035Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-83" d="M1.857036-3.323537C1.346949-3.443088 .972354-3.849564 .972354-4.335741C.972354-4.869738 1.43462-5.371856 2.12802-5.371856C3.506849-5.371856 3.690162-4.080697 3.730012-3.777833C3.745953-3.690162 3.753923-3.634371 3.857534-3.634371C3.985056-3.634371 3.985056-3.690162 3.985056-3.841594V-5.403736C3.985056-5.531258 3.985056-5.610959 3.881445-5.610959C3.817684-5.610959 3.801743-5.587049 3.745953-5.499377L3.466999-5.053051C3.068493-5.491407 2.558406-5.610959 2.12005-5.610959C1.171606-5.610959 .470237-4.893649 .470237-4.080697C.470237-3.474969 .812951-3.140224 .964384-2.988792C1.251308-2.701868 1.514321-2.638107 2.375093-2.438854C3.060523-2.279452 3.180075-2.255542 3.443088-1.976588C3.52279-1.888917 3.722042-1.617933 3.722042-1.227397C3.722042-.67746 3.299626-.095641 2.550436-.095641C1.673724-.095641 .765131-.518057 .71731-1.625903C.70934-1.753425 .70934-1.809215 .597758-1.809215C.470237-1.809215 .470237-1.745455 .470237-1.594022V-.039851C.470237 .087671 .470237 .167372 .573848 .167372C.637609 .167372 .645579 .151432 .70137 .071731C.73325 .02391 .765131-.047821 .988294-.382565C1.490411 .063761 2.080199 .167372 2.558406 .167372C3.55467 .167372 4.224159-.621669 4.224159-1.474471C4.224159-2.16787 3.769863-2.87721 2.956912-3.068493L1.857036-3.323537Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-107" d="M2.399004-2.16787L3.076463-2.709838C3.602491-3.124284 3.937235-3.164134 4.136488-3.172105V-3.435118C3.945205-3.411208 3.833624-3.411208 3.506849-3.411208C3.116314-3.411208 3.004732-3.419178 2.654047-3.435118V-3.172105C2.805479-3.164134 2.83736-3.060523 2.83736-3.012702C2.83736-2.84533 2.677958-2.709838 2.614197-2.662017L1.466501-1.737484V-5.531258L.278954-5.443587V-5.180573C.820922-5.180573 .884682-5.124782 .884682-4.734247V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.020174-.02391 1.155666-.02391C1.315068-.02391 1.729514-.02391 2.040349 0V-.263014C1.530262-.263014 1.43462-.263014 1.43462-.621669V-1.39477L1.976588-1.825156C2.000498-1.825156 2.207721-1.546202 2.335243-1.39477C2.454795-1.227397 2.582316-1.067995 2.709838-.908593C2.82142-.749191 2.988792-.541968 2.988792-.422416C2.988792-.286924 2.83736-.263014 2.741719-.263014V0C3.084433-.02391 3.443088-.02391 3.57858-.02391C3.881445-.02391 4.040847-.02391 4.319801 0V-.263014C3.985056-.263014 3.841594-.294894 3.55467-.669489L2.399004-2.16787Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-108" d="M1.522291-5.531258L.334745-5.443587V-5.180573C.876712-5.180573 .940473-5.124782 .940473-4.734247V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.227397-.02391C1.3868-.02391 1.817186-.02391 2.12802 0V-.263014C1.617933-.263014 1.522291-.263014 1.522291-.621669V-5.531258Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-116" d="M1.482441-3.172105H2.669988V-3.435118H1.482441V-4.901619H1.235367C1.227397-4.176339 .900623-3.419178 .159402-3.395268V-3.172105H.876712V-.996264C.876712-.063761 1.594022 .079701 1.960648 .079701C2.494645 .079701 2.81345-.398506 2.81345-.996264V-1.44259H2.566376V-1.012204C2.566376-.462267 2.319303-.167372 2.016438-.167372C1.482441-.167372 1.482441-.852802 1.482441-.980324V-3.172105Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-117" d="M2.662017-3.427148V-3.164134C3.203985-3.164134 3.267746-3.108344 3.267746-2.717808V-1.331009C3.267746-.645579 2.8533-.143462 2.255542-.143462C1.570112-.143462 1.538232-.486177 1.538232-.884682V-3.514819L.326775-3.427148V-3.164134C.932503-3.164134 .932503-3.140224 .932503-2.430884V-1.235367C.932503-.661519 .932503 .079701 2.207721 .079701C2.956912 .079701 3.243836-.494147 3.283686-.565878H3.291656V.079701L4.479203 0V-.263014C3.937235-.263014 3.873474-.318804 3.873474-.70934V-3.514819L2.662017-3.427148Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-118" d="M3.53076-2.614197C3.722042-3.060523 3.993026-3.164134 4.28792-3.172105V-3.435118C4.008966-3.411208 3.993026-3.411208 3.666252-3.411208C3.594521-3.411208 3.219925-3.411208 2.972852-3.435118V-3.172105C3.251806-3.156164 3.323537-2.980822 3.323537-2.84533C3.323537-2.765629 3.307597-2.725778 3.275716-2.654047L2.414944-.645579L1.474471-2.805479C1.42665-2.909091 1.42665-2.956912 1.42665-2.972852C1.42665-3.172105 1.713574-3.172105 1.849066-3.172105V-3.435118C1.506351-3.411208 1.131756-3.411208 .980324-3.411208C.812951-3.411208 .430386-3.411208 .175342-3.435118V-3.172105C.661519-3.172105 .70137-3.124284 .820922-2.8533L2.016438-.095641C2.072229 .02391 2.12005 .079701 2.231631 .079701S2.399004 .01594 2.438854-.079701L3.53076-2.614197Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-121" d="M3.53076-2.630137C3.730012-3.084433 4.024907-3.164134 4.28792-3.172105V-3.435118C4.008966-3.411208 3.993026-3.411208 3.658281-3.411208C3.626401-3.411208 3.203985-3.411208 2.972852-3.435118V-3.172105C3.203985-3.156164 3.315567-3.028643 3.315567-2.84533C3.315567-2.797509 3.307597-2.741719 3.267746-2.646077L2.414944-.71731L1.490411-2.805479C1.43462-2.925031 1.43462-2.940971 1.43462-2.972852C1.43462-3.164134 1.681694-3.172105 1.857036-3.172105V-3.435118C1.498381-3.411208 1.155666-3.411208 .980324-3.411208C.812951-3.411208 .430386-3.411208 .175342-3.435118V-3.172105C.589788-3.172105 .70137-3.156164 .836862-2.8533L2.096139 0C1.737484 .844832 1.498381 1.40274 .940473 1.40274C.74122 1.40274 .613699 1.307098 .613699 1.307098C.669489 1.291158 .852802 1.203487 .852802 .972354C.852802 .749191 .68543 .629639 .510087 .629639C.350685 .629639 .167372 .73325 .167372 .980324C.167372 1.331009 .510087 1.625903 .940473 1.625903C1.649813 1.625903 2.032379 .773101 2.064259 .6934L3.53076-2.630137Z"></path>
+<path id="tz_fig_linhagem_escolas_g0-126" d="M3.355417-5.347945C3.028643-4.98929 2.781569-4.98929 2.693898-4.98929C2.510585-4.98929 2.343213-5.068991 2.15193-5.172603C1.936737-5.276214 1.793275-5.347945 1.609963-5.347945C1.299128-5.347945 1.139726-5.180573 .70934-4.710336L.868742-4.558904C1.195517-4.917559 1.44259-4.917559 1.530262-4.917559C1.713574-4.917559 1.880946-4.837858 2.072229-4.734247C2.287422-4.630635 2.430884-4.558904 2.614197-4.558904C2.925031-4.558904 3.084433-4.726276 3.514819-5.196513L3.355417-5.347945Z"></path>
+<path id="tz_fig_linhagem_escolas_g1-97" d="M3.110336-1.868991C3.110336-2.238605 3.110336-2.503611 2.789539-2.761644C2.503611-2.998755 2.168867-3.110336 1.75741-3.110336C1.094894-3.110336 .627646-2.859278 .627646-2.433873C.627646-2.21071 .781071-2.092154 .962391-2.092154C1.150685-2.092154 1.290162-2.231631 1.290162-2.419925C1.290162-2.538481 1.234371-2.684932 1.046077-2.740722C1.297136-2.915068 1.701619-2.915068 1.743462-2.915068C2.133998-2.915068 2.559402-2.657036 2.559402-2.071233V-1.855044C2.175841-1.841096 1.715567-1.820174 1.206476-1.63188C.578829-1.401743 .383562-1.018182 .383562-.704359C.383562-.104608 1.108842 .069738 1.603985 .069738C2.161893 .069738 2.489664-.244085 2.636115-.516065C2.66401-.230137 2.852304 .034869 3.173101 .034869C3.187049 .034869 3.863512 .034869 3.863512-.627646V-1.011208H3.626401V-.63462C3.626401-.564882 3.626401-.230137 3.368369-.230137S3.110336-.557908 3.110336-.648568V-1.868991ZM2.559402-.983313C2.559402-.313823 1.973599-.125529 1.659776-.125529C1.30411-.125529 .969365-.36264 .969365-.704359C.969365-1.08792 1.30411-1.624907 2.559402-1.673724V-.983313Z"></path>
+<path id="tz_fig_linhagem_escolas_g1-100" d="M2.48269-4.763138V-4.51208C2.949938-4.51208 3.005729-4.463263 3.005729-4.121544V-2.677958C2.747696-2.929016 2.412951-3.075467 2.02939-3.075467C1.101868-3.075467 .320797-2.378082 .320797-1.499377C.320797-.627646 1.060025 .069738 1.945704 .069738C2.517559 .069738 2.859278-.237111 2.977833-.36264V.069738L4.051806 0V-.251059C3.584558-.251059 3.528767-.299875 3.528767-.641594V-4.839851L2.48269-4.763138ZM2.977833-.732254C2.796513-.404483 2.440847-.125529 1.987547-.125529C1.597011-.125529 1.318057-.355666 1.17858-.557908C1.039103-.767123 .955417-1.046077 .955417-1.492403C.955417-1.652802 .955417-2.175841 1.241345-2.503611C1.520299-2.817435 1.862017-2.880199 2.064259-2.880199C2.399004-2.880199 2.698879-2.726775 2.894147-2.475716C2.977833-2.364134 2.977833-2.357161 2.977833-2.224658V-.732254Z"></path>
+<path id="tz_fig_linhagem_escolas_g1-101" d="M3.068493-1.590037C3.214944-1.590037 3.263761-1.590037 3.263761-1.743462C3.263761-2.357161 2.922042-3.110336 1.882939-3.110336C.969365-3.110336 .27198-2.385056 .27198-1.527273C.27198-.641594 1.046077 .069738 1.973599 .069738C2.915068 .069738 3.263761-.683437 3.263761-.836862C3.263761-.864757 3.249813-.934496 3.145205-.934496C3.054545-.934496 3.040598-.892653 3.019676-.822914C2.803487-.258032 2.273474-.153425 2.022416-.153425C1.694645-.153425 1.380822-.299875 1.171606-.564882C.913574-.892653 .9066-1.318057 .9066-1.590037H3.068493ZM.913574-1.771357C.990286-2.75467 1.617933-2.915068 1.882939-2.915068C2.740722-2.915068 2.768618-1.945704 2.775592-1.771357H.913574Z"></path>
+<path id="tz_fig_linhagem_escolas_g1-105" d="M1.471482-4.302864C1.471482-4.505106 1.30411-4.700374 1.066999-4.700374C.857783-4.700374 .669489-4.533001 .669489-4.302864C.669489-4.051806 .871731-3.898381 1.066999-3.898381C1.290162-3.898381 1.471482-4.072727 1.471482-4.302864ZM.411457-2.998755V-2.747696C.850809-2.747696 .913574-2.705853 .913574-2.364134V-.550934C.913574-.251059 .843836-.251059 .390535-.251059V0C.404483 0 .892653-.027895 1.171606-.027895C1.415691-.027895 1.66675-.020922 1.910834 0V-.251059C1.506351-.251059 1.436613-.251059 1.436613-.54396V-3.075467L.411457-2.998755Z"></path>
+<path id="tz_fig_linhagem_escolas_g1-108" d="M1.436613-4.839851L.390535-4.763138V-4.51208C.857783-4.51208 .913574-4.463263 .913574-4.121544V-.550934C.913574-.251059 .843836-.251059 .390535-.251059V0C.404483 0 .892653-.027895 1.171606-.027895C1.436613-.027895 1.694645-.020922 1.959651 0V-.251059C1.506351-.251059 1.436613-.251059 1.436613-.550934V-4.839851Z"></path>
+<path id="tz_fig_linhagem_escolas_g1-110" d="M3.591532-2.113076C3.591532-2.719801 3.291656-3.075467 2.545455-3.075467C1.973599-3.075467 1.603985-2.761644 1.408717-2.399004H1.401743V-3.075467L.376588-2.998755V-2.747696C.843836-2.747696 .899626-2.698879 .899626-2.357161V-.550934C.899626-.251059 .829888-.251059 .376588-.251059V0C.390535 0 .878705-.027895 1.171606-.027895C1.429639-.027895 1.910834-.006974 1.973599 0V-.251059C1.520299-.251059 1.45056-.251059 1.45056-.550934V-1.806227C1.45056-2.538481 2.02939-2.880199 2.489664-2.880199C2.977833-2.880199 3.040598-2.496638 3.040598-2.140971V-.550934C3.040598-.251059 2.970859-.251059 2.517559-.251059V0C2.531507 0 3.019676-.027895 3.312578-.027895C3.57061-.027895 4.051806-.006974 4.11457 0V-.251059C3.66127-.251059 3.591532-.251059 3.591532-.550934V-2.113076Z"></path>
+<path id="tz_fig_linhagem_escolas_g1-111" d="M3.689166-1.48543C3.689166-2.357161 2.942964-3.110336 1.980573-3.110336S.27198-2.357161 .27198-1.48543C.27198-.620672 1.039103 .069738 1.980573 .069738S3.689166-.620672 3.689166-1.48543ZM1.980573-.153425C1.72254-.153425 1.345953-.237111 1.115816-.578829C.927522-.864757 .9066-1.227397 .9066-1.548194C.9066-1.84807 .913574-2.259527 1.157659-2.559402C1.332005-2.761644 1.624907-2.915068 1.980573-2.915068C2.39203-2.915068 2.684932-2.719801 2.838356-2.503611C3.033624-2.231631 3.054545-1.882939 3.054545-1.548194S3.033624-.843836 2.831382-.557908C2.643088-.292902 2.322291-.153425 1.980573-.153425Z"></path>
+<path id="tz_fig_linhagem_escolas_g1-113" d="M3.528767-3.075467H3.319552L3.068493-2.468742C2.852304-2.803487 2.503611-3.075467 2.008468-3.075467C1.108842-3.075467 .320797-2.39203 .320797-1.499377C.320797-.627646 1.066999 .069738 1.945704 .069738C2.503611 .069738 2.803487-.230137 2.977833-.404483V.801993C2.977833 1.101868 2.908095 1.101868 2.454795 1.101868V1.352927C2.468742 1.352927 2.956912 1.325031 3.249813 1.325031C3.507846 1.325031 3.989041 1.345953 4.051806 1.352927V1.101868C3.598506 1.101868 3.528767 1.101868 3.528767 .801993V-3.075467ZM3.005729-1.004234C3.005729-.878705 3.005729-.850809 2.901121-.669489C2.691905-.327771 2.343213-.125529 1.987547-.125529C1.408717-.125529 .955417-.753176 .955417-1.492403C.955417-2.308344 1.506351-2.852304 2.064259-2.852304C2.650062-2.852304 3.005729-2.280448 3.005729-1.889913V-1.004234Z"></path>
+<path id="tz_fig_linhagem_escolas_g1-114" d="M1.387796-1.590037C1.387796-2.175841 1.659776-2.880199 2.322291-2.880199C2.259527-2.831382 2.203736-2.740722 2.203736-2.629141C2.203736-2.399004 2.385056-2.308344 2.517559-2.308344C2.684932-2.308344 2.838356-2.419925 2.838356-2.629141C2.838356-2.866252 2.615193-3.075467 2.287422-3.075467C1.93873-3.075467 1.555168-2.859278 1.345953-2.329265H1.338979V-3.075467L.341719-2.998755V-2.747696C.808966-2.747696 .864757-2.698879 .864757-2.357161V-.550934C.864757-.251059 .795019-.251059 .341719-.251059V0C.376588 0 .850809-.027895 1.136737-.027895C1.436613-.027895 1.743462-.013948 2.043337 0V-.251059H1.903861C1.387796-.251059 1.387796-.327771 1.387796-.564882V-1.590037Z"></path>
+<path id="tz_fig_linhagem_escolas_g1-116" d="M1.401743-2.75467H2.489664V-3.005729H1.401743V-4.288917H1.164633C1.157659-3.66127 .871731-2.970859 .202242-2.949938V-2.75467H.850809V-.871731C.850809-.09066 1.436613 .069738 1.827148 .069738C2.294396 .069738 2.615193-.327771 2.615193-.878705V-1.262267H2.378082V-.885679C2.378082-.411457 2.154919-.153425 1.882939-.153425C1.401743-.153425 1.401743-.739228 1.401743-.864757V-2.75467Z"></path>
+<path id="tz_fig_linhagem_escolas_g1-117" d="M2.517559-2.998755V-2.747696C2.984807-2.747696 3.040598-2.698879 3.040598-2.357161V-1.164633C3.040598-.550934 2.643088-.125529 2.113076-.125529C1.478456-.125529 1.45056-.425405 1.45056-.781071V-3.075467L.376588-2.998755V-2.747696C.899626-2.747696 .899626-2.726775 .899626-2.106102V-1.060025C.899626-.578829 .899626 .069738 2.064259 .069738C2.217684 .069738 2.726775 .069738 3.061519-.516065H3.068493V.069738L4.11457 0V-.251059C3.647323-.251059 3.591532-.299875 3.591532-.641594V-3.075467L2.517559-2.998755Z"></path>
+<path id="tz_fig_linhagem_escolas_g1-118" d="M3.305604-2.322291C3.500872-2.747696 3.849564-2.75467 3.961146-2.75467V-3.005729C3.7868-2.991781 3.605479-2.977833 3.431133-2.977833C3.242839-2.977833 2.984807-2.984807 2.796513-3.005729V-2.75467C3.089415-2.740722 3.089415-2.510585 3.089415-2.489664C3.089415-2.454795 3.082441-2.385056 3.033624-2.287422L2.245579-.564882L1.380822-2.461768C1.380822-2.468742 1.338979-2.545455 1.338979-2.594271C1.338979-2.75467 1.57609-2.75467 1.694645-2.75467V-3.005729C1.680697-3.005729 1.185554-2.977833 .899626-2.977833C.690411-2.977833 .418431-2.984807 .216189-3.005729V-2.75467C.599751-2.75467 .683437-2.740722 .788045-2.503611L1.889913-.076712C1.924782 .006974 1.966625 .069738 2.085181 .069738C2.217684 .069738 2.245579 .006974 2.280448-.069738L3.305604-2.322291Z"></path>
+</defs>
+<g id="tz_fig_linhagem_escolas_page1">
+<g stroke-miterlimit="10" transform="translate(12.133895,116.436182)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke="#6c757d">
+<g fill="#f4f4f5">
+<g stroke="#6c757d">
+<g fill="#f4f4f5">
+<path d="M21.91142 184.94283H-21.91142C-24.12059 184.94283-25.91142 183.152-25.91142 180.94283V160.4901C-25.91142 158.28093-24.12059 156.4901-21.91142 156.4901H21.91142C24.12059 156.4901 25.91142 158.28093 25.91142 160.4901V180.94283C25.91142 183.152 24.12059 184.94283 21.91142 184.94283ZM-25.91142 156.4901"></path>
+</g>
+</g>
+<g transform="translate(-21.91142,163.18869)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(12.133895,116.436182)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="14.133371" y="106.971674" href="#tz_fig_linhagem_escolas_g0-67"></use>
+<use x="20.249413" y="106.971674" href="#tz_fig_linhagem_escolas_g0-108"></use>
+<use x="22.601736" y="106.971674" href="#tz_fig_linhagem_escolas_g0-19"></use>
+<use x="22.601736" y="106.971674" href="#tz_fig_linhagem_escolas_g0-97"></use>
+<use x="26.835919" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="30.176222" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="33.516525" y="106.971674" href="#tz_fig_linhagem_escolas_g0-105"></use>
+<use x="35.868849" y="106.971674" href="#tz_fig_linhagem_escolas_g0-99"></use>
+<use x="39.632567" y="106.971674" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="43.86675" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="50.029841" y="106.971674" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="12.133895" y="116.436182" href="#tz_fig_linhagem_escolas_g0-110"></use>
+<use x="16.838543" y="116.436182" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="20.602261" y="116.436182" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="25.071676" y="116.436182" href="#tz_fig_linhagem_escolas_g0-99"></use>
+<use x="28.835394" y="116.436182" href="#tz_fig_linhagem_escolas_g0-108"></use>
+<use x="31.187718" y="116.436182" href="#tz_fig_linhagem_escolas_g0-19"></use>
+<use x="31.187718" y="116.436182" href="#tz_fig_linhagem_escolas_g0-97"></use>
+<use x="35.421901" y="116.436182" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="38.762204" y="116.436182" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="42.102507" y="116.436182" href="#tz_fig_linhagem_escolas_g0-105"></use>
+<use x="44.454831" y="116.436182" href="#tz_fig_linhagem_escolas_g0-99"></use>
+<use x="48.218549" y="116.436182" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="52.452732" y="116.436182" href="#tz_fig_linhagem_escolas_g0-115"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#6c757d">
+<g fill="#f4f4f5">
+<g stroke="#6c757d">
+<g fill="#f4f4f5">
+<path d="M167.00455 184.94283H140.28473C138.07556 184.94283 136.28473 183.152 136.28473 180.94283V160.4901C136.28473 158.28093 138.07556 156.4901 140.28473 156.4901H167.00455C169.21371 156.4901 171.00455 158.28093 171.00455 160.4901V180.94283C171.00455 183.152 169.21371 184.94283 167.00455 184.94283ZM136.28473 156.4901"></path>
+</g>
+</g>
+<g transform="translate(140.28473,164.23314)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(12.133895,116.436182)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="12.133895" y="106.971674" href="#tz_fig_linhagem_escolas_g0-75"></use>
+<use x="18.712102" y="106.971674" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="22.47582" y="106.971674" href="#tz_fig_linhagem_escolas_g0-121"></use>
+<use x="26.945235" y="106.971674" href="#tz_fig_linhagem_escolas_g0-110"></use>
+<use x="31.649883" y="106.971674" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="35.413601" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="13.682288" y="116.436182" href="#tz_fig_linhagem_escolas_g0-40"></use>
+<use x="16.975542" y="116.436182" href="#tz_fig_linhagem_escolas_g0-49"></use>
+<use x="21.209724" y="116.436182" href="#tz_fig_linhagem_escolas_g0-57"></use>
+<use x="25.443907" y="116.436182" href="#tz_fig_linhagem_escolas_g0-51"></use>
+<use x="29.67809" y="116.436182" href="#tz_fig_linhagem_escolas_g0-54"></use>
+<use x="33.912273" y="116.436182" href="#tz_fig_linhagem_escolas_g0-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#6c757d">
+<g fill="#f4f4f5">
+<g stroke="#6c757d">
+<g fill="#f4f4f5">
+<path d="M111.36586 130.88278H42.27876C40.0696 130.88278 38.27876 129.09195 38.27876 126.88278V106.43005C38.27876 104.22089 40.0696 102.43005 42.27876 102.43005H111.36586C113.57503 102.43005 115.36586 104.22089 115.36586 106.43005V126.88278C115.36586 129.09195 113.57503 130.88278 111.36586 130.88278ZM38.27876 102.43005"></path>
+</g>
+</g>
+<g transform="translate(42.27876,110.12865)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(12.133895,116.436182)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="12.133895" y="106.971674" href="#tz_fig_linhagem_escolas_g0-83"></use>
+<use x="15.897614" y="106.971674" href="#tz_fig_linhagem_escolas_g0-19"></use>
+<use x="16.838543" y="106.971674" href="#tz_fig_linhagem_escolas_g0-16"></use>
+<use x="19.190867" y="106.971674" href="#tz_fig_linhagem_escolas_g0-110"></use>
+<use x="23.660282" y="106.971674" href="#tz_fig_linhagem_escolas_g0-116"></use>
+<use x="26.953535" y="106.971674" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="30.717254" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="34.057556" y="106.971674" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="40.644063" y="106.971674" href="#tz_fig_linhagem_escolas_g0-110"></use>
+<use x="45.348711" y="106.971674" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="49.112429" y="106.971674" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="53.581844" y="106.971674" href="#tz_fig_linhagem_escolas_g0-99"></use>
+<use x="57.345562" y="106.971674" href="#tz_fig_linhagem_escolas_g0-108"></use>
+<use x="59.697886" y="106.971674" href="#tz_fig_linhagem_escolas_g0-19"></use>
+<use x="59.697886" y="106.971674" href="#tz_fig_linhagem_escolas_g0-97"></use>
+<use x="63.932069" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="67.272372" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="70.612674" y="106.971674" href="#tz_fig_linhagem_escolas_g0-105"></use>
+<use x="72.964998" y="106.971674" href="#tz_fig_linhagem_escolas_g0-99"></use>
+<use x="76.728716" y="106.971674" href="#tz_fig_linhagem_escolas_g0-97"></use>
+<use x="31.4451" y="116.436182" href="#tz_fig_linhagem_escolas_g0-40"></use>
+<use x="34.738353" y="116.436182" href="#tz_fig_linhagem_escolas_g0-73"></use>
+<use x="37.788074" y="116.436182" href="#tz_fig_linhagem_escolas_g0-83"></use>
+<use x="42.492721" y="116.436182" href="#tz_fig_linhagem_escolas_g0-45"></use>
+<use x="45.31551" y="116.436182" href="#tz_fig_linhagem_escolas_g0-76"></use>
+<use x="50.604088" y="116.436182" href="#tz_fig_linhagem_escolas_g0-77"></use>
+<use x="58.358457" y="116.436182" href="#tz_fig_linhagem_escolas_g0-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#6c757d">
+<g fill="#f4f4f5">
+<g stroke="#6c757d">
+<g fill="#f4f4f5">
+<path d="M36.98691 76.98425H-31.29602C-33.50519 76.98425-35.29602 75.19342-35.29602 72.98425V46.51761C-35.29602 44.30844-33.50519 42.51761-31.29602 42.51761H36.98691C39.19608 42.51761 40.98691 44.30844 40.98691 46.51761V72.98425C40.98691 75.19342 39.19608 76.98425 36.98691 76.98425ZM-35.29602 42.51761"></path>
+</g>
+</g>
+<g transform="translate(-31.29602,48.51761)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(12.133895,116.436182)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="18.932117" y="97.507166" href="#tz_fig_linhagem_escolas_g0-77"></use>
+<use x="26.686486" y="97.507166" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="30.920669" y="97.507166" href="#tz_fig_linhagem_escolas_g0-110"></use>
+<use x="35.625316" y="97.507166" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="39.389034" y="97.507166" href="#tz_fig_linhagem_escolas_g0-116"></use>
+<use x="42.682288" y="97.507166" href="#tz_fig_linhagem_escolas_g0-97"></use>
+<use x="46.91647" y="97.507166" href="#tz_fig_linhagem_escolas_g0-114"></use>
+<use x="50.216641" y="97.507166" href="#tz_fig_linhagem_escolas_g0-105"></use>
+<use x="52.568964" y="97.507166" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="55.909267" y="97.507166" href="#tz_fig_linhagem_escolas_g0-116"></use>
+<use x="59.202521" y="97.507166" href="#tz_fig_linhagem_escolas_g0-97"></use>
+<use x="63.436703" y="97.507166" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="69.599795" y="97.507166" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="19.119616" y="106.971674" href="#tz_fig_linhagem_escolas_g0-110"></use>
+<use x="23.824264" y="106.971674" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="27.823214" y="106.971674" href="#tz_fig_linhagem_escolas_g0-118"></use>
+<use x="32.057397" y="106.971674" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="36.29158" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="42.454671" y="106.971674" href="#tz_fig_linhagem_escolas_g0-99"></use>
+<use x="46.218389" y="106.971674" href="#tz_fig_linhagem_escolas_g0-108"></use>
+<use x="48.570713" y="106.971674" href="#tz_fig_linhagem_escolas_g0-19"></use>
+<use x="48.570713" y="106.971674" href="#tz_fig_linhagem_escolas_g0-97"></use>
+<use x="52.804896" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="56.145199" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="59.485502" y="106.971674" href="#tz_fig_linhagem_escolas_g0-105"></use>
+<use x="61.837826" y="106.971674" href="#tz_fig_linhagem_escolas_g0-99"></use>
+<use x="65.601544" y="106.971674" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="69.835726" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="12.133895" y="116.436182" href="#tz_fig_linhagem_escolas_g0-40"></use>
+<use x="15.427149" y="116.436182" href="#tz_fig_linhagem_escolas_g0-70"></use>
+<use x="20.245263" y="116.436182" href="#tz_fig_linhagem_escolas_g0-114"></use>
+<use x="23.545433" y="116.436182" href="#tz_fig_linhagem_escolas_g0-105"></use>
+<use x="25.897756" y="116.436182" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="29.661475" y="116.436182" href="#tz_fig_linhagem_escolas_g0-100"></use>
+<use x="34.366122" y="116.436182" href="#tz_fig_linhagem_escolas_g0-109"></use>
+<use x="41.423094" y="116.436182" href="#tz_fig_linhagem_escolas_g0-97"></use>
+<use x="45.657276" y="116.436182" href="#tz_fig_linhagem_escolas_g0-110"></use>
+<use x="50.361924" y="116.436182" href="#tz_fig_linhagem_escolas_g0-44"></use>
+<use x="55.537036" y="116.436182" href="#tz_fig_linhagem_escolas_g0-76"></use>
+<use x="60.825615" y="116.436182" href="#tz_fig_linhagem_escolas_g0-117"></use>
+<use x="65.530262" y="116.436182" href="#tz_fig_linhagem_escolas_g0-99"></use>
+<use x="69.293981" y="116.436182" href="#tz_fig_linhagem_escolas_g0-97"></use>
+<use x="73.528163" y="116.436182" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="76.868466" y="116.436182" href="#tz_fig_linhagem_escolas_g0-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#6c757d">
+<g fill="#f4f4f5">
+<g stroke="#6c757d">
+<g fill="#f4f4f5">
+<path d="M172.45132 73.9773H129.14792C126.93875 73.9773 125.14792 72.18646 125.14792 69.9773V49.52457C125.14792 47.3154 126.93875 45.52457 129.14792 45.52457H172.45132C174.66049 45.52457 176.45132 47.3154 176.45132 49.52457V69.9773C176.45132 72.18646 174.66049 73.9773 172.45132 73.9773ZM125.14792 45.52457"></path>
+</g>
+</g>
+<g transform="translate(129.14792,53.04538)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(12.133895,116.436182)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="22.629419" y="106.971674" href="#tz_fig_linhagem_escolas_g0-78"></use>
+<use x="28.972393" y="106.971674" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="32.971343" y="106.971674" href="#tz_fig_linhagem_escolas_g0-118"></use>
+<use x="37.205526" y="106.971674" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="41.439709" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="12.133895" y="116.436182" href="#tz_fig_linhagem_escolas_g0-107"></use>
+<use x="16.368078" y="116.436182" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="20.131796" y="116.436182" href="#tz_fig_linhagem_escolas_g0-121"></use>
+<use x="24.601212" y="116.436182" href="#tz_fig_linhagem_escolas_g0-110"></use>
+<use x="29.305859" y="116.436182" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="33.069577" y="116.436182" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="36.40988" y="116.436182" href="#tz_fig_linhagem_escolas_g0-105"></use>
+<use x="38.762204" y="116.436182" href="#tz_fig_linhagem_escolas_g0-97"></use>
+<use x="42.996387" y="116.436182" href="#tz_fig_linhagem_escolas_g0-110"></use>
+<use x="47.701034" y="116.436182" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="51.935217" y="116.436182" href="#tz_fig_linhagem_escolas_g0-115"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#6c757d">
+<g fill="#f4f4f5">
+<g stroke="#6c757d">
+<g fill="#f4f4f5">
+<path d="M126.69038 17.07181H26.95424C24.74507 17.07181 22.95424 15.28098 22.95424 13.07181V-7.38092C22.95424-9.59009 24.74507-11.38092 26.95424-11.38092H126.69038C128.89955-11.38092 130.69038-9.59009 130.69038-7.38092V13.07181C130.69038 15.28098 128.89955 17.07181 126.69038 17.07181ZM22.95424-11.38092"></path>
+</g>
+</g>
+<g transform="translate(26.95424,-3.63788)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(12.133895,116.436182)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="34.956286" y="106.971674" href="#tz_fig_linhagem_escolas_g0-78"></use>
+<use x="41.29926" y="106.971674" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="45.29821" y="106.971674" href="#tz_fig_linhagem_escolas_g0-118"></use>
+<use x="49.532393" y="106.971674" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="56.589365" y="106.971674" href="#tz_fig_linhagem_escolas_g0-99"></use>
+<use x="60.353083" y="106.971674" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="64.587266" y="106.971674" href="#tz_fig_linhagem_escolas_g0-110"></use>
+<use x="69.291913" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="72.632216" y="106.971674" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="76.395934" y="106.971674" href="#tz_fig_linhagem_escolas_g0-110"></use>
+<use x="81.100582" y="106.971674" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="84.440885" y="106.971674" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="12.133895" y="116.436182" href="#tz_fig_linhagem_escolas_g0-40"></use>
+<use x="15.427149" y="116.436182" href="#tz_fig_linhagem_escolas_g0-109"></use>
+<use x="22.48412" y="116.436182" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="26.247838" y="116.436182" href="#tz_fig_linhagem_escolas_g0-116"></use>
+<use x="29.541092" y="116.436182" href="#tz_fig_linhagem_escolas_g0-97"></use>
+<use x="33.775274" y="116.436182" href="#tz_fig_linhagem_escolas_g0-115"></use>
+<use x="39.938366" y="116.436182" href="#tz_fig_linhagem_escolas_g0-100"></use>
+<use x="44.643014" y="116.436182" href="#tz_fig_linhagem_escolas_g0-101"></use>
+<use x="51.22952" y="116.436182" href="#tz_fig_linhagem_escolas_g0-105"></use>
+<use x="53.581844" y="116.436182" href="#tz_fig_linhagem_escolas_g0-110"></use>
+<use x="58.286492" y="116.436182" href="#tz_fig_linhagem_escolas_g0-13"></use>
+<use x="62.991139" y="116.436182" href="#tz_fig_linhagem_escolas_g0-97"></use>
+<use x="67.225322" y="116.436182" href="#tz_fig_linhagem_escolas_g0-24"></use>
+<use x="67.225322" y="116.436182" href="#tz_fig_linhagem_escolas_g0-99"></use>
+<use x="70.98904" y="116.436182" href="#tz_fig_linhagem_escolas_g0-126"></use>
+<use x="70.98904" y="116.436182" href="#tz_fig_linhagem_escolas_g0-97"></use>
+<use x="75.223223" y="116.436182" href="#tz_fig_linhagem_escolas_g0-111"></use>
+<use x="79.457406" y="116.436182" href="#tz_fig_linhagem_escolas_g0-44"></use>
+<use x="84.632518" y="116.436182" href="#tz_fig_linhagem_escolas_g0-68"></use>
+<use x="91.097259" y="116.436182" href="#tz_fig_linhagem_escolas_g0-83"></use>
+<use x="95.801906" y="116.436182" href="#tz_fig_linhagem_escolas_g0-71"></use>
+<use x="102.445146" y="116.436182" href="#tz_fig_linhagem_escolas_g0-69"></use>
+<use x="108.204189" y="116.436182" href="#tz_fig_linhagem_escolas_g0-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="0.8">
+<g fill="#6c757d" stroke="#6c757d">
+<path d="M20.49553 156.2901L55.6723 131.54306" fill="none"></path>
+<g transform="matrix(0.81786,-0.57536,0.57536,0.81786,55.99944,131.31291)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.56 3.12257C-2.0923 1.24901-1.05006 .3643 0 0C-1.05006-.3643-2.0923-1.24901-2.56-3.12257" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+</g>
+<g stroke-width="0.8">
+<g fill="#6c757d" stroke="#6c757d">
+<path d="M136.08473 158.36618L97.97223 131.54318" fill="none"></path>
+<g transform="matrix(-0.81775,-0.57552,0.57552,-0.81775,97.64516,131.31299)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.56 3.12257C-2.0923 1.24901-1.05006 .3643 0 0C-1.05006-.3643-2.0923-1.24901-2.56-3.12257" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+</g>
+<g stroke-width="0.8">
+<g fill="#6c757d" stroke="#6c757d">
+<path d="M58.06691 102.23006L26.12964 77.67188" fill="none"></path>
+<g transform="matrix(-0.7927,-0.60954,0.60954,-0.7927,25.81258,77.42807)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.56 3.12257C-2.0923 1.24901-1.05006 .3643 0 0C-1.05006-.3643-2.0923-1.24901-2.56-3.12257" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+</g>
+<g stroke-width="0.8">
+<g fill="#6c757d" stroke="#6c757d">
+<path d="M95.57068 102.23006L131.42216 74.66487" fill="none"></path>
+<g transform="matrix(0.79272,-0.6095,0.6095,0.79272,131.73924,74.4211)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.56 3.12257C-2.0923 1.24901-1.05006 .3643 0 0C-1.05006-.3643-2.0923-1.24901-2.56-3.12257" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+</g>
+<g stroke-width="0.8">
+<g fill="#6c757d" stroke="#6c757d">
+<path d="M25.50162 42.31761L57.44482 17.75937" fill="none"></path>
+<g transform="matrix(0.79276,-0.60947,0.60947,0.79276,57.76192,17.5156)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.56 3.12257C-2.0923 1.24901-1.05006 .3643 0 0C-1.05006-.3643-2.0923-1.24901-2.56-3.12257" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+</g>
+<g stroke-width="0.8">
+<g fill="#6c757d" stroke="#6c757d">
+<path d="M132.05125 45.32457L96.19977 17.75938" fill="none"></path>
+<g transform="matrix(-0.79272,-0.6095,0.6095,-0.79272,95.88269,17.51561)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.56 3.12257C-2.0923 1.24901-1.05006 .3643 0 0C-1.05006-.3643-2.0923-1.24901-2.56-3.12257" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+</g>
+<g stroke-width="0.8">
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M-14.42548 156.2901C-36.32642 134.39136-36.4882 99.083-15.15169 77.74986" fill="none"></path>
+<g transform="matrix(0.70714,-0.70703,0.70703,0.70714,-14.86885,77.46706)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.56 3.12257C-2.0923 1.24901-1.05006 .3643 0 0C-1.05006-.3643-2.0923-1.24901-2.56-3.12257" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g fill="#6c757d" stroke="#6c757d">
+</g>
+<g transform="translate(-77.11642,106.98715)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(12.133895,116.436182)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="16.212351" y="100.495958" href="#tz_fig_linhagem_escolas_g1-114"></use>
+<use x="19.325694" y="100.495958" href="#tz_fig_linhagem_escolas_g1-101"></use>
+<use x="22.867986" y="100.495958" href="#tz_fig_linhagem_escolas_g1-118"></use>
+<use x="27.053708" y="100.495958" href="#tz_fig_linhagem_escolas_g1-105"></use>
+<use x="29.309153" y="100.495958" href="#tz_fig_linhagem_escolas_g1-118"></use>
+<use x="33.065926" y="100.495958" href="#tz_fig_linhagem_escolas_g1-97"></use>
+<use x="37.037167" y="100.495958" href="#tz_fig_linhagem_escolas_g1-108"></use>
+<use x="41.977004" y="100.495958" href="#tz_fig_linhagem_escolas_g1-100"></use>
+<use x="46.377193" y="100.495958" href="#tz_fig_linhagem_escolas_g1-97"></use>
+<use x="23.296944" y="108.46607" href="#tz_fig_linhagem_escolas_g1-116"></use>
+<use x="26.410287" y="108.46607" href="#tz_fig_linhagem_escolas_g1-101"></use>
+<use x="29.952579" y="108.46607" href="#tz_fig_linhagem_escolas_g1-111"></use>
+<use x="33.92382" y="108.46607" href="#tz_fig_linhagem_escolas_g1-114"></use>
+<use x="37.037163" y="108.46607" href="#tz_fig_linhagem_escolas_g1-105"></use>
+<use x="39.292608" y="108.46607" href="#tz_fig_linhagem_escolas_g1-97"></use>
+<use x="12.133895" y="116.436182" href="#tz_fig_linhagem_escolas_g1-113"></use>
+<use x="16.319597" y="116.436182" href="#tz_fig_linhagem_escolas_g1-117"></use>
+<use x="20.719786" y="116.436182" href="#tz_fig_linhagem_escolas_g1-97"></use>
+<use x="24.691027" y="116.436182" href="#tz_fig_linhagem_escolas_g1-110"></use>
+<use x="28.876734" y="116.436182" href="#tz_fig_linhagem_escolas_g1-116"></use>
+<use x="31.990077" y="116.436182" href="#tz_fig_linhagem_escolas_g1-105"></use>
+<use x="34.245523" y="116.436182" href="#tz_fig_linhagem_escolas_g1-116"></use>
+<use x="37.358866" y="116.436182" href="#tz_fig_linhagem_escolas_g1-97"></use>
+<use x="41.330106" y="116.436182" href="#tz_fig_linhagem_escolas_g1-116"></use>
+<use x="44.443449" y="116.436182" href="#tz_fig_linhagem_escolas_g1-105"></use>
+<use x="46.698895" y="116.436182" href="#tz_fig_linhagem_escolas_g1-118"></use>
+<use x="50.455668" y="116.436182" href="#tz_fig_linhagem_escolas_g1-97"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linhagem-escolas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;106.2: A linhagem das escolas macroeconômicas modernas. O novo consenso funde o <strong>método</strong> dos novos clássicos (microfundamentos, expectativas racionais) com as <strong>conclusões</strong> dos novos keynesianos (rigidez de preços, política estabilizadora).
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — o consenso rachou em 2008">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — o consenso rachou em 2008
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A crise financeira de 2008 abalou a autossuficiência do novo consenso. Os modelos DSGE dominantes tinham um ponto cego enorme: o <strong>sistema financeiro</strong>, tratado como um véu neutro, quase sem bancos, crédito ou risco sistêmico. Não viram a bolha nem a crise chegando. A resposta reabilitou tanto a <strong>política fiscal</strong> (estímulos maciços keynesianos) quanto autores antes marginais — o pós-keynesiano <strong>Hyman Minsky</strong> (<a href="cap04-keynes.html" class="quarto-xref"><span>Capítulo 105</span></a>) e sua “hipótese da instabilidade financeira” voltaram à moda. A macroeconomia pós-2008 segue incorporando fricções financeiras aos modelos e revisando o dogma de que bastava mirar a inflação para garantir a estabilidade. O consenso não morreu, mas perdeu a pretensão de ter resolvido a macroeconomia.</p>
+</div>
+</div>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="106.8">
+<h2 data-number="106.8" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">106.8</span> 🇧🇷 Brasil em Foco</h2>
+<p>Poucos países exibem tão claramente a passagem do keynesianismo ativista para o <strong>novo consenso</strong> quanto o Brasil — e a data da virada é precisa: <strong>1999</strong>.</p>
+<p><strong>O tripé macroeconômico.</strong> Após o colapso da âncora cambial, o Brasil adotou em 1999 o <strong>regime de metas de inflação</strong>, peça central do que se chamou <strong>tripé macroeconômico</strong>: (i) metas de inflação, (ii) câmbio flutuante e (iii) responsabilidade fiscal (a <strong>Lei de Responsabilidade Fiscal</strong>, de 2000). É o novo consenso em estado puro: uma <strong>regra</strong> monetária transparente, com meta numérica definida a priori pelo <strong>Conselho Monetário Nacional</strong> e perseguida pelo <strong>Copom</strong> via taxa Selic. A lógica é exatamente a de Friedman, Kydland e Prescott — <strong>credibilidade e âncora de expectativas</strong> valem mais que ativismo discricionário.</p>
+<p><strong>A independência do Banco Central.</strong> Em 2021, a <strong>Lei Complementar nº 179</strong> deu <strong>autonomia</strong> legal ao Banco Central, com mandatos fixos para a diretoria, não coincidentes com o do presidente da República. A justificativa é diretamente a <strong>inconsistência temporal</strong>: blindar a política monetária da tentação eleitoral de gerar surpresas inflacionárias por emprego de curto prazo. Amarrar as mãos do governante para tornar crível o compromisso com a inflação baixa — Kydland e Prescott aplicados à instituição.</p>
+<p><strong>Expectativas e o Boletim Focus.</strong> O papel central das <strong>expectativas</strong> — herança de Friedman e Lucas — está institucionalizado no <strong>Boletim Focus</strong>, pesquisa semanal do Banco Central que coleta as previsões de inflação, câmbio, PIB e Selic de dezenas de instituições financeiras. O Copom monitora obsessivamente essas expectativas: se elas “desancoram” (se afastam da meta), a autoridade sobe os juros para reancorá-las. É a curva de Phillips aumentada pelas expectativas guiando a política na prática — o combate não é só à inflação corrente, mas à <strong>inflação esperada</strong>.</p>
+<p><strong>A taxa natural à brasileira.</strong> Os conceitos de <strong>taxa natural de desemprego</strong> (NAIRU) e <strong>juro neutro</strong> (o juro real que não acelera nem freia a economia) são estimados rotineiramente para o Brasil por Bacen, IPEA e mercado, e orientam o debate sobre “quão apertada” está a política. Vale a ressalva keynesiana: essas taxas “naturais” não são observáveis nem imutáveis — dependem de instituições, reformas (trabalhista, tributária) e do próprio histórico da economia, o que mantém vivo o debate entre quem as vê como âncoras confiáveis e quem desconfia de sua estabilidade.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> Banco Central — SGS (Selic, base monetária, meios de pagamento M1–M4), sistema de <strong>Expectativas de Mercado / Boletim Focus</strong>, atas do Copom e Relatório de Inflação; CMN (resolução anual da meta de inflação); IBGE — IPCA (índice-meta) e PNAD Contínua (desemprego); IPEA e Tesouro Nacional (estimativas de NAIRU e juro neutro). Ao comparar períodos, verifique a data de referência: meta, banda e estimativas de taxas naturais são revisadas periodicamente.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="106.9">
+<h2 data-number="106.9" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">106.9</span> Resumo do capítulo</h2>
+<ul>
+<li>A <strong>estagflação</strong> dos anos 1970 (inflação alta <strong>e</strong> desemprego alto) quebrou o consenso keynesiano ao refutar a curva de Phillips estável e explorável, abrindo a contrarrevolução monetarista e novo-clássica.</li>
+<li>O <strong>monetarismo</strong> de Friedman ressuscitou a <strong>teoria quantitativa</strong> (<span class="math inline">\(MV = PY\)</span>): a inflação é “sempre e em toda parte um fenômeno monetário”. Como a política ativa tem <strong>defasagens longas e variáveis</strong>, ele defendeu <strong>regras</strong> (crescimento monetário constante) contra a discricionariedade.</li>
+<li>Friedman e Phelps introduziram a <strong>taxa natural de desemprego</strong> e a <strong>curva de Phillips aumentada pelas expectativas</strong>: no longo prazo a curva é <strong>vertical</strong>; tentar manter o desemprego abaixo de <span class="math inline">\(u^n\)</span> só acelera a inflação.</li>
+<li>Os <strong>novos clássicos</strong> (Lucas, Sargent) adotaram <strong>expectativas racionais</strong>: a política <strong>antecipada</strong> é ineficaz mesmo no curto prazo (só surpresas movem o produto). A <strong>crítica de Lucas</strong> mostrou que relações estimadas se deslocam quando a política muda — é preciso modelar fundamentos, não correlações.</li>
+<li>Os <strong>ciclos reais de negócios</strong> (Kydland-Prescott) atribuíram as flutuações a <strong>choques reais de produtividade</strong> e consolidaram o <strong>método</strong> DSGE, hoje padrão da profissão.</li>
+<li>A <strong>inconsistência temporal</strong> (Kydland-Prescott, 1977) fundamenta a preferência por <strong>regras</strong> e por <strong>bancos centrais independentes</strong>: sem amarras, o governo cria <strong>viés inflacionário</strong>; credibilidade baixa a inflação a menor custo.</li>
+<li>Os <strong>novos keynesianos</strong> microfundamentaram a <strong>rigidez</strong> de preços e salários (<strong>custos de menu</strong>, <strong>salários de eficiência</strong>, concorrência imperfeita), restaurando o papel da demanda e da política de estabilização com rigor novo-clássico.</li>
+<li>O <strong>novo consenso</strong> (metas de inflação, regra de Taylor, DSGE) fundiu método novo-clássico e conclusões novo-keynesianas; a <strong>crise de 2008</strong> expôs seu ponto cego financeiro e reabilitou a política fiscal e a instabilidade à la Minsky.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="106.10">
+<h2 data-number="106.10" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">106.10</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise de caso.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique por que a <strong>estagflação</strong> dos anos 1970 foi um problema tão grave para a macroeconomia keynesiana dominante da época.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A macro keynesiana do pós-guerra apoiava-se numa <strong>curva de Phillips estável</strong>, que oferecia um trade-off explorável entre inflação e desemprego: aceitar mais inflação para ter menos desemprego, de forma permanente. A estagflação — inflação alta <strong>e</strong> desemprego alto simultaneamente — é exatamente o ponto que essa curva dizia ser impossível. Além de refutar a ferramenta central de política, ela mostrou que estimular a demanda podia elevar a inflação <strong>sem</strong> reduzir o desemprego de forma duradoura, abalando a confiança na gestão ativa da demanda e abrindo espaço para as críticas monetarista e novo-clássica.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Defina <strong>taxa natural de desemprego</strong> e explique por que, segundo Friedman e Phelps, a curva de Phillips é <strong>vertical no longo prazo</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A taxa natural (<span class="math inline">\(u^n\)</span>, ou NAIRU) é o nível de desemprego que prevalece quando a inflação efetiva iguala a esperada — determinado por fatores reais/estruturais do mercado de trabalho. A curva de Phillips de curto prazo existe porque uma inflação <strong>inesperada</strong> reduz o salário real (os salários nominais demoram a reagir), levando as firmas a contratar mais e o desemprego a cair abaixo de <span class="math inline">\(u^n\)</span>. Mas isso é transitório: quando os trabalhadores <strong>incorporam</strong> a inflação às suas expectativas e exigem reajustes, o salário real se restaura e o desemprego volta a <span class="math inline">\(u^n\)</span> — agora com inflação mais alta. Como no longo prazo a expectativa se ajusta a <strong>qualquer</strong> taxa de inflação, o desemprego retorna sempre a <span class="math inline">\(u^n\)</span>: a curva de longo prazo é <strong>vertical</strong> em <span class="math inline">\(u^n\)</span>, sem trade-off permanente.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> O que diferencia <strong>expectativas adaptativas</strong> (Friedman) de <strong>expectativas racionais</strong> (Lucas)? Qual a consequência dessa diferença para a eficácia da política monetária no <strong>curto prazo</strong>?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Sob expectativas <strong>adaptativas</strong>, os agentes formam previsões olhando para o <strong>passado</strong> (por exemplo, a inflação recente) e corrigem seus erros aos poucos — o que os torna sistematicamente <strong>surpreendíveis</strong> por um tempo. Sob expectativas <strong>racionais</strong>, os agentes usam <strong>toda</strong> a informação disponível, inclusive o conhecimento da regra de política, e não erram de forma sistemática. Consequência: para Friedman, uma expansão monetária <strong>engana</strong> temporariamente e reduz o desemprego no curto prazo (efeito real transitório). Para Lucas, se a política é <strong>antecipada</strong>, ninguém é enganado — salários e preços já embutem a inflação esperada — e não há efeito real <strong>nem no curto prazo</strong>; só <strong>surpresas</strong> (choques não antecipados) movem o produto. A política sistemática torna-se ineficaz.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Enuncie a <strong>crítica de Lucas</strong> e dê um exemplo, fora da macroeconomia, de um erro de previsão que ela ajudaria a evitar.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A crítica de Lucas afirma que as relações empíricas estimadas a partir de dados históricos (como uma curva de Phillips) <strong>não permanecem estáveis</strong> quando a <strong>regra de política muda</strong>, porque essas relações embutem as expectativas e o comportamento dos agentes sob o regime <strong>anterior</strong>. Ao mudar a política, os agentes reagem, e os parâmetros do modelo se deslocam — logo, usar o modelo antigo para prever o efeito da nova política leva a erro. Exemplo fora da macro: um banco que estima a taxa de inadimplência com base em dados coletados <strong>antes</strong> de afrouxar seus critérios de concessão de crédito subestimará a inadimplência futura, pois o novo público de tomadores (atraído justamente pelo afrouxamento) se comporta de modo diferente. A lição: para avaliar mudanças de regra, modele os <strong>fundamentos</strong> (preferências, tecnologia, incentivos), não correlações que se alteram com a regra.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Numa economia com <span class="math inline">\(M = 500\)</span> bilhões, velocidade <span class="math inline">\(V = 8\)</span> e produto real <span class="math inline">\(Y = 4.000\)</span> bilhões (em unidades reais). (a) Use a equação de trocas para achar o nível de preços <span class="math inline">\(P\)</span>. (b) Se o Banco Central expande <span class="math inline">\(M\)</span> em 10% e, no longo prazo, <span class="math inline">\(V\)</span> e <span class="math inline">\(Y\)</span> ficam constantes, qual a nova inflação? (c) Que princípio monetarista esse resultado ilustra?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Da equação <span class="math inline">\(M V = P Y\)</span>: <span class="math inline">\(P = \dfrac{M V}{Y} = \dfrac{500 \times 8}{4.000} = \dfrac{4.000}{4.000} = 1{,}0\)</span>.</p></li>
+<li><p>Com <span class="math inline">\(V\)</span> e <span class="math inline">\(Y\)</span> constantes, <span class="math inline">\(P\)</span> é proporcional a <span class="math inline">\(M\)</span>. Um aumento de 10% em <span class="math inline">\(M\)</span> eleva <span class="math inline">\(P\)</span> em <strong>10%</strong> (novo <span class="math inline">\(P = 1{,}1\)</span>): a inflação é de <strong>10%</strong>. Formalmente, em taxas de crescimento, <span class="math inline">\(\%\Delta M + \%\Delta V = \%\Delta P + \%\Delta Y\)</span>; com <span class="math inline">\(\%\Delta V = \%\Delta Y = 0\)</span>, temos <span class="math inline">\(\%\Delta P = \%\Delta M = 10\%\)</span>.</p></li>
+<li><p>Ilustra a proposição monetarista de que, no longo prazo (com <span class="math inline">\(V\)</span> estável e <span class="math inline">\(Y\)</span> dado pela oferta), <strong>a inflação é um fenômeno monetário</strong>: expandir a moeda acima do crescimento real do produto se traduz integralmente em preços, não em produto real.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Explique o problema da <strong>inconsistência temporal</strong> aplicado à política monetária e mostre como ele justifica a <strong>independência do Banco Central</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Inconsistência temporal: uma política ótima de <strong>anunciar</strong> hoje deixa de ser a ótima de <strong>executar</strong> amanhã. Aplicação à inflação: o Banco Central anuncia inflação baixa; se o público acredita e fixa preços/salários de acordo, surge a tentação de criar uma <strong>surpresa inflacionária</strong> para empurrar o desemprego abaixo da taxa natural (ganho de curto prazo). Mas, com expectativas racionais, o público <strong>antecipa</strong> essa tentação, não acredita no anúncio e já embute inflação alta nos preços. O resultado de equilíbrio é inflação alta <strong>com</strong> desemprego na taxa natural — o <strong>viés inflacionário</strong> da discricionariedade. A solução é institucional: retirar a discricionariedade do governo delegando a moeda a um Banco Central <strong>independente</strong>, com mandato de perseguir uma meta. Ao “amarrar as mãos” do formulador, remove-se a tentação de desviar, tornando o compromisso com a inflação baixa <strong>crível</strong> — e é a credibilidade que baixa a inflação a menor custo (menos desemprego no processo).</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise) Compare monetaristas, novos clássicos e novos keynesianos quanto a: (a) como os agentes formam expectativas; (b) se a política monetária tem efeitos reais no curto prazo; (c) a recomendação de política.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>(a) Expectativas.</strong> Monetaristas: <strong>adaptativas</strong> (baseadas no passado). Novos clássicos: <strong>racionais</strong> (usam toda a informação, inclusive a regra de política). Novos keynesianos: em geral também <strong>racionais</strong> — eles adotaram essa hipótese, mas a combinaram com rigidez.</p>
+<p><strong>(b) Efeitos reais no curto prazo.</strong> Monetaristas: <strong>sim</strong>, há efeito real transitório (surpresas enganam por um tempo), mas nulo no longo prazo. Novos clássicos: política <strong>antecipada</strong> não tem efeito real nem no curto prazo (só surpresas movem o produto). Novos keynesianos: <strong>sim</strong>, efeitos reais no curto prazo, porque <strong>preços e salários são rígidos</strong> (custos de menu, salários de eficiência), o que impede o ajuste instantâneo.</p>
+<p><strong>(c) Recomendação de política.</strong> Monetaristas: <strong>regra</strong> de crescimento monetário constante; fiscal quase inócua (<em>crowding out</em>). Novos clássicos: política sistemática é inútil; foco em <strong>credibilidade e regras</strong>, ceticismo quanto à estabilização ativa. Novos keynesianos: <strong>há</strong> espaço para política de estabilização (a demanda importa por causa da rigidez), preferencialmente <strong>monetária, por regra crível</strong> (tipo Taylor), com banco central independente — a base do novo consenso.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Análise de caso) O Brasil adotou o regime de metas de inflação em 1999 e tornou o Banco Central legalmente autônomo em 2021. (a) Relacione essas duas medidas às ideias deste capítulo. (b) Um governo argumenta que, diante de desemprego alto, o Banco Central deveria cortar juros agressivamente “para gerar empregos”, ignorando a meta de inflação. Avalie o argumento à luz da taxa natural e da inconsistência temporal.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>O <strong>regime de metas</strong> (1999) é a aplicação do <strong>novo consenso</strong>: uma <strong>regra</strong> monetária transparente com âncora de expectativas, no espírito de Friedman (previsibilidade contra ativismo) e da regra de Taylor. A <strong>autonomia do Banco Central</strong> (2021) responde diretamente à <strong>inconsistência temporal</strong> de Kydland e Prescott: blinda a política monetária da tentação política de gerar surpresas inflacionárias por emprego de curto prazo, tornando crível o compromisso com a inflação baixa (menos viés inflacionário).</p></li>
+<li><p>O argumento é frágil sob a ótica do capítulo. Cortar juros para empurrar o desemprego <strong>abaixo da taxa natural</strong> só produz ganho de emprego <strong>enquanto</strong> os agentes são surpreendidos; assim que as expectativas se ajustam (e, com Focus e mercados atentos, o ajuste é rápido), o desemprego volta à taxa natural com inflação <strong>mais alta</strong> — a curva de Phillips vertical de longo prazo. Pior: se o Banco Central cede à pressão, perde <strong>credibilidade</strong>; o público passa a esperar mais inflação, o que <strong>desancora</strong> as expectativas e obriga, depois, a juros ainda mais altos para reancorá-las — o viés inflacionário da discricionariedade. A resposta correta depende do <strong>diagnóstico</strong>: se o desemprego alto reflete demanda deficiente <strong>com</strong> expectativas ancoradas e inflação na meta, há espaço para afrouxar sem violar a meta; mas cortar juros <strong>ignorando</strong> a meta, com expectativas em risco, tende a entregar mais inflação e não mais emprego duradouro. É justamente para remover essa tentação que se optou por regra e independência.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="106.11">
+<h2 data-number="106.11" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">106.11</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="friedman1968">Friedman (<a href="#ref-friedman1968" role="doc-biblioref">1968</a>)</span> — <em>The Role of Monetary Policy</em>; o discurso presidencial na AEA que introduziu a <strong>taxa natural</strong> e a curva de Phillips aumentada pelas expectativas. Curto e fundamental.</li>
+<li><span class="citation" data-cites="phelps1968">Phelps (<a href="#ref-phelps1968" role="doc-biblioref">1968</a>)</span> — a formulação independente e simultânea da taxa natural; complementa Friedman com microfundamentos do mercado de trabalho.</li>
+<li><span class="citation" data-cites="lucas1976">Lucas (<a href="#ref-lucas1976" role="doc-biblioref">1976</a>)</span> — a <strong>crítica de Lucas</strong>; um dos artigos mais influentes da macroeconomia moderna, com implicações que vão muito além dela.</li>
+<li><span class="citation" data-cites="muth1961">Muth (<a href="#ref-muth1961" role="doc-biblioref">1961</a>)</span> — o artigo seminal que formulou as <strong>expectativas racionais</strong>, depois centrais na revolução novo-clássica.</li>
+<li><span class="citation" data-cites="kydland1977">Kydland; Prescott (<a href="#ref-kydland1977" role="doc-biblioref">1977</a>)</span> — <em>Rules Rather than Discretion</em>; a <strong>inconsistência temporal</strong> e o argumento teórico por trás dos bancos centrais independentes (Prêmio Nobel de 2004).</li>
+<li><span class="citation" data-cites="friedman2014">Friedman; Friedman (<a href="#ref-friedman2014" role="doc-biblioref">2014</a>)</span> — <em>Livre para Escolher</em>; a exposição popular e acessível da visão de Friedman sobre mercados, moeda e o papel do Estado.</li>
+<li><span class="citation" data-cites="froyen2013">Froyen (<a href="#ref-froyen2013" role="doc-biblioref">2013</a>)</span> — tratamento didático que percorre monetarismo, novos clássicos e novos keynesianos, com os modelos formais de cada escola.</li>
+<li><span class="citation" data-cites="blanchard2017">Blanchard (<a href="#ref-blanchard2017" role="doc-biblioref">2017</a>)</span> — manual que apresenta a curva de Phillips aumentada, a taxa natural e o novo consenso com aplicações contemporâneas.</li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-blanchard2017" class="csl-entry" role="listitem">
+BLANCHARD, Olivier. <strong>Macroeconomia</strong>. 7. ed. São Paulo: Pearson, 2017.
+</div>
+<div id="ref-friedman1968" class="csl-entry" role="listitem">
+FRIEDMAN, Milton. The Role of Monetary Policy. <strong>The American Economic Review</strong>, v. 58, n. 1, p. 1–17, 1968.
+</div>
+<div id="ref-friedman2014" class="csl-entry" role="listitem">
+FRIEDMAN, Milton; FRIEDMAN, Rose. <strong>Livre para Escolher</strong>. Rio de Janeiro: Record, 2014.
+</div>
+<div id="ref-froyen2013" class="csl-entry" role="listitem">
+FROYEN, Richard T. <strong>Macroeconomia: Teorias e Aplicações</strong>. 2. ed. São Paulo: Saraiva, 2013.
+</div>
+<div id="ref-kydland1977" class="csl-entry" role="listitem">
+KYDLAND, Finn E.; PRESCOTT, Edward C. Rules Rather than Discretion: The Inconsistency of Optimal Plans. <strong>Journal of Political Economy</strong>, v. 85, n. 3, p. 473–492, 1977.
+</div>
+<div id="ref-kydland1982" class="csl-entry" role="listitem">
+KYDLAND, Finn E.; PRESCOTT, Edward C. Time to Build and Aggregate Fluctuations. <strong>Econometrica</strong>, v. 50, n. 6, p. 1345–1370, 1982.
+</div>
+<div id="ref-lucas1976" class="csl-entry" role="listitem">
+LUCAS, Robert E. Econometric Policy Evaluation: A Critique. <strong>Carnegie-Rochester Conference Series on Public Policy</strong>, v. 1, p. 19–46, 1976.
+</div>
+<div id="ref-muth1961" class="csl-entry" role="listitem">
+MUTH, John F. Rational Expectations and the Theory of Price Movements. <strong>Econometrica</strong>, v. 29, n. 3, p. 315–335, 1961.
+</div>
+<div id="ref-phelps1968" class="csl-entry" role="listitem">
+PHELPS, Edmund S. Money-Wage Dynamics and Labor-Market Equilibrium. <strong>Journal of Political Economy</strong>, v. 76, n. 4, p. 678–711, 1968.
+</div>
+<div id="ref-taylor1993" class="csl-entry" role="listitem">
+TAYLOR, John B. Discretion versus Policy Rules in Practice. <strong>Carnegie-Rochester Conference Series on Public Policy</strong>, v. 39, p. 195–214, 1993.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1388,7 +2641,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol15/cap05-monetaristas-novos.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol15/cap05-monetaristas-novos.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
 </div>

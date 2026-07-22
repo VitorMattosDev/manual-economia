@@ -23,7 +23,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -74,6 +94,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -938,8 +987,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">107.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#o-homo-economicus-e-seus-críticos" id="toc-o-homo-economicus-e-seus-críticos" class="nav-link" data-scroll-target="#o-homo-economicus-e-seus-críticos"><span class="header-section-number">107.2</span> O homo economicus e seus críticos</a>
+  <ul class="collapse">
+  <li><a href="#racionalidade-limitada" id="toc-racionalidade-limitada" class="nav-link" data-scroll-target="#racionalidade-limitada"><span class="header-section-number">107.2.1</span> Racionalidade limitada</a></li>
+  <li><a href="#os-dois-sistemas-de-pensamento" id="toc-os-dois-sistemas-de-pensamento" class="nav-link" data-scroll-target="#os-dois-sistemas-de-pensamento"><span class="header-section-number">107.2.2</span> Os dois sistemas de pensamento</a></li>
+  </ul></li>
+  <li><a href="#heurísticas-e-vieses" id="toc-heurísticas-e-vieses" class="nav-link" data-scroll-target="#heurísticas-e-vieses"><span class="header-section-number">107.3</span> Heurísticas e vieses</a></li>
+  <li><a href="#a-teoria-do-prospecto" id="toc-a-teoria-do-prospecto" class="nav-link" data-scroll-target="#a-teoria-do-prospecto"><span class="header-section-number">107.4</span> A teoria do prospecto</a></li>
+  <li><a href="#enquadramento-e-contabilidade-mental" id="toc-enquadramento-e-contabilidade-mental" class="nav-link" data-scroll-target="#enquadramento-e-contabilidade-mental"><span class="header-section-number">107.5</span> Enquadramento e contabilidade mental</a></li>
+  <li><a href="#preferências-no-tempo-o-viés-do-presente" id="toc-preferências-no-tempo-o-viés-do-presente" class="nav-link" data-scroll-target="#preferências-no-tempo-o-viés-do-presente"><span class="header-section-number">107.6</span> Preferências no tempo: o viés do presente</a></li>
+  <li><a href="#nudges-e-o-paternalismo-libertário" id="toc-nudges-e-o-paternalismo-libertário" class="nav-link" data-scroll-target="#nudges-e-o-paternalismo-libertário"><span class="header-section-number">107.7</span> Nudges e o paternalismo libertário</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">107.8</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">107.9</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">107.10</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">107.11</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol15/cap06-economia-comportamental.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -963,9 +1032,982 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>Capítulo em elaboração.</em></p>
+<p>Você entra no supermercado decidido a economizar. Na gôndola, o pacote de café custa R$,19,90 — e o cérebro registra “dezenove reais”, não “quase vinte”. Ao lado, um cartaz anuncia: “<strong>LEVE 3, PAGUE 2</strong>”, e você põe três no carrinho embora fosse levar um só. No caixa, a maquininha oferece “10x sem juros”, e a parcela de R$,50 parece indolor, ainda que a soma seja a mesma. Nenhuma dessas decisões combina com o consumidor perfeitamente racional dos capítulos anteriores — aquele que pesa friamente custos e benefícios na margem. E, no entanto, é assim que pessoas reais decidem, o tempo todo. <strong>Por que sistematicamente nos afastamos do “homem econômico” dos modelos — e o que a Economia faz quando descobre que seus próprios agentes não se comportam como ela supõe?</strong></p>
+<p>Este capítulo apresenta a <strong>economia comportamental</strong>: o programa de pesquisa que casou a Economia com a Psicologia para explicar como as pessoas de fato decidem. Veremos que nossos desvios da racionalidade não são erros aleatórios, mas <strong>sistemáticos e previsíveis</strong> — e que, uma vez compreendidos, podem ser corrigidos, explorados ou aproveitados para melhorar decisões, das aposentadorias à saúde pública.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="107.1">
+<h2 data-number="107.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">107.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>explicar o que é o <strong>homo economicus</strong> e por que a evidência empírica o desafia;</li>
+<li>definir <strong>racionalidade limitada</strong> (Simon) e distinguir os dois sistemas de pensamento (Kahneman);</li>
+<li>identificar as principais <strong>heurísticas</strong> — disponibilidade, representatividade e ancoragem — e os <strong>vieses</strong> que delas decorrem;</li>
+<li>enunciar os pilares da <strong>teoria do prospecto</strong>: ponto de referência, aversão à perda e ponderação de probabilidades;</li>
+<li>reconhecer o <strong>efeito enquadramento</strong> (<em>framing</em>) e a <strong>contabilidade mental</strong>;</li>
+<li>explicar o <strong>viés do presente</strong> e o desconto hiperbólico, e por que geram procrastinação e sub-poupança;</li>
+<li>caracterizar um <strong>nudge</strong> e o <strong>paternalismo libertário</strong>, avaliando seus usos e limites.</li>
+</ul>
+</section>
+<section id="o-homo-economicus-e-seus-críticos" class="level2" data-number="107.2">
+<h2 data-number="107.2" class="anchored" data-anchor-id="o-homo-economicus-e-seus-críticos"><span class="header-section-number">107.2</span> O homo economicus e seus críticos</h2>
+<p>Boa parte da teoria econômica que você estudou até aqui repousa sobre uma figura idealizada: o <strong>homo economicus</strong>, ou “homem econômico”. Ele é perfeitamente racional (calcula sem erro), perfeitamente egoísta (só se importa com o próprio bem-estar) e dotado de <strong>força de vontade</strong> ilimitada (executa hoje o plano que traçou ontem). Diante de qualquer escolha, ele maximiza a utilidade esperada (<a href="../vol06/cap07-escolha-sob-incerteza.html" class="quarto-xref"><span>Capítulo 43</span></a>) com a frieza de uma calculadora.</p>
+<p>Esse personagem é uma <strong>abstração útil</strong>. Ele torna os modelos tratáveis e, em muitos mercados, prevê bem o comportamento agregado. Mas, a partir dos anos 1950, acumularam-se evidências de que pessoas reais violam suas premissas de maneira <strong>regular</strong>. E aqui está o ponto crucial: se os desvios fossem puro ruído aleatório, se cancelariam na média e o modelo racional continuaria válido “em média”. O que a economia comportamental mostrou é que os desvios têm <strong>direção</strong> — erramos para o mesmo lado, de forma sistemática. E o que é sistemático pode ser modelado.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Economia comportamental">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Economia comportamental
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>economia comportamental</strong> é o campo que incorpora evidências da Psicologia e de outras ciências do comportamento à análise econômica, para descrever como as pessoas <strong>realmente</strong> decidem — em contraste com como o agente perfeitamente racional <em>deveria</em> decidir. Ela não abandona o método econômico; <strong>enriquece</strong> seus pressupostos sobre o comportamento humano.</p>
+</div>
+</div>
+<section id="racionalidade-limitada" class="level3" data-number="107.2.1">
+<h3 data-number="107.2.1" class="anchored" data-anchor-id="racionalidade-limitada"><span class="header-section-number">107.2.1</span> Racionalidade limitada</h3>
+<p>O primeiro golpe veio de <strong>Herbert Simon</strong> (1916–2001), que ganharia o Nobel de 1978. Simon observou que decidir de forma perfeitamente ótima exige informação, tempo e capacidade de cálculo que ninguém possui. Em vez de <strong>maximizar</strong>, disse ele, as pessoas praticam o <em>satisficing</em>: buscam uma alternativa “boa o suficiente” e param por aí <span class="citation" data-cites="simon1955">(<a href="#ref-simon1955" role="doc-biblioref">Simon, 1955</a>)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Racionalidade limitada">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Racionalidade limitada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>racionalidade limitada</strong> (<em>bounded rationality</em>) é a ideia de que a racionalidade humana é restringida pela informação disponível, pelos limites cognitivos da mente e pelo tempo para decidir. Diante dessas restrições, as pessoas usam <strong>atalhos</strong> e se contentam com soluções satisfatórias, não ótimas.</p>
+</div>
+</div>
+<p>Simon não acusava as pessoas de irracionais — pelo contrário, usar atalhos quando maximizar é caro é, ele próprio, um comportamento sensato. A questão que ele abriu, e que a geração seguinte responderia, foi: <strong>quais</strong> são esses atalhos, e quando eles nos levam a erro?</p>
+</section>
+<section id="os-dois-sistemas-de-pensamento" class="level3" data-number="107.2.2">
+<h3 data-number="107.2.2" class="anchored" data-anchor-id="os-dois-sistemas-de-pensamento"><span class="header-section-number">107.2.2</span> Os dois sistemas de pensamento</h3>
+<p>A resposta mais influente veio de <strong>Daniel Kahneman</strong> (1934–2024) e <strong>Amos Tversky</strong> (1937–1996), a dupla de psicólogos que fundou a economia comportamental moderna — trabalho que renderia a Kahneman o Nobel de Economia de 2002 (Tversky, falecido, não pôde recebê-lo). Kahneman <span class="citation" data-cites="kahneman2012">(<a href="#ref-kahneman2012" role="doc-biblioref">Kahneman, 2012</a>)</span> popularizou uma metáfora esclarecedora: a mente opera em dois modos.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Sistema 1 e Sistema 2">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Sistema 1 e Sistema 2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <strong>Sistema 1</strong> é rápido, automático, intuitivo e emocional; opera sem esforço e sem controle voluntário (reconhecer um rosto, 2 + 2, frear diante do perigo). O <strong>Sistema 2</strong> é lento, deliberado, analítico e custoso; entra em ação para cálculos e raciocínios difíceis (17 × 24, comparar dois financiamentos).</p>
+</div>
+</div>
+<p>A maioria das decisões cotidianas é entregue ao Sistema 1, que é eficiente e, quase sempre, acerta. Os <strong>vieses</strong> surgem quando confiamos no Sistema 1 em situações que exigiriam o Sistema 2 — e o Sistema 2, preguiçoso, endossa a intuição sem revisá-la. As <strong>heurísticas</strong> são exatamente as regras práticas do Sistema 1.</p>
+</section>
+</section>
+<section id="heurísticas-e-vieses" class="level2" data-number="107.3">
+<h2 data-number="107.3" class="anchored" data-anchor-id="heurísticas-e-vieses"><span class="header-section-number">107.3</span> Heurísticas e vieses</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Heurística e viés">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Heurística e viés
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma <strong>heurística</strong> é uma regra mental simples (“atalho”) que reduz uma pergunta difícil a uma mais fácil, permitindo decidir depressa. Um <strong>viés</strong> (<em>bias</em>) é o <strong>erro sistemático</strong> — sempre na mesma direção — que uma heurística produz quando aplicada onde não deveria.</p>
+</div>
+</div>
+<p>Tversky e Kahneman <span class="citation" data-cites="tversky1974">(<a href="#ref-tversky1974" role="doc-biblioref">Tversky; Kahneman, 1974</a>)</span> catalogaram três heurísticas fundamentais.</p>
+<p><strong>Disponibilidade.</strong> Julgamos a probabilidade de um evento pela facilidade com que exemplos dele nos vêm à mente. Como acidentes de avião são noticiados e memoráveis, muita gente os teme mais do que acidentes de carro — embora dirigir seja, por quilômetro, muito mais perigoso. O que é <strong>vívido e recente</strong> parece mais frequente do que é.</p>
+<p><strong>Representatividade.</strong> Julgamos a probabilidade de algo pertencer a uma categoria pela <strong>semelhança</strong> com o estereótipo da categoria, ignorando a frequência de base. Descrito “Paulo é tímido, organizado e gosta de detalhes”, muitos apostam que ele é bibliotecário e não vendedor — esquecendo que há muitíssimo mais vendedores que bibliotecários na população (a <strong>taxa-base</strong>). Daí nasce a <strong>falácia do jogador</strong> (“saiu vermelho cinco vezes, agora vem preto”) e a crença em “sequências quentes”.</p>
+<p><strong>Ancoragem.</strong> Ao estimar um número, agarramo-nos a um valor de referência inicial — a <strong>âncora</strong> — e ajustamos a partir dele, quase sempre de forma insuficiente. Um preço “de” R$,999 riscado ao lado do preço “por” R$,599 faz o segundo parecer uma pechincha, porque a âncora alta puxa a percepção de valor. Vendedores, negociadores e cardápios exploram ancoragem o tempo todo.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — heurística não é sinônimo de burrice">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — heurística não é sinônimo de burrice
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Heurísticas existem porque <strong>funcionam</strong> na maioria das vezes e pouparam energia cognitiva ao longo da evolução. O erro é tratá-las como falhas de gente “burra”. Kahneman e Tversky mostraram que até <strong>especialistas</strong> — médicos, juízes, economistas — exibem os mesmos vieses. O viés é uma propriedade da arquitetura da mente humana, não do QI do indivíduo.</p>
+</div>
+</div>
+</section>
+<section id="a-teoria-do-prospecto" class="level2" data-number="107.4">
+<h2 data-number="107.4" class="anchored" data-anchor-id="a-teoria-do-prospecto"><span class="header-section-number">107.4</span> A teoria do prospecto</h2>
+<p>A contribuição mais premiada da dupla foi a <strong>teoria do prospecto</strong> <span class="citation" data-cites="kahneman1979">(<a href="#ref-kahneman1979" role="doc-biblioref">Kahneman; Tversky, 1979</a>)</span>, uma alternativa descritiva à teoria da utilidade esperada (<a href="../vol06/cap07-escolha-sob-incerteza.html" class="quarto-xref"><span>Capítulo 43</span></a>). Ela repousa em três ideias.</p>
+<p><strong>Primeira: as pessoas avaliam ganhos e perdas em relação a um ponto de referência</strong>, não em termos de riqueza final absoluta. Receber um bônus de R$,1.000 é sentido como um <strong>ganho</strong> (a partir do salário de referência), não como “meu patrimônio agora é X + 1.000”. O ponto de referência — em geral o <em>status quo</em> — é o zero da régua psicológica.</p>
+<p><strong>Segunda: perdas doem mais do que ganhos equivalentes agradam</strong> — a <strong>aversão à perda</strong>. Perder R$,100 machuca cerca de duas vezes mais do que ganhar R$,100 alegra. Por isso resistimos a vender uma ação no prejuízo (realizar a perda dói) e por isso o “leve 3, pague 2” funciona: deixar a promoção passar é enquadrado como uma perda.</p>
+<p><strong>Terceira: a sensibilidade é decrescente</strong> — a diferença entre R$,100 e R$,200 pesa mais do que entre R$,1.100 e R$,1.200. Isso torna a <strong>função-valor</strong> côncava para ganhos (avessa ao risco) e convexa para perdas (propensa ao risco: para <em>não</em> fechar no vermelho, arriscamos). A <a href="#fig-funcao-valor" class="quarto-xref">Figura&nbsp;<span>107.1</span></a> mostra esse formato em “S” assimétrico.</p>
+<div id="fig-funcao-valor" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-funcao-valor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="315.282441pt" height="286.200149pt" viewbox="-68.014948 -68.014941 315.282441 286.200149">
+<defs>
+<path id="tz_fig_funcao_valor_g0-16" d="M1.522291-3.514819L.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819Z"></path>
+<path id="tz_fig_funcao_valor_g0-19" d="M3.156164-4.98132C3.243836-5.045081 3.315567-5.116812 3.315567-5.244334C3.315567-5.427646 3.148194-5.563138 3.004732-5.563138C2.972852-5.563138 2.86127-5.563138 2.757659-5.435616L1.737484-4.224159L1.904857-4.040847L3.156164-4.98132Z"></path>
+<path id="tz_fig_funcao_valor_g0-58" d="M1.617933-2.988792C1.617933-3.259776 1.40274-3.435118 1.179577-3.435118C.908593-3.435118 .73325-3.219925 .73325-2.996762C.73325-2.725778 .948443-2.550436 1.171606-2.550436C1.44259-2.550436 1.617933-2.765629 1.617933-2.988792ZM1.617933-.438356C1.617933-.70934 1.40274-.884682 1.179577-.884682C.908593-.884682 .73325-.669489 .73325-.446326C.73325-.175342 .948443 0 1.171606 0C1.44259 0 1.617933-.215193 1.617933-.438356Z"></path>
+<path id="tz_fig_funcao_valor_g0-94" d="M2.11208-5.531258L.980324-4.463263L1.139726-4.27198L2.11208-5.061021L3.084433-4.27198L3.243836-4.455293L2.11208-5.531258Z"></path>
+<path id="tz_fig_funcao_valor_g0-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_funcao_valor_g0-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_funcao_valor_g0-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_funcao_valor_g0-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_funcao_valor_g0-102" d="M1.522291-3.172105H2.478705V-3.435118H1.498381V-4.335741C1.498381-5.029141 1.888917-5.387796 2.239601-5.387796C2.367123-5.387796 2.438854-5.355915 2.470735-5.347945C2.327273-5.276214 2.287422-5.140722 2.287422-5.037111C2.287422-4.829888 2.438854-4.678456 2.646077-4.678456C2.86127-4.678456 3.004732-4.829888 3.004732-5.037111C3.004732-5.379826 2.669988-5.610959 2.247572-5.610959C1.649813-5.610959 .940473-5.180573 .940473-4.327771V-3.435118H.286924V-3.172105H.940473V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.083935-.02391 1.275218-.02391C1.745455-.02391 1.761395-.02391 2.279452 0V-.263014H2.12005C1.538232-.263014 1.522291-.350685 1.522291-.637609V-3.172105Z"></path>
+<path id="tz_fig_funcao_valor_g0-103" d="M1.378829-.549938C1.131756-.573848 .932503-.789041 .932503-1.075965C.932503-1.267248 .980324-1.338979 1.036115-1.41071C1.370859-1.211457 1.681694-1.171606 1.872976-1.171606C2.662017-1.171606 3.243836-1.721544 3.243836-2.343213C3.243836-2.646077 3.108344-2.901121 2.917061-3.108344C3.028643-3.203985 3.291656-3.371357 3.682192-3.379328C3.650311-3.355417 3.610461-3.315567 3.610461-3.188045C3.610461-3.044583 3.714072-2.940971 3.857534-2.940971C3.969116-2.940971 4.104608-3.012702 4.104608-3.196015C4.104608-3.331507 4.000996-3.602491 3.650311-3.602491C3.514819-3.602491 3.132254-3.57061 2.765629-3.235866C2.566376-3.379328 2.255542-3.514819 1.880946-3.514819C1.091905-3.514819 .510087-2.964882 .510087-2.343213C.510087-1.968618 .71731-1.689664 .884682-1.530262C.70934-1.331009 .645579-1.075965 .645579-.884682C.645579-.557908 .804981-.310834 .980324-.175342C.565878-.063761 .239103 .247073 .239103 .613699C.239103 1.187547 1.060025 1.633873 2.11208 1.633873C3.108344 1.633873 3.985056 1.227397 3.985056 .597758C3.985056 .167372 3.730012-.167372 3.466999-.302864C2.996762-.549938 2.606227-.549938 1.825156-.549938H1.378829ZM1.880946-1.40274C1.139726-1.40274 1.139726-2.16787 1.139726-2.343213C1.139726-2.638107 1.179577-2.84533 1.299128-3.004732C1.43462-3.188045 1.657783-3.283686 1.872976-3.283686C2.614197-3.283686 2.614197-2.518555 2.614197-2.343213C2.614197-2.048319 2.574346-1.841096 2.454795-1.681694C2.279452-1.458531 2.024408-1.40274 1.880946-1.40274ZM2.255542-.03188C2.470735-.03188 3.514819-.03188 3.514819 .605729C3.514819 1.036115 2.901121 1.40274 2.11208 1.40274C1.315068 1.40274 .70934 1.036115 .70934 .605729C.70934 .438356 .836862-.03188 1.490411-.03188H2.255542Z"></path>
+<path id="tz_fig_funcao_valor_g0-104" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C2.032379-3.514819 1.665753-3.068493 1.522291-2.81345H1.514321V-5.531258L.326775-5.443587V-5.180573C.868742-5.180573 .932503-5.124782 .932503-4.734247V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_funcao_valor_g0-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_funcao_valor_g0-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+<path id="tz_fig_funcao_valor_g0-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_funcao_valor_g0-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_funcao_valor_g0-112" d="M2.096139 1.283188C1.586052 1.283188 1.490411 1.283188 1.490411 .924533V-.390535C1.865006 .01594 2.271482 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.717808 3.610461-3.514819 2.646077-3.514819C2.335243-3.514819 1.872976-3.435118 1.466501-3.020672V-3.514819L.278954-3.427148V-3.164134C.844832-3.164134 .884682-3.116314 .884682-2.781569V.924533C.884682 1.283188 .789041 1.283188 .278954 1.283188V1.546202C.621669 1.522291 .972354 1.522291 1.187547 1.522291C1.41868 1.522291 1.753425 1.522291 2.096139 1.546202V1.283188ZM1.490411-2.654047C1.673724-2.972852 2.072229-3.267746 2.574346-3.267746C3.188045-3.267746 3.706102-2.590286 3.706102-1.721544C3.706102-.804981 3.132254-.143462 2.486675-.143462C2.207721-.143462 1.841096-.263014 1.586052-.661519C1.490411-.797011 1.490411-.804981 1.490411-.956413V-2.654047Z"></path>
+<path id="tz_fig_funcao_valor_g0-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_funcao_valor_g0-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_funcao_valor_g0-116" d="M1.482441-3.172105H2.669988V-3.435118H1.482441V-4.901619H1.235367C1.227397-4.176339 .900623-3.419178 .159402-3.395268V-3.172105H.876712V-.996264C.876712-.063761 1.594022 .079701 1.960648 .079701C2.494645 .079701 2.81345-.398506 2.81345-.996264V-1.44259H2.566376V-1.012204C2.566376-.462267 2.319303-.167372 2.016438-.167372C1.482441-.167372 1.482441-.852802 1.482441-.980324V-3.172105Z"></path>
+<path id="tz_fig_funcao_valor_g0-118" d="M3.53076-2.614197C3.722042-3.060523 3.993026-3.164134 4.28792-3.172105V-3.435118C4.008966-3.411208 3.993026-3.411208 3.666252-3.411208C3.594521-3.411208 3.219925-3.411208 2.972852-3.435118V-3.172105C3.251806-3.156164 3.323537-2.980822 3.323537-2.84533C3.323537-2.765629 3.307597-2.725778 3.275716-2.654047L2.414944-.645579L1.474471-2.805479C1.42665-2.909091 1.42665-2.956912 1.42665-2.972852C1.42665-3.172105 1.713574-3.172105 1.849066-3.172105V-3.435118C1.506351-3.411208 1.131756-3.411208 .980324-3.411208C.812951-3.411208 .430386-3.411208 .175342-3.435118V-3.172105C.661519-3.172105 .70137-3.124284 .820922-2.8533L2.016438-.095641C2.072229 .02391 2.12005 .079701 2.231631 .079701S2.399004 .01594 2.438854-.079701L3.53076-2.614197Z"></path>
+<path id="tz_fig_funcao_valor_g0-120" d="M2.454795-1.865006C2.677958-2.14396 2.909091-2.414944 3.148194-2.677958C3.411208-2.956912 3.690162-3.164134 4.192279-3.172105V-3.435118C3.881445-3.411208 3.865504-3.411208 3.506849-3.411208C3.466999-3.411208 2.996762-3.411208 2.749689-3.435118V-3.172105C2.901121-3.156164 2.933001-3.060523 2.933001-2.956912S2.893151-2.757659 2.797509-2.646077L2.295392-2.056289L1.665753-2.805479C1.570112-2.917061 1.570112-2.972852 1.570112-2.988792C1.570112-3.044583 1.617933-3.164134 1.817186-3.172105V-3.435118C1.498381-3.411208 1.052055-3.411208 .964384-3.411208C.820922-3.411208 .414446-3.411208 .175342-3.435118V-3.172105C.71731-3.172105 .72528-3.164134 1.139726-2.677958L1.960648-1.681694L1.235367-.828892C1.036115-.605729 .74122-.278954 .135492-.263014V0C.430386-.02391 .486177-.02391 .820922-.02391C.836862-.02391 1.323039-.02391 1.578082 0V-.263014C1.474471-.278954 1.3868-.334745 1.3868-.478207S1.482441-.73325 1.506351-.773101C1.705604-1.012204 1.920797-1.251308 2.12802-1.482441L2.781569-.70137C2.940971-.518057 2.940971-.502117 2.940971-.446326C2.940971-.382565 2.885181-.270984 2.693898-.263014V0C3.036613-.02391 3.395268-.02391 3.5467-.02391C3.690162-.02391 4.096638-.02391 4.335741 0V-.263014C3.841594-.263014 3.761893-.302864 3.55467-.549938L2.454795-1.865006Z"></path>
+<path id="tz_fig_funcao_valor_g1-19" d="M3.73599-6.296389C3.825654-6.366127 3.905355-6.475716 3.905355-6.595268C3.905355-6.774595 3.726027-6.953923 3.5467-6.953923C3.39726-6.953923 3.287671-6.844334 3.247821-6.784558L2.052304-5.260274L2.221669-5.080946L3.73599-6.296389Z"></path>
+<path id="tz_fig_funcao_valor_g1-97" d="M3.317559-.757161C3.35741-.358655 3.626401 .059776 4.094645 .059776C4.303861 .059776 4.911582-.079701 4.911582-.886675V-1.444583H4.662516V-.886675C4.662516-.308842 4.41345-.249066 4.303861-.249066C3.975093-.249066 3.935243-.697385 3.935243-.747198V-2.739726C3.935243-3.158157 3.935243-3.5467 3.576588-3.915318C3.188045-4.303861 2.689913-4.463263 2.211706-4.463263C1.39477-4.463263 .707347-3.995019 .707347-3.337484C.707347-3.038605 .9066-2.86924 1.165629-2.86924C1.444583-2.86924 1.62391-3.068493 1.62391-3.327522C1.62391-3.447073 1.574097-3.775841 1.115816-3.785803C1.384807-4.134496 1.872976-4.244085 2.191781-4.244085C2.67995-4.244085 3.247821-3.855542 3.247821-2.968867V-2.600249C2.739726-2.570361 2.042341-2.540473 1.414695-2.241594C.667497-1.902864 .418431-1.384807 .418431-.946451C.418431-.139477 1.384807 .109589 2.012453 .109589C2.669988 .109589 3.128269-.288917 3.317559-.757161ZM3.247821-2.391034V-1.39477C3.247821-.448319 2.530511-.109589 2.082192-.109589C1.594022-.109589 1.185554-.458281 1.185554-.956413C1.185554-1.504359 1.603985-2.331258 3.247821-2.391034Z"></path>
+<path id="tz_fig_funcao_valor_g1-99" d="M1.165629-2.171856C1.165629-3.795766 1.982565-4.214197 2.510585-4.214197C2.600249-4.214197 3.227895-4.204234 3.576588-3.845579C3.16812-3.815691 3.108344-3.516812 3.108344-3.387298C3.108344-3.128269 3.287671-2.929016 3.566625-2.929016C3.825654-2.929016 4.024907-3.098381 4.024907-3.39726C4.024907-4.07472 3.267746-4.463263 2.500623-4.463263C1.255293-4.463263 .33873-3.387298 .33873-2.15193C.33873-.876712 1.325031 .109589 2.480697 .109589C3.815691 .109589 4.134496-1.085928 4.134496-1.185554S4.034869-1.285181 4.004981-1.285181C3.915318-1.285181 3.895392-1.24533 3.875467-1.185554C3.58655-.259029 2.938979-.139477 2.570361-.139477C2.042341-.139477 1.165629-.56787 1.165629-2.171856Z"></path>
+<path id="tz_fig_funcao_valor_g1-100" d="M3.785803-.547945V.109589L5.250311 0V-.308842C4.552927-.308842 4.473225-.37858 4.473225-.86675V-6.914072L3.038605-6.804483V-6.495641C3.73599-6.495641 3.815691-6.425903 3.815691-5.937733V-3.785803C3.526775-4.144458 3.098381-4.403487 2.560399-4.403487C1.384807-4.403487 .33873-3.427148 .33873-2.141968C.33873-.876712 1.315068 .109589 2.450809 .109589C3.088418 .109589 3.536737-.229141 3.785803-.547945ZM3.785803-3.217933V-1.175592C3.785803-.996264 3.785803-.976339 3.676214-.806974C3.377335-.328767 2.929016-.109589 2.500623-.109589C2.052304-.109589 1.693649-.368618 1.454545-.747198C1.195517-1.155666 1.165629-1.723537 1.165629-2.132005C1.165629-2.500623 1.185554-3.098381 1.474471-3.5467C1.683686-3.855542 2.062267-4.184309 2.600249-4.184309C2.948941-4.184309 3.367372-4.034869 3.676214-3.58655C3.785803-3.417186 3.785803-3.39726 3.785803-3.217933Z"></path>
+<path id="tz_fig_funcao_valor_g1-101" d="M1.115816-2.510585C1.175592-3.995019 2.012453-4.244085 2.351183-4.244085C3.377335-4.244085 3.476961-2.899128 3.476961-2.510585H1.115816ZM1.105853-2.30137H3.88543C4.104608-2.30137 4.134496-2.30137 4.134496-2.510585C4.134496-3.496887 3.596513-4.463263 2.351183-4.463263C1.195517-4.463263 .278954-3.437111 .278954-2.191781C.278954-.856787 1.325031 .109589 2.470735 .109589C3.686177 .109589 4.134496-.996264 4.134496-1.185554C4.134496-1.285181 4.054795-1.305106 4.004981-1.305106C3.915318-1.305106 3.895392-1.24533 3.875467-1.165629C3.526775-.139477 2.630137-.139477 2.530511-.139477C2.032379-.139477 1.633873-.438356 1.404732-.806974C1.105853-1.285181 1.105853-1.942715 1.105853-2.30137Z"></path>
+<path id="tz_fig_funcao_valor_g1-103" d="M2.211706-1.713574C1.344956-1.713574 1.344956-2.709838 1.344956-2.938979C1.344956-3.20797 1.354919-3.526775 1.504359-3.775841C1.58406-3.895392 1.8132-4.174346 2.211706-4.174346C3.078456-4.174346 3.078456-3.178082 3.078456-2.948941C3.078456-2.67995 3.068493-2.361146 2.919054-2.11208C2.839352-1.992528 2.610212-1.713574 2.211706-1.713574ZM1.05604-1.325031C1.05604-1.364882 1.05604-1.594022 1.225405-1.793275C1.613948-1.514321 2.022416-1.484433 2.211706-1.484433C3.138232-1.484433 3.825654-2.171856 3.825654-2.938979C3.825654-3.307597 3.666252-3.676214 3.417186-3.905355C3.775841-4.244085 4.134496-4.293898 4.313823-4.293898C4.333748-4.293898 4.383562-4.293898 4.41345-4.283935C4.303861-4.244085 4.254047-4.134496 4.254047-4.014944C4.254047-3.845579 4.383562-3.726027 4.542964-3.726027C4.64259-3.726027 4.83188-3.795766 4.83188-4.024907C4.83188-4.194271 4.712329-4.513076 4.323786-4.513076C4.124533-4.513076 3.686177-4.4533 3.267746-4.044832C2.849315-4.373599 2.430884-4.403487 2.211706-4.403487C1.285181-4.403487 .597758-3.716065 .597758-2.948941C.597758-2.510585 .816936-2.132005 1.066002-1.92279C.936488-1.77335 .757161-1.444583 .757161-1.09589C.757161-.787049 .886675-.408468 1.195517-.209215C.597758-.039851 .278954 .388543 .278954 .787049C.278954 1.504359 1.265255 2.052304 2.480697 2.052304C3.656289 2.052304 4.692403 1.544209 4.692403 .767123C4.692403 .418431 4.552927-.089664 4.044832-.368618C3.516812-.647572 2.938979-.647572 2.331258-.647572C2.082192-.647572 1.653798-.647572 1.58406-.657534C1.265255-.697385 1.05604-1.006227 1.05604-1.325031ZM2.49066 1.823163C1.484433 1.823163 .797011 1.315068 .797011 .787049C.797011 .328767 1.175592-.039851 1.613948-.069738H2.201743C3.058531-.069738 4.174346-.069738 4.174346 .787049C4.174346 1.325031 3.466999 1.823163 2.49066 1.823163Z"></path>
+<path id="tz_fig_funcao_valor_g1-104" d="M1.09589-.757161C1.09589-.308842 .986301-.308842 .318804-.308842V0C.667497-.009963 1.175592-.029888 1.444583-.029888C1.703611-.029888 2.221669-.009963 2.560399 0V-.308842C1.892902-.308842 1.783313-.308842 1.783313-.757161V-2.590286C1.783313-3.626401 2.49066-4.184309 3.128269-4.184309C3.755915-4.184309 3.865504-3.646326 3.865504-3.078456V-.757161C3.865504-.308842 3.755915-.308842 3.088418-.308842V0C3.437111-.009963 3.945205-.029888 4.214197-.029888C4.473225-.029888 4.991283-.009963 5.330012 0V-.308842C4.811955-.308842 4.562889-.308842 4.552927-.607721V-2.510585C4.552927-3.367372 4.552927-3.676214 4.244085-4.034869C4.104608-4.204234 3.775841-4.403487 3.198007-4.403487C2.361146-4.403487 1.92279-3.805729 1.753425-3.427148V-6.914072L.318804-6.804483V-6.495641C1.016189-6.495641 1.09589-6.425903 1.09589-5.937733V-.757161Z"></path>
+<path id="tz_fig_funcao_valor_g1-105" d="M1.763387-4.403487L.368618-4.293898V-3.985056C1.016189-3.985056 1.105853-3.92528 1.105853-3.437111V-.757161C1.105853-.308842 .996264-.308842 .328767-.308842V0C.647572-.009963 1.185554-.029888 1.424658-.029888C1.77335-.029888 2.122042-.009963 2.460772 0V-.308842C1.803238-.308842 1.763387-.358655 1.763387-.747198V-4.403487ZM1.803238-6.136986C1.803238-6.455791 1.554172-6.665006 1.275218-6.665006C.966376-6.665006 .747198-6.396015 .747198-6.136986C.747198-5.867995 .966376-5.608966 1.275218-5.608966C1.554172-5.608966 1.803238-5.818182 1.803238-6.136986Z"></path>
+<path id="tz_fig_funcao_valor_g1-108" d="M1.763387-6.914072L.328767-6.804483V-6.495641C1.026152-6.495641 1.105853-6.425903 1.105853-5.937733V-.757161C1.105853-.308842 .996264-.308842 .328767-.308842V0C.657534-.009963 1.185554-.029888 1.43462-.029888S2.171856-.009963 2.540473 0V-.308842C1.872976-.308842 1.763387-.308842 1.763387-.757161V-6.914072Z"></path>
+<path id="tz_fig_funcao_valor_g1-110" d="M1.09589-3.427148V-.757161C1.09589-.308842 .986301-.308842 .318804-.308842V0C.667497-.009963 1.175592-.029888 1.444583-.029888C1.703611-.029888 2.221669-.009963 2.560399 0V-.308842C1.892902-.308842 1.783313-.308842 1.783313-.757161V-2.590286C1.783313-3.626401 2.49066-4.184309 3.128269-4.184309C3.755915-4.184309 3.865504-3.646326 3.865504-3.078456V-.757161C3.865504-.308842 3.755915-.308842 3.088418-.308842V0C3.437111-.009963 3.945205-.029888 4.214197-.029888C4.473225-.029888 4.991283-.009963 5.330012 0V-.308842C4.811955-.308842 4.562889-.308842 4.552927-.607721V-2.510585C4.552927-3.367372 4.552927-3.676214 4.244085-4.034869C4.104608-4.204234 3.775841-4.403487 3.198007-4.403487C2.470735-4.403487 2.002491-3.975093 1.723537-3.35741V-4.403487L.318804-4.293898V-3.985056C1.016189-3.985056 1.09589-3.915318 1.09589-3.427148Z"></path>
+<path id="tz_fig_funcao_valor_g1-111" d="M4.692403-2.132005C4.692403-3.407223 3.696139-4.463263 2.49066-4.463263C1.24533-4.463263 .278954-3.377335 .278954-2.132005C.278954-.846824 1.315068 .109589 2.480697 .109589C3.686177 .109589 4.692403-.86675 4.692403-2.132005ZM2.49066-.139477C2.062267-.139477 1.62391-.348692 1.354919-.806974C1.105853-1.24533 1.105853-1.853051 1.105853-2.211706C1.105853-2.600249 1.105853-3.138232 1.344956-3.576588C1.613948-4.034869 2.082192-4.244085 2.480697-4.244085C2.919054-4.244085 3.347447-4.024907 3.606476-3.596513S3.865504-2.590286 3.865504-2.211706C3.865504-1.853051 3.865504-1.315068 3.646326-.876712C3.427148-.428394 2.988792-.139477 2.49066-.139477Z"></path>
+<path id="tz_fig_funcao_valor_g1-112" d="M1.713574-3.745953V-4.403487L.278954-4.293898V-3.985056C.986301-3.985056 1.05604-3.92528 1.05604-3.486924V1.175592C1.05604 1.62391 .946451 1.62391 .278954 1.62391V1.932752C.617684 1.92279 1.135741 1.902864 1.39477 1.902864C1.663761 1.902864 2.171856 1.92279 2.520548 1.932752V1.62391C1.853051 1.62391 1.743462 1.62391 1.743462 1.175592V-.498132V-.587796C1.793275-.428394 2.211706 .109589 2.968867 .109589C4.154421 .109589 5.190535-.86675 5.190535-2.15193C5.190535-3.417186 4.224159-4.403487 3.108344-4.403487C2.331258-4.403487 1.912827-3.965131 1.713574-3.745953ZM1.743462-1.135741V-3.35741C2.032379-3.865504 2.520548-4.154421 3.028643-4.154421C3.755915-4.154421 4.363636-3.277709 4.363636-2.15193C4.363636-.946451 3.666252-.109589 2.929016-.109589C2.530511-.109589 2.15193-.308842 1.882939-.71731C1.743462-.926526 1.743462-.936488 1.743462-1.135741Z"></path>
+<path id="tz_fig_funcao_valor_g1-114" d="M1.663761-3.307597V-4.403487L.278954-4.293898V-3.985056C.976339-3.985056 1.05604-3.915318 1.05604-3.427148V-.757161C1.05604-.308842 .946451-.308842 .278954-.308842V0C.667497-.009963 1.135741-.029888 1.414695-.029888C1.8132-.029888 2.281445-.029888 2.67995 0V-.308842H2.470735C1.733499-.308842 1.713574-.418431 1.713574-.777086V-2.311333C1.713574-3.297634 2.132005-4.184309 2.889166-4.184309C2.958904-4.184309 2.978829-4.184309 2.998755-4.174346C2.968867-4.164384 2.769614-4.044832 2.769614-3.785803C2.769614-3.506849 2.978829-3.35741 3.198007-3.35741C3.377335-3.35741 3.626401-3.476961 3.626401-3.795766S3.317559-4.403487 2.889166-4.403487C2.161893-4.403487 1.803238-3.73599 1.663761-3.307597Z"></path>
+<path id="tz_fig_funcao_valor_g1-115" d="M2.072229-1.932752C2.291407-1.892902 3.108344-1.733499 3.108344-1.016189C3.108344-.508095 2.759651-.109589 1.982565-.109589C1.145704-.109589 .787049-.67746 .597758-1.524284C.56787-1.653798 .557908-1.693649 .458281-1.693649C.328767-1.693649 .328767-1.62391 .328767-1.444583V-.129514C.328767 .039851 .328767 .109589 .438356 .109589C.488169 .109589 .498132 .099626 .687422-.089664C.707347-.109589 .707347-.129514 .886675-.318804C1.325031 .099626 1.77335 .109589 1.982565 .109589C3.128269 .109589 3.58655-.557908 3.58655-1.275218C3.58655-1.803238 3.287671-2.102117 3.16812-2.221669C2.839352-2.540473 2.450809-2.620174 2.032379-2.699875C1.474471-2.809465 .806974-2.938979 .806974-3.516812C.806974-3.865504 1.066002-4.273973 1.92279-4.273973C3.01868-4.273973 3.068493-3.377335 3.088418-3.068493C3.098381-2.978829 3.188045-2.978829 3.20797-2.978829C3.337484-2.978829 3.337484-3.028643 3.337484-3.217933V-4.224159C3.337484-4.393524 3.337484-4.463263 3.227895-4.463263C3.178082-4.463263 3.158157-4.463263 3.028643-4.343711C2.998755-4.303861 2.899128-4.214197 2.859278-4.184309C2.480697-4.463263 2.072229-4.463263 1.92279-4.463263C.707347-4.463263 .328767-3.795766 .328767-3.237858C.328767-2.889166 .488169-2.610212 .757161-2.391034C1.075965-2.132005 1.354919-2.072229 2.072229-1.932752Z"></path>
+<path id="tz_fig_funcao_valor_g1-118" d="M4.144458-3.317559C4.234122-3.5467 4.403487-3.975093 5.061021-3.985056V-4.293898C4.83188-4.273973 4.542964-4.26401 4.313823-4.26401C4.07472-4.26401 3.616438-4.283935 3.447073-4.293898V-3.985056C3.815691-3.975093 3.92528-3.745953 3.92528-3.556663C3.92528-3.466999 3.905355-3.427148 3.865504-3.317559L2.849315-.777086L1.733499-3.556663C1.673724-3.686177 1.673724-3.706102 1.673724-3.726027C1.673724-3.985056 2.062267-3.985056 2.241594-3.985056V-4.293898C1.942715-4.283935 1.384807-4.26401 1.155666-4.26401C.886675-4.26401 .488169-4.273973 .18929-4.293898V-3.985056C.816936-3.985056 .856787-3.92528 .986301-3.616438L2.420922-.079701C2.480697 .059776 2.500623 .109589 2.630137 .109589S2.799502 .019925 2.839352-.079701L4.144458-3.317559Z"></path>
+</defs>
+<g id="tz_fig_funcao_valor_page1">
+<g stroke-miterlimit="10" transform="translate(-10.749393,152.847446)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-10.749393,152.847446)scale(-1,-1)"></g>
+<g transform="translate(-57.4803,-65.58278)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-10.749393,152.847446)scale(-1,-1)">
+<g stroke="#000" stroke-miterlimit="10" transform="translate(46.516162,152.249697)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="" fill="none"></path>
+</g>
+</g>
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="" fill="none"></path>
+</g>
+</g>
+<path d="M0 184.08374H237.5325" fill="none"></path>
+<g transform="translate(237.5325,184.08374)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<path d="M119.76624 64.98279V245.60428" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,119.76624,245.60428)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M119.76624 184.08374L121.28223 185.83315L122.79823 187.30403L124.31422 188.684L125.83023 190.01039L127.34624 191.29489L128.86223 192.5516L130.37823 193.78291L131.89423 194.99199L133.41023 196.1832L134.92624 197.35674L136.44223 198.51817L137.95824 199.66591L139.47424 200.80531L140.99023 201.9334L142.50624 203.04916L144.02225 204.15382L145.53824 205.25293L147.05424 206.34549L148.57025 207.4301L150.08624 208.50836L151.60225 209.57967L153.11824 210.64404L154.63425 211.70384L156.15025 212.75829L157.66624 213.80557L159.18225 214.85068L160.69826 215.88826L162.21425 216.92145L163.73026 217.95247L165.24625 218.97714L166.76225 219.99585L168.27826 221.01932L169.79425 222.03307L171.31026 223.04265L172.82626 224.04945L174.34225 225.05287L175.85826 226.05411L177.37425 227.04921L178.89026 228.04271L180.40627 229.03383L181.92226 230.02057L183.43826 231.00594L184.95427 231.98633L186.47026 232.96475L187.98627 233.93999L189.50227 234.91463L191.01826 235.8859L192.53427 236.8534L194.05028 237.8193L195.56627 238.78323L197.08228 239.74477L198.59827 240.70592L200.11427 241.66249L201.63028 242.6155L203.14627 243.5697L204.66228 244.51656L206.17827 245.46638L207.69427 246.41562L209.21028 247.3577L210.72627 248.30078L212.24228 249.23653L213.75829 250.17424L215.27428 251.12169L216.79028 252.0588L218.30627 252.99237L219.82228 253.92393L221.33829 254.8547L222.85428 255.7827L224.37029 256.7095L225.88629 257.63611L227.40228 258.55994L228.91829 259.48357L230.4343 260.40244L231.95029 261.32149L233.4663 262.23857L234.9823 263.15685L236.49829 264.07312L238.0143 264.98245L239.53029 265.89616" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<path d="M0 0L1.51599 2.05621L3.032 4.10406L4.54799 6.16743L6.064 8.22374L7.58 10.29338L9.096 12.36038L10.612 14.4301L12.12799 16.51004L13.644 18.59087L15.16 20.66992L16.676 22.75613L18.192 24.84903L19.708 26.93701L21.224 29.03664L22.74 31.1358L24.25601 33.2443L25.772 35.35818L27.28801 37.48997L28.80402 39.59534L30.32 41.71733L31.83601 43.83612L33.352 45.95627L34.86801 48.10764L36.38402 50.24033L37.90001 52.38371L39.41602 54.53152L40.93202 56.67935L42.44801 58.8357L43.96402 61.00674L45.48001 63.17378L46.99602 65.34573L48.51202 67.5253L50.02802 69.71019L51.54402 71.89687L53.06003 74.0992L54.57602 76.29977L56.09203 78.50702L57.60802 80.72319L59.12402 82.94467L60.64003 85.17339L62.15602 87.40652L63.67203 89.64949L65.18803 91.89824L66.70403 94.15639L68.22003 96.42218L69.73604 98.6937L71.25203 100.97597L72.76804 103.2699L74.28404 105.57133L75.80003 107.87685L77.31604 110.18768L78.83203 112.52135L80.34804 114.85678L81.86404 117.19978L83.38004 119.56555L84.89604 121.9354L86.41203 124.32037L87.92804 126.71518L89.44405 129.12564L90.96004 131.55083L92.47604 133.98985L93.99205 136.4477L95.50804 138.92201L97.02405 141.40749L98.54004 143.922L100.05605 146.45528L101.57205 149.01491L103.08804 151.60222L104.60405 154.21545L106.12006 156.85994L107.63605 159.53613L109.15205 162.26057L110.66806 165.031L112.18405 167.85458L113.70006 170.74472L115.21606 173.7291L116.73206 176.83316L118.24806 180.14232L119.76405 184.07138" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M167.67273 184.08374V220.48892" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M119.76624 220.48892H167.67273" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M71.85974 184.08374V102.18198" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M119.76624 102.18198H71.85974" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M169.51135 220.48892C169.51135 221.50436 168.68817 222.32755 167.67273 222.32755S165.8341 221.50436 165.8341 220.48892S166.65729 218.6503 167.67273 218.6503S169.51135 219.47348 169.51135 220.48892ZM167.67273 220.48892" stroke="none"></path>
+</g>
+<g transform="translate(167.67273,220.48892)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(46.516162,152.249697)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M73.69836 102.18198C73.69836 103.19742 72.87518 104.0206 71.85974 104.0206S70.02112 103.19742 70.02112 102.18198C70.02112 101.16653 70.8443 100.34335 71.85974 100.34335S73.69836 101.16653 73.69836 102.18198ZM71.85974 102.18198" stroke="none"></path>
+</g>
+<g transform="translate(71.85974,102.18198)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(46.516162,152.249697)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(195.15895,234.82764)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(46.516162,152.249697)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="46.516162" y="152.249697" href="#tz_fig_funcao_valor_g0-103"></use>
+<use x="50.750345" y="152.249697" href="#tz_fig_funcao_valor_g0-97"></use>
+<use x="54.984528" y="152.249697" href="#tz_fig_funcao_valor_g0-110"></use>
+<use x="59.689175" y="152.249697" href="#tz_fig_funcao_valor_g0-104"></use>
+<use x="64.393823" y="152.249697" href="#tz_fig_funcao_valor_g0-111"></use>
+<use x="68.628006" y="152.249697" href="#tz_fig_funcao_valor_g0-115"></use>
+<use x="71.968309" y="152.249697" href="#tz_fig_funcao_valor_g0-58"></use>
+<use x="78.08435" y="152.249697" href="#tz_fig_funcao_valor_g0-99"></use>
+<use x="81.848069" y="152.249697" href="#tz_fig_funcao_valor_g0-94"></use>
+<use x="81.848069" y="152.249697" href="#tz_fig_funcao_valor_g0-111"></use>
+<use x="86.082251" y="152.249697" href="#tz_fig_funcao_valor_g0-110"></use>
+<use x="90.786899" y="152.249697" href="#tz_fig_funcao_valor_g0-99"></use>
+<use x="94.550617" y="152.249697" href="#tz_fig_funcao_valor_g0-97"></use>
+<use x="98.549568" y="152.249697" href="#tz_fig_funcao_valor_g0-118"></use>
+<use x="102.548518" y="152.249697" href="#tz_fig_funcao_valor_g0-97"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(-54.14732,79.71445)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(46.516162,152.249697)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="46.516162" y="152.249697" href="#tz_fig_funcao_valor_g0-112"></use>
+<use x="51.456042" y="152.249697" href="#tz_fig_funcao_valor_g0-101"></use>
+<use x="55.21976" y="152.249697" href="#tz_fig_funcao_valor_g0-114"></use>
+<use x="58.51993" y="152.249697" href="#tz_fig_funcao_valor_g0-100"></use>
+<use x="63.224578" y="152.249697" href="#tz_fig_funcao_valor_g0-97"></use>
+<use x="67.458761" y="152.249697" href="#tz_fig_funcao_valor_g0-115"></use>
+<use x="70.799063" y="152.249697" href="#tz_fig_funcao_valor_g0-58"></use>
+<use x="76.915105" y="152.249697" href="#tz_fig_funcao_valor_g0-99"></use>
+<use x="80.678823" y="152.249697" href="#tz_fig_funcao_valor_g0-111"></use>
+<use x="84.913006" y="152.249697" href="#tz_fig_funcao_valor_g0-110"></use>
+<use x="89.382422" y="152.249697" href="#tz_fig_funcao_valor_g0-118"></use>
+<use x="93.616604" y="152.249697" href="#tz_fig_funcao_valor_g0-101"></use>
+<use x="97.380322" y="152.249697" href="#tz_fig_funcao_valor_g0-120"></use>
+<use x="101.849738" y="152.249697" href="#tz_fig_funcao_valor_g0-97"></use>
+<use x="108.906709" y="152.249697" href="#tz_fig_funcao_valor_g0-101"></use>
+<use x="114.552286" y="152.249697" href="#tz_fig_funcao_valor_g0-19"></use>
+<use x="115.493216" y="152.249697" href="#tz_fig_funcao_valor_g0-16"></use>
+<use x="117.84554" y="152.249697" href="#tz_fig_funcao_valor_g0-110"></use>
+<use x="122.550187" y="152.249697" href="#tz_fig_funcao_valor_g0-103"></use>
+<use x="126.78437" y="152.249697" href="#tz_fig_funcao_valor_g0-114"></use>
+<use x="130.08454" y="152.249697" href="#tz_fig_funcao_valor_g0-101"></use>
+<use x="133.848258" y="152.249697" href="#tz_fig_funcao_valor_g0-109"></use>
+<use x="140.90523" y="152.249697" href="#tz_fig_funcao_valor_g0-101"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(125.69453,190.16478)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(46.516162,152.249697)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="46.516162" y="152.249697" href="#tz_fig_funcao_valor_g0-112"></use>
+<use x="51.456042" y="152.249697" href="#tz_fig_funcao_valor_g0-111"></use>
+<use x="55.690225" y="152.249697" href="#tz_fig_funcao_valor_g0-110"></use>
+<use x="60.15964" y="152.249697" href="#tz_fig_funcao_valor_g0-116"></use>
+<use x="63.452893" y="152.249697" href="#tz_fig_funcao_valor_g0-111"></use>
+<use x="70.509865" y="152.249697" href="#tz_fig_funcao_valor_g0-100"></use>
+<use x="75.214512" y="152.249697" href="#tz_fig_funcao_valor_g0-101"></use>
+<use x="81.801019" y="152.249697" href="#tz_fig_funcao_valor_g0-114"></use>
+<use x="85.101189" y="152.249697" href="#tz_fig_funcao_valor_g0-101"></use>
+<use x="88.864907" y="152.249697" href="#tz_fig_funcao_valor_g0-102"></use>
+<use x="91.452463" y="152.249697" href="#tz_fig_funcao_valor_g0-101"></use>
+<use x="95.216182" y="152.249697" href="#tz_fig_funcao_valor_g0-114"></use>
+<use x="98.281119" y="152.249697" href="#tz_fig_funcao_valor_g0-94"></use>
+<use x="98.516352" y="152.249697" href="#tz_fig_funcao_valor_g0-101"></use>
+<use x="102.28007" y="152.249697" href="#tz_fig_funcao_valor_g0-110"></use>
+<use x="106.984717" y="152.249697" href="#tz_fig_funcao_valor_g0-99"></use>
+<use x="110.748435" y="152.249697" href="#tz_fig_funcao_valor_g0-105"></use>
+<use x="113.100759" y="152.249697" href="#tz_fig_funcao_valor_g0-97"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(80.39117,50.85217)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(46.516162,152.249697)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="46.516162" y="152.249697" href="#tz_fig_funcao_valor_g1-112"></use>
+<use x="52.327727" y="152.249697" href="#tz_fig_funcao_valor_g1-101"></use>
+<use x="56.755579" y="152.249697" href="#tz_fig_funcao_valor_g1-114"></use>
+<use x="60.657629" y="152.249697" href="#tz_fig_funcao_valor_g1-100"></use>
+<use x="66.192446" y="152.249697" href="#tz_fig_funcao_valor_g1-97"></use>
+<use x="71.173785" y="152.249697" href="#tz_fig_funcao_valor_g1-115"></use>
+<use x="95.028783" y="152.249697" href="#tz_fig_funcao_valor_g1-103"></use>
+<use x="100.010122" y="152.249697" href="#tz_fig_funcao_valor_g1-97"></use>
+<use x="104.991462" y="152.249697" href="#tz_fig_funcao_valor_g1-110"></use>
+<use x="110.526278" y="152.249697" href="#tz_fig_funcao_valor_g1-104"></use>
+<use x="116.061095" y="152.249697" href="#tz_fig_funcao_valor_g1-111"></use>
+<use x="121.042434" y="152.249697" href="#tz_fig_funcao_valor_g1-115"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(0.0,-1.0,1.0,0.0,125.24365,283.34044)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(46.516162,152.249697)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="46.516162" y="152.249697" href="#tz_fig_funcao_valor_g1-118"></use>
+<use x="51.220768" y="152.249697" href="#tz_fig_funcao_valor_g1-97"></use>
+<use x="56.202107" y="152.249697" href="#tz_fig_funcao_valor_g1-108"></use>
+<use x="58.969515" y="152.249697" href="#tz_fig_funcao_valor_g1-111"></use>
+<use x="63.950854" y="152.249697" href="#tz_fig_funcao_valor_g1-114"></use>
+<use x="71.17378" y="152.249697" href="#tz_fig_funcao_valor_g1-112"></use>
+<use x="76.708597" y="152.249697" href="#tz_fig_funcao_valor_g1-115"></use>
+<use x="80.638314" y="152.249697" href="#tz_fig_funcao_valor_g1-105"></use>
+<use x="83.405723" y="152.249697" href="#tz_fig_funcao_valor_g1-99"></use>
+<use x="87.833575" y="152.249697" href="#tz_fig_funcao_valor_g1-111"></use>
+<use x="92.814914" y="152.249697" href="#tz_fig_funcao_valor_g1-108"></use>
+<use x="95.582322" y="152.249697" href="#tz_fig_funcao_valor_g1-19"></use>
+<use x="95.582326" y="152.249697" href="#tz_fig_funcao_valor_g1-111"></use>
+<use x="100.563665" y="152.249697" href="#tz_fig_funcao_valor_g1-103"></use>
+<use x="105.545004" y="152.249697" href="#tz_fig_funcao_valor_g1-105"></use>
+<use x="108.312413" y="152.249697" href="#tz_fig_funcao_valor_g1-99"></use>
+<use x="112.740264" y="152.249697" href="#tz_fig_funcao_valor_g1-111"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-funcao-valor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;107.1: A função-valor da teoria do prospecto: perdas (ramo vermelho) pesam mais do que ganhos de mesma magnitude (ramo azul).
+</figcaption>
+</figure>
+</div>
+<p>Um corolário direto é o <strong>efeito dotação</strong> (<em>endowment effect</em>): passamos a valorizar mais um bem simplesmente por já o possuirmos — desfazer-se dele é enquadrado como perda. Em experimentos clássicos, quem recebe uma caneca exige, para vendê-la, o dobro do que estava disposto a pagar por ela minutos antes.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — descrever não é o mesmo que prescrever">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — descrever não é o mesmo que prescrever
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A teoria do prospecto é uma teoria <strong>descritiva</strong> (positiva): diz como as pessoas de fato escolhem. A teoria da utilidade esperada continua sendo, para muitos, uma teoria <strong>normativa</strong> válida: como um agente <em>coerente deveria</em> escolher. Há debate sobre se os “vieses” são erros a corrigir ou preferências legítimas que o economista não deve julgar. Boa parte da controvérsia sobre nudges, ao fim desta seção, nasce exatamente daí.</p>
+</div>
+</div>
+</section>
+<section id="enquadramento-e-contabilidade-mental" class="level2" data-number="107.5">
+<h2 data-number="107.5" class="anchored" data-anchor-id="enquadramento-e-contabilidade-mental"><span class="header-section-number">107.5</span> Enquadramento e contabilidade mental</h2>
+<p>Se avaliamos tudo em relação a um ponto de referência, então <strong>a forma de apresentar</strong> uma escolha — sem mudar seu conteúdo — altera a decisão. É o <strong>efeito enquadramento</strong> (<em>framing</em>).</p>
+<p>O exemplo canônico: um tratamento descrito como tendo “<strong>90% de sobrevivência</strong>” é escolhido com muito mais frequência do que o mesmo tratamento descrito como tendo “<strong>10% de mortalidade</strong>”, embora sejam idênticos. No comércio: “carne 80% magra” vende melhor que “20% de gordura”; “desconto por pagar à vista” agrada mais que “acréscimo por pagar no cartão”, ainda que a diferença de preço seja a mesma. Perdas assustam; ganhos atraem — e quem enquadra escolhe qual gatilho puxar.</p>
+<p>Ligada a isso está a <strong>contabilidade mental</strong> (<em>mental accounting</em>), termo de <strong>Richard Thaler</strong> (n.&nbsp;1945, Nobel de 2017), o economista que traduziu a psicologia de Kahneman e Tversky para dentro da Economia.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Contabilidade mental">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Contabilidade mental
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>contabilidade mental</strong> é a tendência de separar o dinheiro em “caixinhas” mentais não intercambiáveis — segundo a origem ou o destino —, tratando cada uma por regras próprias, em vez de considerar a riqueza como um todo fungível.</p>
+</div>
+</div>
+<p>O dinheiro, em princípio, é <strong>fungível</strong>: um real é um real, venha de onde vier. Mas nós o tratamos como se não fosse. Gastamos o 13º salário ou um prêmio de loteria com leveza (caixinha “dinheiro fácil”), enquanto protegemos a poupança com rigor. Mantemos R$,3.000 na poupança rendendo pouco <strong>e</strong> uma dívida de cartão de R$,3.000 a juros altíssimos, porque estão em “contas mentais” diferentes — uma irracionalidade que custa caro. A contabilidade mental viola a fungibilidade, mas também é a base de estratégias úteis, como separar uma reserva de emergência “intocável”.</p>
+</section>
+<section id="preferências-no-tempo-o-viés-do-presente" class="level2" data-number="107.6">
+<h2 data-number="107.6" class="anchored" data-anchor-id="preferências-no-tempo-o-viés-do-presente"><span class="header-section-number">107.6</span> Preferências no tempo: o viés do presente</h2>
+<p>O <em>homo economicus</em> desconta o futuro de forma <strong>consistente</strong>: se prefere R$,100 hoje a R$,110 amanhã, deveria igualmente preferir R$,100 daqui a um ano a R$,110 daqui a um ano e um dia — a mesma espera de um dia, o mesmo prêmio. É o <strong>desconto exponencial</strong>, com taxa constante.</p>
+<p>Pessoas reais não fazem isso. A maioria prefere R$,110 daqui a 366 dias a R$,100 daqui a 365 dias (a espera extra de um dia, lá longe, não incomoda), mas prefere R$,100 <strong>hoje</strong> a R$,110 amanhã (o “agora” tem um peso especial). Descontamos o futuro próximo muito mais intensamente que o futuro distante — o <strong>desconto hiperbólico</strong> —, o que gera o <strong>viés do presente</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Viés do presente">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Viés do presente
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <strong>viés do presente</strong> é a tendência a supervalorizar recompensas imediatas frente a recompensas futuras, de modo desproporcional. Formalmente, o desconto <strong>hiperbólico</strong> aplica um desconto muito acentuado entre “agora” e “logo mais” e um desconto suave entre dois momentos futuros — produzindo <strong>preferências inconsistentes no tempo</strong>.</p>
+</div>
+</div>
+<p>A <a href="#fig-desconto" class="quarto-xref">Figura&nbsp;<span>107.2</span></a> contrasta as duas formas de descontar. A curva hiperbólica cai abruptamente no curto prazo e depois se achata: é por isso que planejamos poupar, fazer dieta e estudar “a partir de segunda”, mas, chegada a segunda-feira (que virou “hoje”), adiamos de novo. O plano do “eu de ontem” é sabotado pelo “eu de hoje” — a <strong>procrastinação</strong> e a <strong>sub-poupança</strong> são suas consequências mais caras.</p>
+<div id="fig-desconto" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-desconto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="284.999382pt" height="171.614227pt" viewbox="-68.014948 -68.014946 284.999382 171.614227">
+<defs>
+<path id="tz_fig_desconto_g0-19" d="M3.156164-4.98132C3.243836-5.045081 3.315567-5.116812 3.315567-5.244334C3.315567-5.427646 3.148194-5.563138 3.004732-5.563138C2.972852-5.563138 2.86127-5.563138 2.757659-5.435616L1.737484-4.224159L1.904857-4.040847L3.156164-4.98132Z"></path>
+<path id="tz_fig_desconto_g0-40" d="M2.654047 1.992528C2.717808 1.992528 2.81345 1.992528 2.81345 1.896887C2.81345 1.865006 2.805479 1.857036 2.701868 1.753425C1.609963 .72528 1.338979-.757161 1.338979-1.992528C1.338979-4.28792 2.287422-5.363885 2.693898-5.730511C2.805479-5.834122 2.81345-5.842092 2.81345-5.881943S2.781569-5.977584 2.701868-5.977584C2.574346-5.977584 2.175841-5.571108 2.11208-5.499377C1.044085-4.383562 .820922-2.948941 .820922-1.992528C.820922-.207223 1.570112 1.227397 2.654047 1.992528Z"></path>
+<path id="tz_fig_desconto_g0-41" d="M2.462765-1.992528C2.462765-2.749689 2.335243-3.658281 1.841096-4.598755C1.45056-5.332005 .72528-5.977584 .581818-5.977584C.502117-5.977584 .478207-5.921793 .478207-5.881943C.478207-5.850062 .478207-5.834122 .573848-5.738481C1.689664-4.678456 1.944707-3.219925 1.944707-1.992528C1.944707 .294894 .996264 1.378829 .589788 1.745455C.486177 1.849066 .478207 1.857036 .478207 1.896887S.502117 1.992528 .581818 1.992528C.70934 1.992528 1.107846 1.586052 1.171606 1.514321C2.239601 .398506 2.462765-1.036115 2.462765-1.992528Z"></path>
+<path id="tz_fig_desconto_g0-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_desconto_g0-98" d="M1.466501-5.531258L.278954-5.443587V-5.180573C.820922-5.180573 .884682-5.124782 .884682-4.734247V0H1.131756L1.41868-.494147C1.609963-.223163 1.984558 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.725778 3.594521-3.514819 2.622167-3.514819C1.992528-3.514819 1.601993-3.172105 1.466501-3.028643V-5.531258ZM1.490411-2.518555C1.490411-2.669988 1.490411-2.685928 1.609963-2.82939C1.841096-3.124284 2.215691-3.291656 2.574346-3.291656C2.988792-3.291656 3.299626-3.044583 3.459029-2.805479C3.594521-2.590286 3.706102-2.311333 3.706102-1.729514C3.706102-1.546202 3.706102-.980324 3.419178-.605729C3.132254-.247073 2.757659-.143462 2.494645-.143462C2.11208-.143462 1.793275-.342715 1.586052-.653549C1.490411-.804981 1.490411-.812951 1.490411-.964384V-2.518555Z"></path>
+<path id="tz_fig_desconto_g0-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_desconto_g0-100" d="M2.622167-5.443587V-5.180573C3.164134-5.180573 3.227895-5.124782 3.227895-4.734247V-3.052553C2.948941-3.355417 2.574346-3.514819 2.1599-3.514819C1.163636-3.514819 .278954-2.741719 .278954-1.713574C.278954-.73325 1.075965 .079701 2.080199 .079701C2.550436 .079701 2.940971-.143462 3.203985-.422416V.079701L4.415442 0V-.263014C3.873474-.263014 3.809714-.318804 3.809714-.70934V-5.531258L2.622167-5.443587ZM3.203985-.988294C3.203985-.844832 3.203985-.812951 3.084433-.653549C2.86127-.334745 2.494645-.143462 2.12005-.143462C1.753425-.143462 1.43462-.334745 1.243337-.629639C1.028144-.940473 .988294-1.331009 .988294-1.705604C.988294-2.16787 1.060025-2.494645 1.243337-2.773599C1.43462-3.068493 1.793275-3.291656 2.199751-3.291656C2.582316-3.291656 2.964882-3.100374 3.203985-2.685928V-.988294Z"></path>
+<path id="tz_fig_desconto_g0-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_desconto_g0-104" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C2.032379-3.514819 1.665753-3.068493 1.522291-2.81345H1.514321V-5.531258L.326775-5.443587V-5.180573C.868742-5.180573 .932503-5.124782 .932503-4.734247V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_desconto_g0-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_desconto_g0-108" d="M1.522291-5.531258L.334745-5.443587V-5.180573C.876712-5.180573 .940473-5.124782 .940473-4.734247V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.227397-.02391C1.3868-.02391 1.817186-.02391 2.12802 0V-.263014C1.617933-.263014 1.522291-.263014 1.522291-.621669V-5.531258Z"></path>
+<path id="tz_fig_desconto_g0-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_desconto_g0-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_desconto_g0-112" d="M2.096139 1.283188C1.586052 1.283188 1.490411 1.283188 1.490411 .924533V-.390535C1.865006 .01594 2.271482 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.717808 3.610461-3.514819 2.646077-3.514819C2.335243-3.514819 1.872976-3.435118 1.466501-3.020672V-3.514819L.278954-3.427148V-3.164134C.844832-3.164134 .884682-3.116314 .884682-2.781569V.924533C.884682 1.283188 .789041 1.283188 .278954 1.283188V1.546202C.621669 1.522291 .972354 1.522291 1.187547 1.522291C1.41868 1.522291 1.753425 1.522291 2.096139 1.546202V1.283188ZM1.490411-2.654047C1.673724-2.972852 2.072229-3.267746 2.574346-3.267746C3.188045-3.267746 3.706102-2.590286 3.706102-1.721544C3.706102-.804981 3.132254-.143462 2.486675-.143462C2.207721-.143462 1.841096-.263014 1.586052-.661519C1.490411-.797011 1.490411-.804981 1.490411-.956413V-2.654047Z"></path>
+<path id="tz_fig_desconto_g0-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_desconto_g0-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_desconto_g0-116" d="M1.482441-3.172105H2.669988V-3.435118H1.482441V-4.901619H1.235367C1.227397-4.176339 .900623-3.419178 .159402-3.395268V-3.172105H.876712V-.996264C.876712-.063761 1.594022 .079701 1.960648 .079701C2.494645 .079701 2.81345-.398506 2.81345-.996264V-1.44259H2.566376V-1.012204C2.566376-.462267 2.319303-.167372 2.016438-.167372C1.482441-.167372 1.482441-.852802 1.482441-.980324V-3.172105Z"></path>
+<path id="tz_fig_desconto_g0-118" d="M3.53076-2.614197C3.722042-3.060523 3.993026-3.164134 4.28792-3.172105V-3.435118C4.008966-3.411208 3.993026-3.411208 3.666252-3.411208C3.594521-3.411208 3.219925-3.411208 2.972852-3.435118V-3.172105C3.251806-3.156164 3.323537-2.980822 3.323537-2.84533C3.323537-2.765629 3.307597-2.725778 3.275716-2.654047L2.414944-.645579L1.474471-2.805479C1.42665-2.909091 1.42665-2.956912 1.42665-2.972852C1.42665-3.172105 1.713574-3.172105 1.849066-3.172105V-3.435118C1.506351-3.411208 1.131756-3.411208 .980324-3.411208C.812951-3.411208 .430386-3.411208 .175342-3.435118V-3.172105C.661519-3.172105 .70137-3.124284 .820922-2.8533L2.016438-.095641C2.072229 .02391 2.12005 .079701 2.231631 .079701S2.399004 .01594 2.438854-.079701L3.53076-2.614197Z"></path>
+<path id="tz_fig_desconto_g0-120" d="M2.454795-1.865006C2.677958-2.14396 2.909091-2.414944 3.148194-2.677958C3.411208-2.956912 3.690162-3.164134 4.192279-3.172105V-3.435118C3.881445-3.411208 3.865504-3.411208 3.506849-3.411208C3.466999-3.411208 2.996762-3.411208 2.749689-3.435118V-3.172105C2.901121-3.156164 2.933001-3.060523 2.933001-2.956912S2.893151-2.757659 2.797509-2.646077L2.295392-2.056289L1.665753-2.805479C1.570112-2.917061 1.570112-2.972852 1.570112-2.988792C1.570112-3.044583 1.617933-3.164134 1.817186-3.172105V-3.435118C1.498381-3.411208 1.052055-3.411208 .964384-3.411208C.820922-3.411208 .414446-3.411208 .175342-3.435118V-3.172105C.71731-3.172105 .72528-3.164134 1.139726-2.677958L1.960648-1.681694L1.235367-.828892C1.036115-.605729 .74122-.278954 .135492-.263014V0C.430386-.02391 .486177-.02391 .820922-.02391C.836862-.02391 1.323039-.02391 1.578082 0V-.263014C1.474471-.278954 1.3868-.334745 1.3868-.478207S1.482441-.73325 1.506351-.773101C1.705604-1.012204 1.920797-1.251308 2.12802-1.482441L2.781569-.70137C2.940971-.518057 2.940971-.502117 2.940971-.446326C2.940971-.382565 2.885181-.270984 2.693898-.263014V0C3.036613-.02391 3.395268-.02391 3.5467-.02391C3.690162-.02391 4.096638-.02391 4.335741 0V-.263014C3.841594-.263014 3.761893-.302864 3.55467-.549938L2.454795-1.865006Z"></path>
+<path id="tz_fig_desconto_g1-116" d="M2.052304-3.985056H2.988792C3.188045-3.985056 3.287671-3.985056 3.287671-4.184309C3.287671-4.293898 3.188045-4.293898 3.008717-4.293898H2.132005C2.49066-5.708593 2.540473-5.907846 2.540473-5.967621C2.540473-6.136986 2.420922-6.236613 2.251557-6.236613C2.221669-6.236613 1.942715-6.22665 1.853051-5.877958L1.464508-4.293898H.52802C.328767-4.293898 .229141-4.293898 .229141-4.104608C.229141-3.985056 .308842-3.985056 .508095-3.985056H1.384807C.667497-1.155666 .627646-.986301 .627646-.806974C.627646-.268991 1.006227 .109589 1.544209 .109589C2.560399 .109589 3.128269-1.344956 3.128269-1.424658C3.128269-1.524284 3.048568-1.524284 3.008717-1.524284C2.919054-1.524284 2.909091-1.494396 2.859278-1.384807C2.430884-.348692 1.902864-.109589 1.564134-.109589C1.354919-.109589 1.255293-.239103 1.255293-.56787C1.255293-.806974 1.275218-.876712 1.315068-1.046077L2.052304-3.985056Z"></path>
+<path id="tz_fig_desconto_g2-97" d="M3.317559-.757161C3.35741-.358655 3.626401 .059776 4.094645 .059776C4.303861 .059776 4.911582-.079701 4.911582-.886675V-1.444583H4.662516V-.886675C4.662516-.308842 4.41345-.249066 4.303861-.249066C3.975093-.249066 3.935243-.697385 3.935243-.747198V-2.739726C3.935243-3.158157 3.935243-3.5467 3.576588-3.915318C3.188045-4.303861 2.689913-4.463263 2.211706-4.463263C1.39477-4.463263 .707347-3.995019 .707347-3.337484C.707347-3.038605 .9066-2.86924 1.165629-2.86924C1.444583-2.86924 1.62391-3.068493 1.62391-3.327522C1.62391-3.447073 1.574097-3.775841 1.115816-3.785803C1.384807-4.134496 1.872976-4.244085 2.191781-4.244085C2.67995-4.244085 3.247821-3.855542 3.247821-2.968867V-2.600249C2.739726-2.570361 2.042341-2.540473 1.414695-2.241594C.667497-1.902864 .418431-1.384807 .418431-.946451C.418431-.139477 1.384807 .109589 2.012453 .109589C2.669988 .109589 3.128269-.288917 3.317559-.757161ZM3.247821-2.391034V-1.39477C3.247821-.448319 2.530511-.109589 2.082192-.109589C1.594022-.109589 1.185554-.458281 1.185554-.956413C1.185554-1.504359 1.603985-2.331258 3.247821-2.391034Z"></path>
+<path id="tz_fig_desconto_g2-99" d="M1.165629-2.171856C1.165629-3.795766 1.982565-4.214197 2.510585-4.214197C2.600249-4.214197 3.227895-4.204234 3.576588-3.845579C3.16812-3.815691 3.108344-3.516812 3.108344-3.387298C3.108344-3.128269 3.287671-2.929016 3.566625-2.929016C3.825654-2.929016 4.024907-3.098381 4.024907-3.39726C4.024907-4.07472 3.267746-4.463263 2.500623-4.463263C1.255293-4.463263 .33873-3.387298 .33873-2.15193C.33873-.876712 1.325031 .109589 2.480697 .109589C3.815691 .109589 4.134496-1.085928 4.134496-1.185554S4.034869-1.285181 4.004981-1.285181C3.915318-1.285181 3.895392-1.24533 3.875467-1.185554C3.58655-.259029 2.938979-.139477 2.570361-.139477C2.042341-.139477 1.165629-.56787 1.165629-2.171856Z"></path>
+<path id="tz_fig_desconto_g2-100" d="M3.785803-.547945V.109589L5.250311 0V-.308842C4.552927-.308842 4.473225-.37858 4.473225-.86675V-6.914072L3.038605-6.804483V-6.495641C3.73599-6.495641 3.815691-6.425903 3.815691-5.937733V-3.785803C3.526775-4.144458 3.098381-4.403487 2.560399-4.403487C1.384807-4.403487 .33873-3.427148 .33873-2.141968C.33873-.876712 1.315068 .109589 2.450809 .109589C3.088418 .109589 3.536737-.229141 3.785803-.547945ZM3.785803-3.217933V-1.175592C3.785803-.996264 3.785803-.976339 3.676214-.806974C3.377335-.328767 2.929016-.109589 2.500623-.109589C2.052304-.109589 1.693649-.368618 1.454545-.747198C1.195517-1.155666 1.165629-1.723537 1.165629-2.132005C1.165629-2.500623 1.185554-3.098381 1.474471-3.5467C1.683686-3.855542 2.062267-4.184309 2.600249-4.184309C2.948941-4.184309 3.367372-4.034869 3.676214-3.58655C3.785803-3.417186 3.785803-3.39726 3.785803-3.217933Z"></path>
+<path id="tz_fig_desconto_g2-101" d="M1.115816-2.510585C1.175592-3.995019 2.012453-4.244085 2.351183-4.244085C3.377335-4.244085 3.476961-2.899128 3.476961-2.510585H1.115816ZM1.105853-2.30137H3.88543C4.104608-2.30137 4.134496-2.30137 4.134496-2.510585C4.134496-3.496887 3.596513-4.463263 2.351183-4.463263C1.195517-4.463263 .278954-3.437111 .278954-2.191781C.278954-.856787 1.325031 .109589 2.470735 .109589C3.686177 .109589 4.134496-.996264 4.134496-1.185554C4.134496-1.285181 4.054795-1.305106 4.004981-1.305106C3.915318-1.305106 3.895392-1.24533 3.875467-1.165629C3.526775-.139477 2.630137-.139477 2.530511-.139477C2.032379-.139477 1.633873-.438356 1.404732-.806974C1.105853-1.285181 1.105853-1.942715 1.105853-2.30137Z"></path>
+<path id="tz_fig_desconto_g2-108" d="M1.763387-6.914072L.328767-6.804483V-6.495641C1.026152-6.495641 1.105853-6.425903 1.105853-5.937733V-.757161C1.105853-.308842 .996264-.308842 .328767-.308842V0C.657534-.009963 1.185554-.029888 1.43462-.029888S2.171856-.009963 2.540473 0V-.308842C1.872976-.308842 1.763387-.308842 1.763387-.757161V-6.914072Z"></path>
+<path id="tz_fig_desconto_g2-109" d="M1.09589-3.427148V-.757161C1.09589-.308842 .986301-.308842 .318804-.308842V0C.667497-.009963 1.175592-.029888 1.444583-.029888C1.703611-.029888 2.221669-.009963 2.560399 0V-.308842C1.892902-.308842 1.783313-.308842 1.783313-.757161V-2.590286C1.783313-3.626401 2.49066-4.184309 3.128269-4.184309C3.755915-4.184309 3.865504-3.646326 3.865504-3.078456V-.757161C3.865504-.308842 3.755915-.308842 3.088418-.308842V0C3.437111-.009963 3.945205-.029888 4.214197-.029888C4.473225-.029888 4.991283-.009963 5.330012 0V-.308842C4.662516-.308842 4.552927-.308842 4.552927-.757161V-2.590286C4.552927-3.626401 5.260274-4.184309 5.897883-4.184309C6.525529-4.184309 6.635118-3.646326 6.635118-3.078456V-.757161C6.635118-.308842 6.525529-.308842 5.858032-.308842V0C6.206725-.009963 6.714819-.029888 6.983811-.029888C7.242839-.029888 7.760897-.009963 8.099626 0V-.308842C7.581569-.308842 7.332503-.308842 7.32254-.607721V-2.510585C7.32254-3.367372 7.32254-3.676214 7.013699-4.034869C6.874222-4.204234 6.545455-4.403487 5.967621-4.403487C5.13076-4.403487 4.692403-3.805729 4.523039-3.427148C4.383562-4.293898 3.646326-4.403487 3.198007-4.403487C2.470735-4.403487 2.002491-3.975093 1.723537-3.35741V-4.403487L.318804-4.293898V-3.985056C1.016189-3.985056 1.09589-3.915318 1.09589-3.427148Z"></path>
+<path id="tz_fig_desconto_g2-110" d="M1.09589-3.427148V-.757161C1.09589-.308842 .986301-.308842 .318804-.308842V0C.667497-.009963 1.175592-.029888 1.444583-.029888C1.703611-.029888 2.221669-.009963 2.560399 0V-.308842C1.892902-.308842 1.783313-.308842 1.783313-.757161V-2.590286C1.783313-3.626401 2.49066-4.184309 3.128269-4.184309C3.755915-4.184309 3.865504-3.646326 3.865504-3.078456V-.757161C3.865504-.308842 3.755915-.308842 3.088418-.308842V0C3.437111-.009963 3.945205-.029888 4.214197-.029888C4.473225-.029888 4.991283-.009963 5.330012 0V-.308842C4.811955-.308842 4.562889-.308842 4.552927-.607721V-2.510585C4.552927-3.367372 4.552927-3.676214 4.244085-4.034869C4.104608-4.204234 3.775841-4.403487 3.198007-4.403487C2.470735-4.403487 2.002491-3.975093 1.723537-3.35741V-4.403487L.318804-4.293898V-3.985056C1.016189-3.985056 1.09589-3.915318 1.09589-3.427148Z"></path>
+<path id="tz_fig_desconto_g2-111" d="M4.692403-2.132005C4.692403-3.407223 3.696139-4.463263 2.49066-4.463263C1.24533-4.463263 .278954-3.377335 .278954-2.132005C.278954-.846824 1.315068 .109589 2.480697 .109589C3.686177 .109589 4.692403-.86675 4.692403-2.132005ZM2.49066-.139477C2.062267-.139477 1.62391-.348692 1.354919-.806974C1.105853-1.24533 1.105853-1.853051 1.105853-2.211706C1.105853-2.600249 1.105853-3.138232 1.344956-3.576588C1.613948-4.034869 2.082192-4.244085 2.480697-4.244085C2.919054-4.244085 3.347447-4.024907 3.606476-3.596513S3.865504-2.590286 3.865504-2.211706C3.865504-1.853051 3.865504-1.315068 3.646326-.876712C3.427148-.428394 2.988792-.139477 2.49066-.139477Z"></path>
+<path id="tz_fig_desconto_g2-112" d="M1.713574-3.745953V-4.403487L.278954-4.293898V-3.985056C.986301-3.985056 1.05604-3.92528 1.05604-3.486924V1.175592C1.05604 1.62391 .946451 1.62391 .278954 1.62391V1.932752C.617684 1.92279 1.135741 1.902864 1.39477 1.902864C1.663761 1.902864 2.171856 1.92279 2.520548 1.932752V1.62391C1.853051 1.62391 1.743462 1.62391 1.743462 1.175592V-.498132V-.587796C1.793275-.428394 2.211706 .109589 2.968867 .109589C4.154421 .109589 5.190535-.86675 5.190535-2.15193C5.190535-3.417186 4.224159-4.403487 3.108344-4.403487C2.331258-4.403487 1.912827-3.965131 1.713574-3.745953ZM1.743462-1.135741V-3.35741C2.032379-3.865504 2.520548-4.154421 3.028643-4.154421C3.755915-4.154421 4.363636-3.277709 4.363636-2.15193C4.363636-.946451 3.666252-.109589 2.929016-.109589C2.530511-.109589 2.15193-.308842 1.882939-.71731C1.743462-.926526 1.743462-.936488 1.743462-1.135741Z"></path>
+<path id="tz_fig_desconto_g2-114" d="M1.663761-3.307597V-4.403487L.278954-4.293898V-3.985056C.976339-3.985056 1.05604-3.915318 1.05604-3.427148V-.757161C1.05604-.308842 .946451-.308842 .278954-.308842V0C.667497-.009963 1.135741-.029888 1.414695-.029888C1.8132-.029888 2.281445-.029888 2.67995 0V-.308842H2.470735C1.733499-.308842 1.713574-.418431 1.713574-.777086V-2.311333C1.713574-3.297634 2.132005-4.184309 2.889166-4.184309C2.958904-4.184309 2.978829-4.184309 2.998755-4.174346C2.968867-4.164384 2.769614-4.044832 2.769614-3.785803C2.769614-3.506849 2.978829-3.35741 3.198007-3.35741C3.377335-3.35741 3.626401-3.476961 3.626401-3.795766S3.317559-4.403487 2.889166-4.403487C2.161893-4.403487 1.803238-3.73599 1.663761-3.307597Z"></path>
+<path id="tz_fig_desconto_g2-115" d="M2.072229-1.932752C2.291407-1.892902 3.108344-1.733499 3.108344-1.016189C3.108344-.508095 2.759651-.109589 1.982565-.109589C1.145704-.109589 .787049-.67746 .597758-1.524284C.56787-1.653798 .557908-1.693649 .458281-1.693649C.328767-1.693649 .328767-1.62391 .328767-1.444583V-.129514C.328767 .039851 .328767 .109589 .438356 .109589C.488169 .109589 .498132 .099626 .687422-.089664C.707347-.109589 .707347-.129514 .886675-.318804C1.325031 .099626 1.77335 .109589 1.982565 .109589C3.128269 .109589 3.58655-.557908 3.58655-1.275218C3.58655-1.803238 3.287671-2.102117 3.16812-2.221669C2.839352-2.540473 2.450809-2.620174 2.032379-2.699875C1.474471-2.809465 .806974-2.938979 .806974-3.516812C.806974-3.865504 1.066002-4.273973 1.92279-4.273973C3.01868-4.273973 3.068493-3.377335 3.088418-3.068493C3.098381-2.978829 3.188045-2.978829 3.20797-2.978829C3.337484-2.978829 3.337484-3.028643 3.337484-3.217933V-4.224159C3.337484-4.393524 3.337484-4.463263 3.227895-4.463263C3.178082-4.463263 3.158157-4.463263 3.028643-4.343711C2.998755-4.303861 2.899128-4.214197 2.859278-4.184309C2.480697-4.463263 2.072229-4.463263 1.92279-4.463263C.707347-4.463263 .328767-3.795766 .328767-3.237858C.328767-2.889166 .488169-2.610212 .757161-2.391034C1.075965-2.132005 1.354919-2.072229 2.072229-1.932752Z"></path>
+<path id="tz_fig_desconto_g2-116" d="M1.723537-3.985056H3.148194V-4.293898H1.723537V-6.127024H1.474471C1.464508-5.310087 1.165629-4.244085 .18929-4.204234V-3.985056H1.036115V-1.235367C1.036115-.009963 1.96264 .109589 2.321295 .109589C3.028643 .109589 3.307597-.597758 3.307597-1.235367V-1.803238H3.058531V-1.255293C3.058531-.518057 2.759651-.139477 2.391034-.139477C1.723537-.139477 1.723537-1.046077 1.723537-1.215442V-3.985056Z"></path>
+<path id="tz_fig_desconto_g2-118" d="M4.144458-3.317559C4.234122-3.5467 4.403487-3.975093 5.061021-3.985056V-4.293898C4.83188-4.273973 4.542964-4.26401 4.313823-4.26401C4.07472-4.26401 3.616438-4.283935 3.447073-4.293898V-3.985056C3.815691-3.975093 3.92528-3.745953 3.92528-3.556663C3.92528-3.466999 3.905355-3.427148 3.865504-3.317559L2.849315-.777086L1.733499-3.556663C1.673724-3.686177 1.673724-3.706102 1.673724-3.726027C1.673724-3.985056 2.062267-3.985056 2.241594-3.985056V-4.293898C1.942715-4.283935 1.384807-4.26401 1.155666-4.26401C.886675-4.26401 .488169-4.273973 .18929-4.293898V-3.985056C.816936-3.985056 .856787-3.92528 .986301-3.616438L2.420922-.079701C2.480697 .059776 2.500623 .109589 2.630137 .109589S2.799502 .019925 2.839352-.079701L4.144458-3.317559Z"></path>
+</defs>
+<g id="tz_fig_desconto_page1">
+<g stroke-miterlimit="10" transform="translate(-50.193078,85.77741)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-50.193078,85.77741)scale(-1,-1)"></g>
+<g transform="translate(-17.8887,-17.8887)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-50.193078,85.77741)scale(-1,-1)">
+<g stroke="#000" stroke-miterlimit="10" transform="translate(-32.371207,67.95554)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="" fill="none"></path>
+</g>
+</g>
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="" fill="none"></path>
+</g>
+</g>
+<path d="M0 0H265.97946" fill="none"></path>
+<g transform="translate(265.97946,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<path d="M0 0V152.16911" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,152.16911)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<clippath id="tz_fig_desconto_pgfcp1">
+<path d="M0 0H267.97943V154.16908H0Z"></path> </clippath>
+<g clip-path="url(#tz_fig_desconto_pgfcp1)">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M0 146.8277L2.70657 143.19077L5.4132 139.62286L8.11977 136.14157L10.82639 132.74838L13.53296 129.4433L16.23953 126.21309L18.94615 123.07098L21.65274 120.00081L24.35936 117.00551L27.06593 114.08217L29.7725 111.24841L32.47913 108.4719L35.1857 105.77026L37.89232 103.12589L40.5989 100.5564L43.30548 98.04565L46.0121 95.60686L48.71867 93.21208L51.4253 90.89368L54.13187 88.63106L56.83846 86.41249L59.54506 84.26881L62.25165 82.15302L64.95827 80.11212L67.66484 78.11673L70.37141 76.16245L73.07803 74.2669L75.7846 72.41689L78.49123 70.6109L81.19781 68.8475L83.90439 67.12962L86.61101 65.45578L89.31758 63.82599L92.0242 62.2388L94.73077 60.68388L97.43736 59.16862L100.14398 57.68565L102.85056 56.26141L105.55717 54.85188L108.26375 53.48492L110.97032 52.15027L113.67694 50.84349L116.38351 49.58078L119.09013 48.34595L121.79672 47.14343L124.5033 45.96587L127.20992 44.82207L129.91649 43.70619L132.62311 42.60353L135.32968 41.54637L138.03627 40.51855L140.74289 39.50546L143.44946 38.5217L146.15608 37.55118L148.86266 36.61296L151.56923 35.70116L154.27585 34.82018L156.98244 33.9539L159.68904 33.1023L162.39563 32.28006L165.1022 31.47105L167.80882 30.67816L170.5154 29.91466L173.22202 29.18199L175.92859 28.44638L178.63518 27.74016L181.3418 27.05006L184.04837 26.37613L186.75499 25.71541L189.46156 25.06789L192.16814 24.4512L194.87476 23.836L197.58134 23.24721L200.28796 22.65991L202.99454 22.10196L205.70111 21.54402L208.40773 21.01544L211.1143 20.48686L213.82092 19.97296L216.5275 19.47375L219.23409 18.98776L221.9407 18.51938L224.64728 18.04807L227.3539 17.60757L230.06047 17.1656L232.76704 16.73982L235.47366 16.31401L238.18025 15.90437L240.88687 15.50793L243.59344 15.12471L246.30002 14.74445L249.00664 14.38576L251.71321 14.02702L254.41983 13.67722L257.12642 13.33609L259.833 13.00372L262.53961 12.67952L265.24619 12.36322L267.9528 12.05501" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<path d="M0 146.8277L2.2519 125.70212L4.50383 109.88731L6.75574 97.61104L9.00761 87.80148L11.25954 79.78177L13.51146 73.10698L15.76337 67.46144L18.01529 62.6264L20.26721 58.43448L22.51912 54.77405L24.77104 51.54091L27.02292 48.67043L29.27483 46.10095L31.52675 43.79135L33.77867 41.70053L36.03058 39.80057L38.2825 38.06653L40.53442 36.4764L42.78633 35.01547L45.03821 33.66757L47.29013 32.41661L49.54204 31.25667L51.79396 30.17603L54.04588 29.17026L56.29779 28.22763L58.54971 27.34372L60.80159 26.51268L63.0535 25.73302L65.30542 24.99594L67.55734 24.30144L69.80925 23.64365L72.06117 23.01962L74.3131 22.4294L76.565 21.8685L78.81688 21.33406L81.0688 20.82457L83.32071 20.34003L85.57263 19.87752L87.82455 19.43558L90.07646 19.01273L92.32838 18.60893L94.5803 18.21838L96.83218 17.8469L99.08409 17.49156L101.33601 17.14651L103.58794 16.81618L105.83984 16.49902L108.09177 16.19363L110.34367 15.8985L112.5956 15.61365L114.84747 15.34055L117.0994 15.07626L119.3513 14.82077L121.60323 14.57265L123.85515 14.33347L126.10706 14.1022L128.35898 13.878L130.61086 13.66113L132.86276 13.45087L135.11469 13.2468L137.36661 13.04901L139.61852 12.85712L141.87044 12.67049L144.12236 12.48915L146.37427 12.3131L148.62614 12.1422L150.87807 11.9757L153.12997 11.81389L155.3819 11.65591L157.63382 11.50276L159.88573 11.353L162.13765 11.20735L164.38957 11.06566L166.64143 10.9272L168.89336 10.79213L171.14528 10.66028L173.39719 10.53195L175.64911 10.40656L177.90103 10.28395L180.15294 10.16414L182.40482 10.04741L184.65674 9.93304L186.90866 9.82144L189.16057 9.71236L191.41249 9.60547L193.6644 9.5012L195.91632 9.39902L198.16824 9.29889L200.42012 9.20094L202.67203 9.10507L204.92395 9.01111L207.17587 8.91904L209.42778 8.82874L211.6797 8.7405L213.93161 8.654L216.18353 8.56915L218.43541 8.48605L220.68733 8.4044L222.93924 8.3241L225.19116 8.24554L227.4432 8.16861L229.69492 8.09283L231.94695 8.01869L234.19867 7.94557L236.4507 7.87422L238.70274 7.8039L240.95445 7.73488L243.20654 7.66675L245.4582 7.59995L247.7103 7.53445L249.96233 7.47L252.21404 7.40686L254.46608 7.34447L256.71779 7.28308L258.96983 7.22304L261.22188 7.164L263.47359 7.10542L265.72563 7.04816L267.97734 6.99191" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(94.64244,-12.61128)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.371207,67.95554)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-32.371207" y="67.95554" href="#tz_fig_desconto_g2-116"></use>
+<use x="-28.496834" y="67.95554" href="#tz_fig_desconto_g2-101"></use>
+<use x="-24.068982" y="67.95554" href="#tz_fig_desconto_g2-109"></use>
+<use x="-15.766757" y="67.95554" href="#tz_fig_desconto_g2-112"></use>
+<use x="-9.955191" y="67.95554" href="#tz_fig_desconto_g2-111"></use>
+<use x="-1.652977" y="67.95554" href="#tz_fig_desconto_g2-100"></use>
+<use x="3.88184" y="67.95554" href="#tz_fig_desconto_g2-101"></use>
+<use x="11.630566" y="67.95554" href="#tz_fig_desconto_g2-101"></use>
+<use x="16.058418" y="67.95554" href="#tz_fig_desconto_g2-115"></use>
+<use x="19.988136" y="67.95554" href="#tz_fig_desconto_g2-112"></use>
+<use x="25.799701" y="67.95554" href="#tz_fig_desconto_g2-101"></use>
+<use x="30.227553" y="67.95554" href="#tz_fig_desconto_g2-114"></use>
+<use x="34.129603" y="67.95554" href="#tz_fig_desconto_g2-97"></use>
+<use x="42.431817" y="67.95554" href="#tz_fig_desconto_g1-116"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(0.0,1.0,-1.0,0.0,-7.61128,12.68166)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.371207,67.95554)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-32.371207" y="67.95554" href="#tz_fig_desconto_g2-118"></use>
+<use x="-27.666602" y="67.95554" href="#tz_fig_desconto_g2-97"></use>
+<use x="-22.685263" y="67.95554" href="#tz_fig_desconto_g2-108"></use>
+<use x="-19.917854" y="67.95554" href="#tz_fig_desconto_g2-111"></use>
+<use x="-14.936515" y="67.95554" href="#tz_fig_desconto_g2-114"></use>
+<use x="-7.71359" y="67.95554" href="#tz_fig_desconto_g2-112"></use>
+<use x="-2.178773" y="67.95554" href="#tz_fig_desconto_g2-114"></use>
+<use x="1.723278" y="67.95554" href="#tz_fig_desconto_g2-101"></use>
+<use x="6.15113" y="67.95554" href="#tz_fig_desconto_g2-115"></use>
+<use x="10.080847" y="67.95554" href="#tz_fig_desconto_g2-101"></use>
+<use x="14.508699" y="67.95554" href="#tz_fig_desconto_g2-110"></use>
+<use x="19.766767" y="67.95554" href="#tz_fig_desconto_g2-116"></use>
+<use x="23.641141" y="67.95554" href="#tz_fig_desconto_g2-101"></use>
+<use x="31.389868" y="67.95554" href="#tz_fig_desconto_g2-100"></use>
+<use x="36.924685" y="67.95554" href="#tz_fig_desconto_g2-97"></use>
+<use x="45.226899" y="67.95554" href="#tz_fig_desconto_g2-114"></use>
+<use x="49.128949" y="67.95554" href="#tz_fig_desconto_g2-101"></use>
+<use x="53.556801" y="67.95554" href="#tz_fig_desconto_g2-99"></use>
+<use x="57.984653" y="67.95554" href="#tz_fig_desconto_g2-111"></use>
+<use x="62.965992" y="67.95554" href="#tz_fig_desconto_g2-109"></use>
+<use x="71.268217" y="67.95554" href="#tz_fig_desconto_g2-112"></use>
+<use x="77.079782" y="67.95554" href="#tz_fig_desconto_g2-101"></use>
+<use x="81.507634" y="67.95554" href="#tz_fig_desconto_g2-110"></use>
+<use x="87.042451" y="67.95554" href="#tz_fig_desconto_g2-115"></use>
+<use x="90.972169" y="67.95554" href="#tz_fig_desconto_g2-97"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#fff">
+<g stroke="#000">
+<g fill="#fff">
+<g stroke="#000">
+<path d="M122.03923 122.34431H259.74037V149.34419H122.03923Z" stroke="none"></path>
+</g>
+</g>
+<g transform="translate(125.03923,130.09428)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.371207,67.95554)scale(-1,-1)">
+<g stroke="#000" stroke-miterlimit="10" transform="translate(-31.773458,56.498564)scale(0.996264,-0.996264)">
+<g fill="#000">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M0 0H8.5359H17.07182" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#000" stroke-miterlimit="10" transform="translate(42.335125,56.498564)scale(0.996264,-0.996264)">
+<g transform="translate(-46.67984,-2.25003)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(42.335125,56.498564)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="42.335125" y="56.498564" href="#tz_fig_desconto_g0-101"></use>
+<use x="46.098843" y="56.498564" href="#tz_fig_desconto_g0-120"></use>
+<use x="50.568258" y="56.498564" href="#tz_fig_desconto_g0-112"></use>
+<use x="55.508138" y="56.498564" href="#tz_fig_desconto_g0-111"></use>
+<use x="59.742321" y="56.498564" href="#tz_fig_desconto_g0-110"></use>
+<use x="64.446968" y="56.498564" href="#tz_fig_desconto_g0-101"></use>
+<use x="68.210686" y="56.498564" href="#tz_fig_desconto_g0-110"></use>
+<use x="72.915334" y="56.498564" href="#tz_fig_desconto_g0-99"></use>
+<use x="76.679052" y="56.498564" href="#tz_fig_desconto_g0-105"></use>
+<use x="79.031376" y="56.498564" href="#tz_fig_desconto_g0-97"></use>
+<use x="83.265559" y="56.498564" href="#tz_fig_desconto_g0-108"></use>
+<use x="88.440671" y="56.498564" href="#tz_fig_desconto_g0-40"></use>
+<use x="91.733924" y="56.498564" href="#tz_fig_desconto_g0-99"></use>
+<use x="95.497643" y="56.498564" href="#tz_fig_desconto_g0-111"></use>
+<use x="99.731825" y="56.498564" href="#tz_fig_desconto_g0-110"></use>
+<use x="104.436473" y="56.498564" href="#tz_fig_desconto_g0-115"></use>
+<use x="107.776776" y="56.498564" href="#tz_fig_desconto_g0-105"></use>
+<use x="110.1291" y="56.498564" href="#tz_fig_desconto_g0-115"></use>
+<use x="113.469402" y="56.498564" href="#tz_fig_desconto_g0-116"></use>
+<use x="116.762656" y="56.498564" href="#tz_fig_desconto_g0-101"></use>
+<use x="120.526374" y="56.498564" href="#tz_fig_desconto_g0-110"></use>
+<use x="124.995789" y="56.498564" href="#tz_fig_desconto_g0-116"></use>
+<use x="128.289042" y="56.498564" href="#tz_fig_desconto_g0-101"></use>
+<use x="132.052761" y="56.498564" href="#tz_fig_desconto_g0-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#000" stroke-miterlimit="10" transform="translate(-31.773458,67.95554)scale(0.996264,-0.996264)">
+<g fill="#000">
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<path d="M0 0H8.5359H17.07182" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#000" stroke-miterlimit="10" transform="translate(42.335125,67.95554)scale(0.996264,-0.996264)">
+<g transform="translate(-54.71468,-2.25003)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(42.335125,67.95554)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="42.335125" y="67.95554" href="#tz_fig_desconto_g0-104"></use>
+<use x="47.039772" y="67.95554" href="#tz_fig_desconto_g0-105"></use>
+<use x="49.392096" y="67.95554" href="#tz_fig_desconto_g0-112"></use>
+<use x="54.331976" y="67.95554" href="#tz_fig_desconto_g0-101"></use>
+<use x="58.095694" y="67.95554" href="#tz_fig_desconto_g0-114"></use>
+<use x="61.395864" y="67.95554" href="#tz_fig_desconto_g0-98"></use>
+<use x="66.100512" y="67.95554" href="#tz_fig_desconto_g0-19"></use>
+<use x="66.100512" y="67.95554" href="#tz_fig_desconto_g0-111"></use>
+<use x="70.334695" y="67.95554" href="#tz_fig_desconto_g0-108"></use>
+<use x="72.687018" y="67.95554" href="#tz_fig_desconto_g0-105"></use>
+<use x="75.039342" y="67.95554" href="#tz_fig_desconto_g0-99"></use>
+<use x="78.80306" y="67.95554" href="#tz_fig_desconto_g0-111"></use>
+<use x="85.860032" y="67.95554" href="#tz_fig_desconto_g0-40"></use>
+<use x="89.153285" y="67.95554" href="#tz_fig_desconto_g0-118"></use>
+<use x="93.6227" y="67.95554" href="#tz_fig_desconto_g0-105"></use>
+<use x="95.739792" y="67.95554" href="#tz_fig_desconto_g0-19"></use>
+<use x="95.975024" y="67.95554" href="#tz_fig_desconto_g0-101"></use>
+<use x="99.738742" y="67.95554" href="#tz_fig_desconto_g0-115"></use>
+<use x="105.901834" y="67.95554" href="#tz_fig_desconto_g0-100"></use>
+<use x="110.606481" y="67.95554" href="#tz_fig_desconto_g0-111"></use>
+<use x="117.663453" y="67.95554" href="#tz_fig_desconto_g0-112"></use>
+<use x="122.3681" y="67.95554" href="#tz_fig_desconto_g0-114"></use>
+<use x="125.66827" y="67.95554" href="#tz_fig_desconto_g0-101"></use>
+<use x="129.431988" y="67.95554" href="#tz_fig_desconto_g0-115"></use>
+<use x="132.772291" y="67.95554" href="#tz_fig_desconto_g0-101"></use>
+<use x="136.536009" y="67.95554" href="#tz_fig_desconto_g0-110"></use>
+<use x="141.005425" y="67.95554" href="#tz_fig_desconto_g0-116"></use>
+<use x="144.298678" y="67.95554" href="#tz_fig_desconto_g0-101"></use>
+<use x="148.062396" y="67.95554" href="#tz_fig_desconto_g0-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-desconto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;107.2: Desconto exponencial (azul) <em>versus</em> hiperbólico (vermelho): este último penaliza o adiamento imediato de forma desproporcional e gera inconsistência temporal.
+</figcaption>
+</figure>
+</div>
+<p>Quem se conhece pode se defender com <strong>dispositivos de compromisso</strong> (<em>commitment devices</em>): amarrar as próprias mãos de antemão, como o Ulisses da <em>Odisseia</em> que se atou ao mastro para resistir ao canto das sereias. Débito automático para a poupança, previdência com saída penalizada, apostas para emagrecer — todos funcionam entregando ao “eu de hoje” o poder de constranger o “eu de amanhã”.</p>
+</section>
+<section id="nudges-e-o-paternalismo-libertário" class="level2" data-number="107.7">
+<h2 data-number="107.7" class="anchored" data-anchor-id="nudges-e-o-paternalismo-libertário"><span class="header-section-number">107.7</span> Nudges e o paternalismo libertário</h2>
+<p>Se as escolhas dependem de como são apresentadas, então <strong>quem organiza a apresentação</strong> — o “arquiteto de escolhas” — influencia as decisões, queira ou não. Não existe apresentação neutra: a ordem dos pratos no bufê, a opção que já vem marcada num formulário, o que é padrão e o que exige esforço. Thaler e <strong>Cass Sunstein</strong> <span class="citation" data-cites="thaler2019">(<a href="#ref-thaler2019" role="doc-biblioref">Thaler; Sunstein, 2019</a>)</span> propuseram usar esse poder <strong>de propósito e para o bem</strong> — o que chamaram de <em>nudge</em>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Nudge">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Nudge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um <strong>nudge</strong> (“empurrãozinho”) é qualquer aspecto da arquitetura de escolhas que altera o comportamento das pessoas de forma <strong>previsível</strong>, <strong>sem proibir</strong> nenhuma opção nem mudar significativamente os incentivos econômicos. Para ser nudge, deve ser fácil e barato de evitar: uma multa não é nudge; colocar a fruta na altura dos olhos, sim.</p>
+</div>
+</div>
+<p>O exemplo mais estudado é a <strong>opção-padrão</strong> (<em>default</em>) em planos de aposentadoria. Quando a adesão é <em>opt-in</em> (o trabalhador precisa marcar “sim” para participar), a inércia e o viés do presente fazem muitos nunca aderirem. Quando é <em>opt-out</em> (já vem inscrito, podendo sair), as taxas de participação disparam — sem tirar de ninguém a liberdade de recusar. Mudou o padrão, não as opções.</p>
+<p>Thaler e Sunstein chamaram sua filosofia de <strong>paternalismo libertário</strong>: <strong>libertário</strong> porque preserva integralmente a liberdade de escolha (todas as opções continuam abertas); <strong>paternalista</strong> porque o arquiteto orienta as pessoas, de forma transparente, para escolhas que elas próprias julgariam melhores para si.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — nudge: cura ou manipulação?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — nudge: cura ou manipulação?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Críticos levantam objeções sérias. <strong>Quem</strong> decide qual é a “escolha melhor” — e com que legitimidade um governo ou empresa a promove? Se a técnica funciona porque explora vieses, ela não seria uma forma sutil de <strong>manipulação</strong>, contornando a deliberação consciente? E defaults podem servir a interesses do arquiteto, não do escolhedor (pense em serviços “já inclusos” que você precisa desmarcar). Os defensores respondem que <strong>alguma</strong> arquitetura de escolha sempre existirá — não há default neutro —, então é melhor desenhá-la de forma transparente e a favor do usuário. O debate opõe eficácia a autonomia e continua vivo.</p>
+</div>
+</div>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="107.8">
+<h2 data-number="107.8" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">107.8</span> 🇧🇷 Brasil em Foco</h2>
+<p>A economia comportamental deixou o laboratório e virou política pública e prática de mercado no Brasil.</p>
+<p><strong>Poupança, previdência e o viés do presente.</strong> A baixa taxa de poupança das famílias e a dependência do INSS refletem, em parte, o viés do presente e a inércia. A <strong>previdência complementar</strong> aberta (planos PGBL/VGBL) e os fundos de pensão fechados funcionam como <strong>dispositivos de compromisso</strong>: o desconto em folha e as penalidades de resgate antecipado ajudam o “eu de hoje” a poupar pelo “eu aposentado”. A discussão sobre adesão automática em planos patrocinados por empresas é a versão brasileira do debate sobre <em>defaults</em> de Thaler e Sunstein.</p>
+<p><strong>Endividamento, contabilidade mental e o rotativo do cartão.</strong> O parcelamento “sem juros”, onipresente no varejo brasileiro, explora a contabilidade mental: dez parcelas de R$,50 pesam menos na mente que R$,500 à vista, mesmo sem juros. Já o <strong>crédito rotativo</strong> do cartão — historicamente uma das taxas de juros mais altas do mundo, superando com folga 300% ao ano em vários períodos, segundo o Banco Central — vive da procrastinação de quem “paga o mínimo” hoje e empurra a conta. O superendividamento levou à <strong>Lei nº 14.181/2021</strong> (Lei do Superendividamento), que impõe deveres de informação e prevenção — uma resposta institucional a decisões financeiras enviesadas.</p>
+<p><strong>Nudges no setor público.</strong> O Brasil incorporou a arquitetura de escolhas às políticas públicas. O <strong>Imposto de Renda pré-preenchido</strong> da Receita Federal reduz o atrito (e o erro) da declaração — um <em>default</em> que facilita o cumprimento. Campanhas de mensagens do governo e de tribunais (SMS lembrando prazos, alertas de vencimento) elevam a adesão e o pagamento com custo quase zero, no espírito dos nudges. Órgãos como o antigo laboratório de inovação <strong>GNova</strong> (Enap) testaram intervenções comportamentais em serviços públicos.</p>
+<p><strong>Loterias, “bets” e vieses de probabilidade.</strong> A popularidade das loterias da Caixa e, mais recentemente, das <strong>apostas de quota fixa</strong> (as <em>bets</em>) ilustra em escala nacional as heurísticas de disponibilidade (o ganhador aparece no jornal; os milhões de perdedores, não) e a ponderação distorcida de probabilidades minúsculas. O crescimento explosivo desse mercado a partir de 2023–2024 e sua regulação (Lei nº 14.790/2023) puseram no centro do debate público exatamente os vieses que este capítulo descreve.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> Banco Central do Brasil — SGS e Relatório de Economia Bancária (taxas do rotativo e do parcelado); PNAD Contínua e pesquisas de endividamento (CNC/Peic); textos da Enap/GNova sobre ciência comportamental aplicada; legislação: Lei nº 14.181/2021 (superendividamento) e Lei nº 14.790/2023 (apostas). Verifique sempre a data de referência: taxas de juros e dados de endividamento mudam a cada divulgação.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="107.9">
+<h2 data-number="107.9" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">107.9</span> Resumo do capítulo</h2>
+<ul>
+<li>A economia comportamental incorpora a Psicologia à Economia para descrever como as pessoas <strong>realmente</strong> decidem, em contraste com o <strong>homo economicus</strong> — racional, egoísta e de força de vontade ilimitada. Os desvios da racionalidade são <strong>sistemáticos</strong>, não aleatórios, e por isso modeláveis.</li>
+<li><strong>Herbert Simon</strong> propôs a <strong>racionalidade limitada</strong>: diante de limites de informação, cognição e tempo, buscamos soluções “boas o suficiente” (<em>satisficing</em>), usando atalhos.</li>
+<li><strong>Kahneman</strong> distinguiu o <strong>Sistema 1</strong> (rápido, automático, intuitivo) do <strong>Sistema 2</strong> (lento, deliberado, custoso). Os vieses surgem quando o Sistema 1 decide onde caberia o Sistema 2.</li>
+<li><strong>Heurísticas</strong> são atalhos mentais úteis; os <strong>vieses</strong> são os erros sistemáticos que geram. As três principais: <strong>disponibilidade</strong> (julgar pela facilidade de lembrar), <strong>representatividade</strong> (julgar pela semelhança, ignorando taxas-base) e <strong>ancoragem</strong> (apegar-se a um valor de referência).</li>
+<li>A <strong>teoria do prospecto</strong> repousa em três pilares: avaliação em relação a um <strong>ponto de referência</strong>, <strong>aversão à perda</strong> (perdas pesam ~2× mais que ganhos iguais) e <strong>sensibilidade decrescente</strong> (função-valor em “S”, côncava nos ganhos, convexa nas perdas). Dela decorre o <strong>efeito dotação</strong>.</li>
+<li>O <strong>efeito enquadramento</strong> mostra que a forma de apresentar uma escolha altera a decisão; a <strong>contabilidade mental</strong> viola a fungibilidade do dinheiro, tratando-o em “caixinhas”.</li>
+<li>O <strong>viés do presente</strong> (desconto hiperbólico) supervaloriza o imediato, gerando preferências inconsistentes no tempo — procrastinação e sub-poupança. <strong>Dispositivos de compromisso</strong> ajudam a contê-lo.</li>
+<li>Um <strong>nudge</strong> altera o comportamento de forma previsível sem proibir opções nem mudar incentivos relevantes; a filosofia do <strong>paternalismo libertário</strong> (Thaler e Sunstein) preserva a liberdade enquanto orienta escolhas. Seus críticos apontam riscos de manipulação e de legitimidade.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="107.10">
+<h2 data-number="107.10" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">107.10</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce: os primeiros são conceituais; os do meio, aplicados; os últimos pedem análise de caso.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique a diferença entre uma <strong>heurística</strong> e um <strong>viés</strong>. Por que dizer que os vieses são “sistemáticos” é importante para que a economia comportamental seja uma ciência?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Uma <strong>heurística</strong> é um atalho mental que simplifica uma decisão difícil; um <strong>viés</strong> é o erro sistemático que esse atalho produz quando mal aplicado. Que os vieses sejam <strong>sistemáticos</strong> — sempre na mesma direção — é o que os torna cientificamente úteis: se fossem aleatórios, se cancelariam na média e o modelo racional continuaria válido em agregado. Por serem previsíveis, podem ser modelados, testados e até corrigidos (por exemplo, via nudges).</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Classifique cada situação pela heurística predominante (disponibilidade, representatividade ou ancoragem): (a) Após ver reportagens sobre assaltos, alguém superestima a chance de ser assaltado. (b) Uma loja mostra “de R$,800 por R$,499” e a oferta parece ótima. (c) Julga-se que alguém quieto e metódico é “cara de programador”, não de vendedor.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><strong>Disponibilidade</strong> — a facilidade de lembrar exemplos vívidos infla a probabilidade percebida.</li>
+<li><strong>Ancoragem</strong> — o preço “de” R$,800 é a âncora que faz R$,499 parecer barato.</li>
+<li><strong>Representatividade</strong> — julga-se pela semelhança com um estereótipo, ignorando quantos vendedores <em>versus</em> programadores existem (taxa-base).</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Ana prefere ganhar R$,100 hoje a R$,120 daqui a um mês; mas prefere R$,120 daqui a 13 meses a R$,100 daqui a 12 meses. (a) Que tipo de desconto essas escolhas revelam? (b) Que problema de comportamento isso previsivelmente gera? (c) Sugira um dispositivo de compromisso para Ana poupar.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><strong>Desconto hiperbólico</strong> / <strong>viés do presente</strong>: a mesma espera de um mês por R$,20 é recusada quando envolve o “agora” (hoje × 1 mês) e aceita quando ambos os prazos são distantes (12 × 13 meses). As preferências são <strong>inconsistentes no tempo</strong>.</li>
+<li><strong>Procrastinação</strong> e <strong>sub-poupança</strong>: Ana planejará poupar “no próximo mês”, mas, chegado o momento (que vira “hoje”), adiará de novo.</li>
+<li>Qualquer mecanismo que amarre o “eu de hoje”: <strong>débito automático</strong> para uma aplicação no dia do salário, previdência com penalidade de resgate, ou uma conta separada de saque dificultado. O compromisso retira a decisão do momento de tentação.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Um hospital divulga que certa cirurgia tem “95% de sobrevivência”. Um concorrente divulga, para o mesmo procedimento, “1 em 20 pacientes não sobrevive”. (a) Que efeito comportamental está em jogo? (b) Por que as duas frases, logicamente equivalentes, produzem escolhas diferentes?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>O <strong>efeito enquadramento</strong> (<em>framing</em>), combinado com a <strong>aversão à perda</strong>.</li>
+<li>“95% de sobrevivência” enquadra o resultado como <strong>ganho</strong> (sobreviver), ativando otimismo; “1 em 20 não sobrevive” enquadra como <strong>perda</strong> (morte), e perdas pesam desproporcionalmente mais na função-valor da teoria do prospecto. Embora as probabilidades sejam idênticas, o <strong>ponto de referência</strong> e a valência emocional mudam — e a decisão muda com eles.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Explique o <strong>efeito dotação</strong> usando a teoria do prospecto. Por que ele viola uma previsão da teoria econômica tradicional sobre disposição a pagar e a receber?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Pela teoria do prospecto, avaliamos mudanças em relação a um <strong>ponto de referência</strong>, e <strong>perdas pesam mais que ganhos</strong> (aversão à perda). Uma vez que você possui um bem, ele integra seu ponto de referência: abrir mão dele é sentido como <strong>perda</strong>, enquanto adquiri-lo seria apenas um <strong>ganho</strong>. Como perder dói mais, o preço mínimo para <strong>vender</strong> (disposição a receber) supera o preço máximo que se pagaria para <strong>comprar</strong> (disposição a pagar). A teoria tradicional prevê que, sem custos de transação e para variações pequenas de riqueza, esses dois valores deveriam ser <strong>praticamente iguais</strong> — a mera posse não deveria importar. O efeito dotação mostra que importa.</p>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Maria mantém R$,4.000 numa poupança rendendo ~0,5% ao mês e, ao mesmo tempo, carrega R$,4.000 de dívida no rotativo do cartão a ~14% ao mês. (a) Por que, do ponto de vista da racionalidade financeira, isso é um erro? (b) Que conceito comportamental explica a decisão de Maria? (c) Estime a perda mensal aproximada.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>O dinheiro é <strong>fungível</strong>: usar os R$,4.000 da poupança para quitar a dívida elimina um custo de ~14% ao mês em troca de abrir mão de um rendimento de ~0,5% ao mês — um ganho líquido evidente. Manter as duas posições simultaneamente destrói valor.</li>
+<li>A <strong>contabilidade mental</strong>: Maria trata “poupança” e “dívida do cartão” como caixinhas separadas e intocáveis, em vez de olhar a riqueza líquida como um todo.</li>
+<li>Custo da dívida: <span class="math inline">\(0{,}14 \times 4.000 = R\$\,560\)</span> por mês. Rendimento da poupança: <span class="math inline">\(0{,}005 \times 4.000 = R\$\,20\)</span> por mês. Perda líquida por não compensar: cerca de <span class="math inline">\(560 - 20 = R\$\,540\)</span> por mês.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise de caso) Uma empresa quer aumentar a adesão dos funcionários ao plano de previdência complementar. Proponha <strong>dois nudges</strong> e explique o mecanismo comportamental de cada um. Em seguida, aponte <strong>uma</strong> objeção ética que um crítico poderia levantar.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Nudge 1 — adesão automática (opt-out):</strong> inscrever o funcionário por padrão, deixando-o livre para sair. Explora a <strong>inércia</strong> e o <strong>viés do presente</strong> (adiar a decisão de aderir) a favor da poupança, sem retirar a opção de recusa. <strong>Nudge 2 — escalonamento automático da contribuição (<em>save more tomorrow</em>):</strong> vincular aumentos da alíquota de contribuição a futuros aumentos de salário. Contorna a <strong>aversão à perda</strong> (a contribuição maior nunca reduz o salário líquido atual, só absorve parte do aumento futuro). <strong>Objeção ética:</strong> o <em>default</em> de adesão pode ser visto como <strong>manipulação</strong> — muda o comportamento explorando a inércia, sem deliberação consciente — e levanta a questão de <strong>quem</strong> define que poupar mais é o melhor para aquele trabalhador (que pode ter melhores usos imediatos para a renda, como quitar dívidas caras). A resposta paternalista-libertária: a saída é livre e transparente, e <em>algum</em> default sempre existirá.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) A teoria do prospecto é <strong>descritiva</strong>; a teoria da utilidade esperada é frequentemente tratada como <strong>normativa</strong>. Explique essa distinção e discuta a tensão que ela cria para políticas de nudge: se um “viés” é apenas a preferência real da pessoa, com que direito o Estado a “corrige”?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Uma teoria <strong>descritiva</strong> (positiva) diz <strong>como</strong> as pessoas de fato decidem; uma teoria <strong>normativa</strong> diz como um agente <strong>coerente deveria</strong> decidir. A teoria do prospecto descreve o comportamento observado (pontos de referência, aversão à perda); a utilidade esperada é defendida como padrão de racionalidade coerente. A tensão para os nudges: se os “vieses” são apenas <strong>preferências genuínas</strong> — a pessoa realmente prefere o imediato —, então “corrigi-los” impõe a preferência de um terceiro, ferindo a <strong>autonomia</strong>. Se, porém, são <strong>erros</strong> que a própria pessoa lamenta ao refletir (ela <em>quer</em> poupar, mas procrastina), então o nudge apenas a ajuda a realizar a preferência que ela endossaria com o Sistema 2 — o argumento central do paternalismo libertário. A distinção prática é se a intervenção promove a escolha que <strong>o próprio indivíduo</strong> faria se estivesse mais atento, ou a que <strong>o arquiteto</strong> prefere. O primeiro caso é defensável; o segundo, manipulação. Como saber em qual estamos é, precisamente, o cerne do debate — e recomenda transparência e possibilidade fácil de opt-out como salvaguardas.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="107.11">
+<h2 data-number="107.11" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">107.11</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="kahneman2012">Kahneman (<a href="#ref-kahneman2012" role="doc-biblioref">2012</a>)</span> — <em>Rápido e Devagar: Duas Formas de Pensar</em>. A obra de divulgação definitiva sobre Sistema 1/Sistema 2, heurísticas, vieses e teoria do prospecto, pelo próprio Kahneman. Leitura essencial e acessível.</li>
+<li><span class="citation" data-cites="thaler2019">Thaler; Sunstein (<a href="#ref-thaler2019" role="doc-biblioref">2019</a>)</span> — <em>Nudge</em>, de Thaler e Sunstein: a apresentação da arquitetura de escolhas e do paternalismo libertário, com dezenas de aplicações práticas.</li>
+<li><span class="citation" data-cites="thaler2019misbehaving">Thaler (<a href="#ref-thaler2019misbehaving" role="doc-biblioref">2019</a>)</span> — <em>Misbehaving</em>: a história, em primeira pessoa, de como a economia comportamental foi construída e aceita dentro da Economia.</li>
+<li><span class="citation" data-cites="tversky1974">Tversky; Kahneman (<a href="#ref-tversky1974" role="doc-biblioref">1974</a>)</span> — o artigo seminal na <em>Science</em> que catalogou disponibilidade, representatividade e ancoragem; curto e fundador.</li>
+<li><span class="citation" data-cites="kahneman1979">Kahneman; Tversky (<a href="#ref-kahneman1979" role="doc-biblioref">1979</a>)</span> — <em>Prospect Theory</em>, o artigo na <em>Econometrica</em> que formalizou a alternativa à utilidade esperada (denso, mas decisivo).</li>
+<li><span class="citation" data-cites="ariely2008">Ariely (<a href="#ref-ariely2008" role="doc-biblioref">2008</a>)</span> — <em>Previsivelmente Irracional</em>: exemplos vívidos e experimentos sobre a irracionalidade sistemática do dia a dia.</li>
+<li><span class="citation" data-cites="simon1955">Simon (<a href="#ref-simon1955" role="doc-biblioref">1955</a>)</span> — o artigo clássico que introduziu a racionalidade limitada e o <em>satisficing</em>.</li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-ariely2008" class="csl-entry" role="listitem">
+ARIELY, Dan. <strong>Previsivelmente Irracional</strong>. Rio de Janeiro: Elsevier, 2008.
+</div>
+<div id="ref-kahneman2012" class="csl-entry" role="listitem">
+KAHNEMAN, Daniel. <strong>Rápido e Devagar: Duas Formas de Pensar</strong>. Rio de Janeiro: Objetiva, 2012.
+</div>
+<div id="ref-kahneman1979" class="csl-entry" role="listitem">
+KAHNEMAN, Daniel; TVERSKY, Amos. Prospect Theory: An Analysis of Decision under Risk. <strong>Econometrica</strong>, v. 47, n. 2, p. 263–291, 1979.
+</div>
+<div id="ref-simon1955" class="csl-entry" role="listitem">
+SIMON, Herbert A. A Behavioral Model of Rational Choice. <strong>The Quarterly Journal of Economics</strong>, v. 69, n. 1, p. 99–118, 1955.
+</div>
+<div id="ref-thaler2019misbehaving" class="csl-entry" role="listitem">
+THALER, Richard H. <strong>Misbehaving: A Construção da Economia Comportamental</strong>. Rio de Janeiro: Intrínseca, 2019.
+</div>
+<div id="ref-thaler2019" class="csl-entry" role="listitem">
+THALER, Richard H.; SUNSTEIN, Cass R. <strong>Nudge: Como Tomar Melhores Decisões sobre Saúde, Dinheiro e Felicidade</strong>. Rio de Janeiro: Objetiva, 2019.
+</div>
+<div id="ref-tversky1974" class="csl-entry" role="listitem">
+TVERSKY, Amos; KAHNEMAN, Daniel. Judgment under Uncertainty: Heuristics and Biases. <strong>Science</strong>, v. 185, n. 4157, p. 1124–1131, 1974.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1388,7 +2430,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol15/cap06-economia-comportamental.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol15/cap06-economia-comportamental.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
 </div>
