@@ -200,7 +200,7 @@
 | 2 | Valor do dinheiro no tempo: juros compostos, VP e VF | `capitulos/vol14/cap02-valor-do-dinheiro-no-tempo.qmd` | ✅ |
 | 3 | Renda fixa: títulos públicos (Tesouro Direto) e privados | `capitulos/vol14/cap03-renda-fixa.qmd` | ✅ |
 | 4 | Ações e avaliação de empresas | `capitulos/vol14/cap04-acoes-valuation.qmd` | ✅ |
-| 5 | Risco, retorno e diversificação: do portfólio ao CAPM | `capitulos/vol14/cap05-risco-retorno-capm.qmd` | ⬜ |
+| 5 | Risco, retorno e diversificação: do portfólio ao CAPM | `capitulos/vol14/cap05-risco-retorno-capm.qmd` | ✅ |
 | 6 | Derivativos: noções de futuros, opções e hedge | `capitulos/vol14/cap06-derivativos.qmd` | ⬜ |
 | 7 | Finanças pessoais aplicadas | `capitulos/vol14/cap07-financas-pessoais.qmd` | ⬜ |
 
