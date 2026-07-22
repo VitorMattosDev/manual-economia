@@ -23,7 +23,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -74,6 +94,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -938,8 +987,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link active" data-scroll-target="#objetivos-de-aprendizagem"><span class="header-section-number">103.1</span> Objetivos de aprendizagem</a></li>
+  <li><a href="#marx-no-seu-tempo-o-capitalismo-industrial" id="toc-marx-no-seu-tempo-o-capitalismo-industrial" class="nav-link" data-scroll-target="#marx-no-seu-tempo-o-capitalismo-industrial"><span class="header-section-number">103.2</span> Marx no seu tempo: o capitalismo industrial</a></li>
+  <li><a href="#o-método-o-materialismo-histórico" id="toc-o-método-o-materialismo-histórico" class="nav-link" data-scroll-target="#o-método-o-materialismo-histórico"><span class="header-section-number">103.3</span> O método: o materialismo histórico</a></li>
+  <li><a href="#a-mercadoria-e-a-teoria-do-valor" id="toc-a-mercadoria-e-a-teoria-do-valor" class="nav-link" data-scroll-target="#a-mercadoria-e-a-teoria-do-valor"><span class="header-section-number">103.4</span> A mercadoria e a teoria do valor</a></li>
+  <li><a href="#a-força-de-trabalho-e-o-segredo-da-mais-valia" id="toc-a-força-de-trabalho-e-o-segredo-da-mais-valia" class="nav-link" data-scroll-target="#a-força-de-trabalho-e-o-segredo-da-mais-valia"><span class="header-section-number">103.5</span> A força de trabalho e o segredo da mais-valia</a>
+  <ul class="collapse">
+  <li><a href="#mais-valia-absoluta-e-relativa" id="toc-mais-valia-absoluta-e-relativa" class="nav-link" data-scroll-target="#mais-valia-absoluta-e-relativa"><span class="header-section-number">103.5.1</span> Mais-valia absoluta e relativa</a></li>
+  </ul></li>
+  <li><a href="#acumulação-taxa-de-lucro-e-crises" id="toc-acumulação-taxa-de-lucro-e-crises" class="nav-link" data-scroll-target="#acumulação-taxa-de-lucro-e-crises"><span class="header-section-number">103.6</span> Acumulação, taxa de lucro e crises</a></li>
+  <li><a href="#as-críticas-a-marx" id="toc-as-críticas-a-marx" class="nav-link" data-scroll-target="#as-críticas-a-marx"><span class="header-section-number">103.7</span> As críticas a Marx</a></li>
+  <li><a href="#o-legado" id="toc-o-legado" class="nav-link" data-scroll-target="#o-legado"><span class="header-section-number">103.8</span> O legado</a></li>
+  <li><a href="#brasil-em-foco" id="toc-brasil-em-foco" class="nav-link" data-scroll-target="#brasil-em-foco"><span class="header-section-number">103.9</span> 🇧🇷 Brasil em Foco</a></li>
+  <li><a href="#resumo-do-capítulo" id="toc-resumo-do-capítulo" class="nav-link" data-scroll-target="#resumo-do-capítulo"><span class="header-section-number">103.10</span> Resumo do capítulo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">103.11</span> Exercícios</a></li>
+  <li><a href="#para-saber-mais" id="toc-para-saber-mais" class="nav-link" data-scroll-target="#para-saber-mais"><span class="header-section-number">103.12</span> Para saber mais</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol15/cap02-marx.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -963,9 +1032,940 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>Capítulo em elaboração.</em></p>
+<p>Quando você recebe o contracheque no fim do mês, uma pergunta raramente formulada fica no ar: o valor que a empresa vende do seu trabalho durante o mês é exatamente igual ao que ela lhe paga? Se fosse, de onde viria o <strong>lucro</strong> do dono do negócio? Alguém, afinal, precisa produzir o excedente que remunera acionistas, paga dividendos e financia a expansão da fábrica. Para a maior parte dos economistas, o lucro é a recompensa do risco e do capital. Para um filósofo alemão exilado em Londres, que passou décadas debruçado sobre os relatórios de fábrica do British Museum, o lucro tinha outra origem — e essa origem era um <strong>roubo silencioso</strong>, invisível porque perfeitamente legal. <strong>De onde vem, afinal, o lucro do capital?</strong></p>
+<p>Karl Marx (1818–1883) partiu exatamente de onde os clássicos (<a href="cap01-classicos.html" class="quarto-xref"><span>Capítulo 102</span></a>) haviam parado: da <strong>teoria do valor-trabalho</strong>. Mas, onde Smith e Ricardo viam um sistema que, no essencial, harmonizava os interesses, Marx enxergou uma máquina de <strong>exploração</strong> movida por contradições que a condenariam. Sua obra é, ao mesmo tempo, o ponto mais alto da economia política clássica e a sua demolição por dentro. Estudá-la não é aderir a um programa político: é entender a crítica mais influente que o capitalismo já recebeu — e por que, mais de um século e meio depois, ainda organizamos debates em torno dela.</p>
+<section id="objetivos-de-aprendizagem" class="level2" data-number="103.1">
+<h2 data-number="103.1" class="anchored" data-anchor-id="objetivos-de-aprendizagem"><span class="header-section-number">103.1</span> Objetivos de aprendizagem</h2>
+<p>Ao final deste capítulo, você será capaz de:</p>
+<ul>
+<li>situar Marx no <strong>capitalismo industrial</strong> do século XIX e identificar o que ele herdou dos clássicos e da filosofia alemã;</li>
+<li>explicar o <strong>materialismo histórico</strong> e os conceitos de modo de produção, forças produtivas e relações de produção;</li>
+<li>reconstruir a <strong>teoria do valor</strong> de Marx e a distinção decisiva entre <strong>trabalho</strong> e <strong>força de trabalho</strong>;</li>
+<li>derivar a <strong>mais-valia</strong>, a <strong>taxa de mais-valia</strong> e a <strong>taxa de lucro</strong>, e distinguir mais-valia absoluta de relativa;</li>
+<li>explicar a lei da <strong>tendência decrescente da taxa de lucro</strong>, o <strong>exército industrial de reserva</strong> e as <strong>crises de superprodução</strong>;</li>
+<li>avaliar criticamente a teoria — do <strong>problema da transformação</strong> à réplica marginalista — e reconhecer seu legado.</li>
+</ul>
+</section>
+<section id="marx-no-seu-tempo-o-capitalismo-industrial" class="level2" data-number="103.2">
+<h2 data-number="103.2" class="anchored" data-anchor-id="marx-no-seu-tempo-o-capitalismo-industrial"><span class="header-section-number">103.2</span> Marx no seu tempo: o capitalismo industrial</h2>
+<p>Para entender Marx, é preciso enxergar o que ele via pela janela. A Inglaterra de meados do século XIX era o laboratório da <strong>Revolução Industrial</strong> em pleno vapor: fábricas têxteis onde homens, mulheres e crianças trabalhavam jornadas de 12, 14, 16 horas; cidades industriais insalubres; salários no limite da sobrevivência. Foi desse cenário que seu amigo e financiador Friedrich Engels (1820–1895) extraiu o relato <em>A Situação da Classe Trabalhadora na Inglaterra</em>, matéria-prima empírica do pensamento marxiano.</p>
+<p>Marx bebeu de três fontes, que fundiu numa síntese original:</p>
+<ul>
+<li>da <strong>economia política clássica</strong> inglesa (Smith e sobretudo Ricardo), a teoria do valor-trabalho e a análise da distribuição entre classes;</li>
+<li>da <strong>filosofia alemã</strong> de Hegel, o método <strong>dialético</strong> — a ideia de que a realidade se move por contradições internas —, que Marx diria ter “colocado de cabeça para baixo”, trocando o primado das ideias pelo das condições materiais;</li>
+<li>do <strong>socialismo francês</strong>, a crítica moral à ordem burguesa e o horizonte de emancipação.</li>
+</ul>
+<p>Em 1848, com Engels, publicou o <em>Manifesto do Partido Comunista</em> <span class="citation" data-cites="marxengels2010">(<a href="#ref-marxengels2010" role="doc-biblioref">Marx; Engels, 2010</a>)</span>, panfleto político incendiário. Mas sua obra científica madura é <em>O Capital</em> <span class="citation" data-cites="marx2013">(<a href="#ref-marx2013" role="doc-biblioref">Marx, 2013</a>)</span>, cujo Livro I saiu em 1867 — uma anatomia do modo de produção capitalista que ocupou o resto de sua vida.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — o cientista e o profeta">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — o cientista e o profeta
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Há dois Marx que convivem em tensão: o <strong>analista</strong> frio do funcionamento do capital, cuja influência atravessa até autores que rejeitam suas conclusões, e o <strong>profeta</strong> revolucionário, que anunciava o colapso inevitável do sistema. Este capítulo trata sobretudo do primeiro — a <strong>crítica da economia política</strong> —, mas os dois são inseparáveis na obra. Julgar Marx apenas por regimes que invocaram seu nome no século XX é tão enganoso quanto julgar Smith pela crise de 2008; convém separar a análise do uso político que dela se fez.</p>
+</div>
+</div>
+</section>
+<section id="o-método-o-materialismo-histórico" class="level2" data-number="103.3">
+<h2 data-number="103.3" class="anchored" data-anchor-id="o-método-o-materialismo-histórico"><span class="header-section-number">103.3</span> O método: o materialismo histórico</h2>
+<p>Antes da economia, vem o método. Marx propôs uma teoria geral da história — o <strong>materialismo histórico</strong> — que enquadra sua análise do capitalismo como um estágio, não como o fim da história.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Modo de produção">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Modo de produção
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um <strong>modo de produção</strong> é a forma como uma sociedade organiza a produção de sua vida material. Ele combina as <strong>forças produtivas</strong> (a técnica, as ferramentas, o conhecimento e a força de trabalho disponíveis) com as <strong>relações de produção</strong> (as relações sociais — sobretudo de propriedade — sob as quais se produz: quem é dono dos meios de produção e quem trabalha para quem).</p>
+</div>
+</div>
+<p>A tese central é que a <strong>base econômica</strong> (as forças e relações de produção) condiciona a <strong>superestrutura</strong> — o Direito, a política, a religião, as ideias dominantes de uma época. “Não é a consciência dos homens que determina o seu ser”, escreveu Marx, “mas, ao contrário, o seu ser social que determina a sua consciência”.</p>
+<p>O motor da história seria a <strong>contradição</strong> entre forças produtivas em expansão e relações de produção que, a certa altura, deixam de acomodá-las e se tornam “grilhões”. Dessa contradição nascem as revoluções que fazem uma sociedade passar de um modo de produção a outro — do escravismo antigo ao feudalismo, do feudalismo ao capitalismo. O capitalismo, para Marx, não é natural nem eterno: é <strong>histórico</strong>, teve começo e terá fim, como os que o antecederam.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — por que isso importa para a Economia">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — por que isso importa para a Economia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Boa parte da economia posterior trata as instituições capitalistas (propriedade privada, trabalho assalariado, mercado) como o pano de fundo dado sobre o qual se otimiza. Marx fez o movimento inverso: transformou esse pano de fundo no <strong>objeto</strong> de estudo. Perguntar “por que o trabalho é uma mercadoria comprada e vendida?” — em vez de tomar isso como ponto de partida — é a marca do método marxiano, e ecoa hoje na economia das instituições (<a href="../vol13/cap03-instituicoes.html" class="quarto-xref"><span>Capítulo 91</span></a>).</p>
+</div>
+</div>
+</section>
+<section id="a-mercadoria-e-a-teoria-do-valor" class="level2" data-number="103.4">
+<h2 data-number="103.4" class="anchored" data-anchor-id="a-mercadoria-e-a-teoria-do-valor"><span class="header-section-number">103.4</span> A mercadoria e a teoria do valor</h2>
+<p><em>O Capital</em> abre pela célula do sistema: a <strong>mercadoria</strong>. Toda mercadoria, diz Marx retomando Smith, tem duas faces. Seu <strong>valor de uso</strong> é a utilidade concreta que satisfaz uma necessidade (o pão alimenta, o casaco aquece). Seu <strong>valor de troca</strong> é a proporção em que se troca por outras mercadorias. A pergunta clássica reaparece: o que iguala mercadorias tão diferentes na troca, permitindo dizer que uma casaca “vale” 20 metros de linho?</p>
+<p>A resposta de Marx é a <strong>teoria do valor-trabalho</strong>, herdada de Ricardo e radicalizada. O que todas as mercadorias têm em comum, uma vez abstraída sua utilidade particular, é serem <strong>produtos do trabalho humano</strong>. A substância do valor é o trabalho; sua medida, o <strong>tempo de trabalho socialmente necessário</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Tempo de trabalho socialmente necessário">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Tempo de trabalho socialmente necessário
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <strong>valor</strong> de uma mercadoria é determinado pelo <strong>tempo de trabalho socialmente necessário</strong> à sua produção: o tempo requerido, em condições <strong>médias</strong> de técnica e produtividade da sociedade, e com o grau <strong>médio</strong> de destreza e intensidade. Não é o tempo que um trabalhador lento gasta individualmente — produzir devagar não cria mais valor. É o padrão social que conta.</p>
+</div>
+</div>
+<p>Marx distingue ainda o <strong>trabalho concreto</strong> (a atividade específica do alfaiate, do tecelão) do <strong>trabalho abstrato</strong> — trabalho humano em geral, dispêndio de energia sem qualificação particular, que é o que se compara na troca. É o trabalho abstrato, socialmente necessário, que constitui o valor.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuição — o fetichismo da mercadoria">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Intuição — o fetichismo da mercadoria
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma das ideias mais originais de Marx: no mercado, as relações entre <strong>pessoas</strong> (quem trabalhou para quem, em que condições) aparecem disfarçadas de relações entre <strong>coisas</strong> (este preço, aquele preço). A mercadoria parece ter valor “por si mesma”, como uma propriedade natural, quando na verdade seu valor é trabalho humano cristalizado. Marx chamou essa ilusão de <strong>fetichismo da mercadoria</strong>: o produto do trabalho ganha vida própria e passa a dominar seus produtores. É por isso que a origem social do lucro fica invisível — o sistema a esconde na aparência inocente dos preços.</p>
+</div>
+</div>
+</section>
+<section id="a-força-de-trabalho-e-o-segredo-da-mais-valia" class="level2" data-number="103.5">
+<h2 data-number="103.5" class="anchored" data-anchor-id="a-força-de-trabalho-e-o-segredo-da-mais-valia"><span class="header-section-number">103.5</span> A força de trabalho e o segredo da mais-valia</h2>
+<p>Aqui está o coração da crítica. Se todas as mercadorias se trocam por seu valor, <strong>de onde vem o lucro?</strong> Se o capitalista comprasse tudo pelo valor e vendesse tudo pelo valor, não haveria excedente. O lucro não pode nascer da mera esperteza na troca, pois o que um ganha enganando, outro perde. Marx precisa de uma mercadoria especial cujo <strong>uso</strong> produza mais valor do que ela <strong>custa</strong>.</p>
+<p>Essa mercadoria existe: é a <strong>força de trabalho</strong>. E o passo decisivo de Marx é distinguir a <strong>força de trabalho</strong> (a capacidade de trabalhar, que o operário vende) do <strong>trabalho</strong> (o seu uso efetivo ao longo da jornada).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definição — Força de trabalho e mais-valia">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definição — Força de trabalho e mais-valia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>força de trabalho</strong> é a capacidade de trabalhar que o trabalhador vende ao capitalista. Como toda mercadoria, seu <strong>valor</strong> é o tempo de trabalho socialmente necessário para produzi-la e reproduzi-la — isto é, o valor dos bens de subsistência que mantêm o trabalhador e sua família (o salário). Mas o <strong>uso</strong> dessa força ao longo da jornada cria valor <strong>novo</strong>, e a jornada é maior do que o tempo necessário para repor o próprio salário. A diferença — o valor criado além do valor da força de trabalho — é a <strong>mais-valia</strong> (<span class="math inline">\(m\)</span>): trabalho não pago, apropriado pelo capitalista.</p>
+</div>
+</div>
+<p>O mecanismo fica claro dividindo a <strong>jornada de trabalho</strong> em duas partes (<a href="#fig-jornada-mais-valia" class="quarto-xref">Figura&nbsp;<span>103.1</span></a>). Suponha que, em 4 horas, o trabalhador produza valor equivalente ao seu salário diário: é o <strong>trabalho necessário</strong>. Mas seu contrato é por 8 horas. Nas 4 horas restantes — o <strong>trabalho excedente</strong> — ele continua produzindo valor, que agora não lhe pertence: é a mais-valia, a fonte do lucro.</p>
+<div id="fig-jornada-mais-valia" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-jornada-mais-valia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="296.692005pt" height="77.322819pt" viewbox="-68.014948 -68.01495 296.692005 77.322819">
+<defs>
+<path id="tz_fig_jornada_mais_valia_g0-109" d="M1.594022-1.307098C1.617933-1.42665 1.697634-1.729514 1.721544-1.849066C1.745455-1.928767 1.793275-2.12005 1.809215-2.199751C1.825156-2.239601 2.088169-2.757659 2.438854-3.020672C2.709838-3.227895 2.972852-3.291656 3.196015-3.291656C3.490909-3.291656 3.650311-3.116314 3.650311-2.749689C3.650311-2.558406 3.602491-2.375093 3.514819-2.016438C3.459029-1.809215 3.323537-1.275218 3.275716-1.060025L3.156164-.581818C3.116314-.446326 3.060523-.207223 3.060523-.167372C3.060523 .01594 3.211955 .079701 3.315567 .079701C3.459029 .079701 3.57858-.01594 3.634371-.111582C3.658281-.159402 3.722042-.430386 3.761893-.597758L3.945205-1.307098C3.969116-1.42665 4.048817-1.729514 4.072727-1.849066C4.184309-2.279452 4.184309-2.287422 4.367621-2.550436C4.630635-2.940971 5.00523-3.291656 5.539228-3.291656C5.826152-3.291656 5.993524-3.124284 5.993524-2.749689C5.993524-2.311333 5.65878-1.39477 5.507347-1.012204C5.427646-.804981 5.403736-.749191 5.403736-.597758C5.403736-.143462 5.778331 .079701 6.121046 .079701C6.902117 .079701 7.228892-1.036115 7.228892-1.139726C7.228892-1.219427 7.165131-1.243337 7.10934-1.243337C7.013699-1.243337 6.997758-1.187547 6.973848-1.107846C6.782565-.446326 6.447821-.143462 6.144956-.143462C6.017435-.143462 5.953674-.223163 5.953674-.406476S6.017435-.765131 6.097136-.964384C6.216687-1.267248 6.567372-2.183811 6.567372-2.630137C6.567372-3.227895 6.152927-3.514819 5.579078-3.514819C5.029141-3.514819 4.574844-3.227895 4.216189-2.733748C4.152428-3.371357 3.642341-3.514819 3.227895-3.514819C2.86127-3.514819 2.375093-3.387298 1.936737-2.81345C1.880946-3.291656 1.498381-3.514819 1.123786-3.514819C.844832-3.514819 .645579-3.347447 .510087-3.076463C.318804-2.701868 .239103-2.311333 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.223661 .526027-2.430884C.621669-2.82142 .765131-3.291656 1.099875-3.291656C1.307098-3.291656 1.354919-3.092403 1.354919-2.917061C1.354919-2.773599 1.315068-2.622167 1.251308-2.359153C1.235367-2.295392 1.115816-1.825156 1.083935-1.713574L.789041-.518057C.757161-.398506 .70934-.199253 .70934-.167372C.70934 .01594 .860772 .079701 .964384 .079701C1.107846 .079701 1.227397-.01594 1.283188-.111582C1.307098-.159402 1.370859-.430386 1.41071-.597758L1.594022-1.307098Z"></path>
+<path id="tz_fig_jornada_mais_valia_g0-118" d="M3.961146-2.901121C3.961146-3.52279 3.602491-3.52279 3.57061-3.52279C3.379328-3.52279 3.156164-3.315567 3.156164-3.108344C3.156164-2.980822 3.219925-2.925031 3.291656-2.86127C3.474969-2.701868 3.58655-2.478705 3.58655-2.223661C3.58655-1.857036 3.060523-.143462 2.14396-.143462C1.801245-.143462 1.522291-.326775 1.522291-.828892C1.522291-1.267248 1.761395-1.896887 1.952677-2.375093C2.048319-2.630137 2.072229-2.693898 2.072229-2.83736C2.072229-3.267746 1.721544-3.514819 1.354919-3.514819C.565878-3.514819 .239103-2.391034 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.239601 .494147-2.319303C.70137-3.012702 1.044085-3.291656 1.331009-3.291656C1.45056-3.291656 1.522291-3.219925 1.522291-3.028643C1.522291-2.84533 1.45056-2.662017 1.370859-2.462765C.980324-1.458531 .948443-1.195517 .948443-.948443C.948443-.079701 1.657783 .079701 2.11208 .079701C3.435118 .079701 3.961146-2.295392 3.961146-2.901121Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-19" d="M3.156164-4.98132C3.243836-5.045081 3.315567-5.116812 3.315567-5.244334C3.315567-5.427646 3.148194-5.563138 3.004732-5.563138C2.972852-5.563138 2.86127-5.563138 2.757659-5.435616L1.737484-4.224159L1.904857-4.040847L3.156164-4.98132Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-40" d="M2.654047 1.992528C2.717808 1.992528 2.81345 1.992528 2.81345 1.896887C2.81345 1.865006 2.805479 1.857036 2.701868 1.753425C1.609963 .72528 1.338979-.757161 1.338979-1.992528C1.338979-4.28792 2.287422-5.363885 2.693898-5.730511C2.805479-5.834122 2.81345-5.842092 2.81345-5.881943S2.781569-5.977584 2.701868-5.977584C2.574346-5.977584 2.175841-5.571108 2.11208-5.499377C1.044085-4.383562 .820922-2.948941 .820922-1.992528C.820922-.207223 1.570112 1.227397 2.654047 1.992528Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-41" d="M2.462765-1.992528C2.462765-2.749689 2.335243-3.658281 1.841096-4.598755C1.45056-5.332005 .72528-5.977584 .581818-5.977584C.502117-5.977584 .478207-5.921793 .478207-5.881943C.478207-5.850062 .478207-5.834122 .573848-5.738481C1.689664-4.678456 1.944707-3.219925 1.944707-1.992528C1.944707 .294894 .996264 1.378829 .589788 1.745455C.486177 1.849066 .478207 1.857036 .478207 1.896887S.502117 1.992528 .581818 1.992528C.70934 1.992528 1.107846 1.586052 1.171606 1.514321C2.239601 .398506 2.462765-1.036115 2.462765-1.992528Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-45" d="M2.343213-1.458531V-1.976588H.095641V-1.458531H2.343213Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-48" d="M3.897385-2.542466C3.897385-3.395268 3.809714-3.913325 3.5467-4.423412C3.196015-5.124782 2.550436-5.300125 2.11208-5.300125C1.107846-5.300125 .74122-4.550934 .629639-4.327771C.342715-3.745953 .326775-2.956912 .326775-2.542466C.326775-2.016438 .350685-1.211457 .73325-.573848C1.099875 .01594 1.689664 .167372 2.11208 .167372C2.494645 .167372 3.180075 .047821 3.57858-.74122C3.873474-1.315068 3.897385-2.024408 3.897385-2.542466ZM2.11208-.055791C1.841096-.055791 1.291158-.183313 1.123786-1.020174C1.036115-1.474471 1.036115-2.223661 1.036115-2.638107C1.036115-3.188045 1.036115-3.745953 1.123786-4.184309C1.291158-4.99726 1.912827-5.076961 2.11208-5.076961C2.383064-5.076961 2.933001-4.941469 3.092403-4.216189C3.188045-3.777833 3.188045-3.180075 3.188045-2.638107C3.188045-2.16787 3.188045-1.45056 3.092403-1.004234C2.925031-.167372 2.375093-.055791 2.11208-.055791Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-52" d="M3.140224-5.156663C3.140224-5.316065 3.140224-5.379826 2.972852-5.379826C2.86924-5.379826 2.86127-5.371856 2.781569-5.260274L.239103-1.570112V-1.307098H2.486675V-.645579C2.486675-.350685 2.462765-.263014 1.849066-.263014H1.665753V0C2.343213-.02391 2.359153-.02391 2.81345-.02391S3.283686-.02391 3.961146 0V-.263014H3.777833C3.164134-.263014 3.140224-.350685 3.140224-.645579V-1.307098H3.985056V-1.570112H3.140224V-5.156663ZM2.542466-4.511083V-1.570112H.518057L2.542466-4.511083Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-56" d="M2.646077-2.87721C3.092403-3.092403 3.634371-3.490909 3.634371-4.112578C3.634371-4.869738 2.86127-5.300125 2.12005-5.300125C1.275218-5.300125 .589788-4.718306 .589788-3.969116C.589788-3.674222 .6934-3.403238 .892653-3.172105C1.028144-3.004732 1.060025-2.988792 1.554172-2.677958C.565878-2.239601 .350685-1.657783 .350685-1.211457C.350685-.334745 1.235367 .167372 2.10411 .167372C3.084433 .167372 3.873474-.494147 3.873474-1.338979C3.873474-1.841096 3.602491-2.175841 3.474969-2.311333C3.339477-2.438854 3.331507-2.446824 2.646077-2.87721ZM1.41071-3.626401C1.179577-3.761893 .988294-3.993026 .988294-4.27198C.988294-4.774097 1.538232-5.092902 2.10411-5.092902C2.725778-5.092902 3.235866-4.670486 3.235866-4.112578C3.235866-3.650311 2.87721-3.259776 2.406974-3.028643L1.41071-3.626401ZM1.801245-2.534496C1.833126-2.518555 2.741719-1.960648 2.87721-1.872976C3.004732-1.801245 3.419178-1.546202 3.419178-1.067995C3.419178-.454296 2.773599-.071731 2.12005-.071731C1.41071-.071731 .804981-.557908 .804981-1.211457C.804981-1.809215 1.251308-2.279452 1.801245-2.534496Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-104" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C2.032379-3.514819 1.665753-3.068493 1.522291-2.81345H1.514321V-5.531258L.326775-5.443587V-5.180573C.868742-5.180573 .932503-5.124782 .932503-4.734247V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-108" d="M1.522291-5.531258L.334745-5.443587V-5.180573C.876712-5.180573 .940473-5.124782 .940473-4.734247V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.227397-.02391C1.3868-.02391 1.817186-.02391 2.12802 0V-.263014C1.617933-.263014 1.522291-.263014 1.522291-.621669V-5.531258Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-112" d="M2.096139 1.283188C1.586052 1.283188 1.490411 1.283188 1.490411 .924533V-.390535C1.865006 .01594 2.271482 .079701 2.526526 .079701C3.53873 .079701 4.415442-.70137 4.415442-1.721544C4.415442-2.717808 3.610461-3.514819 2.646077-3.514819C2.335243-3.514819 1.872976-3.435118 1.466501-3.020672V-3.514819L.278954-3.427148V-3.164134C.844832-3.164134 .884682-3.116314 .884682-2.781569V.924533C.884682 1.283188 .789041 1.283188 .278954 1.283188V1.546202C.621669 1.522291 .972354 1.522291 1.187547 1.522291C1.41868 1.522291 1.753425 1.522291 2.096139 1.546202V1.283188ZM1.490411-2.654047C1.673724-2.972852 2.072229-3.267746 2.574346-3.267746C3.188045-3.267746 3.706102-2.590286 3.706102-1.721544C3.706102-.804981 3.132254-.143462 2.486675-.143462C2.207721-.143462 1.841096-.263014 1.586052-.661519C1.490411-.797011 1.490411-.804981 1.490411-.956413V-2.654047Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-114" d="M1.466501-1.817186C1.466501-2.414944 1.713574-3.275716 2.478705-3.291656C2.430884-3.259776 2.351183-3.196015 2.351183-3.012702C2.351183-2.765629 2.542466-2.654047 2.701868-2.654047C2.893151-2.654047 3.060523-2.781569 3.060523-3.012702C3.060523-3.291656 2.805479-3.514819 2.454795-3.514819C1.936737-3.514819 1.586052-3.124284 1.41868-2.677958H1.41071V-3.514819L.278954-3.427148V-3.164134C.820922-3.164134 .884682-3.108344 .884682-2.717808V-.621669C.884682-.263014 .789041-.263014 .278954-.263014V0C.589788-.02391 1.028144-.02391 1.219427-.02391C1.689664-.02391 1.705604-.02391 2.223661 0V-.263014H2.064259C1.482441-.263014 1.466501-.350685 1.466501-.637609V-1.817186Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-115" d="M2.83736-3.347447C2.83736-3.474969 2.83736-3.55467 2.733748-3.55467C2.693898-3.55467 2.669988-3.55467 2.542466-3.427148C2.526526-3.419178 2.454795-3.347447 2.430884-3.347447C2.422914-3.347447 2.406974-3.347447 2.359153-3.379328C2.231631-3.466999 2.000498-3.55467 1.641843-3.55467C.526027-3.55467 .278954-2.948941 .278954-2.566376C.278954-2.16787 .573848-1.936737 .597758-1.912827C.916563-1.673724 1.099875-1.641843 1.633873-1.546202C2.008468-1.474471 2.622167-1.362889 2.622167-.820922C2.622167-.510087 2.414944-.143462 1.681694-.143462C.876712-.143462 .645579-.765131 .541968-1.187547C.510087-1.291158 .502117-1.331009 .406476-1.331009C.278954-1.331009 .278954-1.267248 .278954-1.115816V-.127522C.278954 0 .278954 .079701 .382565 .079701C.430386 .079701 .438356 .071731 .581818-.079701C.621669-.119552 .70934-.223163 .749191-.263014C1.107846 .063761 1.482441 .079701 1.689664 .079701C2.701868 .079701 3.052553-.502117 3.052553-1.028144C3.052553-1.41071 2.82142-1.968618 1.872976-2.14396C1.809215-2.1599 1.362889-2.239601 1.331009-2.239601C1.083935-2.295392 .70934-2.462765 .70934-2.781569C.70934-3.020672 .884682-3.355417 1.641843-3.355417C2.534496-3.355417 2.574346-2.701868 2.590286-2.478705C2.598257-2.414944 2.654047-2.391034 2.709838-2.391034C2.83736-2.391034 2.83736-2.446824 2.83736-2.598257V-3.347447Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-118" d="M3.53076-2.614197C3.722042-3.060523 3.993026-3.164134 4.28792-3.172105V-3.435118C4.008966-3.411208 3.993026-3.411208 3.666252-3.411208C3.594521-3.411208 3.219925-3.411208 2.972852-3.435118V-3.172105C3.251806-3.156164 3.323537-2.980822 3.323537-2.84533C3.323537-2.765629 3.307597-2.725778 3.275716-2.654047L2.414944-.645579L1.474471-2.805479C1.42665-2.909091 1.42665-2.956912 1.42665-2.972852C1.42665-3.172105 1.713574-3.172105 1.849066-3.172105V-3.435118C1.506351-3.411208 1.131756-3.411208 .980324-3.411208C.812951-3.411208 .430386-3.411208 .175342-3.435118V-3.172105C.661519-3.172105 .70137-3.124284 .820922-2.8533L2.016438-.095641C2.072229 .02391 2.12005 .079701 2.231631 .079701S2.399004 .01594 2.438854-.079701L3.53076-2.614197Z"></path>
+<path id="tz_fig_jornada_mais_valia_g1-126" d="M3.355417-5.347945C3.028643-4.98929 2.781569-4.98929 2.693898-4.98929C2.510585-4.98929 2.343213-5.068991 2.15193-5.172603C1.936737-5.276214 1.793275-5.347945 1.609963-5.347945C1.299128-5.347945 1.139726-5.180573 .70934-4.710336L.868742-4.558904C1.195517-4.917559 1.44259-4.917559 1.530262-4.917559C1.713574-4.917559 1.880946-4.837858 2.072229-4.734247C2.287422-4.630635 2.430884-4.558904 2.614197-4.558904C2.925031-4.558904 3.084433-4.726276 3.514819-5.196513L3.355417-5.347945Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-19" d="M3.425156-5.612951C3.541719-5.702615 3.61345-5.774346 3.61345-5.908842C3.61345-6.115068 3.434122-6.258531 3.272727-6.258531C3.120299-6.258531 3.075467-6.195766 2.99477-6.097136L1.900872-4.743213L2.071233-4.554919L3.425156-5.612951Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-98" d="M1.622914-2.860274C1.622914-3.030635 1.622914-3.039601 1.721544-3.183064C2.026401-3.595517 2.465753-3.738979 2.806476-3.738979C3.19203-3.738979 3.550685-3.523786 3.783811-3.147198C4.016936-2.761644 4.034869-2.232628 4.034869-1.945704C4.034869-1.524284 3.981071-1.049066 3.747945-.690411C3.550685-.403487 3.183064-.125529 2.707846-.125529C2.304359-.125529 1.963636-.340722 1.748443-.672478C1.622914-.860772 1.622914-.869738 1.622914-1.0401V-2.860274ZM1.542217-.546949C1.820174-.152428 2.268493 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.057534 3.918306-3.963138 2.842341-3.963138C2.232628-3.963138 1.811208-3.649315 1.596015-3.407223V-6.222665L.268991-6.124035V-5.846077C.878705-5.846077 .959402-5.783313 .959402-5.34396V0H1.210461L1.542217-.546949Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-99" d="M3.263761-3.523786C3.075467-3.48792 2.896139-3.362391 2.896139-3.102366C2.896139-2.86924 3.075467-2.689913 3.308593-2.689913S3.730012-2.842341 3.730012-3.120299C3.730012-3.676214 3.102366-4.016936 2.313325-4.016936C1.165629-4.016936 .304857-3.057534 .304857-1.936737C.304857-.780075 1.23736 .09863 2.295392 .09863C3.541719 .09863 3.828643-.986301 3.828643-1.066999C3.828643-1.174595 3.730012-1.174595 3.703113-1.174595C3.604483-1.174595 3.604483-1.156663 3.550685-1.004234C3.344458-.385554 2.842341-.152428 2.385056-.152428C1.811208-.152428 1.075965-.61868 1.075965-1.945704C1.075965-3.344458 1.793275-3.765878 2.331258-3.765878C2.447821-3.765878 2.932005-3.747945 3.263761-3.523786Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-100" d="M3.48792-1.075965C3.48792-.91457 3.48792-.887671 3.353425-.699377C3.075467-.29589 2.663014-.125529 2.304359-.125529C1.918804-.125529 1.560149-.340722 1.327024-.71731C1.093898-1.102864 1.075965-1.63188 1.075965-1.918804C1.075965-2.340224 1.129763-2.815442 1.362889-3.174097C1.560149-3.461021 1.927771-3.738979 2.402989-3.738979C2.779577-3.738979 3.138232-3.550685 3.380324-3.209963C3.48792-3.066501 3.48792-3.057534 3.48792-2.887173V-1.075965ZM3.514819-3.434122C3.469988-3.48792 3.066501-3.963138 2.367123-3.963138C1.264259-3.963138 .304857-3.084433 .304857-1.927771C.304857-.806974 1.201494 .09863 2.268493 .09863C2.923039 .09863 3.326526-.286924 3.48792-.475218V.09863L4.841843 0V-.277958C4.23213-.277958 4.151432-.340722 4.151432-.780075V-6.222665L2.824408-6.124035V-5.846077C3.434122-5.846077 3.514819-5.783313 3.514819-5.34396V-3.434122Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-104" d="M1.640847-6.222665L.313823-6.124035V-5.846077C.923537-5.846077 1.004234-5.783313 1.004234-5.34396V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.367123-3.963138 1.927771-3.649315 1.649813-3.147198H1.640847V-6.222665Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-108" d="M1.649813-6.222665L.32279-6.124035V-5.846077C.932503-5.846077 1.0132-5.783313 1.0132-5.34396V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.744209-.017933 .91457-.026899 1.327024-.026899C1.748443-.026899 1.900872-.017933 2.340224 0V-.277958C1.748443-.277958 1.649813-.277958 1.649813-.690411V-6.222665Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-110" d="M1.667746-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.133998-3.963138 1.748443-3.344458 1.622914-3.0934H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-115" d="M3.084433-3.783811C3.084433-3.936239 3.084433-4.016936 2.976837-4.016936C2.932005-4.016936 2.914072-4.016936 2.797509-3.90934C2.779577-3.891407 2.698879-3.81071 2.645081-3.765878C2.367123-3.963138 2.089166-4.016936 1.784309-4.016936C.600747-4.016936 .304857-3.362391 .304857-2.905106C.304857-2.618182 .430386-2.385056 .636613-2.187796C.941469-1.909838 1.282192-1.847073 1.739477-1.766376C2.196762-1.676712 2.349191-1.649813 2.546451-1.497385C2.636115-1.425654 2.860274-1.255293 2.860274-.91457C2.860274-.125529 1.95467-.125529 1.829141-.125529C.91457-.125529 .681445-.887671 .573848-1.371856C.546949-1.461519 .537983-1.515318 .430386-1.515318C.304857-1.515318 .304857-1.443587 .304857-1.282192V-.134496C.304857 .017933 .304857 .09863 .412453 .09863C.466252 .09863 .475218 .089664 .636613-.080697C.672478-.134496 .771108-.251059 .81594-.29589C1.192528 .071731 1.604981 .09863 1.829141 .09863C2.932005 .09863 3.317559-.546949 3.317559-1.147696C3.317559-1.551183 3.138232-1.793275 2.940971-1.999502C2.636115-2.295392 2.313325-2.358157 1.649813-2.483686C1.416687-2.528518 .762142-2.645081 .762142-3.156164C.762142-3.443088 .968369-3.819676 1.784309-3.819676C2.752677-3.819676 2.815442-3.075467 2.833375-2.851308C2.842341-2.743711 2.842341-2.689913 2.958904-2.689913C3.084433-2.689913 3.084433-2.752677 3.084433-2.923039V-3.783811Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+<path id="tz_fig_jornada_mais_valia_g2-120" d="M2.734745-2.017435C2.67198-2.098132 2.67198-2.107098 2.67198-2.116065C2.67198-2.133998 3.371357-2.985803 3.443088-3.057534C3.721046-3.362391 4.025903-3.577584 4.572852-3.58655V-3.864508C4.312827-3.837609 4.070735-3.837609 3.81071-3.837609C3.469988-3.837609 3.308593-3.837609 2.949938-3.864508V-3.58655C3.084433-3.568618 3.200996-3.496887 3.200996-3.317559C3.200996-3.174097 3.120299-3.075467 3.075467-3.021669L2.501619-2.313325L1.802242-3.200996C1.739477-3.281694 1.721544-3.299626 1.721544-3.362391C1.721544-3.469988 1.820174-3.577584 2.026401-3.58655V-3.864508C1.685679-3.846575 1.452553-3.837609 1.049066-3.837609C1.031133-3.837609 .52005-3.837609 .170361-3.864508V-3.58655C.789041-3.58655 .806974-3.568618 1.219427-3.039601L2.142964-1.882939C1.945704-1.649813 1.470486-1.058032 1.273225-.833873C.824907-.29589 .313823-.277958 .125529-.277958V0C.385554-.026899 .627646-.026899 .887671-.026899C1.174595-.026899 1.461519-.017933 1.748443 0V-.277958C1.524284-.304857 1.497385-.457285 1.497385-.546949C1.497385-.573848 1.497385-.699377 1.63188-.860772C1.847073-1.13873 2.080199-1.407721 2.304359-1.676712L3.012702-.771108C3.183064-.573848 3.183064-.555915 3.183064-.502117C3.183064-.403487 3.0934-.286924 2.878207-.277958V0C3.254795-.017933 3.469988-.026899 3.855542-.026899C3.873474-.026899 4.384558-.026899 4.734247 0V-.277958C4.375592-.277958 4.1066-.277958 3.90934-.529016L2.734745-2.017435Z"></path>
+</defs>
+<g id="tz_fig_jornada_mais_valia_page1">
+<g stroke-miterlimit="10" transform="translate(-62.577331,-36.634441)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#d0e3f9" stroke="#d0e3f9">
+<path d="M0 0V31.29819H113.81097V0ZM113.81097 31.29819" stroke="none"></path>
+</g>
+<g fill="#f5d0ce" stroke="#f5d0ce">
+<path d="M113.81097 0V31.29819H284.52744V0ZM284.52744 31.29819" stroke="none"></path>
+</g>
+<path d="M0 0V31.29819H284.52744V0ZM284.52744 31.29819" fill="none"></path>
+<path d="M113.81097 0V31.29819" fill="none"></path>
+<g transform="translate(36.79869,7.0241)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.577331,-36.634441)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-59.450887" y="-47.593345" href="#tz_fig_jornada_mais_valia_g2-116"></use>
+<use x="-55.867128" y="-47.593345" href="#tz_fig_jornada_mais_valia_g2-114"></use>
+<use x="-52.262607" y="-47.593345" href="#tz_fig_jornada_mais_valia_g2-97"></use>
+<use x="-47.654916" y="-47.593345" href="#tz_fig_jornada_mais_valia_g2-98"></use>
+<use x="-42.53526" y="-47.593345" href="#tz_fig_jornada_mais_valia_g2-97"></use>
+<use x="-37.927569" y="-47.593345" href="#tz_fig_jornada_mais_valia_g2-108"></use>
+<use x="-35.367741" y="-47.593345" href="#tz_fig_jornada_mais_valia_g2-104"></use>
+<use x="-30.248085" y="-47.593345" href="#tz_fig_jornada_mais_valia_g2-111"></use>
+<use x="-62.577331" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-110"></use>
+<use x="-57.457675" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-101"></use>
+<use x="-53.358487" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-99"></use>
+<use x="-49.262762" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-101"></use>
+<use x="-45.163574" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-115"></use>
+<use x="-41.528611" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-115"></use>
+<use x="-37.893648" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-19"></use>
+<use x="-37.893648" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-97"></use>
+<use x="-33.285958" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-114"></use>
+<use x="-29.681436" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-105"></use>
+<use x="-27.121608" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-111"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(161.12434,12.5241)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.577331,-36.634441)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-62.577331" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-116"></use>
+<use x="-58.993572" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-114"></use>
+<use x="-55.389051" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-97"></use>
+<use x="-50.78136" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-98"></use>
+<use x="-45.661704" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-97"></use>
+<use x="-41.054013" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-108"></use>
+<use x="-38.494185" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-104"></use>
+<use x="-33.374529" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-111"></use>
+<use x="-25.695044" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-101"></use>
+<use x="-21.595856" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-120"></use>
+<use x="-16.732183" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-99"></use>
+<use x="-12.636458" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-101"></use>
+<use x="-8.53727" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-100"></use>
+<use x="-3.417613" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-101"></use>
+<use x=".681575" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-110"></use>
+<use x="5.545248" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-116"></use>
+<use x="9.129008" y="-36.634441" href="#tz_fig_jornada_mais_valia_g2-101"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0 0V-2.26776" fill="none"></path>
+<g transform="matrix(0.0,-1.0,1.0,0.0,0.0,-2.26776)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+</g>
+</g>
+<g transform="translate(-2.12503,-13.8098)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.577331,-36.634441)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-62.577331" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-48"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M113.81097 0V-2.26776" fill="none"></path>
+<g transform="matrix(0.0,-1.0,1.0,0.0,113.81097,-2.26776)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+</g>
+</g>
+<g transform="translate(109.3248,-14.2098)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.577331,-36.634441)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-62.577331" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-52"></use>
+<use x="-58.343149" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-104"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M284.52744 0V-2.26776" fill="none"></path>
+<g transform="matrix(0.0,-1.0,1.0,0.0,284.52744,-2.26776)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+</g>
+</g>
+<g transform="translate(280.04126,-14.2098)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.577331,-36.634441)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-62.577331" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-56"></use>
+<use x="-58.343149" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-104"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M.4-19.91682H113.41098" fill="none"></path>
+<g transform="matrix(-1.0,0.0,0.0,-1.0,0.2,-19.91682)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.07999 2.39998C-1.69998 .95998-.85318 .28 0 0C-.85318-.28-1.69998-.95998-2.07999-2.39998" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+<g transform="translate(113.61098,-19.91682)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.07999 2.39998C-1.69998 .95998-.85318 .28 0 0C-.85318-.28-1.69998-.95998-2.07999-2.39998" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(29.95789,-40.78162)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.577331,-36.634441)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-62.577331" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-114"></use>
+<use x="-59.277161" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-101"></use>
+<use x="-55.513443" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-112"></use>
+<use x="-50.808796" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-126"></use>
+<use x="-50.808796" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-111"></use>
+<use x="-46.574613" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-101"></use>
+<use x="-39.988106" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-111"></use>
+<use x="-32.931135" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-115"></use>
+<use x="-29.590832" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-97"></use>
+<use x="-25.356649" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-108"></use>
+<use x="-23.004325" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-19"></use>
+<use x="-23.004325" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-97"></use>
+<use x="-18.770142" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-114"></use>
+<use x="-15.469972" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-105"></use>
+<use x="-13.117648" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-111"></use>
+<use x="-51.699666" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-40"></use>
+<use x="-48.406412" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-118"></use>
+<use x="-44.407462" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-97"></use>
+<use x="-40.173279" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-108"></use>
+<use x="-37.820955" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-111"></use>
+<use x="-33.586772" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-114"></use>
+<use x="-27.463814" y="-36.634441" href="#tz_fig_jornada_mais_valia_g0-118"></use>
+<use x="-23.054369" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<path d="M114.21097-19.91682H284.12744" fill="none"></path>
+<g transform="matrix(-1.0,0.0,0.0,-1.0,114.01097,-19.91682)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.07999 2.39998C-1.69998 .95998-.85318 .28 0 0C-.85318-.28-1.69998-.95998-2.07999-2.39998" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+<g transform="translate(284.32744,-19.91682)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.07999 2.39998C-1.69998 .95998-.85318 .28 0 0C-.85318-.28-1.69998-.95998-2.07999-2.39998" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(180.61061,-40.78162)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.577331,-36.634441)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-62.577331" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-109"></use>
+<use x="-55.52036" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-97"></use>
+<use x="-51.286177" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-105"></use>
+<use x="-48.933853" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-115"></use>
+<use x="-45.593551" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-45"></use>
+<use x="-42.770762" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-118"></use>
+<use x="-38.771812" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-97"></use>
+<use x="-34.537629" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-108"></use>
+<use x="-32.185305" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-105"></use>
+<use x="-29.832981" y="-46.098949" href="#tz_fig_jornada_mais_valia_g1-97"></use>
+<use x="-61.597881" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-40"></use>
+<use x="-58.304627" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-118"></use>
+<use x="-54.305677" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-97"></use>
+<use x="-50.071494" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-108"></use>
+<use x="-47.71917" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-111"></use>
+<use x="-43.484987" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-114"></use>
+<use x="-37.362029" y="-36.634441" href="#tz_fig_jornada_mais_valia_g0-109"></use>
+<use x="-29.871502" y="-36.634441" href="#tz_fig_jornada_mais_valia_g1-41"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jornada-mais-valia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;103.1: A jornada de trabalho dividida: o trabalho necessário repõe o valor da força de trabalho (<span class="math inline">\(v\)</span>); o trabalho excedente gera a mais-valia (<span class="math inline">\(m\)</span>), apropriada pelo capitalista.
+</figcaption>
+</figure>
+</div>
+<p>A intensidade da exploração se mede pela <strong>taxa de mais-valia</strong> (ou taxa de exploração):</p>
+<p><span id="eq-taxa-mais-valia"><span class="math display">\[
+e = \frac{m}{v} = \frac{\text{trabalho excedente}}{\text{trabalho necessário}}.
+\tag{103.1}\]</span></span></p>
+<p>No exemplo, <span class="math inline">\(e = 4/4 = 1 = 100\,\%\)</span>: o trabalhador trabalha tanto para si quanto para o patrão.</p>
+<section id="mais-valia-absoluta-e-relativa" class="level3" data-number="103.5.1">
+<h3 data-number="103.5.1" class="anchored" data-anchor-id="mais-valia-absoluta-e-relativa"><span class="header-section-number">103.5.1</span> Mais-valia absoluta e relativa</h3>
+<p>Como o capitalista aumenta a mais-valia? Há dois caminhos, que Marx trata como estratégias históricas distintas:</p>
+<ul>
+<li><strong>Mais-valia absoluta:</strong> prolongar a jornada de trabalho, mantendo fixo o trabalho necessário. Se a jornada passa de 8 para 10 horas, as duas horas extras são todas trabalho excedente. Foi a via dominante no início da industrialização — e o que motivou as lutas pela <strong>redução da jornada</strong>.</li>
+<li><strong>Mais-valia relativa:</strong> encurtar o trabalho <strong>necessário</strong>, sem alongar a jornada, por meio do <strong>aumento da produtividade</strong>. Se o progresso técnico barateia os bens de subsistência, o trabalhador repõe seu salário em menos horas (digamos, 3 em vez de 4), e a parcela excedente cresce. É a via característica do capitalismo maduro, e liga a exploração diretamente à <strong>inovação tecnológica</strong>.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — 'mais-valia' não é markup">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — ‘mais-valia’ não é markup
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mais-valia <strong>não</strong> é a margem de lucro sobre o preço, nem “cobrar caro”. É um conceito de <strong>valor</strong> (tempo de trabalho), não de preço de mercado. Um comerciante que revende com lucro sem produzir nada não cria mais-valia no sentido de Marx — apenas se apropria de mais-valia gerada na esfera <strong>produtiva</strong>. A mais-valia nasce na produção, não na circulação; o mercado a redistribui, mas não a cria. Confundir os dois esvazia o argumento.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="acumulação-taxa-de-lucro-e-crises" class="level2" data-number="103.6">
+<h2 data-number="103.6" class="anchored" data-anchor-id="acumulação-taxa-de-lucro-e-crises"><span class="header-section-number">103.6</span> Acumulação, taxa de lucro e crises</h2>
+<p>Para o capitalista, o que importa não é a taxa de mais-valia sobre o trabalho, mas o retorno sobre <strong>todo</strong> o capital investido. Marx decompõe o capital em duas parcelas:</p>
+<ul>
+<li><strong>capital constante</strong> (<span class="math inline">\(c\)</span>): o gasto com meios de produção — máquinas, matérias-primas, instalações —, que apenas <strong>transfere</strong> seu valor ao produto, sem criar valor novo;</li>
+<li><strong>capital variável</strong> (<span class="math inline">\(v\)</span>): o gasto com força de trabalho, a única fonte de valor novo e, portanto, de mais-valia.</li>
+</ul>
+<p>O valor de uma mercadoria é então <span class="math inline">\(c + v + m\)</span>, e a <strong>taxa de lucro</strong> — o que o capitalista de fato enxerga — é:</p>
+<p><span id="eq-taxa-de-lucro"><span class="math display">\[
+r = \frac{m}{c + v}.
+\tag{103.2}\]</span></span></p>
+<p>Dividindo numerador e denominador por <span class="math inline">\(v\)</span>, e usando a taxa de mais-valia <span class="math inline">\(e = m/v\)</span> e a <strong>composição orgânica do capital</strong> <span class="math inline">\(q = c/v\)</span> (a razão entre capital “morto” e capital “vivo”), obtém-se:</p>
+<p><span id="eq-taxa-de-lucro-organica"><span class="math display">\[
+r = \frac{m/v}{c/v + 1} = \frac{e}{q + 1}.
+\tag{103.3}\]</span></span></p>
+<p>Essa forma revela a tese mais polêmica de Marx. À medida que o capitalismo se desenvolve, a concorrência força cada capitalista a mecanizar — mais máquinas por trabalhador. Logo, a composição orgânica <span class="math inline">\(q\)</span> tende a <strong>subir</strong>. Mas, se <span class="math inline">\(q\)</span> cresce e <span class="math inline">\(e\)</span> não cresce o suficiente para compensar, a <a href="#eq-taxa-de-lucro-organica" class="quarto-xref">Equação&nbsp;<span>103.3</span></a> mostra que <span class="math inline">\(r\)</span> <strong>cai</strong>: é a <strong>lei da tendência decrescente da taxa de lucro</strong> (<a href="#fig-taxa-de-lucro" class="quarto-xref">Figura&nbsp;<span>103.2</span></a>). O paradoxo é agudo: ao substituir trabalho (a fonte do valor) por máquinas, o capital corrói a própria base de sua lucratividade.</p>
+<div id="fig-taxa-de-lucro" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-taxa-de-lucro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="282.555407pt" height="160.385614pt" viewbox="-68.014948 -68.014948 282.555407 160.385614">
+<defs>
+<path id="tz_fig_taxa_de_lucro_g0-113" d="M3.793773-3.283686C3.801743-3.315567 3.809714-3.363387 3.809714-3.403238C3.809714-3.451059 3.777833-3.514819 3.706102-3.514819C3.610461-3.514819 3.283686-3.203985 3.156164-2.980822C3.068493-3.156164 2.82939-3.514819 2.335243-3.514819C1.3868-3.514819 .342715-2.406974 .342715-1.227397C.342715-.398506 .876712 .079701 1.490411 .079701C1.888917 .079701 2.215691-.151432 2.454795-.358655C2.446824-.334745 2.199751 .669489 2.16787 .804981C2.048319 1.267248 2.048319 1.275218 1.546202 1.283188C1.45056 1.283188 1.346949 1.283188 1.346949 1.43462C1.346949 1.482441 1.3868 1.546202 1.466501 1.546202C1.570112 1.546202 1.753425 1.530262 1.857036 1.522291H2.279452C2.917061 1.522291 3.060523 1.546202 3.124284 1.546202C3.156164 1.546202 3.275716 1.546202 3.275716 1.39477C3.275716 1.283188 3.164134 1.283188 3.068493 1.283188C2.685928 1.283188 2.685928 1.235367 2.685928 1.163636C2.685928 1.155666 2.685928 1.115816 2.717808 .996264L3.793773-3.283686ZM2.614197-.988294C2.582316-.868742 2.582316-.844832 2.446824-.6934C2.032379-.207223 1.681694-.143462 1.514321-.143462C1.147696-.143462 .964384-.478207 .964384-.892653C.964384-1.267248 1.179577-2.12005 1.354919-2.470735C1.586052-2.956912 1.976588-3.291656 2.343213-3.291656C2.87721-3.291656 3.012702-2.669988 3.012702-2.614197C3.012702-2.582316 2.996762-2.526526 2.988792-2.486675L2.614197-.988294Z"></path>
+<path id="tz_fig_taxa_de_lucro_g1-24" d="M2.414944 .167372H1.809215V.557908C2.351183 .565878 2.518555 .797011 2.518555 .980324C2.518555 1.251308 2.207721 1.41071 1.370859 1.41071H1.099875V1.633873H1.474471C1.578082 1.633873 2.12802 1.625903 2.478705 1.546202C2.797509 1.474471 3.124284 1.338979 3.124284 .980324C3.124284 .557908 2.677958 .430386 2.414944 .382565V.167372Z"></path>
+<path id="tz_fig_taxa_de_lucro_g1-97" d="M3.347447-2.375093C3.347447-3.156164 2.590286-3.55467 1.865006-3.55467C1.203487-3.55467 .613699-3.299626 .613699-2.773599C.613699-2.534496 .781071-2.391034 .988294-2.391034C1.211457-2.391034 1.362889-2.550436 1.362889-2.765629C1.362889-2.956912 1.243337-3.092403 1.067995-3.132254C1.362889-3.331507 1.793275-3.331507 1.849066-3.331507C2.295392-3.331507 2.741719-3.020672 2.741719-2.367123V-2.12005C2.279452-2.096139 1.745455-2.072229 1.187547-1.841096C.486177-1.538232 .350685-1.075965 .350685-.812951C.350685-.127522 1.155666 .079701 1.705604 .079701C2.287422 .079701 2.646077-.247073 2.82142-.565878C2.86127-.263014 3.068493 .039851 3.419178 .039851C3.498879 .039851 4.176339 .00797 4.176339-.71731V-1.155666H3.929265V-.71731C3.929265-.390535 3.809714-.263014 3.642341-.263014C3.347447-.263014 3.347447-.629639 3.347447-.71731V-2.375093ZM2.741719-1.123786C2.741719-.350685 2.088169-.143462 1.769365-.143462C1.354919-.143462 1.004234-.422416 1.004234-.804981C1.004234-1.331009 1.498381-1.872976 2.741719-1.912827V-1.123786Z"></path>
+<path id="tz_fig_taxa_de_lucro_g1-99" d="M2.933001-3.164134C2.709838-3.092403 2.677958-2.909091 2.677958-2.81345C2.677958-2.598257 2.82939-2.438854 3.052553-2.438854C3.259776-2.438854 3.427148-2.582316 3.427148-2.82142C3.427148-3.315567 2.885181-3.55467 2.13599-3.55467C1.028144-3.55467 .278954-2.669988 .278954-1.721544C.278954-.70934 1.107846 .079701 2.11208 .079701C3.235866 .079701 3.514819-.860772 3.514819-.956413S3.411208-1.052055 3.387298-1.052055C3.331507-1.052055 3.291656-1.044085 3.267746-.964384C3.211955-.797011 2.988792-.167372 2.191781-.167372C1.697634-.167372 .988294-.549938 .988294-1.729514C.988294-2.87721 1.578082-3.307597 2.1599-3.307597C2.231631-3.307597 2.654047-3.307597 2.933001-3.164134Z"></path>
+<path id="tz_fig_taxa_de_lucro_g1-101" d="M3.291656-1.817186C3.466999-1.817186 3.514819-1.817186 3.514819-2.000498C3.514819-2.709838 3.124284-3.55467 2.000498-3.55467C1.012204-3.55467 .239103-2.733748 .239103-1.745455C.239103-.71731 1.099875 .079701 2.10411 .079701C3.116314 .079701 3.514819-.773101 3.514819-.956413C3.514819-.988294 3.490909-1.067995 3.387298-1.067995C3.299626-1.067995 3.283686-1.012204 3.267746-.964384C2.980822-.191283 2.295392-.167372 2.15193-.167372C1.793275-.167372 1.42665-.334745 1.187547-.70137S.948443-1.578082 .948443-1.817186H3.291656ZM.956413-2.024408C1.028144-3.140224 1.705604-3.331507 2.000498-3.331507C2.933001-3.331507 2.964882-2.207721 2.972852-2.024408H.956413Z"></path>
+<path id="tz_fig_taxa_de_lucro_g1-105" d="M1.554172-4.909589C1.554172-5.140722 1.370859-5.355915 1.107846-5.355915C.876712-5.355915 .669489-5.172603 .669489-4.917559C.669489-4.638605 .900623-4.471233 1.107846-4.471233C1.3868-4.471233 1.554172-4.702366 1.554172-4.909589ZM.358655-3.427148V-3.164134C.868742-3.164134 .940473-3.116314 .940473-2.725778V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.211457-.02391C1.315068-.02391 1.793275-.02391 2.072229 0V-.263014C1.554172-.263014 1.522291-.302864 1.522291-.613699V-3.514819L.358655-3.427148Z"></path>
+<path id="tz_fig_taxa_de_lucro_g1-108" d="M1.522291-5.531258L.334745-5.443587V-5.180573C.876712-5.180573 .940473-5.124782 .940473-4.734247V-.621669C.940473-.263014 .844832-.263014 .334745-.263014V0C.645579-.02391 1.091905-.02391 1.227397-.02391C1.3868-.02391 1.817186-.02391 2.12802 0V-.263014C1.617933-.263014 1.522291-.263014 1.522291-.621669V-5.531258Z"></path>
+<path id="tz_fig_taxa_de_lucro_g1-109" d="M6.224658-2.414944C6.224658-3.060523 5.945704-3.514819 5.076961-3.514819C4.343711-3.514819 3.977086-3.012702 3.849564-2.781569C3.706102-3.355417 3.251806-3.514819 2.733748-3.514819C1.960648-3.514819 1.594022-2.964882 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.16787-3.291656 2.669988-3.291656C3.188045-3.291656 3.275716-2.885181 3.275716-2.446824V-.621669C3.275716-.263014 3.180075-.263014 2.669988-.263014V0C3.012702-.02391 3.363387-.02391 3.57858-.02391C3.809714-.02391 4.144458-.02391 4.487173 0V-.263014C3.977086-.263014 3.881445-.263014 3.881445-.621669V-2.064259C3.881445-2.901121 4.511083-3.291656 5.0132-3.291656C5.531258-3.291656 5.618929-2.885181 5.618929-2.446824V-.621669C5.618929-.263014 5.523288-.263014 5.0132-.263014V0C5.355915-.02391 5.7066-.02391 5.921793-.02391C6.152927-.02391 6.487671-.02391 6.830386 0V-.263014C6.320299-.263014 6.224658-.263014 6.224658-.621669V-2.414944Z"></path>
+<path id="tz_fig_taxa_de_lucro_g1-110" d="M3.873474-2.414944C3.873474-3.084433 3.57061-3.514819 2.733748-3.514819C1.944707-3.514819 1.586052-2.940971 1.490411-2.749689H1.482441V-3.514819L.326775-3.427148V-3.164134C.868742-3.164134 .932503-3.108344 .932503-2.717808V-.621669C.932503-.263014 .836862-.263014 .326775-.263014V0C.669489-.02391 1.020174-.02391 1.235367-.02391C1.466501-.02391 1.801245-.02391 2.14396 0V-.263014C1.633873-.263014 1.538232-.263014 1.538232-.621669V-2.064259C1.538232-2.901121 2.175841-3.291656 2.662017-3.291656S3.267746-2.948941 3.267746-2.446824V-.621669C3.267746-.263014 3.172105-.263014 2.662017-.263014V0C3.004732-.02391 3.355417-.02391 3.57061-.02391C3.801743-.02391 4.136488-.02391 4.479203 0V-.263014C3.969116-.263014 3.873474-.263014 3.873474-.621669V-2.414944Z"></path>
+<path id="tz_fig_taxa_de_lucro_g1-111" d="M3.985056-1.697634C3.985056-2.693898 3.164134-3.55467 2.11208-3.55467S.239103-2.693898 .239103-1.697634S1.091905 .079701 2.11208 .079701C3.140224 .079701 3.985056-.70137 3.985056-1.697634ZM2.11208-.167372C1.681694-.167372 1.346949-.374595 1.171606-.653549C.972354-.980324 .948443-1.370859 .948443-1.769365C.948443-2.072229 .948443-2.550436 1.195517-2.893151C1.40274-3.172105 1.737484-3.331507 2.11208-3.331507C2.526526-3.331507 2.86924-3.132254 3.052553-2.8533C3.267746-2.518555 3.275716-2.088169 3.275716-1.769365C3.275716-1.40274 3.259776-.964384 3.036613-.629639C2.82142-.310834 2.462765-.167372 2.11208-.167372Z"></path>
+<path id="tz_fig_taxa_de_lucro_g1-118" d="M3.53076-2.614197C3.722042-3.060523 3.993026-3.164134 4.28792-3.172105V-3.435118C4.008966-3.411208 3.993026-3.411208 3.666252-3.411208C3.594521-3.411208 3.219925-3.411208 2.972852-3.435118V-3.172105C3.251806-3.156164 3.323537-2.980822 3.323537-2.84533C3.323537-2.765629 3.307597-2.725778 3.275716-2.654047L2.414944-.645579L1.474471-2.805479C1.42665-2.909091 1.42665-2.956912 1.42665-2.972852C1.42665-3.172105 1.713574-3.172105 1.849066-3.172105V-3.435118C1.506351-3.411208 1.131756-3.411208 .980324-3.411208C.812951-3.411208 .430386-3.411208 .175342-3.435118V-3.172105C.661519-3.172105 .70137-3.124284 .820922-2.8533L2.016438-.095641C2.072229 .02391 2.12005 .079701 2.231631 .079701S2.399004 .01594 2.438854-.079701L3.53076-2.614197Z"></path>
+<path id="tz_fig_taxa_de_lucro_g1-122" d="M3.307597-3.156164C3.363387-3.227895 3.379328-3.243836 3.379328-3.307597C3.379328-3.435118 3.283686-3.435118 3.156164-3.435118H.446326L.350685-2.10411H.597758C.645579-2.933001 .820922-3.211955 1.713574-3.211955H2.622167L.310834-.294894C.255044-.223163 .239103-.207223 .239103-.135492C.239103 0 .326775 0 .462267 0H3.259776L3.403238-1.538232H3.156164C3.076463-.613699 2.925031-.247073 1.944707-.247073H.996264L3.307597-3.156164Z"></path>
+<path id="tz_fig_taxa_de_lucro_g1-126" d="M3.355417-5.347945C3.028643-4.98929 2.781569-4.98929 2.693898-4.98929C2.510585-4.98929 2.343213-5.068991 2.15193-5.172603C1.936737-5.276214 1.793275-5.347945 1.609963-5.347945C1.299128-5.347945 1.139726-5.180573 .70934-4.710336L.868742-4.558904C1.195517-4.917559 1.44259-4.917559 1.530262-4.917559C1.713574-4.917559 1.880946-4.837858 2.072229-4.734247C2.287422-4.630635 2.430884-4.558904 2.614197-4.558904C2.925031-4.558904 3.084433-4.726276 3.514819-5.196513L3.355417-5.347945Z"></path>
+<path id="tz_fig_taxa_de_lucro_g2-61" d="M4.034869-6.366127C4.088667-6.491656 4.088667-6.509589 4.088667-6.527522C4.088667-6.644085 3.999004-6.724782 3.900374-6.724782C3.774844-6.724782 3.738979-6.653051 3.730012-6.635118L.564882 1.882939C.511083 2.008468 .511083 2.026401 .511083 2.044334C.511083 2.160897 .600747 2.241594 .699377 2.241594C.789041 2.241594 .860772 2.205729 .923537 2.026401L4.034869-6.366127Z"></path>
+<path id="tz_fig_taxa_de_lucro_g2-99" d="M3.604483-3.425156C3.263761-3.416189 3.084433-3.156164 3.084433-2.932005C3.084433-2.67198 3.317559-2.609215 3.425156-2.609215C3.604483-2.609215 3.927273-2.761644 3.927273-3.183064C3.927273-3.658281 3.452055-3.963138 2.833375-3.963138C1.613948-3.963138 .385554-2.725778 .385554-1.43462C.385554-.537983 .986301 .09863 1.891905 .09863C3.236862 .09863 3.990037-.833873 3.990037-.950436C3.990037-1.004234 3.927273-1.075965 3.864508-1.075965C3.819676-1.075965 3.81071-1.066999 3.730012-.968369C3.19203-.304857 2.37609-.125529 1.909838-.125529C1.407721-.125529 1.075965-.457285 1.075965-1.102864C1.075965-1.488418 1.246326-2.37609 1.604981-2.949938C1.811208-3.272727 2.27746-3.738979 2.842341-3.738979C3.012702-3.738979 3.38929-3.703113 3.604483-3.425156Z"></path>
+<path id="tz_fig_taxa_de_lucro_g2-101" d="M1.228394-2.0533C1.775342-2.0533 2.358157-2.0533 2.833375-2.169863C3.676214-2.37609 3.828643-2.878207 3.828643-3.183064C3.828643-3.694147 3.353425-3.963138 2.824408-3.963138C1.784309-3.963138 .42142-3.084433 .42142-1.542217C.42142-.690411 .923537 .09863 1.891905 .09863C3.236862 .09863 3.990037-.833873 3.990037-.950436C3.990037-1.004234 3.927273-1.075965 3.864508-1.075965C3.819676-1.075965 3.81071-1.066999 3.730012-.968369C3.19203-.304857 2.37609-.125529 1.909838-.125529C1.273225-.125529 1.102864-.726276 1.102864-1.174595C1.102864-1.192528 1.102864-1.506351 1.228394-2.0533ZM1.291158-2.27746C1.685679-3.694147 2.680946-3.738979 2.824408-3.738979C3.129265-3.738979 3.496887-3.595517 3.496887-3.183064C3.496887-2.27746 2.142964-2.27746 1.291158-2.27746Z"></path>
+<path id="tz_fig_taxa_de_lucro_g2-113" d="M4.133499-3.658281C4.169365-3.783811 4.169365-3.801743 4.169365-3.837609C4.169365-3.945205 4.079701-3.963138 4.061768-3.963138C3.972105-3.963138 3.631382-3.658281 3.452055-3.344458C3.308593-3.667248 3.030635-3.963138 2.57335-3.963138C1.53325-3.963138 .376588-2.725778 .376588-1.353923C.376588-.367621 1.004234 .09863 1.604981 .09863C1.990535 .09863 2.340224-.09863 2.67198-.412453L2.331258 .968369C2.214695 1.425654 2.205729 1.452553 1.640847 1.461519C1.53325 1.461519 1.425654 1.461519 1.425654 1.622914C1.425654 1.640847 1.425654 1.739477 1.551183 1.739477C1.748443 1.739477 2.259527 1.712578 2.456787 1.712578C2.752677 1.712578 2.77061 1.712578 2.914072 1.721544C3.030635 1.730511 3.281694 1.739477 3.38929 1.739477C3.443088 1.739477 3.559651 1.739477 3.559651 1.578082C3.559651 1.461519 3.469988 1.461519 3.317559 1.461519C2.896139 1.461519 2.896139 1.398755 2.896139 1.318057C2.896139 1.309091 2.896139 1.255293 2.932005 1.120797L4.133499-3.658281ZM2.842341-1.093898C2.797509-.923537 2.797509-.91457 2.654047-.744209C2.331258-.358655 1.963636-.125529 1.63188-.125529C1.192528-.125529 1.0401-.582814 1.0401-.968369C1.0401-1.407721 1.300125-2.438854 1.515318-2.86924C1.802242-3.407223 2.214695-3.738979 2.57335-3.738979C3.174097-3.738979 3.308593-3.021669 3.308593-2.958904C3.308593-2.914072 3.29066-2.860274 3.281694-2.824408L2.842341-1.093898Z"></path>
+<path id="tz_fig_taxa_de_lucro_g2-114" d="M3.622416-3.631382C3.326526-3.577584 3.174097-3.326526 3.174097-3.138232C3.174097-2.96787 3.299626-2.815442 3.523786-2.815442C3.765878-2.815442 4.016936-3.021669 4.016936-3.353425C4.016936-3.703113 3.694147-3.963138 3.254795-3.963138C2.582316-3.963138 2.205729-3.461021 2.080199-3.29066C1.972603-3.783811 1.569116-3.963138 1.228394-3.963138C.905604-3.963138 .699377-3.765878 .546949-3.452055C.376588-3.129265 .260025-2.618182 .260025-2.582316C.260025-2.501619 .32279-2.47472 .385554-2.47472C.484184-2.47472 .502117-2.519552 .546949-2.698879C.71731-3.407223 .905604-3.738979 1.210461-3.738979C1.479452-3.738979 1.479452-3.452055 1.479452-3.317559C1.479452-3.129265 1.407721-2.851308 1.353923-2.618182C1.291158-2.385056 1.201494-1.999502 1.165629-1.891905L.806974-.42142C.744209-.206227 .744209-.188294 .744209-.161395C.744209-.044832 .824907 .09863 1.022167 .09863C1.309091 .09863 1.371856-.143462 1.43462-.403487C1.542217-.789041 1.542217-.806974 1.63188-1.174595C1.963636-2.519552 2.017435-2.734745 2.035367-2.779577C2.089166-2.887173 2.501619-3.738979 3.245828-3.738979C3.452055-3.738979 3.577584-3.667248 3.622416-3.631382Z"></path>
+<path id="tz_fig_taxa_de_lucro_g2-118" d="M4.312827-3.308593C4.312827-3.936239 3.981071-3.972105 3.900374-3.972105C3.676214-3.972105 3.443088-3.730012 3.443088-3.523786C3.443088-3.38929 3.523786-3.317559 3.58655-3.263761C3.828643-3.039601 3.90934-2.752677 3.90934-2.519552C3.90934-2.125031 3.344458-.125529 2.304359-.125529C1.63188-.125529 1.63188-.753176 1.63188-.91457C1.63188-1.300125 1.75741-1.75741 2.071233-2.57335C2.214695-2.949938 2.25056-3.039601 2.25056-3.209963C2.25056-3.649315 1.918804-3.963138 1.479452-3.963138C.61868-3.963138 .260025-2.689913 .260025-2.582316C.260025-2.501619 .32279-2.47472 .385554-2.47472C.484184-2.47472 .493151-2.528518 .529016-2.645081C.71731-3.299626 1.075965-3.738979 1.452553-3.738979C1.63188-3.738979 1.667746-3.622416 1.667746-3.443088C1.667746-3.29066 1.63188-3.129265 1.551183-2.914072C1.228394-2.0533 1.0132-1.479452 1.0132-1.031133C1.0132-.188294 1.649813 .09863 2.268493 .09863C3.774844 .09863 4.312827-2.734745 4.312827-3.308593Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-24" d="M1.407721 1.604981C1.327024 1.604981 1.264259 1.604981 1.201494 1.613948V1.838107C1.578082 1.811208 1.981569 1.85604 2.501619 1.775342C3.048568 1.694645 3.398257 1.515318 3.398257 1.120797S3.057534 .537983 2.636115 .466252V.19726H1.972603V.636613C2.492653 .645579 2.734745 .869738 2.734745 1.120797C2.734745 1.596015 1.891905 1.604981 1.604981 1.604981H1.407721Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-43" d="M6.330262-2.0533C6.455791-2.0533 6.644085-2.0533 6.644085-2.241594C6.644085-2.438854 6.473724-2.438854 6.330262-2.438854H3.774844V-5.003238C3.774844-5.1467 3.774844-5.317061 3.577584-5.317061C3.38929-5.317061 3.38929-5.128767 3.38929-5.003238V-2.438854H.824907C.699377-2.438854 .511083-2.438854 .511083-2.25056C.511083-2.0533 .681445-2.0533 .824907-2.0533H3.38929V.511083C3.38929 .654545 3.38929 .824907 3.58655 .824907C3.774844 .824907 3.774844 .636613 3.774844 .511083V-2.0533H6.330262Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-49" d="M2.725778-5.729514C2.725778-5.953674 2.716812-5.971606 2.492653-5.971606C1.936737-5.397758 1.111831-5.397758 .833873-5.397758V-5.119801C1.004234-5.119801 1.551183-5.119801 2.035367-5.352927V-.71731C2.035367-.385554 2.008468-.277958 1.174595-.277958H.887671V0C1.210461-.026899 2.008468-.026899 2.37609-.026899S3.550685-.026899 3.873474 0V-.277958H3.58655C2.752677-.277958 2.725778-.385554 2.725778-.71731V-5.729514Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-61" d="M6.348194-2.96787C6.473724-2.96787 6.644085-2.96787 6.644085-3.156164C6.644085-3.353425 6.446824-3.353425 6.312329-3.353425H.842839C.708344-3.353425 .511083-3.353425 .511083-3.156164C.511083-2.96787 .690411-2.96787 .806974-2.96787H6.348194ZM6.312329-1.13873C6.446824-1.13873 6.644085-1.13873 6.644085-1.33599C6.644085-1.524284 6.473724-1.524284 6.348194-1.524284H.806974C.690411-1.524284 .511083-1.524284 .511083-1.33599C.511083-1.13873 .708344-1.13873 .842839-1.13873H6.312329Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-67" d="M5.424658-5.54122C5.137733-5.819178 4.62665-6.321295 3.721046-6.321295C1.981569-6.321295 .511083-4.877709 .511083-3.066501C.511083-1.219427 1.999502 .19726 3.721046 .19726C5.209465 .19726 6.133001-1.031133 6.133001-2.080199C6.133001-2.169863 6.133001-2.25056 6.007472-2.25056C5.890909-2.25056 5.890909-2.187796 5.881943-2.107098C5.810212-.744209 4.734247-.080697 3.81071-.080697C3.048568-.080697 1.425654-.555915 1.425654-3.066501C1.425654-5.56812 3.057534-6.043337 3.801743-6.043337C4.689415-6.043337 5.630884-5.370859 5.846077-3.918306C5.86401-3.801743 5.872976-3.756912 5.989539-3.756912C6.133001-3.756912 6.133001-3.801743 6.133001-3.990037V-6.088169C6.133001-6.240598 6.133001-6.321295 6.025405-6.321295C5.96264-6.321295 5.935741-6.294396 5.881943-6.213699L5.424658-5.54122Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-84" d="M6.133001-6.070237H.511083L.331756-4.052802H.582814C.708344-5.532254 .887671-5.792279 2.232628-5.792279C2.402989-5.792279 2.663014-5.792279 2.752677-5.774346C2.914072-5.738481 2.923039-5.648817 2.923039-5.424658V-.71731C2.923039-.412453 2.923039-.277958 1.981569-.277958H1.63188V0C1.95467-.026899 2.940971-.026899 3.326526-.026899S4.698381-.026899 5.021171 0V-.277958H4.671482C3.730012-.277958 3.730012-.412453 3.730012-.71731V-5.424658C3.730012-5.657783 3.738979-5.738481 3.918306-5.774346C4.00797-5.792279 4.250062-5.792279 4.411457-5.792279C5.756413-5.792279 5.935741-5.532254 6.06127-4.052802H6.312329L6.133001-6.070237Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-94" d="M2.304359-6.222665L1.066999-5.012204L1.228394-4.82391L2.304359-5.729514L3.371357-4.82391L3.532752-5.012204L2.304359-6.222665Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-97" d="M3.066501-.645579C3.111333-.268991 3.371357 .053798 3.756912 .053798C3.981071 .053798 4.545953-.080697 4.545953-.798007V-1.300125H4.294894V-.806974C4.294894-.708344 4.294894-.260025 3.972105-.260025S3.649315-.690411 3.649315-.833873V-2.402989C3.649315-2.914072 3.649315-3.218929 3.245828-3.58655C2.914072-3.882441 2.483686-4.016936 2.035367-4.016936C1.282192-4.016936 .654545-3.640349 .654545-3.066501C.654545-2.788543 .842839-2.636115 1.075965-2.636115C1.318057-2.636115 1.488418-2.815442 1.488418-3.048568C1.488418-3.434122 1.093898-3.478954 1.084932-3.478954C1.327024-3.71208 1.75741-3.792777 2.017435-3.792777C2.47472-3.792777 2.985803-3.452055 2.985803-2.663014V-2.367123C2.501619-2.349191 1.829141-2.304359 1.228394-2.017435C.582814-1.703611 .385554-1.23736 .385554-.878705C.385554-.143462 1.255293 .09863 1.85604 .09863C2.600249 .09863 2.940971-.394521 3.066501-.645579ZM2.985803-1.264259C2.985803-.394521 2.313325-.125529 1.918804-.125529C1.497385-.125529 1.102864-.430386 1.102864-.878705C1.102864-1.470486 1.613948-2.098132 2.985803-2.15193V-1.264259Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-99" d="M3.263761-3.523786C3.075467-3.48792 2.896139-3.362391 2.896139-3.102366C2.896139-2.86924 3.075467-2.689913 3.308593-2.689913S3.730012-2.842341 3.730012-3.120299C3.730012-3.676214 3.102366-4.016936 2.313325-4.016936C1.165629-4.016936 .304857-3.057534 .304857-1.936737C.304857-.780075 1.23736 .09863 2.295392 .09863C3.541719 .09863 3.828643-.986301 3.828643-1.066999C3.828643-1.174595 3.730012-1.174595 3.703113-1.174595C3.604483-1.174595 3.604483-1.156663 3.550685-1.004234C3.344458-.385554 2.842341-.152428 2.385056-.152428C1.811208-.152428 1.075965-.61868 1.075965-1.945704C1.075965-3.344458 1.793275-3.765878 2.331258-3.765878C2.447821-3.765878 2.932005-3.747945 3.263761-3.523786Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-100" d="M3.48792-1.075965C3.48792-.91457 3.48792-.887671 3.353425-.699377C3.075467-.29589 2.663014-.125529 2.304359-.125529C1.918804-.125529 1.560149-.340722 1.327024-.71731C1.093898-1.102864 1.075965-1.63188 1.075965-1.918804C1.075965-2.340224 1.129763-2.815442 1.362889-3.174097C1.560149-3.461021 1.927771-3.738979 2.402989-3.738979C2.779577-3.738979 3.138232-3.550685 3.380324-3.209963C3.48792-3.066501 3.48792-3.057534 3.48792-2.887173V-1.075965ZM3.514819-3.434122C3.469988-3.48792 3.066501-3.963138 2.367123-3.963138C1.264259-3.963138 .304857-3.084433 .304857-1.927771C.304857-.806974 1.201494 .09863 2.268493 .09863C2.923039 .09863 3.326526-.286924 3.48792-.475218V.09863L4.841843 0V-.277958C4.23213-.277958 4.151432-.340722 4.151432-.780075V-6.222665L2.824408-6.124035V-5.846077C3.434122-5.846077 3.514819-5.783313 3.514819-5.34396V-3.434122Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-101" d="M3.58655-2.0533C3.783811-2.0533 3.828643-2.0533 3.828643-2.241594C3.828643-3.165131 3.326526-4.016936 2.178829-4.016936C1.102864-4.016936 .260025-3.084433 .260025-1.972603C.260025-.798007 1.201494 .09863 2.295392 .09863S3.828643-.860772 3.828643-1.066999C3.828643-1.129763 3.783811-1.183562 3.703113-1.183562C3.61345-1.183562 3.58655-1.120797 3.577584-1.084932C3.272727-.170361 2.47472-.152428 2.340224-.152428C1.909838-.152428 1.542217-.394521 1.33599-.699377C1.0401-1.13873 1.031133-1.676712 1.031133-2.0533H3.58655ZM1.0401-2.268493C1.120797-3.649315 1.927771-3.792777 2.178829-3.792777C2.67198-3.792777 3.209963-3.416189 3.218929-2.268493H1.0401Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-103" d="M1.120797-1.604981C1.344956-1.461519 1.622914-1.327024 2.035367-1.327024C2.887173-1.327024 3.532752-1.936737 3.532752-2.645081C3.532752-3.084433 3.281694-3.38929 3.165131-3.514819C3.523786-3.837609 3.945205-3.837609 4.052802-3.837609C4.00797-3.81071 3.936239-3.765878 3.936239-3.604483C3.936239-3.505853 3.999004-3.335492 4.20523-3.335492C4.33076-3.335492 4.474222-3.425156 4.474222-3.61345C4.474222-3.783811 4.348692-4.061768 3.990037-4.061768C3.730012-4.061768 3.326526-3.963138 3.012702-3.640349C2.77061-3.837609 2.420922-3.963138 2.044334-3.963138C1.192528-3.963138 .546949-3.353425 .546949-2.645081C.546949-2.187796 .81594-1.865006 .959402-1.730511C.941469-1.712578 .690411-1.398755 .690411-.986301C.690411-.681445 .833873-.358655 1.075965-.19726C.61868-.053798 .260025 .277958 .260025 .699377C.260025 1.33599 1.147696 1.847073 2.295392 1.847073C3.398257 1.847073 4.339726 1.371856 4.339726 .681445C4.339726 .313823 4.169365-.080697 3.837609-.29589C3.335492-.609714 2.815442-.609714 1.963636-.609714C1.784309-.609714 1.497385-.609714 1.425654-.627646C1.165629-.681445 .995268-.923537 .995268-1.210461C.995268-1.353923 1.0401-1.488418 1.120797-1.604981ZM2.035367-1.569116C1.23736-1.569116 1.23736-2.447821 1.23736-2.645081C1.23736-2.887173 1.255293-3.19203 1.407721-3.407223C1.542217-3.58655 1.784309-3.721046 2.035367-3.721046C2.842341-3.721046 2.842341-2.851308 2.842341-2.645081S2.842341-1.569116 2.035367-1.569116ZM2.447821-.044832C2.734745-.044832 3.837609-.035866 3.837609 .690411C3.837609 1.201494 3.147198 1.604981 2.304359 1.604981C1.425654 1.604981 .762142 1.183562 .762142 .690411C.762142 .546949 .851806-.044832 1.622914-.044832H2.447821Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-105" d="M1.649813-3.963138L.358655-3.864508V-3.58655C.932503-3.58655 1.0132-3.532752 1.0132-3.0934V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.726276-.017933 .91457-.026899 1.309091-.026899C1.452553-.026899 1.829141-.026899 2.268493 0V-.277958C1.685679-.277958 1.649813-.32279 1.649813-.672478V-3.963138ZM1.676712-5.523288C1.676712-5.792279 1.461519-6.007472 1.192528-6.007472C.91457-6.007472 .708344-5.783313 .708344-5.523288S.91457-5.039103 1.192528-5.039103C1.461519-5.039103 1.676712-5.254296 1.676712-5.523288Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-108" d="M1.649813-6.222665L.32279-6.124035V-5.846077C.932503-5.846077 1.0132-5.783313 1.0132-5.34396V-.690411C1.0132-.277958 .91457-.277958 .32279-.277958V0C.744209-.017933 .91457-.026899 1.327024-.026899C1.748443-.026899 1.900872-.017933 2.340224 0V-.277958C1.748443-.277958 1.649813-.277958 1.649813-.690411V-6.222665Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-109" d="M1.667746-2.322291C1.667746-3.29066 2.367123-3.738979 2.905106-3.738979C3.398257-3.738979 3.559651-3.38929 3.559651-2.761644V-.690411C3.559651-.277958 3.461021-.277958 2.86924-.277958V0C3.29066-.017933 3.461021-.026899 3.891407-.026899S4.438356-.017933 4.913574 0V-.277958C4.321793-.277958 4.223163-.277958 4.223163-.690411V-2.322291C4.223163-3.29066 4.92254-3.738979 5.460523-3.738979C5.953674-3.738979 6.115068-3.38929 6.115068-2.761644V-.690411C6.115068-.277958 6.016438-.277958 5.424658-.277958V0C5.846077-.017933 6.016438-.026899 6.446824-.026899S6.993773-.017933 7.468991 0V-.277958C7.011706-.277958 6.787547-.277958 6.77858-.555915V-2.27746C6.77858-3.057534 6.77858-3.308593 6.48269-3.640349C6.294396-3.855542 5.935741-3.963138 5.523288-3.963138C4.877709-3.963138 4.438356-3.58655 4.187298-3.111333C4.079701-3.640349 3.721046-3.963138 2.96787-3.963138C2.25056-3.963138 1.811208-3.496887 1.622914-3.084433H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-110" d="M1.667746-2.322291C1.667746-3.272727 2.340224-3.738979 2.905106-3.738979C3.434122-3.738979 3.550685-3.299626 3.550685-2.761644V-.690411C3.550685-.277958 3.452055-.277958 2.860274-.277958V0C3.281694-.017933 3.452055-.026899 3.882441-.026899S4.42939-.017933 4.904608 0V-.277958C4.447323-.277958 4.223163-.277958 4.214197-.555915V-2.27746C4.214197-3.021669 4.214197-3.281694 3.963138-3.595517C3.756912-3.846575 3.416189-3.963138 2.96787-3.963138C2.133998-3.963138 1.748443-3.344458 1.622914-3.0934H1.613948V-3.963138L.313823-3.864508V-3.58655C.923537-3.58655 1.004234-3.523786 1.004234-3.084433V-.690411C1.004234-.277958 .905604-.277958 .313823-.277958V0C.735243-.017933 .905604-.026899 1.33599-.026899S1.882939-.017933 2.358157 0V-.277958C1.766376-.277958 1.667746-.277958 1.667746-.690411V-2.322291Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-111" d="M4.339726-1.909838C4.339726-3.084433 3.407223-4.016936 2.304359-4.016936C1.165629-4.016936 .260025-3.057534 .260025-1.909838C.260025-.789041 1.192528 .09863 2.295392 .09863C3.434122 .09863 4.339726-.806974 4.339726-1.909838ZM2.304359-.152428C1.85604-.152428 1.479452-.376588 1.273225-.726276C1.0401-1.102864 1.031133-1.578082 1.031133-1.990535C1.031133-2.322291 1.031133-2.833375 1.255293-3.200996C1.524284-3.658281 1.972603-3.792777 2.295392-3.792777C2.806476-3.792777 3.174097-3.505853 3.353425-3.200996C3.559651-2.824408 3.568618-2.367123 3.568618-1.990535C3.568618-1.65878 3.568618-1.13873 3.344458-.744209C3.0934-.331756 2.680946-.152428 2.304359-.152428Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-112" d="M1.622914-3.012702C1.927771-3.532752 2.420922-3.71208 2.797509-3.71208C3.496887-3.71208 4.034869-2.905106 4.034869-1.936737C4.034869-.91457 3.425156-.125529 2.698879-.125529C2.295392-.125529 1.95467-.358655 1.739477-.672478C1.622914-.851806 1.622914-.869738 1.622914-1.0401V-3.012702ZM1.622914-.430386C1.85604-.19726 2.160897 .09863 2.752677 .09863C3.819676 .09863 4.805978-.762142 4.805978-1.936737C4.805978-3.066501 3.927273-3.963138 2.86924-3.963138C2.385056-3.963138 1.936737-3.765878 1.596015-3.398257V-3.963138L.268991-3.864508V-3.58655C.905604-3.58655 .959402-3.532752 .959402-3.147198V1.049066C.959402 1.461519 .860772 1.461519 .268991 1.461519V1.739477C.690411 1.721544 .860772 1.712578 1.291158 1.712578S1.838107 1.721544 2.313325 1.739477V1.461519C1.721544 1.461519 1.622914 1.461519 1.622914 1.049066V-.430386Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-114" d="M1.596015-2.0533C1.596015-2.420922 1.694645-3.738979 2.716812-3.738979V-3.730012C2.698879-3.721046 2.555417-3.61345 2.555417-3.398257C2.555417-3.156164 2.743711-3.003736 2.949938-3.003736C3.138232-3.003736 3.344458-3.138232 3.344458-3.407223C3.344458-3.694147 3.075467-3.963138 2.67198-3.963138C2.133998-3.963138 1.75741-3.58655 1.551183-3.030635H1.542217V-3.963138L.268991-3.864508V-3.58655C.878705-3.58655 .959402-3.523786 .959402-3.084433V-.690411C.959402-.277958 .860772-.277958 .268991-.277958V0C.744209-.017933 .860772-.026899 1.318057-.026899C1.676712-.026899 1.891905-.017933 2.456787 0V-.277958H2.27746C1.622914-.277958 1.596015-.376588 1.596015-.708344V-2.0533Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-115" d="M3.084433-3.783811C3.084433-3.936239 3.084433-4.016936 2.976837-4.016936C2.932005-4.016936 2.914072-4.016936 2.797509-3.90934C2.779577-3.891407 2.698879-3.81071 2.645081-3.765878C2.367123-3.963138 2.089166-4.016936 1.784309-4.016936C.600747-4.016936 .304857-3.362391 .304857-2.905106C.304857-2.618182 .430386-2.385056 .636613-2.187796C.941469-1.909838 1.282192-1.847073 1.739477-1.766376C2.196762-1.676712 2.349191-1.649813 2.546451-1.497385C2.636115-1.425654 2.860274-1.255293 2.860274-.91457C2.860274-.125529 1.95467-.125529 1.829141-.125529C.91457-.125529 .681445-.887671 .573848-1.371856C.546949-1.461519 .537983-1.515318 .430386-1.515318C.304857-1.515318 .304857-1.443587 .304857-1.282192V-.134496C.304857 .017933 .304857 .09863 .412453 .09863C.466252 .09863 .475218 .089664 .636613-.080697C.672478-.134496 .771108-.251059 .81594-.29589C1.192528 .071731 1.604981 .09863 1.829141 .09863C2.932005 .09863 3.317559-.546949 3.317559-1.147696C3.317559-1.551183 3.138232-1.793275 2.940971-1.999502C2.636115-2.295392 2.313325-2.358157 1.649813-2.483686C1.416687-2.528518 .762142-2.645081 .762142-3.156164C.762142-3.443088 .968369-3.819676 1.784309-3.819676C2.752677-3.819676 2.815442-3.075467 2.833375-2.851308C2.842341-2.743711 2.842341-2.689913 2.958904-2.689913C3.084433-2.689913 3.084433-2.752677 3.084433-2.923039V-3.783811Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-116" d="M2.914072-3.58655V-3.864508H1.613948V-5.514321H1.362889C1.353923-4.761146 1.0401-3.837609 .170361-3.81071V-3.58655H.950436V-1.111831C.950436-.107597 1.676712 .09863 2.15193 .09863C2.752677 .09863 3.066501-.475218 3.066501-1.111831V-1.622914H2.815442V-1.13873C2.815442-.475218 2.537484-.152428 2.214695-.152428C1.613948-.152428 1.613948-.941469 1.613948-1.102864V-3.58655H2.914072Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-117" d="M3.550685-1.497385C3.550685-.699377 3.102366-.125529 2.456787-.125529C1.712578-.125529 1.667746-.511083 1.667746-.995268V-3.963138L.313823-3.864508V-3.58655C1.004234-3.58655 1.004234-3.559651 1.004234-2.761644V-1.416687C1.004234-.833873 1.004234-.457285 1.416687-.143462C1.676712 .035866 2.044334 .09863 2.402989 .09863C2.86924 .09863 3.308593-.107597 3.568618-.645579H3.577584V.09863L4.904608 0V-.277958C4.294894-.277958 4.214197-.340722 4.214197-.780075V-3.963138L2.860274-3.864508V-3.58655C3.469988-3.58655 3.550685-3.523786 3.550685-3.084433V-1.497385Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-120" d="M2.734745-2.017435C2.67198-2.098132 2.67198-2.107098 2.67198-2.116065C2.67198-2.133998 3.371357-2.985803 3.443088-3.057534C3.721046-3.362391 4.025903-3.577584 4.572852-3.58655V-3.864508C4.312827-3.837609 4.070735-3.837609 3.81071-3.837609C3.469988-3.837609 3.308593-3.837609 2.949938-3.864508V-3.58655C3.084433-3.568618 3.200996-3.496887 3.200996-3.317559C3.200996-3.174097 3.120299-3.075467 3.075467-3.021669L2.501619-2.313325L1.802242-3.200996C1.739477-3.281694 1.721544-3.299626 1.721544-3.362391C1.721544-3.469988 1.820174-3.577584 2.026401-3.58655V-3.864508C1.685679-3.846575 1.452553-3.837609 1.049066-3.837609C1.031133-3.837609 .52005-3.837609 .170361-3.864508V-3.58655C.789041-3.58655 .806974-3.568618 1.219427-3.039601L2.142964-1.882939C1.945704-1.649813 1.470486-1.058032 1.273225-.833873C.824907-.29589 .313823-.277958 .125529-.277958V0C.385554-.026899 .627646-.026899 .887671-.026899C1.174595-.026899 1.461519-.017933 1.748443 0V-.277958C1.524284-.304857 1.497385-.457285 1.497385-.546949C1.497385-.573848 1.497385-.699377 1.63188-.860772C1.847073-1.13873 2.080199-1.407721 2.304359-1.676712L3.012702-.771108C3.183064-.573848 3.183064-.555915 3.183064-.502117C3.183064-.403487 3.0934-.286924 2.878207-.277958V0C3.254795-.017933 3.469988-.026899 3.855542-.026899C3.873474-.026899 4.384558-.026899 4.734247 0V-.277958C4.375592-.277958 4.1066-.277958 3.90934-.529016L2.734745-2.017435Z"></path>
+<path id="tz_fig_taxa_de_lucro_g3-126" d="M3.667248-5.998506C3.425156-5.756413 3.218929-5.586052 2.940971-5.586052C2.743711-5.586052 2.57335-5.66675 2.295392-5.819178C2.178829-5.881943 1.972603-5.998506 1.75741-5.998506C1.425654-5.998506 1.255293-5.819178 .771108-5.290162L.932503-5.137733C1.174595-5.379826 1.380822-5.550187 1.65878-5.550187C1.85604-5.550187 2.026401-5.469489 2.304359-5.317061C2.420922-5.254296 2.627148-5.137733 2.842341-5.137733C3.174097-5.137733 3.344458-5.317061 3.828643-5.846077L3.667248-5.998506Z"></path>
+</defs>
+<g id="tz_fig_taxa_de_lucro_page1">
+<g stroke-miterlimit="10" transform="translate(-52.822104,74.438097)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-52.822104,74.438097)scale(-1,-1)"></g>
+<g transform="translate(-15.24982,-17.99982)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-52.822104,74.438097)scale(-1,-1)">
+<g stroke="#000" stroke-miterlimit="10" transform="translate(-37.629261,56.505527)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="" fill="none"></path>
+</g>
+</g>
+<g stroke-width="0.2">
+<g fill="#808080" stroke="#808080">
+<path d="" fill="none"></path>
+</g>
+</g>
+<path d="M0 0H265.96878" fill="none"></path>
+<g transform="translate(265.96878,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<path d="M0 0V140.78728" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,140.78728)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M0 135.98785L2.70671 125.82002L5.41344 117.06787L8.12015 109.45526L10.82687 102.76874L13.53358 96.85463L16.24031 91.5851L18.94702 86.85542L21.65375 82.59357L24.36046 78.73016L27.06718 75.2108L29.77391 71.99196L32.48062 69.03966L35.18733 66.3199L37.89406 63.8055L40.60078 61.47466L43.3075 59.30838L46.01422 57.28897L48.72093 55.4028L51.42766 53.63632L54.13437 51.98135L56.8411 50.42293L59.54782 48.95563L62.25453 47.57126L64.96124 46.26442L67.66797 45.02557L70.3747 43.85336L73.0814 42.73961L75.78813 41.68027L78.49484 40.67397L81.20157 39.71388L83.90828 38.79869L86.615 37.92291L89.32172 37.08932L92.02844 36.28835L94.73515 35.52274L97.44188 34.78703L100.1486 34.08398L102.85532 33.40541L105.56204 32.75674L108.26875 32.13121L110.97548 31.53014L113.68219 30.9481L116.38892 30.39056L119.09563 29.8507L121.80235 29.32985L124.50906 28.82806L127.21579 28.34258L129.9225 27.87341L132.62923 27.41922L135.33595 26.97998L138.04266 26.55434L140.74939 26.14095L143.4561 25.74248L146.16283 25.35493L148.86954 24.97688L151.57626 24.61108L154.28297 24.2575L156.9897 23.9121L159.69641 23.57893L162.40314 23.25255L165.10986 22.9357L167.81657 22.62566L170.52328 22.32648L173.23001 22.0341L175.93674 21.7499L178.64345 21.47246L181.35017 21.20186L184.05688 20.93668L186.76361 20.67967L189.47032 20.43082L192.17705 20.1833L194.88377 19.94534L197.59048 19.71008L200.2972 19.48161L203.00392 19.25995L205.71065 19.04237L208.41736 18.82886L211.12408 18.6208L213.8308 18.4182L216.53752 18.21829L219.24423 18.02382L221.95096 17.83209L224.65767 17.64442L227.3644 17.46083L230.07112 17.28268L232.77783 17.10727L235.48456 16.93591L238.19127 16.76593L240.898 16.60004L243.6047 16.4382L246.31143 16.27774L249.01814 16.12271L251.72487 15.96904L254.43158 15.81946L257.1383 15.67258L259.84503 15.52708L262.55174 15.38565L265.25845 15.24696L267.96518 15.10959" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(181.20152,42.5953)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,56.505527)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-37.629261" y="56.505527" href="#tz_fig_taxa_de_lucro_g2-114"></use>
+<use x="-30.655439" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-61"></use>
+<use x="-11.719628" y="50.706624" href="#tz_fig_taxa_de_lucro_g2-101"></use>
+</g>
+<rect x="-19.732579" y="54.07464" height=".378585" width="20.310144" fill="#d7433b"></rect>
+<g fill="#d7433b">
+<use x="-19.732579" y="62.586726" href="#tz_fig_taxa_de_lucro_g2-113"></use>
+<use x="-13.245503" y="62.586726" href="#tz_fig_taxa_de_lucro_g3-43"></use>
+<use x="-4.030122" y="62.586726" href="#tz_fig_taxa_de_lucro_g3-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<path d="M40.19531 84.31247C100.48828 57.1149 100.48828 57.1149 171.2148 28.40123" fill="none"></path>
+<g transform="matrix(0.92653,-0.37614,0.37614,0.92653,171.2148,28.40123)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g fill="#6c757d" stroke="#6c757d">
+</g>
+<g transform="translate(87.39789,83.09721)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,56.505527)scale(-1,-1)">
+<g fill="#6c757d">
+<g stroke="none">
+<g fill="#6c757d">
+<use x="-37.629261" y="47.041019" href="#tz_fig_taxa_de_lucro_g1-109"></use>
+<use x="-30.572289" y="47.041019" href="#tz_fig_taxa_de_lucro_g1-101"></use>
+<use x="-26.808571" y="47.041019" href="#tz_fig_taxa_de_lucro_g1-99"></use>
+<use x="-23.044853" y="47.041019" href="#tz_fig_taxa_de_lucro_g1-97"></use>
+<use x="-18.81067" y="47.041019" href="#tz_fig_taxa_de_lucro_g1-110"></use>
+<use x="-14.106023" y="47.041019" href="#tz_fig_taxa_de_lucro_g1-105"></use>
+<use x="-11.753699" y="47.041019" href="#tz_fig_taxa_de_lucro_g1-122"></use>
+<use x="-7.989981" y="47.041019" href="#tz_fig_taxa_de_lucro_g1-97"></use>
+<use x="-3.755798" y="47.041019" href="#tz_fig_taxa_de_lucro_g1-24"></use>
+<use x="-3.755798" y="47.041019" href="#tz_fig_taxa_de_lucro_g1-99"></use>
+<use x=".00792" y="47.041019" href="#tz_fig_taxa_de_lucro_g1-126"></use>
+<use x=".00792" y="47.041019" href="#tz_fig_taxa_de_lucro_g1-97"></use>
+<use x="4.242103" y="47.041019" href="#tz_fig_taxa_de_lucro_g1-111"></use>
+<use x="-27.077704" y="56.505527" href="#tz_fig_taxa_de_lucro_g1-101"></use>
+<use x="-23.313986" y="56.505527" href="#tz_fig_taxa_de_lucro_g1-108"></use>
+<use x="-20.961662" y="56.505527" href="#tz_fig_taxa_de_lucro_g1-101"></use>
+<use x="-17.197944" y="56.505527" href="#tz_fig_taxa_de_lucro_g1-118"></use>
+<use x="-13.198993" y="56.505527" href="#tz_fig_taxa_de_lucro_g1-97"></use>
+<use x="-6.142022" y="56.505527" href="#tz_fig_taxa_de_lucro_g0-113"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(52.92522,-12.41684)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,56.505527)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-37.629261" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-67"></use>
+<use x="-30.973708" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-111"></use>
+<use x="-26.366017" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-109"></use>
+<use x="-18.686533" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-112"></use>
+<use x="-13.310893" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-111"></use>
+<use x="-8.703203" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-115"></use>
+<use x="-5.06824" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-105"></use>
+<use x="-2.508412" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-24"></use>
+<use x="-2.508412" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-99"></use>
+<use x="1.587313" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-126"></use>
+<use x="1.587313" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-97"></use>
+<use x="6.195004" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-111"></use>
+<use x="13.874488" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-111"></use>
+<use x="18.482179" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-114"></use>
+<use x="22.0867" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-103"></use>
+<use x="26.694391" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-94"></use>
+<use x="26.694391" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-97"></use>
+<use x="31.302081" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-110"></use>
+<use x="36.421738" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-105"></use>
+<use x="38.981566" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-99"></use>
+<use x="43.077291" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-97"></use>
+<use x="50.756775" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-100"></use>
+<use x="55.876431" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-111"></use>
+<use x="63.555916" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-99"></use>
+<use x="67.651641" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-97"></use>
+<use x="72.259331" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-112"></use>
+<use x="77.378988" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-105"></use>
+<use x="79.938816" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-116"></use>
+<use x="83.522575" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-97"></use>
+<use x="88.130266" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-108"></use>
+<use x="93.761888" y="56.505527" href="#tz_fig_taxa_de_lucro_g2-113"></use>
+<use x="100.760929" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-61"></use>
+<use x="110.488276" y="56.505527" href="#tz_fig_taxa_de_lucro_g2-99"></use>
+<use x="114.477797" y="56.505527" href="#tz_fig_taxa_de_lucro_g2-61"></use>
+<use x="119.085488" y="56.505527" href="#tz_fig_taxa_de_lucro_g2-118"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(0.0,1.0,-1.0,0.0,-5.66684,39.87473)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.629261,56.505527)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-37.629261" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-84"></use>
+<use x="-31.741656" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-97"></use>
+<use x="-27.133965" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-120"></use>
+<use x="-22.270292" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-97"></use>
+<use x="-14.590808" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-100"></use>
+<use x="-9.471151" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-101"></use>
+<use x="-2.300169" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-108"></use>
+<use x=".259659" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-117"></use>
+<use x="5.379315" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-99"></use>
+<use x="9.47504" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-114"></use>
+<use x="13.079561" y="56.505527" href="#tz_fig_taxa_de_lucro_g3-111"></use>
+<use x="20.759046" y="56.505527" href="#tz_fig_taxa_de_lucro_g2-114"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-taxa-de-lucro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;103.2: A tendência decrescente da taxa de lucro: mantida a taxa de mais-valia <span class="math inline">\(e\)</span>, o avanço da mecanização eleva a composição orgânica <span class="math inline">\(q\)</span> e comprime <span class="math inline">\(r\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>Marx reconhecia <strong>contratendências</strong> — elevação da taxa de mais-valia, barateamento do capital constante, comércio exterior, exército de reserva — que retardam a queda. Por isso é uma <em>tendência</em>, não uma lei mecânica. Ainda assim, dela derivam três dinâmicas que estruturam sua previsão do futuro do capitalismo:</p>
+<ul>
+<li><strong>Concentração e centralização do capital.</strong> A busca de escala e a queda da taxa de lucro empurram os capitais a crescer e a absorver uns aos outros. Os grandes engolem os pequenos; a estrutura de mercado tende ao oligopólio — tema que a microeconomia moderna estuda por outra via.</li>
+<li><strong>O exército industrial de reserva.</strong> A mecanização libera trabalhadores, formando uma massa de desempregados e subempregados — o <strong>exército industrial de reserva</strong> — cuja existência pressiona os salários para baixo e disciplina os que estão empregados. É o análogo marxiano do desemprego estrutural (<a href="../vol04/cap04-desemprego.html" class="quarto-xref"><span>Capítulo 26</span></a>, <a href="../vol06/cap06-economia-do-trabalho.html" class="quarto-xref"><span>Capítulo 42</span></a>).</li>
+<li><strong>Crises de superprodução.</strong> Diferentemente de Malthus (escassez), Marx via o capitalismo ameaçado pelo <strong>excesso</strong>: a capacidade de produzir cresce mais depressa que a capacidade de consumir de uma população cujos salários são comprimidos. O resultado são <strong>crises periódicas de superprodução</strong> — mercadorias que não encontram compradores, fábricas ociosas, desemprego —, uma antecipação da análise dos <strong>ciclos</strong> econômicos (<a href="../vol07/cap07-ciclos.html" class="quarto-xref"><span>Capítulo 50</span></a>).</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled" title="Controvérsia — pauperização absoluta ou relativa?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Controvérsia — pauperização absoluta ou relativa?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Marx é frequentemente lido como tendo previsto a <strong>miséria crescente</strong> (pauperização <strong>absoluta</strong>) do proletariado — previsão que a elevação secular dos salários reais no capitalismo desenvolvido desmentiu. Mas muitos intérpretes sustentam que sua tese central era a pauperização <strong>relativa</strong>: mesmo que o salário real suba, a <strong>fatia</strong> do trabalho no produto cairia diante da do capital, aprofundando a desigualdade. Essa versão dialoga diretamente com o debate contemporâneo sobre a distribuição funcional da renda e a concentração no topo (<a href="../vol13/cap04-pobreza-desigualdade.html" class="quarto-xref"><span>Capítulo 92</span></a>).</p>
+</div>
+</div>
+</section>
+<section id="as-críticas-a-marx" class="level2" data-number="103.7">
+<h2 data-number="103.7" class="anchored" data-anchor-id="as-críticas-a-marx"><span class="header-section-number">103.7</span> As críticas a Marx</h2>
+<p>Nenhuma teoria econômica foi tão combatida. As objeções principais:</p>
+<ul>
+<li><strong>O problema da transformação.</strong> Marx afirma que as mercadorias se vendem por valores (proporcionais ao trabalho), mas também que a concorrência iguala as <strong>taxas de lucro</strong> entre setores de composição orgânica diferente — o que exige que os preços se desviem dos valores. Conciliar as duas coisas (transformar “valores” em “preços de produção”) é o célebre <strong>problema da transformação</strong>. Desde Böhm-Bawerk, críticos apontam que a solução do Livro III de <em>O Capital</em> é logicamente incompleta; marxistas contra-argumentam com reformulações. O debate segue aberto.</li>
+<li><strong>A crítica marginalista.</strong> A <strong>revolução marginalista</strong> (<a href="cap03-marginalistas.html" class="quarto-xref"><span>Capítulo 104</span></a>) dispensou por inteiro a teoria do valor-trabalho: o valor não vem do trabalho passado, mas da <strong>utilidade marginal</strong> e da escassez relativa na margem. Para os neoclássicos, o lucro remunera a produtividade marginal do capital e a espera; não há “mais-valia” a explicar. Sob essa ótica, todo o edifício de Marx repousa numa premissa (o valor-trabalho) que a ciência econômica abandonou — a mesma que já derrubara o paradoxo da água e do diamante (<a href="../vol01/cap01-o-que-e-economia.html" class="quarto-xref"><span>Capítulo 1</span></a>).</li>
+<li><strong>O cálculo econômico e a experiência histórica.</strong> No plano prático, o <strong>debate do cálculo socialista</strong> (Mises, Hayek) argumentou que, sem preços de mercado, uma economia planejada não teria como alocar recursos racionalmente. E os regimes que se disseram marxistas no século XX combinaram planejamento central com regimes políticos autoritários e desempenho econômico problemático — o que muitos leem como refutação, embora marxistas retruquem que tais regimes traíram, e não realizaram, o projeto de Marx.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled" title="Armadilha comum — descartar Marx por completo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Armadilha comum — descartar Marx por completo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Rejeitar a teoria do valor-trabalho <strong>não</strong> implica descartar todo Marx. Sobrevivem, e influenciam a economia heterodoxa e até a <em>mainstream</em>, várias de suas contribuições: a análise das <strong>crises</strong> endógenas ao capitalismo, o papel do <strong>poder</strong> e das classes na distribuição, a atenção à <strong>concentração</strong> de capital, a noção de que as instituições econômicas são históricas e mutáveis. Levar Marx a sério é separar o que ruiu (a teoria do valor como explicação de preços) do que permanece fértil (a economia política do conflito distributivo).</p>
+</div>
+</div>
+</section>
+<section id="o-legado" class="level2" data-number="103.8">
+<h2 data-number="103.8" class="anchored" data-anchor-id="o-legado"><span class="header-section-number">103.8</span> O legado</h2>
+<p>Marx é o divisor de águas do pensamento econômico. Do tronco clássico brotaram, vimos, duas grandes correntes (<a href="cap01-classicos.html" class="quarto-xref"><span>Capítulo 102</span></a>): os <strong>marginalistas</strong>, que romperam com a teoria do valor-trabalho e fundaram a microeconomia da escolha (<a href="cap03-marginalistas.html" class="quarto-xref"><span>Capítulo 104</span></a>), e o próprio <strong>Marx</strong>, que levou essa teoria às últimas consequências para dela extrair uma crítica revolucionária.</p>
+<p>Como <strong>economista técnico</strong>, sua teoria do valor foi superada. Como <strong>crítico do capitalismo e teórico social</strong>, sua influência é incalculável: moldou a sociologia, a história, a filosofia política e a economia do desenvolvimento. Conceitos como alienação, ideologia, luta de classes e fetichismo entraram no vocabulário comum. E toda uma tradição — do keynesianismo, que compartilha a preocupação com a <strong>demanda efetiva</strong> e as crises, à teoria da dependência latino-americana — dialoga com problemas que Marx colocou. Compreendê-lo é indispensável para entender por que a economia moderna é, ainda hoje, um campo de disputa e não um consenso pacífico.</p>
+</section>
+<section id="brasil-em-foco" class="level2" data-number="103.9">
+<h2 data-number="103.9" class="anchored" data-anchor-id="brasil-em-foco"><span class="header-section-number">103.9</span> 🇧🇷 Brasil em Foco</h2>
+<p>O marxismo teve no Brasil uma trajetória intelectual e política densa, e seus conceitos iluminam questões estruturais da economia brasileira.</p>
+<p><strong>A teoria da dependência.</strong> A contribuição brasileira mais original de matriz marxista é a <strong>teoria da dependência</strong>, formulada nos anos 1960–1970 por autores como Ruy Mauro Marini, Theotônio dos Santos e — em chave menos ortodoxa — Fernando Henrique Cardoso. Marini <span class="citation" data-cites="marini2000">(<a href="#ref-marini2000" role="doc-biblioref">Marini, 2000</a>)</span> cunhou a tese da <strong>superexploração do trabalho</strong>: nas economias periféricas, o capital compensaria as trocas desiguais com o centro comprimindo a remuneração do trabalho abaixo do seu valor. Independentemente de se aceitar o modelo, ele antecipou temas hoje centrais — inserção subordinada nas cadeias globais (<a href="../vol09/cap06-globalizacao-brasil.html" class="quarto-xref"><span>Capítulo 64</span></a>) e os limites do desenvolvimento dependente (<a href="../vol13/cap03-instituicoes.html" class="quarto-xref"><span>Capítulo 91</span></a>).</p>
+<p><strong>Distribuição funcional da renda.</strong> A pergunta marxiana — que fatia do produto vai ao trabalho e qual vai ao capital? — é mensurável. Nas Contas Nacionais do IBGE, a <strong>participação dos rendimentos do trabalho no PIB</strong> (a “remuneração dos empregados”) oscila, nas últimas décadas, em torno de <strong>40 % a 45 %</strong>, patamar historicamente inferior ao de economias avançadas. Acompanhar essa série ao longo do tempo é observar empiricamente o <strong>conflito distributivo</strong> que Marx colocou no centro — sem precisar endossar sua teoria do valor.</p>
+<p><strong>Exército industrial de reserva e informalidade.</strong> O conceito de exército de reserva ressoa num mercado de trabalho onde a <strong>informalidade</strong> ronda os <strong>40 % dos ocupados</strong> (PNAD Contínua/IBGE) e a <strong>subutilização da força de trabalho</strong> — que soma desempregados, subocupados e desalentados — supera com folga a taxa de desemprego aberto. Essa massa disponível pressiona salários e ilustra, em termos contemporâneos, a função disciplinadora que Marx atribuía ao desemprego estrutural (<a href="../vol04/cap04-desemprego.html" class="quarto-xref"><span>Capítulo 26</span></a>, <a href="../vol06/cap06-economia-do-trabalho.html" class="quarto-xref"><span>Capítulo 42</span></a>).</p>
+<p><strong>Concentração e desigualdade.</strong> A tese da pauperização relativa dialoga com o fato de o Brasil figurar entre os países de maior concentração de renda no topo do mundo: dados da PNAD e dos registros tributários (via Receita Federal) mostram o <strong>1 % mais rico</strong> apropriando parcela do total que se conta entre as mais altas do planeta (<a href="../vol13/cap04-pobreza-desigualdade.html" class="quarto-xref"><span>Capítulo 92</span></a>). O conflito entre capital e trabalho de que Marx falava não é peça de arqueologia teórica no Brasil.</p>
+<blockquote class="blockquote">
+<p><strong>Fontes e séries para explorar:</strong> IBGE — Sistema de Contas Nacionais (distribuição funcional da renda: remuneração dos empregados / PIB) e PNAD Contínua (informalidade, taxa composta de subutilização); Receita Federal / World Inequality Database (concentração de renda no topo). Ao consultar, verifique a data de referência: participações e taxas mudam a cada divulgação.</p>
+</blockquote>
+</section>
+<section id="resumo-do-capítulo" class="level2" data-number="103.10">
+<h2 data-number="103.10" class="anchored" data-anchor-id="resumo-do-capítulo"><span class="header-section-number">103.10</span> Resumo do capítulo</h2>
+<ul>
+<li><strong>Marx</strong> (1818–1883) partiu da teoria do valor-trabalho dos clássicos para construir uma <strong>crítica</strong> do capitalismo, fundindo economia política inglesa, dialética hegeliana e socialismo francês; sua obra madura é <em>O Capital</em> (1867).</li>
+<li>O <strong>materialismo histórico</strong> vê a história como sucessão de <strong>modos de produção</strong>, movidos pela contradição entre <strong>forças produtivas</strong> e <strong>relações de produção</strong>; o capitalismo é histórico e transitório.</li>
+<li>O <strong>valor</strong> de uma mercadoria é o <strong>tempo de trabalho socialmente necessário</strong> para produzi-la; o <strong>fetichismo da mercadoria</strong> faz relações entre pessoas parecerem relações entre coisas, escondendo a origem do lucro.</li>
+<li>A distinção decisiva é entre <strong>força de trabalho</strong> (vendida pelo salário <span class="math inline">\(v\)</span>) e <strong>trabalho</strong> (seu uso na jornada): o valor criado além de <span class="math inline">\(v\)</span> é a <strong>mais-valia</strong> <span class="math inline">\(m\)</span>, trabalho não pago. A <strong>taxa de mais-valia</strong> é <span class="math inline">\(e = m/v\)</span>.</li>
+<li>A mais-valia cresce por prolongamento da jornada (<strong>absoluta</strong>) ou por aumento de produtividade que encurta o trabalho necessário (<strong>relativa</strong>).</li>
+<li>A <strong>taxa de lucro</strong> é <span class="math inline">\(r = m/(c+v) = e/(q+1)\)</span>; a mecanização eleva a <strong>composição orgânica</strong> <span class="math inline">\(q = c/v\)</span> e gera a <strong>tendência decrescente da taxa de lucro</strong>, com contratendências.</li>
+<li>Daí derivam <strong>concentração</strong> do capital, <strong>exército industrial de reserva</strong> e <strong>crises de superprodução</strong> por excesso de capacidade frente a salários comprimidos.</li>
+<li><strong>Críticas:</strong> o <strong>problema da transformação</strong> (valores × preços de produção), a <strong>revolução marginalista</strong> (que abandonou o valor-trabalho) e o <strong>debate do cálculo</strong> socialista. Sobrevivem a análise das crises, do poder de classe e da concentração; caiu a teoria do valor como explicação de preços.</li>
+</ul>
+</section>
+<section id="exercícios" class="level2" data-number="103.11">
+<h2 data-number="103.11" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">103.11</span> Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Como usar os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Como usar os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise de caso.</p>
+</div>
+</div>
+<p><strong>1.</strong> Explique, com suas palavras, a distinção entre <strong>força de trabalho</strong> e <strong>trabalho</strong> e por que ela é o passo decisivo para Marx explicar o lucro.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A <strong>força de trabalho</strong> é a <em>capacidade</em> de trabalhar, a mercadoria que o operário vende; seu valor é o dos bens de subsistência que o reproduzem (o salário). O <strong>trabalho</strong> é o <em>uso</em> dessa capacidade ao longo da jornada. O passo decisivo é que a jornada é <strong>maior</strong> do que o tempo necessário para produzir valor equivalente ao salário: nas horas restantes o trabalhador cria valor que não lhe pertence — a <strong>mais-valia</strong>. Assim, mesmo que tudo seja comprado e vendido pelo valor (nada de “trapaça” na troca), há lucro, porque a força de trabalho é a única mercadoria cujo uso cria <strong>mais</strong> valor do que ela custa. Sem essa distinção, o lucro teria de vir da esfera da circulação, onde o ganho de um é a perda de outro e nada líquido se cria.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Diferencie <strong>mais-valia absoluta</strong> de <strong>mais-valia relativa</strong> e dê um exemplo histórico de cada uma.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A <strong>mais-valia absoluta</strong> aumenta o trabalho excedente <strong>prolongando a jornada</strong> (ex.: passar de 8 para 10 horas), com o trabalho necessário fixo — típica do início da industrialização, quando as jornadas eram extenuantes. A <strong>mais-valia relativa</strong> aumenta o excedente <strong>encurtando o trabalho necessário</strong> via <strong>ganhos de produtividade</strong> que barateiam os bens de subsistência, sem alongar a jornada (ex.: mecanização que reduz o custo dos alimentos e do vestuário) — típica do capitalismo maduro, em que a inovação tecnológica é o motor da exploração crescente.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> O que Marx quis dizer com <strong>fetichismo da mercadoria</strong>? Relacione-o com a dificuldade de “enxergar” a origem do lucro.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O fetichismo da mercadoria é a inversão pela qual <strong>relações sociais entre pessoas</strong> (quem trabalhou, para quem, em que condições) aparecem no mercado como <strong>relações entre coisas</strong> (preços, valores das mercadorias). A mercadoria parece ter valor como propriedade natural sua, quando o valor é trabalho humano cristalizado. Essa aparência esconde a origem social do valor e, portanto, do lucro: como tudo se troca por “seu preço”, o excedente apropriado pelo capitalista fica invisível, dissolvido na aparência neutra e voluntária da troca de equivalentes. O fetichismo é, assim, o véu que torna a exploração legal e imperceptível.</p>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Numa jornada de 8 horas, o trabalhador repõe o valor de seu salário em 5 horas de trabalho necessário. (a) Quantas horas são de trabalho excedente? (b) Calcule a <strong>taxa de mais-valia</strong>. (c) Se a jornada subir para 10 horas com o mesmo trabalho necessário, qual a nova taxa? Que tipo de mais-valia foi acrescentado?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Trabalho excedente <span class="math inline">\(= 8 - 5 = 3\)</span> horas.</p></li>
+<li><p>Pela <a href="#eq-taxa-mais-valia" class="quarto-xref">Equação&nbsp;<span>103.1</span></a>, <span class="math inline">\(e = m/v = 3/5 = 0{,}6 = 60\,\%\)</span>.</p></li>
+<li><p>Com jornada de 10 horas e trabalho necessário ainda de 5 horas, o excedente vira <span class="math inline">\(10 - 5 = 5\)</span> horas, e <span class="math inline">\(e = 5/5 = 1 = 100\,\%\)</span>. Como o aumento veio do <strong>prolongamento da jornada</strong> (trabalho necessário inalterado), trata-se de <strong>mais-valia absoluta</strong>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Um capital tem <span class="math inline">\(c = 800\)</span>, <span class="math inline">\(v = 200\)</span> e taxa de mais-valia <span class="math inline">\(e = 100\,\%\)</span>. (a) Calcule a mais-valia <span class="math inline">\(m\)</span> e a <strong>taxa de lucro</strong> <span class="math inline">\(r\)</span>. (b) Recalcule <span class="math inline">\(r\)</span> pela fórmula em função da composição orgânica e confirme.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>De <span class="math inline">\(e = m/v = 1\)</span>, vem <span class="math inline">\(m = v = 200\)</span>. Pela <a href="#eq-taxa-de-lucro" class="quarto-xref">Equação&nbsp;<span>103.2</span></a>, <span class="math display">\[r = \frac{m}{c+v} = \frac{200}{800+200} = \frac{200}{1000} = 0{,}20 = 20\,\%.\]</span></p></li>
+<li><p>A composição orgânica é <span class="math inline">\(q = c/v = 800/200 = 4\)</span>. Pela <a href="#eq-taxa-de-lucro-organica" class="quarto-xref">Equação&nbsp;<span>103.3</span></a>, <span class="math display">\[r = \frac{e}{q+1} = \frac{1}{4+1} = \frac{1}{5} = 0{,}20 = 20\,\%,\]</span> que confirma o resultado.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Suponha que o progresso técnico eleve a composição orgânica do exercício anterior de <span class="math inline">\(q = 4\)</span> para <span class="math inline">\(q = 9\)</span>, mantendo <span class="math inline">\(e = 100\,\%\)</span>. (a) Qual a nova taxa de lucro? (b) Qual <strong>taxa de mais-valia</strong> seria necessária, com <span class="math inline">\(q = 9\)</span>, para restaurar <span class="math inline">\(r = 20\,\%\)</span>? (c) Que princípio marxiano esse exercício ilustra?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(r = e/(q+1) = 1/(9+1) = 0{,}10 = 10\,\%\)</span>: a taxa de lucro <strong>caiu pela metade</strong> ao dobrar (aproximadamente) a composição orgânica.</p></li>
+<li><p>Impondo <span class="math inline">\(r = 0{,}20 = e/(9+1)\)</span>, temos <span class="math inline">\(e = 0{,}20 \times 10 = 2 = 200\,\%\)</span>. Seria preciso <strong>dobrar a taxa de exploração</strong> para compensar a mecanização.</p></li>
+<li><p>Ilustra a <strong>tendência decrescente da taxa de lucro</strong>: a elevação da composição orgânica comprime <span class="math inline">\(r\)</span>, e só uma <strong>contratendência</strong> (aqui, o aumento da taxa de mais-valia) pode sustentar a lucratividade. É a contradição de substituir trabalho — fonte do valor — por máquinas.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> (Análise) Explique o conceito de <strong>exército industrial de reserva</strong> e relacione-o com dois fenômenos do mercado de trabalho brasileiro contemporâneo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O <strong>exército industrial de reserva</strong> é a massa de trabalhadores desempregados e subempregados que a mecanização e o ciclo do capital mantêm disponível. Sua função, para Marx, é <strong>disciplinar</strong> o trabalho: sua existência pressiona os salários para baixo e enfraquece o poder de barganha de quem está empregado, pois há sempre quem aceite o posto. No Brasil, o conceito dialoga com (i) a alta <strong>informalidade</strong> — cerca de 40 % dos ocupados (PNAD Contínua) —, uma reserva de mão de obra em ocupações precárias e de baixa remuneração; e (ii) a <strong>taxa composta de subutilização</strong> da força de trabalho, que soma desempregados, subocupados por insuficiência de horas e desalentados, e supera bastante a taxa de desemprego aberto (<a href="../vol04/cap04-desemprego.html" class="quarto-xref"><span>Capítulo 26</span></a>). Ambos indicam uma folga de mão de obra que limita a alta dos salários, coerente com a intuição marxiana — ainda que não se aceite toda a sua teoria.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> (Desafio) Um estudante afirma: “A teoria de Marx foi refutada, logo não há nada de aproveitável nela para a economia moderna.” Avalie criticamente, distinguindo o que de fato foi superado do que permanece fértil.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solução">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A afirmação confunde <strong>uma parte</strong> com <strong>o todo</strong>. O que foi <strong>superado</strong> é a <strong>teoria do valor-trabalho</strong> como explicação dos preços: a revolução marginalista (<a href="cap03-marginalistas.html" class="quarto-xref"><span>Capítulo 104</span></a>) mostrou que o valor deriva da utilidade marginal e da escassez na margem, não do trabalho incorporado, e o <strong>problema da transformação</strong> de valores em preços nunca teve solução plenamente consistente. Nesse sentido técnico, o núcleo do sistema ruiu. Mas <strong>permanecem férteis</strong>, e influenciam economistas de várias correntes: a análise das <strong>crises</strong> endógenas ao capitalismo (superprodução, ciclos), a atenção ao <strong>poder</strong> e ao <strong>conflito de classe</strong> na distribuição da renda, a tese da <strong>concentração</strong> e centralização do capital, e a concepção das instituições econômicas como <strong>históricas</strong> e mutáveis (<a href="../vol13/cap03-instituicoes.html" class="quarto-xref"><span>Capítulo 91</span></a>). Uma resposta madura reconhece que julgar Marx exige separar o <strong>economista do valor</strong> (superado) do <strong>crítico e teórico social</strong> (ainda influente) — e que a própria vitalidade dos debates que ele abriu contradiz a ideia de uma “refutação” que encerraria o assunto.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="para-saber-mais" class="level2" data-number="103.12">
+<h2 data-number="103.12" class="anchored" data-anchor-id="para-saber-mais"><span class="header-section-number">103.12</span> Para saber mais</h2>
+<ul>
+<li><span class="citation" data-cites="marx2013">Marx (<a href="#ref-marx2013" role="doc-biblioref">2013</a>)</span> — <em>O Capital</em>, Livro I; o Capítulo 1 (a mercadoria e o fetichismo) e as seções sobre a jornada de trabalho e a mais-valia são o núcleo do argumento econômico.</li>
+<li><span class="citation" data-cites="marxengels2010">Marx; Engels (<a href="#ref-marxengels2010" role="doc-biblioref">2010</a>)</span> — <em>Manifesto do Partido Comunista</em>; texto breve e incendiário que expõe a visão histórica e política de Marx e Engels — porta de entrada acessível.</li>
+<li><span class="citation" data-cites="heilbroner1996">Heilbroner (<a href="#ref-heilbroner1996" role="doc-biblioref">1996</a>)</span> — <em>A História do Pensamento Econômico</em> (<em>Os Filósofos Mundanos</em>); o capítulo sobre Marx é uma introdução envolvente à sua vida e ao seu “mundo implacável”.</li>
+<li><span class="citation" data-cites="hunt2013">Hunt; Lautzenheiser (<a href="#ref-hunt2013" role="doc-biblioref">2013</a>)</span> — <em>História do Pensamento Econômico: uma perspectiva crítica</em>; tratamento analítico detalhado da teoria do valor, da mais-valia e do debate posterior, favorável a Marx mas rigoroso.</li>
+<li><span class="citation" data-cites="marini2000">Marini (<a href="#ref-marini2000" role="doc-biblioref">2000</a>)</span> — <em>Dialética da Dependência</em>; a formulação clássica da teoria marxista da dependência na América Latina, referência para a leitura da inserção periférica do Brasil.</li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-heilbroner1996" class="csl-entry" role="listitem">
+HEILBRONER, Robert L. <strong>A História do Pensamento Econômico</strong>. São Paulo: Nova Cultural, 1996.
+</div>
+<div id="ref-hunt2013" class="csl-entry" role="listitem">
+HUNT, E. K.; LAUTZENHEISER, Mark. <strong>História do Pensamento Econômico: uma perspectiva crítica</strong>. 3. ed. Rio de Janeiro: Elsevier, 2013.
+</div>
+<div id="ref-marini2000" class="csl-entry" role="listitem">
+MARINI, Ruy Mauro. <strong>Dialética da Dependência</strong>. Petrópolis: Vozes, 2000.
+</div>
+<div id="ref-marx2013" class="csl-entry" role="listitem">
+MARX, Karl. <strong>O Capital: crítica da economia política. Livro I</strong>. São Paulo: Boitempo, 2013.
+</div>
+<div id="ref-marxengels2010" class="csl-entry" role="listitem">
+MARX, Karl; ENGELS, Friedrich. <strong>Manifesto do Partido Comunista</strong>. São Paulo: Boitempo, 2010.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1388,7 +2388,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol15/cap02-marx.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-economia/edit/main/capitulos/vol15/cap02-marx.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-economia/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Feito com <a href="https://quarto.org">Quarto</a>.</p>
 </div>
