@@ -1,5 +1,315 @@
 # Derivativos: noções de futuros, opções e hedge {#sec-derivativos}
 
-::: {.callout-note}
-Capítulo em construção.
+Um produtor de soja no oeste da Bahia planta em novembro e só colhe em abril. Ele já sabe, hoje, quanto vai gastar com sementes, adubo e diesel — mas não faz a menor ideia de quanto valerá a saca quando a lavoura estiver pronta. Se o preço despencar entre o plantio e a colheita, meses de trabalho podem virar prejuízo. Do outro lado do país, uma companhia aérea vende passagens com seis meses de antecedência sem saber quanto pagará pelo querosene na data do voo. E um turista que comprará dólares para uma viagem em dezembro tem o mesmo problema, em escala menor. Todos enfrentam a **incerteza de um preço futuro** — e todos podem, hoje, transferir essa incerteza para outra pessoa disposta a carregá-la. O instrumento que torna isso possível é o **derivativo**.
+
+Este capítulo apresenta os derivativos como o que eles de fato são: ferramentas para **administrar risco de preço**. Vamos partir dos contratos a termo e futuros, entender o mecanismo de **hedge** que trava um preço com antecedência, e então chegar às **opções** — contratos que funcionam como um seguro, dando direitos sem impor obrigações. No caminho, veremos por que os mesmos instrumentos que protegem o produtor rural podem, nas mãos erradas, multiplicar perdas a ponto de quebrar grandes empresas.
+
+## Objetivos de aprendizagem
+
+Ao final deste capítulo, você será capaz de:
+
+- definir **derivativo** e explicar por que seu valor "deriva" de um ativo subjacente;
+- distinguir **contrato a termo** de **contrato futuro**, entendendo o papel do **ajuste diário**, da **margem de garantia** e da câmara de compensação;
+- interpretar os diagramas de **resultado (payoff)** de posições **compradas** e **vendidas** em futuros;
+- explicar o mecanismo do **hedge** e diferenciá-lo de **especulação** e **arbitragem**;
+- definir **opção de compra (call)** e **opção de venda (put)**, calcular seus resultados no vencimento e reconhecer a **assimetria** entre titular e lançador;
+- identificar os determinantes do **prêmio** de uma opção e o papel da **alavancagem** na ampliação de ganhos e perdas.
+
+## O que é um derivativo
+
+Comece pela palavra. Um **derivativo** é um contrato cujo valor **deriva** — depende — do preço de outra coisa, chamada **ativo subjacente** (ou *ativo-objeto*). Esse subjacente pode ser uma mercadoria (soja, boi, petróleo, ouro), um ativo financeiro (uma ação, um índice como o Ibovespa, uma taxa de juros) ou uma moeda (o dólar). O derivativo não é o ativo em si; é um acordo sobre o que acontecerá com o **preço** desse ativo no futuro.
+
+::: {.callout-note title="Definição — Derivativo"}
+Um **derivativo** é um contrato financeiro cujo valor depende do preço de um **ativo subjacente**. Ele estabelece direitos e obrigações entre duas partes, referenciados a um preço futuro, sem exigir necessariamente a posse do ativo subjacente.
 :::
+
+A função econômica primordial do derivativo é a **transferência de risco**. O produtor de soja quer se livrar do risco de queda do preço; um comprador industrial, ou um especulador que aposta na alta, aceita assumi-lo. O derivativo é o instrumento que permite essa troca — ele desmembra o risco de preço do ativo físico e o negocia separadamente. É por isso que os derivativos surgiram, historicamente, nos mercados agrícolas: onde há uma longa distância no tempo entre a decisão de produzir e a venda, há incerteza de preço a administrar.
+
+Trataremos aqui das duas grandes famílias: os **contratos a termo e futuros**, que criam uma **obrigação** de comprar ou vender no futuro, e as **opções**, que criam um **direito** — a distinção que organizará todo o capítulo.
+
+## Contratos a termo e futuros
+
+O derivativo mais simples é o **contrato a termo** (*forward*): um acordo entre duas partes para comprar e vender um ativo em uma **data futura** por um **preço fixado hoje**. Nada é pago no momento do acordo; a liquidação ocorre integralmente no vencimento. Nosso produtor de soja pode, em novembro, acertar com uma trading a venda de 1.000 sacas em abril a R\$\,120 a saca. Chegado abril, ele entrega a soja e recebe R\$\,120 por saca — **não importa** se o preço à vista naquele dia for R\$\,90 ou R\$\,150.
+
+O preço acertado é o **preço a termo** $F$. Ele não é uma adivinhação do preço futuro: decorre de uma relação de não arbitragem com o preço à vista de hoje. Para um ativo sem custos de estocagem nem rendimentos, quem quisesse ter o ativo no vencimento poderia (i) comprá-lo hoje a $S_0$, tomando o dinheiro emprestado à taxa $r$, ou (ii) travar o termo a $F$. As duas rotas devem custar o mesmo, sob pena de lucro sem risco. Daí o **custo de carregamento** (*cost of carry*):
+
+$$
+F = S_0\,(1+r)^{T},
+$$ {#eq-preco-futuro}
+
+onde $S_0$ é o preço à vista hoje, $r$ a taxa de juros do período e $T$ o prazo. Para commodities, somam-se custos de armazenagem; para ações, descontam-se dividendos. A intuição é a do valor do dinheiro no tempo (@sec-valor-do-dinheiro-no-tempo): o preço futuro é o preço de hoje "carregado" pelos juros.
+
+O contrato a termo tem, porém, dois inconvenientes. Ele é **sob medida** e negociado em **balcão** (diretamente entre as partes), o que o torna pouco líquido — difícil de repassar a um terceiro. E carrega **risco de contraparte**: se, em abril, o comprador quebrar ou simplesmente não honrar o acordo, o produtor fica a ver navios. O **contrato futuro** nasce para resolver esses dois problemas.
+
+::: {.callout-note title="Definição — Contrato futuro"}
+Um **contrato futuro** é um contrato a termo **padronizado** (em quantidade, qualidade e vencimento) e negociado em **bolsa**. Uma **câmara de compensação** (*clearing*) se interpõe entre comprador e vendedor, tornando-se a contraparte de ambos, e administra dois mecanismos que eliminam o risco de calote: a **margem de garantia** e o **ajuste diário**.
+:::
+
+A padronização torna o contrato **fungível**: como todos os contratos de "boi gordo, vencimento outubro" são idênticos, eles podem ser comprados e revendidos livremente na bolsa, gerando liquidez. E a câmara de compensação (no Brasil, a da **B3**, @sec-mercado-de-capitais) garante a liquidação por dois instrumentos:
+
+- **Margem de garantia:** ao abrir a posição, cada parte deposita uma quantia (uma fração do valor do contrato) como caução, que cobre eventuais perdas.
+- **Ajuste diário** (*marking-to-market*): em vez de esperar o vencimento, os ganhos e perdas são apurados e liquidados **todo dia**, com base na variação do preço futuro. Quem perdeu no dia paga; quem ganhou recebe, em dinheiro, diariamente. Ao chegar o vencimento, todos os resultados já foram acertados ao longo do caminho — o que reduz a quase zero o risco de um acúmulo de dívida impagável.
+
+::: {.callout-important title="Armadilha comum — futuro não é 'aposta paga só no fim'"}
+Muita gente imagina que, num contrato futuro, o acerto de contas só ocorre no vencimento. Não é assim: o **ajuste diário** credita ou debita sua conta a cada pregão. Uma posição que "no fim" daria lucro pode, no meio do caminho, exigir depósitos de margem tão grandes (as chamadas de margem, *margin calls*) que o investidor sem caixa é obrigado a encerrá-la no prejuízo. O fluxo de caixa intermediário importa — e já quebrou muita gente que "estava certa no longo prazo".
+:::
+
+### Posições comprada e vendida
+
+Em qualquer derivativo, há dois lados. Quem assume a posição **comprada** (*long*) concorda em **comprar** o ativo no futuro pelo preço acertado — e, portanto, **ganha se o preço subir** (pagará $F$ por algo que passou a valer mais). Quem assume a posição **vendida** (*short*) concorda em **vender** — e **ganha se o preço cair** (receberá $F$ por algo que passou a valer menos). O resultado de cada posição no vencimento é uma função linear do preço à vista $S_T$:
+
+$$
+\text{resultado (comprado)} = S_T - F, \qquad \text{resultado (vendido)} = F - S_T.
+$$
+
+A @fig-payoff-futuro mostra esses dois resultados. São retas espelhadas que se cruzam em $S_T = F$, onde ambas dão resultado zero. Note que o ganho de um lado é exatamente a perda do outro: o mercado futuro é um **jogo de soma zero** entre as partes (antes de custos) — a riqueza não é criada nem destruída, apenas **transferida** conforme o preço se move.
+
+::: {#fig-payoff-futuro}
+
+```{.tikz}
+%%| filename: fig-payoff-futuro
+%%| alt: Plano com o preço à vista no vencimento no eixo horizontal e o resultado financeiro no eixo vertical. Duas retas cruzam-se no ponto F sobre o eixo horizontal: a reta ascendente (posição comprada) e a reta descendente (posição vendida), espelhadas em relação a esse ponto.
+\begin{tikzpicture}[font=\small, >=stealth]
+  % eixos
+  \draw[eixo, ->] (0.4,0) -- (6.7,0) node[right, font=\footnotesize] {$S_T$};
+  \draw[eixo, ->] (3.5,-2.7) -- (3.5,2.7) node[above, font=\footnotesize] {resultado};
+  % ponto F
+  \node[below, font=\footnotesize] at (3.5,-0.08) {$F$};
+  % comprado (long): slope +1 passando por (3.5,0)
+  \draw[curva, manualblue] (1,-2.5) -- (6,2.5);
+  \node[manualblue, font=\footnotesize, anchor=south west] at (5.4,2.0) {comprado};
+  % vendido (short): slope -1
+  \draw[curva, manualred] (1,2.5) -- (6,-2.5);
+  \node[manualred, font=\footnotesize, anchor=north west] at (5.4,-2.0) {vendido};
+\end{tikzpicture}
+```
+
+Resultado no vencimento de posições em um contrato futuro. O comprado ganha com a alta ($S_T > F$); o vendido, com a queda. O ganho de um é a perda do outro.
+:::
+
+## Hedge, especulação e arbitragem
+
+Os mesmos contratos servem a três propósitos econômicos bem distintos. Distingui-los é essencial para não confundir uma ferramenta de proteção com uma aposta.
+
+O **hedge** (proteção) é o uso do derivativo para **reduzir** um risco de preço a que já se está exposto. O produtor de soja está **naturalmente comprado** no ativo físico: ele possui (ou terá) a soja e perde se o preço cair. Para se proteger, ele assume no mercado futuro a posição **oposta** — **vende** futuros de soja. Se o preço cair, a perda na lavoura é compensada pelo ganho na posição vendida; se subir, o ganho na lavoura é anulado pela perda no futuro. Em ambos os casos, o preço de venda fica **travado** perto de $F$. É o que a @fig-hedge ilustra: a soma de uma posição física comprada com um futuro vendido é uma linha aproximadamente **horizontal** — o resultado deixou de depender do preço.
+
+::: {#fig-hedge}
+
+```{.tikz}
+%%| filename: fig-hedge
+%%| alt: Três linhas no plano preço-resultado. Uma reta ascendente representa a posição física do produtor (comprada); uma reta descendente representa o futuro vendido; a soma das duas é uma linha horizontal, o resultado travado pelo hedge.
+\begin{tikzpicture}[font=\small, >=stealth]
+  \draw[eixo, ->] (0.4,0) -- (6.7,0) node[right, font=\footnotesize] {$S_T$};
+  \draw[eixo, ->] (3.5,-2.7) -- (3.5,2.7) node[above, font=\footnotesize] {resultado};
+  % posição física (comprado) slope +1
+  \draw[curva, manualblue] (1,-2.5) -- (6,2.5);
+  \node[manualblue, font=\footnotesize, anchor=south west] at (5.2,2.0) {lavoura (f\'isico)};
+  % futuro vendido slope -1
+  \draw[curva, manualred] (1,2.5) -- (6,-2.5);
+  \node[manualred, font=\footnotesize, anchor=north west] at (5.2,-2.0) {futuro vendido};
+  % resultado combinado: horizontal
+  \draw[destaque, manualgreen] (1,0) -- (6,0);
+  \node[manualgreen, font=\footnotesize, anchor=south] at (2.1,0.12) {resultado travado (hedge)};
+\end{tikzpicture}
+```
+
+Hedge de venda: à posição comprada no ativo físico (lavoura) soma-se um futuro vendido de sinal contrário. O resultado combinado torna-se praticamente independente do preço à vista — o preço fica travado.
+:::
+
+O comprador tem o problema simétrico. A companhia aérea está **naturalmente vendida** em combustível (precisará comprá-lo e perde se o preço subir); ela faz um **hedge de compra**, comprando futuros de petróleo para travar o custo. A regra geral do hedge é simples: **assuma no derivativo a posição contrária à sua exposição natural**.
+
+::: {.callout-note title="Definição — Hedge, especulação e arbitragem"}
+- **Hedge:** tomar posição em derivativos para **reduzir** um risco preexistente, travando um preço. O hedger abre mão de eventuais ganhos em troca de eliminar a incerteza.
+- **Especulação:** tomar posição para **lucrar com a variação esperada** do preço, **assumindo** risco que antes não se tinha. O especulador aposta em direção.
+- **Arbitragem:** obter lucro **sem risco** explorando um desalinhamento momentâneo de preços (por exemplo, entre o futuro e o à vista fora da relação da @eq-preco-futuro). A ação dos arbitradores **corrige** o desalinhamento e mantém os preços coerentes.
+:::
+
+Os três papéis são interdependentes e todos úteis. O hedger só consegue se proteger porque há um especulador disposto a comprar o risco de que ele quer se livrar — o especulador é a **contraparte** que dá liquidez ao mercado. E o arbitrador é quem garante que o preço futuro não descole do à vista, mantendo a @eq-preco-futuro válida. Um mercado de derivativos saudável precisa dos três.
+
+::: {.callout-warning title="Controvérsia — especulação: vilã ou necessária?"}
+No debate público, "especulador" costuma ser xingamento, associado a manipulação e à alta de preços de alimentos. A visão econômica padrão é mais matizada: especuladores **fornecem liquidez** e ajudam a **descobrir preços**, absorvendo o risco que os produtores querem repassar. Sem eles, o hedger não teria com quem negociar. Por outro lado, há evidências de que **excesso** de posições especulativas pode amplificar a volatilidade de curto prazo em certos mercados (como o de petróleo e o de alimentos em 2007–2008), o que motiva a regulação de limites de posição. Como quase tudo em Economia, a resposta depende de dose e de contexto — não é "sempre bom" nem "sempre ruim".
+:::
+
+## Opções: direitos, não obrigações
+
+O contrato futuro trava o preço, mas tem um custo oculto: ele elimina a incerteza **nos dois sentidos**. O produtor que vendeu futuros a R\$\,120 está protegido da queda, mas **não se beneficia** se o preço disparar para R\$\,150 — abriu mão do lado bom junto com o lado ruim. E se ele quisesse um **seguro** — proteção contra a queda, mas mantendo a chance de ganho na alta? É exatamente isso que uma **opção** oferece. Diferentemente do futuro, a opção dá um **direito**, não uma obrigação.
+
+::: {.callout-note title="Definição — Opção de compra (call) e de venda (put)"}
+Uma **opção** dá ao seu **titular** o **direito**, mas não a obrigação, de negociar o ativo subjacente a um preço prefixado — o **preço de exercício** (*strike*) $K$ — até (ou em) uma data de vencimento. Em troca desse direito, o titular paga ao **lançador** (quem vende a opção) uma quantia, o **prêmio**.
+
+- Uma **opção de compra** (*call*) dá o direito de **comprar** o ativo por $K$.
+- Uma **opção de venda** (*put*) dá o direito de **vender** o ativo por $K$.
+:::
+
+Como o titular só exerce o direito quando lhe é vantajoso, o resultado de uma opção é **assimétrico**. Considere a **call**. No vencimento, se o preço à vista $S_T$ estiver **acima** do strike $K$, o titular exerce — compra por $K$ algo que vale $S_T$, embolsando $S_T - K$. Se estiver **abaixo**, ele simplesmente **não exerce** (por que comprar a $K$ o que o mercado vende mais barato?) e perde apenas o prêmio. O resultado no vencimento, **antes** de descontar o prêmio, é:
+
+$$
+\text{resultado da call} = \max(S_T - K,\ 0).
+$$ {#eq-payoff-call}
+
+A @fig-payoff-call mostra o **lucro líquido** do titular de uma call (já descontado o prêmio pago): uma linha achatada no prejuízo do prêmio enquanto $S_T \le K$, que passa a subir a 45° depois de $K$, cruzando o zero no **ponto de equilíbrio** $S_T = K + \text{prêmio}$. Repare na assimetria: a **perda é limitada** ao prêmio pago, mas o **ganho é, em princípio, ilimitado**. A opção funciona como um bilhete de loteria com prejuízo máximo conhecido.
+
+::: {#fig-payoff-call}
+
+```{.tikz}
+%%| filename: fig-payoff-call
+%%| alt: Diagrama de lucro do titular de uma opção de compra. A linha permanece horizontal em um valor negativo (o prêmio) enquanto o preço à vista é menor que o strike K, e a partir de K sobe a quarenta e cinco graus, cruzando o zero no ponto de equilíbrio.
+\begin{tikzpicture}[font=\small, >=stealth]
+  \draw[eixo, ->] (0.7,0) -- (6.7,0) node[right, font=\footnotesize] {$S_T$};
+  \draw[eixo, ->] (1,-1.4) -- (1,2.6) node[above, font=\footnotesize] {lucro};
+  % prêmio (nível -0.8), K em x=3.5
+  \draw[auxiliar] (1,-0.8) -- (3.5,-0.8);
+  \node[manualgray, font=\footnotesize, anchor=east] at (1,-0.8) {$-p$};
+  % curva de lucro da call
+  \draw[curva, manualblue] (1,-0.8) -- (3.5,-0.8) -- (6,1.7);
+  % strike
+  \draw[auxiliar] (3.5,0.08) -- (3.5,-0.08);
+  \node[below, font=\footnotesize] at (3.5,-0.12) {$K$};
+  % break-even
+  \node[ponto] at (4.3,0) {};
+  \node[font=\footnotesize, anchor=south west] at (4.35,0.05) {equil\'ibrio};
+  \node[manualblue, font=\footnotesize, anchor=south west] at (5.0,1.3) {call comprada};
+\end{tikzpicture}
+```
+
+Lucro do titular de uma opção de compra (call). A perda máxima é o prêmio $p$; o ganho cresce sem teto acima do ponto de equilíbrio $K + p$.
+:::
+
+A **put** é o espelho: dá lucro quando o preço **cai**. Seu titular exerce se $S_T < K$ (vende por $K$ algo que vale menos), com resultado $\max(K - S_T,\ 0)$. É a opção que serve de **seguro contra queda** — precisamente o que faltava ao produtor rural. Comprando uma put de soja com strike R\$\,120 por um prêmio de, digamos, R\$\,4 por saca, ele garante um piso de venda de R\$\,120: se o preço cair a R\$\,90, ele exerce e vende a R\$\,120; se subir a R\$\,150, ele deixa a put vencer, perde os R\$\,4 de prêmio e vende sua soja no mercado a R\$\,150. Ao contrário do futuro, a put **preserva o lado bom** — o custo dessa vantagem é o prêmio, como o de qualquer apólice de seguro.
+
+::: {.callout-tip title="Intuição — a opção é um seguro"}
+Pense na put como o seguro do seu carro. Você paga um **prêmio** (não reembolsável) e, em troca, fica protegido contra um evento ruim (a batida; a queda do preço). Se o evento ruim não ocorre, você "perde" o prêmio — mas ninguém lamenta ter pago o seguro do carro que não bateu. A call é o inverso: o direito de aproveitar um evento **bom** (a alta) sem se comprometer com a compra. Em ambos, o prêmio é o preço da assimetria: perda limitada, do outro lado uma chance preservada.
+:::
+
+### O outro lado: o lançador
+
+Para cada titular há um **lançador**, que **vendeu** a opção e embolsou o prêmio. Sua posição é a imagem invertida: o **ganho máximo é o prêmio** recebido, e a **perda pode ser enorme**. O lançador de uma call, se o preço disparar, é obrigado a vender por $K$ algo que vale muito mais, com prejuízo potencialmente ilimitado. Por que alguém lançaria? Porque, na maioria dos cenários, a opção vira pó e o lançador fica com o prêmio — é o negócio da seguradora, que lucra com prêmios enquanto o sinistro não vem. É um negócio de "ganhar pouco muitas vezes e, de vez em quando, perder muito", que exige gestão de risco rigorosa.
+
+### O que determina o prêmio
+
+Quanto vale uma opção antes do vencimento? Seu prêmio decompõe-se em duas parcelas. O **valor intrínseco** é o que ela renderia se exercida agora — $\max(S - K, 0)$ para uma call. O **valor temporal** é o adicional que reflete a **possibilidade** de a opção ficar ainda mais vantajosa até o vencimento. Cinco fatores movem o prêmio de uma call: sobe com o **preço à vista** $S$, cai com o **strike** $K$, e sobe com o **prazo**, com a **taxa de juros** e — de forma crucial — com a **volatilidade** do ativo. Mais volatilidade significa maior chance de grandes altas (que o titular aproveita) sem piorar o lado ruim (limitado ao prêmio): por isso **incerteza valoriza a opção**, ao contrário do que ocorre com quase todos os outros ativos.
+
+::: {.callout-warning title="Controvérsia — dá para 'precificar' uma opção?"}
+A precificação de opções foi um problema em aberto até 1973, quando Fischer Black, Myron Scholes e Robert Merton publicaram a fórmula que leva seus nomes [@black1973] — feito que rendeu o Nobel a Scholes e Merton e fundou a engenharia financeira moderna. O **modelo de Black-Scholes** dá o prêmio "justo" de uma opção europeia a partir dos cinco fatores acima, sob hipóteses fortes (volatilidade constante, mercados sem atritos, retornos com distribuição bem-comportada). Sua influência é imensa, mas suas hipóteses falham justamente nos momentos de crise: o modelo subestima a probabilidade de quedas extremas (os "cisnes negros"). O episódio mais célebre foi a quebra, em 1998, do fundo **LTCM** — que tinha Scholes e Merton entre os sócios —, lembrete de que um modelo elegante não substitui a prudência diante do risco de cauda.
+:::
+
+## Alavancagem: a faca de dois gumes
+
+Há um traço comum a futuros e opções que explica tanto seu poder quanto seu perigo: a **alavancagem**. Como para abrir uma posição em futuros basta depositar uma **margem** (uma fração do valor do contrato), e como o prêmio de uma opção é pequeno perto do valor do ativo, o investidor **controla uma exposição muitas vezes maior que o capital que colocou**. Um movimento de 5% no ativo pode significar 50% de ganho — ou de perda — sobre o capital investido.
+
+::: {.callout-important title="Armadilha comum — confundir alavancagem com dinheiro fácil"}
+A alavancagem **amplifica os dois lados**. O mesmo mecanismo que transforma uma alta modesta em lucro polpudo transforma uma queda modesta em perda que **excede** o capital aplicado — no caso de futuros e do lançamento de opções, você pode dever **mais** do que investiu. Propagandas que vendem derivativos como caminho rápido para a riqueza omitem essa simetria. Estudos de mercados de varejo mostram que a **maioria** dos pequenos investidores que fazem *day trade* alavancado perde dinheiro de forma consistente. Alavancagem não é atalho: é um multiplicador do resultado, seja ele qual for.
+:::
+
+## 🇧🇷 Brasil em Foco
+
+O Brasil tem um dos mercados de derivativos mais desenvolvidos entre os emergentes — herança da antiga **BM&F** (Bolsa de Mercadorias & Futuros), hoje integrada à **B3** (@sec-mercado-de-capitais).
+
+**Os contratos mais líquidos são financeiros.** Embora os derivativos tenham nascido no agronegócio, os mais negociados na B3 são o **dólar futuro** e o **DI futuro** (que negocia a taxa de juros, ligada à Selic — @sec-taxa-de-juros-selic), seguidos pelo **futuro de Ibovespa**. O dólar futuro é um dos instrumentos mais líquidos do país: por ele passam bancos, exportadores e importadores que fazem **hedge cambial** (@sec-cambio), além de um enorme volume especulativo. Empresas com dívida ou receita em dólar usam esses contratos exatamente como o produtor de soja usa o futuro agrícola — para travar hoje um preço (a cotação da moeda) que só se realizará adiante.
+
+**O hedge do produtor rural.** Nos contratos agropecuários da B3 — **boi gordo**, **café arábica**, **milho**, **soja** e **etanol** — o produtor pode travar o preço de sua safra com meses de antecedência, protegendo-se da volatilidade das commodities. Complementarmente, instrumentos do mercado de balcão como a **CPR (Cédula de Produto Rural)** e os contratos a termo com tradings cumprem função semelhante, integrando o financiamento e o hedge da produção. Para um país em que o agronegócio responde por parcela expressiva do PIB e das exportações, esses mercados são peça de política de **gestão de risco agrícola**.
+
+**Quando o hedge vira aposta: as perdas de 2008.** O caso mais didático da diferença entre hedge e especulação ocorreu no Brasil na crise de 2008. Grandes empresas — entre elas **Sadia**, **Aracruz** e o grupo **Votorantim** — haviam contratado derivativos cambiais complexos (os chamados *target forwards*) que, sob a aparência de hedge, embutiam uma **aposta alavancada** na continuidade da valorização do real. Quando o dólar disparou com a crise, essas posições geraram perdas bilionárias: a Sadia amargou prejuízo que acelerou sua fusão com a Perdigão (dando origem à BRF), e a Aracruz sofreu rombo que a levou à venda. A lição é a do próprio capítulo: o mesmo instrumento **protege** quando neutraliza uma exposição existente e **destrói** quando cria uma exposição nova e alavancada.
+
+**Mini contratos e o day trade de pessoa física.** Na última década, os **minicontratos** de dólar (WDO) e de índice (WIN) popularizaram a negociação de derivativos entre pessoas físicas, com margens acessíveis e alta alavancagem. O fenômeno atraiu a atenção dos reguladores: a **CVM** (Comissão de Valores Mobiliários) e a B3 emitem alertas recorrentes sobre os riscos, amparados por estudos que mostram que a **ampla maioria** dos day traders de varejo tem prejuízo consistente. É a alavancagem da seção anterior em ação — no varejo brasileiro.
+
+> **Fontes e séries para explorar:** B3 (volumes e especificações dos contratos futuros e de opções; contratos agropecuários); CVM (regulação de derivativos e alertas ao investidor; estudos sobre resultados de day trade); Banco Central do Brasil (posição de derivativos cambiais, dólar de referência); CEPEA/ESALQ (indicadores de preços de commodities agrícolas usados como referência dos contratos). Verifique sempre a data de referência: volumes, cotações e prêmios mudam continuamente.
+
+## Resumo do capítulo
+
+- Um **derivativo** é um contrato cujo valor deriva de um **ativo subjacente**; sua função econômica central é **transferir risco de preço** de quem quer se proteger para quem aceita assumi-lo.
+- O **contrato a termo** (*forward*) fixa hoje o preço de uma compra/venda futura, mas é de balcão, ilíquido e sujeito a **risco de contraparte**. O preço a termo segue o **custo de carregamento** (@eq-preco-futuro): $F = S_0(1+r)^T$.
+- O **contrato futuro** é o termo **padronizado e negociado em bolsa**, com **câmara de compensação**, **margem de garantia** e **ajuste diário**, que eliminam o risco de calote e dão liquidez.
+- A posição **comprada** (*long*) ganha com a alta; a **vendida** (*short*), com a queda. O mercado futuro é um **jogo de soma zero** entre as partes (@fig-payoff-futuro).
+- **Hedge** é usar o derivativo para **reduzir** um risco existente (posição contrária à exposição natural); **especulação** é assumir risco apostando na direção; **arbitragem** é lucro sem risco que mantém os preços coerentes. Os três são interdependentes.
+- Uma **opção** dá um **direito** (não obrigação): a **call** de comprar por $K$ (@eq-payoff-call), a **put** de vender por $K$. O resultado é **assimétrico** — para o titular, perda limitada ao **prêmio** e ganho amplo; para o lançador, o inverso. A put funciona como **seguro** contra queda.
+- O prêmio de uma opção soma **valor intrínseco** e **valor temporal**; cresce com a **volatilidade** do ativo. O modelo de **Black-Scholes** dá seu preço teórico, com hipóteses que falham nas crises.
+- A **alavancagem** de futuros e opções amplifica ganhos **e** perdas, que podem exceder o capital investido — a raiz tanto da utilidade quanto do perigo desses instrumentos.
+
+## Exercícios
+
+::: {.callout-note title="Como usar os exercícios"}
+Tente resolver cada item antes de abrir a solução. A dificuldade cresce ao longo da lista: os primeiros são conceituais; os do meio, numéricos; os últimos pedem análise de caso. Tenha uma calculadora à mão.
+:::
+
+**1.** Explique, com suas palavras, por que se diz que o valor de um derivativo "deriva" de outro ativo. Dê um exemplo de ativo subjacente financeiro e um de mercadoria.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O derivativo não tem valor próprio: ele é um contrato cujo resultado **depende do preço de outro ativo**, o subjacente. Se o preço do subjacente muda, o valor do derivativo muda junto — daí "derivar". Exemplos de subjacente **financeiro**: uma ação, o Ibovespa, a taxa de juros (DI), o dólar. Exemplos de **mercadoria** (commodity): soja, boi gordo, café, petróleo, ouro.
+:::
+
+**2.** Qual a diferença fundamental entre um contrato **a termo** e um contrato **futuro**? Cite dois mecanismos do futuro que o termo não tem e diga que problema cada um resolve.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O termo é **sob medida e de balcão** (negociado direto entre as partes); o futuro é **padronizado e negociado em bolsa**. Dois mecanismos do futuro: (i) a **câmara de compensação** com **margem de garantia**, que se interpõe entre as partes e resolve o **risco de contraparte** (calote); (ii) o **ajuste diário** (*marking-to-market*), que liquida ganhos e perdas todo dia, evitando o acúmulo de uma dívida impagável até o vencimento. A padronização, além disso, dá **liquidez** ao contrato, que pode ser revendido a terceiros.
+:::
+
+**3.** Classifique cada operação como **hedge**, **especulação** ou **arbitragem**:
+(a) Uma exportadora que receberá US\$ 1 milhão em 90 dias vende dólar futuro hoje.
+(b) Um investidor, achando que o dólar vai subir, compra dólar futuro sem ter nenhuma dívida ou receita em dólar.
+(c) Um banco percebe que o dólar futuro está caro demais frente ao à vista e à taxa de juros, vende futuro e compra à vista simultaneamente, travando um lucro certo.
+
+::: {.callout-tip collapse="true" title="Solução"}
+(a) **Hedge** — a exportadora tem exposição natural comprada em dólar (vai receber dólares) e toma a posição contrária (vendida) para travar a cotação, reduzindo risco.
+(b) **Especulação** — ele assume um risco que não tinha, apostando na direção do preço.
+(c) **Arbitragem** — explora um desalinhamento entre futuro e à vista (violação da @eq-preco-futuro) para obter lucro **sem risco**; sua ação tende a corrigir o desalinhamento.
+:::
+
+**4.** Um produtor vende contratos futuros de café a R\$\,1.200 por saca. No vencimento, calcule o resultado da posição vendida **no futuro** se o preço à vista for (a) R\$\,1.000; (b) R\$\,1.200; (c) R\$\,1.400. Depois explique por que, somando esse resultado à venda física da saca ao preço à vista, o produtor recebe aproximadamente R\$\,1.200 nos três casos.
+
+::: {.callout-tip collapse="true" title="Solução"}
+Resultado do vendido $= F - S_T = 1.200 - S_T$:
+(a) $1.200 - 1.000 = +200$; (b) $1.200 - 1.200 = 0$; (c) $1.200 - 1.400 = -200$.
+Somando à venda física (que rende $S_T$ por saca):
+(a) $1.000 + 200 = 1.200$; (b) $1.200 + 0 = 1.200$; (c) $1.400 - 200 = 1.200$.
+Em todos os cenários o produtor fica com **R\$\,1.200** por saca: o ganho (ou perda) na posição futura **compensa** exatamente a perda (ou ganho) no preço de venda da soja. É o hedge da @fig-hedge: o preço foi travado, e o resultado deixou de depender de $S_T$.
+:::
+
+**5.** Uma call sobre uma ação tem strike $K = R\$\,50$ e foi comprada por um prêmio de R\$\,3. Calcule o **lucro líquido** do titular no vencimento se o preço da ação for (a) R\$\,45; (b) R\$\,52; (c) R\$\,60. Qual é o preço de equilíbrio (*break-even*)?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Lucro líquido $= \max(S_T - K, 0) - \text{prêmio} = \max(S_T - 50, 0) - 3$.
+(a) $S_T = 45$: não exerce; lucro $= 0 - 3 = -R\$\,3$ (perde só o prêmio).
+(b) $S_T = 52$: exerce; lucro $= (52 - 50) - 3 = 2 - 3 = -R\$\,1$.
+(c) $S_T = 60$: exerce; lucro $= (60 - 50) - 3 = 10 - 3 = +R\$\,7$.
+O **preço de equilíbrio** é $K + \text{prêmio} = 50 + 3 = R\$\,53$: acima dele o titular tem lucro; abaixo, prejuízo (limitado a R\$\,3). Note a assimetria da @fig-payoff-call: a perda máxima é o prêmio, mas o ganho cresce sem teto.
+:::
+
+**6.** Um agricultor quer se proteger da **queda** do preço da soja, mas não quer abrir mão de eventual **alta**. Compare, para esse objetivo, **vender um futuro** e **comprar uma put**. Em que cada estratégia difere quanto a custo inicial e ao resultado se o preço subir?
+
+::: {.callout-tip collapse="true" title="Solução"}
+- **Vender futuro:** não tem custo inicial (só a margem de garantia, devolvida ao fim), e **trava** o preço nos dois sentidos. Se o preço **subir**, o ganho na lavoura é anulado pela perda no futuro — ele **não** aproveita a alta.
+- **Comprar put:** tem **custo inicial** (o prêmio), mas garante apenas um **piso** de preço. Se o preço **subir**, ele deixa a put vencer (perde só o prêmio) e vende a soja ao preço alto de mercado — **aproveita a alta**.
+A put atende melhor ao objetivo do agricultor (proteção contra queda **preservando** a alta), ao custo do prêmio. É a diferença entre travar um preço (futuro) e comprar um **seguro** com piso (put).
+:::
+
+**7.** Explique a **assimetria** de resultados entre o **titular** e o **lançador** de uma opção de compra. Por que alguém aceitaria ser lançador, se sua perda pode ser ilimitada?
+
+::: {.callout-tip collapse="true" title="Solução"}
+O **titular** de uma call tem **perda limitada** ao prêmio pago e **ganho potencialmente ilimitado** (cresce com a alta do ativo). O **lançador** tem o espelho: **ganho máximo** igual ao prêmio recebido e **perda potencialmente ilimitada** (se o preço dispara, é obrigado a entregar por $K$ algo que vale muito mais). Alguém aceita lançar porque, na **maioria** dos cenários, o preço não sobe o suficiente e a opção "vira pó": o lançador fica com o prêmio. É o modelo de negócio da seguradora — receber muitos prêmios pequenos e pagar sinistros raros —, que só é sustentável com boa gestão de risco e diversificação.
+:::
+
+**8.** Por que a **volatilidade** do ativo subjacente **aumenta** o valor de uma opção, se em quase todos os outros ativos mais incerteza reduz o preço?
+
+::: {.callout-tip collapse="true" title="Solução"}
+Porque o resultado da opção é **assimétrico e truncado**. Para o titular de uma call, quedas maiores do ativo **não** aumentam a perda (que já está limitada ao prêmio), mas altas maiores aumentam o ganho sem teto. Mais volatilidade amplia as duas caudas da distribuição de preços; como só a cauda **boa** se traduz em resultado para o titular, o valor esperado da opção **sobe**. Em um ativo comum (uma ação, um título), o investidor sofre integralmente tanto a alta quanto a queda, e a aversão ao risco (@sec-escolha-sob-incerteza) faz a incerteza **reduzir** o valor. A opção inverte isso porque elimina o lado ruim ao preço do prêmio.
+:::
+
+**9.** (Análise de caso) Em 2008, empresas brasileiras como Sadia e Aracruz tiveram perdas bilionárias com derivativos cambiais que, segundo elas, seriam "hedge". Usando os conceitos do capítulo, explique como um instrumento de proteção pode se transformar em aposta e como distinguir os dois casos.
+
+::: {.callout-tip collapse="true" title="Solução"}
+O critério é a **exposição preexistente**. Hedge é tomar no derivativo a posição **contrária** a um risco que já se tem, e em **magnitude compatível** com ele: uma exportadora que receberá US\$ 10 milhões pode vender até ~US\$ 10 milhões em dólar futuro para travar a receita — isso **reduz** risco. Vira **especulação** quando (i) o volume de derivativos **excede** a exposição real (a empresa "vende" muito mais dólar do que receberá), criando uma posição direcional nova; ou (ii) a estrutura embute **alavancagem** que amplia perdas em cenários adversos, como os *target forwards* de 2008, que multiplicavam a perda se o dólar subisse além de certo ponto. Nesses casos, a empresa deixou de neutralizar risco e passou a **apostar** na valorização do real — quando o dólar disparou com a crise, a aposta alavancada gerou o rombo. Distinguir: comparar o **nocional** dos derivativos com a exposição operacional real e checar se há alavancagem assimétrica. Hedge diminui a variância do resultado; a posição de 2008 a **aumentou**.
+:::
+
+**10.** (Desafio) O modelo de Black-Scholes é usado no mundo todo para precificar opções, mas fracassou em episódios como a quebra do LTCM (1998) e a crise de 2008. Isso significa que o modelo é "inútil"? Relacione com a discussão sobre modelos econômicos e seus limites.
+
+::: {.callout-tip collapse="true" title="Solução"}
+**Não** é inútil — mas não deve ser tomado como verdade literal. O Black-Scholes é um **modelo**: uma simplificação útil que captura bem a relação entre prêmio, preço, strike, prazo, juros e volatilidade em condições normais, e por isso organiza um mercado inteiro. Seu ponto cego são as **hipóteses**: volatilidade constante e retornos "bem-comportados", que subestimam a probabilidade de movimentos extremos (o **risco de cauda**, os "cisnes negros"). Nas crises, os preços se movem muito além do que o modelo considera provável, e quem confiou cegamente nele — apostando alavancado, como o LTCM — quebrou. A lição é geral e vale para todo modelo econômico (como discutido sobre modelos e o CAPM em @sec-risco-retorno-capm): o modelo é uma lente que ilumina o essencial e omite o resto; usá-lo bem exige **conhecer suas hipóteses** e reservar prudência para os cenários em que elas falham. "Todos os modelos estão errados, mas alguns são úteis" — desde que o usuário saiba onde eles quebram.
+:::
+
+## Para saber mais
+
+- @hull2016 — a referência mundial sobre derivativos: futuros, opções, hedge e precificação, do básico ao avançado, com rigor e clareza. O ponto de partida para aprofundar qualquer tema deste capítulo.
+- @black1973 — o artigo seminal que resolveu a precificação de opções e fundou a engenharia financeira moderna; denso, mas historicamente decisivo.
+- @bodie2014 — capítulos dedicados a opções e futuros, com tratamento didático das estratégias e dos diagramas de resultado.
+- @assafneto2021 — cobre o mercado de derivativos no contexto brasileiro, com os contratos da B3, o hedge cambial e agrícola e a regulação da CVM.
