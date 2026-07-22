@@ -202,7 +202,7 @@
 | 4 | Ações e avaliação de empresas | `capitulos/vol14/cap04-acoes-valuation.qmd` | ✅ |
 | 5 | Risco, retorno e diversificação: do portfólio ao CAPM | `capitulos/vol14/cap05-risco-retorno-capm.qmd` | ✅ |
 | 6 | Derivativos: noções de futuros, opções e hedge | `capitulos/vol14/cap06-derivativos.qmd` | ✅ |
-| 7 | Finanças pessoais aplicadas | `capitulos/vol14/cap07-financas-pessoais.qmd` | ⬜ |
+| 7 | Finanças pessoais aplicadas | `capitulos/vol14/cap07-financas-pessoais.qmd` | ✅ |
 
 ### Volume 15 — História do Pensamento Econômico e Economia Comportamental
 
